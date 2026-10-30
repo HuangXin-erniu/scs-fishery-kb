@@ -1,0 +1,44 @@
+version: 1
+
+document:
+  fields:
+    - doc_id
+    - source_id
+    - title
+    - title_zh
+    - publisher
+    - year
+    - doc_type
+    - sensitivity
+    - language
+    - page_count
+    - file_hash
+
+chunk:
+  fields:
+    - chunk_id
+    - doc_id
+    - page
+    - section
+    - table_id
+    - text
+    - token_count
+    - char_start
+    - char_end
+
+citation:
+  format: "[{doc_id} p.{page}]"
+  fields:
+    - doc_id
+    - title
+    - page
+    - section
+    - snippet
+    - score
+
+sensitivity:
+  values: [public, internal, restricted, unknown]
+  rules:
+    unknown: "held; must not be ingested"
+    restricted: "local only; never sent to an external model API"
+    internal: "requires owner approval; desensitise before external use"

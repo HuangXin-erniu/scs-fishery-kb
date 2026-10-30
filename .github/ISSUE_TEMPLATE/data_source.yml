@@ -1,0 +1,110 @@
+name: Data source proposal
+description: Propose a knowledge-layer source for the corpus register
+title: "[Source]: "
+labels: ["data-source"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Propose a source for `configs/corpus.yaml`. Do not attach restricted files,
+        full vessel tracks or personal information. Use `unknown` when a field is not confirmed.
+  - type: input
+    id: title
+    attributes:
+      label: Source title
+      placeholder: "Example: Fisheries statistical yearbook"
+    validations:
+      required: true
+  - type: input
+    id: publisher
+    attributes:
+      label: Publisher or owner
+      placeholder: "Agency, institution or data owner"
+    validations:
+      required: true
+  - type: input
+    id: year
+    attributes:
+      label: Year or edition
+      placeholder: "2024"
+  - type: dropdown
+    id: source-type
+    attributes:
+      label: Source type
+      options:
+        - statistics
+        - logbook
+        - dictionary
+        - product description
+        - bulletin
+        - law
+        - standard
+        - paper
+        - report
+        - metadata
+    validations:
+      required: true
+  - type: dropdown
+    id: format
+    attributes:
+      label: Format
+      options:
+        - PDF
+        - DOCX
+        - XLSX
+        - CSV
+        - HTML
+        - scanned PDF
+        - unknown
+    validations:
+      required: true
+  - type: dropdown
+    id: license
+    attributes:
+      label: Licence
+      options:
+        - public
+        - internal
+        - restricted
+        - unknown
+    validations:
+      required: true
+  - type: dropdown
+    id: sensitivity
+    attributes:
+      label: Sensitivity
+      options:
+        - public
+        - internal
+        - restricted
+        - unknown
+    validations:
+      required: true
+  - type: input
+    id: location
+    attributes:
+      label: Location or URL
+      description: A public URL, or a description of how the source can be obtained.
+  - type: textarea
+    id: intended-use
+    attributes:
+      label: Intended use
+      description: Which questions or knowledge categories should this source support?
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes
+      description: Known caveats, definitions, versions or acquisition constraints.
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checklist
+      options:
+        - label: I have the right to propose this source for the register.
+          required: true
+        - label: I did not attach restricted data, full vessel tracks or personal information.
+          required: true
+        - label: I understand that unknown licences or sensitivity are held and not ingested.
+          required: true

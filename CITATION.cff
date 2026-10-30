@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use this project, please cite it as below."
+title: "South China Sea Nearshore Fishery Knowledge Base (SCS-FKB): Construction and Retrieval-Augmented Generation Methods"
+abstract: "A retrieval-augmented knowledge base for fishing vessel operations and fishery conditions in the nearshore South China Sea, with governed sources, citable evidence, abstention and evaluation."
+authors:
+  - family-names: "Huang"
+    given-names: "Xin"
+version: "0.1.0-alpha"
+date-released: "2026-10-30"
+license: "Apache-2.0"
+repository-code: "https://github.com/HuangXin-erniu/scs-fishery-kb"
+url: "https://github.com/HuangXin-erniu/scs-fishery-kb"
+keywords:
+  - fisheries
+  - South China Sea
+  - knowledge base
+  - retrieval-augmented generation
+  - RAG
+type: software
