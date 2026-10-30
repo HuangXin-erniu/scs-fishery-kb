@@ -1,0 +1,29 @@
+# Data and run artifacts are local-only.
+/data/*
+!/data/README.md
+/runs/
+
+# Local secrets
+.env
+.env.local
+.env.*.local
+
+# Python / tooling
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+*.egg-info/
+dist/
+build/
+
+# Local databases and OS noise
+*.db
+*.db-*
+*.sqlite
+*.sqlite3
+*.log
+.DS_Store

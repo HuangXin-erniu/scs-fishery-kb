@@ -1,0 +1,47 @@
+name: Feature request
+description: Propose a documentation, corpus, retrieval or evaluation improvement
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please keep proposals within the knowledge-layer scope described in PROJECT.md.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem or opportunity
+      description: What is missing or difficult today?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed change
+      description: Describe the smallest useful change.
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - documentation
+        - corpus register
+        - parsing and chunking
+        - retrieval
+        - citations and abstention
+        - evaluation
+        - tooling and CI
+        - interface contract
+    validations:
+      required: true
+  - type: checkboxes
+    id: scope
+    attributes:
+      label: Scope check
+      options:
+        - label: This proposal does not require publishing data, indexes or run artifacts.
+          required: true
+        - label: This proposal does not require training or serving a forecasting model.
+          required: true

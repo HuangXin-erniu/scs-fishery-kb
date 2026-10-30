@@ -1,0 +1,43 @@
+name: Bug report
+description: Report a defect in documentation, configuration or tooling
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a problem. Do not include secrets, credentials or restricted data.
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Describe the actual behaviour and where you saw it.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect?
+      description: Describe the expected behaviour.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Reproduction steps
+      description: Commands, file paths or links that reproduce the problem.
+      render: shell
+  - type: input
+    id: version
+    attributes:
+      label: Version or commit
+      description: The release tag or commit you used.
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checklist
+      options:
+        - label: I did not include secrets or restricted data.
+          required: true
+        - label: I searched existing issues before opening this one.
+          required: true

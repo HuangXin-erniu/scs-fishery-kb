@@ -1,0 +1,328 @@
+version: 1
+updated_at: "2026-10-30"
+data_root: "./data"
+
+policy:
+  ingest_requires:
+    - file_available
+    - license_known
+    - sensitivity_known
+  allowed_license:
+    - public
+    - internal
+    - restricted
+  allowed_sensitivity:
+    - public
+    - internal
+    - restricted
+  unknown_action: hold
+  restricted_external_api: false
+  notes: "Sources with an unknown licence or sensitivity are held and must not be ingested; restricted sources stay local."
+
+categories:
+  - id: fishery_operations
+    name: "Fishing vessel operations and catch statistics"
+    name_zh: "渔船作业与渔获统计"
+    description: "Statistical yearbooks, logbook specifications, operation types and catch indicators."
+  - id: vessel_tracks
+    name: "Vessel/voyage data dictionaries and sample descriptions"
+    name_zh: "船位/航次数据字典与样本说明"
+    description: "AIS/VMS field definitions, voyage definitions and desensitised sample descriptions; no full tracks."
+  - id: ocean_fishery_products
+    name: "Ocean and fishery product descriptions"
+    name_zh: "海洋环境与渔情产品说明"
+    description: "Product descriptions, indicators and metadata for SST, chlorophyll, currents and wind; no raw grids."
+  - id: forecast_bulletins
+    name: "Fishing-ground and season bulletins"
+    name_zh: "渔场/渔汛预报与通报"
+    description: "Public bulletins, historical season records and fishing-ground descriptions; no forecast model outputs."
+  - id: policy_standards
+    name: "Laws, regulations, operational norms and standards"
+    name_zh: "政策法规、作业规范与标准"
+    description: "Fisheries law, seasonal closures, access conditions, operational norms and gear standards."
+  - id: papers_reports
+    name: "Papers, reports and monographs"
+    name_zh: "论文、报告、专著"
+    description: "Journal papers, project reports, technical reports and monographs that can be used lawfully."
+  - id: data_dictionary
+    name: "Data dictionaries and statistical definitions"
+    name_zh: "数据字典与统计口径"
+    description: "Field definitions, indicator definitions, metadata and data-quality rules."
+
+sources:
+  - id: "OPS-STAT-001"
+    category: "fishery_operations"
+    title: "Fisheries statistical yearbook (candidate)"
+    title_zh: "渔业统计年报（候选）"
+    publisher: "To be confirmed"
+    year: null
+    type: "statistics"
+    format: "unknown"
+    location: null
+    license: "unknown"
+    sensitivity: "unknown"
+    status: "to_acquire"
+    priority: "P1"
+    volume: "unknown"
+    update_freq: "annual"
+    hash: null
+    acquisition: "Obtain from the fisheries authority or the statistical yearbook; confirm definitions and publication licence."
+    notes: "Confirm the definitions of production, landed weight and fishing effort; do not include raw vessel tracks."
+
+  - id: "OPS-LOG-002"
+    category: "fishery_operations"
+    title: "Logbook and fishing-record specification (candidate)"
+    title_zh: "捕捞日志/渔捞记录填写规范与样例（候选）"
+    publisher: "To be confirmed"
+    year: null
+    type: "logbook"
+    format: "unknown"
+    location: null
+    license: "unknown"
+    sensitivity: "unknown"
+    status: "to_acquire"
+    priority: "P1"
+    volume: "unknown"
+    update_freq: "static"
+    hash: null
+    acquisition: "Obtain from the fisheries authority or a fleet operator; desensitise any sample."
+    notes: "Include the specification and a desensitised sample only; do not include identifiable vessel or owner records."
+
+  - id: "VMS-DICT-003"
+    category: "vessel_tracks"
+    title: "Vessel/voyage data dictionary (candidate)"
+    title_zh: "船位/航次数据字典（候选）"
+    publisher: "To be confirmed"
+    year: null
+    type: "dictionary"
+    format: "unknown"
+    location: null
+    license: "unknown"
+    sensitivity: "unknown"
+    status: "to_acquire"
+    priority: "P2"
+    volume: "unknown"
+    update_freq: "static"
+    hash: null
+    acquisition: "Obtain field definitions and voyage definitions from the data owner or a project partner."
+    notes: "Field and voyage definitions only; no full AIS/VMS tracks."
+
+  - id: "VMS-SAMPLE-004"
+    category: "vessel_tracks"
+    title: "Desensitised voyage sample description (candidate)"
+    title_zh: "脱敏航次样本与字段说明（候选）"
+    publisher: "To be confirmed"
+    year: null
+    type: "sample"
+    format: "unknown"
+    location: null
+    license: "unknown"
+    sensitivity: "unknown"
+    status: "to_acquire"
+    priority: "P2"
+    volume: "unknown"
+    update_freq: "static"
+    hash: null
+    acquisition: "Request a small sample after the licence and desensitisation plan are approved."
+    notes: "Review licence and compliance before use; never commit the sample or send it to an external API."
+
+  - id: "ENV-SST-005"
+    category: "ocean_fishery_products"
+    title: "Sea surface temperature product description (candidate)"
+    title_zh: "海表温度（SST）产品说明与指标（候选）"
+    publisher: "To be confirmed"
+    year: null
+    type: "product_description"
+    format: "unknown"
+    location: null
+    license: "unknown"
+    sensitivity: "unknown"
+    status: "to_acquire"
+    priority: "P2"
+    volume: "unknown"
+    update_freq: "annual"
+    hash: null
+    acquisition: "Obtain the product description, units, spatial/temporal resolution and metadata from the publisher."
+    notes: "Description, indicators and metadata only; no raw SST grids."
+
+  - id: "ENV-CHL-006"
+    category: "ocean_fishery_products"
+    title: "Chlorophyll, current and wind product description (candidate)"
+    title_zh: "叶绿素/海流/风场产品说明与指标（候选）"
+    publisher: "To be confirmed"
+    year: null
+    type: "product_description"
+    format: "unknown"
+    location: null
+    license: "unknown"
+    sensitivity: "unknown"
+    status: "to_acquire"
+    priority: "P2"
+    volume: "unknown"
+    update_freq: "annual"
+    hash: null
+    acquisition: "Obtain the product description, units, spatial/temporal resolution and metadata from the publisher."
+    notes: "Description, indicators and metadata only; no raw grids or reanalysis data."
+
+  - id: "FCS-BULL-007"
+    category: "forecast_bulletins"
+    title: "Fishing-ground and season bulletin (candidate)"
+    title_zh: "渔场/渔汛预报通报（候选）"
+    publisher: "To be confirmed"
+    year: null
+    type: "bulletin"
+    format: "unknown"
+    location: null
+    license: "unknown"
+    sensitivity: "unknown"
+    status: "to_acquire"
+    priority: "P2"
+    volume: "unknown"
+    update_freq: "unknown"
+    hash: null
+    acquisition: "Obtain public historical bulletin text or summaries from the publisher."
+    notes: "Public text only; do not include forecast model outputs or forecast rasters."
+
+  - id: "FCS-REC-008"
+    category: "forecast_bulletins"
+    title: "Historical fishing-ground and season record (candidate)"
+    title_zh: "中心渔场/渔汛历史记录（候选）"
+    publisher: "To be confirmed"
+    year: null
+    type: "record"
+    format: "unknown"
+    location: null
+    license: "unknown"
+    sensitivity: "unknown"
+    status: "to_acquire"
+    priority: "P2"
+    volume: "unknown"
+    update_freq: "annual"
+    hash: null
+    acquisition: "Obtain historical season records from a fisheries research institute or public literature."
+    notes: "Prefer public, citable summaries; do not include raw observations."
+
+  - id: "POL-LAW-009"
+    category: "policy_standards"
+    title: "Fisheries law, seasonal closure and vessel-management regulations (candidate)"
+    title_zh: "渔业法/伏季休渔/渔船管理法规（候选）"
+    publisher: "To be confirmed"
+    year: null
+    type: "law"
+    format: "unknown"
+    location: null
+    license: "unknown"
+    sensitivity: "unknown"
+    status: "to_acquire"
+    priority: "P1"
+    volume: "unknown"
+    update_freq: "static"
+    hash: null
+    acquisition: "Obtain the current effective version from an official public channel; record effective and amendment dates."
+    notes: "Prefer public laws; cite the article and the effective version."
+
+  - id: "POL-STD-010"
+    category: "policy_standards"
+    title: "Operational norms, access conditions and gear standards (candidate)"
+    title_zh: "作业规范/准入/渔具标准（候选）"
+    publisher: "To be confirmed"
+    year: null
+    type: "standard"
+    format: "unknown"
+    location: null
+    license: "unknown"
+    sensitivity: "unknown"
+    status: "to_acquire"
+    priority: "P1"
+    volume: "unknown"
+    update_freq: "static"
+    hash: null
+    acquisition: "Obtain the current standard text from the authority or standards publisher."
+    notes: "Public standards only; internal operational norms require a licence and sensitivity review."
+
+  - id: "LIT-PAPER-011"
+    category: "papers_reports"
+    title: "Journal papers on nearshore fisheries and fishery conditions (candidate)"
+    title_zh: "南海近海渔业/渔情期刊论文（候选）"
+    publisher: "To be confirmed"
+    year: null
+    type: "paper"
+    format: "unknown"
+    location: null
+    license: "unknown"
+    sensitivity: "unknown"
+    status: "to_acquire"
+    priority: "P2"
+    volume: "unknown"
+    update_freq: "unknown"
+    hash: null
+    acquisition: "Obtain lawful full text or abstracts through public literature databases."
+    notes: "Respect copyright; include only permitted full text or abstracts; do not bulk scrape."
+
+  - id: "LIT-RPT-012"
+    category: "papers_reports"
+    title: "Project and technical reports (candidate)"
+    title_zh: "项目报告/技术报告（候选）"
+    publisher: "To be confirmed"
+    year: null
+    type: "report"
+    format: "unknown"
+    location: null
+    license: "unknown"
+    sensitivity: "unknown"
+    status: "to_acquire"
+    priority: "P2"
+    volume: "unknown"
+    update_freq: "unknown"
+    hash: null
+    acquisition: "Request the report from the owner; confirm the citable scope and sensitivity."
+    notes: "Internal reports default to internal; hold until confirmed."
+
+  - id: "DICT-STAT-013"
+    category: "data_dictionary"
+    title: "Statistical indicator definitions and data dictionary (candidate)"
+    title_zh: "统计指标口径/数据字典（候选）"
+    publisher: "To be confirmed"
+    year: null
+    type: "metric_definition"
+    format: "unknown"
+    location: null
+    license: "unknown"
+    sensitivity: "unknown"
+    status: "to_acquire"
+    priority: "P1"
+    volume: "unknown"
+    update_freq: "static"
+    hash: null
+    acquisition: "Obtain indicator definitions and definitions from the statistics or data authority."
+    notes: "Confirm the core definitions of production, landed weight, fishing effort and operation type."
+
+  - id: "DICT-META-014"
+    category: "data_dictionary"
+    title: "Metadata and data-quality rules (candidate)"
+    title_zh: "元数据/数据质量规范（候选）"
+    publisher: "To be confirmed"
+    year: null
+    type: "metadata_standard"
+    format: "unknown"
+    location: null
+    license: "unknown"
+    sensitivity: "unknown"
+    status: "to_acquire"
+    priority: "P2"
+    volume: "unknown"
+    update_freq: "static"
+    hash: null
+    acquisition: "Obtain the metadata standard and quality rules from the data publisher."
+    notes: "Used to align source registration, versions, hashes and citation fields."
+
+gaps:
+  - "No source files have been acquired yet; all entries are candidates."
+  - "Licences and sensitivity are unconfirmed; all entries are held."
+  - "Business experts have not yet confirmed the definitions or evaluation questions."
+  - "The first ingestion milestone needs two or three public documents with clear licences."
+
+next_steps:
+  - "Acquire the P1 sources first: laws and standards, statistical yearbooks, logbook specifications and indicator definitions."
+  - "Confirm publisher, licence, sensitivity and file hash before ingesting any source."
+  - "Use two or three public documents to build the minimal pipeline; add the remaining candidates by priority."
