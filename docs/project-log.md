@@ -2,6 +2,13 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-10-31 — Issuing notices attached; classification standard registered; duplicates removed
+
+- Registered the 2013 minimum-mesh notice as POL-GEAR-016, which ties the two mesh annexes and the permit form to one instrument: in force 2014-06-01, three sea areas, measurement under GB/T 6964—2010, earlier 2003 notice repealed.
+- Registered GB/T 5147—2026 (fishing-gear classification, naming and codes), effective 2026-09-01, replacing the 2003 edition.
+- Corrected the annex metadata: publisher 农业部 and year 2013 for the two mesh standards and the form; the port recognition list is dated 2025 and is a proposal open for comment until 2025-01-22.
+- Removed duplicates: three annex copies inside the older notice package, and a byte-identical duplicate of a 2022 yearbook table; the 2022 edition manifest was regenerated and the register records the new hash.
+- The register now holds forty-four sources, thirty-five acquired.
 ## 2026-10-31 — Technical supplements registered for the definition, operation and port gaps
 
 - Registered the minimum mesh-size annexes for permitted and transitional marine capture gear, the SC/T 9460—2025 marine capture information sampling survey standard, the approved-operation form with its filling instructions, the central and first-class port recognition list, and the national coastal fishing-port construction plan for 2018–2025.

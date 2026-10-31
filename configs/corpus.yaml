@@ -409,11 +409,29 @@ sources:
   hash: 3052385ad2009f7e0bf811b789acf12594e502ba08fa1f526c54e8e0db68daf6
   acquisition: 'Owner-supplied DOCX received 2026-10-31; consolidated text of the 2010-09-30 amendment.'
   notes: 'Adopted 2004-06-02; amended 2010-09-30; effective 2004-09-01. Seven chapters, 46 articles. Covers the fishing-port definition, port planning and the fishing-vessel register.'
+- id: POL-GEAR-016
+  title: 农业部关于实施海洋捕捞准用渔具和过渡渔具最小网目尺寸制度的通告
+  title_zh: 农业部关于实施海洋捕捞准用渔具和过渡渔具最小网目尺寸制度的通告
+  publisher: 农业部
+  year: 2013
+  type: notice
+  jurisdiction: national
+  format: html
+  location: raw/POL-GEAR-016/notice-minimum-mesh-2013.html
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P1
+  volume: 1 HTML page; notice text plus three annexes
+  update_freq: static
+  hash: 94fa54b1133ec4c9e87b7c29d1ce212747bef8b4762282d5fffce659a6fc2794
+  acquisition: 'Owner-supplied capture of the ministry page https://yyj.moa.gov.cn/tzgg/201404/t20140402_6300664.htm (page dated 2014-04-02; notice issued 2013-11-29).'
+  notes: 'Establishes the minimum-mesh system for permitted and transitional marine capture gear, in force from 2014-06-01 across the Huanghai-Bohai, East China and South China Sea areas; repeals the 2003 notice. Annexes 1, 2 and 3 are registered as POL-GEAR-033, POL-GEAR-034 and OPS-FORM-036. Mesh is measured under GB/T 6964-2010 with a flat wedge gauge. Provincial authorities may set stricter sizes and special permits for designated species.'
 - id: POL-GEAR-033
   title: 海洋捕捞准用渔具最小网目（或网囊）尺寸标准
   title_zh: 海洋捕捞准用渔具最小网目（或网囊）尺寸标准
-  publisher: 农业农村部
-  year: null
+  publisher: 农业部
+  year: 2013
   type: standard
   jurisdiction: national
   format: doc
@@ -425,13 +443,13 @@ sources:
   volume: 1 DOC; annex table, 3 sea areas
   update_freq: static
   hash: db05eefba1ed312e608c791ca44a26301382b5fbcc20a66c6383690138b8397a
-  acquisition: Owner-supplied DOC received 2026-10-31 (file titled 附件1); the issuing notice is not included.
-  notes: 'Annex table of minimum mesh or codend sizes for permitted marine capture gear, by sea area (Huanghai-Bohai, East China Sea, South China Sea including the Beibu Gulf), gear class (gillnet, purse seine, miscellaneous) and target species. Publication year unverified.'
+  acquisition: Owner-supplied DOC received 2026-10-31 (file titled 附件1); the issuing notice is POL-GEAR-016.
+  notes: 'Annex 1 to the 2013 minimum-mesh notice (POL-GEAR-016), in force from 2014-06-01. Table of minimum mesh or codend sizes for permitted marine capture gear, by sea area (Huanghai-Bohai, East China Sea, South China Sea including the Beibu Gulf), gear class (gillnet, purse seine, miscellaneous) and target species.'
 - id: POL-GEAR-034
   title: 海洋捕捞过渡渔具最小网目（或网囊）尺寸标准
   title_zh: 海洋捕捞过渡渔具最小网目（或网囊）尺寸标准
-  publisher: 农业农村部
-  year: null
+  publisher: 农业部
+  year: 2013
   type: standard
   jurisdiction: national
   format: doc
@@ -443,8 +461,8 @@ sources:
   volume: 1 DOC; annex table, 3 sea areas
   update_freq: static
   hash: 64819ecac9345bedd7af229fc4de7e95c89ab8b2038faa06c05f06a9e91c39f2
-  acquisition: Owner-supplied DOC received 2026-10-31 (file titled 附件2); the issuing notice is not included.
-  notes: 'Annex table of minimum mesh or codend sizes for transitional marine capture gear, by sea area, gear class (trawl, gillnet, purse seine, stow net, cage, trap) and target species. Published alongside POL-GEAR-033; year unverified.'
+  acquisition: Owner-supplied DOC received 2026-10-31 (file titled 附件2); the issuing notice is POL-GEAR-016.
+  notes: 'Annex 2 to the 2013 minimum-mesh notice (POL-GEAR-016), in force from 2014-06-01. Table of minimum mesh or codend sizes for transitional marine capture gear, by sea area, gear class (trawl, gillnet, purse seine, stow net, cage, trap) and target species.'
 - id: OPS-STD-035
   title: 海洋捕捞信息采集抽样调查规范（SC/T 9460—2025）
   title_zh: 海洋捕捞信息采集抽样调查规范（SC/T 9460—2025）
@@ -466,8 +484,8 @@ sources:
 - id: OPS-FORM-036
   title: 《渔业捕捞许可证》中“核准作业内容”修正样式和填写说明
   title_zh: 《渔业捕捞许可证》中“核准作业内容”修正样式和填写说明
-  publisher: 农业农村部
-  year: null
+  publisher: 农业部
+  year: 2013
   type: operations
   jurisdiction: national
   format: doc
@@ -479,13 +497,31 @@ sources:
   volume: 1 DOC; annex 3, form and filling instructions
   update_freq: static
   hash: ba3c773a0ce3bc05a098642e9a241c0164da71ae02d38ece1f74a3c48fcfbeb9
-  acquisition: Owner-supplied DOC received 2026-10-31 (file titled 附件3); the parent document is not included.
-  notes: 'Before-and-after layout of the approved-operation block on a fishing permit, with filling rules: one of nine operation types, at most two operation methods, at most two gear names, minimum mesh size, carried quantity, target species and quota. The nine-type list is the practical answer to the operation-type classification question; year unverified.'
+  acquisition: Owner-supplied DOC received 2026-10-31 (file titled 附件3); the parent document is POL-GEAR-016.
+  notes: 'Annex 3 to the 2013 minimum-mesh notice (POL-GEAR-016). Before-and-after layout of the approved-operation block on a fishing permit, with filling rules: one of nine operation types, at most two operation methods, at most two gear names, minimum mesh size, carried quantity, target species and quota. Adjusts the block first set by 农业部公告第1100号 and 第1288号. The nine-type list is the practical answer to the operation-type classification question.'
+- id: OPS-STD-039
+  title: 渔具分类、命名及代号（GB/T 5147—2026）
+  title_zh: 渔具分类、命名及代号（GB/T 5147—2026）
+  publisher: 国家市场监督管理总局 / 国家标准化管理委员会
+  year: 2026
+  type: standard
+  jurisdiction: national
+  format: pdf
+  location: raw/OPS-STD-039/fishing-gear-classification-naming-and-code-2026.pdf
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P1
+  volume: 1 PDF; 15 pages, ICS 65.150
+  update_freq: static
+  hash: 2d9ade00dda4fe0d29e6a1ce4499cb1e67a0f5aca56a96e422bbae9349ebcbee
+  acquisition: Owner-supplied PDF received 2026-10-31 (GB/T 5147—2026, 发布 2026-02-27).
+  notes: 'National standard for fishing-gear classification, naming and codes, effective 2026-09-01 and replacing GB/T 5147—2003. It is the classification reference cited by SC/T 9460—2025 and the basis for mapping the yearbook gear groups and the permit operation types.'
 - id: POL-PORT-037
   title: 中心渔港、一级渔港认定名单
   title_zh: 中心渔港、一级渔港认定名单
-  publisher: 农业农村部
-  year: null
+  publisher: 农业农村部渔业渔政管理局
+  year: 2025
   type: notice
   jurisdiction: national
   format: docx
@@ -497,8 +533,8 @@ sources:
   volume: 1 DOCX; 14 ports (12 central, 2 first-class)
   update_freq: irregular
   hash: fe142d1a8f9885668b6d2fb47764c50123bc52c6d60ca53703263970aa3ab44a
-  acquisition: Owner-supplied DOCX received 2026-10-31 (titled 附件); the recognition notice is not included.
-  notes: 'Named list of recognised ports with province and city: 12 central ports (Liaoning, Shandong, Zhejiang, Fujian, Guangdong, Guangxi, Hainan) and 2 first-class ports in Shandong. Undated; the recognition date is unverified.'
+  acquisition: 'Owner-supplied DOCX received 2026-10-31; attachment to the ministry notice https://yyj.moa.gov.cn/tzgg/202501/t20250115_6469192.htm (公示 dated 2025-01-15).'
+  notes: 'Proposed recognition (拟认定) rather than a final decision: 12 central ports (Liaoning, Shandong, Zhejiang, Fujian, Guangdong, Guangxi, Hainan) and 2 first-class ports in Shandong, open for comment until 2025-01-22. Confirm the final recognition before citing it as settled.'
 - id: POL-PLAN-038
   title: 全国沿海渔港建设规划（2018—2025年）
   title_zh: 全国沿海渔港建设规划（2018—2025年）
@@ -761,11 +797,11 @@ sources:
   sensitivity: internal
   status: acquired
   priority: P1
-  volume: 85 files
+  volume: 84 files
   update_freq: annual
-  hash: 82b9b8bd3768d5d6c0963b0b2c3ceb5d6c671027d12cddfcd02b0f98645eb19e
+  hash: 4d6f56e806e3b8ea9d300030db45774fdf78f6ac7e5992de4269809ca796ab70
   acquisition: Owner-provided official/authorized Excel edition; publisher/ISBN, procurement and official internal export confirmed by the owner; local use only.
-  notes: Data year 2021; 85 Excel files. Public metadata only; no values. Edition manifest under the run root.
+  notes: Data year 2021; 84 Excel files. The bundle contained a byte-identical duplicate of table 3-10 (stored as a "(1)" copy); the duplicate was removed on 2026-10-31 and the edition manifest regenerated, so this hash is the SHA-256 of the regenerated manifest file. Public metadata only; no values.
 - id: STAT-YB-2023
   type: statistical_yearbook
   title: China Fisheries Statistical Yearbook 2023 (Excel tables)
