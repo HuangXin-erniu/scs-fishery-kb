@@ -2,6 +2,14 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-10-31 — Fujian regulations added; legal corpus consolidated
+
+- Registered the Fujian measures implementing the Fisheries Law (2019 amendment, five chapters, 61 articles) and the Fujian fishing-port and fishing-vessel regulations (2010 amendment, seven chapters, 46 articles), both owner-supplied and hash-verified.
+- The legal corpus now spans the national level plus Guangdong, Guangxi and Fujian: twelve documents covering one law, ten regulations and one notice.
+- Removed the duplicate People's Daily copies of the Fisheries Law (electronic edition, page-11 PDF and municipal reprint); the registered DOCX is the single retained text.
+- Removed the agricultural statistical reporting-system summary, which carried no fisheries indicator definitions, so the data-dictionary type is again represented only by open candidates.
+- The register now holds thirty-six sources: twenty-seven acquired and nine candidates; the README, plan, inventory and tests were refreshed in the same change.
+
 ## 2026-10-31 — National bulletin series completed
 
 - Registered the 2020, 2021, 2022, 2023 and 2024 national fisheries economic statistical bulletins, joining the already registered 2025 bulletin.

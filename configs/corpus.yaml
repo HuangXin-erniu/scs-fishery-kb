@@ -206,7 +206,7 @@ sources:
   update_freq: static
   hash: cdeaaf75a9992bc98642fbe6c004f790506549a4afaf223e3bf2b7b5eb365fa4
   acquisition: 'Owner-supplied DOCX received 2026-10-31, carrying the text of the official 人民日报 2026-02-25 publication (主席令第六十三号, 新华社 release).'
-  notes: 'Adopted 2025-12-27, effective 2026-05-01. Verified seven chapters and 90 articles in order; 89 of 90 article openings match the e-paper capture and the 90th differs only by the 新华社 tag. Provenance copies retained in the data root: fisheries-law-2025-e-paper.html, people-daily-2026-02-25-p11.pdf and fisheries-law-2025-reprint.html.'
+  notes: 'Adopted 2025-12-27, effective 2026-05-01. Verified seven chapters and 90 articles in order; the article openings were cross-checked against the electronic edition before the duplicate People''s Daily copies were removed on 2026-10-31. The registered DOCX is the single retained text.'
 - id: POL-STD-010
   title: 渔业捕捞许可管理规定（2022年修订）
   title_zh: 渔业捕捞许可管理规定（2022年修订）
@@ -369,6 +369,42 @@ sources:
   hash: 9a6239830a762cc79d45c5edd0c82622b8ad414fba877ab542bc232b635b4b31
   acquisition: 'Owner-supplied DOCX received 2026-10-31; consolidated text of the 2024-11-28 third amendment.'
   notes: 'Adopted 2001-09-28; amended 2004-07-31, 2010-09-29 and 2024-11-28; effective 2002-01-01. 37 articles.'
+- id: POL-FJ-025
+  title: 福建省实施《中华人民共和国渔业法》办法
+  title_zh: 福建省实施《中华人民共和国渔业法》办法
+  publisher: 福建省人民代表大会常务委员会
+  year: 2019
+  type: regulation
+  jurisdiction: fujian
+  format: docx
+  location: raw/POL-FJ-025/fujian-fisheries-law-implementation-2019.docx
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P1
+  volume: 1 DOCX; 5 chapters, 61 articles
+  update_freq: static
+  hash: 2bc7fc1382737d874bf5a5a252fa6f17bd2c038affcb95654cdcf4547127b92d
+  acquisition: 'Owner-supplied DOCX received 2026-10-31; consolidated text of the 2019-11-27 amendment.'
+  notes: 'Adopted 1989-03-10; amended 1993-03-07, 1997-10-25 and 2002-03-28; revised 2007-03-28; amended 2012-03-29, 2016-04-01 and 2019-11-27; effective 2007-05-01. Five chapters, 61 articles.'
+- id: POL-FJ-026
+  title: 福建省渔港和渔业船舶管理条例
+  title_zh: 福建省渔港和渔业船舶管理条例
+  publisher: 福建省人民代表大会常务委员会
+  year: 2010
+  type: regulation
+  jurisdiction: fujian
+  format: docx
+  location: raw/POL-FJ-026/fujian-port-and-vessel-regulations-2010.docx
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P1
+  volume: 1 DOCX; 7 chapters, 46 articles
+  update_freq: static
+  hash: 3052385ad2009f7e0bf811b789acf12594e502ba08fa1f526c54e8e0db68daf6
+  acquisition: 'Owner-supplied DOCX received 2026-10-31; consolidated text of the 2010-09-30 amendment.'
+  notes: 'Adopted 2004-06-02; amended 2010-09-30; effective 2004-09-01. Seven chapters, 46 articles. Covers the fishing-port definition, port planning and the fishing-vessel register.'
 - id: STAT-BULL-025
   title: 2025年全国渔业经济统计公报
   title_zh: 2025年全国渔业经济统计公报
@@ -495,24 +531,6 @@ sources:
   hash: f16cebbf418955bb0ef4fefe1abf2179f9bb52e79a3aab2af44418b0efd9928f
   acquisition: 'Fetched 2026-10-31 from the Fisheries Bureau: https://yyj.moa.gov.cn/gzdt/202507/t20250707_6475475.htm (HTTP 200; 132,017 bytes; published 2025-07-07).'
   notes: 'Data year 2024; national totals only, no provincial or South China Sea breakdown. Part of the 2020-2025 bulletin series.'
-- id: DICT-STAT-026
-  title: 农林牧渔业统计报表制度主要内容（2025年统计年报和2026年定期统计报表）
-  title_zh: 农林牧渔业统计报表制度主要内容（2025年统计年报和2026年定期统计报表）
-  publisher: 国家统计局
-  year: 2026
-  type: data_dictionary
-  jurisdiction: national
-  format: doc
-  location: raw/DICT-STAT-026/agricultural-statistical-reporting-system.doc
-  license: public
-  sensitivity: public
-  status: acquired
-  priority: P2
-  volume: 1 DOC; 2 pages
-  update_freq: annual
-  hash: a2abad3a864dcc427ebf117010d62748c342f8124955ae722e138ff56eade711
-  acquisition: 'Fetched 2026-10-31 from the National Bureau of Statistics: https://www.stats.gov.cn/sj/tjzd/202604/t20260402_1962930.html, attachment P020260402382070301473.doc (HTTP 200; 21,504 bytes).'
-  notes: 'Summary of the national agricultural statistical reporting system. It covers crop and livestock indicators and does not define fisheries production, landed weight or fishing effort: reference only. DICT-STAT-013 remains the open definition candidate.'
 - id: DICT-STAT-013
   title: Statistical indicator definitions and data dictionary (candidate)
   title_zh: 统计指标口径/数据字典（候选）
@@ -688,13 +706,13 @@ sources:
   acquisition: Owner-provided official/authorized Excel edition; publisher/ISBN, procurement and official internal export confirmed by the owner; local use only.
   notes: Data year 2024; 82 Excel files. Public metadata only; no values. Edition manifest under the run root.
 gaps:
-- Eight yearbook editions are registered as acquired internal sources; ten candidates remain to_acquire.
+- Thirty-six sources are registered: twenty-seven acquired and nine candidates awaiting disposition.
 - The yearbook coverage matrix has no values in the public repository; all values stay local.
 - Infrastructure tables are missing for data years 2018 and 2019; the vessel-length proxy is missing for data year 2024.
-- Operation/logbook/gear standards and the official Fisheries Law standard text are still pending.
+- The statistical indicator definitions, the logbook/operations specification and any standard source are still pending; the national bulletins report totals only.
 - The core indicator CSV and the sufficiency review are the next data-preparation steps.
 next_steps:
-- Build the local long-table core indicator CSV and the coverage/sufficiency report.
-- Replace the Fisheries Law reprint with the official standard text.
-- Search official national/provincial candidates for operations, logbook and gear sources; present before registration.
+- Review the local core indicator CSV and accept or reject its sufficiency.
+- Acquire the statistical indicator definitions and search official national and provincial sources for the logbook and operations specification; present before registration.
+- Diff the registered Fisheries Law text against the npc.gov.cn page when that site is reachable again.
 - Do not plan the pipeline until the core matrix is accepted as sufficient.
