@@ -47,6 +47,10 @@ types:
   name: Standard or norm
   name_zh: 标准/规范
   description: National, industry or provincial standards and operational norms.
+- id: plan
+  name: Plan or programme
+  name_zh: 规划/方案
+  description: Official plans, programmes and construction layouts.
 - id: fishery_product
   name: Fishery or ocean product description
   name_zh: 渔情/海况产品说明
@@ -224,7 +228,7 @@ sources:
   update_freq: static
   hash: 35e2069db4de910494c1e6e07c435c4aca91c846e912acba2d6178776b981910
   acquisition: 'Fetched 2026-10-31 from gov.cn: https://www.gov.cn/zhengce/2022-01/07/content_5721373.htm (农业农村部令2022年第1号; effective 2022-01-07).'
-  notes: Current revision. The header states 2022-01-07 while Article 59 retains 2019-01-01; cite the header version and flag the discrepancy in answers. The HTML uses malformed or unclosed paragraph tags, so ingestion must extract the main content robustly.
+  notes: Current revision. The header states 2022-01-07 while Article 59 retains 2019-01-01; cite the header version and flag the discrepancy in answers. The HTML uses malformed or unclosed paragraph tags, so ingestion must extract the main content robustly. The official ministry PDF edition of the same text (29 pages, raw/POL-STD-010/fishing-permit-regulation-2022-moa.pdf, sha256 a9028d6a10aef6e765de680bc8b4b6aba0e96182b8301f073e3ff6a34e92f597) is retained as a format copy, not as a separate source; its articles 50-53 carry the logbook obligation.
 - id: POL-CLOS-015
   title: 农业农村部关于调整海洋伏季休渔制度的通告
   title_zh: 农业农村部关于调整海洋伏季休渔制度的通告
@@ -405,6 +409,114 @@ sources:
   hash: 3052385ad2009f7e0bf811b789acf12594e502ba08fa1f526c54e8e0db68daf6
   acquisition: 'Owner-supplied DOCX received 2026-10-31; consolidated text of the 2010-09-30 amendment.'
   notes: 'Adopted 2004-06-02; amended 2010-09-30; effective 2004-09-01. Seven chapters, 46 articles. Covers the fishing-port definition, port planning and the fishing-vessel register.'
+- id: POL-GEAR-033
+  title: 海洋捕捞准用渔具最小网目（或网囊）尺寸标准
+  title_zh: 海洋捕捞准用渔具最小网目（或网囊）尺寸标准
+  publisher: 农业农村部
+  year: null
+  type: standard
+  jurisdiction: national
+  format: doc
+  location: raw/POL-GEAR-033/minimum-mesh-permitted-gear.doc
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P1
+  volume: 1 DOC; annex table, 3 sea areas
+  update_freq: static
+  hash: db05eefba1ed312e608c791ca44a26301382b5fbcc20a66c6383690138b8397a
+  acquisition: Owner-supplied DOC received 2026-10-31 (file titled 附件1); the issuing notice is not included.
+  notes: 'Annex table of minimum mesh or codend sizes for permitted marine capture gear, by sea area (Huanghai-Bohai, East China Sea, South China Sea including the Beibu Gulf), gear class (gillnet, purse seine, miscellaneous) and target species. Publication year unverified.'
+- id: POL-GEAR-034
+  title: 海洋捕捞过渡渔具最小网目（或网囊）尺寸标准
+  title_zh: 海洋捕捞过渡渔具最小网目（或网囊）尺寸标准
+  publisher: 农业农村部
+  year: null
+  type: standard
+  jurisdiction: national
+  format: doc
+  location: raw/POL-GEAR-034/minimum-mesh-transition-gear.doc
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P1
+  volume: 1 DOC; annex table, 3 sea areas
+  update_freq: static
+  hash: 64819ecac9345bedd7af229fc4de7e95c89ab8b2038faa06c05f06a9e91c39f2
+  acquisition: Owner-supplied DOC received 2026-10-31 (file titled 附件2); the issuing notice is not included.
+  notes: 'Annex table of minimum mesh or codend sizes for transitional marine capture gear, by sea area, gear class (trawl, gillnet, purse seine, stow net, cage, trap) and target species. Published alongside POL-GEAR-033; year unverified.'
+- id: OPS-STD-035
+  title: 海洋捕捞信息采集抽样调查规范（SC/T 9460—2025）
+  title_zh: 海洋捕捞信息采集抽样调查规范（SC/T 9460—2025）
+  publisher: 农业农村部
+  year: 2025
+  type: standard
+  jurisdiction: national
+  format: pdf
+  location: raw/OPS-STD-035/marine-capture-sampling-survey-specification-2025.pdf
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P1
+  volume: 1 PDF; 8 pages, 7 clauses
+  update_freq: static
+  hash: 1608be902fe8bf8c389518f6820dc7ec6121523d7e2b9e6b343e189a76684365
+  acquisition: Owner-supplied PDF received 2026-10-31 (SC/T 9460—2025, 发布 2025-12-09).
+  notes: 'Aquaculture-industry standard, effective 2026-05-01. Defines marine capture information, sample vessels and collectors; covers stratified vessel sampling, monthly information survey, data quality control, statistical analysis and archiving. Normatively cites GB/T 5147—2003 for gear classification and naming, which is the reference for operation-type definitions.'
+- id: OPS-FORM-036
+  title: 《渔业捕捞许可证》中“核准作业内容”修正样式和填写说明
+  title_zh: 《渔业捕捞许可证》中“核准作业内容”修正样式和填写说明
+  publisher: 农业农村部
+  year: null
+  type: operations
+  jurisdiction: national
+  format: doc
+  location: raw/OPS-FORM-036/permit-approved-operation-form.doc
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P1
+  volume: 1 DOC; annex 3, form and filling instructions
+  update_freq: static
+  hash: ba3c773a0ce3bc05a098642e9a241c0164da71ae02d38ece1f74a3c48fcfbeb9
+  acquisition: Owner-supplied DOC received 2026-10-31 (file titled 附件3); the parent document is not included.
+  notes: 'Before-and-after layout of the approved-operation block on a fishing permit, with filling rules: one of nine operation types, at most two operation methods, at most two gear names, minimum mesh size, carried quantity, target species and quota. The nine-type list is the practical answer to the operation-type classification question; year unverified.'
+- id: POL-PORT-037
+  title: 中心渔港、一级渔港认定名单
+  title_zh: 中心渔港、一级渔港认定名单
+  publisher: 农业农村部
+  year: null
+  type: notice
+  jurisdiction: national
+  format: docx
+  location: raw/POL-PORT-037/central-and-first-class-port-list.docx
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P1
+  volume: 1 DOCX; 14 ports (12 central, 2 first-class)
+  update_freq: irregular
+  hash: fe142d1a8f9885668b6d2fb47764c50123bc52c6d60ca53703263970aa3ab44a
+  acquisition: Owner-supplied DOCX received 2026-10-31 (titled 附件); the recognition notice is not included.
+  notes: 'Named list of recognised ports with province and city: 12 central ports (Liaoning, Shandong, Zhejiang, Fujian, Guangdong, Guangxi, Hainan) and 2 first-class ports in Shandong. Undated; the recognition date is unverified.'
+- id: POL-PLAN-038
+  title: 全国沿海渔港建设规划（2018—2025年）
+  title_zh: 全国沿海渔港建设规划（2018—2025年）
+  publisher: 农业农村部
+  year: 2018
+  type: plan
+  jurisdiction: national
+  format: pdf
+  location: raw/POL-PLAN-038/national-coastal-fishing-port-plan-2018-2025.pdf
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P1
+  volume: 1 PDF; 57 pages, 10 port groups
+  update_freq: static
+  hash: 8a87dda7a38c0008fe80243f2a66abc06c8b2a62b2a92c2bb522e3528312f022
+  acquisition: Owner-supplied PDF received 2026-10-31; cover states 2018年4月.
+  notes: 'National port construction plan. Describes ten coastal port groups (including Guangdong, Beibu Gulf, Hainan Island and the South China Sea groups), with per-county port counts by class and named central and first-class ports, and plans 64 central and 85 first-class ports. Supplies a 2018 port baseline where the yearbook infrastructure table is absent; the classification is not identical to the yearbook table.'
 - id: STAT-BULL-025
   title: 2025年全国渔业经济统计公报
   title_zh: 2025年全国渔业经济统计公报
@@ -706,13 +818,14 @@ sources:
   acquisition: Owner-provided official/authorized Excel edition; publisher/ISBN, procurement and official internal export confirmed by the owner; local use only.
   notes: Data year 2024; 82 Excel files. Public metadata only; no values. Edition manifest under the run root.
 gaps:
-- Thirty-six sources are registered: twenty-seven acquired and nine candidates awaiting disposition.
+- Forty-two sources are registered: thirty-three acquired and nine candidates awaiting disposition.
 - The yearbook coverage matrix has no values in the public repository; all values stay local.
-- Infrastructure tables are missing for data years 2018 and 2019; the vessel-length proxy is missing for data year 2024.
-- The statistical indicator definitions, the logbook/operations specification and any standard source are still pending; the national bulletins report totals only.
+- The yearbook infrastructure table is missing for data years 2018 and 2019; the 2018 national port plan supplies a baseline whose port classes are close to, but not identical with, the yearbook table.
+- The vessel-length proxy is missing for data year 2024.
+- The statistical indicator definitions are still a candidate; the sampling standard and the permit form now answer the operation-type and logbook questions in part.
 - The core indicator CSV and the sufficiency review are the next data-preparation steps.
 next_steps:
-- Review the local core indicator CSV and accept or reject its sufficiency.
-- Acquire the statistical indicator definitions and search official national and provincial sources for the logbook and operations specification; present before registration.
+- Review the local core indicator CSV against the new standards and the permit form, and accept or reject its sufficiency.
+- Acquire the statistical indicator definitions; the standard series points to GB/T 5147—2003 for gear classification.
 - Diff the registered Fisheries Law text against the npc.gov.cn page when that site is reachable again.
 - Do not plan the pipeline until the core matrix is accepted as sufficient.

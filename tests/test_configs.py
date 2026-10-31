@@ -20,7 +20,7 @@ def load_yaml(relative: str) -> dict:
 def test_corpus_structure() -> None:
     data = load_yaml("configs/corpus.yaml")
     assert "categories" not in data
-    assert len(data["types"]) == 8
+    assert len(data["types"]) == 9
     type_ids = {entry["id"] for entry in data["types"]}
     assert type_ids == {
         "statistical_yearbook",
@@ -31,8 +31,9 @@ def test_corpus_structure() -> None:
         "standard",
         "fishery_product",
         "data_dictionary",
+        "plan",
     }
-    assert len(data["sources"]) == 36
+    assert len(data["sources"]) == 42
 
     acquired = []
     candidates = []
@@ -45,7 +46,7 @@ def test_corpus_structure() -> None:
         else:
             candidates.append(source)
 
-    assert len(acquired) == 27
+    assert len(acquired) == 33
     assert len(candidates) == 9
     yearbooks = [source for source in acquired if source["id"].startswith("STAT-YB-")]
     assert len(yearbooks) == 8
@@ -58,8 +59,8 @@ def test_corpus_structure() -> None:
         assert re.fullmatch(r"[0-9a-f]{64}", source["hash"])
         assert source["volume"].endswith("files")
 
-    policy = [source for source in acquired if source["type"] in {"law", "regulation", "notice"}]
-    assert {source["id"] for source in policy} == {
+    documents = [source for source in acquired if source["type"] != "statistical_yearbook"]
+    assert {source["id"] for source in documents} == {
         "POL-LAW-009",
         "POL-STD-010",
         "POL-CLOS-015",
@@ -72,8 +73,14 @@ def test_corpus_structure() -> None:
         "POL-GX-024",
         "POL-FJ-025",
         "POL-FJ-026",
+        "POL-GEAR-033",
+        "POL-GEAR-034",
+        "OPS-STD-035",
+        "OPS-FORM-036",
+        "POL-PORT-037",
+        "POL-PLAN-038",
     }
-    for source in policy:
+    for source in documents:
         assert source["license"] == "public"
         assert source["sensitivity"] == "public"
         assert re.fullmatch(r"[0-9a-f]{64}", source["hash"])
@@ -136,13 +143,14 @@ def test_corpus_structure() -> None:
     }
     assert type_counts == {
         "statistical_yearbook": 15,
-        "operations": 1,
         "law": 1,
         "regulation": 10,
-        "notice": 1,
-        "standard": 0,
+        "notice": 2,
+        "standard": 3,
+        "operations": 2,
         "fishery_product": 4,
         "data_dictionary": 4,
+        "plan": 1,
     }
 
 

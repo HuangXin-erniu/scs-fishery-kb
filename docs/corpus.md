@@ -1,6 +1,6 @@
 # Corpus Inventory
 
-- Status: data preparation and corpus discovery. Eight yearbook editions, six national bulletins, the China Statistical Yearbook 2026 and twelve legal documents are acquired; nine candidates are dispositioned (two to acquire, seven deferred). The local core CSV has 3,037 rows and stays outside the public tree. No parsing or indexing in this phase.
+- Status: data preparation and corpus discovery. Eight yearbook editions, six national bulletins, the China Statistical Yearbook 2026 and eighteen legal and technical documents are acquired; nine candidates are dispositioned (two to acquire, seven deferred). The local core CSV has 3,037 rows and stays outside the public tree. No parsing or indexing in this phase.
 - Register: [configs/corpus.yaml](../configs/corpus.yaml)
 - Indicator schema: [configs/statistics.yaml](../configs/statistics.yaml)
 - Date: 2026-10-31
@@ -24,13 +24,14 @@ It does **not** include raw environmental grids, reanalysis data, forecast raste
 | Type | Name (zh) | Sources | Description |
 |---|---|---:|---|
 | `statistical_yearbook` | 统计年鉴 | 15 | Official annual statistics and indicator tables |
-| `operations` | 作业知识 | 1 | Fishing methods, gear, vessel operations, logbooks and permit conditions |
+| `operations` | 作业知识 | 2 | Fishing methods, gear, vessel operations, logbooks and permit conditions |
 | `law` | 法律 | 1 | National law adopted by the legislature |
 | `regulation` | 行政法规/规章/地方性法规 | 10 | Administrative regulations, departmental rules and local regulations |
-| `notice` | 通告/公告 | 1 | Official notices, announcements and seasonal measures |
-| `standard` | 标准/规范 | 0 | National, industry or provincial standards and operational norms |
+| `notice` | 通告/公告 | 2 | Official notices, announcements and seasonal measures |
+| `standard` | 标准/规范 | 3 | National, industry or provincial standards and operational norms |
 | `fishery_product` | 渔情/海况产品说明 | 4 | Product descriptions, fishery bulletins and historical records |
 | `data_dictionary` | 数据字典 | 4 | Field definitions, indicator definitions, metadata and quality rules |
+| `plan` | 规划/方案 | 1 | Official plans, programmes and construction layouts |
 
 ## 4. Acquired yearbooks
 
@@ -69,10 +70,23 @@ The bulletin series `STAT-BULL-025` and `STAT-BULL-028`–`STAT-BULL-032` covers
 | `POL-GX-024` | `regulation` | guangxi | Guangxi fishing-port and fishing-vessel regulations, 2024 amendment | acquired |
 | `POL-FJ-025` | `regulation` | fujian | Fujian measures implementing the Fisheries Law, 2019 amendment | acquired |
 | `POL-FJ-026` | `regulation` | fujian | Fujian fishing-port and fishing-vessel regulations, 2010 amendment | acquired |
+| `POL-PORT-037` | `notice` | national | Central and first-class fishing-port recognition list | acquired; 12 central and 2 first-class ports |
+| `POL-PLAN-038` | `plan` | national | National coastal fishing-port construction plan, 2018–2025 | acquired |
 
 The legal corpus now covers the national law, its implementing rules, vessel inspection, the resource levy, the fishing-permit rules and the seasonal closure, plus the Guangdong, Guangxi and Fujian regulations. Each document records its publisher, revision history, article count and SHA-256. Article counts: Fisheries Law 90, implementing rules 42, vessel inspection 40, levy measures 18, permit regulation 59, closure notice 4 sections, Guangdong fishery 47, Guangdong port and vessel 44, Guangxi implementation 48, Guangxi port and vessel 37, Fujian implementation 61, Fujian port and vessel 46.
 
-The Fisheries Law text is the owner-supplied DOCX of the official 人民日报 publication. The article openings were cross-checked against the electronic edition before the duplicate copies were removed on 2026-10-31; the registered DOCX is now the single retained text.
+The Fisheries Law text is the owner-supplied DOCX of the official 人民日报 publication. The article openings were cross-checked against the electronic edition before the duplicate copies were removed on 2026-10-31; the registered DOCX is now the single retained text. The official ministry PDF edition of the fishing-permit regulation (29 pages) is kept beside the registered HTML as a format copy; its articles 50–53 carry the logbook obligation.
+
+## 5a. Acquired standards and operations supplements
+
+| Source | Type | Document | What it answers |
+|---|---|---|---|
+| `POL-GEAR-033` | `standard` | Minimum mesh sizes for permitted marine capture gear | Gear classes and minimum mesh by sea area and target species |
+| `POL-GEAR-034` | `standard` | Minimum mesh sizes for transitional gear | Trawl, gillnet, purse seine, stow-net, cage and trap classes |
+| `OPS-STD-035` | `standard` | SC/T 9460—2025 marine capture information sampling survey | Defines marine capture information and sample vessels; sets monthly collection and quality control; cites GB/T 5147—2003 for gear classification |
+| `OPS-FORM-036` | `operations` | Approved-operation block, form and filling instructions | Nine operation types, at most two operation methods and two gear names, minimum mesh size, quota |
+
+The mesh tables are annexes 1 and 2 and the form is annex 3; the parent notices were not part of the supplied files, so their publication years are recorded as unverified. SC/T 9460—2025 was published 2025-12-09 and takes effect 2026-05-01.
 
 ## 6. Candidate sources
 
@@ -94,9 +108,9 @@ The Fisheries Law text is the owner-supplied DOCX of the official 人民日报 p
 
 | Metric | Value |
 |---|---:|
-| Corpus types | 8 |
-| Registered sources | 36 |
-| Acquired sources | 27 |
+| Corpus types | 9 |
+| Registered sources | 42 |
+| Acquired sources | 33 |
 | Remaining candidates | 9 |
 | Yearbook editions | 8 |
 | Yearbook data years | 2017–2024 |
@@ -121,7 +135,7 @@ The coverage matrix uses the latest edition for each data year. Counts are table
 
 Known gaps:
 
-- Coastal-port infrastructure is missing for data years 2018 and 2019. The 838-file inventory confirms that the 2019 and 2020 editions contain no infrastructure table, so the gap cannot be filled from the registered corpus.
+- Coastal-port infrastructure is missing from the yearbooks for data years 2018 and 2019: the 838-file inventory confirms that the 2019 and 2020 editions contain no infrastructure table. The 2018 national port plan (POL-PLAN-038) supplies a 2018 baseline with named central and first-class ports, but its port classes are not identical with the yearbook table, so it cannot be pasted into the core CSV without a mapping note.
 - The 2017 and 2021 source tables have only 沿海中心渔港 and 沿海一级渔港; the later tables add class 2, class 3 and unrated ports.
 - The vessel-length proxy is missing for data year 2024; the 2025 edition dropped the marine vessel-length table and keeps only the all-vessel and inland tables. The gap is accepted rather than filled from a non-comparable table.
 - The vessel-length table is a marine production-vessel proxy, not capture-only.
@@ -156,8 +170,9 @@ The local extraction has **3,037 rows** for 2017–2024: capture 1,665, vessels 
 
 1. Review the local core CSV and decide whether the indicator coverage is sufficient.
 2. Diff the registered People's Daily text against the npc.gov.cn page when that site is reachable again; the 2026-10-31 WAF block and the attempts are recorded in the register.
-3. Acquire `DICT-STAT-013` and seek a public official `OPS-LOG-002`; the seven deferred candidates stay out of the current phase.
-4. Do not plan or implement the retrieval pipeline until the sufficiency review is accepted.
+3. Acquire `DICT-STAT-013`; the standards, the permit form and the permit regulation now cover most of `OPS-LOG-002`, and the seven deferred candidates stay out of the current phase.
+4. Use the 2018 port plan as the port baseline and record the classification difference when extending the core CSV to ports.
+5. Do not plan or implement the retrieval pipeline until the sufficiency review is accepted.
 
 ## 13. References
 
