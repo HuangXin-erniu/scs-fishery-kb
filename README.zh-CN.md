@@ -13,7 +13,7 @@
 
 **早期公开框架。** 架构、工作包与评测协议已明确；检索流水线与服务代码尚未实现。
 
-当前不发布按版本号的 Release。项目变更记录见 [项目日志](docs/project-log.md)。
+本项目不设版本号：不创建 tag、不发布 GitHub Release，也不使用语义化版本。`main` 即最新状态；引用时请使用 commit SHA。变更记录见 [项目日志](docs/project-log.md)。
 
 **本仓库不发布任何数据或运行产物。** 详见 [docs/data-policy.md](docs/data-policy.md)。
 

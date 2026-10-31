@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import subprocess
 from pathlib import Path
 
 import yaml
@@ -51,6 +52,24 @@ def test_schema_sections() -> None:
     data = load_yaml("configs/schema.yaml")
     for section in ("document", "chunk", "citation", "sensitivity"):
         assert section in data
+
+
+def test_config_schema_version_key() -> None:
+    for relative in ("configs/corpus.yaml", "configs/schema.yaml"):
+        data = load_yaml(relative)
+        assert data["schema_version"] == 1
+        assert "version" not in data
+
+
+def test_no_git_tags() -> None:
+    result = subprocess.run(
+        ["git", "-C", str(ROOT), "tag", "--list"],
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    assert result.returncode == 0
+    assert result.stdout.strip() == ""
 
 
 def test_framework_documents_exist() -> None:

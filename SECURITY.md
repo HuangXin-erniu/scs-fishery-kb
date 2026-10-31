@@ -2,9 +2,8 @@
 
 ## Supported versions
 
-| Version | Supported |
-|---|---|
-| 0.1.x (alpha) | Yes, for documentation and configuration issues |
+The project publishes no versioned releases. The supported line is the current
+`main` branch; cite the commit SHA when reporting an issue.
 
 The project is at an early stage. There is no production service, deployment or
 data distribution yet.

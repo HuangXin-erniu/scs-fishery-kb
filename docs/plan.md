@@ -108,7 +108,7 @@ Dates are not commitments. Milestone exit conditions and quality gates take prec
 - Scope changes, new data classes and new external dependencies require a project decision.
 - The public tree must remain free of data, run artifacts, secrets and internal identifiers.
 - A change that affects the `/v1` contract requires review with the downstream interface owner.
-- No release or tag is created as part of this plan.
+- No release or tag is created as part of this plan. CI fetches tags and rejects any tag; the repository is expected to have none.
 
 ## 11. Out of scope
 

@@ -33,6 +33,12 @@ make validate
 - `make test` runs `pytest`.
 - `make validate` runs `scripts/check_public_tree.py` (required files, YAML, links, absolute paths, data/run leakage and secret patterns).
 
+## Versioning
+
+This project has no versioned releases. Do not add version numbers, tags or GitHub
+Release notes. `main` is the supported line; changes are recorded by date in
+[docs/project-log.md](docs/project-log.md).
+
 ## Data and privacy
 
 - Never commit `data/` payloads, `runs/`, `.env`, databases or credentials.

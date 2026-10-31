@@ -189,6 +189,20 @@ def check_links(files: list[Path], errors: list[str]) -> None:
                 errors.append(f"broken link {target!r} in {path}")
 
 
+def check_no_tags(errors: list[str]) -> None:
+    result = subprocess.run(
+        ["git", "-C", str(ROOT), "tag", "--list"],
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    if result.returncode != 0:
+        return
+    tags = [line.strip() for line in result.stdout.splitlines() if line.strip()]
+    if tags:
+        errors.append("repository has tags but versioning is disabled: " + ", ".join(tags))
+
+
 def main() -> int:
     errors: list[str] = []
     files = tracked_files()
@@ -196,6 +210,7 @@ def main() -> int:
     check_tracked(files, errors)
     check_content(files, errors)
     check_yaml(errors)
+    check_no_tags(errors)
     check_links(files, errors)
     if errors:
         print("PUBLIC TREE CHECK FAILED")

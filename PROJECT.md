@@ -10,7 +10,7 @@
 | Domain | Nearshore fisheries in the South China Sea: fishing vessel operations and fishery conditions |
 | Method | Retrieval-augmented generation with citations, abstention and evaluation |
 
-No versioned releases are published. Material changes are recorded in the [project log](docs/project-log.md).
+The project has no versioned releases: no tags, no GitHub Releases and no semantic versions. `main` is the latest state; material changes are recorded by date in the [project log](docs/project-log.md).
 
 ## 2. Background
 
@@ -126,7 +126,15 @@ Full risk and quality-gate detail is in [plan.md](docs/plan.md).
 - Publishing restricted or unlicensed data.
 - Modifying the separate research programme's repositories.
 
-## 12. References
+## 12. Versioning and releases
+
+- The project uses no semantic versions, Git tags or GitHub Releases.
+- `main` is the only supported line; a commit SHA identifies a state.
+- Material changes are recorded by date in the [project log](docs/project-log.md).
+- Milestones M0–M4 are work stages, not versions.
+- The repository is expected to have no tags; CI and the public-tree check reject tags.
+
+## 13. References
 
 - [Architecture](docs/architecture.md)
 - [Project plan](docs/plan.md)

@@ -13,7 +13,7 @@ The project turns documents, data dictionaries, product descriptions, fishery bu
 
 **Early-stage public framework.** The architecture, work packages and evaluation protocol are documented. The retrieval pipeline and service code are planned but not implemented yet.
 
-No versioned releases are published. Project changes are recorded in the [project log](docs/project-log.md).
+This project has no versioned releases: no tags, no GitHub Releases and no semantic versions. `main` is the latest state; cite a commit SHA. Changes are recorded in the [project log](docs/project-log.md).
 
 **No data or run artifacts are published in this repository.** See [docs/data-policy.md](docs/data-policy.md).
 

@@ -28,10 +28,10 @@ body:
       description: Commands, file paths or links that reproduce the problem.
       render: shell
   - type: input
-    id: version
+    id: commit
     attributes:
-      label: Version or commit
-      description: The release tag or commit you used.
+      label: Commit or date
+      description: The commit SHA on main, or the date you observed the problem.
   - type: checkboxes
     id: checks
     attributes:
