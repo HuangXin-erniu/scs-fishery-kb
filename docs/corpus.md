@@ -1,6 +1,6 @@
 # Corpus Inventory
 
-- Status: data preparation and corpus discovery. Eight yearbook editions and three policy documents are acquired; nine candidates are dispositioned (two to acquire, seven deferred). The local core CSV has 3,037 rows and stays outside the public tree. No parsing or indexing in this phase.
+- Status: data preparation and corpus discovery. Eight yearbook editions, six national bulletins, the China Statistical Yearbook 2026 and twelve legal documents are acquired; nine candidates are dispositioned (two to acquire, seven deferred). The local core CSV has 3,037 rows and stays outside the public tree. No parsing or indexing in this phase.
 - Register: [configs/corpus.yaml](../configs/corpus.yaml)
 - Indicator schema: [configs/statistics.yaml](../configs/statistics.yaml)
 - Date: 2026-10-31
@@ -26,11 +26,11 @@ It does **not** include raw environmental grids, reanalysis data, forecast raste
 | `statistical_yearbook` | 统计年鉴 | 15 | Official annual statistics and indicator tables |
 | `operations` | 作业知识 | 1 | Fishing methods, gear, vessel operations, logbooks and permit conditions |
 | `law` | 法律 | 1 | National law adopted by the legislature |
-| `regulation` | 行政法规/规章/地方性法规 | 8 | Administrative regulations, departmental rules and local regulations |
+| `regulation` | 行政法规/规章/地方性法规 | 10 | Administrative regulations, departmental rules and local regulations |
 | `notice` | 通告/公告 | 1 | Official notices, announcements and seasonal measures |
 | `standard` | 标准/规范 | 0 | National, industry or provincial standards and operational norms |
 | `fishery_product` | 渔情/海况产品说明 | 4 | Product descriptions, fishery bulletins and historical records |
-| `data_dictionary` | 数据字典 | 5 | Field definitions, indicator definitions, metadata and quality rules |
+| `data_dictionary` | 数据字典 | 4 | Field definitions, indicator definitions, metadata and quality rules |
 
 ## 4. Acquired yearbooks
 
@@ -67,10 +67,12 @@ The bulletin series `STAT-BULL-025` and `STAT-BULL-028`–`STAT-BULL-032` covers
 | `POL-GD-022` | `regulation` | guangdong | Guangdong fishing-port and fishing-vessel regulations, 2020 amendment | acquired |
 | `POL-GX-023` | `regulation` | guangxi | Guangxi measures implementing the Fisheries Law, 2016 amendment | acquired |
 | `POL-GX-024` | `regulation` | guangxi | Guangxi fishing-port and fishing-vessel regulations, 2024 amendment | acquired |
+| `POL-FJ-025` | `regulation` | fujian | Fujian measures implementing the Fisheries Law, 2019 amendment | acquired |
+| `POL-FJ-026` | `regulation` | fujian | Fujian fishing-port and fishing-vessel regulations, 2010 amendment | acquired |
 
-The legal corpus now covers the national law, its implementing rules, vessel inspection, the resource levy, the fishing-permit rules and the seasonal closure, plus the Guangdong and Guangxi regulations. Each document records its publisher, revision history, article count and SHA-256. Article counts: Fisheries Law 90, implementing rules 42, vessel inspection 40, levy measures 18, permit regulation 59, closure notice 4 sections, Guangdong fishery 47, Guangdong port and vessel 44, Guangxi implementation 48, Guangxi port and vessel 37.
+The legal corpus now covers the national law, its implementing rules, vessel inspection, the resource levy, the fishing-permit rules and the seasonal closure, plus the Guangdong, Guangxi and Fujian regulations. Each document records its publisher, revision history, article count and SHA-256. Article counts: Fisheries Law 90, implementing rules 42, vessel inspection 40, levy measures 18, permit regulation 59, closure notice 4 sections, Guangdong fishery 47, Guangdong port and vessel 44, Guangxi implementation 48, Guangxi port and vessel 37, Fujian implementation 61, Fujian port and vessel 46.
 
-The Fisheries Law text is the owner-supplied DOCX of the official 人民日报 publication; 89 of its 90 article openings match the e-paper capture and the 90th differs only by the 新华社 tag. The e-paper HTML, the page-11 PDF and the earlier municipal reprint are retained in the data root as provenance copies.
+The Fisheries Law text is the owner-supplied DOCX of the official 人民日报 publication. The article openings were cross-checked against the electronic edition before the duplicate copies were removed on 2026-10-31; the registered DOCX is now the single retained text.
 
 ## 6. Candidate sources
 
@@ -93,8 +95,8 @@ The Fisheries Law text is the owner-supplied DOCX of the official 人民日报 p
 | Metric | Value |
 |---|---:|
 | Corpus types | 8 |
-| Registered sources | 35 |
-| Acquired sources | 26 |
+| Registered sources | 36 |
+| Acquired sources | 27 |
 | Remaining candidates | 9 |
 | Yearbook editions | 8 |
 | Yearbook data years | 2017–2024 |
