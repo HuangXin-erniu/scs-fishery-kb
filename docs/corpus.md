@@ -23,7 +23,7 @@ It does **not** include raw environmental grids, reanalysis data, forecast raste
 
 | Type | Name (zh) | Sources | Description |
 |---|---|---:|---|
-| `statistical_yearbook` | 统计年鉴 | 9 | Official annual statistics and indicator tables |
+| `statistical_yearbook` | 统计年鉴 | 10 | Official annual statistics and indicator tables |
 | `operations` | 作业知识 | 1 | Fishing methods, gear, vessel operations, logbooks and permit conditions |
 | `law` | 法律 | 1 | National law adopted by the legislature |
 | `regulation` | 行政法规/规章/地方性法规 | 8 | Administrative regulations, departmental rules and local regulations |
@@ -50,6 +50,8 @@ All eight editions are owner-confirmed official/authorized Excel editions. The p
 The 2024 edition is encrypted with the Excel default password; the originals are unchanged in `raw/STAT-YB-2024/`, and decrypted working copies are kept outside the public tree. The 2019, 2020 and 2024 editions use the older `.xls` layout.
 
 `STAT-BULL-025` is the annual fisheries economic statistical bulletin for data year 2025 (published 2026-07-27). It reports national totals only — no provincial or South China Sea breakdown — so it extends the series in time but does not replace the yearbook editions.
+
+`STAT-CSY-027` is the China Statistical Yearbook 2026 Excel set (1,318 files, Chinese and English editions, internal). Its chapter 12 covers agriculture; table 12-15 gives a national aquatic-production series and provincial 2025 totals with marine capture and aquaculture splits. The Excel set does not include the printed indicator explanations, so it is not a definition source.
 
 ## 5. Acquired policy documents
 
@@ -91,8 +93,8 @@ The Fisheries Law text is the owner-supplied DOCX of the official 人民日报 p
 | Metric | Value |
 |---|---:|
 | Corpus types | 8 |
-| Registered sources | 29 |
-| Acquired sources | 20 |
+| Registered sources | 30 |
+| Acquired sources | 21 |
 | Remaining candidates | 9 |
 | Yearbook editions | 8 |
 | Yearbook data years | 2017–2024 |
