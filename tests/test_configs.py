@@ -32,7 +32,7 @@ def test_corpus_structure() -> None:
         "fishery_product",
         "data_dictionary",
     }
-    assert len(data["sources"]) == 27
+    assert len(data["sources"]) == 29
 
     acquired = []
     candidates = []
@@ -45,7 +45,7 @@ def test_corpus_structure() -> None:
         else:
             candidates.append(source)
 
-    assert len(acquired) == 18
+    assert len(acquired) == 20
     assert len(candidates) == 9
     yearbooks = [source for source in acquired if source["id"].startswith("STAT-YB-")]
     assert len(yearbooks) == 8
@@ -58,7 +58,7 @@ def test_corpus_structure() -> None:
         assert re.fullmatch(r"[0-9a-f]{64}", source["hash"])
         assert source["volume"].endswith("files")
 
-    policy = [source for source in acquired if not source["id"].startswith("STAT-YB-")]
+    policy = [source for source in acquired if source["type"] in {"law", "regulation", "notice"}]
     assert {source["id"] for source in policy} == {
         "POL-LAW-009",
         "POL-STD-010",
@@ -79,6 +79,18 @@ def test_corpus_structure() -> None:
         assert not source["location"].startswith("/")
         assert source["jurisdiction"] in {"national", "guangdong", "guangxi"}
 
+    bulletin = [source for source in acquired if source["id"] == "STAT-BULL-025"]
+    assert len(bulletin) == 1
+    assert bulletin[0]["type"] == "statistical_yearbook"
+    assert bulletin[0]["format"] == "html"
+    assert bulletin[0]["jurisdiction"] == "national"
+    assert bulletin[0]["license"] == "public"
+    assert re.fullmatch(r"[0-9a-f]{64}", bulletin[0]["hash"])
+
+    dictionaries = [source for source in acquired if source["type"] == "data_dictionary"]
+    assert {source["id"] for source in dictionaries} == {"DICT-STAT-026"}
+    assert dictionaries[0]["jurisdiction"] == "national"
+
     for source in candidates:
         assert source["status"] == "to_acquire"
         assert source["location"] is None
@@ -97,14 +109,14 @@ def test_corpus_structure() -> None:
         for type_id in type_ids
     }
     assert type_counts == {
-        "statistical_yearbook": 8,
+        "statistical_yearbook": 9,
         "operations": 1,
         "law": 1,
         "regulation": 8,
         "notice": 1,
         "standard": 0,
         "fishery_product": 4,
-        "data_dictionary": 4,
+        "data_dictionary": 5,
     }
 
 
