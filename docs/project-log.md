@@ -2,6 +2,13 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-10-31 — Technical supplements registered for the definition, operation and port gaps
+
+- Registered the minimum mesh-size annexes for permitted and transitional marine capture gear, the SC/T 9460—2025 marine capture information sampling survey standard, the approved-operation form with its filling instructions, the central and first-class port recognition list, and the national coastal fishing-port construction plan for 2018–2025.
+- Added the `plan` corpus type for official plans and construction layouts; the register now holds forty-two sources, thirty-three acquired.
+- Kept the official ministry PDF edition of the fishing-permit regulation as a format copy beside the registered HTML; its articles 50–53 carry the logbook obligation.
+- The standard series answers the operation-type and gear-classification questions in part and points to GB/T 5147—2003; the 2018 port plan supplies the port baseline the yearbooks lack for data years 2018–2019.
+
 ## 2026-10-31 — Fujian regulations added; legal corpus consolidated
 
 - Registered the Fujian measures implementing the Fisheries Law (2019 amendment, five chapters, 61 articles) and the Fujian fishing-port and fishing-vessel regulations (2010 amendment, seven chapters, 46 articles), both owner-supplied and hash-verified.
