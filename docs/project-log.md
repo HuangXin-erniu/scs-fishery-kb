@@ -2,18 +2,17 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
-## 2026-10-31 — M1 legal-subset pipeline
+## 2026-10-31 — Return to data preparation
 
-- Added `src/scs_fkb/` with HTML body extraction, article/section chunking, BM25 retrieval, extractive answers, citation validation, abstention and a CLI.
-- Ingested the three policy documents into 153 local chunks: 90 law articles, 59 permit articles and 4 closure sections; processed data and the manifest stay outside the repository.
-- Added offline tests for extraction, chunking, retrieval, citation resolution, abstention and the ingest pipeline.
-- Explicitly abstains on statistical, fishery-product, gear and voyage questions that the current legal subset cannot answer. Dense retrieval and LLM generation remain planned.
+- Reverted the M1 pipeline implementation and its status claims; the public tree contains no pipeline code.
+- Kept the three-document register and acquisition evidence; removed local processed chunks and archived the M1 run report.
+- Current phase: verify authoritative sources, define the South China Sea nearshore boundary and build an indicator coverage matrix. Pipeline planning waits for sufficient data.
 
 ## 2026-10-31 — First P1 corpus acquired
 
 - Registered three official public documents: the Fisheries Law (2025 revision, effective 2026-05-01), the 2023 seasonal closure notice and the 2022 fishing permit regulation.
 - Recorded licence, sensitivity, SHA-256 and data-root-relative locations; the payload stays outside the repository.
-- Updated the corpus inventory, plan status and tests; the next step is parsing, chunking and indexing.
+- Updated the corpus inventory and tests; parsing and indexing are deferred until the corpus matrix is sufficient.
 
 ## 2026-10-31 — Public repository normalization
 
