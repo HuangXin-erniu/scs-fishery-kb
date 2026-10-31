@@ -1,6 +1,6 @@
 # Corpus Inventory
 
-- Status: data preparation and corpus discovery. Eight yearbook editions, six national bulletins, the China Statistical Yearbook 2026 and eighteen legal and technical documents are acquired; nine candidates are dispositioned (two to acquire, seven deferred). The local core CSV has 3,037 rows and stays outside the public tree. No parsing or indexing in this phase.
+- Status: data preparation and corpus discovery. Eight yearbook editions, six national bulletins, the China Statistical Yearbook 2026 and twenty legal and technical documents are acquired; nine candidates are dispositioned (two to acquire, seven deferred). The local core CSV has 3,037 rows and stays outside the public tree. No parsing or indexing in this phase.
 - Register: [configs/corpus.yaml](../configs/corpus.yaml)
 - Indicator schema: [configs/statistics.yaml](../configs/statistics.yaml)
 - Date: 2026-10-31
@@ -43,12 +43,12 @@ All eight editions are owner-confirmed official/authorized Excel editions. The p
 | `STAT-YB-2019` | 2019 | 2018 | 137 | xls | `025f4a43` |
 | `STAT-YB-2020` | 2020 | 2019 | 140 | xls | `71d5033b` |
 | `STAT-YB-2021` | 2021 | 2020 | 84 | xlsx | `edd634e9` |
-| `STAT-YB-2022` | 2022 | 2021 | 85 | xlsx | `82b9b8bd` |
+| `STAT-YB-2022` | 2022 | 2021 | 84 | xlsx | `4d6f56e8` |
 | `STAT-YB-2023` | 2023 | 2022 | 84 | xlsx | `e8cb6104` |
 | `STAT-YB-2024` | 2024 | 2023 | 140 | xls | `dc4c7475` |
 | `STAT-YB-2025` | 2025 | 2024 | 82 | xlsx | `8768019d` |
 
-The 2024 edition is encrypted with the Excel default password; the originals are unchanged in `raw/STAT-YB-2024/`, and decrypted working copies are kept outside the public tree. The 2019, 2020 and 2024 editions use the older `.xls` layout.
+The 2022 bundle contained a byte-identical duplicate of table 3-10; the duplicate was removed on 2026-10-31 and that edition's manifest regenerated, so its hash is the SHA-256 of the regenerated manifest. The 2024 edition is encrypted with the Excel default password; the originals are unchanged in `raw/STAT-YB-2024/`, and decrypted working copies are kept outside the public tree. The 2019, 2020 and 2024 editions use the older `.xls` layout.
 
 The bulletin series `STAT-BULL-025` and `STAT-BULL-028`–`STAT-BULL-032` covers data years 2020–2025 (published 2021–2026). Each bulletin reports national totals only — no provincial or South China Sea breakdown — so the series extends the record in time but does not replace the yearbook editions. Values stay local.
 
@@ -70,7 +70,8 @@ The bulletin series `STAT-BULL-025` and `STAT-BULL-028`–`STAT-BULL-032` covers
 | `POL-GX-024` | `regulation` | guangxi | Guangxi fishing-port and fishing-vessel regulations, 2024 amendment | acquired |
 | `POL-FJ-025` | `regulation` | fujian | Fujian measures implementing the Fisheries Law, 2019 amendment | acquired |
 | `POL-FJ-026` | `regulation` | fujian | Fujian fishing-port and fishing-vessel regulations, 2010 amendment | acquired |
-| `POL-PORT-037` | `notice` | national | Central and first-class fishing-port recognition list | acquired; 12 central and 2 first-class ports |
+| `POL-PORT-037` | `notice` | national | Central and first-class fishing-port recognition list | acquired; 12 central and 2 first-class ports, proposed 2025-01-15 |
+| `POL-GEAR-016` | `notice` | national | Minimum-mesh system for permitted and transitional gear, 2013 | acquired; in force 2014-06-01, annexes registered separately |
 | `POL-PLAN-038` | `plan` | national | National coastal fishing-port construction plan, 2018–2025 | acquired |
 
 The legal corpus now covers the national law, its implementing rules, vessel inspection, the resource levy, the fishing-permit rules and the seasonal closure, plus the Guangdong, Guangxi and Fujian regulations. Each document records its publisher, revision history, article count and SHA-256. Article counts: Fisheries Law 90, implementing rules 42, vessel inspection 40, levy measures 18, permit regulation 59, closure notice 4 sections, Guangdong fishery 47, Guangdong port and vessel 44, Guangxi implementation 48, Guangxi port and vessel 37, Fujian implementation 61, Fujian port and vessel 46.
@@ -85,8 +86,9 @@ The Fisheries Law text is the owner-supplied DOCX of the official 人民日报 p
 | `POL-GEAR-034` | `standard` | Minimum mesh sizes for transitional gear | Trawl, gillnet, purse seine, stow-net, cage and trap classes |
 | `OPS-STD-035` | `standard` | SC/T 9460—2025 marine capture information sampling survey | Defines marine capture information and sample vessels; sets monthly collection and quality control; cites GB/T 5147—2003 for gear classification |
 | `OPS-FORM-036` | `operations` | Approved-operation block, form and filling instructions | Nine operation types, at most two operation methods and two gear names, minimum mesh size, quota |
+| `OPS-STD-039` | `standard` | GB/T 5147—2026 fishing-gear classification, naming and codes | The national classification that maps yearbook gear groups and permit operation types |
 
-The mesh tables are annexes 1 and 2 and the form is annex 3; the parent notices were not part of the supplied files, so their publication years are recorded as unverified. SC/T 9460—2025 was published 2025-12-09 and takes effect 2026-05-01.
+The mesh tables and the form are annexes 1, 2 and 3 of the 2013 notice `POL-GEAR-016`, which entered into force on 2014-06-01 and repealed the 2003 notice. SC/T 9460—2025 was published 2025-12-09 and takes effect 2026-05-01; GB/T 5147—2026 was published 2026-02-27 and takes effect 2026-09-01, replacing the 2003 edition.
 
 ## 6. Candidate sources
 
@@ -109,8 +111,8 @@ The mesh tables are annexes 1 and 2 and the form is annex 3; the parent notices 
 | Metric | Value |
 |---|---:|
 | Corpus types | 9 |
-| Registered sources | 42 |
-| Acquired sources | 33 |
+| Registered sources | 44 |
+| Acquired sources | 35 |
 | Remaining candidates | 9 |
 | Yearbook editions | 8 |
 | Yearbook data years | 2017–2024 |
@@ -135,7 +137,7 @@ The coverage matrix uses the latest edition for each data year. Counts are table
 
 Known gaps:
 
-- Coastal-port infrastructure is missing from the yearbooks for data years 2018 and 2019: the 838-file inventory confirms that the 2019 and 2020 editions contain no infrastructure table. The 2018 national port plan (POL-PLAN-038) supplies a 2018 baseline with named central and first-class ports, but its port classes are not identical with the yearbook table, so it cannot be pasted into the core CSV without a mapping note.
+- Coastal-port infrastructure is missing from the yearbooks for data years 2018 and 2019: the 838-file inventory confirms that the 2019 and 2020 editions contain no infrastructure table. The 2018 national port plan (POL-PLAN-038) supplies a 2018 baseline with named central and first-class ports, and the 2025 recognition list (POL-PORT-037) adds 14 more, but the plan's port classes are not identical with the yearbook table and the 2025 list is still a proposal, so neither can be pasted into the core CSV without a mapping note.
 - The 2017 and 2021 source tables have only 沿海中心渔港 and 沿海一级渔港; the later tables add class 2, class 3 and unrated ports.
 - The vessel-length proxy is missing for data year 2024; the 2025 edition dropped the marine vessel-length table and keeps only the all-vessel and inland tables. The gap is accepted rather than filled from a non-comparable table.
 - The vessel-length table is a marine production-vessel proxy, not capture-only.
@@ -170,7 +172,7 @@ The local extraction has **3,037 rows** for 2017–2024: capture 1,665, vessels 
 
 1. Review the local core CSV and decide whether the indicator coverage is sufficient.
 2. Diff the registered People's Daily text against the npc.gov.cn page when that site is reachable again; the 2026-10-31 WAF block and the attempts are recorded in the register.
-3. Acquire `DICT-STAT-013`; the standards, the permit form and the permit regulation now cover most of `OPS-LOG-002`, and the seven deferred candidates stay out of the current phase.
+3. Acquire `DICT-STAT-013`; the standards (including GB/T 5147—2026), the permit form and the permit regulation now cover most of `OPS-LOG-002`, and the seven deferred candidates stay out of the current phase.
 4. Use the 2018 port plan as the port baseline and record the classification difference when extending the core CSV to ports.
 5. Do not plan or implement the retrieval pipeline until the sufficiency review is accepted.
 

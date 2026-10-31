@@ -33,7 +33,7 @@ def test_corpus_structure() -> None:
         "data_dictionary",
         "plan",
     }
-    assert len(data["sources"]) == 42
+    assert len(data["sources"]) == 44
 
     acquired = []
     candidates = []
@@ -46,7 +46,7 @@ def test_corpus_structure() -> None:
         else:
             candidates.append(source)
 
-    assert len(acquired) == 33
+    assert len(acquired) == 35
     assert len(candidates) == 9
     yearbooks = [source for source in acquired if source["id"].startswith("STAT-YB-")]
     assert len(yearbooks) == 8
@@ -79,6 +79,8 @@ def test_corpus_structure() -> None:
         "OPS-FORM-036",
         "POL-PORT-037",
         "POL-PLAN-038",
+        "POL-GEAR-016",
+        "OPS-STD-039",
     }
     for source in documents:
         assert source["license"] == "public"
@@ -145,8 +147,8 @@ def test_corpus_structure() -> None:
         "statistical_yearbook": 15,
         "law": 1,
         "regulation": 10,
-        "notice": 2,
-        "standard": 3,
+        "notice": 3,
+        "standard": 4,
         "operations": 2,
         "fishery_product": 4,
         "data_dictionary": 4,
