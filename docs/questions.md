@@ -21,7 +21,7 @@
 | Q-E03 | Which fields must a fishing vessel logbook record for a given vessel type? | 某类渔船的捕捞日志必须记录哪些字段？ | procedure | OPS-LOG-002 | Confirm vessel and operation type |
 | Q-E04 | What are the administrative consequences of missing or incorrect logbook entries? | 捕捞日志漏填或错填会有什么管理后果？ | policy | OPS-LOG-002 / POL-LAW-009 | Confirm legal basis and discretion |
 | Q-E05 | How are production, landed weight and fishing effort defined in catch statistics? | 渔获量统计中的“产量”“上岸量”“捕捞努力量”分别怎么定义？ | definition | DICT-STAT-013 | Confirm definition version |
-| Q-E06 | What is the annual production trend for a given sea area and operation type? | 某海域某作业类型的年度产量趋势如何？ | statistic | OPS-STAT-001 | Confirm sea area, year and operation type |
+| Q-E06 | What is the annual production trend for a given sea area and operation type? | 某海域某作业类型的年度产量趋势如何？ | statistic | STAT-YB-2018–STAT-YB-2025 | Confirm sea area and year; the yearbooks publish no production by operation type |
 | Q-E07 | What are the historical fishing seasons and main commercial species of a given fishing ground? | 某渔场的历史渔汛期与主要经济鱼种是什么？ | fact | FCS-REC-008 | Confirm fishing ground and period |
 | Q-E08 | How should SST anomalies and chlorophyll concentrations in a fishery bulletin be interpreted? | 渔情通报里的 SST 距平、叶绿素浓度应该怎么解读？ | definition | ENV-SST-005 / ENV-CHL-006 | Confirm product version and units |
 | Q-E09 | What certificates, vessel types and equipment are required for access to a given operation type? | 某类作业准入需要哪些证件、船型与设备条件？ | policy | POL-STD-010 | Confirm operation type and region |
@@ -37,7 +37,7 @@
 | Q-M02 | Which fields should a vessel management record contain for a given vessel type? | 某类渔船的管理档案应包含哪些字段？ | procedure | VMS-DICT-003 | Confirm vessel type and record type |
 | Q-M03 | What are the reporting definitions and process for logbook data? | 捕捞日志的统计口径与上报流程是什么？ | procedure | OPS-LOG-002 / DICT-STAT-013 | Confirm reporting level and deadline |
 | Q-M04 | What are the official differences between production, landed weight and fishing effort? | 产量、上岸量、捕捞努力量的官方口径差异是什么？ | definition | DICT-STAT-013 | Confirm yearbook version |
-| Q-M05 | What were the production and vessel counts for a given year, sea area and operation type? | 某年度某海域某作业类型的产量与船数统计是多少？ | statistic | OPS-STAT-001 | Confirm sea area, year and operation type |
+| Q-M05 | What were the production and vessel counts for a given year, sea area and operation type? | 某年度某海域某作业类型的产量与船数统计是多少？ | statistic | STAT-YB-2018–STAT-YB-2025 | Confirm sea area and year; the yearbooks publish no production by operation type |
 | Q-M06 | How are voyage, operating day and port stay defined in vessel/voyage data? | 船位/航次数据中的“航次”“作业日”“停港”如何定义？ | definition | VMS-DICT-003 | Confirm data source and field version |
 | Q-M07 | Which agencies publish fishery bulletins, how often, and in what format? | 渔场/渔汛预报通报的发布机构、频次与格式是什么？ | fact | FCS-BULL-007 | Confirm publisher level and period |
 | Q-M08 | How have historical fishing seasons and the central fishing ground changed for a given area? | 某渔场历史渔汛记录与中心渔场变化如何？ | fact | FCS-REC-008 | Confirm fishing ground and period |
@@ -60,7 +60,7 @@
 | Fact | 3 |
 | Standard | 1 |
 
-The expected-evidence column covers the main knowledge categories. Papers and reports may provide background or follow-up evidence, but are not the primary evidence for these questions.
+The expected-evidence column names the sources that can answer each question once acquired. The two statistic questions are limited to sea area, gear group and species: no registered edition publishes capture production by operation type, so the operation-type part of those questions is currently unanswerable. The expected-evidence column otherwise covers the main knowledge categories. Papers and reports may provide background or follow-up evidence, but are not the primary evidence for these questions.
 
 ## Next steps
 

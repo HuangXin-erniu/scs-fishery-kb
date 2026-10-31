@@ -32,7 +32,7 @@ def test_corpus_structure() -> None:
         "fishery_product",
         "data_dictionary",
     }
-    assert len(data["sources"]) == 21
+    assert len(data["sources"]) == 20
 
     acquired = []
     candidates = []
@@ -46,7 +46,7 @@ def test_corpus_structure() -> None:
             candidates.append(source)
 
     assert len(acquired) == 11
-    assert len(candidates) == 10
+    assert len(candidates) == 9
     yearbooks = [source for source in acquired if source["id"].startswith("STAT-YB-")]
     assert len(yearbooks) == 8
     assert [source["year"] for source in yearbooks] == list(range(2018, 2026))
@@ -73,8 +73,11 @@ def test_corpus_structure() -> None:
         assert source["hash"] is None
         assert source["license"] == "unknown"
         assert source["sensitivity"] == "unknown"
+        assert source["disposition"] in {"acquire", "defer"}
+        assert source["disposition_reason"].strip()
 
     ids = {source["id"] for source in data["sources"]}
+    assert "OPS-STAT-001" not in ids
     assert "LIT-PAPER-011" not in ids
     assert "LIT-RPT-012" not in ids
     type_counts = {
@@ -82,7 +85,7 @@ def test_corpus_structure() -> None:
         for type_id in type_ids
     }
     assert type_counts == {
-        "statistical_yearbook": 9,
+        "statistical_yearbook": 8,
         "operations": 1,
         "law": 1,
         "regulation": 1,
@@ -132,6 +135,7 @@ def test_questions_count() -> None:
     text = (ROOT / "docs/questions.md").read_text(encoding="utf-8")
     assert text.count("| Q-E") == 12
     assert text.count("| Q-M") == 12
+    assert "OPS-STAT-001" not in text
 
 
 def test_citation_metadata() -> None:
