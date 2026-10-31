@@ -1,0 +1,223 @@
+from __future__ import annotations
+
+import hashlib
+from pathlib import Path
+
+import yaml
+
+from scs_fkb.answer import answer_question, validate_citations
+from scs_fkb.bm25 import BM25Index
+from scs_fkb.chunking import chunk_document
+from scs_fkb.extract import extract_main_text
+from scs_fkb.ingest import ingest
+from scs_fkb.models import Chunk, Document, SearchHit
+from scs_fkb.store import load_chunks
+from scs_fkb.text import tokenize
+
+
+def _document(doc_id: str = "TEST-001", sensitivity: str = "public") -> Document:
+    return Document(
+        doc_id=doc_id,
+        source_id=doc_id,
+        title="测试法规",
+        title_zh="测试法规",
+        publisher="测试机关",
+        year=2026,
+        doc_type="law",
+        sensitivity=sensitivity,
+        language="zh",
+        page_count=1,
+        file_hash="0" * 64,
+    )
+
+
+def _chunk(
+    chunk_id: str,
+    section: str,
+    text: str,
+    sensitivity: str = "public",
+) -> Chunk:
+    return Chunk(
+        chunk_id=chunk_id,
+        doc_id="TEST-001",
+        source_id="TEST-001",
+        page=1,
+        section=section,
+        text=text,
+        token_count=len(tokenize(text)),
+        char_start=0,
+        char_end=len(text),
+        sensitivity=sensitivity,
+    )
+
+
+def test_tokenize_chinese_bigrams() -> None:
+    tokens = tokenize("伏季休渔")
+    assert "伏季" in tokens
+    assert "休渔" in tokens
+
+
+def test_extract_drops_navigation() -> None:
+    html = """
+    <html><body>
+      <div>网站地图 首页</div>
+      <p>第一条 为了加强渔业资源的保护，制定本法。</p>
+      <p>第二条 在中华人民共和国内水从事养殖，适用本法。</p>
+      <div>版权所有 某市政府</div>
+    </body></html>
+    """
+    text = extract_main_text(html)
+    assert "第一条" in text
+    assert "第二条" in text
+    assert "网站地图" not in text
+    assert "版权所有" not in text
+
+
+def test_extract_recovers_unclosed_paragraphs() -> None:
+    html = "<p>第一条 为了保护渔业资源，制定本法。<p>第二条 本法适用于内水。"
+    text = extract_main_text(html)
+    assert "第一条" in text
+    assert "第二条" in text
+
+
+def test_chunk_law_by_article() -> None:
+    text = "第一条 为了保护渔业资源，制定本法。\n继续说明。\n第二条 本法适用于内水。"
+    chunks = chunk_document(_document(), text)
+    assert [chunk.section for chunk in chunks] == ["第一条", "第二条"]
+    assert "继续说明" in chunks[0].text
+
+
+def test_chunk_notice_by_section() -> None:
+    text = "一、休渔海域\n北纬12度以北的南海。\n二、休渔时间\n5月1日12时至8月16日12时。"
+    chunks = chunk_document(_document(), text)
+    assert [chunk.section for chunk in chunks] == ["一、休渔海域", "二、休渔时间"]
+
+
+def test_bm25_ranks_relevant() -> None:
+    chunks = [
+        _chunk("c1", "一、休渔海域", "北纬12度以北的南海海域，5月1日12时至8月16日12时休渔。"),
+        _chunk("c2", "第五条", "申请捕捞许可证应当提交渔业船舶检验证书。"),
+        _chunk("c3", "第三十四条", "海洋大中型渔业船舶应当如实填写作业日志。"),
+    ]
+    hits = BM25Index(chunks).search("休渔 时间 南海", top_k=3)
+    assert hits
+    assert hits[0].chunk.chunk_id == "c1"
+
+
+def test_bm25_sensitivity_filter() -> None:
+    chunks = [
+        _chunk("c1", "第一条", "公开休渔规定", sensitivity="public"),
+        _chunk("c2", "第二条", "内部休渔规定", sensitivity="internal"),
+    ]
+    hits = BM25Index(chunks).search("休渔规定", top_k=5, sensitivity_ceiling="public")
+    assert [hit.chunk.chunk_id for hit in hits] == ["c1"]
+
+
+def test_answer_citations_resolve() -> None:
+    chunk = _chunk(
+        "c1",
+        "第三十四条",
+        "海洋大中型渔业船舶应当如实填写作业日志，记载捕捞作业、转载、购销等信息。",
+    )
+    answer = answer_question("作业日志应当记录什么", [SearchHit(chunk=chunk, score=1.5)])
+    assert not answer.abstained
+    assert "[TEST-001 p.1 §第三十四条]" in answer.text
+    ok, invalid = validate_citations(answer.text, [SearchHit(chunk=chunk, score=1.5)])
+    assert ok
+    assert invalid == []
+
+
+def test_answer_prefers_certificate_sentence() -> None:
+    chunk = _chunk(
+        "c1",
+        "第二十八条",
+        "第二十八条 申请捕捞许可证，应当提交下列资料：\n"
+        "（二）船舶所有人营业执照；\n"
+        "（三）渔业船舶检验证书和所有权登记证书。",
+    )
+    answer = answer_question("申请捕捞许可证需要哪些证书", [SearchHit(chunk=chunk, score=2.0)])
+    assert not answer.abstained
+    assert "检验证书" in answer.text
+    assert "营业执照" not in answer.text
+
+
+def test_answer_prefers_date_range_for_time_question() -> None:
+    implementation = _chunk("c1", "四、实施时间", "上述规定自2023年4月15日起施行。")
+    closure = _chunk(
+        "c2",
+        "三、休渔时间",
+        "（三）北纬26度30分至北纬12度的东海和南海海域为5月1日12时至8月16日12时。",
+    )
+    answer = answer_question(
+        "南海区伏季休渔的起止时间是什么",
+        [SearchHit(chunk=implementation, score=10.0), SearchHit(chunk=closure, score=8.0)],
+    )
+    assert not answer.abstained
+    assert "5月1日" in answer.text
+    assert "2023年4月15日" not in answer.text
+
+
+def test_answer_abstains_without_hits() -> None:
+    answer = answer_question("今天天气怎么样", [])
+    assert answer.abstained
+    assert answer.reason == "no_evidence"
+
+
+def test_answer_abstains_out_of_scope() -> None:
+    answer = answer_question("2025年广东省渔业产量是多少", [])
+    assert answer.abstained
+    assert answer.reason == "out_of_scope"
+
+
+def test_invalid_citation_rejected() -> None:
+    chunk = _chunk("c1", "第三十四条", "作业日志要求。")
+    ok, invalid = validate_citations("[TEST-001 p.1 §不存在]", [SearchHit(chunk=chunk, score=1.0)])
+    assert not ok
+    assert invalid
+
+
+def test_ingest_writes_outputs(tmp_path: Path) -> None:
+    data_root = tmp_path / "data"
+    raw = data_root / "raw" / "TEST-001"
+    raw.mkdir(parents=True)
+    html = (
+        "<html><body><div>网站地图</div>"
+        "<p>第一条 为了保护渔业资源，制定本法。</p>"
+        "<p>第二条 本法适用于内水。</p>"
+        "<div>版权所有</div></body></html>"
+    )
+    source_file = raw / "doc.html"
+    source_file.write_text(html, encoding="utf-8")
+    digest = hashlib.sha256(source_file.read_bytes()).hexdigest()
+    config = {
+        "schema_version": 1,
+        "sources": [
+            {
+                "id": "TEST-001",
+                "category": "policy_standards",
+                "title": "测试法规",
+                "title_zh": "测试法规",
+                "publisher": "测试机关",
+                "year": 2026,
+                "type": "law",
+                "format": "html",
+                "location": "raw/TEST-001/doc.html",
+                "license": "public",
+                "sensitivity": "public",
+                "status": "acquired",
+                "hash": digest,
+            }
+        ],
+    }
+    config_path = tmp_path / "corpus.yaml"
+    config_path.write_text(yaml.safe_dump(config, allow_unicode=True), encoding="utf-8")
+
+    summary = ingest(config_path, data_root)
+    assert summary["documents"] == 1
+    assert summary["chunks"] == 2
+
+    chunks, manifest = load_chunks(data_root)
+    assert len(chunks) == 2
+    assert manifest["counts"] == {"TEST-001": 2}
+    assert all("网站地图" not in chunk.text for chunk in chunks)
+    assert all("版权所有" not in chunk.text for chunk in chunks)

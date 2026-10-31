@@ -1,6 +1,6 @@
 # Corpus Inventory
 
-- Status: three P1 policy documents acquired; twelve candidates remain.
+- Status: three P1 policy documents acquired and indexed locally; twelve candidates remain.
 - Register: [configs/corpus.yaml](../configs/corpus.yaml)
 - Date: 2026-10-31
 
@@ -16,7 +16,7 @@ It does **not** include raw environmental grids, reanalysis data, forecast raste
 2. Register each candidate with title, publisher, year, type, format, location, licence, sensitivity, status, priority, volume, update frequency, hash and acquisition notes.
 3. Mark every unacquired source as `status: to_acquire`, `location: null`, `hash: null`.
 4. Hold every source whose licence or sensitivity is `unknown`; do not ingest it.
-5. Acquire only from official public channels; record the URL, retrieval date and SHA-256. Do not parse or index a source during inventory.
+5. Acquire only from official public channels; record the URL, retrieval date and SHA-256. Parsing and indexing are separate pipeline steps.
 
 ## 3. Categories
 
@@ -62,9 +62,10 @@ It does **not** include raw environmental grids, reanalysis data, forecast raste
 | P2 candidates | 9 |
 | Acquired files | 3 |
 | Ingestible sources | 3 |
+| Parsed chunks (local) | 153 (law 90, permit 59, closure 4) |
 | `license`/`sensitivity` unknown | 12 |
 
-Three acquired documents are public and ready for parsing. The remaining twelve candidates are held until their licence and sensitivity are confirmed and their file hash is recorded.
+Three acquired documents are public and parsed into 153 local chunks. The remaining twelve candidates are held until their licence and sensitivity are confirmed and their file hash is recorded.
 
 ## 6. Acquisition priorities
 
@@ -82,7 +83,7 @@ Still to acquire:
 - **Logbook specification**: required fields, reporting process and a desensitised sample.
 - **Gear and operational standards**: current gear specifications and operational norms.
 
-The three acquired documents are the best first corpus: official, public, citable and limited in size. The remaining P1 sources are needed before the corpus can answer statistical and logbook questions.
+The three acquired documents are the best first corpus: official, public, citable and limited in size. They are parsed into article/section chunks for BM25 retrieval. The remaining P1 sources are needed before the corpus can answer statistical and logbook questions.
 
 ### P2 — second
 

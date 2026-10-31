@@ -14,7 +14,7 @@
 
 ## 状态
 
-**早期公开框架。** 架构、工作包与评测协议已明确；检索流水线与服务代码尚未实现。
+**M1 法律子集已实现。** 三份公开政策文件已登记并在本地索引：渔业法（2025 修订）、伏季休渔通告（2023）与捕捞许可规定（2022）。当前支持 HTML 正文抽取、按条/节切分、BM25 检索、带可解析引用的抽取式回答，以及显式拒答。向量检索、LLM 生成、HTTP 服务与 `/v1` 契约尚未实现。
 
 本项目不设版本号：不创建 tag、不发布 GitHub Release，也不使用语义化版本。`main` 即最新状态；引用时请使用 commit SHA。变更记录见 [项目日志](docs/project-log.md)。
 
@@ -45,7 +45,7 @@
 | [架构](docs/architecture.md) | 分层、组件、数据流、数据契约与运行方式 |
 | [项目计划](docs/plan.md) | 工作包、里程碑、角色、质量门与风险 |
 | [评测](docs/evaluation.md) | 问题集、指标、协议、目标与报告 |
-| [语料盘点](docs/corpus.md) | 候选来源、许可、敏感级与获取优先级 |
+| [语料盘点](docs/corpus.md) | 已获取与候选来源、许可、敏感级与优先级 |
 | [项目日志](docs/project-log.md) | 按日期记录的项目变更 |
 | [治理](GOVERNANCE.md) | 角色、决策、版本政策与边界 |
 | [术语表](docs/glossary.md) | 渔业与检索概念的中英术语 |
@@ -64,8 +64,9 @@ scs-fishery-kb/
 ├── .github/                    社区文件、CI、Issue 与 PR 模板
 ├── configs/                    语料登记与 schema
 ├── docs/                       架构、计划、评测、政策、术语表、ADR
+├── src/scs_fkb/                M1 摄入、BM25、引用与 CLI 模块
 ├── scripts/                    公开树校验
-└── tests/                      配置与公开树测试
+└── tests/                      管线、配置与公开树测试
 ```
 
 数据与运行产物只在本机使用，不进入公开树。
@@ -83,7 +84,18 @@ pip install -r requirements-dev.txt
 make check
 ```
 
-`make check` 运行 lint、格式检查、测试与公开树校验。`requirements.txt` 中的运行依赖会在检索代码落地时安装；当前仓库只有文档、配置与校验工具。
+`make check` 运行 lint、格式检查、测试与公开树校验。M1 核心只使用 Python 标准库与 PyYAML；`requirements.txt` 中的其余包是后续 PDF、向量检索、LLM 与服务工作的可选适配器。
+
+在 `$SCS_FKB_DATA_ROOT` 下登记已获取来源后，可运行本地管线：
+
+```sh
+export PYTHONPATH=src
+python -m scs_fkb ingest
+python -m scs_fkb retrieve "南海 伏季休渔 时间"
+python -m scs_fkb ask "南海区伏季休渔的起止时间是什么？"
+```
+
+管线读取语料登记、校验来源哈希，并把处理后的 chunks 与 manifest 写到仓库外。它不下载来源，也不调用模型。
 
 ## 数据与产物
 
@@ -100,8 +112,8 @@ make check
 
 | 里程碑 | 交付物 | 状态 |
 |---|---|---|
-| M0 | 框架：范围、架构、计划、评测、语料登记、工具链 | 当前 |
-| M1 | 最小链路：解析、切分、索引、检索、带引用回答 | 计划中 |
+| M0 | 框架：范围、架构、计划、评测、语料登记、工具链 | 完成 |
+| M1 | 最小链路：解析、切分、BM25 检索、抽取式引用回答 | 当前（法律子集） |
 | M2 | 检索基线：BM25 / 向量 / 混合对照 | 计划中 |
 | M3 | 评测报告与服务原型 | 计划中 |
 | M4 | 面向下游集成的 `/v1` 查询接口契约 | 计划中 |
