@@ -387,6 +387,24 @@ sources:
   hash: 6395fdbb9feb6574ad853b2a09701d8d1d9509eed3069459160ae158f92bc229
   acquisition: 'Fetched 2026-10-31 from the Fisheries Bureau: http://yyj.moa.gov.cn/gzdt/202607/t20260727_6486230.htm (HTTP 200; 167,431 bytes; published 2026-07-27).'
   notes: 'Data year 2025. National totals only: no provincial or South China Sea breakdown, so it extends the series in time but does not replace the yearbook editions.'
+- id: STAT-CSY-027
+  title: 中国统计年鉴 2026（Excel）
+  title_zh: 中国统计年鉴 2026（Excel）
+  publisher: 国家统计局
+  year: 2026
+  type: statistical_yearbook
+  jurisdiction: national
+  format: xlsx
+  location: raw/STAT-CSY-027/
+  license: internal
+  sensitivity: internal
+  status: acquired
+  priority: P1
+  volume: 1,318 files (Chinese and English editions); 18,315,130 bytes
+  update_freq: annual
+  hash: a950d0c55ce0ddb9950326e95bfb5a49dba7bccc4dfafbb7a988c0ab0df63a5a
+  acquisition: 'Owner-provided Excel set received 2026-10-31 (Chinese and English editions, 1,318 files, 17.5 MB); the yearbook is published by the National Bureau of Statistics and the data are public, kept internal for local use only.'
+  notes: 'Data year 2025. Chapter 12 covers agriculture: 12-2 main agricultural and fishery production, 12-3 gross output value, 12-15 aquatic production with a national time series and provincial 2025 totals including marine capture and aquaculture splits. The Excel set does not include the printed indicator explanations, so it is not a definition source.'
 - id: DICT-STAT-026
   title: 农林牧渔业统计报表制度主要内容（2025年统计年报和2026年定期统计报表）
   title_zh: 农林牧渔业统计报表制度主要内容（2025年统计年报和2026年定期统计报表）

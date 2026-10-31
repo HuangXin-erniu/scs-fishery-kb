@@ -32,7 +32,7 @@ def test_corpus_structure() -> None:
         "fishery_product",
         "data_dictionary",
     }
-    assert len(data["sources"]) == 29
+    assert len(data["sources"]) == 30
 
     acquired = []
     candidates = []
@@ -45,7 +45,7 @@ def test_corpus_structure() -> None:
         else:
             candidates.append(source)
 
-    assert len(acquired) == 20
+    assert len(acquired) == 21
     assert len(candidates) == 9
     yearbooks = [source for source in acquired if source["id"].startswith("STAT-YB-")]
     assert len(yearbooks) == 8
@@ -87,6 +87,14 @@ def test_corpus_structure() -> None:
     assert bulletin[0]["license"] == "public"
     assert re.fullmatch(r"[0-9a-f]{64}", bulletin[0]["hash"])
 
+    csy = [source for source in acquired if source["id"] == "STAT-CSY-027"]
+    assert len(csy) == 1
+    assert csy[0]["type"] == "statistical_yearbook"
+    assert csy[0]["format"] == "xlsx"
+    assert csy[0]["license"] == "internal"
+    assert csy[0]["jurisdiction"] == "national"
+    assert re.fullmatch(r"[0-9a-f]{64}", csy[0]["hash"])
+
     dictionaries = [source for source in acquired if source["type"] == "data_dictionary"]
     assert {source["id"] for source in dictionaries} == {"DICT-STAT-026"}
     assert dictionaries[0]["jurisdiction"] == "national"
@@ -109,7 +117,7 @@ def test_corpus_structure() -> None:
         for type_id in type_ids
     }
     assert type_counts == {
-        "statistical_yearbook": 9,
+        "statistical_yearbook": 10,
         "operations": 1,
         "law": 1,
         "regulation": 8,
