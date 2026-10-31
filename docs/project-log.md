@@ -2,6 +2,13 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-10-31 — Core CSV built and validated
+
+- Built a 3,037-row local long-table CSV for capture, vessels, population, marine capture value and coastal ports (data years 2017–2024).
+- Added `power_band` and `length_band` to the public schema; values remain local and are not published.
+- Validated all source hashes and spot values; gear and vessel sums reconcile to their totals.
+- Corrected the South China Sea boundary: the published column includes Fujian in 2017–2020 and excludes it from 2021 onward.
+
 ## 2026-10-31 — Yearbook corpus registered
 
 - Registered eight official/authorized China Fisheries Statistical Yearbook editions (2018–2025, data years 2017–2024) as internal, local-use sources.

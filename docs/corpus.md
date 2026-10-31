@@ -1,6 +1,6 @@
 # Corpus Inventory
 
-- Status: data preparation and corpus discovery. Eight yearbook editions and three policy documents are acquired; ten candidates remain. No parsing or indexing in this phase.
+- Status: data preparation and corpus discovery. Eight yearbook editions and three policy documents are acquired; ten candidates remain. The local core CSV has 3,037 rows and stays outside the public tree. No parsing or indexing in this phase.
 - Register: [configs/corpus.yaml](../configs/corpus.yaml)
 - Indicator schema: [configs/statistics.yaml](../configs/statistics.yaml)
 - Date: 2026-10-31
@@ -87,6 +87,7 @@ Papers and reports were removed from the register because they are not accepted 
 | Yearbook editions | 8 |
 | Yearbook data years | 2017–2024 |
 | Yearbook files | 838 |
+| Local core CSV rows | 3,037 |
 | Public values | 0 |
 
 ## 8. Core coverage
@@ -107,11 +108,16 @@ The coverage matrix uses the latest edition for each data year. Counts are table
 Known gaps:
 
 - Coastal-port infrastructure is missing for data years 2018 and 2019.
+- The 2017 and 2021 source tables have only 沿海中心渔港 and 沿海一级渔港; the later tables add class 2, class 3 and unrated ports.
 - The vessel-length proxy is missing for data year 2024; the 2025 edition does not include the length table.
 - The vessel-length table is a marine production-vessel proxy, not capture-only.
-- The published South China Sea column includes Fujian in some data years; the register will store the published value, the Guangdong/Guangxi/Hainan subtotal and the difference.
+- The published South China Sea column includes Fujian in data years 2017–2020 and excludes it from 2021 onward. The CSV stores the published value, the Guangdong/Guangxi/Hainan subtotal and the difference.
 
-## 9. Licence and sensitivity policy
+## 9. Local core CSV
+
+The local extraction has **3,037 rows** for 2017–2024: capture 1,665, vessels 1,116, population 128, marine capture value 32 and coastal ports 96. It preserves blanks, source locators and SHA-256; no values are published. Validation and coverage reports are in the local run root.
+
+## 10. Licence and sensitivity policy
 
 | Case | Action |
 |---|---|
@@ -123,22 +129,21 @@ Known gaps:
 | Personal information | Aggregate or anonymise; never commit or send externally |
 | Copyrighted literature | Not registered in the current phase |
 
-## 10. Data and artifact boundary
+## 11. Data and artifact boundary
 
 - Source files, core CSVs and indexes belong in the local data root (`SCS_FKB_DATA_ROOT`), outside the repository.
 - Run artifacts belong in the local run root (`SCS_FKB_RUN_ROOT`), outside the repository.
 - The public repository contains no data values, indexes, run outputs or state databases.
 - Details: [data-policy.md](data-policy.md).
 
-## 11. Gaps and next steps
+## 12. Gaps and next steps
 
-1. Build the local long-table core indicator CSV from the coverage matrix.
+1. Review the local core CSV and decide whether the indicator coverage is sufficient.
 2. Replace the Fisheries Law reprint with the official NPC/gov.cn standard text.
 3. Search national and provincial official candidates for the operations, logbook and gear sources; present them before registration.
-4. Review the coverage matrix and decide whether the data is sufficient for the next phase.
-5. Do not plan or implement the retrieval pipeline until that review is accepted.
+4. Do not plan or implement the retrieval pipeline until the sufficiency review is accepted.
 
-## 12. References
+## 13. References
 
 - [Corpus register](../configs/corpus.yaml)
 - [Statistics schema](../configs/statistics.yaml)
