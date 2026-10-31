@@ -369,6 +369,42 @@ sources:
   hash: 9a6239830a762cc79d45c5edd0c82622b8ad414fba877ab542bc232b635b4b31
   acquisition: 'Owner-supplied DOCX received 2026-10-31; consolidated text of the 2024-11-28 third amendment.'
   notes: 'Adopted 2001-09-28; amended 2004-07-31, 2010-09-29 and 2024-11-28; effective 2002-01-01. 37 articles.'
+- id: STAT-BULL-025
+  title: 2025年全国渔业经济统计公报
+  title_zh: 2025年全国渔业经济统计公报
+  publisher: 农业农村部渔业渔政管理局
+  year: 2026
+  type: statistical_yearbook
+  jurisdiction: national
+  format: html
+  location: raw/STAT-BULL-025/fisheries-economic-bulletin-2025.html
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P1
+  volume: 1 HTML page; national totals for data year 2025
+  update_freq: annual
+  hash: 6395fdbb9feb6574ad853b2a09701d8d1d9509eed3069459160ae158f92bc229
+  acquisition: 'Fetched 2026-10-31 from the Fisheries Bureau: http://yyj.moa.gov.cn/gzdt/202607/t20260727_6486230.htm (HTTP 200; 167,431 bytes; published 2026-07-27).'
+  notes: 'Data year 2025. National totals only: no provincial or South China Sea breakdown, so it extends the series in time but does not replace the yearbook editions.'
+- id: DICT-STAT-026
+  title: 农林牧渔业统计报表制度主要内容（2025年统计年报和2026年定期统计报表）
+  title_zh: 农林牧渔业统计报表制度主要内容（2025年统计年报和2026年定期统计报表）
+  publisher: 国家统计局
+  year: 2026
+  type: data_dictionary
+  jurisdiction: national
+  format: doc
+  location: raw/DICT-STAT-026/agricultural-statistical-reporting-system.doc
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P2
+  volume: 1 DOC; 2 pages
+  update_freq: annual
+  hash: a2abad3a864dcc427ebf117010d62748c342f8124955ae722e138ff56eade711
+  acquisition: 'Fetched 2026-10-31 from the National Bureau of Statistics: https://www.stats.gov.cn/sj/tjzd/202604/t20260402_1962930.html, attachment P020260402382070301473.doc (HTTP 200; 21,504 bytes).'
+  notes: 'Summary of the national agricultural statistical reporting system. It covers crop and livestock indicators and does not define fisheries production, landed weight or fishing effort: reference only. DICT-STAT-013 remains the open definition candidate.'
 - id: DICT-STAT-013
   title: Statistical indicator definitions and data dictionary (candidate)
   title_zh: 统计指标口径/数据字典（候选）
