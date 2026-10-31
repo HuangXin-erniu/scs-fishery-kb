@@ -82,6 +82,26 @@ def test_framework_documents_exist() -> None:
         assert (ROOT / relative).is_file(), relative
 
 
+def test_bilingual_entry_points() -> None:
+    readme = (ROOT / "README.md").read_text(encoding="utf-8")
+    readme_zh = (ROOT / "README.zh-CN.md").read_text(encoding="utf-8")
+    project_zh = (ROOT / "PROJECT.zh-CN.md").read_text(encoding="utf-8")
+    assert "[简体中文](README.zh-CN.md)" in readme
+    assert "[English](README.md)" in readme_zh
+    assert "[English](PROJECT.md)" in project_zh
+
+
+def test_chinese_summaries() -> None:
+    for relative in (
+        "docs/architecture.md",
+        "docs/plan.md",
+        "docs/evaluation.md",
+        "docs/data-policy.md",
+    ):
+        text = (ROOT / relative).read_text(encoding="utf-8")
+        assert "**中文摘要**" in text, relative
+
+
 def test_no_versioned_release_markers() -> None:
     hits: list[str] = []
     for path in ROOT.rglob("*"):

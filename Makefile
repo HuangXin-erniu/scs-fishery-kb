@@ -1,4 +1,4 @@
-.PHONY: validate lint test ci
+.PHONY: validate lint format test check ci
 
 validate:
 	python3 scripts/check_public_tree.py
@@ -7,7 +7,12 @@ lint:
 	ruff check .
 	ruff format --check .
 
+format:
+	ruff format .
+
 test:
 	pytest -q
 
-ci: lint test validate
+check: lint test validate
+
+ci: check

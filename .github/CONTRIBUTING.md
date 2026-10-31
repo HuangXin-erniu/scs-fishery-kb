@@ -75,3 +75,8 @@ security reports, follow [SECURITY.md](SECURITY.md) instead of opening a public 
 ## Code of conduct
 
 Participation is governed by [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md).
+
+## 中文说明
+
+开发环境、检查命令与提交规则以英文为准；中文项目说明见
+[README.zh-CN.md](../README.zh-CN.md) 与 [PROJECT.zh-CN.md](../PROJECT.zh-CN.md)。

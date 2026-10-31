@@ -1,5 +1,9 @@
 # Project Plan
 
+> **中文摘要**：本文件把项目范围拆成 WP0–WP6 工作包、M0–M4 阶段、角色、质量门与风险。
+> 里程碑是工作阶段，不是版本；项目不创建 tag 或 GitHub Release。
+> 当前处于 WP0（框架与治理），WP1 需要 2–3 份许可清晰的 P1 公开文档后才能启动。
+
 - Status: active plan; the project is at an early-stage public framework.
 - No versioned releases are published. Milestones describe work stages, not release numbers.
 - Architecture: [architecture.md](architecture.md); evaluation: [evaluation.md](evaluation.md); scope: [../PROJECT.md](../PROJECT.md).

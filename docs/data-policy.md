@@ -1,5 +1,9 @@
 # Data Policy
 
+> **中文摘要**：本文件说明哪些内容公开、哪些只留在本机，以及来源登记、敏感级、外部模型与运行产物的处理规则。
+> `unknown` 来源一律 hold；`restricted` 来源只能本地处理，不得发送到外部模型 API。
+> 公开仓库不包含数据载荷、索引、运行产物或 state 数据库。
+
 ## 1. What is published
 
 The public repository contains:

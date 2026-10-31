@@ -1,4 +1,7 @@
 # 南海近海渔船作业与渔情知识库（SCS-FKB）
+**South China Sea Nearshore Fishery Knowledge Base (SCS-FKB)**
+
+[English](README.md) | [简体中文](README.zh-CN.md)
 
 [![CI](https://github.com/HuangXin-erniu/scs-fishery-kb/actions/workflows/ci.yml/badge.svg)](https://github.com/HuangXin-erniu/scs-fishery-kb/actions/workflows/ci.yml)
 [![License: Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
@@ -38,33 +41,34 @@
 
 | 文档 | 用途 |
 |---|---|
-| [项目范围](PROJECT.md) | 目标、范围、非目标与数据政策 |
+| [项目范围](PROJECT.zh-CN.md) · [English](PROJECT.md) | 目标、范围、非目标与数据政策 |
 | [架构](docs/architecture.md) | 分层、组件、数据流、数据契约与运行方式 |
 | [项目计划](docs/plan.md) | 工作包、里程碑、角色、质量门与风险 |
 | [评测](docs/evaluation.md) | 问题集、指标、协议、目标与报告 |
 | [语料盘点](docs/corpus.md) | 候选来源、许可、敏感级与获取优先级 |
 | [项目日志](docs/project-log.md) | 按日期记录的项目变更 |
+| [治理](GOVERNANCE.md) | 角色、决策、版本政策与边界 |
+| [术语表](docs/glossary.md) | 渔业与检索概念的中英术语 |
+| [架构决策](docs/adr/README.md) | 重要决策的记录 |
+| [文档规范](docs/style-guide.md) | 语言、链接、引用与提交约定 |
 
 ## 仓库结构
 
 ```text
 scs-fishery-kb/
 ├── README.md / README.zh-CN.md
-├── PROJECT.md                  范围、目标与非目标
+├── PROJECT.md / PROJECT.zh-CN.md
+├── GOVERNANCE.md               角色、决策与边界
 ├── LICENSE / LICENSE-docs      代码 Apache-2.0；文档 CC BY 4.0
 ├── CITATION.cff
-├── CONTRIBUTING.md
-├── CODE_OF_CONDUCT.md
-├── SECURITY.md
-├── .github/                    CI、Issue 与 PR 模板
+├── .github/                    社区文件、CI、Issue 与 PR 模板
 ├── configs/                    语料登记与 schema
-├── data/                       不发布载荷；仅政策说明
-├── docs/                       架构、计划、评测、项目日志、语料、问法、数据政策
+├── docs/                       架构、计划、评测、政策、术语表、ADR
 ├── scripts/                    公开树校验
 └── tests/                      配置与公开树测试
 ```
 
-`data/` 与 `runs/` 只在本机使用。数据载荷、索引、运行日志与 state 数据库都不进入 Git。
+数据与运行产物只在本机使用，不进入公开树。
 
 ## 快速开始
 
@@ -76,17 +80,15 @@ python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements-dev.txt
 
-make validate
-make lint
-make test
+make check
 ```
 
-`requirements.txt` 中的运行依赖会在检索代码落地时安装。当前仓库只有文档、配置与校验工具。
+`make check` 运行 lint、格式检查、测试与公开树校验。`requirements.txt` 中的运行依赖会在检索代码落地时安装；当前仓库只有文档、配置与校验工具。
 
 ## 数据与产物
 
-- `data/` 放本地源文件与索引；除 `data/README.md` 外全部 gitignore。
-- `runs/` 放本地运行产物；整个目录 gitignore。
+- 数据与运行产物从不提交。
+- `data/` 与 `runs/` 只在本机使用，不进入公开树。
 - 每个来源的许可与敏感级记录在 `configs/corpus.yaml`。
 - `license: unknown` 或 `sensitivity: unknown` 的来源一律 hold，不得入库。
 - `restricted` 来源只能本地处理，不得发送到外部模型 API。
@@ -118,6 +120,4 @@ make test
 
 ## 参与
 
-见 [CONTRIBUTING.md](.github/CONTRIBUTING.md)、[CODE_OF_CONDUCT.md](.github/CODE_OF_CONDUCT.md) 与 [SECURITY.md](.github/SECURITY.md)。
-
-English README: [README.md](README.md).
+见 [CONTRIBUTING.md](.github/CONTRIBUTING.md)、[CODE_OF_CONDUCT.md](.github/CODE_OF_CONDUCT.md)、[SECURITY.md](.github/SECURITY.md) 与 [治理](GOVERNANCE.md)。

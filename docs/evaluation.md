@@ -1,5 +1,9 @@
 # Evaluation
 
+> **中文摘要**：本文件定义检索、引用、回答与拒答的评测问题集、指标、协议与目标。
+> 评测以人工复核为准；报告必须记录 commit、索引版本、模型与问题集版本，保证可复现。
+> 目标值是最低门槛，不是对外承诺；未达标指标要通过误差分析解释，不得改指标掩盖。
+
 - Status: protocol defined; the question set is a draft and has not been reviewed by domain experts.
 - Related: [evaluation questions](questions.md), [project plan](plan.md), [data policy](data-policy.md).
 

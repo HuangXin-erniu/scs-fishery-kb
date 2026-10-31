@@ -1,4 +1,7 @@
 # South China Sea Nearshore Fishery Knowledge Base (SCS-FKB)
+**南海近海渔船作业与渔情知识库（SCS-FKB）**
+
+[English](README.md) | [简体中文](README.zh-CN.md)
 
 [![CI](https://github.com/HuangXin-erniu/scs-fishery-kb/actions/workflows/ci.yml/badge.svg)](https://github.com/HuangXin-erniu/scs-fishery-kb/actions/workflows/ci.yml)
 [![License: Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
@@ -8,6 +11,11 @@
 A retrieval-augmented knowledge base for **fishing vessel operations** and **fishery conditions** in the nearshore **South China Sea**.
 
 The project turns documents, data dictionaries, product descriptions, fishery bulletins, regulations, standards and research reports into a searchable, citable and evaluable domain knowledge base, and provides retrieval-augmented question answering with traceable evidence.
+
+> **中文简介**：本项目把南海近海渔船作业与渔情相关的公开文档、统计口径、法规标准与产品说明，
+> 整理成可检索、可引用、可评测的领域知识库，并提供带出处证据的检索增强问答。
+> 当前为早期公开框架：架构、计划与评测协议已明确，检索与服务代码尚未实现。
+> 仓库不发布任何数据或运行产物；完整中文说明见 [README.zh-CN.md](README.zh-CN.md)。
 
 ## Status
 
@@ -38,33 +46,34 @@ This project has no versioned releases: no tags, no GitHub Releases and no seman
 
 | Document | Purpose |
 |---|---|
-| [Project scope](PROJECT.md) | Objectives, scope, non-goals and data policy |
+| [Project scope](PROJECT.md) · [中文](PROJECT.zh-CN.md) | Objectives, scope, non-goals and data policy |
 | [Architecture](docs/architecture.md) | Layers, components, data flow, data contracts and runtime |
 | [Project plan](docs/plan.md) | Work packages, milestones, roles, quality gates and risks |
 | [Evaluation](docs/evaluation.md) | Question set, metrics, protocol, targets and reporting |
 | [Corpus inventory](docs/corpus.md) | Candidate sources, licences, sensitivity and acquisition priorities |
 | [Project log](docs/project-log.md) | Dated record of material project changes |
+| [Governance](GOVERNANCE.md) | Roles, decisions, version policy and boundaries |
+| [Glossary](docs/glossary.md) | Bilingual terminology for fishery and retrieval concepts |
+| [Architecture decisions](docs/adr/README.md) | Dated records of material project decisions |
+| [Style guide](docs/style-guide.md) | Language, links, citations and commit conventions |
 
 ## Repository layout
 
 ```text
 scs-fishery-kb/
 ├── README.md / README.zh-CN.md
-├── PROJECT.md                  scope, objectives and non-goals
-├── LICENSE / LICENSE-docs      code Apache-2.0; docs CC BY 4.0
+├── PROJECT.md / PROJECT.zh-CN.md
+├── GOVERNANCE.md                roles, decisions and boundaries
+├── LICENSE / LICENSE-docs       code Apache-2.0; docs CC BY 4.0
 ├── CITATION.cff
-├── CONTRIBUTING.md
-├── CODE_OF_CONDUCT.md
-├── SECURITY.md
-├── .github/                    CI, issue and PR templates
-├── configs/                    corpus register and schema
-├── data/                       no payloads; policy README only
-├── docs/                       architecture, plan, evaluation, project log, corpus, questions, data policy
-├── scripts/                    public-tree validation
-└── tests/                      config and public-tree tests
+├── .github/                     community files, CI, issue and PR templates
+├── configs/                     corpus register and schema
+├── docs/                        architecture, plan, evaluation, policy, glossary, ADRs
+├── scripts/                     public-tree validation
+└── tests/                       config and public-tree tests
 ```
 
-`data/` and `runs/` are local-only. No payloads, indexes, run logs or state databases are committed.
+Data and run artifacts are local-only and never enter the published tree.
 
 ## Quick start
 
@@ -76,17 +85,15 @@ python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements-dev.txt
 
-make validate
-make lint
-make test
+make check
 ```
 
-The runtime dependencies in `requirements.txt` are installed when the retrieval code lands. The current repository contains documentation, configuration and validation tooling only.
+`make check` runs lint, format check, tests and the public-tree validation. The runtime dependencies in `requirements.txt` are installed when the retrieval code lands; the current repository contains documentation, configuration and validation tooling only.
 
 ## Data and artifacts
 
-- `data/` holds local source files and indexes; it is gitignored except for `data/README.md`.
-- `runs/` holds local run artifacts; it is gitignored entirely.
+- Data and run artifacts are never committed.
+- `data/` and `runs/` are local-only and excluded from the public tree.
 - Licences and sensitivity are recorded per source in `configs/corpus.yaml`.
 - Sources with `license: unknown` or `sensitivity: unknown` are held and must not be ingested.
 - `restricted` sources must stay local and must never be sent to an external model API.
@@ -118,6 +125,4 @@ If you use this project, please cite it using [CITATION.cff](CITATION.cff).
 
 ## Contributing
 
-See [CONTRIBUTING.md](.github/CONTRIBUTING.md), [CODE_OF_CONDUCT.md](.github/CODE_OF_CONDUCT.md) and [SECURITY.md](.github/SECURITY.md).
-
-中文说明见 [README.zh-CN.md](README.zh-CN.md).
+See [CONTRIBUTING.md](.github/CONTRIBUTING.md), [CODE_OF_CONDUCT.md](.github/CODE_OF_CONDUCT.md), [SECURITY.md](.github/SECURITY.md) and [GOVERNANCE.md](GOVERNANCE.md).

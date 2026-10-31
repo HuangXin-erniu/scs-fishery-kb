@@ -56,6 +56,10 @@ The project is developed within a broader research programme on nearshore fisher
 | [Project plan](docs/plan.md) | Work packages, milestones, dependencies, roles, quality gates and risks |
 | [Evaluation](docs/evaluation.md) | Question set, metrics, protocol, targets and reporting |
 | [Project log](docs/project-log.md) | Dated record of material project changes |
+| [Governance](GOVERNANCE.md) | Roles, decisions, version policy and boundaries |
+| [Glossary](docs/glossary.md) | Bilingual terminology for fishery and retrieval concepts |
+| [Architecture decisions](docs/adr/README.md) | Dated records of material project decisions |
+| [Style guide](docs/style-guide.md) | Language, links, citations and commit conventions |
 
 The framework defines the ingestion, retrieval, evidence, evaluation and service layers. The plan defines WP0–WP6 and milestones M0–M4. The evaluation document defines how retrieval, citation and answer quality are measured.
 
@@ -146,3 +150,7 @@ Full risk and quality-gate detail is in [plan.md](docs/plan.md).
 - [Evaluation questions](docs/questions.md)
 - [Data policy](docs/data-policy.md)
 - [Citation metadata](CITATION.cff)
+- [Governance](GOVERNANCE.md)
+- [Glossary](docs/glossary.md)
+- [Architecture decisions](docs/adr/README.md)
+- [Style guide](docs/style-guide.md)

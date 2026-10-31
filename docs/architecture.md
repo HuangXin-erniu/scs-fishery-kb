@@ -1,5 +1,9 @@
 # Architecture
 
+> **中文摘要**：本文件描述 SCS-FKB 的分层架构、组件、数据流、数据契约与运行方式。
+> 当前只定义框架，检索与服务代码尚未实现；数据与运行产物只留在本机，不进入公开仓库。
+> 所有回答必须基于检索证据并带可核验引用；`restricted` 来源不得发送到外部模型 API。
+
 - Status: framework defined; implementation follows [the project plan](plan.md).
 - Scope: knowledge-layer corpus, retrieval, evidence-grounded answers and evaluation.
 - Non-goals: forecast-model training, raw environmental data, full vessel tracks and downstream data integration.

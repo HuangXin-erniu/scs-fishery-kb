@@ -1,8 +1,11 @@
 # Documentation
 
+> **中文摘要**：本页是文档导航。英文为规范源；中文入口见 [README.zh-CN.md](../README.zh-CN.md) 与 [PROJECT.zh-CN.md](../PROJECT.zh-CN.md)。
+
 | Document | Purpose |
 |---|---|
 | [Project scope](../PROJECT.md) | Objectives, scope, non-goals and data policy |
+| [项目范围](../PROJECT.zh-CN.md) | 目标、范围、非目标与数据政策（中文） |
 | [Architecture](architecture.md) | Layers, components, data flow, data contracts and runtime |
 | [Project plan](plan.md) | Work packages, milestones, roles, quality gates and risks |
 | [Evaluation](evaluation.md) | Question set, metrics, protocol, targets and reporting |

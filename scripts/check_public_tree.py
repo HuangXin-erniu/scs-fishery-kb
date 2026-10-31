@@ -15,6 +15,7 @@ REQUIRED = [
     "README.md",
     "README.zh-CN.md",
     "PROJECT.md",
+    "PROJECT.zh-CN.md",
     "GOVERNANCE.md",
     "LICENSE",
     "LICENSE-docs",
