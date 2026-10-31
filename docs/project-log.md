@@ -2,6 +2,12 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-10-31 — First P1 corpus acquired
+
+- Registered three official public documents: the Fisheries Law (2025 revision, effective 2026-05-01), the 2023 seasonal closure notice and the 2022 fishing permit regulation.
+- Recorded licence, sensitivity, SHA-256 and data-root-relative locations; the payload stays outside the repository.
+- Updated the corpus inventory, plan status and tests; the next step is parsing, chunking and indexing.
+
 ## 2026-10-31 — Public repository normalization
 
 - Adopted a no-version release policy: no tags, no GitHub Releases and no semantic versions.

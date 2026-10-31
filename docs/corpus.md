@@ -1,8 +1,8 @@
 # Corpus Inventory
 
-- Status: candidate register complete; **no source files acquired yet**.
+- Status: three P1 policy documents acquired; twelve candidates remain.
 - Register: [configs/corpus.yaml](../configs/corpus.yaml)
-- Date: 2026-10-30
+- Date: 2026-10-31
 
 ## 1. Purpose and scope
 
@@ -16,7 +16,7 @@ It does **not** include raw environmental grids, reanalysis data, forecast raste
 2. Register each candidate with title, publisher, year, type, format, location, licence, sensitivity, status, priority, volume, update frequency, hash and acquisition notes.
 3. Mark every unacquired source as `status: to_acquire`, `location: null`, `hash: null`.
 4. Hold every source whose licence or sensitivity is `unknown`; do not ingest it.
-5. Do not download, ingest or fabricate a source during inventory. This document only records candidates and acquisition paths.
+5. Acquire only from official public channels; record the URL, retrieval date and SHA-256. Do not parse or index a source during inventory.
 
 ## 3. Categories
 
@@ -26,7 +26,7 @@ It does **not** include raw environmental grids, reanalysis data, forecast raste
 | Vessel/voyage data dictionaries and sample descriptions (船位/航次数据字典与样本说明) | 2 | Field definitions, voyage definitions and desensitised samples; no full tracks |
 | Ocean and fishery product descriptions (海洋环境与渔情产品说明) | 2 | SST, chlorophyll, currents and wind: variables, units, resolution and metadata |
 | Fishing-ground and season bulletins (渔场/渔汛预报与通报) | 2 | Public bulletins and historical season records; no forecast model outputs |
-| Laws, regulations, norms and standards (政策法规、作业规范与标准) | 2 | Fisheries law, seasonal closures, access conditions and gear standards |
+| Laws, regulations, norms and standards (政策法规、作业规范与标准) | 3 | Fisheries law, seasonal closures, access conditions and gear standards |
 | Papers, reports and monographs (论文、报告、专著) | 2 | Public literature and technical reports that can be used lawfully |
 | Data dictionaries and statistical definitions (数据字典与统计口径) | 2 | Indicator definitions, metadata and data-quality rules |
 
@@ -42,8 +42,9 @@ It does **not** include raw environmental grids, reanalysis data, forecast raste
 | ENV-CHL-006 | ocean_fishery_products | Chlorophyll/current/wind product description (叶绿素/海流/风场产品说明) | P2 | to_acquire |
 | FCS-BULL-007 | forecast_bulletins | Fishing-ground and season bulletin (渔场/渔汛通报) | P2 | to_acquire |
 | FCS-REC-008 | forecast_bulletins | Historical fishing-ground and season record (历史渔汛记录) | P2 | to_acquire |
-| POL-LAW-009 | policy_standards | Fisheries law and seasonal-closure regulations (渔业法/伏季休渔法规) | P1 | to_acquire |
-| POL-STD-010 | policy_standards | Operational norms, access conditions and gear standards (作业规范/渔具标准) | P1 | to_acquire |
+| POL-LAW-009 | policy_standards | Fisheries Law, 2025 revision (中华人民共和国渔业法) | P1 | acquired |
+| POL-STD-010 | policy_standards | Fishing permit regulation, 2022 revision (渔业捕捞许可管理规定) | P1 | acquired |
+| POL-CLOS-015 | policy_standards | Seasonal closure notice, 2023 (农业农村部关于调整海洋伏季休渔制度的通告) | P1 | acquired |
 | LIT-PAPER-011 | papers_reports | Journal papers on nearshore fisheries (南海近海渔业论文) | P2 | to_acquire |
 | LIT-RPT-012 | papers_reports | Project and technical reports (项目/技术报告) | P2 | to_acquire |
 | DICT-STAT-013 | data_dictionary | Statistical indicator definitions (统计指标口径) | P1 | to_acquire |
@@ -54,26 +55,34 @@ It does **not** include raw environmental grids, reanalysis data, forecast raste
 | Metric | Value |
 |---|---:|
 | Knowledge categories | 7 |
-| Candidate sources | 14 |
-| Unique source IDs | 14 |
-| Candidates per category | 2 |
-| P1 candidates | 5 |
+| Candidate sources | 15 |
+| Unique source IDs | 15 |
+| Candidates per category | 2 (policy_standards: 3) |
+| P1 candidates | 6 |
 | P2 candidates | 9 |
-| Acquired files | 0 |
-| Ingestible sources | 0 |
-| `license`/`sensitivity` unknown | 14 |
+| Acquired files | 3 |
+| Ingestible sources | 3 |
+| `license`/`sensitivity` unknown | 12 |
 
-No source can be ingested until its licence and sensitivity are confirmed and its file hash is recorded.
+Three acquired documents are public and ready for parsing. The remaining twelve candidates are held until their licence and sensitivity are confirmed and their file hash is recorded.
 
 ## 6. Acquisition priorities
 
 ### P1 — first
 
-1. **Laws and standards**: fisheries law, seasonal closures, vessel management, operational norms and gear standards. Obtain current effective versions from official public channels.
-2. **Statistical yearbook and definitions**: production, landed weight, fishing effort and operation-type definitions.
-3. **Logbook specification**: required fields, reporting process and a desensitised sample.
+Acquired:
 
-These five candidates are the best first corpus: they are relatively public, highly citable and limited in size.
+1. **Fisheries Law (2025 revision)**: the current legal basis, including resource protection, fishing permits and legal liability. Effective 2026-05-01.
+2. **Seasonal closure notice (2023)**: the current marine seasonal-closure system, including the South China Sea area and dates.
+3. **Fishing permit regulation (2022 revision)**: access conditions, permit fields and vessel-management rules.
+
+Still to acquire:
+
+- **Statistical yearbook and definitions**: production, landed weight, fishing effort and operation-type definitions.
+- **Logbook specification**: required fields, reporting process and a desensitised sample.
+- **Gear and operational standards**: current gear specifications and operational norms.
+
+The three acquired documents are the best first corpus: official, public, citable and limited in size. The remaining P1 sources are needed before the corpus can answer statistical and logbook questions.
 
 ### P2 — second
 
@@ -106,18 +115,19 @@ For P2, confirm copyright, internal-report status or sample restrictions before 
 
 ## 9. Gaps and risks
 
-- **No acquired files**: the first ingestion milestone needs two or three public documents with clear licences.
-- **Publishers unknown**: most candidates still need an owner or a confirmed source.
+- **Three policy documents acquired**: the corpus can answer legal, closure and permit questions, but not statistical or logbook questions yet.
+- **Publishers unknown**: most remaining candidates still need an owner or a confirmed source.
 - **Licences uncertain**: statistical yearbooks, internal reports and paper full texts need case-by-case confirmation.
 - **Definitions may differ** by region, year and source; expert confirmation is required.
 - **Scanned documents and complex tables** may fail extraction; text-layer PDFs come first, low-quality items are quarantined.
+- **Acquired HTML needs extraction**: the permit page uses malformed paragraph tags, so the parser must isolate the main content and preserve article anchors.
 - **Evaluation questions are drafts**: they need business-expert review before being treated as a gold set.
 
 ## 10. Next steps
 
-1. Confirm and obtain two or three P1 public documents (laws, standards or statistical definitions first).
-2. Record licence, sensitivity, version and hash for each acquired file in the register.
-3. Build the minimal ingestion and retrieval pipeline on those documents.
+1. Parse and index the three acquired documents; keep page or article anchors and a reproducible manifest.
+2. Acquire the statistical yearbook, logbook specification and gear standards next.
+3. Build the minimal ingestion and retrieval pipeline on the acquired documents.
 4. Convert confirmed questions into the evaluation set with gold answers and evidence pages.
 5. Define the downstream interface contract in a later milestone; do not implement data integration.
 

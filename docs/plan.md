@@ -2,9 +2,9 @@
 
 > **中文摘要**：本文件把项目范围拆成 WP0–WP6 工作包、M0–M4 阶段、角色、质量门与风险。
 > 里程碑是工作阶段，不是版本；项目不创建 tag 或 GitHub Release。
-> 当前处于 WP0（框架与治理），WP1 需要 2–3 份许可清晰的 P1 公开文档后才能启动。
+> 当前处于 WP1（语料采集与登记）：已登记 3 份 P1 官方公开文件，下一步进入 WP2 解析与索引。
 
-- Status: active plan; the project is at an early-stage public framework.
+- Status: active plan; WP1 has three P1 public documents registered; M1 implementation is next.
 - No versioned releases are published. Milestones describe work stages, not release numbers.
 - Architecture: [architecture.md](architecture.md); evaluation: [evaluation.md](evaluation.md); scope: [../PROJECT.md](../PROJECT.md).
 
@@ -30,7 +30,7 @@ Detailed scope and non-goals are in [../PROJECT.md](../PROJECT.md). The architec
 | WP5 | Evaluation | Reviewed question set; baselines; error analysis; evaluation report | Metrics and limitations reported |
 | WP6 | Service and interface | CLI/HTTP query surface; `/v1` interface contract (`docs/interface.md`, `configs/interface.yaml`) | Contract reviewed; no data integration implemented |
 
-WP0 is the current stage. WP1 must start with owner-confirmed public documents; WP2–WP5 build on that corpus.
+WP0 is complete. WP1 has three acquired P1 documents (Fisheries Law 2025, seasonal closure notice 2023 and fishing permit regulation 2022); WP2 can start. The statistical yearbook, logbook specification and gear standards are still outstanding.
 
 ## 4. Milestones
 
