@@ -2,6 +2,13 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-10-31 — Yearbook corpus registered
+
+- Registered eight official/authorized China Fisheries Statistical Yearbook editions (2018–2025, data years 2017–2024) as internal, local-use sources.
+- Replaced the seven topic categories with eight corpus types; removed papers/reports from the register and mapped bulletins and data dictionaries to the new types.
+- Added the public statistics schema and the core coverage matrix; values remain local and are not published.
+- Recorded coverage gaps: coastal ports for 2018–2019 and the vessel-length proxy for 2024.
+
 ## 2026-10-31 — Return to data preparation
 
 - Reverted the M1 pipeline implementation and its status claims; the public tree contains no pipeline code.

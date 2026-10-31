@@ -14,6 +14,7 @@
 | [Data policy](data-policy.md) | What is published, what stays local, and how sensitivity is handled |
 | [Project log](project-log.md) | Dated record of material project changes |
 | [Corpus register](../configs/corpus.yaml) | Machine-readable source register |
+| [Statistics schema](../configs/statistics.yaml) | Long-table columns, indicators and units; no values |
 | [Data schema](../configs/schema.yaml) | Document, chunk and citation fields |
 | [Citation metadata](../CITATION.cff) | How to cite the project |
 | [Governance](../GOVERNANCE.md) | Roles, decisions, versioning and public/private boundaries |

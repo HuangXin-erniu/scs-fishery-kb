@@ -1,0 +1,142 @@
+# Public schema for the local yearbook indicator table.
+# Values are never stored here; the CSV stays in the local data/run roots.
+
+schema_version: 1
+updated_at: "2026-10-31"
+
+long_table:
+  description: "One row per indicator, region and dimension combination."
+  columns:
+    - name: data_year
+      type: integer
+      description: "Calendar year of the data, not the edition year."
+    - name: edition
+      type: integer
+      description: "Yearbook edition year."
+    - name: type
+      type: string
+      description: "One of the eight corpus types; statistical_yearbook for this table."
+    - name: region
+      type: string
+      nullable: true
+      description: "Province-level region, or null for a national/sea-area-only row."
+    - name: sea_area
+      type: string
+      nullable: true
+      description: "Sea area, currently South China Sea only."
+    - name: gear
+      type: string
+      nullable: true
+      description: "Capture gear group."
+    - name: operation_type
+      type: string
+      nullable: true
+      description: "Vessel operation type."
+    - name: species
+      type: string
+      nullable: true
+      description: "Species or species group."
+    - name: indicator
+      type: string
+      description: "Indicator identifier, for example capture_production."
+    - name: value
+      type: number
+      nullable: true
+      description: "Numeric value as published; blank stays blank."
+    - name: unit
+      type: string
+      description: "Published unit."
+    - name: basis
+      type: string
+      description: "Published, derived subtotal or difference marker."
+    - name: table_id
+      type: string
+      nullable: true
+      description: "Yearbook table number or local table code."
+    - name: table_name
+      type: string
+      description: "Yearbook table title."
+    - name: source_file
+      type: string
+      description: "Data-root-relative source file path."
+    - name: sheet
+      type: string
+      nullable: true
+      description: "Worksheet name."
+    - name: row
+      type: integer
+      nullable: true
+      description: "One-based row in the source worksheet."
+    - name: source_sha256
+      type: string
+      description: "SHA-256 of the source file."
+
+dimensions:
+  region:
+    values: [Guangdong, Guangxi, Hainan]
+    names_zh: [广东, 广西, 海南]
+  sea_area:
+    values: [South China Sea]
+    names_zh: [南海]
+  gear:
+    values: [trawl, purse_seine, gillnet, stow_net, hook, other]
+    names_zh: [拖网, 围网, 刺网, 张网, 钓具, 其他]
+  operation_type:
+    values: [trawl, purse_seine, gillnet, stow_net, hook, other]
+    names_zh: [拖网, 围网, 刺网, 张网, 钓业, 其他]
+  basis:
+    values: [published, published_south_sea, three_province_subtotal, difference]
+    descriptions:
+      published: "A value printed in the source table."
+      published_south_sea: "The yearbook's published South China Sea column; may include Fujian in some data years."
+      three_province_subtotal: "Sum of Guangdong, Guangxi and Hainan rows."
+      difference: "published_south_sea minus three_province_subtotal."
+
+indicator_groups:
+  capture:
+    indicators:
+      - capture_production
+      - capture_production_sea_area
+      - capture_production_gear
+      - capture_production_species
+    units: [ton]
+  vessels:
+    indicators:
+      - vessel_count
+      - vessel_gross_tonnage
+      - vessel_kilowatts
+    dimensions: [operation_type, power_band, length_band]
+    units: [vessel, gross_ton, kilowatt]
+    notes: "Length uses the marine production-vessel proxy, not capture-only vessels."
+  population:
+    indicators:
+      - marine_fishery_population
+      - traditional_fishers
+      - marine_fishery_employment
+      - capture_employment
+    units: [person]
+  economy:
+    indicators:
+      - marine_capture_output_value
+    units: [ten_thousand_yuan]
+  infrastructure:
+    indicators:
+      - coastal_central_fishing_port
+      - coastal_class1_fishing_port
+      - coastal_class2_fishing_port
+      - coastal_class3_fishing_port
+      - coastal_unrated_fishing_port
+    units: [count]
+
+units:
+  ton: "吨"
+  vessel: "艘"
+  gross_ton: "总吨"
+  kilowatt: "千瓦"
+  person: "人"
+  ten_thousand_yuan: "万元"
+  count: "个"
+
+publication:
+  values: local_only
+  public_metadata: "edition, data year, file counts, SHA-256 and coverage counts"

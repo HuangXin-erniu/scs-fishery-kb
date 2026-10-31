@@ -19,44 +19,111 @@ def load_yaml(relative: str) -> dict:
 
 def test_corpus_structure() -> None:
     data = load_yaml("configs/corpus.yaml")
-    assert len(data["categories"]) == 7
-    assert len(data["sources"]) == 15
+    assert "categories" not in data
+    assert len(data["types"]) == 8
+    type_ids = {entry["id"] for entry in data["types"]}
+    assert type_ids == {
+        "statistical_yearbook",
+        "operations",
+        "law",
+        "regulation",
+        "notice",
+        "standard",
+        "fishery_product",
+        "data_dictionary",
+    }
+    assert len(data["sources"]) == 21
 
-    counts = {category["id"]: 0 for category in data["categories"]}
     acquired = []
     candidates = []
     for source in data["sources"]:
-        counts[source["category"]] += 1
         assert source["title"]
         assert source["title_zh"]
+        assert source["type"] in type_ids
         if source["status"] == "acquired":
             acquired.append(source)
         else:
             candidates.append(source)
 
-    assert counts["policy_standards"] == 3
-    assert all(count == 2 for category, count in counts.items() if category != "policy_standards")
+    assert len(acquired) == 11
+    assert len(candidates) == 10
+    yearbooks = [source for source in acquired if source["id"].startswith("STAT-YB-")]
+    assert len(yearbooks) == 8
+    assert [source["year"] for source in yearbooks] == list(range(2018, 2026))
+    for source in yearbooks:
+        assert source["type"] == "statistical_yearbook"
+        assert source["license"] == "internal"
+        assert source["sensitivity"] == "internal"
+        assert source["location"] == f"raw/{source['id']}/"
+        assert re.fullmatch(r"[0-9a-f]{64}", source["hash"])
+        assert source["volume"].endswith("files")
 
-    assert len(acquired) == 3
-    assert {source["id"] for source in acquired} == {
-        "POL-LAW-009",
-        "POL-STD-010",
-        "POL-CLOS-015",
-    }
-    for source in acquired:
+    policy = [source for source in acquired if not source["id"].startswith("STAT-YB-")]
+    assert {source["id"] for source in policy} == {"POL-LAW-009", "POL-STD-010", "POL-CLOS-015"}
+    for source in policy:
         assert source["license"] == "public"
         assert source["sensitivity"] == "public"
         assert re.fullmatch(r"[0-9a-f]{64}", source["hash"])
         assert source["location"].startswith("raw/")
         assert not source["location"].startswith("/")
 
-    assert len(candidates) == 12
     for source in candidates:
         assert source["status"] == "to_acquire"
         assert source["location"] is None
         assert source["hash"] is None
         assert source["license"] == "unknown"
         assert source["sensitivity"] == "unknown"
+
+    ids = {source["id"] for source in data["sources"]}
+    assert "LIT-PAPER-011" not in ids
+    assert "LIT-RPT-012" not in ids
+    type_counts = {
+        type_id: sum(1 for source in data["sources"] if source["type"] == type_id)
+        for type_id in type_ids
+    }
+    assert type_counts == {
+        "statistical_yearbook": 9,
+        "operations": 1,
+        "law": 1,
+        "regulation": 1,
+        "notice": 1,
+        "standard": 0,
+        "fishery_product": 4,
+        "data_dictionary": 4,
+    }
+
+
+def test_statistics_schema() -> None:
+    data = load_yaml("configs/statistics.yaml")
+    columns = {column["name"] for column in data["long_table"]["columns"]}
+    assert {
+        "data_year",
+        "edition",
+        "type",
+        "region",
+        "sea_area",
+        "gear",
+        "operation_type",
+        "species",
+        "indicator",
+        "value",
+        "unit",
+        "basis",
+        "table_id",
+        "table_name",
+        "source_file",
+        "sheet",
+        "row",
+        "source_sha256",
+    } <= columns
+    assert set(data["indicator_groups"]) == {
+        "capture",
+        "vessels",
+        "population",
+        "economy",
+        "infrastructure",
+    }
+    assert data["publication"]["values"] == "local_only"
 
 
 def test_questions_count() -> None:
@@ -81,7 +148,7 @@ def test_schema_sections() -> None:
 
 
 def test_config_schema_version_key() -> None:
-    for relative in ("configs/corpus.yaml", "configs/schema.yaml"):
+    for relative in ("configs/corpus.yaml", "configs/schema.yaml", "configs/statistics.yaml"):
         data = load_yaml(relative)
         assert data["schema_version"] == 1
         assert "version" not in data
