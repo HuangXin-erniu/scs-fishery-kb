@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import re
 import subprocess
 from pathlib import Path
 
@@ -19,18 +20,43 @@ def load_yaml(relative: str) -> dict:
 def test_corpus_structure() -> None:
     data = load_yaml("configs/corpus.yaml")
     assert len(data["categories"]) == 7
-    assert len(data["sources"]) == 14
+    assert len(data["sources"]) == 15
+
     counts = {category["id"]: 0 for category in data["categories"]}
+    acquired = []
+    candidates = []
     for source in data["sources"]:
         counts[source["category"]] += 1
+        assert source["title"]
+        assert source["title_zh"]
+        if source["status"] == "acquired":
+            acquired.append(source)
+        else:
+            candidates.append(source)
+
+    assert counts["policy_standards"] == 3
+    assert all(count == 2 for category, count in counts.items() if category != "policy_standards")
+
+    assert len(acquired) == 3
+    assert {source["id"] for source in acquired} == {
+        "POL-LAW-009",
+        "POL-STD-010",
+        "POL-CLOS-015",
+    }
+    for source in acquired:
+        assert source["license"] == "public"
+        assert source["sensitivity"] == "public"
+        assert re.fullmatch(r"[0-9a-f]{64}", source["hash"])
+        assert source["location"].startswith("raw/")
+        assert not source["location"].startswith("/")
+
+    assert len(candidates) == 12
+    for source in candidates:
         assert source["status"] == "to_acquire"
         assert source["location"] is None
         assert source["hash"] is None
         assert source["license"] == "unknown"
         assert source["sensitivity"] == "unknown"
-        assert source["title"]
-        assert source["title_zh"]
-    assert set(counts.values()) == {2}
 
 
 def test_questions_count() -> None:
