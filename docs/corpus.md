@@ -53,11 +53,11 @@ The 2024 edition is encrypted with the Excel default password; the originals are
 
 | Source | Type | Document | Status |
 |---|---|---|---|
-| `POL-LAW-009` | `law` | Fisheries Law, 2025 revision | acquired; **standard text pending — official source unreachable on 2026-10-31** |
+| `POL-LAW-009` | `law` | Fisheries Law, 2025 revision | acquired; **official publication — People's Daily, 2026-02-25 (主席令第六十三号)** |
 | `POL-STD-010` | `regulation` | Fishing permit regulation, 2022 revision | acquired |
 | `POL-CLOS-015` | `notice` | Seasonal closure notice, 2023 | acquired |
 
-The Fisheries Law currently comes from a government reprint. The NPC/gov.cn standard text could not be retrieved on 2026-10-31: npc.gov.cn was unreachable, the national law-database search API returned server errors and the gov.cn policy library holds no record of the 2025 revision. The reprint stays the citation copy until the standard text is available and must not be treated as the authoritative text.
+The Fisheries Law is registered from the official publication in 人民日报 (People's Daily), 2026-02-25, page 15, carrying 主席令第六十三号 and the 新华社 release of the 2025-12-27 revision (effective 2026-05-01). The text was verified as seven chapters and 90 articles. The canonical npc.gov.cn page returned HTTP 403 from this network on 2026-10-31, so the newspaper publication is the citation copy; the earlier municipal reprint is retained in the data root as a secondary copy.
 
 ## 6. Candidate sources
 
@@ -140,7 +140,7 @@ The local extraction has **3,037 rows** for 2017–2024: capture 1,665, vessels 
 ## 12. Gaps and next steps
 
 1. Review the local core CSV and decide whether the indicator coverage is sufficient.
-2. Replace the Fisheries Law reprint with the official NPC/gov.cn standard text when the official source is reachable; the 2026-10-31 attempt and its evidence are recorded in the register.
+2. Diff the registered People's Daily text against the npc.gov.cn page when that site is reachable again; the 2026-10-31 WAF block and the attempts are recorded in the register.
 3. Acquire `DICT-STAT-013` and seek a public official `OPS-LOG-002`; the seven deferred candidates stay out of the current phase.
 4. Do not plan or implement the retrieval pipeline until the sufficiency review is accepted.
 

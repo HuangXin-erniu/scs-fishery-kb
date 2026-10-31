@@ -201,11 +201,11 @@ sources:
   sensitivity: public
   status: acquired
   priority: P1
-  volume: 1 HTML file; 7 chapters, 90 articles
+  volume: 1 HTML file (People's Daily e-paper, 2026-02-25 page 15); 7 chapters, 90 articles
   update_freq: static
-  hash: 687c405b9d1b96dc451761221c6db0c6cb21ee8c34f82ac8677e70c20298514c
-  acquisition: 'Fetched 2026-10-31 from the Qingdao Ocean Development Bureau official reprint of the 2025-12-27 revision: https://ocean.qingdao.gov.cn/zcfg/gjj/202110/t20211030_3701295.shtml'
-  notes: 'Adopted 2025-12-27; effective 2026-05-01. Official government reprint. The NPC standard text could not be retrieved on 2026-10-31: npc.gov.cn was unreachable, the law-database search API returned server errors and the gov.cn policy library holds no record of the 2025 revision, so this reprint remains the citation copy pending replacement; the verification evidence is recorded in the private run records. TLS certificate expired at retrieval; content checked for the 7-chapter/90-article structure. Cite article number.'
+  hash: f678b37c17b6b06a100ffdcdcc8bf5c1b1db86045f71af73eb249b190eaa1994
+  acquisition: 'Fetched 2026-10-31 from the People''s Daily e-paper, 人民日报 2026-02-25 第15版·文件 (新华社): http://paper.people.com.cn/rmrb/pc/content/202602/25/content_30141884.html; the owner-supplied page-11 PDF is kept as people-daily-2026-02-25-p11.pdf.'
+  notes: 'Officially published text: 主席令第六十三号, adopted 2025-12-27, effective 2026-05-01. The npc.gov.cn canonical page was blocked by its WAF on 2026-10-31 (HTTP 403), so this official newspaper publication is the citation copy until the NPC page is reachable. The earlier Qingdao reprint is retained as fisheries-law-2025-reprint.html. Verified: seven chapters, 90 articles, the 2025-12-27 revision line and the 2026-05-01 effective date.'
 - id: POL-STD-010
   title: 渔业捕捞许可管理规定（2022年修订）
   title_zh: 渔业捕捞许可管理规定（2022年修订）
