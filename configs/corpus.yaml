@@ -56,23 +56,6 @@ types:
   name_zh: 数据字典
   description: Field definitions, indicator definitions, metadata and quality rules.
 sources:
-- id: OPS-STAT-001
-  title: Fisheries statistical yearbook (candidate)
-  title_zh: 渔业统计年报（候选）
-  publisher: To be confirmed
-  year: null
-  type: statistical_yearbook
-  format: unknown
-  location: null
-  license: unknown
-  sensitivity: unknown
-  status: to_acquire
-  priority: P1
-  volume: unknown
-  update_freq: annual
-  hash: null
-  acquisition: Obtain from the fisheries authority or the statistical yearbook; confirm definitions and publication licence.
-  notes: Confirm the definitions of production, landed weight and fishing effort; do not include raw vessel tracks.
 - id: OPS-LOG-002
   title: Logbook and fishing-record specification (candidate)
   title_zh: 捕捞日志/渔捞记录填写规范与样例（候选）
@@ -84,6 +67,8 @@ sources:
   license: unknown
   sensitivity: unknown
   status: to_acquire
+  disposition: acquire
+  disposition_reason: Three questions depend on the logbook rules; a public official text has not been confirmed.
   priority: P1
   volume: unknown
   update_freq: static
@@ -101,6 +86,8 @@ sources:
   license: unknown
   sensitivity: unknown
   status: to_acquire
+  disposition: defer
+  disposition_reason: Vessel and voyage dictionaries are likely restricted; no public edition has been confirmed.
   priority: P2
   volume: unknown
   update_freq: static
@@ -118,6 +105,8 @@ sources:
   license: unknown
   sensitivity: unknown
   status: to_acquire
+  disposition: defer
+  disposition_reason: Depends on the vessel data licence; deferred with the vessel dictionary.
   priority: P2
   volume: unknown
   update_freq: static
@@ -135,6 +124,8 @@ sources:
   license: unknown
   sensitivity: unknown
   status: to_acquire
+  disposition: defer
+  disposition_reason: Environmental products are outside the current ingest scope; revisit after the operations layer.
   priority: P2
   volume: unknown
   update_freq: annual
@@ -152,6 +143,8 @@ sources:
   license: unknown
   sensitivity: unknown
   status: to_acquire
+  disposition: defer
+  disposition_reason: Environmental products are outside the current ingest scope; revisit after the operations layer.
   priority: P2
   volume: unknown
   update_freq: annual
@@ -169,6 +162,8 @@ sources:
   license: unknown
   sensitivity: unknown
   status: to_acquire
+  disposition: defer
+  disposition_reason: Publisher and archive are unknown; no stable public series has been identified.
   priority: P2
   volume: unknown
   update_freq: unknown
@@ -186,6 +181,8 @@ sources:
   license: unknown
   sensitivity: unknown
   status: to_acquire
+  disposition: defer
+  disposition_reason: Historical season records have no confirmed public source or licence.
   priority: P2
   volume: unknown
   update_freq: annual
@@ -208,7 +205,7 @@ sources:
   update_freq: static
   hash: 687c405b9d1b96dc451761221c6db0c6cb21ee8c34f82ac8677e70c20298514c
   acquisition: 'Fetched 2026-10-31 from the Qingdao Ocean Development Bureau official reprint of the 2025-12-27 revision: https://ocean.qingdao.gov.cn/zcfg/gjj/202110/t20211030_3701295.shtml'
-  notes: Adopted 2025-12-27; effective 2026-05-01. Official government reprint; verify against the NPC standard text. TLS certificate expired at retrieval; content checked for the 7-chapter/90-article structure. Cite article number.
+  notes: 'Adopted 2025-12-27; effective 2026-05-01. Official government reprint. The NPC standard text could not be retrieved on 2026-10-31: npc.gov.cn was unreachable, the law-database search API returned server errors and the gov.cn policy library holds no record of the 2025 revision, so this reprint remains the citation copy pending replacement; the verification evidence is recorded in the private run records. TLS certificate expired at retrieval; content checked for the 7-chapter/90-article structure. Cite article number.'
 - id: POL-STD-010
   title: 渔业捕捞许可管理规定（2022年修订）
   title_zh: 渔业捕捞许可管理规定（2022年修订）
@@ -254,6 +251,8 @@ sources:
   license: unknown
   sensitivity: unknown
   status: to_acquire
+  disposition: acquire
+  disposition_reason: Definitions of production, landed weight and fishing effort are required by three questions.
   priority: P1
   volume: unknown
   update_freq: static
@@ -271,6 +270,8 @@ sources:
   license: unknown
   sensitivity: unknown
   status: to_acquire
+  disposition: defer
+  disposition_reason: Metadata and quality rules have no identified official public document.
   priority: P2
   volume: unknown
   update_freq: static

@@ -1,6 +1,6 @@
 # Corpus Inventory
 
-- Status: data preparation and corpus discovery. Eight yearbook editions and three policy documents are acquired; ten candidates remain. The local core CSV has 3,037 rows and stays outside the public tree. No parsing or indexing in this phase.
+- Status: data preparation and corpus discovery. Eight yearbook editions and three policy documents are acquired; nine candidates are dispositioned (two to acquire, seven deferred). The local core CSV has 3,037 rows and stays outside the public tree. No parsing or indexing in this phase.
 - Register: [configs/corpus.yaml](../configs/corpus.yaml)
 - Indicator schema: [configs/statistics.yaml](../configs/statistics.yaml)
 - Date: 2026-10-31
@@ -23,7 +23,7 @@ It does **not** include raw environmental grids, reanalysis data, forecast raste
 
 | Type | Name (zh) | Sources | Description |
 |---|---|---:|---|
-| `statistical_yearbook` | 统计年鉴 | 9 | Official annual statistics and indicator tables |
+| `statistical_yearbook` | 统计年鉴 | 8 | Official annual statistics and indicator tables |
 | `operations` | 作业知识 | 1 | Fishing methods, gear, vessel operations, logbooks and permit conditions |
 | `law` | 法律 | 1 | National law adopted by the legislature |
 | `regulation` | 行政法规/规章 | 1 | Administrative regulations, departmental rules and implementing provisions |
@@ -53,37 +53,36 @@ The 2024 edition is encrypted with the Excel default password; the originals are
 
 | Source | Type | Document | Status |
 |---|---|---|---|
-| `POL-LAW-009` | `law` | Fisheries Law, 2025 revision | acquired; **standard text replacement pending** |
+| `POL-LAW-009` | `law` | Fisheries Law, 2025 revision | acquired; **standard text pending — official source unreachable on 2026-10-31** |
 | `POL-STD-010` | `regulation` | Fishing permit regulation, 2022 revision | acquired |
 | `POL-CLOS-015` | `notice` | Seasonal closure notice, 2023 | acquired |
 
-The Fisheries Law currently comes from a government reprint. It must be replaced with the NPC/gov.cn standard text before it is treated as authoritative.
+The Fisheries Law currently comes from a government reprint. The NPC/gov.cn standard text could not be retrieved on 2026-10-31: npc.gov.cn was unreachable, the national law-database search API returned server errors and the gov.cn policy library holds no record of the 2025 revision. The reprint stays the citation copy until the standard text is available and must not be treated as the authoritative text.
 
 ## 6. Candidate sources
 
-| ID | Type | Title | Priority |
-|---|---|---|---|
-| `OPS-STAT-001` | `statistical_yearbook` | Generic fisheries statistical yearbook candidate, superseded by the eight editions | P1 |
-| `OPS-LOG-002` | `operations` | Logbook and fishing-record specification | P1 |
-| `VMS-DICT-003` | `data_dictionary` | Vessel/voyage data dictionary | P2 |
-| `VMS-SAMPLE-004` | `data_dictionary` | Desensitised voyage sample description | P2 |
-| `ENV-SST-005` | `fishery_product` | Sea surface temperature product description | P2 |
-| `ENV-CHL-006` | `fishery_product` | Chlorophyll/current/wind product description | P2 |
-| `FCS-BULL-007` | `fishery_product` | Fishing-ground and season bulletin | P2 |
-| `FCS-REC-008` | `fishery_product` | Historical fishing-ground and season record | P2 |
-| `DICT-STAT-013` | `data_dictionary` | Statistical indicator definitions | P1 |
-| `DICT-META-014` | `data_dictionary` | Metadata and data-quality rules | P2 |
+| ID | Type | Title | Priority | Disposition |
+|---|---|---|---|---|
+| `OPS-LOG-002` | `operations` | Logbook and fishing-record specification | P1 | acquire |
+| `VMS-DICT-003` | `data_dictionary` | Vessel/voyage data dictionary | P2 | defer |
+| `VMS-SAMPLE-004` | `data_dictionary` | Desensitised voyage sample description | P2 | defer |
+| `ENV-SST-005` | `fishery_product` | Sea surface temperature product description | P2 | defer |
+| `ENV-CHL-006` | `fishery_product` | Chlorophyll/current/wind product description | P2 | defer |
+| `FCS-BULL-007` | `fishery_product` | Fishing-ground and season bulletin | P2 | defer |
+| `FCS-REC-008` | `fishery_product` | Historical fishing-ground and season record | P2 | defer |
+| `DICT-STAT-013` | `data_dictionary` | Statistical indicator definitions | P1 | acquire |
+| `DICT-META-014` | `data_dictionary` | Metadata and data-quality rules | P2 | defer |
 
-Papers and reports were removed from the register because they are not accepted as authoritative project sources at this stage.
+`OPS-STAT-001`, the generic yearbook candidate, was removed from the register because the eight editions supersede it. `acquire` marks a follow-up acquisition task; `defer` keeps the source in the register but out of the current phase. Papers and reports were removed from the register because they are not accepted as authoritative project sources at this stage.
 
 ## 7. Status summary
 
 | Metric | Value |
 |---|---:|
 | Corpus types | 8 |
-| Registered sources | 21 |
+| Registered sources | 20 |
 | Acquired sources | 11 |
-| Remaining candidates | 10 |
+| Remaining candidates | 9 |
 | Yearbook editions | 8 |
 | Yearbook data years | 2017–2024 |
 | Yearbook files | 838 |
@@ -107,10 +106,12 @@ The coverage matrix uses the latest edition for each data year. Counts are table
 
 Known gaps:
 
-- Coastal-port infrastructure is missing for data years 2018 and 2019.
+- Coastal-port infrastructure is missing for data years 2018 and 2019. The 838-file inventory confirms that the 2019 and 2020 editions contain no infrastructure table, so the gap cannot be filled from the registered corpus.
 - The 2017 and 2021 source tables have only 沿海中心渔港 and 沿海一级渔港; the later tables add class 2, class 3 and unrated ports.
-- The vessel-length proxy is missing for data year 2024; the 2025 edition does not include the length table.
+- The vessel-length proxy is missing for data year 2024; the 2025 edition dropped the marine vessel-length table and keeps only the all-vessel and inland tables. The gap is accepted rather than filled from a non-comparable table.
 - The vessel-length table is a marine production-vessel proxy, not capture-only.
+- The 2025 edition renumbers and reorganises the vessel tables, adding marine capture-vessel tables by power and operation type; compare editions by table title, not by table number.
+- No registered edition publishes capture production by operation type; production is available by sea area, gear group and species only.
 - The published South China Sea column includes Fujian in data years 2017–2020 and excludes it from 2021 onward. The CSV stores the published value, the Guangdong/Guangxi/Hainan subtotal and the difference.
 
 ## 9. Local core CSV
@@ -139,8 +140,8 @@ The local extraction has **3,037 rows** for 2017–2024: capture 1,665, vessels 
 ## 12. Gaps and next steps
 
 1. Review the local core CSV and decide whether the indicator coverage is sufficient.
-2. Replace the Fisheries Law reprint with the official NPC/gov.cn standard text.
-3. Search national and provincial official candidates for the operations, logbook and gear sources; present them before registration.
+2. Replace the Fisheries Law reprint with the official NPC/gov.cn standard text when the official source is reachable; the 2026-10-31 attempt and its evidence are recorded in the register.
+3. Acquire `DICT-STAT-013` and seek a public official `OPS-LOG-002`; the seven deferred candidates stay out of the current phase.
 4. Do not plan or implement the retrieval pipeline until the sufficiency review is accepted.
 
 ## 13. References

@@ -2,9 +2,9 @@
 
 > **中文摘要**：本文件把项目范围拆成 WP0–WP6 工作包、M0–M4 阶段、角色、质量门与风险。
 > 里程碑是工作阶段，不是版本；项目不创建 tag 或 GitHub Release。
-> 当前处于 WP1（语料采集与登记）：已登记 8 版统计年鉴和 3 份法规/通告，并生成 3,037 行本地核心指标长表；下一步复核指标充分性；M1 管线推迟到复核通过后再规划。
+> 当前处于 WP1（语料采集与登记）：已登记 8 版统计年鉴和 3 份法规/通告，候选源已完成处置（2 个待采集、7 个暂缓），并生成 3,037 行本地核心指标长表；两处覆盖缺口已定稿；下一步复核指标充分性；M1 管线推迟到复核通过后再规划。
 
-- Status: active plan; WP1 has eight yearbook editions, three policy documents and a 3,037-row local core CSV; the sufficiency review is next.
+- Status: active plan; WP1 has eight yearbook editions, three policy documents, nine dispositioned candidates and a 3,037-row local core CSV; the sufficiency review is next.
 - No versioned releases are published. Milestones describe work stages, not release numbers.
 - Architecture: [architecture.md](architecture.md); evaluation: [evaluation.md](evaluation.md); scope: [../PROJECT.md](../PROJECT.md).
 
@@ -30,7 +30,7 @@ Detailed scope and non-goals are in [../PROJECT.md](../PROJECT.md). The architec
 | WP5 | Evaluation | Reviewed question set; baselines; error analysis; evaluation report | Metrics and limitations reported |
 | WP6 | Service and interface | CLI/HTTP query surface; `/v1` interface contract (`docs/interface.md`, `configs/interface.yaml`) | Contract reviewed; no data integration implemented |
 
-WP0 is complete. WP1 is in progress: eight yearbook editions (data years 2017–2024) and three policy documents are registered; the yearbooks are internal, local-use sources. The 3,037-row core CSV is built locally and has passed source-hash and spot-value checks; the sufficiency review is next. Statistical definitions, the logbook specification, gear standards and the official Fisheries Law standard text are still outstanding. WP2–WP6 are deferred; no pipeline code is part of the current public tree.
+WP0 is complete. WP1 is closed for this phase: twenty sources are registered as eight yearbook editions (data years 2017–2024), three policy documents and nine dispositioned candidates (two to acquire, seven deferred). The yearbooks are internal, local-use sources. The 3,037-row core CSV is built locally and has passed source-hash and spot-value checks. Two coverage gaps are documented: no port infrastructure table exists for data years 2018–2019, and no marine vessel-length table exists for 2024. The sufficiency review is next. The official Fisheries Law standard text is still pending because the official source was unreachable on 2026-10-31. WP2–WP6 are deferred; no pipeline code is part of the current public tree.
 
 ## 4. Milestones
 
