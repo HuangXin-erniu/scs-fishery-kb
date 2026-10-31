@@ -405,6 +405,96 @@ sources:
   hash: a950d0c55ce0ddb9950326e95bfb5a49dba7bccc4dfafbb7a988c0ab0df63a5a
   acquisition: 'Owner-provided Excel set received 2026-10-31 (Chinese and English editions, 1,318 files, 17.5 MB); the yearbook is published by the National Bureau of Statistics and the data are public, kept internal for local use only.'
   notes: 'Data year 2025. Chapter 12 covers agriculture: 12-2 main agricultural and fishery production, 12-3 gross output value, 12-15 aquatic production with a national time series and provincial 2025 totals including marine capture and aquaculture splits. The Excel set does not include the printed indicator explanations, so it is not a definition source.'
+- id: STAT-BULL-028
+  title: 2020年全国渔业经济统计公报
+  title_zh: 2020年全国渔业经济统计公报
+  publisher: 农业农村部渔业渔政管理局
+  year: 2021
+  type: statistical_yearbook
+  jurisdiction: national
+  format: html
+  location: raw/STAT-BULL-028/fisheries-bulletin-2020.html
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P1
+  volume: 1 HTML page; national totals for data year 2020
+  update_freq: annual
+  hash: 7fedae886ddcf5a88bc507b7a7decd33377d514ff25bf0ee4045b998f68e8e2f
+  acquisition: 'Fetched 2026-10-31 from the Fisheries Bureau: https://yyj.moa.gov.cn/gzdt/202107/t20210728_6372958.htm (HTTP 200; 156,495 bytes; published 2021-07-28).'
+  notes: 'Data year 2020; national totals only, no provincial or South China Sea breakdown. Part of the 2020-2025 bulletin series.'
+- id: STAT-BULL-029
+  title: 2021年全国渔业经济统计公报
+  title_zh: 2021年全国渔业经济统计公报
+  publisher: 农业农村部渔业渔政管理局
+  year: 2022
+  type: statistical_yearbook
+  jurisdiction: national
+  format: html
+  location: raw/STAT-BULL-029/fisheries-bulletin-2021.html
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P1
+  volume: 1 HTML page; national totals for data year 2021
+  update_freq: annual
+  hash: 15fcd6a1270d5f10d3d78c4bc7c3331e7deeeaaa3accbccf3d0c8e8a01bbaffe
+  acquisition: 'Fetched 2026-10-31 from the Fisheries Bureau: https://yyj.moa.gov.cn/gzdt/202207/t20220721_6405222.htm (HTTP 200; 154,035 bytes; published 2022-07-21).'
+  notes: 'Data year 2021; national totals only, no provincial or South China Sea breakdown. Part of the 2020-2025 bulletin series.'
+- id: STAT-BULL-030
+  title: 2022年全国渔业经济统计公报
+  title_zh: 2022年全国渔业经济统计公报
+  publisher: 农业农村部渔业渔政管理局
+  year: 2023
+  type: statistical_yearbook
+  jurisdiction: national
+  format: html
+  location: raw/STAT-BULL-030/fisheries-bulletin-2022.html
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P1
+  volume: 1 HTML page; national totals for data year 2022
+  update_freq: annual
+  hash: 97ddf1be5ab85853b6906443cdedaf35007568dff739f2980d5c935e26aa8606
+  acquisition: 'Fetched 2026-10-31 from the Fisheries Bureau: https://yyj.moa.gov.cn/yqxx/202306/t20230628_6431131.htm (HTTP 200; 62,072 bytes; published 2023-06-28).'
+  notes: 'Data year 2022; national totals only, no provincial or South China Sea breakdown. Part of the 2020-2025 bulletin series.'
+- id: STAT-BULL-031
+  title: 2023年全国渔业经济统计公报
+  title_zh: 2023年全国渔业经济统计公报
+  publisher: 农业农村部渔业渔政管理局
+  year: 2024
+  type: statistical_yearbook
+  jurisdiction: national
+  format: html
+  location: raw/STAT-BULL-031/fisheries-bulletin-2023.html
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P1
+  volume: 1 HTML page; national totals for data year 2023
+  update_freq: annual
+  hash: b4c968ba9cca3dffb737599c355592aede70cea98f28137a26c33c05bcff4528
+  acquisition: 'Fetched 2026-10-31 from the Fisheries Bureau: https://yyj.moa.gov.cn/gzdt/202407/t20240705_6458486.htm (HTTP 200; 154,762 bytes; published 2024-07-05).'
+  notes: 'Data year 2023; national totals only, no provincial or South China Sea breakdown. Part of the 2020-2025 bulletin series.'
+- id: STAT-BULL-032
+  title: 2024年全国渔业经济统计公报
+  title_zh: 2024年全国渔业经济统计公报
+  publisher: 农业农村部渔业渔政管理局
+  year: 2025
+  type: statistical_yearbook
+  jurisdiction: national
+  format: html
+  location: raw/STAT-BULL-032/fisheries-bulletin-2024.html
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P1
+  volume: 1 HTML page; national totals for data year 2024
+  update_freq: annual
+  hash: f16cebbf418955bb0ef4fefe1abf2179f9bb52e79a3aab2af44418b0efd9928f
+  acquisition: 'Fetched 2026-10-31 from the Fisheries Bureau: https://yyj.moa.gov.cn/gzdt/202507/t20250707_6475475.htm (HTTP 200; 132,017 bytes; published 2025-07-07).'
+  notes: 'Data year 2024; national totals only, no provincial or South China Sea breakdown. Part of the 2020-2025 bulletin series.'
 - id: DICT-STAT-026
   title: 农林牧渔业统计报表制度主要内容（2025年统计年报和2026年定期统计报表）
   title_zh: 农林牧渔业统计报表制度主要内容（2025年统计年报和2026年定期统计报表）
