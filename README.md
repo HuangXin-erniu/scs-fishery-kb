@@ -14,12 +14,12 @@ The project turns documents, data dictionaries, product descriptions, fishery bu
 
 > **中文简介**：本项目把南海近海渔船作业与渔情相关的公开文档、统计口径、法规标准与产品说明，
 > 整理成可检索、可引用、可评测的领域知识库，并提供带出处证据的检索增强问答。
-> 当前为早期公开框架：架构、计划与评测协议已明确，检索与服务代码尚未实现。
+> 当前完成 M1 法律子集：3 份法规/通告已本地索引，支持 BM25 检索与抽取式引用回答；dense 与 LLM 尚未实现。
 > 仓库不发布任何数据或运行产物；完整中文说明见 [README.zh-CN.md](README.zh-CN.md)。
 
 ## Status
 
-**Early-stage public framework.** The architecture, work packages and evaluation protocol are documented. The retrieval pipeline and service code are planned but not implemented yet.
+**M1 legal subset implemented.** Three public policy documents are registered and indexed locally: the Fisheries Law (2025 revision), the seasonal closure notice (2023) and the fishing permit regulation (2022). The pipeline provides HTML body extraction, article/section chunking, BM25 retrieval, extractive answers with resolved citations, and explicit abstention. Dense retrieval, LLM generation, the HTTP service and the `/v1` contract are not implemented yet.
 
 This project has no versioned releases: no tags, no GitHub Releases and no semantic versions. `main` is the latest state; cite a commit SHA. Changes are recorded in the [project log](docs/project-log.md).
 
@@ -50,7 +50,7 @@ This project has no versioned releases: no tags, no GitHub Releases and no seman
 | [Architecture](docs/architecture.md) | Layers, components, data flow, data contracts and runtime |
 | [Project plan](docs/plan.md) | Work packages, milestones, roles, quality gates and risks |
 | [Evaluation](docs/evaluation.md) | Question set, metrics, protocol, targets and reporting |
-| [Corpus inventory](docs/corpus.md) | Candidate sources, licences, sensitivity and acquisition priorities |
+| [Corpus inventory](docs/corpus.md) | Acquired and candidate sources, licences, sensitivity and priorities |
 | [Project log](docs/project-log.md) | Dated record of material project changes |
 | [Governance](GOVERNANCE.md) | Roles, decisions, version policy and boundaries |
 | [Glossary](docs/glossary.md) | Bilingual terminology for fishery and retrieval concepts |
@@ -69,8 +69,9 @@ scs-fishery-kb/
 ├── .github/                     community files, CI, issue and PR templates
 ├── configs/                     corpus register and schema
 ├── docs/                        architecture, plan, evaluation, policy, glossary, ADRs
+├── src/scs_fkb/                 M1 ingestion, BM25, citation and CLI modules
 ├── scripts/                     public-tree validation
-└── tests/                       config and public-tree tests
+└── tests/                       pipeline, configuration and public-tree tests
 ```
 
 Data and run artifacts are local-only and never enter the published tree.
@@ -88,7 +89,18 @@ pip install -r requirements-dev.txt
 make check
 ```
 
-`make check` runs lint, format check, tests and the public-tree validation. The runtime dependencies in `requirements.txt` are installed when the retrieval code lands; the current repository contains documentation, configuration and validation tooling only.
+`make check` runs lint, format check, tests and the public-tree validation. The M1 core uses only the Python standard library and PyYAML; the other packages in `requirements.txt` are optional adapters for later PDF, dense-retrieval, LLM and service work.
+
+After registering acquired sources under `$SCS_FKB_DATA_ROOT`, run the local pipeline:
+
+```sh
+export PYTHONPATH=src
+python -m scs_fkb ingest
+python -m scs_fkb retrieve "南海 伏季休渔 时间"
+python -m scs_fkb ask "南海区伏季休渔的起止时间是什么？"
+```
+
+The pipeline reads the corpus register, verifies source hashes and writes processed chunks and a manifest outside the repository. It does not download sources or call a model.
 
 ## Data and artifacts
 
@@ -105,8 +117,8 @@ See [docs/data-policy.md](docs/data-policy.md) for details.
 
 | Milestone | Deliverable | Status |
 |---|---|---|
-| M0 | Framework: scope, architecture, plan, evaluation, corpus register, tooling | current |
-| M1 | Minimal pipeline: parse, chunk, index, retrieve, answer with citations | planned |
+| M0 | Framework: scope, architecture, plan, evaluation, corpus register, tooling | done |
+| M1 | Minimal pipeline: parse, chunk, BM25 retrieve, extractive citations | current (legal subset) |
 | M2 | Retrieval baseline: BM25 / dense / hybrid comparison | planned |
 | M3 | Evaluation report and service prototype | planned |
 | M4 | `/v1` query interface contract for downstream integration | planned |

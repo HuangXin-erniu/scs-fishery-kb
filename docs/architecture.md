@@ -1,10 +1,10 @@
 # Architecture
 
 > **中文摘要**：本文件描述 SCS-FKB 的分层架构、组件、数据流、数据契约与运行方式。
-> 当前只定义框架，检索与服务代码尚未实现；数据与运行产物只留在本机，不进入公开仓库。
-> 所有回答必须基于检索证据并带可核验引用；`restricted` 来源不得发送到外部模型 API。
+> 当前已实现 M1 法律子集：HTML 正文抽取、按条/节切分、BM25 检索、抽取式引用回答与拒答；dense、LLM 与服务尚未实现。
+> 数据与运行产物只留在本机，不进入公开仓库；所有回答必须基于检索证据并带可核验引用。
 
-- Status: framework defined; implementation follows [the project plan](plan.md).
+- Status: M1 legal subset implemented; dense retrieval, LLM generation and the service layer are planned.
 - Scope: knowledge-layer corpus, retrieval, evidence-grounded answers and evaluation.
 - Non-goals: forecast-model training, raw environmental data, full vessel tracks and downstream data integration.
 
@@ -44,7 +44,7 @@
 | Interface | CLI / HTTP | `ingest`, `retrieve`, `ask`, `eval`; `/v1/query` for downstream use |
 | Orchestration | Pipeline runner | Ingestion pipeline, query pipeline and evaluation runner |
 | Retrieval | Retriever | Query rewriting, BM25, dense retrieval, fusion, metadata filtering, optional reranking |
-| Generation | Answer engine | Prompt construction, model client, citation validation, abstention |
+| Generation | Answer engine | Extractive selection and citation validation in M1; prompt construction and model client later |
 | Knowledge | Knowledge store | Documents, chunks, vector index, BM25 index and manifest |
 | Data | Ingestion | Parsing, OCR, chunking, table/indicator extraction, hashing and deduplication |
 | Governance | Source register | Licence, sensitivity, version, hash and acquisition status |
@@ -53,16 +53,24 @@
 ## 4. Components and module map
 
 ```text
-src/ingest.py     parse, OCR, chunk, extract tables/indicators, write manifest
-src/retrieve.py   BM25 + dense retrieval, filters, fusion, optional reranking
-src/ask.py        evidence-only answer, citation validation, abstention
-src/eval.py       retrieval/citation/answer/abstention metrics and reports
-src/serve.py      CLI and HTTP query surface
-configs/          corpus register, data schema, future interface contract
-local data root   raw, processed and index data (outside the repository)
-eval/             reviewed question set (non-sensitive items only)
-tests/            configuration, public-tree and unit tests
+src/scs_fkb/config.py     environment, data roots and sensitivity ceiling
+src/scs_fkb/corpus.py     corpus register loading, hash checks and source resolution
+src/scs_fkb/extract.py    HTML body extraction with navigation and footer removal
+src/scs_fkb/chunking.py   article/section chunking with page and section anchors
+src/scs_fkb/bm25.py       BM25 over CJK bigrams and ASCII tokens
+src/scs_fkb/retrieve.py   ranked evidence with a sensitivity filter
+src/scs_fkb/answer.py     extractive answer, citation validation and abstention
+src/scs_fkb/store.py      JSONL and manifest I/O
+src/scs_fkb/ingest.py     ingest pipeline and manifest construction
+src/scs_fkb/cli.py        ingest, retrieve and ask commands
+src/scs_fkb/text.py       shared tokenizer
+configs/                  corpus register, data schema, future interface contract
+local data root           raw, processed and index data (outside the repository)
+eval/                     reviewed question set (non-sensitive items only)
+tests/                    pipeline, configuration and public-tree tests
 ```
+
+M1 uses only the Python standard library and PyYAML. PDF/OCR, dense retrieval, LLM generation, the HTTP service and evaluation are later increments.
 
 Each module exposes a small callable surface rather than a framework. Shared code is extracted only when a second module needs it.
 

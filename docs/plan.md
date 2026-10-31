@@ -2,9 +2,9 @@
 
 > **中文摘要**：本文件把项目范围拆成 WP0–WP6 工作包、M0–M4 阶段、角色、质量门与风险。
 > 里程碑是工作阶段，不是版本；项目不创建 tag 或 GitHub Release。
-> 当前处于 WP1（语料采集与登记）：已登记 3 份 P1 官方公开文件，下一步进入 WP2 解析与索引。
+> 当前完成 M1 法律子集：3 份 P1 官方公开文件已索引（153 个 chunks），BM25 检索与抽取式引用回答可用；评测、dense 与 LLM 尚未完成。
 
-- Status: active plan; WP1 has three P1 public documents registered; M1 implementation is next.
+- Status: active plan; M1 legal subset implemented and the evaluation set is next.
 - No versioned releases are published. Milestones describe work stages, not release numbers.
 - Architecture: [architecture.md](architecture.md); evaluation: [evaluation.md](evaluation.md); scope: [../PROJECT.md](../PROJECT.md).
 
@@ -26,21 +26,21 @@ Detailed scope and non-goals are in [../PROJECT.md](../PROJECT.md). The architec
 | WP1 | Corpus acquisition and registration | Two or three P1 public documents; licence, sensitivity, version and hash recorded | No unknown source ingested; acquisition path documented |
 | WP2 | Ingestion and knowledge organisation | Parser, chunker, table/indicator extraction; processed records and manifest | Page/section/table anchors present; manifest reproducible |
 | WP3 | Retrieval | BM25, dense retrieval, fusion, metadata/sensitivity filtering; retrieval report | Retrieval baseline measured on a reviewed subset |
-| WP4 | Answer generation and evidence | Evidence-only prompt, citation validation, abstention | No fabricated citation; out-of-scope refusal works |
+| WP4 | Answer generation and evidence | Extractive evidence-only answer (LLM prompt later), citation validation, abstention | No fabricated citation; out-of-scope refusal works |
 | WP5 | Evaluation | Reviewed question set; baselines; error analysis; evaluation report | Metrics and limitations reported |
 | WP6 | Service and interface | CLI/HTTP query surface; `/v1` interface contract (`docs/interface.md`, `configs/interface.yaml`) | Contract reviewed; no data integration implemented |
 
-WP0 is complete. WP1 has three acquired P1 documents (Fisheries Law 2025, seasonal closure notice 2023 and fishing permit regulation 2022); WP2 can start. The statistical yearbook, logbook specification and gear standards are still outstanding.
+WP0 and WP1 are complete. WP2 has an HTML parser and article/section chunker for the legal subset; PDF/OCR and table extraction are pending. WP3 has BM25; dense retrieval, fusion and reranking are pending. WP4 has extractive answers, citation validation and abstention; LLM generation is pending. WP5 and WP6 are not started. The statistical yearbook, logbook specification and gear standards are still outstanding.
 
 ## 4. Milestones
 
-| Milestone | Content | Exit condition |
-|---|---|---|
-| M0 | Framework and public baseline | Scope, architecture, plan, evaluation, corpus register, questions and CI are published |
-| M1 | Minimal pipeline | Two or three documents are parsed, indexed and answerable with citations |
-| M2 | Retrieval baseline | BM25, dense and hybrid retrieval are compared on a reviewed subset |
-| M3 | Evaluation and service prototype | Citation/answer metrics and an end-to-end CLI/HTTP demonstration are reported |
-| M4 | Interface contract | The `/v1` contract is reviewed; no data integration is included |
+| Milestone | Content | Exit condition | Status |
+|---|---|---|---|
+| M0 | Framework and public baseline | Scope, architecture, plan, evaluation, corpus register, questions and CI are published | done |
+| M1 | Minimal pipeline | Two or three documents are parsed, indexed and answerable with citations | current: legal subset; evaluation pending |
+| M2 | Retrieval baseline | BM25, dense and hybrid retrieval are compared on a reviewed subset | BM25 done; dense/hybrid pending |
+| M3 | Evaluation and service prototype | Citation/answer metrics and an end-to-end CLI/HTTP demonstration are reported | planned |
+| M4 | Interface contract | The `/v1` contract is reviewed; no data integration is included | planned |
 
 Milestones do not create releases or tags. Completion is judged by the exit condition and the quality gates below.
 
