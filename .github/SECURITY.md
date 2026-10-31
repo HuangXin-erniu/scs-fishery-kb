@@ -40,7 +40,7 @@ Security-relevant areas include:
   state databases.
 - Do not send `restricted` sources to external model APIs.
 - Do not submit vessel-identifying or personal information.
-- See [docs/data-policy.md](docs/data-policy.md) for the data boundary.
+- See [docs/data-policy.md](../docs/data-policy.md) for the data boundary.
 
 ## Response
 

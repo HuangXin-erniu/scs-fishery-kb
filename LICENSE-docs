@@ -7,8 +7,8 @@ You may obtain a copy of the license at:
 
 Copyright 2026 Xin Huang.
 
-This licence applies to documentation files, including README.md,
-README.zh-CN.md, PROJECT.md, CONTRIBUTING.md, CODE_OF_CONDUCT.md, SECURITY.md,
-CITATION.cff and the files under docs/. It does not apply to code, which is
-licensed under the Apache License 2.0 (see LICENSE), or to data, which is not
-distributed with this repository.
+This licence applies to documentation files, including the README and project
+documents at the repository root, the files under .github/ and docs/, and
+CITATION.cff. It does not apply to code, which is licensed under the Apache
+License 2.0 (see LICENSE), or to data, which is not distributed with this
+repository.

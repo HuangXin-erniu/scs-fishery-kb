@@ -118,6 +118,6 @@ make test
 
 ## 参与
 
-见 [CONTRIBUTING.md](CONTRIBUTING.md)、[CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) 与 [SECURITY.md](SECURITY.md)。
+见 [CONTRIBUTING.md](.github/CONTRIBUTING.md)、[CODE_OF_CONDUCT.md](.github/CODE_OF_CONDUCT.md) 与 [SECURITY.md](.github/SECURITY.md)。
 
 English README: [README.md](README.md).

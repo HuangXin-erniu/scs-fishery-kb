@@ -75,4 +75,4 @@ This repository does not distribute data. Access to a source depends on the sour
 
 ## 10. Reporting a problem
 
-If you find data, credentials or personal information that should not be public, follow [SECURITY.md](../SECURITY.md) and do not open a public issue containing the material.
+If you find data, credentials or personal information that should not be public, follow [SECURITY.md](../.github/SECURITY.md) and do not open a public issue containing the material.

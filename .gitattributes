@@ -6,3 +6,11 @@
 *.cff text
 *.py text
 *.sh text
+
+# Data payloads and images must not be committed.
+*.pdf binary
+*.docx binary
+*.xlsx binary
+*.pptx binary
+*.png binary
+*.jpg binary

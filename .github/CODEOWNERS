@@ -1,0 +1,8 @@
+# Default owner for all files.
+* @HuangXin-erniu
+
+# Governance, policy and repository operations.
+/.github/ @HuangXin-erniu
+/GOVERNANCE.md @HuangXin-erniu
+/docs/adr/ @HuangXin-erniu
+/.github/SECURITY.md @HuangXin-erniu

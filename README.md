@@ -118,6 +118,6 @@ If you use this project, please cite it using [CITATION.cff](CITATION.cff).
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md), [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) and [SECURITY.md](SECURITY.md).
+See [CONTRIBUTING.md](.github/CONTRIBUTING.md), [CODE_OF_CONDUCT.md](.github/CODE_OF_CONDUCT.md) and [SECURITY.md](.github/SECURITY.md).
 
 中文说明见 [README.zh-CN.md](README.zh-CN.md).

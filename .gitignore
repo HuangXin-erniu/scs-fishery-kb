@@ -1,6 +1,5 @@
-# Data and run artifacts are local-only.
-/data/*
-!/data/README.md
+# Data and run artifacts must never enter the repository.
+/data/
 /runs/
 
 # Local secrets
@@ -27,3 +26,13 @@ build/
 *.sqlite3
 *.log
 .DS_Store
+Thumbs.db
+
+# Editor and local tooling
+.idea/
+.vscode/
+htmlcov/
+.coverage
+.coverage.*
+*.orig
+*.rej

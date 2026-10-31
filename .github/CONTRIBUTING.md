@@ -6,8 +6,8 @@ contributions that fit its knowledge-layer scope.
 
 ## Before you start
 
-- Read [PROJECT.md](PROJECT.md) for scope and non-goals.
-- Read [docs/data-policy.md](docs/data-policy.md) before proposing any corpus source.
+- Read [PROJECT.md](../PROJECT.md) for scope and non-goals.
+- Read [docs/data-policy.md](../docs/data-policy.md) before proposing any corpus source.
 - Do not submit data payloads, indexes, run artifacts, credentials or restricted material.
 - For a substantial change, open an issue first so the scope can be agreed.
 
@@ -37,7 +37,7 @@ make validate
 
 This project has no versioned releases. Do not add version numbers, tags or GitHub
 Release notes. `main` is the supported line; changes are recorded by date in
-[docs/project-log.md](docs/project-log.md).
+[docs/project-log.md](../docs/project-log.md).
 
 ## Data and privacy
 

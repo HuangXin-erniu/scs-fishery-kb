@@ -13,6 +13,11 @@
 | [Corpus register](../configs/corpus.yaml) | Machine-readable source register |
 | [Data schema](../configs/schema.yaml) | Document, chunk and citation fields |
 | [Citation metadata](../CITATION.cff) | How to cite the project |
-| [Contributing](../CONTRIBUTING.md) | Development setup, checks and contribution rules |
-| [Security](../SECURITY.md) | Vulnerability reporting and data handling |
+| [Governance](../GOVERNANCE.md) | Roles, decisions, versioning and public/private boundaries |
+| [Support](../.github/SUPPORT.md) | Where to ask, and what not to post |
+| [Glossary](glossary.md) | Bilingual terminology for fishery and retrieval concepts |
+| [Style guide](style-guide.md) | Language, links, citations and commit conventions |
+| [Architecture decisions](adr/README.md) | Dated records of material project decisions |
+| [Contributing](../.github/CONTRIBUTING.md) | Development setup, checks and contribution rules |
+| [Security](../.github/SECURITY.md) | Vulnerability reporting and data handling |
 | [README](../README.md) | Project overview and quick start |

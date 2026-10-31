@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Questions and design discussion
+    url: https://github.com/HuangXin-erniu/scs-fishery-kb/discussions
+    about: Ask usage, scope or design questions here.
+  - name: Security report
+    url: https://github.com/HuangXin-erniu/scs-fishery-kb/security/advisories/new
+    about: Report vulnerabilities privately; do not open a public issue.
+  - name: 中文说明
+    url: https://github.com/HuangXin-erniu/scs-fishery-kb/blob/main/README.zh-CN.md
+    about: 中文项目说明与快速入口。
