@@ -32,7 +32,7 @@ def test_corpus_structure() -> None:
         "fishery_product",
         "data_dictionary",
     }
-    assert len(data["sources"]) == 20
+    assert len(data["sources"]) == 27
 
     acquired = []
     candidates = []
@@ -45,7 +45,7 @@ def test_corpus_structure() -> None:
         else:
             candidates.append(source)
 
-    assert len(acquired) == 11
+    assert len(acquired) == 18
     assert len(candidates) == 9
     yearbooks = [source for source in acquired if source["id"].startswith("STAT-YB-")]
     assert len(yearbooks) == 8
@@ -59,13 +59,25 @@ def test_corpus_structure() -> None:
         assert source["volume"].endswith("files")
 
     policy = [source for source in acquired if not source["id"].startswith("STAT-YB-")]
-    assert {source["id"] for source in policy} == {"POL-LAW-009", "POL-STD-010", "POL-CLOS-015"}
+    assert {source["id"] for source in policy} == {
+        "POL-LAW-009",
+        "POL-STD-010",
+        "POL-CLOS-015",
+        "POL-RULE-018",
+        "POL-RULE-019",
+        "POL-RULE-020",
+        "POL-GD-021",
+        "POL-GD-022",
+        "POL-GX-023",
+        "POL-GX-024",
+    }
     for source in policy:
         assert source["license"] == "public"
         assert source["sensitivity"] == "public"
         assert re.fullmatch(r"[0-9a-f]{64}", source["hash"])
         assert source["location"].startswith("raw/")
         assert not source["location"].startswith("/")
+        assert source["jurisdiction"] in {"national", "guangdong", "guangxi"}
 
     for source in candidates:
         assert source["status"] == "to_acquire"
@@ -88,7 +100,7 @@ def test_corpus_structure() -> None:
         "statistical_yearbook": 8,
         "operations": 1,
         "law": 1,
-        "regulation": 1,
+        "regulation": 8,
         "notice": 1,
         "standard": 0,
         "fishery_product": 4,

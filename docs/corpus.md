@@ -26,7 +26,7 @@ It does **not** include raw environmental grids, reanalysis data, forecast raste
 | `statistical_yearbook` | 统计年鉴 | 8 | Official annual statistics and indicator tables |
 | `operations` | 作业知识 | 1 | Fishing methods, gear, vessel operations, logbooks and permit conditions |
 | `law` | 法律 | 1 | National law adopted by the legislature |
-| `regulation` | 行政法规/规章 | 1 | Administrative regulations, departmental rules and implementing provisions |
+| `regulation` | 行政法规/规章/地方性法规 | 8 | Administrative regulations, departmental rules and local regulations |
 | `notice` | 通告/公告 | 1 | Official notices, announcements and seasonal measures |
 | `standard` | 标准/规范 | 0 | National, industry or provincial standards and operational norms |
 | `fishery_product` | 渔情/海况产品说明 | 4 | Product descriptions, fishery bulletins and historical records |
@@ -51,13 +51,22 @@ The 2024 edition is encrypted with the Excel default password; the originals are
 
 ## 5. Acquired policy documents
 
-| Source | Type | Document | Status |
-|---|---|---|---|
-| `POL-LAW-009` | `law` | Fisheries Law, 2025 revision | acquired; **official publication — People's Daily, 2026-02-25 (主席令第六十三号)** |
-| `POL-STD-010` | `regulation` | Fishing permit regulation, 2022 revision | acquired |
-| `POL-CLOS-015` | `notice` | Seasonal closure notice, 2023 | acquired |
+| Source | Type | Jurisdiction | Document | Status |
+|---|---|---|---|---|
+| `POL-LAW-009` | `law` | national | Fisheries Law, 2025 revision | acquired; text of the official People's Daily publication, 2026-02-25 (主席令第六十三号) |
+| `POL-RULE-018` | `regulation` | national | Implementing rules for the Fisheries Law, 2020 revision | acquired |
+| `POL-RULE-019` | `regulation` | national | Regulation on fishing-vessel inspection, 2003 | acquired |
+| `POL-RULE-020` | `regulation` | national | Measures for levying and using the fishery resource proliferation fee, 2011 revision | acquired |
+| `POL-STD-010` | `regulation` | national | Fishing permit regulation, 2022 revision | acquired |
+| `POL-CLOS-015` | `notice` | national | Seasonal closure notice, 2023 | acquired |
+| `POL-GD-021` | `regulation` | guangdong | Guangdong fishery management regulations, 2019 amendment | acquired |
+| `POL-GD-022` | `regulation` | guangdong | Guangdong fishing-port and fishing-vessel regulations, 2020 amendment | acquired |
+| `POL-GX-023` | `regulation` | guangxi | Guangxi measures implementing the Fisheries Law, 2016 amendment | acquired |
+| `POL-GX-024` | `regulation` | guangxi | Guangxi fishing-port and fishing-vessel regulations, 2024 amendment | acquired |
 
-The Fisheries Law is registered from the official publication in 人民日报 (People's Daily), 2026-02-25, page 15, carrying 主席令第六十三号 and the 新华社 release of the 2025-12-27 revision (effective 2026-05-01). The text was verified as seven chapters and 90 articles. The canonical npc.gov.cn page returned HTTP 403 from this network on 2026-10-31, so the newspaper publication is the citation copy; the earlier municipal reprint is retained in the data root as a secondary copy.
+The legal corpus now covers the national law, its implementing rules, vessel inspection, the resource levy, the fishing-permit rules and the seasonal closure, plus the Guangdong and Guangxi regulations. Each document records its publisher, revision history, article count and SHA-256. Article counts: Fisheries Law 90, implementing rules 42, vessel inspection 40, levy measures 18, permit regulation 59, closure notice 4 sections, Guangdong fishery 47, Guangdong port and vessel 44, Guangxi implementation 48, Guangxi port and vessel 37.
+
+The Fisheries Law text is the owner-supplied DOCX of the official 人民日报 publication; 89 of its 90 article openings match the e-paper capture and the 90th differs only by the 新华社 tag. The e-paper HTML, the page-11 PDF and the earlier municipal reprint are retained in the data root as provenance copies.
 
 ## 6. Candidate sources
 
@@ -80,8 +89,8 @@ The Fisheries Law is registered from the official publication in 人民日报 (P
 | Metric | Value |
 |---|---:|
 | Corpus types | 8 |
-| Registered sources | 20 |
-| Acquired sources | 11 |
+| Registered sources | 27 |
+| Acquired sources | 18 |
 | Remaining candidates | 9 |
 | Yearbook editions | 8 |
 | Yearbook data years | 2017–2024 |

@@ -195,23 +195,25 @@ sources:
   publisher: 全国人民代表大会常务委员会
   year: 2025
   type: law
-  format: html
-  location: raw/POL-LAW-009/fisheries-law-2025.html
+  jurisdiction: national
+  format: docx
+  location: raw/POL-LAW-009/fisheries-law-2025.docx
   license: public
   sensitivity: public
   status: acquired
   priority: P1
-  volume: 1 HTML file (People's Daily e-paper, 2026-02-25 page 15); 7 chapters, 90 articles
+  volume: 1 DOCX; 7 chapters, 90 articles
   update_freq: static
-  hash: f678b37c17b6b06a100ffdcdcc8bf5c1b1db86045f71af73eb249b190eaa1994
-  acquisition: 'Fetched 2026-10-31 from the People''s Daily e-paper, 人民日报 2026-02-25 第15版·文件 (新华社): http://paper.people.com.cn/rmrb/pc/content/202602/25/content_30141884.html; the owner-supplied page-11 PDF is kept as people-daily-2026-02-25-p11.pdf.'
-  notes: 'Officially published text: 主席令第六十三号, adopted 2025-12-27, effective 2026-05-01. The npc.gov.cn canonical page was blocked by its WAF on 2026-10-31 (HTTP 403), so this official newspaper publication is the citation copy until the NPC page is reachable. The earlier Qingdao reprint is retained as fisheries-law-2025-reprint.html. Verified: seven chapters, 90 articles, the 2025-12-27 revision line and the 2026-05-01 effective date.'
+  hash: cdeaaf75a9992bc98642fbe6c004f790506549a4afaf223e3bf2b7b5eb365fa4
+  acquisition: 'Owner-supplied DOCX received 2026-10-31, carrying the text of the official 人民日报 2026-02-25 publication (主席令第六十三号, 新华社 release).'
+  notes: 'Adopted 2025-12-27, effective 2026-05-01. Verified seven chapters and 90 articles in order; 89 of 90 article openings match the e-paper capture and the 90th differs only by the 新华社 tag. Provenance copies retained in the data root: fisheries-law-2025-e-paper.html, people-daily-2026-02-25-p11.pdf and fisheries-law-2025-reprint.html.'
 - id: POL-STD-010
   title: 渔业捕捞许可管理规定（2022年修订）
   title_zh: 渔业捕捞许可管理规定（2022年修订）
   publisher: 农业农村部
   year: 2022
   type: regulation
+  jurisdiction: national
   format: html
   location: raw/POL-STD-010/fishing-permit-regulation-2022.html
   license: public
@@ -229,6 +231,7 @@ sources:
   publisher: 农业农村部
   year: 2023
   type: notice
+  jurisdiction: national
   format: html
   location: raw/POL-CLOS-015/seasonal-closure-notice-2023.html
   license: public
@@ -240,6 +243,132 @@ sources:
   hash: 15660ed713803ff440da583e1d5a219ab5e488c2237f3bb33cd30e7115174bdc
   acquisition: 'Fetched 2026-10-31 from moa.gov.cn: https://www.moa.gov.cn/govpublic/YYJ/202303/t20230314_6422986.htm (effective 2023-04-15; replaces the 2021 notice).'
   notes: Current closure system; no newer adjustment notice found on moa.gov.cn as of 2026-10-31. Covers the South China Sea north of 12°N; the 26°30′N–12°N closure runs from 1 May 12:00 to 16 August 12:00. Annual enforcement notices are separate.
+- id: POL-RULE-018
+  title: 中华人民共和国渔业法实施细则
+  title_zh: 中华人民共和国渔业法实施细则
+  publisher: 国务院 / 农业农村部
+  year: 2020
+  type: regulation
+  jurisdiction: national
+  format: docx
+  location: raw/POL-RULE-018/fisheries-law-implementing-rules-2020.docx
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P1
+  volume: 1 DOCX; 42 articles
+  update_freq: static
+  hash: 90d7e013d92361ec219a59b51ef255c70a08d5654f9a0351fd633c865028bf77
+  acquisition: 'Owner-supplied DOCX received 2026-10-31; text of the 2020-11-29 second revision.'
+  notes: 'Approved 1987-10-14 and published 1987-10-20 by 农牧渔业部; revised 2020-03-27 and 2020-11-29. 42 articles; implements the Fisheries Law.'
+- id: POL-RULE-019
+  title: 中华人民共和国渔业船舶检验条例
+  title_zh: 中华人民共和国渔业船舶检验条例
+  publisher: 国务院
+  year: 2003
+  type: regulation
+  jurisdiction: national
+  format: docx
+  location: raw/POL-RULE-019/fishing-vessel-inspection-regulation-2003.docx
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P1
+  volume: 1 DOCX; 40 articles
+  update_freq: static
+  hash: 413acf724b599a83bc61480168bc5b3452fad0ad0bcff65cb94e17b05ce69165
+  acquisition: 'Owner-supplied DOCX received 2026-10-31; consolidated text of the 2003 regulation.'
+  notes: '国务院令第383号; adopted 2003-06-11, effective 2003-08-01. 40 articles.'
+- id: POL-RULE-020
+  title: 渔业资源增殖保护费征收使用办法
+  title_zh: 渔业资源增殖保护费征收使用办法
+  publisher: 农业部、财政部、国家物价局
+  year: 2011
+  type: regulation
+  jurisdiction: national
+  format: docx
+  location: raw/POL-RULE-020/fishery-resource-levy-measures-2011.docx
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P1
+  volume: 1 DOCX; 18 articles
+  update_freq: static
+  hash: abedb250e0982b34bd66b0d00bccdfdc92c750d5f04d2f2919db858dfe4e8302
+  acquisition: 'Owner-supplied DOCX received 2026-10-31; text of the 2011-01-08 revision.'
+  notes: 'Approved 1988-10-09, issued 1988-10-31 as 农业部、财政部、国家物价局令第1号; revised 2011-01-08; effective 1989-01-01. 18 articles.'
+- id: POL-GD-021
+  title: 广东省渔业管理条例
+  title_zh: 广东省渔业管理条例
+  publisher: 广东省人民代表大会常务委员会
+  year: 2019
+  type: regulation
+  jurisdiction: guangdong
+  format: docx
+  location: raw/POL-GD-021/guangdong-fishery-regulations-2019.docx
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P1
+  volume: 1 DOCX; 47 articles
+  update_freq: static
+  hash: 7cd26c0c5fb8db0b515ed79da1a5968b863e08d1a31615ad504043100e6b998b
+  acquisition: 'Owner-supplied DOCX received 2026-10-31; consolidated text of the 2019-09-25 third amendment.'
+  notes: 'Adopted 2003-07-25; amended 2012-07-26, 2015-12-30 and 2019-09-25; effective 2003-09-01. 47 articles.'
+- id: POL-GD-022
+  title: 广东省渔港和渔业船舶管理条例
+  title_zh: 广东省渔港和渔业船舶管理条例
+  publisher: 广东省人民代表大会常务委员会
+  year: 2020
+  type: regulation
+  jurisdiction: guangdong
+  format: docx
+  location: raw/POL-GD-022/guangdong-port-and-vessel-regulations-2020.docx
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P1
+  volume: 1 DOCX; 44 articles
+  update_freq: static
+  hash: 6ce9089d55e911f00647639bc024e216fbd830c48c862c05342e142d01f17a2b
+  acquisition: 'Owner-supplied DOCX received 2026-10-31; consolidated text of the 2020-09-29 second amendment.'
+  notes: 'Adopted 2011-09-29; amended 2019-01-16 and 2020-09-29; effective 2011-12-01. 44 articles.'
+- id: POL-GX-023
+  title: 广西壮族自治区实施《中华人民共和国渔业法》办法
+  title_zh: 广西壮族自治区实施《中华人民共和国渔业法》办法
+  publisher: 广西壮族自治区人民代表大会常务委员会
+  year: 2016
+  type: regulation
+  jurisdiction: guangxi
+  format: docx
+  location: raw/POL-GX-023/guangxi-fisheries-law-implementation-2016.docx
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P1
+  volume: 1 DOCX; 48 articles
+  update_freq: static
+  hash: 3f85441ad37f266b6d2675fda1d012a34e0d49f6a30501895bde093ad7505de9
+  acquisition: 'Owner-supplied DOCX received 2026-10-31; consolidated text of the 2016-03-31 second amendment.'
+  notes: 'Adopted 1989-09-16; amended 2004-06-03; revised 2010-03-31; amended again 2016-03-31; effective 2010-05-01. 48 articles.'
+- id: POL-GX-024
+  title: 广西壮族自治区渔港渔业船舶管理条例
+  title_zh: 广西壮族自治区渔港渔业船舶管理条例
+  publisher: 广西壮族自治区人民代表大会常务委员会
+  year: 2024
+  type: regulation
+  jurisdiction: guangxi
+  format: docx
+  location: raw/POL-GX-024/guangxi-port-and-vessel-regulations-2024.docx
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P1
+  volume: 1 DOCX; 37 articles
+  update_freq: static
+  hash: 9a6239830a762cc79d45c5edd0c82622b8ad414fba877ab542bc232b635b4b31
+  acquisition: 'Owner-supplied DOCX received 2026-10-31; consolidated text of the 2024-11-28 third amendment.'
+  notes: 'Adopted 2001-09-28; amended 2004-07-31, 2010-09-29 and 2024-11-28; effective 2002-01-01. 37 articles.'
 - id: DICT-STAT-013
   title: Statistical indicator definitions and data dictionary (candidate)
   title_zh: 统计指标口径/数据字典（候选）
