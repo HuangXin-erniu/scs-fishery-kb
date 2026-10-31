@@ -2,6 +2,12 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-10-31 — National bulletin series completed
+
+- Registered the 2020, 2021, 2022, 2023 and 2024 national fisheries economic statistical bulletins, joining the already registered 2025 bulletin.
+- The series now covers data years 2020–2025 with official national totals; values stay local and only metadata is published.
+- Each page was verified by title, publication date and the published total output figure.
+
 ## 2026-10-31 — China Statistical Yearbook 2026 registered
 
 - Registered the China Statistical Yearbook 2026 Excel set (1,318 files, Chinese and English editions) as an internal statistical source with a per-file manifest and manifest hash.
