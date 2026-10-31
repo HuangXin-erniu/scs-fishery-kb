@@ -44,6 +44,7 @@ REQUIRED = [
     ".github/PULL_REQUEST_TEMPLATE.md",
     "configs/corpus.yaml",
     "configs/schema.yaml",
+    "configs/statistics.yaml",
     "docs/index.md",
     "docs/architecture.md",
     "docs/plan.md",
@@ -204,6 +205,7 @@ def check_yaml(errors: list[str]) -> None:
     candidates = [
         ROOT / "configs/corpus.yaml",
         ROOT / "configs/schema.yaml",
+        ROOT / "configs/statistics.yaml",
         ROOT / "CITATION.cff",
         ROOT / ".pre-commit-config.yaml",
         ROOT / ".github/workflows/ci.yml",

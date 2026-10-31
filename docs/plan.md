@@ -2,9 +2,9 @@
 
 > **中文摘要**：本文件把项目范围拆成 WP0–WP6 工作包、M0–M4 阶段、角色、质量门与风险。
 > 里程碑是工作阶段，不是版本；项目不创建 tag 或 GitHub Release。
-> 当前处于 WP1（语料采集与登记）：已登记 3 份 P1 法规/通告，统计年鉴等候选正在核验权威性与覆盖；M1 管线推迟到数据指标充分后再规划。
+> 当前处于 WP1（语料采集与登记）：已登记 8 版统计年鉴和 3 份法规/通告；下一步建核心指标覆盖矩阵与本地长表；M1 管线推迟到数据指标充分后再规划。
 
-- Status: active plan; current phase is corpus discovery and indicator coverage; M1 implementation is deferred.
+- Status: active plan; WP1 has eight yearbook editions and three policy documents registered; the coverage matrix and core CSV are next.
 - No versioned releases are published. Milestones describe work stages, not release numbers.
 - Architecture: [architecture.md](architecture.md); evaluation: [evaluation.md](evaluation.md); scope: [../PROJECT.md](../PROJECT.md).
 
@@ -23,14 +23,14 @@ Detailed scope and non-goals are in [../PROJECT.md](../PROJECT.md). The architec
 | WP | Name | Deliverables | Acceptance |
 |---|---|---|---|
 | WP0 | Framework and governance | Scope, architecture, plan, evaluation, corpus register, questions, public tooling and CI | Documents reviewed; CI passes |
-| WP1 | Corpus acquisition and registration | Two or three P1 public documents; licence, sensitivity, version and hash recorded | No unknown source ingested; acquisition path documented |
+| WP1 | Corpus acquisition and registration | Policy documents plus eight yearbook editions; licence, sensitivity, version and hash recorded | No unknown source ingested; acquisition path documented |
 | WP2 | Ingestion and knowledge organisation | Parser, chunker, table/indicator extraction; processed records and manifest | Page/section/table anchors present; manifest reproducible |
 | WP3 | Retrieval | BM25, dense retrieval, fusion, metadata/sensitivity filtering; retrieval report | Retrieval baseline measured on a reviewed subset |
 | WP4 | Answer generation and evidence | Evidence-only prompt, citation validation, abstention | No fabricated citation; out-of-scope refusal works |
 | WP5 | Evaluation | Reviewed question set; baselines; error analysis; evaluation report | Metrics and limitations reported |
 | WP6 | Service and interface | CLI/HTTP query surface; `/v1` interface contract (`docs/interface.md`, `configs/interface.yaml`) | Contract reviewed; no data integration implemented |
 
-WP0 is complete. WP1 is in progress: three policy documents are registered, and the statistical yearbook candidate is under authority and coverage verification. The statistical definitions, logbook specification and gear standards are still outstanding. WP2–WP6 are deferred; no pipeline code is part of the current public tree.
+WP0 is complete. WP1 is in progress: eight yearbook editions (data years 2017–2024) and three policy documents are registered; the yearbooks are internal, local-use sources. The coverage matrix and core CSV are next. Statistical definitions, the logbook specification, gear standards and the official Fisheries Law standard text are still outstanding. WP2–WP6 are deferred; no pipeline code is part of the current public tree.
 
 ## 4. Milestones
 

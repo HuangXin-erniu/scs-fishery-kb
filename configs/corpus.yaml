@@ -1,350 +1,426 @@
+# Corpus register. English is the canonical documentation language.
+# Data values are not stored here; only source metadata, hashes and coverage notes.
+# Local data root: $SCS_FKB_DATA_ROOT. The public tree contains no payload.
+
 schema_version: 1
-updated_at: "2026-10-31"
-
-# Local only; the data root is outside the repository and is never committed.
+updated_at: '2026-10-31'
 data_root: null
-data_root_env: "SCS_FKB_DATA_ROOT"
-
+data_root_env: SCS_FKB_DATA_ROOT
 policy:
   ingest_requires:
-    - file_available
-    - license_known
-    - sensitivity_known
+  - file_available
+  - license_known
+  - sensitivity_known
   allowed_license:
-    - public
-    - internal
-    - restricted
+  - public
+  - internal
+  - restricted
   allowed_sensitivity:
-    - public
-    - internal
-    - restricted
+  - public
+  - internal
+  - restricted
   unknown_action: hold
   restricted_external_api: false
-  notes: "Sources with an unknown licence or sensitivity are held and must not be ingested; restricted sources stay local."
-
-categories:
-  - id: fishery_operations
-    name: "Fishing vessel operations and catch statistics"
-    name_zh: "渔船作业与渔获统计"
-    description: "Statistical yearbooks, logbook specifications, operation types and catch indicators."
-  - id: vessel_tracks
-    name: "Vessel/voyage data dictionaries and sample descriptions"
-    name_zh: "船位/航次数据字典与样本说明"
-    description: "AIS/VMS field definitions, voyage definitions and desensitised sample descriptions; no full tracks."
-  - id: ocean_fishery_products
-    name: "Ocean and fishery product descriptions"
-    name_zh: "海洋环境与渔情产品说明"
-    description: "Product descriptions, indicators and metadata for SST, chlorophyll, currents and wind; no raw grids."
-  - id: forecast_bulletins
-    name: "Fishing-ground and season bulletins"
-    name_zh: "渔场/渔汛预报与通报"
-    description: "Public bulletins, historical season records and fishing-ground descriptions; no forecast model outputs."
-  - id: policy_standards
-    name: "Laws, regulations, operational norms and standards"
-    name_zh: "政策法规、作业规范与标准"
-    description: "Fisheries law, seasonal closures, access conditions, operational norms and gear standards."
-  - id: papers_reports
-    name: "Papers, reports and monographs"
-    name_zh: "论文、报告、专著"
-    description: "Journal papers, project reports, technical reports and monographs that can be used lawfully."
-  - id: data_dictionary
-    name: "Data dictionaries and statistical definitions"
-    name_zh: "数据字典与统计口径"
-    description: "Field definitions, indicator definitions, metadata and data-quality rules."
-
+  notes: Sources with an unknown licence or sensitivity are held and must not be ingested; restricted sources stay local.
+types:
+- id: statistical_yearbook
+  name: Statistical yearbook
+  name_zh: 统计年鉴
+  description: Official annual fishery statistics and indicator tables.
+- id: operations
+  name: Operations knowledge
+  name_zh: 作业知识
+  description: Fishing methods, gear, vessel operations, logbooks and permit conditions.
+- id: law
+  name: Law
+  name_zh: 法律
+  description: National laws adopted by the legislature.
+- id: regulation
+  name: Administrative regulation
+  name_zh: 行政法规/规章
+  description: Administrative regulations, departmental rules and implementing provisions.
+- id: notice
+  name: Notice or announcement
+  name_zh: 通告/公告
+  description: Official notices, announcements and seasonal management measures.
+- id: standard
+  name: Standard or norm
+  name_zh: 标准/规范
+  description: National, industry or provincial standards and operational norms.
+- id: fishery_product
+  name: Fishery or ocean product description
+  name_zh: 渔情/海况产品说明
+  description: Product descriptions, fishery bulletins and historical season records.
+- id: data_dictionary
+  name: Data dictionary
+  name_zh: 数据字典
+  description: Field definitions, indicator definitions, metadata and quality rules.
 sources:
-  - id: "OPS-STAT-001"
-    category: "fishery_operations"
-    title: "Fisheries statistical yearbook (candidate)"
-    title_zh: "渔业统计年报（候选）"
-    publisher: "To be confirmed"
-    year: null
-    type: "statistics"
-    format: "unknown"
-    location: null
-    license: "unknown"
-    sensitivity: "unknown"
-    status: "to_acquire"
-    priority: "P1"
-    volume: "unknown"
-    update_freq: "annual"
-    hash: null
-    acquisition: "Obtain from the fisheries authority or the statistical yearbook; confirm definitions and publication licence."
-    notes: "Confirm the definitions of production, landed weight and fishing effort; do not include raw vessel tracks."
-
-  - id: "OPS-LOG-002"
-    category: "fishery_operations"
-    title: "Logbook and fishing-record specification (candidate)"
-    title_zh: "捕捞日志/渔捞记录填写规范与样例（候选）"
-    publisher: "To be confirmed"
-    year: null
-    type: "logbook"
-    format: "unknown"
-    location: null
-    license: "unknown"
-    sensitivity: "unknown"
-    status: "to_acquire"
-    priority: "P1"
-    volume: "unknown"
-    update_freq: "static"
-    hash: null
-    acquisition: "Obtain from the fisheries authority or a fleet operator; desensitise any sample."
-    notes: "Include the specification and a desensitised sample only; do not include identifiable vessel or owner records."
-
-  - id: "VMS-DICT-003"
-    category: "vessel_tracks"
-    title: "Vessel/voyage data dictionary (candidate)"
-    title_zh: "船位/航次数据字典（候选）"
-    publisher: "To be confirmed"
-    year: null
-    type: "dictionary"
-    format: "unknown"
-    location: null
-    license: "unknown"
-    sensitivity: "unknown"
-    status: "to_acquire"
-    priority: "P2"
-    volume: "unknown"
-    update_freq: "static"
-    hash: null
-    acquisition: "Obtain field definitions and voyage definitions from the data owner or a project partner."
-    notes: "Field and voyage definitions only; no full AIS/VMS tracks."
-
-  - id: "VMS-SAMPLE-004"
-    category: "vessel_tracks"
-    title: "Desensitised voyage sample description (candidate)"
-    title_zh: "脱敏航次样本与字段说明（候选）"
-    publisher: "To be confirmed"
-    year: null
-    type: "sample"
-    format: "unknown"
-    location: null
-    license: "unknown"
-    sensitivity: "unknown"
-    status: "to_acquire"
-    priority: "P2"
-    volume: "unknown"
-    update_freq: "static"
-    hash: null
-    acquisition: "Request a small sample after the licence and desensitisation plan are approved."
-    notes: "Review licence and compliance before use; never commit the sample or send it to an external API."
-
-  - id: "ENV-SST-005"
-    category: "ocean_fishery_products"
-    title: "Sea surface temperature product description (candidate)"
-    title_zh: "海表温度（SST）产品说明与指标（候选）"
-    publisher: "To be confirmed"
-    year: null
-    type: "product_description"
-    format: "unknown"
-    location: null
-    license: "unknown"
-    sensitivity: "unknown"
-    status: "to_acquire"
-    priority: "P2"
-    volume: "unknown"
-    update_freq: "annual"
-    hash: null
-    acquisition: "Obtain the product description, units, spatial/temporal resolution and metadata from the publisher."
-    notes: "Description, indicators and metadata only; no raw SST grids."
-
-  - id: "ENV-CHL-006"
-    category: "ocean_fishery_products"
-    title: "Chlorophyll, current and wind product description (candidate)"
-    title_zh: "叶绿素/海流/风场产品说明与指标（候选）"
-    publisher: "To be confirmed"
-    year: null
-    type: "product_description"
-    format: "unknown"
-    location: null
-    license: "unknown"
-    sensitivity: "unknown"
-    status: "to_acquire"
-    priority: "P2"
-    volume: "unknown"
-    update_freq: "annual"
-    hash: null
-    acquisition: "Obtain the product description, units, spatial/temporal resolution and metadata from the publisher."
-    notes: "Description, indicators and metadata only; no raw grids or reanalysis data."
-
-  - id: "FCS-BULL-007"
-    category: "forecast_bulletins"
-    title: "Fishing-ground and season bulletin (candidate)"
-    title_zh: "渔场/渔汛预报通报（候选）"
-    publisher: "To be confirmed"
-    year: null
-    type: "bulletin"
-    format: "unknown"
-    location: null
-    license: "unknown"
-    sensitivity: "unknown"
-    status: "to_acquire"
-    priority: "P2"
-    volume: "unknown"
-    update_freq: "unknown"
-    hash: null
-    acquisition: "Obtain public historical bulletin text or summaries from the publisher."
-    notes: "Public text only; do not include forecast model outputs or forecast rasters."
-
-  - id: "FCS-REC-008"
-    category: "forecast_bulletins"
-    title: "Historical fishing-ground and season record (candidate)"
-    title_zh: "中心渔场/渔汛历史记录（候选）"
-    publisher: "To be confirmed"
-    year: null
-    type: "record"
-    format: "unknown"
-    location: null
-    license: "unknown"
-    sensitivity: "unknown"
-    status: "to_acquire"
-    priority: "P2"
-    volume: "unknown"
-    update_freq: "annual"
-    hash: null
-    acquisition: "Obtain historical season records from a fisheries research institute or public literature."
-    notes: "Prefer public, citable summaries; do not include raw observations."
-
-  - id: "POL-LAW-009"
-    category: "policy_standards"
-    title: "中华人民共和国渔业法（2025年修订）"
-    title_zh: "中华人民共和国渔业法（2025年修订）"
-    publisher: "全国人民代表大会常务委员会"
-    year: 2025
-    type: "law"
-    format: "html"
-    location: "raw/POL-LAW-009/fisheries-law-2025.html"
-    license: "public"
-    sensitivity: "public"
-    status: "acquired"
-    priority: "P1"
-    volume: "1 HTML file; 7 chapters, 90 articles"
-    update_freq: "static"
-    hash: "687c405b9d1b96dc451761221c6db0c6cb21ee8c34f82ac8677e70c20298514c"
-    acquisition: "Fetched 2026-10-31 from the Qingdao Ocean Development Bureau official reprint of the 2025-12-27 revision: https://ocean.qingdao.gov.cn/zcfg/gjj/202110/t20211030_3701295.shtml"
-    notes: "Adopted 2025-12-27; effective 2026-05-01. Official government reprint; verify against the NPC standard text. TLS certificate expired at retrieval; content checked for the 7-chapter/90-article structure. Cite article number."
-
-  - id: "POL-STD-010"
-    category: "policy_standards"
-    title: "渔业捕捞许可管理规定（2022年修订）"
-    title_zh: "渔业捕捞许可管理规定（2022年修订）"
-    publisher: "农业农村部"
-    year: 2022
-    type: "regulation"
-    format: "html"
-    location: "raw/POL-STD-010/fishing-permit-regulation-2022.html"
-    license: "public"
-    sensitivity: "public"
-    status: "acquired"
-    priority: "P1"
-    volume: "1 HTML file; 5 chapters, 59 articles"
-    update_freq: "static"
-    hash: "35e2069db4de910494c1e6e07c435c4aca91c846e912acba2d6178776b981910"
-    acquisition: "Fetched 2026-10-31 from gov.cn: https://www.gov.cn/zhengce/2022-01/07/content_5721373.htm (农业农村部令2022年第1号; effective 2022-01-07)."
-    notes: "Current revision. The header states 2022-01-07 while Article 59 retains 2019-01-01; cite the header version and flag the discrepancy in answers. The HTML uses malformed or unclosed paragraph tags, so ingestion must extract the main content robustly."
-
-  - id: "POL-CLOS-015"
-    category: "policy_standards"
-    title: "农业农村部关于调整海洋伏季休渔制度的通告"
-    title_zh: "农业农村部关于调整海洋伏季休渔制度的通告"
-    publisher: "农业农村部"
-    year: 2023
-    type: "notice"
-    format: "html"
-    location: "raw/POL-CLOS-015/seasonal-closure-notice-2023.html"
-    license: "public"
-    sensitivity: "public"
-    status: "acquired"
-    priority: "P1"
-    volume: "1 HTML file; 农业农村部通告〔2023〕1号"
-    update_freq: "static"
-    hash: "15660ed713803ff440da583e1d5a219ab5e488c2237f3bb33cd30e7115174bdc"
-    acquisition: "Fetched 2026-10-31 from moa.gov.cn: https://www.moa.gov.cn/govpublic/YYJ/202303/t20230314_6422986.htm (effective 2023-04-15; replaces the 2021 notice)."
-    notes: "Current closure system; no newer adjustment notice found on moa.gov.cn as of 2026-10-31. Covers the South China Sea north of 12°N; the 26°30′N–12°N closure runs from 1 May 12:00 to 16 August 12:00. Annual enforcement notices are separate."
-
-  - id: "LIT-PAPER-011"
-    category: "papers_reports"
-    title: "Journal papers on nearshore fisheries and fishery conditions (candidate)"
-    title_zh: "南海近海渔业/渔情期刊论文（候选）"
-    publisher: "To be confirmed"
-    year: null
-    type: "paper"
-    format: "unknown"
-    location: null
-    license: "unknown"
-    sensitivity: "unknown"
-    status: "to_acquire"
-    priority: "P2"
-    volume: "unknown"
-    update_freq: "unknown"
-    hash: null
-    acquisition: "Obtain lawful full text or abstracts through public literature databases."
-    notes: "Respect copyright; include only permitted full text or abstracts; do not bulk scrape."
-
-  - id: "LIT-RPT-012"
-    category: "papers_reports"
-    title: "Project and technical reports (candidate)"
-    title_zh: "项目报告/技术报告（候选）"
-    publisher: "To be confirmed"
-    year: null
-    type: "report"
-    format: "unknown"
-    location: null
-    license: "unknown"
-    sensitivity: "unknown"
-    status: "to_acquire"
-    priority: "P2"
-    volume: "unknown"
-    update_freq: "unknown"
-    hash: null
-    acquisition: "Request the report from the owner; confirm the citable scope and sensitivity."
-    notes: "Internal reports default to internal; hold until confirmed."
-
-  - id: "DICT-STAT-013"
-    category: "data_dictionary"
-    title: "Statistical indicator definitions and data dictionary (candidate)"
-    title_zh: "统计指标口径/数据字典（候选）"
-    publisher: "To be confirmed"
-    year: null
-    type: "metric_definition"
-    format: "unknown"
-    location: null
-    license: "unknown"
-    sensitivity: "unknown"
-    status: "to_acquire"
-    priority: "P1"
-    volume: "unknown"
-    update_freq: "static"
-    hash: null
-    acquisition: "Obtain indicator definitions and definitions from the statistics or data authority."
-    notes: "Confirm the core definitions of production, landed weight, fishing effort and operation type."
-
-  - id: "DICT-META-014"
-    category: "data_dictionary"
-    title: "Metadata and data-quality rules (candidate)"
-    title_zh: "元数据/数据质量规范（候选）"
-    publisher: "To be confirmed"
-    year: null
-    type: "metadata_standard"
-    format: "unknown"
-    location: null
-    license: "unknown"
-    sensitivity: "unknown"
-    status: "to_acquire"
-    priority: "P2"
-    volume: "unknown"
-    update_freq: "static"
-    hash: null
-    acquisition: "Obtain the metadata standard and quality rules from the data publisher."
-    notes: "Used to align source registration, versions, hashes and citation fields."
-
+- id: OPS-STAT-001
+  title: Fisheries statistical yearbook (candidate)
+  title_zh: 渔业统计年报（候选）
+  publisher: To be confirmed
+  year: null
+  type: statistical_yearbook
+  format: unknown
+  location: null
+  license: unknown
+  sensitivity: unknown
+  status: to_acquire
+  priority: P1
+  volume: unknown
+  update_freq: annual
+  hash: null
+  acquisition: Obtain from the fisheries authority or the statistical yearbook; confirm definitions and publication licence.
+  notes: Confirm the definitions of production, landed weight and fishing effort; do not include raw vessel tracks.
+- id: OPS-LOG-002
+  title: Logbook and fishing-record specification (candidate)
+  title_zh: 捕捞日志/渔捞记录填写规范与样例（候选）
+  publisher: To be confirmed
+  year: null
+  type: operations
+  format: unknown
+  location: null
+  license: unknown
+  sensitivity: unknown
+  status: to_acquire
+  priority: P1
+  volume: unknown
+  update_freq: static
+  hash: null
+  acquisition: Obtain from the fisheries authority or a fleet operator; desensitise any sample.
+  notes: Include the specification and a desensitised sample only; do not include identifiable vessel or owner records.
+- id: VMS-DICT-003
+  title: Vessel/voyage data dictionary (candidate)
+  title_zh: 船位/航次数据字典（候选）
+  publisher: To be confirmed
+  year: null
+  type: data_dictionary
+  format: unknown
+  location: null
+  license: unknown
+  sensitivity: unknown
+  status: to_acquire
+  priority: P2
+  volume: unknown
+  update_freq: static
+  hash: null
+  acquisition: Obtain field definitions and voyage definitions from the data owner or a project partner.
+  notes: Field and voyage definitions only; no full AIS/VMS tracks.
+- id: VMS-SAMPLE-004
+  title: Desensitised voyage sample description (candidate)
+  title_zh: 脱敏航次样本与字段说明（候选）
+  publisher: To be confirmed
+  year: null
+  type: data_dictionary
+  format: unknown
+  location: null
+  license: unknown
+  sensitivity: unknown
+  status: to_acquire
+  priority: P2
+  volume: unknown
+  update_freq: static
+  hash: null
+  acquisition: Request a small sample after the licence and desensitisation plan are approved.
+  notes: Review licence and compliance before use; never commit the sample or send it to an external API.
+- id: ENV-SST-005
+  title: Sea surface temperature product description (candidate)
+  title_zh: 海表温度（SST）产品说明与指标（候选）
+  publisher: To be confirmed
+  year: null
+  type: fishery_product
+  format: unknown
+  location: null
+  license: unknown
+  sensitivity: unknown
+  status: to_acquire
+  priority: P2
+  volume: unknown
+  update_freq: annual
+  hash: null
+  acquisition: Obtain the product description, units, spatial/temporal resolution and metadata from the publisher.
+  notes: Description, indicators and metadata only; no raw SST grids.
+- id: ENV-CHL-006
+  title: Chlorophyll, current and wind product description (candidate)
+  title_zh: 叶绿素/海流/风场产品说明与指标（候选）
+  publisher: To be confirmed
+  year: null
+  type: fishery_product
+  format: unknown
+  location: null
+  license: unknown
+  sensitivity: unknown
+  status: to_acquire
+  priority: P2
+  volume: unknown
+  update_freq: annual
+  hash: null
+  acquisition: Obtain the product description, units, spatial/temporal resolution and metadata from the publisher.
+  notes: Description, indicators and metadata only; no raw grids or reanalysis data.
+- id: FCS-BULL-007
+  title: Fishing-ground and season bulletin (candidate)
+  title_zh: 渔场/渔汛预报通报（候选）
+  publisher: To be confirmed
+  year: null
+  type: fishery_product
+  format: unknown
+  location: null
+  license: unknown
+  sensitivity: unknown
+  status: to_acquire
+  priority: P2
+  volume: unknown
+  update_freq: unknown
+  hash: null
+  acquisition: Obtain public historical bulletin text or summaries from the publisher.
+  notes: Public text only; do not include forecast model outputs or forecast rasters.
+- id: FCS-REC-008
+  title: Historical fishing-ground and season record (candidate)
+  title_zh: 中心渔场/渔汛历史记录（候选）
+  publisher: To be confirmed
+  year: null
+  type: fishery_product
+  format: unknown
+  location: null
+  license: unknown
+  sensitivity: unknown
+  status: to_acquire
+  priority: P2
+  volume: unknown
+  update_freq: annual
+  hash: null
+  acquisition: Obtain historical season records from a fisheries research institute or public literature.
+  notes: Prefer public, citable summaries; do not include raw observations.
+- id: POL-LAW-009
+  title: 中华人民共和国渔业法（2025年修订）
+  title_zh: 中华人民共和国渔业法（2025年修订）
+  publisher: 全国人民代表大会常务委员会
+  year: 2025
+  type: law
+  format: html
+  location: raw/POL-LAW-009/fisheries-law-2025.html
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P1
+  volume: 1 HTML file; 7 chapters, 90 articles
+  update_freq: static
+  hash: 687c405b9d1b96dc451761221c6db0c6cb21ee8c34f82ac8677e70c20298514c
+  acquisition: 'Fetched 2026-10-31 from the Qingdao Ocean Development Bureau official reprint of the 2025-12-27 revision: https://ocean.qingdao.gov.cn/zcfg/gjj/202110/t20211030_3701295.shtml'
+  notes: Adopted 2025-12-27; effective 2026-05-01. Official government reprint; verify against the NPC standard text. TLS certificate expired at retrieval; content checked for the 7-chapter/90-article structure. Cite article number.
+- id: POL-STD-010
+  title: 渔业捕捞许可管理规定（2022年修订）
+  title_zh: 渔业捕捞许可管理规定（2022年修订）
+  publisher: 农业农村部
+  year: 2022
+  type: regulation
+  format: html
+  location: raw/POL-STD-010/fishing-permit-regulation-2022.html
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P1
+  volume: 1 HTML file; 5 chapters, 59 articles
+  update_freq: static
+  hash: 35e2069db4de910494c1e6e07c435c4aca91c846e912acba2d6178776b981910
+  acquisition: 'Fetched 2026-10-31 from gov.cn: https://www.gov.cn/zhengce/2022-01/07/content_5721373.htm (农业农村部令2022年第1号; effective 2022-01-07).'
+  notes: Current revision. The header states 2022-01-07 while Article 59 retains 2019-01-01; cite the header version and flag the discrepancy in answers. The HTML uses malformed or unclosed paragraph tags, so ingestion must extract the main content robustly.
+- id: POL-CLOS-015
+  title: 农业农村部关于调整海洋伏季休渔制度的通告
+  title_zh: 农业农村部关于调整海洋伏季休渔制度的通告
+  publisher: 农业农村部
+  year: 2023
+  type: notice
+  format: html
+  location: raw/POL-CLOS-015/seasonal-closure-notice-2023.html
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P1
+  volume: 1 HTML file; 农业农村部通告〔2023〕1号
+  update_freq: static
+  hash: 15660ed713803ff440da583e1d5a219ab5e488c2237f3bb33cd30e7115174bdc
+  acquisition: 'Fetched 2026-10-31 from moa.gov.cn: https://www.moa.gov.cn/govpublic/YYJ/202303/t20230314_6422986.htm (effective 2023-04-15; replaces the 2021 notice).'
+  notes: Current closure system; no newer adjustment notice found on moa.gov.cn as of 2026-10-31. Covers the South China Sea north of 12°N; the 26°30′N–12°N closure runs from 1 May 12:00 to 16 August 12:00. Annual enforcement notices are separate.
+- id: DICT-STAT-013
+  title: Statistical indicator definitions and data dictionary (candidate)
+  title_zh: 统计指标口径/数据字典（候选）
+  publisher: To be confirmed
+  year: null
+  type: data_dictionary
+  format: unknown
+  location: null
+  license: unknown
+  sensitivity: unknown
+  status: to_acquire
+  priority: P1
+  volume: unknown
+  update_freq: static
+  hash: null
+  acquisition: Obtain indicator definitions and definitions from the statistics or data authority.
+  notes: Confirm the core definitions of production, landed weight, fishing effort and operation type.
+- id: DICT-META-014
+  title: Metadata and data-quality rules (candidate)
+  title_zh: 元数据/数据质量规范（候选）
+  publisher: To be confirmed
+  year: null
+  type: data_dictionary
+  format: unknown
+  location: null
+  license: unknown
+  sensitivity: unknown
+  status: to_acquire
+  priority: P2
+  volume: unknown
+  update_freq: static
+  hash: null
+  acquisition: Obtain the metadata standard and quality rules from the data publisher.
+  notes: Used to align source registration, versions, hashes and citation fields.
+- id: STAT-YB-2018
+  type: statistical_yearbook
+  title: China Fisheries Statistical Yearbook 2018 (Excel tables)
+  title_zh: 中国渔业统计年鉴 2018（Excel 表）
+  publisher: 农业农村部渔业渔政管理局 / 中国农业出版社
+  year: 2018
+  format: xlsx
+  location: raw/STAT-YB-2018/
+  license: internal
+  sensitivity: internal
+  status: acquired
+  priority: P1
+  volume: 86 files
+  update_freq: annual
+  hash: 9b5ddea632421ba0250e7a0c7231e4b5cd5e15c3609d153abd5268a1d609d4a9
+  acquisition: Owner-provided official/authorized Excel edition; publisher/ISBN, procurement and official internal export confirmed by the owner; local use only.
+  notes: Data year 2017; 86 Excel files. Public metadata only; no values. Edition manifest under the run root.
+- id: STAT-YB-2019
+  type: statistical_yearbook
+  title: China Fisheries Statistical Yearbook 2019 (Excel tables)
+  title_zh: 中国渔业统计年鉴 2019（Excel 表）
+  publisher: 农业农村部渔业渔政管理局 / 中国农业出版社
+  year: 2019
+  format: xls
+  location: raw/STAT-YB-2019/
+  license: internal
+  sensitivity: internal
+  status: acquired
+  priority: P1
+  volume: 137 files
+  update_freq: annual
+  hash: 025f4a43fa98448f5de27309450b4e510e1cd10d9fba1c5b8d51330e886056f5
+  acquisition: Owner-provided official/authorized Excel edition; publisher/ISBN, procurement and official internal export confirmed by the owner; local use only.
+  notes: Data year 2018; 137 Excel files. Public metadata only; no values. Edition manifest under the run root.
+- id: STAT-YB-2020
+  type: statistical_yearbook
+  title: China Fisheries Statistical Yearbook 2020 (Excel tables)
+  title_zh: 中国渔业统计年鉴 2020（Excel 表）
+  publisher: 农业农村部渔业渔政管理局 / 中国农业出版社
+  year: 2020
+  format: xls
+  location: raw/STAT-YB-2020/
+  license: internal
+  sensitivity: internal
+  status: acquired
+  priority: P1
+  volume: 140 files
+  update_freq: annual
+  hash: 71d5033b79565f2d580c5c3417713644d40677d51a0b177df07f4a267ad0abbb
+  acquisition: Owner-provided official/authorized Excel edition; publisher/ISBN, procurement and official internal export confirmed by the owner; local use only.
+  notes: Data year 2019; 140 Excel files. Public metadata only; no values. Edition manifest under the run root.
+- id: STAT-YB-2021
+  type: statistical_yearbook
+  title: China Fisheries Statistical Yearbook 2021 (Excel tables)
+  title_zh: 中国渔业统计年鉴 2021（Excel 表）
+  publisher: 农业农村部渔业渔政管理局 / 中国农业出版社
+  year: 2021
+  format: xlsx
+  location: raw/STAT-YB-2021/
+  license: internal
+  sensitivity: internal
+  status: acquired
+  priority: P1
+  volume: 84 files
+  update_freq: annual
+  hash: edd634e9c62c759ed782c3ba2efc40e69bfdaa95bf99f6c70e805a6ef9248a4e
+  acquisition: Owner-provided official/authorized Excel edition; publisher/ISBN, procurement and official internal export confirmed by the owner; local use only.
+  notes: Data year 2020; 84 Excel files. Public metadata only; no values. Edition manifest under the run root.
+- id: STAT-YB-2022
+  type: statistical_yearbook
+  title: China Fisheries Statistical Yearbook 2022 (Excel tables)
+  title_zh: 中国渔业统计年鉴 2022（Excel 表）
+  publisher: 农业农村部渔业渔政管理局 / 中国农业出版社
+  year: 2022
+  format: xlsx
+  location: raw/STAT-YB-2022/
+  license: internal
+  sensitivity: internal
+  status: acquired
+  priority: P1
+  volume: 85 files
+  update_freq: annual
+  hash: 82b9b8bd3768d5d6c0963b0b2c3ceb5d6c671027d12cddfcd02b0f98645eb19e
+  acquisition: Owner-provided official/authorized Excel edition; publisher/ISBN, procurement and official internal export confirmed by the owner; local use only.
+  notes: Data year 2021; 85 Excel files. Public metadata only; no values. Edition manifest under the run root.
+- id: STAT-YB-2023
+  type: statistical_yearbook
+  title: China Fisheries Statistical Yearbook 2023 (Excel tables)
+  title_zh: 中国渔业统计年鉴 2023（Excel 表）
+  publisher: 农业农村部渔业渔政管理局 / 中国农业出版社
+  year: 2023
+  format: xlsx
+  location: raw/STAT-YB-2023/
+  license: internal
+  sensitivity: internal
+  status: acquired
+  priority: P1
+  volume: 84 files
+  update_freq: annual
+  hash: e8cb6104ad587948c6390dc979a6101dcaf49f7b98086a88a6106d8cc85210d1
+  acquisition: Owner-provided official/authorized Excel edition; publisher/ISBN, procurement and official internal export confirmed by the owner; local use only.
+  notes: Data year 2022; 84 Excel files. Public metadata only; no values. Edition manifest under the run root.
+- id: STAT-YB-2024
+  type: statistical_yearbook
+  title: China Fisheries Statistical Yearbook 2024 (Excel tables)
+  title_zh: 中国渔业统计年鉴 2024（Excel 表）
+  publisher: 农业农村部渔业渔政管理局 / 中国农业出版社
+  year: 2024
+  format: xls
+  location: raw/STAT-YB-2024/
+  license: internal
+  sensitivity: internal
+  status: acquired
+  priority: P1
+  volume: 140 files
+  update_freq: annual
+  hash: dc4c747565a3d5190f51133bc238d56ea999383f417b5d5b5eba04ef5fe64de9
+  acquisition: Owner-provided official/authorized Excel edition; publisher/ISBN, procurement and official internal export confirmed by the owner; local use only.
+  notes: Data year 2023; 140 Excel files. Public metadata only; no values. Edition manifest under the run root. The 2024 files use Excel default encryption; decrypted working copies are under incoming/working/STAT-YB-2024, originals unchanged.
+- id: STAT-YB-2025
+  type: statistical_yearbook
+  title: China Fisheries Statistical Yearbook 2025 (Excel tables)
+  title_zh: 中国渔业统计年鉴 2025（Excel 表）
+  publisher: 农业农村部渔业渔政管理局 / 中国农业出版社
+  year: 2025
+  format: xlsx
+  location: raw/STAT-YB-2025/
+  license: internal
+  sensitivity: internal
+  status: acquired
+  priority: P1
+  volume: 82 files
+  update_freq: annual
+  hash: 8768019d672c0197df01617c119c64a114ccd652026dd999e4c99ee696847c87
+  acquisition: Owner-provided official/authorized Excel edition; publisher/ISBN, procurement and official internal export confirmed by the owner; local use only.
+  notes: Data year 2024; 82 Excel files. Public metadata only; no values. Edition manifest under the run root.
 gaps:
-  - "Three P1 policy documents are acquired; twelve candidates remain to_acquire."
-  - "Statistical yearbooks, logbook specifications and indicator definitions are still missing."
-  - "Business experts have not yet confirmed the definitions or evaluation questions."
-  - "The acquired HTML pages need robust main-content extraction before chunking."
-
+- Eight yearbook editions are registered as acquired internal sources; ten candidates remain to_acquire.
+- The yearbook coverage matrix has no values in the public repository; all values stay local.
+- Infrastructure tables are missing for data years 2018 and 2019; the vessel-length proxy is missing for data year 2024.
+- Operation/logbook/gear standards and the official Fisheries Law standard text are still pending.
+- The core indicator CSV and the sufficiency review are the next data-preparation steps.
 next_steps:
-  - "Parse and index the three acquired documents; record page or section anchors and a manifest."
-  - "Acquire statistics and logbook sources next, then confirm the evaluation questions."
-  - "Add remaining candidates by priority; never ingest a source with an unknown licence or sensitivity."
+- Build the local long-table core indicator CSV and the coverage/sufficiency report.
+- Replace the Fisheries Law reprint with the official standard text.
+- Search official national/provincial candidates for operations, logbook and gear sources; present before registration.
+- Do not plan the pipeline until the core matrix is accepted as sufficient.
