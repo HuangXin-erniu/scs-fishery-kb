@@ -32,6 +32,14 @@ long_table:
       type: string
       nullable: true
       description: "Vessel operation type."
+    - name: power_band
+      type: string
+      nullable: true
+      description: "Vessel engine-power band."
+    - name: length_band
+      type: string
+      nullable: true
+      description: "Vessel length band; the length table is a marine production-vessel proxy."
     - name: species
       type: string
       nullable: true
@@ -73,8 +81,8 @@ long_table:
 
 dimensions:
   region:
-    values: [Guangdong, Guangxi, Hainan]
-    names_zh: [广东, 广西, 海南]
+    values: [China, Guangdong, Guangxi, Hainan]
+    names_zh: [全国, 广东, 广西, 海南]
   sea_area:
     values: [South China Sea]
     names_zh: [南海]
@@ -84,11 +92,18 @@ dimensions:
   operation_type:
     values: [trawl, purse_seine, gillnet, stow_net, hook, other]
     names_zh: [拖网, 围网, 刺网, 张网, 钓业, 其他]
+  power_band:
+    values: [under_44_1_kw, 44_1_to_441_kw, at_least_441_kw]
+    names_zh: [44.1千瓦以下, 44.1(含)～441千瓦, 441千瓦(含)以上]
+  length_band:
+    values: [at_least_24m, 12_to_24m, under_12m]
+    names_zh: [24米(含)以上, 12(含)～24米, 12米以下]
+    notes: "Derived from the marine production-vessel length table; not capture-only."
   basis:
     values: [published, published_south_sea, three_province_subtotal, difference]
     descriptions:
       published: "A value printed in the source table."
-      published_south_sea: "The yearbook's published South China Sea column; may include Fujian in some data years."
+      published_south_sea: "The yearbook's published South China Sea column; includes Fujian in data years 2017-2020 and excludes it from 2021 onward."
       three_province_subtotal: "Sum of Guangdong, Guangxi and Hainan rows."
       difference: "published_south_sea minus three_province_subtotal."
 

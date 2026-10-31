@@ -104,6 +104,8 @@ def test_statistics_schema() -> None:
         "sea_area",
         "gear",
         "operation_type",
+        "power_band",
+        "length_band",
         "species",
         "indicator",
         "value",
