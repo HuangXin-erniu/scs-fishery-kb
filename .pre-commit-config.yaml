@@ -5,11 +5,22 @@ repos:
       - id: ruff
       - id: ruff-format
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.6.0
+    rev: v6.0.0
     hooks:
       - id: trailing-whitespace
       - id: end-of-file-fixer
       - id: check-yaml
       - id: check-json
+      - id: check-toml
       - id: check-merge-conflict
+      - id: check-added-large-files
+        args: ["--maxkb=256"]
       - id: detect-private-key
+  - repo: local
+    hooks:
+      - id: public-tree
+        name: public tree check
+        entry: python scripts/check_public_tree.py
+        language: python
+        additional_dependencies: ["PyYAML>=6.0"]
+        pass_filenames: false

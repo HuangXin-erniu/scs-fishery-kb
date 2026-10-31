@@ -61,6 +61,17 @@ def test_config_schema_version_key() -> None:
         assert "version" not in data
 
 
+def test_data_root_is_external() -> None:
+    data = load_yaml("configs/corpus.yaml")
+    assert data["data_root"] is None
+    assert data["data_root_env"] == "SCS_FKB_DATA_ROOT"
+
+
+def test_no_local_data_directories() -> None:
+    for name in ("data", "runs"):
+        assert not (ROOT / name).exists(), f"{name}/ must live outside the repository"
+
+
 def test_no_git_tags() -> None:
     result = subprocess.run(
         ["git", "-C", str(ROOT), "tag", "--list"],

@@ -11,8 +11,8 @@ add or a misconfigured tool can still publish them.
 
 ## Decision
 
-- The local data root and run root live outside the repository, under a sibling
-  directory named `scs-fishery-kb-local/`.
+- The local data root and run root live outside the repository, in a sibling
+  directory that is not part of the public tree.
 - `SCS_FKB_DATA_ROOT` and `SCS_FKB_RUN_ROOT` configure the paths; no absolute path
   is committed.
 - The repository contains no `data/` or `runs/` directory.

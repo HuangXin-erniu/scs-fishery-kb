@@ -24,14 +24,10 @@ pip install -r requirements-dev.txt
 Run the same checks as CI before opening a pull request:
 
 ```sh
-make lint
-make test
-make validate
+make check
 ```
 
-- `make lint` runs `ruff check` and `ruff format --check`.
-- `make test` runs `pytest`.
-- `make validate` runs `scripts/check_public_tree.py` (required files, YAML, links, absolute paths, data/run leakage and secret patterns).
+`make check` runs `ruff check`, `ruff format --check`, `pytest` and `scripts/check_public_tree.py` (required files, YAML, links, absolute paths, binary/large files, data/run leakage, tags and secret patterns).
 
 ## Versioning
 
@@ -41,7 +37,7 @@ Release notes. `main` is the supported line; changes are recorded by date in
 
 ## Data and privacy
 
-- Never commit `data/` payloads, `runs/`, `.env`, databases or credentials.
+- Never commit data payloads, run artifacts, `.env`, databases or credentials; local data and run roots live outside the repository.
 - Register every proposed source in `configs/corpus.yaml` with title, publisher, year,
   format, licence, sensitivity, status and acquisition notes.
 - Sources with `license: unknown` or `sensitivity: unknown` stay on hold.
@@ -54,7 +50,7 @@ Release notes. `main` is the supported line; changes are recorded by date in
 - Keep changes focused; do not mix unrelated refactors.
 - Add or update tests for configuration, validation or retrieval behaviour.
 - Update documentation when scope, fields or workflows change.
-- Confirm that `make lint`, `make test` and `make validate` pass.
+- Confirm that `make check` passes.
 - Describe what changed, why, and what evidence supports it.
 
 ## Commit messages

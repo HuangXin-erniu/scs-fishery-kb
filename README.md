@@ -92,8 +92,8 @@ make check
 
 ## Data and artifacts
 
-- Data and run artifacts are never committed.
-- `data/` and `runs/` are local-only and excluded from the public tree.
+- Data and run artifacts live outside the repository and are never committed.
+- `SCS_FKB_DATA_ROOT` and `SCS_FKB_RUN_ROOT` point to the local data and run roots; see `.env.example`.
 - Licences and sensitivity are recorded per source in `configs/corpus.yaml`.
 - Sources with `license: unknown` or `sensitivity: unknown` are held and must not be ingested.
 - `restricted` sources must stay local and must never be sent to an external model API.

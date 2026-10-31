@@ -100,7 +100,7 @@ SCS-FKB 的做法是把**知识层**当作受治理的语料：每个来源都�
 - `restricted` 来源只留本地，绝不发送到外部模型 API。
 - 船位数据仅限数据字典与脱敏样本说明；全量轨迹不在范围内。
 - 个人或可识别渔船信息聚合或匿名化。
-- `data/` 与 `runs/` 只在本机使用并 gitignore。
+- 本地数据根与运行产物根放在仓库外；由 `SCS_FKB_DATA_ROOT` 与 `SCS_FKB_RUN_ROOT` 配置。
 - 详见 [data-policy.md](docs/data-policy.md)。
 
 ## 9. 接口契约

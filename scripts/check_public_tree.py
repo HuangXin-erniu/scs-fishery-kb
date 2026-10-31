@@ -44,7 +44,6 @@ REQUIRED = [
     ".github/PULL_REQUEST_TEMPLATE.md",
     "configs/corpus.yaml",
     "configs/schema.yaml",
-    "data/README.md",
     "docs/index.md",
     "docs/architecture.md",
     "docs/plan.md",
@@ -101,6 +100,8 @@ SKIP_PARTS = {
 ABSOLUTE_PATTERNS = [
     "/" + "Users" + "/",
     "/" + "home" + "/",
+    "C:" + "\\" + "Users" + "\\",
+    "/" + "Volumes" + "/",
 ]
 SECRET_PATTERNS = [
     r"sk-[A-Za-z0-9]{20,}",
@@ -137,15 +138,50 @@ def check_required(errors: list[str]) -> None:
             errors.append(f"missing required file: {name}")
 
 
+CACHE_PARTS = {".pytest_cache", ".ruff_cache", "__pycache__", ".venv", "venv"}
+BINARY_SUFFIXES = {
+    ".pdf",
+    ".doc",
+    ".docx",
+    ".xls",
+    ".xlsx",
+    ".ppt",
+    ".pptx",
+    ".zip",
+    ".7z",
+    ".tar",
+    ".gz",
+    ".bz2",
+    ".xz",
+    ".png",
+    ".jpg",
+    ".jpeg",
+    ".gif",
+    ".webp",
+    ".ico",
+}
+MAX_TRACKED_BYTES = 256 * 1024
+
+
 def check_tracked(files: list[Path], errors: list[str]) -> None:
     for path in files:
         name = path.as_posix()
-        if name.startswith("runs/"):
-            errors.append(f"tracked run artifact: {name}")
-        if name == ".env" or name.endswith((".db", ".db-wal", ".db-shm", ".sqlite", ".sqlite3")):
-            errors.append(f"tracked secret or database: {name}")
-        if name.startswith("data/") and name != "data/README.md":
-            errors.append(f"tracked data payload: {name}")
+        if name.startswith(("data/", "runs/")):
+            errors.append(f"tracked data or run artifact: {name}")
+        if name == ".env" or (name.startswith(".env.") and name != ".env.example"):
+            errors.append(f"tracked secret file: {name}")
+        if name.endswith((".db", ".db-wal", ".db-shm", ".sqlite", ".sqlite3")):
+            errors.append(f"tracked database: {name}")
+        if any(part in CACHE_PARTS for part in path.parts):
+            errors.append(f"tracked cache or environment: {name}")
+        if path.suffix.lower() in BINARY_SUFFIXES:
+            errors.append(f"tracked binary file: {name}")
+        try:
+            size = (ROOT / path).stat().st_size
+        except OSError:
+            continue
+        if size > MAX_TRACKED_BYTES:
+            errors.append(f"tracked file exceeds 256 KiB: {name}")
 
 
 def check_content(files: list[Path], errors: list[str]) -> None:

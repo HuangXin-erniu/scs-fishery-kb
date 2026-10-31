@@ -59,7 +59,7 @@ src/ask.py        evidence-only answer, citation validation, abstention
 src/eval.py       retrieval/citation/answer/abstention metrics and reports
 src/serve.py      CLI and HTTP query surface
 configs/          corpus register, data schema, future interface contract
-data/             raw, processed and index data (local, gitignored)
+local data root   raw, processed and index data (outside the repository)
 eval/             reviewed question set (non-sensitive items only)
 tests/            configuration, public-tree and unit tests
 ```
@@ -69,11 +69,11 @@ Each module exposes a small callable surface rather than a framework. Shared cod
 ## 5. Data flow
 
 ```text
-data/raw
+<data_root>/raw
   → source register (licence / sensitivity / version / hash)
   → parsing and OCR
   → structure-aware chunking and table/indicator extraction
-  → data/processed (documents, chunks, metadata)
+  → <data_root>/processed (documents, chunks, metadata)
   → local embeddings + BM25 index
   → query rewriting
   → hybrid retrieval
@@ -116,11 +116,11 @@ Identifiers are stable and derived from the source/document identity; chunks kee
 
 ## 7. Storage and runtime
 
-- **Documents and chunks:** local JSONL files under `data/processed/`.
-- **Vector index:** embedded vector store under `data/index/`.
-- **Keyword index:** local BM25 index under `data/index/`.
+- **Documents and chunks:** local JSONL files under `$SCS_FKB_DATA_ROOT/processed/`.
+- **Vector index:** embedded vector store under `$SCS_FKB_DATA_ROOT/index/`.
+- **Keyword index:** local BM25 index under `$SCS_FKB_DATA_ROOT/index/`.
 - **Manifest:** source and index versions, hashes and counts.
-- **Runs:** commands, model identifiers, metrics and evidence hashes under `runs/`.
+- **Runs:** commands, model identifiers, metrics and evidence hashes under `$SCS_FKB_RUN_ROOT/`.
 - **Runtime:** Python 3.11+, CPU-only local embedding, hosted model endpoint.
 - **No database server:** local files and embedded indexes are sufficient for the prototype.
 

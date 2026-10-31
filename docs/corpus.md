@@ -99,8 +99,8 @@ For P2, confirm copyright, internal-report status or sample restrictions before 
 
 ## 8. Data and artifact boundary
 
-- Source files, processed chunks and indexes belong in the local `data/` directory, which is gitignored except for `data/README.md`.
-- Run artifacts belong in the local `runs/` directory, which is gitignored entirely.
+- Source files, processed chunks and indexes belong in the local data root (`SCS_FKB_DATA_ROOT`), outside the repository.
+- Run artifacts belong in the local run root (`SCS_FKB_RUN_ROOT`), outside the repository.
 - The public repository contains no data payloads, indexes, run outputs or state databases.
 - Details: [data-policy.md](data-policy.md).
 

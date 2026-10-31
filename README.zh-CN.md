@@ -87,8 +87,8 @@ make check
 
 ## 数据与产物
 
-- 数据与运行产物从不提交。
-- `data/` 与 `runs/` 只在本机使用，不进入公开树。
+- 数据与运行产物放在仓库外，从不提交。
+- `SCS_FKB_DATA_ROOT` 与 `SCS_FKB_RUN_ROOT` 指向本地数据根与运行产物根；见 `.env.example`。
 - 每个来源的许可与敏感级记录在 `configs/corpus.yaml`。
 - `license: unknown` 或 `sensitivity: unknown` 的来源一律 hold，不得入库。
 - `restricted` 来源只能本地处理，不得发送到外部模型 API。

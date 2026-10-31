@@ -15,14 +15,14 @@ The public repository contains:
 
 ## 2. What stays local
 
-- `data/raw/`: original documents and tables.
-- `data/processed/`: parsed chunks and metadata.
-- `data/index/`: local vector and keyword indexes.
-- `runs/`: local run artifacts.
+- `$SCS_FKB_DATA_ROOT/raw/`: original documents and tables.
+- `$SCS_FKB_DATA_ROOT/processed/`: parsed chunks and metadata.
+- `$SCS_FKB_DATA_ROOT/index/`: local vector and keyword indexes.
+- `$SCS_FKB_RUN_ROOT/`: local run artifacts.
 - `.env`: local credentials.
 - The source owner's original files remain under the owner's terms.
 
-Only `data/README.md` is tracked. Every other file under `data/` and the entire `runs/` directory are gitignored.
+The data root and run root are outside the repository and are never tracked. `.env` is gitignored. The repository contains no `data/` or `runs/` directory.
 
 ## 3. Source registration
 
@@ -63,7 +63,7 @@ A source with `license: unknown` or `sensitivity: unknown` is held. It must not 
 
 ## 7. Run artifacts and state
 
-- Run outputs, indexes, logs and state databases stay local.
+- Run outputs, indexes, logs and state databases stay local, outside the repository.
 - The public repository must not contain `.db`, `.db-wal`, `.db-shm`, `.sqlite`, `.env` or run logs.
 - State backups are kept outside the public repository.
 

@@ -2,6 +2,14 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-10-31 — Public repository normalization
+
+- Adopted a no-version release policy: no tags, no GitHub Releases and no semantic versions.
+- Added bilingual entry points, a Chinese project scope and Chinese summaries for key documents.
+- Moved community files into `.github/` and added governance, support, ADR, glossary and style-guide documents.
+- Moved local data and run roots outside the repository; the public tree contains no data or run directories.
+- Hardened the public-tree check and CI, and enabled repository security settings.
+
 ## 2026-10-30 — Framework and project plan
 
 - Added the overall architecture: layers, components, data flow, data contracts, runtime and quality attributes.

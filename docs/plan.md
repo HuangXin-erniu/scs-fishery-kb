@@ -94,6 +94,7 @@ Dates are not commitments. Milestone exit conditions and quality gates take prec
 3. **Citation gate:** every factual claim has a citation that resolves to a retrieved chunk.
 4. **Evaluation gate:** reviewed questions, baseline comparison, error analysis and human review.
 5. **CI gate:** `ruff check`, `ruff format --check`, `pytest` and the public-tree check pass.
+6. **No-tag gate:** the repository has no Git tags; CI and the public-tree check fail on any tag.
 
 ## 9. Risks
 

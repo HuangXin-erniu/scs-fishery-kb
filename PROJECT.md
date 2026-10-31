@@ -98,7 +98,7 @@ Milestones describe work stages, not releases. Details are in [plan.md](docs/pla
 - `restricted` sources stay local and are never sent to an external model API.
 - Vessel-tracking data is limited to data dictionaries and desensitised sample descriptions; full tracks are out of scope.
 - Personal or vessel-identifying information is aggregated or anonymised.
-- `data/` and `runs/` are local-only and gitignored.
+- Local data and run roots live outside the repository; `SCS_FKB_DATA_ROOT` and `SCS_FKB_RUN_ROOT` configure them.
 - Details: [data-policy.md](docs/data-policy.md).
 
 ## 9. Interface contract
