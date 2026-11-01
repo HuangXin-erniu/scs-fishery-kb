@@ -1,0 +1,12 @@
+data_year,edition,type,region,sea_area,gear,operation_type,power_band,length_band,species,indicator,value,unit,basis,table_id,table_name,source_file,sheet,row,source_sha256
+2019,2020,statistical_yearbook,,South China Sea,,,,,,capture_production_sea_area,1000,ton,published_south_sea,,各地区海洋捕捞产量(按海域分),raw/SAMPLE.xlsx,0216,5,fixture
+2019,2020,statistical_yearbook,,South China Sea,,,,,,capture_production_sea_area,800,ton,three_province_subtotal,,各地区海洋捕捞产量(按海域分),raw/SAMPLE.xlsx,0216,6,fixture
+2019,2020,statistical_yearbook,,South China Sea,,,,,,capture_production_sea_area,200,ton,difference,,各地区海洋捕捞产量(按海域分),raw/SAMPLE.xlsx,0216,7,fixture
+2019,2020,statistical_yearbook,Guangdong,South China Sea,,,,,,capture_production_sea_area,500,ton,published,,各地区海洋捕捞产量(按海域分),raw/SAMPLE.xlsx,0216,8,fixture
+2019,2020,statistical_yearbook,Guangxi,South China Sea,,,,,,capture_production_sea_area,200,ton,published,,各地区海洋捕捞产量(按海域分),raw/SAMPLE.xlsx,0216,9,fixture
+2019,2020,statistical_yearbook,Hainan,South China Sea,,,,,,capture_production_sea_area,100,ton,published,,各地区海洋捕捞产量(按海域分),raw/SAMPLE.xlsx,0216,10,fixture
+2019,2020,statistical_yearbook,Guangdong,,trawl,,,,,,capture_production_gear,150,ton,published,,各地区海洋捕捞产量(按渔具分),raw/SAMPLE.xlsx,0218,5,fixture
+2019,2020,statistical_yearbook,Guangdong,,,trawl,,,,vessel_count,12,vessel,published,,各地区海洋捕捞机动渔船年末拥有量(按作业类型分)(一),raw/SAMPLE.xlsx,0220,5,fixture
+2019,2020,statistical_yearbook,Guangxi,,,trawl,,,,vessel_count,7,vessel,published,,各地区海洋捕捞机动渔船年末拥有量(按作业类型分)(一),raw/SAMPLE.xlsx,0220,6,fixture
+2018,2019,statistical_yearbook,,South China Sea,,,,,,capture_production_sea_area,900,ton,published_south_sea,,2-16 各地区海洋捕捞产量(按海域分),raw/SAMPLE.xlsx,0216,5,fixture
+2025,2026,statistical_yearbook,,South China Sea,,,,,,capture_production_sea_area,1100,ton,published_south_sea,,2-3 各地区海洋捕捞产量（按海域分）,raw/SCAN.pdf,p44,南海区,fixture

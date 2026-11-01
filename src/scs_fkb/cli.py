@@ -28,6 +28,8 @@ from .reference import ReferenceError
 from .reference import lookup as reference_lookup
 from .reference import lookup_term as reference_lookup_term
 from .retrieve import Retriever
+from .stats import StatsError
+from .stats import query as stats_query
 from .store import StoreError, load_chunks
 
 
@@ -193,6 +195,21 @@ def _embed(args: argparse.Namespace) -> int:
     return 0
 
 
+def _stats(args: argparse.Namespace) -> int:
+    hits = stats_query(args.query, top_k=args.top_k, root=_root(args.data_root))
+    if args.json:
+        _print_json({"query": args.query, "hits": [hit.to_dict() for hit in hits]})
+        return 0
+    if not hits:
+        print("no statistics row matched")
+        return 0
+    for hit in hits:
+        print(f"{hit.text} {hit.citation}")
+        for note in hit.notes:
+            print(f"  note: {note}")
+    return 0
+
+
 def _eval(args: argparse.Namespace) -> int:
     report = run_comparison(
         _root(args.data_root),
@@ -261,6 +278,13 @@ def build_parser() -> argparse.ArgumentParser:
     define_parser.add_argument("--json", action="store_true")
     define_parser.set_defaults(func=_define)
 
+    stats_parser = subparsers.add_parser("stats", help="query the local yearbook indicator table")
+    stats_parser.add_argument("query")
+    stats_parser.add_argument("--top-k", type=int, default=8)
+    stats_parser.add_argument("--data-root", default=None)
+    stats_parser.add_argument("--json", action="store_true")
+    stats_parser.set_defaults(func=_stats)
+
     embed_parser = subparsers.add_parser("embed", help="build the local dense index")
     embed_parser.add_argument("--model", default=DEFAULT_MODEL)
     embed_parser.add_argument("--data-root", default=None)
@@ -293,6 +317,7 @@ def main(argv: list[str] | None = None) -> int:
         UnsupportedFormatError,
         ReferenceError,
         DenseError,
+        StatsError,
         StoreError,
         ValueError,
         FileNotFoundError,

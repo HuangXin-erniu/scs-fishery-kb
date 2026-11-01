@@ -156,3 +156,42 @@ units:
 publication:
   values: local_only
   public_metadata: "edition, data year, file counts, SHA-256 and coverage counts"
+
+indicator_names_zh:
+  capture_production: 海洋捕捞产量
+  capture_production_sea_area: 海洋捕捞产量（按海域分）
+  capture_production_gear: 海洋捕捞产量（按渔具分）
+  capture_production_species: 海洋捕捞产量（按品种分）
+  vessel_count: 海洋捕捞机动渔船数量
+  vessel_gross_tonnage: 海洋捕捞机动渔船总吨位
+  vessel_kilowatts: 海洋捕捞机动渔船功率
+  marine_fishery_population: 海洋渔业人口
+  traditional_fishers: 传统渔民
+  marine_fishery_employment: 海洋渔业从业人员
+  capture_employment: 海洋捕捞从业人员
+  marine_capture_output_value: 海洋捕捞产值
+  coastal_central_fishing_port: 沿海中心渔港
+  coastal_class1_fishing_port: 沿海一级渔港
+  coastal_class2_fishing_port: 沿海二级渔港
+  coastal_class3_fishing_port: 沿海三级渔港
+  coastal_unrated_fishing_port: 沿海未评级渔港
+
+query:
+  years: [2017, 2025]
+  aliases:
+    region: {全国: China, 中国: China, 广东: Guangdong, 广东省: Guangdong, 广西: Guangxi, 海南: Hainan, 福建: Fujian}
+    sea_area: {南海区: South China Sea, 南海: South China Sea}
+    gear: {拖网: trawl, 围网: purse_seine, 刺网: gillnet, 张网: stow_net, 钓具: hook, 钓业: hook, 其他: other}
+    indicator_cues:
+      产量: capture production
+      船数: vessel count
+      总吨: vessel tonnage
+      千瓦: vessel power
+      渔民: fishery population
+      从业人员: fishery employment
+      产值: capture output value
+      渔港: fishing ports
+  gaps:
+    - 产量没有按作业类型分的维度：海域产量表与按渔具分产量表分列，二者不可交叉。
+    - 船数、总吨与功率表没有海域维度，只有省份与作业类型。
+    - 数据年 2025 来自扫描件抽样，行结构与其余年份不同，输出带抽样标记。
