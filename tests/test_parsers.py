@@ -1,11 +1,15 @@
 from __future__ import annotations
 
+import os
+import shutil
 import zipfile
 from pathlib import Path
 
 import pytest
 
+from scs_fkb.parsers import doc as doc_parser
 from scs_fkb.parsers import parse_source
+from scs_fkb.parsers import pdf as pdf_parser
 from scs_fkb.parsers.base import ParseError, UnsupportedFormatError
 
 OFD_NS = "http://www.ofdspec.org/2016"
@@ -104,3 +108,83 @@ def test_html_keeps_articles(tmp_path: Path) -> None:
     parsed = parse_source(path, "html")
     assert parsed.pages[0].number == 0
     assert parsed.pages[0].lines[0].startswith("第一条")
+
+
+class _Result:
+    def __init__(self, returncode: int = 0, stdout: str = "", stderr: str = "") -> None:
+        self.returncode = returncode
+        self.stdout = stdout
+        self.stderr = stderr
+
+
+def _patch_tool(monkeypatch, module, result: _Result) -> None:
+    monkeypatch.setattr(module.shutil, "which", lambda name: f"/usr/bin/{name}")
+    monkeypatch.setattr(module.subprocess, "run", lambda *args, **kwargs: result)
+
+
+def test_pdf_splits_pages_on_form_feed(monkeypatch, tmp_path: Path) -> None:
+    path = tmp_path / "doc.pdf"
+    path.write_bytes(b"%PDF")
+    _patch_tool(monkeypatch, pdf_parser, _Result(stdout="第一页\n第二行\f\f第三页\n"))
+    parsed = pdf_parser.parse(path)
+    assert parsed.parser == "pdf.v1"
+    assert [page.number for page in parsed.pages] == [1, 3]
+    assert parsed.pages[0].lines == ["第一页", "第二行"]
+
+
+def test_pdf_requires_tool(monkeypatch, tmp_path: Path) -> None:
+    monkeypatch.setattr(pdf_parser.shutil, "which", lambda name: None)
+    with pytest.raises(ParseError, match="tool.missing"):
+        pdf_parser.parse(tmp_path / "doc.pdf")
+
+
+def test_pdf_failure_is_reported(monkeypatch, tmp_path: Path) -> None:
+    _patch_tool(
+        monkeypatch,
+        pdf_parser,
+        _Result(returncode=1, stderr="Syntax Error: Couldn't read xref table\n"),
+    )
+    with pytest.raises(ParseError, match="source.invalid_pdf"):
+        pdf_parser.parse(tmp_path / "doc.pdf")
+
+
+def test_pdf_empty_output_is_rejected(monkeypatch, tmp_path: Path) -> None:
+    _patch_tool(monkeypatch, pdf_parser, _Result(stdout="\f\f"))
+    with pytest.raises(ParseError, match="text.empty"):
+        pdf_parser.parse(tmp_path / "doc.pdf")
+
+
+def test_doc_reads_text(monkeypatch, tmp_path: Path) -> None:
+    path = tmp_path / "doc.doc"
+    path.write_bytes(b"\xd0\xcf")
+    _patch_tool(monkeypatch, doc_parser, _Result(stdout="附件1\n海洋捕捞准用渔具\n"))
+    parsed = doc_parser.parse(path)
+    assert parsed.parser == "doc.v1"
+    assert len(parsed.pages) == 1
+    assert parsed.pages[0].number == 0
+    assert parsed.pages[0].lines == ["附件1", "海洋捕捞准用渔具"]
+
+
+def test_doc_requires_tool(monkeypatch, tmp_path: Path) -> None:
+    monkeypatch.setattr(doc_parser.shutil, "which", lambda name: None)
+    with pytest.raises(ParseError, match="tool.missing"):
+        doc_parser.parse(tmp_path / "doc.doc")
+
+
+@pytest.mark.skipif(shutil.which("pdftotext") is None, reason="pdftotext is not installed")
+def test_pdf_parses_a_real_source_when_provided() -> None:
+    path = os.environ.get("SCS_FKB_TEST_PDF")
+    if not path:
+        pytest.skip("SCS_FKB_TEST_PDF is not set")
+    parsed = pdf_parser.parse(Path(path))
+    assert parsed.pages
+    assert any(page.lines for page in parsed.pages)
+
+
+@pytest.mark.skipif(shutil.which("textutil") is None, reason="textutil is not installed")
+def test_doc_parses_a_real_source_when_provided() -> None:
+    path = os.environ.get("SCS_FKB_TEST_DOC")
+    if not path:
+        pytest.skip("SCS_FKB_TEST_DOC is not set")
+    parsed = doc_parser.parse(Path(path))
+    assert parsed.pages[0].lines
