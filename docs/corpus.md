@@ -49,7 +49,7 @@ The first eight editions are owner-confirmed official/authorized Excel editions;
 | `STAT-YB-2025` | 2025 | 2024 | 82 | xlsx | `8768019d` |
 | `STAT-YB-2026` | 2026 | 2025 | 1 | pdf | `ef674e53` |
 
-The 2026 edition is a 166-page scan with no text layer: the data year 2025 is registered for provenance, but no table has been extracted, so it does not yet appear in the coverage matrix. OCR or manual entry is the prerequisite. The 2022 bundle contained a byte-identical duplicate of table 3-10; the duplicate was removed on 2026-10-31 and that edition's manifest regenerated, so its hash is the SHA-256 of the regenerated manifest. The 2024 edition is encrypted with the Excel default password; the originals are unchanged in `raw/STAT-YB-2024/`, and decrypted working copies are kept outside the public tree. The 2019, 2020 and 2024 editions use the older `.xls` layout.
+The 2026 edition is a 166-page scan with no text layer. Its contents were mapped to a table list covering seven parts and the appendices, and six tables were transcribed for the national total plus Guangdong, Guangxi and Hainan (140 non-empty cells): output, capture by sea area, capture by gear, capture vessels by operation type, fishing ports and fishery population. Values stay in the local run root. The remaining tables, including the species breakdown, are not extracted yet. OCR or manual entry is the prerequisite. The 2022 bundle contained a byte-identical duplicate of table 3-10; the duplicate was removed on 2026-10-31 and that edition's manifest regenerated, so its hash is the SHA-256 of the regenerated manifest. The 2024 edition is encrypted with the Excel default password; the originals are unchanged in `raw/STAT-YB-2024/`, and decrypted working copies are kept outside the public tree. The 2019, 2020 and 2024 editions use the older `.xls` layout.
 
 The bulletin series `STAT-BULL-025` and `STAT-BULL-028`–`STAT-BULL-032` covers data years 2020–2025 (published 2021–2026). Each bulletin reports national totals only — no provincial or South China Sea breakdown — so the series extends the record in time but does not replace the yearbook editions. Values stay local.
 
@@ -128,10 +128,11 @@ The two agree on the concept and differ in scope: the national note sets the hea
 | Yearbook files | 839 |
 | Local core CSV rows | 3,037 |
 | Public values | 0 |
+| Local 2025 sample rows | 140 |
 
 ## 8. Core coverage
 
-The coverage matrix uses the latest edition for each data year. Counts are table counts, not values.
+The coverage matrix uses the latest edition for each data year. Counts are table counts, not values. The 2025 row reflects the six-table sample, not a complete extraction.
 
 | Data year | Capture (sea/gear/species) | Vessels (type/power/length) | Population | Marine capture value | Coastal ports |
 |---|---|---|---|---|---|
@@ -143,11 +144,12 @@ The coverage matrix uses the latest edition for each data year. Counts are table
 | 2022 | 1 / 1 / 1 | 1 / 1 / 1 | 1 | 2 | 1 |
 | 2023 | 1 / 1 / 6 | 2 / 1 / 1 | 2 | 5 | 1 |
 | 2024 | 1 / 1 / 1 | 1 / 1 / **missing** | 1 | 2 | 1 |
+| 2025 (sample) | 1 / 1 / 0 | 1 / 0 / 0 | 1 | 0 | 1 |
 
 Known gaps:
 
 - Coastal-port infrastructure is missing from the yearbooks for data years 2018 and 2019: the 838-file inventory confirms that the 2019 and 2020 editions contain no infrastructure table. The 2018 national port plan (POL-PLAN-038) supplies a 2018 baseline with named central and first-class ports, and the 2025 recognition list (POL-PORT-037) adds 14 more, but the plan's port classes are not identical with the yearbook table and the 2025 list is still a proposal, so neither can be pasted into the core CSV without a mapping note.
-- Data year 2025 is registered in the 2026 edition but not yet extracted: the file is an image-only scan, so the coverage matrix ends at 2024 until OCR or manual entry is done.
+- Data year 2025 is sampled, not complete: the six transcribed tables cover output, capture by sea area and gear, capture vessels by operation type, ports and population, while the species breakdown, power and length bands, value and the remaining tables are still to be extracted from the scan.
 - The 2017 and 2021 source tables have only 沿海中心渔港 and 沿海一级渔港; the later tables add class 2, class 3 and unrated ports.
 - The vessel-length proxy is missing for data year 2024; the 2025 edition dropped the marine vessel-length table and keeps only the all-vessel and inland tables. The gap is accepted rather than filled from a non-comparable table.
 - The vessel-length table is a marine production-vessel proxy, not capture-only.
@@ -184,7 +186,8 @@ The local extraction has **3,037 rows** for 2017–2024: capture 1,665, vessels 
 2. Diff the registered People's Daily text against the npc.gov.cn page when that site is reachable again; the 2026-10-31 WAF block and the attempts are recorded in the register.
 3. The definition sources close `DICT-STAT-013`; the standards (including GB/T 5147—2026), the permit form and the permit regulation cover most of `OPS-LOG-002`, and the seven deferred candidates stay out of the current phase.
 4. Use the 2018 port plan as the port baseline and record the classification difference when extending the core CSV to ports.
-5. Do not plan or implement the retrieval pipeline until the sufficiency review is accepted.
+5. Extract the remaining 2026 tables, starting with capture by species (pages 41-43), and run a second-person spot check before the 2025 sample joins the core CSV.
+6. Do not plan or implement the retrieval pipeline until the sufficiency review is accepted.
 
 ## 13. References
 
