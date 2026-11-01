@@ -365,8 +365,8 @@ def test_pipeline_config() -> None:
     pipeline = load_yaml("configs/pipeline.yaml")
     assert pipeline["schema_version"] == 1
     documents = pipeline["documents"]
-    assert len(documents) == 3
-    assert len(set(documents)) == 3
+    assert len(documents) == 29
+    assert len(set(documents)) == 29
     assert pipeline["chunking"]["max_fallback_chars"] >= 200
 
     corpus = load_yaml("configs/corpus.yaml")
@@ -376,4 +376,4 @@ def test_pipeline_config() -> None:
         source = by_id[doc_id]
         assert source["status"] == "acquired"
         assert source["sensitivity"] == "public"
-        assert source["format"] in {"html", "docx", "ofd"}
+        assert source["format"] in {"html", "docx", "ofd", "pdf", "doc"}

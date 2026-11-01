@@ -33,6 +33,8 @@ def load_pipeline(path: Path) -> dict[str, Any]:
         raise IngestError(f"pipeline.invalid: {path} lists no documents")
     if not all(isinstance(item, str) and item for item in documents):
         raise IngestError("pipeline.invalid: document ids must be non-empty strings")
+    if len(set(documents)) != len(documents):
+        raise IngestError("pipeline.invalid: document ids must be unique")
     chunking = data.get("chunking")
     if not isinstance(chunking, dict) or not isinstance(chunking.get("max_fallback_chars"), int):
         raise IngestError("pipeline.invalid: chunking.max_fallback_chars must be an integer")
