@@ -17,6 +17,8 @@ from .config import (
     sensitivity_ceiling,
 )
 from .corpus import CorpusError
+from .dense import DenseError, DenseIndex, embeddings_dir, index_path
+from .embed import DEFAULT_MODEL, FastEmbedEncoder
 from .evaluate import evaluate, title_tokens, write_report
 from .ingest import IngestError, ingest, load_pipeline
 from .lexicon import load_lexicon
@@ -161,6 +163,35 @@ def _define(args: argparse.Namespace) -> int:
     return 0
 
 
+def _embed(args: argparse.Namespace) -> int:
+    root = _root(args.data_root)
+    chunks, manifest = load_chunks(root)
+    version = str(manifest.get("index_version"))
+    path = index_path(root, args.model, version)
+    if path.is_file() and not args.force:
+        print(f"dense index already present for {version}: {path} (use --force to rebuild)")
+        return 0
+    cache = embeddings_dir(root) / "models"
+    encoder = FastEmbedEncoder(args.model, cache_dir=str(cache))
+    index = DenseIndex.build(chunks, encoder, version)
+    info = index.save(path)
+    if args.json:
+        _print_json(
+            {
+                "model_id": info["model_id"],
+                "count": info["count"],
+                "dim": info["dim"],
+                "sha256": info["sha256"],
+            }
+        )
+    else:
+        print(
+            f"embedded {info['count']} chunks with {info['model_id']} "
+            f"({info['dim']} dims) -> {info['sha256'][:16]}"
+        )
+    return 0
+
+
 def _eval(args: argparse.Namespace) -> int:
     pipeline = load_pipeline(Path(args.pipeline))
     answer_config = pipeline.get("answer") or {}
@@ -237,6 +268,13 @@ def build_parser() -> argparse.ArgumentParser:
     define_parser.add_argument("--json", action="store_true")
     define_parser.set_defaults(func=_define)
 
+    embed_parser = subparsers.add_parser("embed", help="build the local dense index")
+    embed_parser.add_argument("--model", default=DEFAULT_MODEL)
+    embed_parser.add_argument("--data-root", default=None)
+    embed_parser.add_argument("--force", action="store_true")
+    embed_parser.add_argument("--json", action="store_true")
+    embed_parser.set_defaults(func=_embed)
+
     eval_parser = subparsers.add_parser("eval", help="evaluate retrieval, abstention and citations")
     eval_parser.add_argument("--questions", default=str(REPO_ROOT / "docs" / "questions.md"))
     eval_parser.add_argument("--anchors", default=str(DEFAULT_ANCHORS))
@@ -261,6 +299,7 @@ def main(argv: list[str] | None = None) -> int:
         ParseError,
         UnsupportedFormatError,
         ReferenceError,
+        DenseError,
         StoreError,
         ValueError,
         FileNotFoundError,
