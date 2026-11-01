@@ -1,6 +1,6 @@
 # Corpus Inventory
 
-- Status: data preparation and corpus discovery. Nine yearbook editions, six national bulletins, the China Statistical Yearbook 2026 and twenty-two legal and technical documents are acquired; four candidates remain (one to acquire, three deferred). The local core CSV has 3,177 rows and stays outside the public tree. No parsing or indexing in this phase.
+- Status: data preparation and corpus discovery. Nine yearbook editions, six national bulletins, the China Statistical Yearbook 2026 and twenty-three legal and technical documents are acquired; four candidates remain (one to acquire, three deferred). The local core CSV has 3,177 rows and stays outside the public tree. No parsing or indexing in this phase.
 - Register: [configs/corpus.yaml](../configs/corpus.yaml)
 - Indicator schema: [configs/statistics.yaml](../configs/statistics.yaml)
 - Date: 2026-10-31
@@ -13,7 +13,7 @@ It does **not** include raw environmental grids, reanalysis data, forecast raste
 
 ## 2. Method
 
-1. Define eight corpus types and register each source with title, publisher, year, type, format, location, licence, sensitivity, status, priority, volume, update frequency, hash and acquisition notes.
+1. Define nine corpus types and register each source with title, publisher, year, type, format, location, licence, sensitivity, status, priority, volume, update frequency, hash and acquisition notes.
 2. Hold every source whose licence or sensitivity is `unknown`.
 3. Acquire only from official or owner-confirmed authoritative channels; record the retrieval path, date and SHA-256.
 4. Keep source files in the local data root; the public register contains metadata, hashes and coverage counts only.
@@ -23,12 +23,12 @@ It does **not** include raw environmental grids, reanalysis data, forecast raste
 
 | Type | Name (zh) | Sources | Description |
 |---|---|---:|---|
-| `statistical_yearbook` | 统计年鉴 | 15 | Official annual statistics and indicator tables |
+| `statistical_yearbook` | 统计年鉴 | 16 | Official annual statistics and indicator tables |
 | `operations` | 作业知识 | 2 | Fishing methods, gear, vessel operations, logbooks and permit conditions |
 | `law` | 法律 | 1 | National law adopted by the legislature |
 | `regulation` | 行政法规/规章/地方性法规 | 10 | Administrative regulations, departmental rules and local regulations |
-| `notice` | 通告/公告 | 2 | Official notices, announcements and seasonal measures |
-| `standard` | 标准/规范 | 3 | National, industry or provincial standards and operational norms |
+| `notice` | 通告/公告 | 4 | Official notices, announcements and seasonal measures |
+| `standard` | 标准/规范 | 4 | National, industry or provincial standards and operational norms |
 | `fishery_product` | 渔情/海况产品说明 | 0 | Product descriptions, fishery bulletins and historical records |
 | `data_dictionary` | 数据字典 | 5 | Field definitions, indicator definitions, metadata and quality rules |
 | `plan` | 规划/方案 | 1 | Official plans, programmes and construction layouts |
@@ -73,9 +73,10 @@ The bulletin series `STAT-BULL-025` and `STAT-BULL-028`–`STAT-BULL-032` covers
 | `POL-FJ-026` | `regulation` | fujian | Fujian fishing-port and fishing-vessel regulations, 2010 amendment | acquired |
 | `POL-PORT-037` | `notice` | national | Central and first-class fishing-port recognition list | acquired; 12 central and 2 first-class ports, proposed 2025-01-15 |
 | `POL-GEAR-016` | `notice` | national | Minimum-mesh system for permitted and transitional gear, 2013 | acquired; in force 2014-06-01, annexes registered separately |
+| `POL-SPEC-041` | `notice` | national | Closed-season special-permit arrangement for 2026 | acquired; permits Sthenoteuthis oualaniensis in the South China Sea for Guangxi and Hainan |
 | `POL-PLAN-038` | `plan` | national | National coastal fishing-port construction plan, 2018–2025 | acquired |
 
-The legal corpus now covers the national law, its implementing rules, vessel inspection, the resource levy, the fishing-permit rules and the seasonal closure, plus the Guangdong, Guangxi and Fujian regulations. Each document records its publisher, revision history, article count and SHA-256. Article counts: Fisheries Law 90, implementing rules 42, vessel inspection 40, levy measures 18, permit regulation 59, closure notice 4 sections, Guangdong fishery 47, Guangdong port and vessel 44, Guangxi implementation 48, Guangxi port and vessel 37, Fujian implementation 61, Fujian port and vessel 46.
+The legal corpus now covers the national law, its implementing rules, vessel inspection, the resource levy, the fishing-permit rules, the seasonal closure and the 2026 special-permit arrangement, plus the Guangdong, Guangxi and Fujian regulations. Each document records its publisher, revision history, article count and SHA-256. Article counts: Fisheries Law 90, implementing rules 42, vessel inspection 40, levy measures 18, permit regulation 59, closure notice 4 sections, special-permit notice 3 annexes, Guangdong fishery 47, Guangdong port and vessel 44, Guangxi implementation 48, Guangxi port and vessel 37, Fujian implementation 61, Fujian port and vessel 46. The 2026 notice is registered from the ministry's OFD attachment, a 22-page XML container whose text layer extracts without OCR; it allows Sthenoteuthis oualaniensis permits in the South China Sea north of 12°N (36 Guangxi vessels and 2,500 t from 20 June to 5 August; 70 Hainan vessels and 5,000 t from 1 May to 15 August; mask net 35 mm) and adds 26 Hainan auxiliary vessels. Its operation-type permits cover only the Yellow and East China Seas.
 
 The Fisheries Law text is the owner-supplied DOCX of the official 人民日报 publication. The article openings were cross-checked against the electronic edition before the duplicate copies were removed on 2026-10-31; the registered DOCX is now the single retained text. The official ministry PDF edition of the fishing-permit regulation (29 pages) is kept beside the registered HTML as a format copy; its articles 50–53 carry the logbook obligation.
 
@@ -116,8 +117,8 @@ The four environment and fishery-product candidates were removed on owner instru
 | Metric | Value |
 |---|---:|
 | Corpus types | 9 |
-| Registered sources | 42 |
-| Acquired sources | 38 |
+| Registered sources | 43 |
+| Acquired sources | 39 |
 | Remaining candidates | 4 |
 | Yearbook editions | 9 |
 | Yearbook data years | 2017–2025 |

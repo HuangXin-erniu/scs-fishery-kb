@@ -351,6 +351,24 @@ sources:
   hash: 94fa54b1133ec4c9e87b7c29d1ce212747bef8b4762282d5fffce659a6fc2794
   acquisition: 'Owner-supplied capture of the ministry page https://yyj.moa.gov.cn/tzgg/201404/t20140402_6300664.htm (page dated 2014-04-02; notice issued 2013-11-29).'
   notes: 'Establishes the minimum-mesh system for permitted and transitional marine capture gear, in force from 2014-06-01 across the Huanghai-Bohai, East China and South China Sea areas; repeals the 2003 notice. Annexes 1, 2 and 3 are registered as POL-GEAR-033, POL-GEAR-034 and OPS-FORM-036. Mesh is measured under GB/T 6964-2010 with a flat wedge gauge. Provincial authorities may set stricter sizes and special permits for designated species.'
+- id: POL-SPEC-041
+  title: 农业农村部关于2026年伏季休渔期间专项捕捞许可和捕捞辅助船配套服务安排的通告
+  title_zh: 农业农村部关于2026年伏季休渔期间专项捕捞许可和捕捞辅助船配套服务安排的通告
+  publisher: 农业农村部
+  year: 2026
+  type: notice
+  jurisdiction: national
+  format: ofd
+  location: raw/POL-SPEC-041/china-fisheries-2026-special-permit-notice.ofd
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P1
+  volume: 1 OFD file; 22 pages; text layer plus three annex tables
+  update_freq: annual
+  hash: b383ea35974fe85acea89f95c7c8c263a7cea382aefdc10f04733efb7118c647
+  acquisition: 'Owner-supplied OFD received 2026-11-01, byte-identical to the official attachment https://www.moa.gov.cn/govpublic/YYJ/202604/P020260424354196891178.ofd linked from https://www.moa.gov.cn/govpublic/YYJ/202604/t20260424_6483594.htm (农业农村部通告〔2026〕2号, published 2026-04-21).'
+  notes: '2026 closed-season special-permit arrangement issued under the 2023 closure notice (POL-CLOS-015) and the fishing-permit regulation. Annex 1 admits Sthenoteuthis oualaniensis permits in the South China Sea for Guangxi (36 vessels, 2,500 t, 20 June to 5 August, mask net 35 mm, Beihai Nanwan port) and Hainan (70 vessels, 5,000 t, 1 May to 15 August, mask net 35 mm, Sanya Yazhou, Qionghai Tanmen and Danzhou Baimajing central ports). Annex 2 operation-type permits cover only the Yellow and East China Seas north of 26 30 N. Annex 3 gives 26 Hainan auxiliary vessels serving the squid permit, landing at the three central ports plus the Sansha West fishing quay. The OFD is an XML container whose text layer extracts without OCR.'
 - id: POL-GEAR-033
   title: 海洋捕捞准用渔具最小网目（或网囊）尺寸标准
   title_zh: 海洋捕捞准用渔具最小网目（或网囊）尺寸标准

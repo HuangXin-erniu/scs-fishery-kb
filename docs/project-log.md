@@ -2,11 +2,18 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-01 — 2026 closed-season special-permit notice registered
+
+- Registered `POL-SPEC-041` from the owner-supplied OFD, which is byte-identical to the ministry attachment `P020260424354196891178.ofd` (SHA-256 `b383ea35…`); the file has 22 pages and its text layer extracts without OCR.
+- The notice creates the 2026 South China Sea permits: Sthenoteuthis oualaniensis for Guangxi (36 vessels, 2,500 t, 20 June to 5 August, mask net 35 mm, Beihai Nanwan port) and Hainan (70 vessels, 5,000 t, 1 May to 15 August, mask net 35 mm, Sanya Yazhou, Qionghai Tanmen and Danzhou Baimajing central ports), plus 26 Hainan auxiliary vessels landing at those ports and the Sansha West quay. Its operation-type permits cover only the Yellow and East China Seas.
+- The register now holds forty-three sources: thirty-nine acquired and four candidates. The corpus type table was corrected to sixteen yearbooks, four notices and four standards, and the plan, READMEs and tests were refreshed in the same change.
+
 ## 2026-11-01 — Environment and fishery-product sources excluded; no duplicate registered
 
 - Removed the four environment and fishery-product candidates (sea surface temperature, chlorophyll/current/wind, fishing-ground bulletin, historical season record) from the register on owner instruction; the fishery_product type stays defined with zero sources.
 - Audited every remaining gap: logbook fields are partly covered by the permit regulation and the approved-operation form, port classes by the 2018 plan and the 2025 list, the definitions by the two acquired definition sources; the complete logbook field list, landed weight and effort definitions, metadata rules and the remaining 2025 tables have no public source or are extraction work, so nothing new was added and no acquired source was duplicated.
 - The register now holds forty-two sources: thirty-eight acquired and four candidates.
+
 ## 2026-11-01 — Sufficiency review accepted for the P1 scope
 
 - Reviewed the 24 draft questions against the register: 10 answerable, 6 partially answerable, 8 not answerable. All eight blocked questions point at deferred P2 candidate sources, so nothing in the P1 scope is blocked.

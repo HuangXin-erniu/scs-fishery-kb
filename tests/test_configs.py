@@ -33,7 +33,7 @@ def test_corpus_structure() -> None:
         "data_dictionary",
         "plan",
     }
-    assert len(data["sources"]) == 42
+    assert len(data["sources"]) == 43
 
     acquired = []
     candidates = []
@@ -46,7 +46,7 @@ def test_corpus_structure() -> None:
         else:
             candidates.append(source)
 
-    assert len(acquired) == 38
+    assert len(acquired) == 39
     assert len(candidates) == 4
     yearbooks = [source for source in acquired if source["id"].startswith("STAT-YB-")]
     assert len(yearbooks) == 9
@@ -81,6 +81,7 @@ def test_corpus_structure() -> None:
         "POL-PLAN-038",
         "POL-GEAR-016",
         "OPS-STD-039",
+        "POL-SPEC-041",
         "DICT-STAT-013",
         "DICT-STAT-040",
     }
@@ -91,6 +92,15 @@ def test_corpus_structure() -> None:
         assert source["location"].startswith("raw/")
         assert not source["location"].startswith("/")
         assert source["jurisdiction"] in {"national", "guangdong", "guangxi", "fujian"}
+
+    special = [source for source in acquired if source["id"] == "POL-SPEC-041"]
+    assert len(special) == 1
+    assert special[0]["type"] == "notice"
+    assert special[0]["format"] == "ofd"
+    assert special[0]["location"].endswith(".ofd")
+    assert special[0]["hash"].startswith("b383ea35")
+    assert "22 pages" in special[0]["volume"]
+    assert "Sthenoteuthis oualaniensis" in special[0]["notes"]
 
     scan = [source for source in acquired if source["id"] == "STAT-YB-2026"]
     assert len(scan) == 1
@@ -161,7 +171,7 @@ def test_corpus_structure() -> None:
         "statistical_yearbook": 16,
         "law": 1,
         "regulation": 10,
-        "notice": 3,
+        "notice": 4,
         "standard": 4,
         "operations": 2,
         "fishery_product": 0,
