@@ -2,6 +2,13 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-01 — M2 retrieval comparison and hybrid adoption
+
+- Compared four arms on the same instrument: BM25 8/11, BM25 plus lexicon 9/11, dense-only 8/11 (bge-small-zh, 512 dimensions, P95 16 ms) and hybrid 10/11 (MRR 0.45, P95 17 ms); every arm keeps abstention at 5/6, two false refusals and 100% citation resolution.
+- Adopted weighted reciprocal-rank fusion with BM25 weight 2.0, dense weight 1.0 and the single surviving lexicon group; the lexical gate stays the only abstention signal because cosine scores do not separate out-of-scope questions.
+- The dense index is local only: 703 vectors in the data root, model cached under the data root, nothing published and CI still runs without a model.
+- The two remaining misses (Q-M10, and the reference-only definitions aside) are recorded; M2 closes with a measured baseline rather than a claim.
+
 ## 2026-11-01 — Terminology bridge and reference channel
 
 - Added `configs/glossary-bridge.yaml`, a project-authored mapping of five Chinese statistical terms to the CWP English concepts; it contains no CWP text.

@@ -6,6 +6,7 @@ import sys
 from pathlib import Path
 
 from .answer import answer_question
+from .compare import run_comparison
 from .config import (
     DEFAULT_ANCHORS,
     DEFAULT_CONFIG,
@@ -19,7 +20,7 @@ from .config import (
 from .corpus import CorpusError
 from .dense import DenseError, DenseIndex, embeddings_dir, index_path
 from .embed import DEFAULT_MODEL, FastEmbedEncoder
-from .evaluate import evaluate, title_tokens, write_report
+from .evaluate import title_tokens, write_report
 from .ingest import IngestError, ingest, load_pipeline
 from .lexicon import load_lexicon
 from .parsers import ParseError, UnsupportedFormatError
@@ -193,36 +194,28 @@ def _embed(args: argparse.Namespace) -> int:
 
 
 def _eval(args: argparse.Namespace) -> int:
-    pipeline = load_pipeline(Path(args.pipeline))
-    answer_config = pipeline.get("answer") or {}
-    retrieval_config = pipeline.get("retrieval") or {}
-    report = evaluate(
+    report = run_comparison(
+        _root(args.data_root),
         Path(args.questions),
         Path(args.anchors),
-        _root(args.data_root),
-        min_score=float(answer_config.get("min_score", 0.0)),
-        min_matched=int(answer_config.get("min_matched", 3)),
-        top_k=int(retrieval_config.get("top_k", 5)),
-        title_boost=float(retrieval_config.get("title_boost", 0.0)),
-        lexicon=load_lexicon(Path(args.lexicon))
-        if retrieval_config.get("lexicon_expand", False)
-        else [],
+        Path(args.pipeline),
+        Path(args.lexicon),
     )
     if args.out:
         write_report(report, Path(args.out))
     if args.json:
         _print_json(report)
         return 0
-    summary = report["summary"]
-    print(
-        f"recall@5 {summary['recall_hits']}/{summary['answerable_questions']} "
-        f"({summary['recall_at_5']:.2f}); "
-        f"abstention {summary['abstained_tests']}/{summary['abstention_tests']}; "
-        f"false refusals {summary['false_refusals']}; "
-        f"citation resolution {summary['citation_resolution']:.2f}; "
-        f"reference {summary['reference_hits']}/{summary['reference_questions']}; "
-        f"index {report['index_version']}"
-    )
+    print(f"index {report['index_version']} model {report['model']}")
+    for name, summary in report["arms"].items():
+        extra = summary.get("p95_latency_ms")
+        latency = f" p95 {extra} ms" if extra is not None else ""
+        print(
+            f"{name:14} recall {summary['recall_hits']}/{summary['answerable_questions']} "
+            f"mrr {summary['mrr']:.2f} "
+            f"abstain {summary['abstained_tests']}/{summary['abstention_tests']} "
+            f"false {summary['false_refusals']} cite {summary['citation_resolution']:.2f}{latency}"
+        )
     return 0
 
 

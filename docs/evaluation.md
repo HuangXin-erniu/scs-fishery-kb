@@ -5,7 +5,14 @@
 > 目标值是最低门槛，不是对外承诺；未达标指标要通过误差分析解释，不得改指标掩盖。
 
 - Status: protocol defined; the question set is a draft and has not been reviewed by domain experts.
-- Baseline (2026-11-01, local M1 over twenty-nine public sources): anchor-level Recall@5 of 8/11, abstention on 5/6 out-of-scope tests, two false refusals and 100% citation resolution. Seven draft questions have no gold anchor in the current index: five need sources that are not registered (Q-E06, Q-M02, Q-M05, Q-M06, Q-M11) and two ask for definitions the corpus does not state explicitly (Q-E05, Q-M04). The answer gate (BM25 score floor 19, three shared query tokens) and the title boost (1.0) were calibrated on the same seventeen questions with no held-out split, so these are baseline numbers rather than unbiased estimates.
+- Baseline (2026-11-01, M2 comparison over twenty-nine public sources): four arms on the same instrument — BM25 8/11, BM25 plus lexicon 9/11, dense-only 8/11 and hybrid 10/11, each with abstention 5/6, two false refusals and 100% citation resolution; hybrid MRR 0.45 and P95 17 ms.
+
+| Arm | Recall@5 | MRR | Abstention | False refusals | P95 |
+|---|---|---|---|---|---|
+| BM25 | 8/11 | 0.37 | 5/6 | 2 | — |
+| BM25 + lexicon | 9/11 | 0.40 | 5/6 | 2 | — |
+| Dense (bge-small-zh) | 8/11 | 0.37 | 5/6 | 2 | 16 ms |
+| **Hybrid (adopted)** | **10/11** | **0.45** | **5/6** | **2** | **17 ms** |
 - Reference channel (2026-11-01): the Chinese-to-English term bridge routes Q-E05 and Q-M04 to the CWP definition pages, and both return a passage (2/2). The channel is measured separately from the main ranked metrics, which do not change.
 - Related: [evaluation questions](questions.md), [project plan](plan.md), [data policy](data-policy.md).
 
