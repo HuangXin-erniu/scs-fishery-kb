@@ -47,6 +47,7 @@ REQUIRED = [
     "configs/statistics.yaml",
     "configs/sc-standards.yaml",
     "configs/pipeline.yaml",
+    "configs/eval.yaml",
     "docs/index.md",
     "docs/architecture.md",
     "docs/plan.md",

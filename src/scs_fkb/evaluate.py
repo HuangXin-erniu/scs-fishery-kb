@@ -5,13 +5,15 @@ import re
 from pathlib import Path
 from typing import Any
 
+import yaml
+
 from .answer import answer_question, validate_citations
 from .bm25 import BM25Index
 from .store import load_chunks
+from .text import tokenize
 
 QUESTION_ID_RE = re.compile(r"Q-[EM]\d{2}")
-EVIDENCE_ID_RE = re.compile(r"\b[A-Z][A-Z0-9]+(?:-[A-Z0-9]+)+\b")
-ABSTAIN_MARKER = "none registered"
+DEFINITION_IDS = {"Q-E05", "Q-M04"}
 
 
 def parse_questions(path: Path) -> list[dict[str, Any]]:
@@ -29,41 +31,67 @@ def parse_questions(path: Path) -> list[dict[str, Any]]:
                 "question": cells[2],
                 "type": cells[3],
                 "evidence": cells[4],
-                "evidence_ids": EVIDENCE_ID_RE.findall(cells[4]),
             }
         )
     return rows
 
 
-def select_questions(
-    rows: list[dict[str, Any]],
-    document_ids: list[str],
-) -> tuple[list[dict[str, Any]], list[dict[str, Any]], list[dict[str, Any]]]:
-    """Split the draft set into M1 questions, abstention tests and skipped rows."""
-    documents = set(document_ids)
-    m1: list[dict[str, Any]] = []
-    abstention: list[dict[str, Any]] = []
-    skipped: list[dict[str, Any]] = []
-    for row in rows:
-        if row["evidence_ids"] and documents & set(row["evidence_ids"]):
-            m1.append(row)
-        elif ABSTAIN_MARKER in row["evidence"].lower():
-            abstention.append(row)
-        else:
-            skipped.append(row)
-    return m1, abstention, skipped
+def load_anchors(path: Path) -> dict[str, Any]:
+    """Read the gold anchors and the abstention list."""
+    data = yaml.safe_load(path.read_text(encoding="utf-8"))
+    if not isinstance(data, dict):
+        raise ValueError(f"eval config must be a mapping: {path}")
+    if data.get("schema_version") != 1:
+        raise ValueError(f"unsupported eval schema_version in {path}")
+    anchors = data.get("anchors")
+    if not isinstance(anchors, dict) or not anchors:
+        raise ValueError(f"eval config lists no anchors: {path}")
+    for question_id, entries in anchors.items():
+        if not QUESTION_ID_RE.fullmatch(str(question_id)):
+            raise ValueError(f"invalid question id in eval config: {question_id}")
+        if not isinstance(entries, list) or not entries:
+            raise ValueError(f"{question_id} has no anchors")
+        for entry in entries:
+            if not isinstance(entry, dict) or not entry.get("doc"):
+                raise ValueError(f"{question_id} has a malformed anchor")
+    abstention = data.get("abstention") or []
+    if not isinstance(abstention, list):
+        raise ValueError(f"abstention must be a list in {path}")
+    return {"anchors": anchors, "abstention": [str(item) for item in abstention]}
 
 
-def summarize(results: list[dict[str, Any]]) -> dict[str, Any]:
+def anchor_matches(chunk, anchor: dict[str, Any]) -> bool:
+    """A chunk matches when doc, page and section agree with the anchor."""
+    if chunk.doc_id != anchor.get("doc"):
+        return False
+    page = anchor.get("page")
+    if page is not None and chunk.page != int(page):
+        return False
+    section = anchor.get("section")
+    if section and not chunk.section.startswith(str(section)):
+        return False
+    return True
+
+
+def title_tokens(documents: list[dict[str, Any]]) -> dict[str, set[str]]:
+    titles: dict[str, set[str]] = {}
+    for document in documents:
+        title = document.get("title_zh") or document.get("title") or ""
+        titles[str(document["doc_id"])] = set(tokenize(title))
+    return titles
+
+
+def summarize(results: list[dict[str, Any]], skipped: list[str]) -> dict[str, Any]:
     answerable = [row for row in results if row["kind"] == "answerable"]
     abstention = [row for row in results if row["kind"] == "abstention"]
     answered = [row for row in answerable if not row["abstained"]]
-    recalled = sum(1 for row in answerable if row["retrieved"])
+    recalled = sum(1 for row in answerable if row["hit"])
     refused = sum(1 for row in abstention if row["abstained"])
     resolved = sum(1 for row in answered if row["citation_valid"])
     return {
         "answerable_questions": len(answerable),
         "abstention_tests": len(abstention),
+        "skipped_questions": len(skipped),
         "recall_hits": recalled,
         "recall_at_5": round(recalled / len(answerable), 4) if answerable else 0.0,
         "abstained_tests": refused,
@@ -76,22 +104,32 @@ def summarize(results: list[dict[str, Any]]) -> dict[str, Any]:
 
 def evaluate(
     questions_path: Path,
+    anchors_path: Path,
     data_root: Path,
-    document_ids: list[str],
     min_score: float = 0.0,
     min_matched: int = 3,
     top_k: int = 5,
+    title_boost: float = 0.0,
 ) -> dict[str, Any]:
-    """Run retrieval and the answer gate over the M1 questions."""
-    rows = parse_questions(questions_path)
-    m1, abstention, skipped = select_questions(rows, document_ids)
+    """Score retrieval at anchor level and check abstinence and citations."""
+    rows = {row["id"]: row for row in parse_questions(questions_path)}
+    config = load_anchors(anchors_path)
     chunks, manifest = load_chunks(data_root)
-    index = BM25Index(chunks)
+    index = BM25Index(
+        chunks,
+        titles=title_tokens(manifest["documents"]),
+        title_boost=title_boost,
+    )
     results: list[dict[str, Any]] = []
 
-    for row in m1:
+    for question_id, anchors in config["anchors"].items():
+        row = rows.get(question_id)
+        if row is None:
+            raise ValueError(f"anchor question is missing from the question table: {question_id}")
         hits = index.search(row["question"], top_k=top_k)
-        docs = [hit.chunk.doc_id for hit in hits]
+        matched = [
+            anchor for anchor in anchors if any(anchor_matches(hit.chunk, anchor) for hit in hits)
+        ]
         answer = answer_question(
             row["question"],
             hits,
@@ -103,20 +141,33 @@ def evaluate(
             citation_valid, _ = validate_citations(answer.text, hits)
         results.append(
             {
-                "id": row["id"],
+                "id": question_id,
                 "kind": "answerable",
                 "question": row["question"],
-                "expected": row["evidence_ids"],
-                "top_docs": docs,
-                "scores": [round(hit.score, 6) for hit in hits],
-                "retrieved": bool(set(docs) & set(row["evidence_ids"])),
+                "anchors": anchors,
+                "top": [
+                    {
+                        "doc": hit.chunk.doc_id,
+                        "page": hit.chunk.page,
+                        "section": hit.chunk.section,
+                        "score": round(hit.score, 6),
+                    }
+                    for hit in hits
+                ],
+                "hit": bool(matched),
+                "matched_anchors": matched,
                 "abstained": answer.abstained,
                 "reason": answer.reason,
                 "citation_valid": citation_valid,
             }
         )
 
-    for row in abstention:
+    for question_id in config["abstention"]:
+        row = rows.get(question_id)
+        if row is None:
+            raise ValueError(
+                f"abstention question is missing from the question table: {question_id}"
+            )
         hits = index.search(row["question"], top_k=top_k)
         answer = answer_question(
             row["question"],
@@ -126,29 +177,52 @@ def evaluate(
         )
         results.append(
             {
-                "id": row["id"],
+                "id": question_id,
                 "kind": "abstention",
                 "question": row["question"],
-                "expected": [],
-                "top_docs": [hit.chunk.doc_id for hit in hits],
-                "scores": [round(hit.score, 6) for hit in hits],
-                "retrieved": None,
+                "anchors": [],
+                "top": [
+                    {
+                        "doc": hit.chunk.doc_id,
+                        "page": hit.chunk.page,
+                        "section": hit.chunk.section,
+                        "score": round(hit.score, 6),
+                    }
+                    for hit in hits
+                ],
+                "hit": None,
+                "matched_anchors": [],
                 "abstained": answer.abstained,
                 "reason": answer.reason,
                 "citation_valid": True,
             }
         )
 
+    selected = set(config["anchors"]) | set(config["abstention"])
+    skipped = [
+        {
+            "id": question_id,
+            "reason": (
+                "no explicit definition in the corpus"
+                if question_id in DEFINITION_IDS
+                else "no gold anchor in the current index"
+            ),
+        }
+        for question_id in rows
+        if question_id not in selected
+    ]
+    skipped_ids = [item["id"] for item in skipped]
+
     return {
         "schema_version": 1,
         "index_version": manifest.get("index_version"),
-        "documents": list(document_ids),
         "top_k": top_k,
         "min_score": min_score,
         "min_matched": min_matched,
-        "summary": summarize(results),
+        "title_boost": title_boost,
+        "summary": summarize(results, skipped_ids),
         "results": results,
-        "skipped": [row["id"] for row in skipped],
+        "skipped": skipped,
     }
 
 

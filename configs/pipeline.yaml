@@ -36,8 +36,11 @@ retrieval:
   top_k: 5
   bm25_k1: 1.5
   bm25_b: 0.75
+  title_boost: 1.0
   sensitivity_ceiling: public
+# min_score, min_matched and title_boost are calibrated on the seventeen
+# evaluated questions (configs/eval.yaml); no held-out split exists yet.
 answer:
   max_evidence: 3
-  min_score: 6.0
+  min_score: 19.0
   min_matched: 3

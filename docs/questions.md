@@ -48,7 +48,7 @@
 
 Questions Q-E07, Q-E08, Q-E11, Q-M07, Q-M08 and Q-M09 have no registered source: the environment and fishery-product material was excluded from the register on 2026-11-01, so they serve as abstention tests rather than as answerable questions.
 
-The ten questions whose expected evidence lies in `POL-LAW-009` or `POL-STD-010` form the M1 evaluation subset (Q-E01, Q-E02, Q-E03, Q-E04, Q-E09, Q-E12, Q-M01, Q-M03, Q-M10 and Q-M12); the six rows above are the M1 abstention tests. The remaining eight rows need sources outside the three-document M1 index and are reported separately.
+The eleven questions with gold anchors in [configs/eval.yaml](../configs/eval.yaml) form the evaluated set (Q-E01, Q-E02, Q-E03, Q-E04, Q-E09, Q-E10, Q-E12, Q-M01, Q-M03, Q-M10 and Q-M12); the six rows above are the abstention tests. Seven rows are out of reach of the current corpus: Q-E05 and Q-M04 ask for definitions the registered sources do not state explicitly, and Q-E06, Q-M02, Q-M05, Q-M06 and Q-M11 need sources that are not registered.
 
 ## Coverage
 

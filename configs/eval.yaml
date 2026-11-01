@@ -1,0 +1,45 @@
+schema_version: 1
+updated_at: 2026-11-01
+# Gold anchors for the anchor-level evaluation. A question counts as retrieved
+# when a top-5 chunk matches any of its anchors: the document must agree, and
+# the section (prefix match) or the page must agree when an anchor names one.
+anchors:
+  Q-E01:
+    - {doc: POL-CLOS-015, section: "三、休渔时间"}
+    - {doc: POL-CLOS-015, section: "一、休渔海域"}
+  Q-E02:
+    - {doc: POL-STD-010, section: "第二十六条"}
+    - {doc: POL-SPEC-041, section: "二、按作业类型"}
+  Q-E03:
+    - {doc: POL-STD-010, section: "第五十条"}
+    - {doc: POL-LAW-009, section: "第三十四条"}
+  Q-E04:
+    - {doc: POL-LAW-009, section: "第七十四条"}
+    - {doc: POL-STD-010, section: "第五十三条"}
+  Q-E09:
+    - {doc: POL-STD-010, section: "第二十八条"}
+    - {doc: POL-LAW-009, section: "第三十五条"}
+  Q-E10:
+    - {doc: POL-GEAR-033}
+    - {doc: POL-GEAR-034}
+  Q-E12:
+    - {doc: POL-LAW-009, section: "第七十八条"}
+  Q-M01:
+    - {doc: POL-LAW-009, section: "第四十四条"}
+    - {doc: POL-CLOS-015, section: "四、实施时间"}
+  Q-M03:
+    - {doc: POL-STD-010, section: "第五十一条"}
+    - {doc: POL-STD-010, section: "第五十二条"}
+  Q-M10:
+    - {doc: POL-STD-010, section: "第二十八条"}
+    - {doc: POL-LAW-009, section: "第三十五条"}
+  Q-M12:
+    - {doc: POL-STD-010, section: "第二十六条"}
+    - {doc: POL-LAW-009, section: "第七十八条"}
+abstention:
+  - Q-E07
+  - Q-E08
+  - Q-E11
+  - Q-M07
+  - Q-M08
+  - Q-M09

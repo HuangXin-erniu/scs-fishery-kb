@@ -6,6 +6,7 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_CONFIG = REPO_ROOT / "configs" / "corpus.yaml"
 DEFAULT_PIPELINE = REPO_ROOT / "configs" / "pipeline.yaml"
+DEFAULT_ANCHORS = REPO_ROOT / "configs" / "eval.yaml"
 
 
 class ConfigError(RuntimeError):

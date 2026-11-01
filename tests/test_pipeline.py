@@ -352,3 +352,27 @@ def test_ingest_rejects_duplicate_documents(tmp_path: Path) -> None:
     )
     with pytest.raises(IngestError, match="unique"):
         ingest(config_path, pipeline_path, data_root)
+
+
+def test_title_boost_prefers_the_matching_title() -> None:
+    def chunk(doc: str) -> Chunk:
+        return Chunk(
+            chunk_id=f"{doc}-0000",
+            doc_id=doc,
+            source_id=doc,
+            page=0,
+            section="",
+            text="休渔规定",
+            token_count=2,
+            char_start=0,
+            char_end=4,
+            sensitivity="public",
+        )
+
+    index = BM25Index(
+        [chunk("DOC-A"), chunk("DOC-B")],
+        titles={"DOC-B": set(tokenize("伏季休渔通告"))},
+        title_boost=1.0,
+    )
+    hits = index.search("休渔", top_k=2)
+    assert [hit.chunk.doc_id for hit in hits] == ["DOC-B", "DOC-A"]

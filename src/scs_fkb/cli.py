@@ -7,6 +7,7 @@ from pathlib import Path
 
 from .answer import answer_question
 from .config import (
+    DEFAULT_ANCHORS,
     DEFAULT_CONFIG,
     DEFAULT_PIPELINE,
     REPO_ROOT,
@@ -15,7 +16,7 @@ from .config import (
     sensitivity_ceiling,
 )
 from .corpus import CorpusError
-from .evaluate import evaluate, write_report
+from .evaluate import evaluate, title_tokens, write_report
 from .ingest import IngestError, ingest, load_pipeline
 from .parsers import ParseError, UnsupportedFormatError
 from .retrieve import Retriever
@@ -26,10 +27,24 @@ def _root(value: str | None) -> Path:
     return Path(value).expanduser() if value else data_root()
 
 
-def _answer_thresholds(pipeline_path: str) -> tuple[float, int]:
+def _pipeline_options(pipeline_path: str) -> tuple[float, int, float]:
     pipeline = load_pipeline(Path(pipeline_path))
     answer_config = pipeline.get("answer") or {}
-    return float(answer_config.get("min_score", 0.0)), int(answer_config.get("min_matched", 3))
+    retrieval_config = pipeline.get("retrieval") or {}
+    return (
+        float(answer_config.get("min_score", 0.0)),
+        int(answer_config.get("min_matched", 3)),
+        float(retrieval_config.get("title_boost", 0.0)),
+    )
+
+
+def _retriever(chunks, manifest, pipeline_path: str) -> Retriever:
+    _, _, title_boost = _pipeline_options(pipeline_path)
+    return Retriever(
+        chunks,
+        titles=title_tokens(manifest.get("documents", [])),
+        title_boost=title_boost,
+    )
 
 
 def _print_json(value: dict) -> None:
@@ -52,7 +67,7 @@ def _ingest(args: argparse.Namespace) -> int:
 
 def _retrieve(args: argparse.Namespace) -> int:
     chunks, manifest = load_chunks(_root(args.data_root))
-    hits = Retriever(chunks).search(
+    hits = _retriever(chunks, manifest, args.pipeline).search(
         args.query,
         top_k=args.top_k,
         sensitivity_ceiling=args.sensitivity,
@@ -81,12 +96,12 @@ def _retrieve(args: argparse.Namespace) -> int:
 
 def _ask(args: argparse.Namespace) -> int:
     chunks, manifest = load_chunks(_root(args.data_root))
-    hits = Retriever(chunks).search(
+    hits = _retriever(chunks, manifest, args.pipeline).search(
         args.question,
         top_k=args.top_k,
         sensitivity_ceiling=args.sensitivity,
     )
-    min_score, min_matched = _answer_thresholds(args.pipeline)
+    min_score, min_matched, _ = _pipeline_options(args.pipeline)
     answer = answer_question(
         args.question,
         hits,
@@ -116,11 +131,12 @@ def _eval(args: argparse.Namespace) -> int:
     retrieval_config = pipeline.get("retrieval") or {}
     report = evaluate(
         Path(args.questions),
+        Path(args.anchors),
         _root(args.data_root),
-        pipeline["documents"],
         min_score=float(answer_config.get("min_score", 0.0)),
         min_matched=int(answer_config.get("min_matched", 3)),
         top_k=int(retrieval_config.get("top_k", 5)),
+        title_boost=float(retrieval_config.get("title_boost", 0.0)),
     )
     if args.out:
         write_report(report, Path(args.out))
@@ -155,6 +171,7 @@ def build_parser() -> argparse.ArgumentParser:
     retrieve_parser = subparsers.add_parser("retrieve", help="retrieve ranked evidence")
     retrieve_parser.add_argument("query")
     retrieve_parser.add_argument("--top-k", type=int, default=5)
+    retrieve_parser.add_argument("--pipeline", default=str(DEFAULT_PIPELINE))
     retrieve_parser.add_argument("--sensitivity", default=sensitivity_ceiling())
     retrieve_parser.add_argument("--data-root", default=None)
     retrieve_parser.add_argument("--json", action="store_true")
@@ -171,6 +188,7 @@ def build_parser() -> argparse.ArgumentParser:
 
     eval_parser = subparsers.add_parser("eval", help="evaluate retrieval, abstention and citations")
     eval_parser.add_argument("--questions", default=str(REPO_ROOT / "docs" / "questions.md"))
+    eval_parser.add_argument("--anchors", default=str(DEFAULT_ANCHORS))
     eval_parser.add_argument("--pipeline", default=str(DEFAULT_PIPELINE))
     eval_parser.add_argument("--data-root", default=None)
     eval_parser.add_argument("--out", default=None)

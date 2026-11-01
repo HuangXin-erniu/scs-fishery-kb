@@ -66,7 +66,7 @@ local data root         raw and processed data (outside the repository)
 tests/                  configuration, parser, pipeline and public-tree tests
 ```
 
-Each module exposes a small callable surface rather than a framework. Shared code is extracted only when a second module needs it. M1 is deterministic: it makes no model call, builds no embedding and needs no network access. Citations carry a page anchor for the paginated OFD source and an article or section anchor for the HTML and DOCX sources.
+Each module exposes a small callable surface rather than a framework. Shared code is extracted only when a second module needs it. M1 is deterministic: it makes no model call, builds no embedding and needs no network access. Citations carry a page anchor for the paginated OFD and PDF sources and an article or section anchor for the HTML, DOCX and DOC sources. The ranker is BM25 over character bigrams with an optional title boost, which multiplies a chunk score by 1 + title_boost × the share of query tokens present in the document title. The evaluation compares the top five chunks against gold anchors in `configs/eval.yaml`: a document plus a section prefix, or a document plus a page.
 
 ## 5. Data flow
 
