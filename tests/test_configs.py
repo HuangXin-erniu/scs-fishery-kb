@@ -331,9 +331,10 @@ def test_standards_catalog() -> None:
     assert data["schema_version"] == 1
     assert data["series"] == "STD-SC-042"
     entries = data["standards"]
-    assert len(entries) == data["acquired"]
-    assert data["no_public_text"] == data["relevant_standards"] - data["acquired"]
-    assert len(data["not_available"]) == data["no_public_text"]
+    assert len(entries) == data["acquired"] == 17
+    assert "no_public_text" not in data
+    assert "relevant_standards" not in data
+    assert "not_available" not in data
     codes = [entry["code"] for entry in entries]
     assert len(codes) == len(set(codes))
     assert codes == sorted(codes)
@@ -342,6 +343,3 @@ def test_standards_catalog() -> None:
         assert entry["name_zh"].strip()
         assert entry["pages"] >= 1
         assert re.fullmatch(r"[0-9a-f]{16}", entry["sha256"])
-    for entry in data["not_available"]:
-        assert entry["code"] not in codes
-        assert entry["reason"].strip()

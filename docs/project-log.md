@@ -2,6 +2,12 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-01 — Seven undigitised SC/T standards excluded from the project
+
+- Seven in-scope standards have no public text on the national standards platform: SC/T 0002.21, 0002.22, 0002.24, 0002.25 and 0002.26 (2001 vessel coding series), SC/T 8002-2000 (vessel terminology) and SC/T 9010-2000 (port design). The only official copies found are paid publications.
+- On owner instruction they are excluded from the project: removed from `configs/sc-standards.yaml` and no longer tracked as a gap in the register note, so the series records only the seventeen standards the project holds.
+- No other count changes: the register still holds forty-four sources, and the series still covers seventeen standards and 295 pages.
+
 ## 2026-11-01 — SC/T standards in scope acquired; out-of-scope downloads discarded
 
 - Catalogued the SC/T series from the national standards platform filing interface: 977 records, 809 current.
