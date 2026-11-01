@@ -2,6 +2,12 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-01 — 2026 yearbook sampled: table list and six tables
+
+- Mapped the 166-page scan to a table list covering the seven parts and the appendices, with printed-page locators and a note on the new part/section layout introduced by the 2025 edition.
+- Transcribed six tables for the national total and Guangdong, Guangxi and Hainan: output, capture by sea area, capture by gear, capture vessels by operation type, fishing ports and fishery population (140 non-empty cells, values local only).
+- Consistency checks: 23 of 24 identities hold (culture plus capture equals output, gear sums equal capture, port classes sum to the port total); the one skip is a blank source cell for Guangxi stow-net vessels. The South China Sea column equals the three-province sum exactly.
+- Limits: single reader, no second-person check yet; the species breakdown and remaining tables are the next extraction batch.
 ## 2026-11-01 — Scanned 2026 yearbook registered
 
 - Registered STAT-YB-2026, the 166-page scan of the 2026 fisheries yearbook (data year 2025), supplied by the owner.
