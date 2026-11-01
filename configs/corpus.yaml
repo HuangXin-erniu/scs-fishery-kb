@@ -476,6 +476,42 @@ sources:
   hash: 8a87dda7a38c0008fe80243f2a66abc06c8b2a62b2a92c2bb522e3528312f022
   acquisition: Owner-supplied PDF received 2026-10-31; cover states 2018年4月.
   notes: 'National port construction plan. Describes ten coastal port groups (including Guangdong, Beibu Gulf, Hainan Island and the South China Sea groups), with per-county port counts by class and named central and first-class ports, and plans 64 central and 85 first-class ports. Supplies a 2018 port baseline where the yearbook infrastructure table is absent; the classification is not identical to the yearbook table.'
+- id: STD-ASFIS-044
+  title: ASFIS List of Species for Fishery Statistics Purposes (2026.1)
+  title_zh: 渔业统计物种名录 ASFIS（2026.1 版）
+  publisher: FAO Fisheries and Aquaculture Division (NFISI)
+  year: 2026
+  type: data_dictionary
+  jurisdiction: international
+  format: zip
+  location: raw/STD-ASFIS-044/
+  license: cc-by-nc-sa-3.0-igo
+  sensitivity: public
+  status: acquired
+  priority: P2
+  volume: 13,965 records; 4,065 statistical categories; 2,695 with Chinese names; xlsx and csv in one zip
+  update_freq: annual
+  hash: 41ffe32651ca4c88c203212617e3741ea76286a70b371fa34711637edee45e89
+  acquisition: 'Downloaded 2026-11-01 from https://www.fao.org/fishery/static/ASFIS/ASFIS_sp.zip (2,007,548 bytes; contains ASFIS_sp_2026.1.xlsx and ASFIS_sp_2026.1.csv).'
+  notes: 'Reference list: 3-alpha codes, ISSCAAP group, taxonomic code, scientific name and common names in six languages including Chinese. A lookup table rather than narrative text, so it is not added to the M1 index; kept local, never published. Licence CC BY-NC-SA 3.0 IGO: reference use only, no table copied into public documents.'
+- id: STD-CWP-043
+  title: CWP Handbook of Fishery Statistics - capture statistics concepts
+  title_zh: CWP 渔业统计手册——捕捞统计概念（渔获、上岸、捕捞努力量、渔具分类）
+  publisher: FAO Coordinating Working Party on Fishery Statistics (CWP)
+  year: 2026
+  type: standard
+  jurisdiction: international
+  format: html
+  location: raw/STD-CWP-043/
+  license: cc-by-nc-sa-3.0-igo
+  sensitivity: public
+  status: acquired
+  priority: P2
+  volume: 3 HTML pages; catch and landings glossary, fishing effort glossary and standard measures, ISSCFG gear classification
+  update_freq: irregular
+  hash: f871a96b3dfafa8dea1e2f56a8675d6d7b261fa36f1923744d875ace5a6871a9
+  acquisition: 'Fetched 2026-11-01 from the CWP Handbook capture-statistics pages (catch and landings, fishing effort, fishing gear classification; 32,474 / 39,965 / 22,761 bytes). Per-page hashes and character counts are in configs/cwp-handbook.yaml.'
+  notes: 'The international statistical standard for catch, landings and fishing effort, not a Chinese official definition: the domestic yearbooks do not state their own definitions. The pages are English; a dry run adding them to the index lowered abstention from 5/6 to 4/6 without improving Chinese-question recall, so they stay out of configs/pipeline.yaml until a bilingual term layer exists. Licence CC BY-NC-SA 3.0 IGO: reference use only, no text copied into public documents.'
 - id: STD-SC-042
   title: SC/T aquatic-industry standards relevant to the corpus (current set)
   title_zh: 水产行业标准 SC/T（与本项目相关的现行文本）
@@ -838,7 +874,7 @@ sources:
   acquisition: Owner-supplied scan received 2026-11-01 (KONICA MINOLTA bizhub C226, created 2026-08-02). The file has no text layer.
   notes: Data year 2025; image-only scan (0 extractable characters). No table has been extracted, so the 2025 data year is registered but not yet in the coverage matrix. OCR or manual entry is required before it enters the core CSV. Public metadata only; no values.
 gaps:
-- Forty-two sources are registered: thirty-three acquired and nine candidates awaiting disposition.
+- Forty-five sources are registered: forty-two acquired and three candidates awaiting disposition.
 - The yearbook coverage matrix has no values in the public repository; all values stay local.
 - The yearbook infrastructure table is missing for data years 2018 and 2019; the 2018 national port plan supplies a baseline whose port classes are close to, but not identical with, the yearbook table.
 - The vessel-length proxy is missing for data year 2024.

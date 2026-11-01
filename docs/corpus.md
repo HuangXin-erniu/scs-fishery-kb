@@ -1,9 +1,9 @@
 # Corpus Inventory
 
-- Status: data preparation and corpus discovery. Nine yearbook editions, six national bulletins, the China Statistical Yearbook 2026 and twenty-four legal and technical documents are acquired; three candidates remain (all deferred). The local core CSV has 3,126 rows and stays outside the public tree. No parsing or indexing in this phase.
+- Status: data preparation and corpus discovery. Nine yearbook editions, six national bulletins, the China Statistical Yearbook 2026 and twenty-six legal and technical documents are acquired, including two international reference sources; three candidates remain (all deferred). The local core CSV has 3,126 rows and stays outside the public tree. No parsing or indexing in this phase.
 - Register: [configs/corpus.yaml](../configs/corpus.yaml)
 - Indicator schema: [configs/statistics.yaml](../configs/statistics.yaml)
-- Date: 2026-10-31
+- Date: 2026-11-01
 
 ## 1. Purpose and scope
 
@@ -28,9 +28,9 @@ It does **not** include raw environmental grids, reanalysis data, forecast raste
 | `law` | 法律 | 1 | National law adopted by the legislature |
 | `regulation` | 行政法规/规章/地方性法规 | 10 | Administrative regulations, departmental rules and local regulations |
 | `notice` | 通告/公告 | 4 | Official notices, announcements and seasonal measures |
-| `standard` | 标准/规范 | 5 | National, industry or provincial standards and operational norms |
+| `standard` | 标准/规范 | 6 | National, industry or provincial standards and operational norms |
 | `fishery_product` | 渔情/海况产品说明 | 0 | Product descriptions, fishery bulletins and historical records |
-| `data_dictionary` | 数据字典 | 5 | Field definitions, indicator definitions, metadata and quality rules |
+| `data_dictionary` | 数据字典 | 6 | Field definitions, indicator definitions, metadata and quality rules |
 | `plan` | 规划/方案 | 1 | Official plans, programmes and construction layouts |
 
 ## 4. Acquired yearbooks
@@ -102,6 +102,15 @@ The mesh tables and the form are annexes 1, 2 and 3 of the 2013 notice `POL-GEAR
 
 The two agree on the concept and differ in scope: the national note sets the headline indicator, while the fisheries appendix supplies the operational rules the sea-area and gear tables depend on.
 
+## 5c. International reference
+
+| Source | Publisher | What it provides | Index status |
+|---|---|---|---|
+| `STD-CWP-043` | FAO Coordinating Working Party on Fishery Statistics | The CWP Handbook pages that define catch, landings and fishing effort, list the standard effort measures (A1-C6) and publish the ISSCFG gear classification | Not indexed: English text, and a dry run lowered abstention from 5/6 to 4/6 without improving Chinese-question recall |
+| `STD-ASFIS-044` | FAO Fisheries and Aquaculture Division | The ASFIS 2026.1 species list: 3-alpha codes, ISSCAAP groups, scientific names and common names in six languages, 2,695 with Chinese names | Not indexed: a lookup table rather than narrative text |
+
+Both carry the FAO open-access licence CC BY-NC-SA 3.0 IGO, so they stay local and nothing is copied into this repository. They are the international counterpart of definitions the domestic yearbooks leave implicit: `DICT-STAT-013` and `DICT-STAT-040` define production, while landed weight and fishing effort only have the CWP definitions. A Chinese official definition is still missing, and the English pages cannot be reached by the Chinese question set until a bilingual term layer exists. Per-page hashes live in [configs/cwp-handbook.yaml](../configs/cwp-handbook.yaml).
+
 ## 6. Candidate sources
 
 | ID | Type | Title | Priority | Disposition |
@@ -117,8 +126,8 @@ The four environment and fishery-product candidates were removed on owner instru
 | Metric | Value |
 |---|---:|
 | Corpus types | 9 |
-| Registered sources | 43 |
-| Acquired sources | 40 |
+| Registered sources | 45 |
+| Acquired sources | 42 |
 | Remaining candidates | 3 |
 | Yearbook editions | 9 |
 | Yearbook data years | 2017–2025 |
@@ -168,11 +177,11 @@ The eight unanswerable questions stay as abstention tests until the deferred sou
 |---|---|
 | Logbook fields | Partly covered: `POL-STD-010` articles 50-53 and `OPS-FORM-036` give the obligation and the approved-operation fields; the complete field list has no public source |
 | Port classes for 2018-2019 | Covered: `POL-PLAN-038` supplies the 2018 baseline and `POL-PORT-037` the 2025 proposal; the yearbook tables themselves do not exist |
-| Landed weight and fishing effort | No public definition: only production is defined (`DICT-STAT-013`, `DICT-STAT-040`) |
+| Landed weight and fishing effort | International definition held (`STD-CWP-043`); Chinese official definition still missing. Only production is defined domestically (`DICT-STAT-013`, `DICT-STAT-040`), and the CWP pages are English and outside the index |
 | Metadata and quality rules | No public source |
 | Remaining 2025 tables | Source in hand (`STAT-YB-2026`); extraction work, not a new source |
 
-No new registration is made: every gap is either covered by an acquired source or has no public source, and registering a second copy of a covered item would duplicate what the register already holds.
+Two international references were registered on 2026-11-01 for the definition gap; every other gap is either covered by an acquired source or has no public source, and no covered item is duplicated.
 
 ## 9. Local core CSV
 
@@ -208,6 +217,7 @@ The 2025 block was checked against China Statistical Yearbook 2026 table 12-15: 
 5. Extract the remaining 2026 tables, starting with capture by species (pages 41-43).
 6. Map the 2018 port-plan classes to the yearbook port classes when the core table is extended to ports.
 7. The sufficiency verdict was accepted on 2026-11-01; the retrieval pipeline stays deferred by owner decision.
+8. Build a bilingual term layer (Chinese term to CWP concept) before indexing `STD-CWP-043`; until then the definitions are citable but unreachable from the Chinese question set.
 
 ## 13. References
 

@@ -33,7 +33,7 @@ def test_corpus_structure() -> None:
         "data_dictionary",
         "plan",
     }
-    assert len(data["sources"]) == 43
+    assert len(data["sources"]) == 45
 
     acquired = []
     candidates = []
@@ -46,7 +46,7 @@ def test_corpus_structure() -> None:
         else:
             candidates.append(source)
 
-    assert len(acquired) == 40
+    assert len(acquired) == 42
     assert len(candidates) == 3
     yearbooks = [source for source in acquired if source["id"].startswith("STAT-YB-")]
     assert len(yearbooks) == 9
@@ -60,7 +60,7 @@ def test_corpus_structure() -> None:
         assert re.fullmatch(r"[0-9a-f]{64}", source["hash"])
         assert source["volume"].endswith(("files", "pages"))
 
-    jurisdictions = {"national", "guangdong", "guangxi", "fujian"}
+    jurisdictions = {"national", "guangdong", "guangxi", "fujian", "international"}
     for source in acquired:
         assert source.get("jurisdiction") in jurisdictions, source["id"]
 
@@ -90,16 +90,24 @@ def test_corpus_structure() -> None:
         "STD-SC-042",
         "DICT-STAT-013",
         "DICT-STAT-040",
+        "STD-ASFIS-044",
+        "STD-CWP-043",
     }
     for source in documents:
-        if source["id"] == "STD-SC-042":
+        if source["id"] in {"STD-SC-042", "STD-ASFIS-044", "STD-CWP-043"}:
             continue
         assert source["license"] == "public"
         assert source["sensitivity"] == "public"
         assert re.fullmatch(r"[0-9a-f]{64}", source["hash"])
         assert source["location"].startswith("raw/")
         assert not source["location"].startswith("/")
-        assert source["jurisdiction"] in {"national", "guangdong", "guangxi", "fujian"}
+        assert source["jurisdiction"] in {
+            "national",
+            "guangdong",
+            "guangxi",
+            "fujian",
+            "international",
+        }
 
     series = [source for source in acquired if source["id"] == "STD-SC-042"]
     assert len(series) == 1
@@ -160,8 +168,14 @@ def test_corpus_structure() -> None:
     assert re.fullmatch(r"[0-9a-f]{64}", csy[0]["hash"])
 
     dictionaries = [source for source in acquired if source["type"] == "data_dictionary"]
-    assert {source["id"] for source in dictionaries} == {"DICT-STAT-013", "DICT-STAT-040"}
+    assert {source["id"] for source in dictionaries} == {
+        "DICT-STAT-013",
+        "DICT-STAT-040",
+        "STD-ASFIS-044",
+    }
     for source in dictionaries:
+        if source["id"] == "STD-ASFIS-044":
+            continue
         assert source["license"] == "public"
         assert source["jurisdiction"] == "national"
         assert re.fullmatch(r"[0-9a-f]{64}", source["hash"])
@@ -191,10 +205,10 @@ def test_corpus_structure() -> None:
         "law": 1,
         "regulation": 10,
         "notice": 4,
-        "standard": 5,
+        "standard": 6,
         "operations": 1,
         "fishery_product": 0,
-        "data_dictionary": 5,
+        "data_dictionary": 6,
         "plan": 1,
     }
 
@@ -391,3 +405,41 @@ def test_eval_config() -> None:
         for entry in entries:
             assert entry["doc"] in corpus
     assert set(config["abstention"]).isdisjoint(config["anchors"])
+
+
+def test_international_references() -> None:
+    data = load_yaml("configs/corpus.yaml")
+    by_id = {source["id"]: source for source in data["sources"]}
+    cwp = by_id["STD-CWP-043"]
+    assert cwp["type"] == "standard"
+    assert cwp["jurisdiction"] == "international"
+    assert cwp["license"] == "cc-by-nc-sa-3.0-igo"
+    assert cwp["location"] == "raw/STD-CWP-043/"
+    assert "not a Chinese official definition" in cwp["notes"]
+
+    asfis = by_id["STD-ASFIS-044"]
+    assert asfis["type"] == "data_dictionary"
+    assert asfis["jurisdiction"] == "international"
+    assert asfis["license"] == "cc-by-nc-sa-3.0-igo"
+    assert asfis["location"] == "raw/STD-ASFIS-044/"
+
+    pipeline = load_yaml("configs/pipeline.yaml")
+    assert cwp["id"] not in pipeline["documents"]
+    assert asfis["id"] not in pipeline["documents"]
+
+
+def test_cwp_catalog() -> None:
+    import hashlib
+
+    data = load_yaml("configs/cwp-handbook.yaml")
+    assert data["series"] == "STD-CWP-043"
+    assert data["license"] == "cc-by-nc-sa-3.0-igo"
+    pages = data["pages"]
+    assert len(pages) == data["documents"] == 3
+    for page in pages:
+        assert re.fullmatch(r"[0-9a-f]{64}", page["sha256"])
+        assert page["bytes"] > 0
+        assert page["chars"] > 0
+        assert page["url"].startswith("https://www.fao.org/")
+    computed = hashlib.sha256("".join(page["sha256"] for page in pages).encode()).hexdigest()
+    assert computed == data["manifest_sha256"]
