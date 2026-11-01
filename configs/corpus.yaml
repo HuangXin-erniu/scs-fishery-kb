@@ -60,25 +60,6 @@ types:
   name_zh: 数据字典
   description: Field definitions, indicator definitions, metadata and quality rules.
 sources:
-- id: OPS-LOG-002
-  title: Logbook and fishing-record specification (candidate)
-  title_zh: 捕捞日志/渔捞记录填写规范与样例（候选）
-  publisher: To be confirmed
-  year: null
-  type: operations
-  format: unknown
-  location: null
-  license: unknown
-  sensitivity: unknown
-  status: to_acquire
-  disposition: acquire
-  disposition_reason: Three questions depend on the logbook rules; a public official text has not been confirmed.
-  priority: P1
-  volume: unknown
-  update_freq: static
-  hash: null
-  acquisition: Obtain from the fisheries authority or a fleet operator; desensitise any sample.
-  notes: Include the specification and a desensitised sample only; do not include identifiable vessel or owner records.
 - id: VMS-DICT-003
   title: Vessel/voyage data dictionary (candidate)
   title_zh: 船位/航次数据字典（候选）

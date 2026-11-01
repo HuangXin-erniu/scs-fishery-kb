@@ -33,7 +33,7 @@ def test_corpus_structure() -> None:
         "data_dictionary",
         "plan",
     }
-    assert len(data["sources"]) == 44
+    assert len(data["sources"]) == 43
 
     acquired = []
     candidates = []
@@ -47,7 +47,7 @@ def test_corpus_structure() -> None:
             candidates.append(source)
 
     assert len(acquired) == 40
-    assert len(candidates) == 4
+    assert len(candidates) == 3
     yearbooks = [source for source in acquired if source["id"].startswith("STAT-YB-")]
     assert len(yearbooks) == 9
     assert [source["year"] for source in yearbooks] == list(range(2018, 2027))
@@ -173,6 +173,7 @@ def test_corpus_structure() -> None:
 
     ids = {source["id"] for source in data["sources"]}
     assert "OPS-STAT-001" not in ids
+    assert "OPS-LOG-002" not in ids
     assert "DICT-STAT-026" not in ids
     assert "LIT-PAPER-011" not in ids
     assert "LIT-RPT-012" not in ids
@@ -186,7 +187,7 @@ def test_corpus_structure() -> None:
         "regulation": 10,
         "notice": 4,
         "standard": 5,
-        "operations": 2,
+        "operations": 1,
         "fishery_product": 0,
         "data_dictionary": 5,
         "plan": 1,
@@ -235,6 +236,14 @@ def test_questions_count() -> None:
     assert text.count("| Q-E") == 12
     assert text.count("| Q-M") == 12
     assert "OPS-STAT-001" not in text
+    for removed in ("OPS-LOG-002", "ENV-SST-005", "ENV-CHL-006", "FCS-BULL-007", "FCS-REC-008"):
+        assert removed not in text
+
+
+def test_documents_do_not_cite_closed_sources() -> None:
+    for relative in ("docs/corpus.md", "docs/plan.md", "docs/questions.md"):
+        text = (ROOT / relative).read_text(encoding="utf-8")
+        assert "OPS-LOG-002" not in text, relative
 
 
 def test_citation_metadata() -> None:

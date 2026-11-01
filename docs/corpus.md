@@ -1,6 +1,6 @@
 # Corpus Inventory
 
-- Status: data preparation and corpus discovery. Nine yearbook editions, six national bulletins, the China Statistical Yearbook 2026 and twenty-four legal and technical documents are acquired; four candidates remain (one to acquire, three deferred). The local core CSV has 3,126 rows and stays outside the public tree. No parsing or indexing in this phase.
+- Status: data preparation and corpus discovery. Nine yearbook editions, six national bulletins, the China Statistical Yearbook 2026 and twenty-four legal and technical documents are acquired; three candidates remain (all deferred). The local core CSV has 3,126 rows and stays outside the public tree. No parsing or indexing in this phase.
 - Register: [configs/corpus.yaml](../configs/corpus.yaml)
 - Indicator schema: [configs/statistics.yaml](../configs/statistics.yaml)
 - Date: 2026-10-31
@@ -24,7 +24,7 @@ It does **not** include raw environmental grids, reanalysis data, forecast raste
 | Type | Name (zh) | Sources | Description |
 |---|---|---:|---|
 | `statistical_yearbook` | 统计年鉴 | 16 | Official annual statistics and indicator tables |
-| `operations` | 作业知识 | 2 | Fishing methods, gear, vessel operations, logbooks and permit conditions |
+| `operations` | 作业知识 | 1 | Fishing methods, gear, vessel operations, logbooks and permit conditions |
 | `law` | 法律 | 1 | National law adopted by the legislature |
 | `regulation` | 行政法规/规章/地方性法规 | 10 | Administrative regulations, departmental rules and local regulations |
 | `notice` | 通告/公告 | 4 | Official notices, announcements and seasonal measures |
@@ -106,24 +106,23 @@ The two agree on the concept and differ in scope: the national note sets the hea
 
 | ID | Type | Title | Priority | Disposition |
 |---|---|---|---|---|
-| `OPS-LOG-002` | `operations` | Logbook and fishing-record specification | P1 | acquire |
 | `VMS-DICT-003` | `data_dictionary` | Vessel/voyage data dictionary | P2 | defer |
 | `VMS-SAMPLE-004` | `data_dictionary` | Desensitised voyage sample description | P2 | defer |
 | `DICT-META-014` | `data_dictionary` | Metadata and data-quality rules | P2 | defer |
 
-The four environment and fishery-product candidates were removed on owner instruction on 2026-11-01; the fishery_product type stays defined with no sources. `OPS-STAT-001`, the generic yearbook candidate, was removed from the register because the editions supersede it. `acquire` marks a follow-up acquisition task; `defer` keeps the source in the register but out of the current phase. Papers and reports were removed from the register because they are not accepted as authoritative project sources at this stage.
+The four environment and fishery-product candidates were removed on owner instruction on 2026-11-01; the fishery_product type stays defined with no sources. The logbook candidate was closed on 2026-11-01: articles 50-53 of `POL-STD-010`, the approved-operation block `OPS-FORM-036` and SC/T 9460-2025 already cover the record fields and the reporting duty, so no separate source is acquired. `OPS-STAT-001`, the generic yearbook candidate, was removed from the register because the editions supersede it. All three remaining candidates are deferred, which keeps them in the register but out of the current phase. Papers and reports were removed from the register because they are not accepted as authoritative project sources at this stage.
 
 ## 7. Status summary
 
 | Metric | Value |
 |---|---:|
 | Corpus types | 9 |
-| Registered sources | 44 |
+| Registered sources | 43 |
 | Acquired sources | 40 |
-| Remaining candidates | 4 |
+| Remaining candidates | 3 |
 | Yearbook editions | 9 |
 | Yearbook data years | 2017–2025 |
-| Yearbook files | 839 |
+| Yearbook files | 838 |
 | Local core CSV rows | 3,126 |
 | Public values | 0 |
 | Local 2025 sample rows | 140 |
@@ -204,11 +203,11 @@ The 2025 block was checked against China Statistical Yearbook 2026 table 12-15: 
 
 1. The sufficiency review is done: ten questions are answerable, six partial and eight are abstention tests (section 8a).
 2. Diff the registered People's Daily text against the npc.gov.cn page when that site is reachable again; the 2026-10-31 WAF block and the attempts are recorded in the register.
-3. The definition sources close `DICT-STAT-013`; the standards (including GB/T 5147—2026), the permit form and the permit regulation cover most of `OPS-LOG-002`, and the seven deferred candidates stay out of the current phase.
+3. The definition sources close `DICT-STAT-013`; the standards (including GB/T 5147—2026), the permit form and the permit regulation closed the logbook candidate, and the three deferred candidates stay out of the current phase.
 4. Use the 2018 port plan as the port baseline and record the classification difference when extending the core CSV to ports.
 5. Extract the remaining 2026 tables, starting with capture by species (pages 41-43).
-6. Map the 2018 port-plan classes to the yearbook port classes and close the remaining candidate dispositions.
-7. Do not plan or implement the retrieval pipeline until the owner accepts the review verdict.
+6. Map the 2018 port-plan classes to the yearbook port classes when the core table is extended to ports.
+7. The sufficiency verdict was accepted on 2026-11-01; the retrieval pipeline stays deferred by owner decision.
 
 ## 13. References
 
