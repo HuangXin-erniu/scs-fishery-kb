@@ -2,6 +2,13 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-01 — SC/T standards in scope acquired; out-of-scope downloads discarded
+
+- Catalogued the SC/T series from the national standards platform filing interface: 977 records, 809 current.
+- Applied the project scope (marine capture, gear and mesh, vessel management data, fishing ports, fishery statistics and surveys, resource surveys, terminology): 24 standards match, 17 have a public text and are held as image-only reference PDFs (295 pages), and 7 have no public text on the platform (vessel coding and port design, 2000-2001).
+- Deleted the out-of-scope downloads, 695 standards covering aquaculture, feed, disease, processing, hull construction, ship equipment, gear-material testing and freshwater surveys; SC/T 9460-2025 stays registered as OPS-STD-035 and is not duplicated in the series.
+- Registered `STD-SC-042` as a series entry with the public catalog `configs/sc-standards.yaml`; the register now holds forty-four sources: forty acquired and four candidates.
+
 ## 2026-11-01 — 2026 closed-season special-permit notice registered
 
 - Registered `POL-SPEC-041` from the owner-supplied OFD, which is byte-identical to the ministry attachment `P020260424354196891178.ofd` (SHA-256 `b383ea35…`); the file has 22 pages and its text layer extracts without OCR.

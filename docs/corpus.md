@@ -1,6 +1,6 @@
 # Corpus Inventory
 
-- Status: data preparation and corpus discovery. Nine yearbook editions, six national bulletins, the China Statistical Yearbook 2026 and twenty-three legal and technical documents are acquired; four candidates remain (one to acquire, three deferred). The local core CSV has 3,177 rows and stays outside the public tree. No parsing or indexing in this phase.
+- Status: data preparation and corpus discovery. Nine yearbook editions, six national bulletins, the China Statistical Yearbook 2026 and twenty-four legal and technical documents are acquired; four candidates remain (one to acquire, three deferred). The local core CSV has 3,177 rows and stays outside the public tree. No parsing or indexing in this phase.
 - Register: [configs/corpus.yaml](../configs/corpus.yaml)
 - Indicator schema: [configs/statistics.yaml](../configs/statistics.yaml)
 - Date: 2026-10-31
@@ -28,7 +28,7 @@ It does **not** include raw environmental grids, reanalysis data, forecast raste
 | `law` | 法律 | 1 | National law adopted by the legislature |
 | `regulation` | 行政法规/规章/地方性法规 | 10 | Administrative regulations, departmental rules and local regulations |
 | `notice` | 通告/公告 | 4 | Official notices, announcements and seasonal measures |
-| `standard` | 标准/规范 | 4 | National, industry or provincial standards and operational norms |
+| `standard` | 标准/规范 | 5 | National, industry or provincial standards and operational norms |
 | `fishery_product` | 渔情/海况产品说明 | 0 | Product descriptions, fishery bulletins and historical records |
 | `data_dictionary` | 数据字典 | 5 | Field definitions, indicator definitions, metadata and quality rules |
 | `plan` | 规划/方案 | 1 | Official plans, programmes and construction layouts |
@@ -89,8 +89,9 @@ The Fisheries Law text is the owner-supplied DOCX of the official 人民日报 p
 | `OPS-STD-035` | `standard` | SC/T 9460—2025 marine capture information sampling survey | Defines marine capture information and sample vessels; sets monthly collection and quality control; cites GB/T 5147—2003 for gear classification |
 | `OPS-FORM-036` | `operations` | Approved-operation block, form and filling instructions | Nine operation types, at most two operation methods and two gear names, minimum mesh size, quota |
 | `OPS-STD-039` | `standard` | GB/T 5147—2026 fishing-gear classification, naming and codes | The national classification that maps yearbook gear groups and permit operation types |
+| `STD-SC-042` | `standard` | SC/T aquatic-industry standards in scope (17 acquired of 24) | Gear and mesh, vessel management data, fishing ports, fishery statistics and surveys, resource surveys and terminology |
 
-The mesh tables and the form are annexes 1, 2 and 3 of the 2013 notice `POL-GEAR-016`, which entered into force on 2014-06-01 and repealed the 2003 notice. SC/T 9460—2025 was published 2025-12-09 and takes effect 2026-05-01; GB/T 5147—2026 was published 2026-02-27 and takes effect 2026-09-01, replacing the 2003 edition.
+The mesh tables and the form are annexes 1, 2 and 3 of the 2013 notice `POL-GEAR-016`, which entered into force on 2014-06-01 and repealed the 2003 notice. SC/T 9460—2025 was published 2025-12-09 and takes effect 2026-05-01; GB/T 5147—2026 was published 2026-02-27 and takes effect 2026-09-01, replacing the 2003 edition. `STD-SC-042` is a series entry: the national standards platform lists 809 current SC/T standards, 24 fall inside the project scope and 17 of them have a public text, which the project holds as image-only reference copies (`configs/sc-standards.yaml`). Seven in-scope standards (vessel coding and port design, 2000-2001) have no public text. SC/T 9460—2025 stays registered as `OPS-STD-035` and is not duplicated in the series; aquaculture, feed, disease, processing, hull-construction, ship-equipment and freshwater-survey series are out of scope.
 
 ## 5b. Acquired definitions
 
@@ -117,8 +118,8 @@ The four environment and fishery-product candidates were removed on owner instru
 | Metric | Value |
 |---|---:|
 | Corpus types | 9 |
-| Registered sources | 43 |
-| Acquired sources | 39 |
+| Registered sources | 44 |
+| Acquired sources | 40 |
 | Remaining candidates | 4 |
 | Yearbook editions | 9 |
 | Yearbook data years | 2017–2025 |
