@@ -33,7 +33,7 @@ def test_corpus_structure() -> None:
         "data_dictionary",
         "plan",
     }
-    assert len(data["sources"]) == 44
+    assert len(data["sources"]) == 45
 
     acquired = []
     candidates = []
@@ -46,8 +46,8 @@ def test_corpus_structure() -> None:
         else:
             candidates.append(source)
 
-    assert len(acquired) == 35
-    assert len(candidates) == 9
+    assert len(acquired) == 37
+    assert len(candidates) == 8
     yearbooks = [source for source in acquired if source["id"].startswith("STAT-YB-")]
     assert len(yearbooks) == 8
     assert [source["year"] for source in yearbooks] == list(range(2018, 2026))
@@ -81,6 +81,8 @@ def test_corpus_structure() -> None:
         "POL-PLAN-038",
         "POL-GEAR-016",
         "OPS-STD-039",
+        "DICT-STAT-013",
+        "DICT-STAT-040",
     }
     for source in documents:
         assert source["license"] == "public"
@@ -123,7 +125,12 @@ def test_corpus_structure() -> None:
     assert re.fullmatch(r"[0-9a-f]{64}", csy[0]["hash"])
 
     dictionaries = [source for source in acquired if source["type"] == "data_dictionary"]
-    assert dictionaries == []
+    assert {source["id"] for source in dictionaries} == {"DICT-STAT-013", "DICT-STAT-040"}
+    for source in dictionaries:
+        assert source["license"] == "public"
+        assert source["jurisdiction"] == "national"
+        assert re.fullmatch(r"[0-9a-f]{64}", source["hash"])
+        assert source["location"].startswith("raw/")
 
     for source in candidates:
         assert source["status"] == "to_acquire"
@@ -151,7 +158,7 @@ def test_corpus_structure() -> None:
         "standard": 4,
         "operations": 2,
         "fishery_product": 4,
-        "data_dictionary": 4,
+        "data_dictionary": 5,
         "plan": 1,
     }
 

@@ -2,6 +2,11 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-01 — Production definitions acquired
+
+- Registered the 2024 fisheries yearbook appendix 3 (渔业统计指标解释) as DICT-STAT-013: a 16-page extract from the owner-supplied yearbook PDF, covering the product concept, the reporting unit, the fresh-weight basis, the culture-versus-capture rule, and capture production by sea area and gear group.
+- Registered the national yearbook chapter-12 notes as DICT-STAT-040: the headline water-product definition used by the National Bureau of Statistics, without a sea-area or gear split.
+- The definition candidate is closed; the register now holds forty-five sources, thirty-seven acquired, and the inventory records what each definition covers.
 ## 2026-10-31 — Issuing notices attached; classification standard registered; duplicates removed
 
 - Registered the 2013 minimum-mesh notice as POL-GEAR-016, which ties the two mesh annexes and the permit form to one instrument: in force 2014-06-01, three sea areas, measurement under GB/T 6964—2010, earlier 2003 notice repealed.

@@ -1,6 +1,6 @@
 # Corpus Inventory
 
-- Status: data preparation and corpus discovery. Eight yearbook editions, six national bulletins, the China Statistical Yearbook 2026 and twenty legal and technical documents are acquired; nine candidates are dispositioned (two to acquire, seven deferred). The local core CSV has 3,037 rows and stays outside the public tree. No parsing or indexing in this phase.
+- Status: data preparation and corpus discovery. Eight yearbook editions, six national bulletins, the China Statistical Yearbook 2026 and twenty-two legal and technical documents are acquired; eight candidates remain (one to acquire, seven deferred). The local core CSV has 3,037 rows and stays outside the public tree. No parsing or indexing in this phase.
 - Register: [configs/corpus.yaml](../configs/corpus.yaml)
 - Indicator schema: [configs/statistics.yaml](../configs/statistics.yaml)
 - Date: 2026-10-31
@@ -30,7 +30,7 @@ It does **not** include raw environmental grids, reanalysis data, forecast raste
 | `notice` | 通告/公告 | 2 | Official notices, announcements and seasonal measures |
 | `standard` | 标准/规范 | 3 | National, industry or provincial standards and operational norms |
 | `fishery_product` | 渔情/海况产品说明 | 4 | Product descriptions, fishery bulletins and historical records |
-| `data_dictionary` | 数据字典 | 4 | Field definitions, indicator definitions, metadata and quality rules |
+| `data_dictionary` | 数据字典 | 5 | Field definitions, indicator definitions, metadata and quality rules |
 | `plan` | 规划/方案 | 1 | Official plans, programmes and construction layouts |
 
 ## 4. Acquired yearbooks
@@ -90,6 +90,15 @@ The Fisheries Law text is the owner-supplied DOCX of the official 人民日报 p
 
 The mesh tables and the form are annexes 1, 2 and 3 of the 2013 notice `POL-GEAR-016`, which entered into force on 2014-06-01 and repealed the 2003 notice. SC/T 9460—2025 was published 2025-12-09 and takes effect 2026-05-01; GB/T 5147—2026 was published 2026-02-27 and takes effect 2026-09-01, replacing the 2003 edition.
 
+## 5b. Acquired definitions
+
+| Source | Publisher | What it defines |
+|---|---|---|
+| `DICT-STAT-013` | 农业农村部渔业渔政管理局 | Appendix 3 of the 2024 fisheries yearbook: the water-product concept and scope, the reporting unit, the fresh-weight basis, the culture-versus-capture rule, product classes, and capture production by sea area (with the Bohai, Yellow, East China and South China Sea boundaries) and by gear group |
+| `DICT-STAT-040` | 国家统计局 | Chapter-12 notes of the 2025 national yearbook: the national definition of water-product output as the final effective output of capture and culture, reported through fishery departments, fresh weight since 1996; no sea-area or gear split |
+
+The two agree on the concept and differ in scope: the national note sets the headline indicator, while the fisheries appendix supplies the operational rules the sea-area and gear tables depend on.
+
 ## 6. Candidate sources
 
 | ID | Type | Title | Priority | Disposition |
@@ -101,7 +110,6 @@ The mesh tables and the form are annexes 1, 2 and 3 of the 2013 notice `POL-GEAR
 | `ENV-CHL-006` | `fishery_product` | Chlorophyll/current/wind product description | P2 | defer |
 | `FCS-BULL-007` | `fishery_product` | Fishing-ground and season bulletin | P2 | defer |
 | `FCS-REC-008` | `fishery_product` | Historical fishing-ground and season record | P2 | defer |
-| `DICT-STAT-013` | `data_dictionary` | Statistical indicator definitions | P1 | acquire |
 | `DICT-META-014` | `data_dictionary` | Metadata and data-quality rules | P2 | defer |
 
 `OPS-STAT-001`, the generic yearbook candidate, was removed from the register because the eight editions supersede it. `acquire` marks a follow-up acquisition task; `defer` keeps the source in the register but out of the current phase. Papers and reports were removed from the register because they are not accepted as authoritative project sources at this stage.
@@ -111,9 +119,9 @@ The mesh tables and the form are annexes 1, 2 and 3 of the 2013 notice `POL-GEAR
 | Metric | Value |
 |---|---:|
 | Corpus types | 9 |
-| Registered sources | 44 |
-| Acquired sources | 35 |
-| Remaining candidates | 9 |
+| Registered sources | 45 |
+| Acquired sources | 37 |
+| Remaining candidates | 8 |
 | Yearbook editions | 8 |
 | Yearbook data years | 2017–2024 |
 | Yearbook files | 838 |
@@ -172,7 +180,7 @@ The local extraction has **3,037 rows** for 2017–2024: capture 1,665, vessels 
 
 1. Review the local core CSV and decide whether the indicator coverage is sufficient.
 2. Diff the registered People's Daily text against the npc.gov.cn page when that site is reachable again; the 2026-10-31 WAF block and the attempts are recorded in the register.
-3. Acquire `DICT-STAT-013`; the standards (including GB/T 5147—2026), the permit form and the permit regulation now cover most of `OPS-LOG-002`, and the seven deferred candidates stay out of the current phase.
+3. The definition sources close `DICT-STAT-013`; the standards (including GB/T 5147—2026), the permit form and the permit regulation cover most of `OPS-LOG-002`, and the seven deferred candidates stay out of the current phase.
 4. Use the 2018 port plan as the port baseline and record the classification difference when extending the core CSV to ports.
 5. Do not plan or implement the retrieval pipeline until the sufficiency review is accepted.
 
