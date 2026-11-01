@@ -14,7 +14,7 @@
 | [Data policy](data-policy.md) | What is published, what stays local, and how sensitivity is handled |
 | [Project log](project-log.md) | Dated record of material project changes |
 | [Corpus register](../configs/corpus.yaml) | Machine-readable source register |
-| [Statistics schema](../configs/statistics.yaml) | Long-table columns, indicators and units; no values |
+| [Statistics schema](../configs/statistics.yaml) | Long-table columns, indicator names and query aliases; no values |
 | [Pipeline configuration](../configs/pipeline.yaml) | Documents, chunking, retrieval and answer parameters for the local prototype |
 | [Evaluation anchors](../configs/eval.yaml) | Gold section and page anchors and the abstention tests |
 | [Terminology bridge](../configs/glossary-bridge.yaml) | Chinese statistical terms mapped to the CWP English concepts |

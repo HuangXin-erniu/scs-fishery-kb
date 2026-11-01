@@ -50,3 +50,12 @@ reference:
     docs: [STD-CWP-043-catch, STD-CWP-043-effort]
   - id: Q-M04
     docs: [STD-CWP-043-catch, STD-CWP-043-effort]
+# Statistical questions answered through the local yearbook channel rather than
+# the public index. The channel is scored separately from the main metrics.
+statistics:
+  - id: Q-E06
+    query: 南海区海洋捕捞产量历年趋势
+    expect: capture_production_sea_area
+  - id: Q-M05
+    query: 2019年南海区拖网渔船数量
+    expect: vessel_count

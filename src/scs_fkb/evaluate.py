@@ -12,6 +12,8 @@ from .answer import answer_question, validate_citations
 from .bm25 import BM25Index
 from .lexicon import expand_query
 from .reference import lookup as reference_lookup
+from .stats import StatsError
+from .stats import query as stats_query
 from .store import load_chunks
 from .text import tokenize
 
@@ -60,6 +62,12 @@ def load_anchors(path: Path) -> dict[str, Any]:
     abstention = data.get("abstention") or []
     if not isinstance(abstention, list):
         raise ValueError(f"abstention must be a list in {path}")
+    statistics = data.get("statistics") or []
+    if not isinstance(statistics, list):
+        raise ValueError(f"statistics must be a list in {path}")
+    for item in statistics:
+        if not isinstance(item, dict) or not item.get("id") or not item.get("expect"):
+            raise ValueError(f"malformed statistics entry in {path}: {item}")
     reference = data.get("reference") or []
     if not isinstance(reference, list):
         raise ValueError(f"reference must be a list in {path}")
@@ -70,6 +78,7 @@ def load_anchors(path: Path) -> dict[str, Any]:
         "anchors": anchors,
         "abstention": [str(item) for item in abstention],
         "reference": reference,
+        "statistics": statistics,
     }
 
 
@@ -100,6 +109,17 @@ def summarize_reference(rows: list[dict[str, Any]]) -> dict[str, Any]:
         "reference_questions": len(rows),
         "reference_hits": hits,
         "reference_rate": round(hits / len(rows), 4) if rows else 0.0,
+    }
+
+
+def summarize_statistics(rows: list[dict[str, Any]]) -> dict[str, Any]:
+    counted = [row for row in rows if not row["skipped"]]
+    hits = sum(1 for row in counted if row["hit"])
+    return {
+        "statistics_questions": len(rows),
+        "statistics_hits": hits,
+        "statistics_skipped": sum(1 for row in rows if row["skipped"]),
+        "statistics_rate": round(hits / len(rows), 4) if rows else 0.0,
     }
 
 
@@ -258,6 +278,32 @@ def evaluate(
             }
         )
 
+    statistics_results: list[dict[str, Any]] = []
+    for item in config.get("statistics", []):
+        question_id = str(item["id"])
+        row = rows.get(question_id)
+        query_text = str(item.get("query") or (row or {}).get("question") or "")
+        expected = str(item["expect"])
+        entry: dict[str, Any] = {
+            "id": question_id,
+            "query": query_text,
+            "expected": expected,
+            "skipped": False,
+            "hit": False,
+            "indicators": [],
+            "notes": [],
+        }
+        try:
+            hits = stats_query(query_text, root=data_root)
+        except StatsError as exc:
+            entry["skipped"] = True
+            entry["error"] = str(exc)
+        else:
+            entry["indicators"] = [hit.row["indicator"] for hit in hits]
+            entry["hit"] = expected in entry["indicators"]
+            entry["notes"] = [note for hit in hits for note in hit.notes][:2]
+        statistics_results.append(entry)
+
     selected = set(config["anchors"]) | set(config["abstention"])
     skipped = [
         {
@@ -284,9 +330,11 @@ def evaluate(
         "summary": {
             **summarize(results, skipped_ids),
             **summarize_reference(reference_results),
+            **summarize_statistics(statistics_results),
         },
         "results": results,
         "reference": reference_results,
+        "statistics": statistics_results,
         "skipped": skipped,
     }
 

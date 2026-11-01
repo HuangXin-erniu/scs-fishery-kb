@@ -123,6 +123,7 @@ INDICATOR_CUES = {
     "渔船数量": ("vessel_count",),
     "渔船艘数": ("vessel_count",),
     "机动渔船": ("vessel_count",),
+    "渔船": ("vessel_count",),
     "总吨": ("tonnage",),
     "总吨位": ("tonnage",),
     "千瓦": ("power",),
@@ -333,14 +334,7 @@ def query(text: str, top_k: int = 8, root: Path | str | None = None) -> list[Sta
     allowed = _indicators(parsed["groups"])
 
     selected = [row for row in rows if _matches(row, parsed, allowed)]
-    signals = (
-        parsed["years"],
-        parsed["region"],
-        parsed["sea_area"],
-        parsed["gear"],
-        parsed["groups"],
-    )
-    if not any(signals):
+    if not parsed["groups"]:
         return []
     relaxed: list[str] = []
     if not selected and parsed["gear"]:

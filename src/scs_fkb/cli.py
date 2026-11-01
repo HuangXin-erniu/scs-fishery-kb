@@ -23,6 +23,7 @@ from .embed import DEFAULT_MODEL, FastEmbedEncoder
 from .evaluate import title_tokens, write_report
 from .ingest import IngestError, ingest, load_pipeline
 from .lexicon import load_lexicon
+from .models import Answer
 from .parsers import ParseError, UnsupportedFormatError
 from .reference import ReferenceError
 from .reference import lookup as reference_lookup
@@ -56,13 +57,31 @@ def _lexicon_for(args: argparse.Namespace) -> list[dict[str, object]]:
     return load_lexicon(Path(args.lexicon))
 
 
-def _retriever(chunks, manifest, pipeline_path: str, lexicon=None) -> Retriever:
-    _, _, title_boost = _pipeline_options(pipeline_path)
+def _retriever(chunks, manifest, pipeline_path: str, lexicon=None, root=None) -> Retriever:
+    pipeline = load_pipeline(Path(pipeline_path))
+    retrieval = pipeline.get("retrieval") or {}
+    mode = str(retrieval.get("mode", "bm25"))
+    title_boost = float(retrieval.get("title_boost", 0.0))
+    dense = encoder = None
+    if mode != "bm25":
+        if root is None:
+            raise ValueError("dense and hybrid modes need a data root")
+        version = str(manifest.get("index_version"))
+        dense = DenseIndex.load(index_path(Path(root), DEFAULT_MODEL, version))
+        encoder = FastEmbedEncoder(
+            DEFAULT_MODEL, cache_dir=str(embeddings_dir(Path(root)) / "models")
+        )
     return Retriever(
         chunks,
         titles=title_tokens(manifest.get("documents", [])),
         title_boost=title_boost,
         lexicon=lexicon,
+        mode=mode,
+        dense=dense,
+        encoder=encoder,
+        fusion_k=int(retrieval.get("fusion_k", 60)),
+        bm25_weight=float(retrieval.get("bm25_weight", 1.0)),
+        dense_weight=float(retrieval.get("dense_weight", 1.0)),
     )
 
 
@@ -115,19 +134,36 @@ def _retrieve(args: argparse.Namespace) -> int:
 
 def _ask(args: argparse.Namespace) -> int:
     chunks, manifest = load_chunks(_root(args.data_root))
-    hits = _retriever(chunks, manifest, args.pipeline, _lexicon_for(args)).search(
+    retriever = _retriever(
+        chunks, manifest, args.pipeline, _lexicon_for(args), root=_root(args.data_root)
+    )
+    hits = retriever.search(
         args.question,
         top_k=args.top_k,
         sensitivity_ceiling=args.sensitivity,
     )
     references = reference_lookup(args.question, root=_root(args.data_root))
     min_score, min_matched, _ = _pipeline_options(args.pipeline)
-    answer = answer_question(
-        args.question,
-        hits,
-        min_score=min_score,
-        min_matched=min_matched,
-    )
+    if retriever.mode == "bm25":
+        answer = answer_question(
+            args.question,
+            hits,
+            min_score=min_score,
+            min_matched=min_matched,
+        )
+    elif retriever.gate_ok(args.question, min_score, min_matched):
+        answer = answer_question(args.question, hits, min_score=0.0, min_matched=0)
+    else:
+        answer = Answer(
+            text="证据不足：检索到的证据覆盖不足，无法支持回答。",
+            abstained=True,
+            reason="weak_evidence",
+        )
+    statistics = []
+    try:
+        statistics = stats_query(args.question, root=_root(args.data_root))
+    except StatsError:
+        statistics = []
     if args.json:
         _print_json(
             {
@@ -136,6 +172,7 @@ def _ask(args: argparse.Namespace) -> int:
                 "hits": [hit.to_dict() for hit in hits],
                 "result": answer.to_dict(),
                 "reference": [hit.to_dict() for hit in references],
+                "statistics": [hit.to_dict() for hit in statistics],
             }
         )
         return 0
@@ -148,6 +185,12 @@ def _ask(args: argparse.Namespace) -> int:
         for hit in references:
             snippet = " ".join(hit.chunk.text.split())[:200]
             print(f"  [{hit.chunk.doc_id}] {snippet}")
+    if statistics:
+        print("statistics:")
+        for hit in statistics:
+            print(f"  {hit.text} {hit.citation}")
+            for note in hit.notes:
+                print(f"    note: {note}")
     return 0
 
 
@@ -232,6 +275,14 @@ def _eval(args: argparse.Namespace) -> int:
             f"mrr {summary['mrr']:.2f} "
             f"abstain {summary['abstained_tests']}/{summary['abstention_tests']} "
             f"false {summary['false_refusals']} cite {summary['citation_resolution']:.2f}{latency}"
+        )
+    statistics = report.get("statistics_summary") or {}
+    if statistics:
+        skipped = statistics.get("statistics_skipped", 0)
+        note = f" ({skipped} skipped)" if skipped else ""
+        print(
+            f"statistics {statistics.get('statistics_hits', 0)}/"
+            f"{statistics.get('statistics_questions', 0)}{note}"
         )
     return 0
 

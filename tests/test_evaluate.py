@@ -122,3 +122,42 @@ def test_summarize_reference() -> None:
     assert summary["reference_hits"] == 1
     assert summary["reference_rate"] == 0.5
     assert summarize_reference([])["reference_rate"] == 0.0
+
+
+def test_load_anchors_accepts_statistics(tmp_path: Path) -> None:
+    path = tmp_path / "eval.yaml"
+    path.write_text(
+        "schema_version: 1\n"
+        "anchors:\n  Q-E01:\n    - {doc: POL-LAW-009}\n"
+        "statistics:\n"
+        "  - {id: Q-E06, query: 南海区海洋捕捞产量, expect: capture_production_sea_area}\n",
+        encoding="utf-8",
+    )
+    config = load_anchors(path)
+    assert [item["id"] for item in config["statistics"]] == ["Q-E06"]
+
+
+def test_load_anchors_rejects_malformed_statistics(tmp_path: Path) -> None:
+    path = tmp_path / "eval.yaml"
+    path.write_text(
+        "schema_version: 1\nanchors:\n  Q-E01:\n    - {doc: POL-LAW-009}\n"
+        "statistics:\n  - {id: Q-E06}\n",
+        encoding="utf-8",
+    )
+    with pytest.raises(ValueError, match="malformed statistics"):
+        load_anchors(path)
+
+
+def test_summarize_statistics() -> None:
+    from scs_fkb.evaluate import summarize_statistics
+
+    rows = [
+        {"hit": True, "skipped": False},
+        {"hit": False, "skipped": False},
+        {"hit": False, "skipped": True},
+    ]
+    summary = summarize_statistics(rows)
+    assert summary["statistics_questions"] == 3
+    assert summary["statistics_hits"] == 1
+    assert summary["statistics_skipped"] == 1
+    assert summarize_statistics([])["statistics_rate"] == 0.0

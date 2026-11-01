@@ -13,6 +13,7 @@
 | BM25 + lexicon | 9/11 | 0.40 | 5/6 | 2 | — |
 | Dense (bge-small-zh) | 8/11 | 0.37 | 5/6 | 2 | 16 ms |
 | **Hybrid (adopted)** | **10/11** | **0.45** | **5/6** | **2** | **17 ms** |
+- Statistics channel (2026-11-01): the two statistical questions are scored separately. Q-E06 runs 南海区海洋捕捞产量历年趋势 and expects the sea-area production series; Q-M05 runs 2019年南海区拖网渔船数量 and expects vessel counts. Both return rows with edition and table citations (2/2). The channel also states the two gaps: production has no operation-type dimension and vessel counts have no sea-area dimension.
 - Reference channel (2026-11-01): the Chinese-to-English term bridge routes Q-E05 and Q-M04 to the CWP definition pages, and both return a passage (2/2). The channel is measured separately from the main ranked metrics, which do not change.
 - Related: [evaluation questions](questions.md), [project plan](plan.md), [data policy](data-policy.md).
 
