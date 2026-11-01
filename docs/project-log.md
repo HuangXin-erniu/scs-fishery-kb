@@ -2,6 +2,12 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-01 — Logbook candidate closed; document references corrected
+
+- Closed `OPS-LOG-002`: articles 50-53 of the permit regulation, the approved-operation block `OPS-FORM-036` and SC/T 9460-2025 cover the record fields and the reporting duty, so no separate acquisition is planned. The register now holds forty-three sources: forty acquired and three candidates, all deferred.
+- The question table no longer cites the four removed environment and fishery-product sources: six questions are marked "none registered" and act as abstention tests, and the three logbook questions point at the permit regulation and the approved-operation block.
+- Corrected the yearbook file count from 839 to 838 and refreshed the plan, the corpus summary and both READMEs to the 3,126-row table and the three-candidate register.
+
 ## 2026-11-01 — 2025 sample folded into the long-table schema
 
 - Rebuilt the local core table so the 2025 data year uses the same regions, sea areas, indicators, units and derived rows as 2017–2024: 3,037 rows for 2017–2024 plus 89 harmonised rows for 2025, 3,126 in total.
