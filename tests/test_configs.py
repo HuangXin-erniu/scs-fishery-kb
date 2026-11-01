@@ -226,6 +226,8 @@ def test_statistics_schema() -> None:
         "infrastructure",
     }
     assert data["publication"]["values"] == "local_only"
+    regions = set(data["dimensions"]["region"]["values"])
+    assert {"China", "Guangdong", "Guangxi", "Hainan", "Fujian"} <= regions
 
 
 def test_questions_count() -> None:
