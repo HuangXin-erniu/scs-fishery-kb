@@ -187,6 +187,7 @@ def test_answer_prefers_date_range_for_time_question() -> None:
     answer = answer_question(
         "南海区伏季休渔的起止时间是什么",
         [SearchHit(chunk=implementation, score=10.0), SearchHit(chunk=closure, score=8.0)],
+        min_matched=0,
     )
     assert not answer.abstained
     assert "5月1日" in answer.text
@@ -199,10 +200,22 @@ def test_answer_abstains_without_hits() -> None:
     assert answer.reason == "no_evidence"
 
 
-def test_answer_abstains_out_of_scope() -> None:
-    answer = answer_question("2025年广东省渔业产量是多少", [])
+def test_answer_abstains_on_weak_match() -> None:
+    chunk = _chunk("c1", "第一条", "为了加强渔业资源的保护，制定本法。")
+    answer = answer_question("渔情通报里叶绿素浓度如何解读", [SearchHit(chunk=chunk, score=9.0)])
     assert answer.abstained
-    assert answer.reason == "out_of_scope"
+    assert answer.reason == "weak_evidence"
+
+
+def test_answer_abstains_below_min_score() -> None:
+    chunk = _chunk("c1", "第一条", "为了加强渔业资源的保护、增殖、开发和合理利用，制定本法。")
+    answer = answer_question(
+        "制定本法的目的是什么",
+        [SearchHit(chunk=chunk, score=2.0)],
+        min_score=6.0,
+    )
+    assert answer.abstained
+    assert answer.reason == "weak_evidence"
 
 
 def test_invalid_citation_rejected() -> None:

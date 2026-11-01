@@ -1,10 +1,10 @@
 # Architecture
 
 > **中文摘要**：本文件描述 SCS-FKB 的分层架构、组件、数据流、数据契约与运行方式。
-> 当前只定义框架，检索与服务代码尚未实现；数据与运行产物只留在本机，不进入公开仓库。
+> 当前框架已定义，M1 抽取式原型在本机运行；数据与运行产物只留在本机，不进入公开仓库。
 > 所有回答必须基于检索证据并带可核验引用；`restricted` 来源不得发送到外部模型 API。
 
-- Status: framework documented; current phase is data preparation and corpus discovery; implementation is deferred until the corpus matrix is sufficient.
+- Status: framework documented; the M1 extractive prototype runs locally over three documents. Retrieval beyond BM25, generation and the service surface are still deferred.
 - Scope: knowledge-layer corpus, retrieval, evidence-grounded answers and evaluation.
 - Non-goals: forecast-model training, raw environmental data, full vessel tracks and downstream data integration.
 
@@ -53,18 +53,20 @@
 ## 4. Components and module map
 
 ```text
-src/ingest.py     parse, OCR, chunk, extract tables/indicators, write manifest
-src/retrieve.py   BM25 + dense retrieval, filters, fusion, optional reranking
-src/ask.py        evidence-only answer, citation validation, abstention
-src/eval.py       retrieval/citation/answer/abstention metrics and reports
-src/serve.py      CLI and HTTP query surface
-configs/          corpus register, data schema, future interface contract
-local data root   raw, processed and index data (outside the repository)
-eval/             reviewed question set (non-sensitive items only)
-tests/            configuration, public-tree and unit tests
+src/scs_fkb/parsers/   html.py, docx.py, ofd.py — format adapters with page and line anchors
+src/scs_fkb/patterns.py article, section and chapter expressions
+src/scs_fkb/chunking.py page-aware article, section and fallback chunking
+src/scs_fkb/bm25.py     character-bigram BM25 with a sensitivity filter
+src/scs_fkb/answer.py   extractive evidence pack, citation validation and abstention
+src/scs_fkb/evaluate.py document-level retrieval, abstention and citation metrics
+src/scs_fkb/store.py    processed documents, chunks and manifest
+src/scs_fkb/cli.py      ingest, retrieve, ask and eval
+configs/pipeline.yaml   documents, chunking, retrieval and answer parameters
+local data root         raw and processed data (outside the repository)
+tests/                  configuration, parser, pipeline and public-tree tests
 ```
 
-Each module exposes a small callable surface rather than a framework. Shared code is extracted only when a second module needs it.
+Each module exposes a small callable surface rather than a framework. Shared code is extracted only when a second module needs it. M1 is deterministic: it makes no model call, builds no embedding and needs no network access. Citations carry a page anchor for the paginated OFD source and an article or section anchor for the HTML and DOCX sources.
 
 ## 5. Data flow
 

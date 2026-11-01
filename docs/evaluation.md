@@ -5,6 +5,7 @@
 > 目标值是最低门槛，不是对外承诺；未达标指标要通过误差分析解释，不得改指标掩盖。
 
 - Status: protocol defined; the question set is a draft and has not been reviewed by domain experts.
+- Baseline (2026-11-01, local M1): document-level Recall@5 10/10 on the ten policy questions, abstention on 5/6 out-of-scope tests, one false refusal and 100% citation resolution. The abstention rule is a heuristic — the top chunk must reach a BM25 score floor and share three distinct query tokens — calibrated on the sixteen draft questions with no held-out set; it is not the final mechanism.
 - Related: [evaluation questions](questions.md), [project plan](plan.md), [data policy](data-policy.md).
 
 ## 1. Purpose
@@ -59,6 +60,8 @@ The public draft is [questions.md](questions.md).
 ### Performance
 
 - Retrieval latency, end-to-end latency, index build time and memory peak.
+
+The M1 baseline is document-level only: it asks whether an expected document appears in the top five, not whether the answer is correct. Answer correctness, faithfulness and completeness need reviewed gold answers and stay with the later milestones.
 
 ## 4. Protocol
 

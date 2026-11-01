@@ -25,7 +25,7 @@
 | Q-E07 | What are the historical fishing seasons and main commercial species of a given fishing ground? | 某渔场的历史渔汛期与主要经济鱼种是什么？ | fact | none registered | Confirm fishing ground and period |
 | Q-E08 | How should SST anomalies and chlorophyll concentrations in a fishery bulletin be interpreted? | 渔情通报里的 SST 距平、叶绿素浓度应该怎么解读？ | definition | none registered | Confirm product version and units |
 | Q-E09 | What certificates, vessel types and equipment are required for access to a given operation type? | 某类作业准入需要哪些证件、船型与设备条件？ | policy | POL-STD-010 | Confirm operation type and region |
-| Q-E10 | What is the current standard for a given gear type or mesh size? | 某类渔具/网目尺寸的现行标准是什么？ | standard | POL-STD-010 | Confirm gear type and standard version |
+| Q-E10 | What is the current standard for a given gear type or mesh size? | 某类渔具/网目尺寸的现行标准是什么？ | standard | POL-GEAR-033 / POL-GEAR-034 | Confirm gear type and standard version |
 | Q-E11 | How should a fishery bulletin be interpreted when it conflicts with historical experience? | 渔情通报与历史经验不一致时，应如何理解和使用？ | procedure | none registered | Confirm bulletin type and use case |
 | Q-E12 | What are the legal basis and penalty range for fishing during a closure? | 休渔期违规作业的处罚依据与幅度是什么？ | policy | POL-LAW-009 | Confirm violation type and region |
 
@@ -47,6 +47,8 @@
 | Q-M12 | What are the exception-approval and penalty rules in seasonal closure management? | 休渔期管理中的例外审批与处罚依据是什么？ | policy | POL-LAW-009 | Confirm exception type and approval level |
 
 Questions Q-E07, Q-E08, Q-E11, Q-M07, Q-M08 and Q-M09 have no registered source: the environment and fishery-product material was excluded from the register on 2026-11-01, so they serve as abstention tests rather than as answerable questions.
+
+The ten questions whose expected evidence lies in `POL-LAW-009` or `POL-STD-010` form the M1 evaluation subset (Q-E01, Q-E02, Q-E03, Q-E04, Q-E09, Q-E12, Q-M01, Q-M03, Q-M10 and Q-M12); the six rows above are the M1 abstention tests. The remaining eight rows need sources outside the three-document M1 index and are reported separately.
 
 ## Coverage
 
