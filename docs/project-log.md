@@ -2,6 +2,11 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-01 — Scanned 2026 yearbook registered
+
+- Registered STAT-YB-2026, the 166-page scan of the 2026 fisheries yearbook (data year 2025), supplied by the owner.
+- The file has no text layer, so the register records it as provenance only: no table is extracted and the coverage matrix still ends at data year 2024 until OCR or manual entry is done.
+- Yearbook editions now nine, covering data years 2017-2025; the register holds forty-six sources, thirty-eight acquired.
 ## 2026-11-01 — Production definitions acquired
 
 - Registered the 2024 fisheries yearbook appendix 3 (渔业统计指标解释) as DICT-STAT-013: a 16-page extract from the owner-supplied yearbook PDF, covering the product concept, the reporting unit, the fresh-weight basis, the culture-versus-capture rule, and capture production by sea area and gear group.

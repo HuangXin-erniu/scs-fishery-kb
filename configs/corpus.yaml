@@ -870,6 +870,24 @@ sources:
   hash: 8768019d672c0197df01617c119c64a114ccd652026dd999e4c99ee696847c87
   acquisition: Owner-provided official/authorized Excel edition; publisher/ISBN, procurement and official internal export confirmed by the owner; local use only.
   notes: Data year 2024; 82 Excel files. Public metadata only; no values. Edition manifest under the run root.
+- id: STAT-YB-2026
+  type: statistical_yearbook
+  title: China Fisheries Statistical Yearbook 2026 (scanned PDF)
+  title_zh: 中国渔业统计年鉴 2026（扫描 PDF）
+  publisher: 农业农村部渔业渔政管理局 / 中国农业出版社
+  year: 2026
+  jurisdiction: national
+  format: pdf
+  location: raw/STAT-YB-2026/
+  license: internal
+  sensitivity: internal
+  status: acquired
+  priority: P1
+  volume: 1 PDF; 166 scanned pages
+  update_freq: annual
+  hash: ef674e53123265b2f9367ad0c5cbc2544e3d738b5b52c916cc8e3fc4babec3f1
+  acquisition: Owner-supplied scan received 2026-11-01 (KONICA MINOLTA bizhub C226, created 2026-08-02). The file has no text layer.
+  notes: Data year 2025; image-only scan (0 extractable characters). No table has been extracted, so the 2025 data year is registered but not yet in the coverage matrix. OCR or manual entry is required before it enters the core CSV. Public metadata only; no values.
 gaps:
 - Forty-two sources are registered: thirty-three acquired and nine candidates awaiting disposition.
 - The yearbook coverage matrix has no values in the public repository; all values stay local.
