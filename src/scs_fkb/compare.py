@@ -103,4 +103,11 @@ def run_comparison(
             )
             result["summary"]["p95_latency_ms"] = _p95(latencies)
         report["arms"][name] = result["summary"]
+        if name == "bm25":
+            report["statistics"] = result["statistics"]
+            report["statistics_summary"] = {
+                key: value
+                for key, value in result["summary"].items()
+                if key.startswith("statistics_")
+            }
     return report

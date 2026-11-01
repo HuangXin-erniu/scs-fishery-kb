@@ -489,3 +489,10 @@ def test_retrieval_mode_config() -> None:
     assert retrieval["bm25_weight"] == 2.0
     assert retrieval["dense_weight"] == 1.0
     assert pipeline["answer"]["min_score"] == 19.0
+
+
+def test_eval_statistics_section() -> None:
+    config = load_yaml("configs/eval.yaml")
+    entries = config["statistics"]
+    assert [item["id"] for item in entries] == ["Q-E06", "Q-M05"]
+    assert [item["expect"] for item in entries] == ["capture_production_sea_area", "vessel_count"]

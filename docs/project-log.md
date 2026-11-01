@@ -2,6 +2,13 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-01 — Local statistics channel
+
+- The 3,126-row yearbook indicator table now sits under the data root and is queryable locally: `scs-fkb stats "2019年南海区海洋捕捞产量"` returns the published South China Sea row with its edition and table citation, and `stats` also answers region, gear, vessel, population, value and port questions.
+- Two source dimensions are genuinely absent and the channel says so: production is not published by operation type, and vessel counts carry no sea area. It returns the rows that exist and appends one explicit note instead of substituting a dimension.
+- The evaluation scores the two statistical questions as a separate channel metric (2/2) next to the reference metric; the main hybrid numbers stay at 10/11, MRR 0.45, abstention 5/6, two false refusals and 100% citation resolution.
+- Values stay local: the public tree carries only the schema, the query layer and a synthetic fixture.
+
 ## 2026-11-01 — M2 retrieval comparison and hybrid adoption
 
 - Compared four arms on the same instrument: BM25 8/11, BM25 plus lexicon 9/11, dense-only 8/11 (bge-small-zh, 512 dimensions, P95 16 ms) and hybrid 10/11 (MRR 0.45, P95 17 ms); every arm keeps abstention at 5/6, two false refusals and 100% citation resolution.
