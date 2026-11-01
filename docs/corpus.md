@@ -1,6 +1,6 @@
 # Corpus Inventory
 
-- Status: data preparation and corpus discovery. Nine yearbook editions, six national bulletins, the China Statistical Yearbook 2026 and twenty-two legal and technical documents are acquired; eight candidates remain (one to acquire, seven deferred). The local core CSV has 3,177 rows and stays outside the public tree. No parsing or indexing in this phase.
+- Status: data preparation and corpus discovery. Nine yearbook editions, six national bulletins, the China Statistical Yearbook 2026 and twenty-two legal and technical documents are acquired; four candidates remain (one to acquire, three deferred). The local core CSV has 3,177 rows and stays outside the public tree. No parsing or indexing in this phase.
 - Register: [configs/corpus.yaml](../configs/corpus.yaml)
 - Indicator schema: [configs/statistics.yaml](../configs/statistics.yaml)
 - Date: 2026-10-31
@@ -29,7 +29,7 @@ It does **not** include raw environmental grids, reanalysis data, forecast raste
 | `regulation` | 行政法规/规章/地方性法规 | 10 | Administrative regulations, departmental rules and local regulations |
 | `notice` | 通告/公告 | 2 | Official notices, announcements and seasonal measures |
 | `standard` | 标准/规范 | 3 | National, industry or provincial standards and operational norms |
-| `fishery_product` | 渔情/海况产品说明 | 4 | Product descriptions, fishery bulletins and historical records |
+| `fishery_product` | 渔情/海况产品说明 | 0 | Product descriptions, fishery bulletins and historical records |
 | `data_dictionary` | 数据字典 | 5 | Field definitions, indicator definitions, metadata and quality rules |
 | `plan` | 规划/方案 | 1 | Official plans, programmes and construction layouts |
 
@@ -107,22 +107,18 @@ The two agree on the concept and differ in scope: the national note sets the hea
 | `OPS-LOG-002` | `operations` | Logbook and fishing-record specification | P1 | acquire |
 | `VMS-DICT-003` | `data_dictionary` | Vessel/voyage data dictionary | P2 | defer |
 | `VMS-SAMPLE-004` | `data_dictionary` | Desensitised voyage sample description | P2 | defer |
-| `ENV-SST-005` | `fishery_product` | Sea surface temperature product description | P2 | defer |
-| `ENV-CHL-006` | `fishery_product` | Chlorophyll/current/wind product description | P2 | defer |
-| `FCS-BULL-007` | `fishery_product` | Fishing-ground and season bulletin | P2 | defer |
-| `FCS-REC-008` | `fishery_product` | Historical fishing-ground and season record | P2 | defer |
 | `DICT-META-014` | `data_dictionary` | Metadata and data-quality rules | P2 | defer |
 
-`OPS-STAT-001`, the generic yearbook candidate, was removed from the register because the eight editions supersede it. `acquire` marks a follow-up acquisition task; `defer` keeps the source in the register but out of the current phase. Papers and reports were removed from the register because they are not accepted as authoritative project sources at this stage.
+The four environment and fishery-product candidates were removed on owner instruction on 2026-11-01; the fishery_product type stays defined with no sources. `OPS-STAT-001`, the generic yearbook candidate, was removed from the register because the editions supersede it. `acquire` marks a follow-up acquisition task; `defer` keeps the source in the register but out of the current phase. Papers and reports were removed from the register because they are not accepted as authoritative project sources at this stage.
 
 ## 7. Status summary
 
 | Metric | Value |
 |---|---:|
 | Corpus types | 9 |
-| Registered sources | 46 |
+| Registered sources | 42 |
 | Acquired sources | 38 |
-| Remaining candidates | 8 |
+| Remaining candidates | 4 |
 | Yearbook editions | 9 |
 | Yearbook data years | 2017–2025 |
 | Yearbook files | 839 |
@@ -159,11 +155,23 @@ Known gaps:
 
 ## 8a. Sufficiency review
 
-The 24 draft questions were checked against the registered sources on 2026-11-01: **10 are answerable, 6 partially answerable and 8 not answerable**. Every unanswerable question maps to a deferred candidate source (vessel/voyage dictionaries, ocean and fishery-product descriptions, historical fishing-ground records); nothing in the P1 scope is blocked.
+The 24 draft questions were checked against the registered sources on 2026-11-01: **10 are answerable, 6 partially answerable and 8 not answerable**. Every unanswerable question maps to material outside the registration scope (vessel/voyage dictionaries and the excluded environment and fishery-product sources); nothing in the P1 scope is blocked.
 
 Three questions need rewording rather than new sources: the sea-area and operation-type production trend, which the yearbooks publish by sea area and gear but not by operation type; the production, landed-weight and effort definitions, of which only production has an official definition; and the combined production-and-vessel-count question, which mixes a published indicator with an unpublished one.
 
 The eight unanswerable questions stay as abstention tests until the deferred sources are acquired.
+
+## 8b. Gap audit: covered or unattainable, never duplicated
+
+| Gap | Outcome |
+|---|---|
+| Logbook fields | Partly covered: `POL-STD-010` articles 50-53 and `OPS-FORM-036` give the obligation and the approved-operation fields; the complete field list has no public source |
+| Port classes for 2018-2019 | Covered: `POL-PLAN-038` supplies the 2018 baseline and `POL-PORT-037` the 2025 proposal; the yearbook tables themselves do not exist |
+| Landed weight and fishing effort | No public definition: only production is defined (`DICT-STAT-013`, `DICT-STAT-040`) |
+| Metadata and quality rules | No public source |
+| Remaining 2025 tables | Source in hand (`STAT-YB-2026`); extraction work, not a new source |
+
+No new registration is made: every gap is either covered by an acquired source or has no public source, and registering a second copy of a covered item would duplicate what the register already holds.
 
 ## 9. Local core CSV
 

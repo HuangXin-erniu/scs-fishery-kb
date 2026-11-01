@@ -33,7 +33,7 @@ def test_corpus_structure() -> None:
         "data_dictionary",
         "plan",
     }
-    assert len(data["sources"]) == 46
+    assert len(data["sources"]) == 42
 
     acquired = []
     candidates = []
@@ -47,7 +47,7 @@ def test_corpus_structure() -> None:
             candidates.append(source)
 
     assert len(acquired) == 38
-    assert len(candidates) == 8
+    assert len(candidates) == 4
     yearbooks = [source for source in acquired if source["id"].startswith("STAT-YB-")]
     assert len(yearbooks) == 9
     assert [source["year"] for source in yearbooks] == list(range(2018, 2027))
@@ -164,7 +164,7 @@ def test_corpus_structure() -> None:
         "notice": 3,
         "standard": 4,
         "operations": 2,
-        "fishery_product": 4,
+        "fishery_product": 0,
         "data_dictionary": 5,
         "plan": 1,
     }
