@@ -1,6 +1,6 @@
 # Corpus Inventory
 
-- Status: data preparation and corpus discovery. Nine yearbook editions, six national bulletins, the China Statistical Yearbook 2026 and twenty-two legal and technical documents are acquired; eight candidates remain (one to acquire, seven deferred). The local core CSV has 3,037 rows and stays outside the public tree. No parsing or indexing in this phase.
+- Status: data preparation and corpus discovery. Nine yearbook editions, six national bulletins, the China Statistical Yearbook 2026 and twenty-two legal and technical documents are acquired; eight candidates remain (one to acquire, seven deferred). The local core CSV has 3,177 rows and stays outside the public tree. No parsing or indexing in this phase.
 - Register: [configs/corpus.yaml](../configs/corpus.yaml)
 - Indicator schema: [configs/statistics.yaml](../configs/statistics.yaml)
 - Date: 2026-10-31
@@ -126,7 +126,7 @@ The two agree on the concept and differ in scope: the national note sets the hea
 | Yearbook editions | 9 |
 | Yearbook data years | 2017–2025 |
 | Yearbook files | 839 |
-| Local core CSV rows | 3,037 |
+| Local core CSV rows | 3,177 |
 | Public values | 0 |
 | Local 2025 sample rows | 140 |
 
@@ -159,7 +159,9 @@ Known gaps:
 
 ## 9. Local core CSV
 
-The local extraction has **3,037 rows** for 2017–2024: capture 1,665, vessels 1,116, population 128, marine capture value 32 and coastal ports 96. It preserves blanks, source locators and SHA-256; no values are published. Validation and coverage reports are in the local run root.
+The local extraction has **3,177 rows**: 3,037 for 2017–2024 (capture 1,665, vessels 1,116, population 128, marine capture value 32 and coastal ports 96) plus 140 for 2025 covering six tables — output, capture by sea area, capture by gear, capture vessels by operation type, fishing ports and fishery population — for the national total and Guangdong, Guangxi and Hainan. The 2025 block is partial; species, power and length bands and value are still to be extracted. It preserves blanks, source locators and SHA-256; no values are published. Validation and coverage reports are in the local run root.
+
+The 2025 block was checked against China Statistical Yearbook 2026 table 12-15: twelve compared cells match exactly, and the national yearbook's marine capture column equals marine capture plus distant-water output in the fisheries yearbook.
 
 ## 10. Licence and sensitivity policy
 
