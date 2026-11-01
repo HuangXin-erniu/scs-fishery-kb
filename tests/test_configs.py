@@ -359,3 +359,21 @@ def test_standards_catalog() -> None:
         assert entry["name_zh"].strip()
         assert entry["pages"] >= 1
         assert re.fullmatch(r"[0-9a-f]{16}", entry["sha256"])
+
+
+def test_pipeline_config() -> None:
+    pipeline = load_yaml("configs/pipeline.yaml")
+    assert pipeline["schema_version"] == 1
+    documents = pipeline["documents"]
+    assert len(documents) == 3
+    assert len(set(documents)) == 3
+    assert pipeline["chunking"]["max_fallback_chars"] >= 200
+
+    corpus = load_yaml("configs/corpus.yaml")
+    by_id = {source["id"]: source for source in corpus["sources"]}
+    for doc_id in documents:
+        assert doc_id in by_id, doc_id
+        source = by_id[doc_id]
+        assert source["status"] == "acquired"
+        assert source["sensitivity"] == "public"
+        assert source["format"] in {"html", "docx", "ofd"}
