@@ -443,3 +443,25 @@ def test_cwp_catalog() -> None:
         assert page["url"].startswith("https://www.fao.org/")
     computed = hashlib.sha256("".join(page["sha256"] for page in pages).encode()).hexdigest()
     assert computed == data["manifest_sha256"]
+
+
+def test_glossary_bridge() -> None:
+    data = load_yaml("configs/glossary-bridge.yaml")
+    assert data["schema_version"] == 1
+    terms = data["terms"]
+    assert len(terms) >= 5
+    seen = set()
+    for entry in terms:
+        assert entry["zh"] not in seen
+        seen.add(entry["zh"])
+        assert entry["en"] and all(isinstance(item, str) and item for item in entry["en"])
+        assert "CWP" in entry["note"]
+    assert {"产量", "上岸量", "捕捞努力量"} <= seen
+
+
+def test_eval_reference_section() -> None:
+    config = load_yaml("configs/eval.yaml")
+    reference = config["reference"]
+    assert [item["id"] for item in reference] == ["Q-E05", "Q-M04"]
+    for item in reference:
+        assert item["docs"] == ["STD-CWP-043-catch", "STD-CWP-043-effort"]

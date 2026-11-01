@@ -19,6 +19,9 @@ from .corpus import CorpusError
 from .evaluate import evaluate, title_tokens, write_report
 from .ingest import IngestError, ingest, load_pipeline
 from .parsers import ParseError, UnsupportedFormatError
+from .reference import ReferenceError
+from .reference import lookup as reference_lookup
+from .reference import lookup_term as reference_lookup_term
 from .retrieve import Retriever
 from .store import StoreError, load_chunks
 
@@ -101,6 +104,7 @@ def _ask(args: argparse.Namespace) -> int:
         top_k=args.top_k,
         sensitivity_ceiling=args.sensitivity,
     )
+    references = reference_lookup(args.question, root=_root(args.data_root))
     min_score, min_matched, _ = _pipeline_options(args.pipeline)
     answer = answer_question(
         args.question,
@@ -115,13 +119,34 @@ def _ask(args: argparse.Namespace) -> int:
                 "index_version": manifest.get("index_version"),
                 "hits": [hit.to_dict() for hit in hits],
                 "result": answer.to_dict(),
+                "reference": [hit.to_dict() for hit in references],
             }
         )
         return 0
     if answer.abstained:
         print(f"ABSTAIN ({answer.reason}): {answer.text}")
+    else:
+        print(answer.text)
+    if references:
+        print("standard definition references:")
+        for hit in references:
+            snippet = " ".join(hit.chunk.text.split())[:200]
+            print(f"  [{hit.chunk.doc_id}] {snippet}")
+    return 0
+
+
+def _define(args: argparse.Namespace) -> int:
+    hits = reference_lookup_term(args.term, top_k=args.top_k, root=_root(args.data_root))
+    if args.json:
+        _print_json({"term": args.term, "reference": [hit.to_dict() for hit in hits]})
         return 0
-    print(answer.text)
+    if not hits:
+        print(f"no CWP concept matched: {args.term}")
+        return 0
+    for rank, hit in enumerate(hits, start=1):
+        snippet = " ".join(hit.chunk.text.split())[:300]
+        print(f"[{rank}] {hit.chunk.doc_id} score={hit.score:.2f}")
+        print(f"    {snippet}")
     return 0
 
 
@@ -150,6 +175,7 @@ def _eval(args: argparse.Namespace) -> int:
         f"abstention {summary['abstained_tests']}/{summary['abstention_tests']}; "
         f"false refusals {summary['false_refusals']}; "
         f"citation resolution {summary['citation_resolution']:.2f}; "
+        f"reference {summary['reference_hits']}/{summary['reference_questions']}; "
         f"index {report['index_version']}"
     )
     return 0
@@ -186,6 +212,15 @@ def build_parser() -> argparse.ArgumentParser:
     ask_parser.add_argument("--json", action="store_true")
     ask_parser.set_defaults(func=_ask)
 
+    define_parser = subparsers.add_parser(
+        "define", help="look up a CWP definition for a Chinese term"
+    )
+    define_parser.add_argument("term")
+    define_parser.add_argument("--top-k", type=int, default=3)
+    define_parser.add_argument("--data-root", default=None)
+    define_parser.add_argument("--json", action="store_true")
+    define_parser.set_defaults(func=_define)
+
     eval_parser = subparsers.add_parser("eval", help="evaluate retrieval, abstention and citations")
     eval_parser.add_argument("--questions", default=str(REPO_ROOT / "docs" / "questions.md"))
     eval_parser.add_argument("--anchors", default=str(DEFAULT_ANCHORS))
@@ -208,6 +243,7 @@ def main(argv: list[str] | None = None) -> int:
         IngestError,
         ParseError,
         UnsupportedFormatError,
+        ReferenceError,
         StoreError,
         ValueError,
         FileNotFoundError,

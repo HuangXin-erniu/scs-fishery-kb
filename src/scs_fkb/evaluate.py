@@ -9,6 +9,7 @@ import yaml
 
 from .answer import answer_question, validate_citations
 from .bm25 import BM25Index
+from .reference import lookup as reference_lookup
 from .store import load_chunks
 from .text import tokenize
 
@@ -57,7 +58,17 @@ def load_anchors(path: Path) -> dict[str, Any]:
     abstention = data.get("abstention") or []
     if not isinstance(abstention, list):
         raise ValueError(f"abstention must be a list in {path}")
-    return {"anchors": anchors, "abstention": [str(item) for item in abstention]}
+    reference = data.get("reference") or []
+    if not isinstance(reference, list):
+        raise ValueError(f"reference must be a list in {path}")
+    for item in reference:
+        if not isinstance(item, dict) or not item.get("id") or not item.get("docs"):
+            raise ValueError(f"malformed reference entry in {path}: {item}")
+    return {
+        "anchors": anchors,
+        "abstention": [str(item) for item in abstention],
+        "reference": reference,
+    }
 
 
 def anchor_matches(chunk, anchor: dict[str, Any]) -> bool:
@@ -79,6 +90,15 @@ def title_tokens(documents: list[dict[str, Any]]) -> dict[str, set[str]]:
         title = document.get("title_zh") or document.get("title") or ""
         titles[str(document["doc_id"])] = set(tokenize(title))
     return titles
+
+
+def summarize_reference(rows: list[dict[str, Any]]) -> dict[str, Any]:
+    hits = sum(1 for row in rows if row["hit"])
+    return {
+        "reference_questions": len(rows),
+        "reference_hits": hits,
+        "reference_rate": round(hits / len(rows), 4) if rows else 0.0,
+    }
 
 
 def summarize(results: list[dict[str, Any]], skipped: list[str]) -> dict[str, Any]:
@@ -198,6 +218,25 @@ def evaluate(
             }
         )
 
+    reference_results: list[dict[str, Any]] = []
+    for item in config.get("reference", []):
+        question_id = str(item["id"])
+        row = rows.get(question_id)
+        if row is None:
+            raise ValueError(
+                f"reference question is missing from the question table: {question_id}"
+            )
+        hits = reference_lookup(row["question"], root=data_root)
+        expected = [str(doc) for doc in item["docs"]]
+        reference_results.append(
+            {
+                "id": question_id,
+                "expected_docs": expected,
+                "top": [{"doc": hit.chunk.doc_id, "score": round(hit.score, 6)} for hit in hits],
+                "hit": any(hit.chunk.doc_id in expected for hit in hits),
+            }
+        )
+
     selected = set(config["anchors"]) | set(config["abstention"])
     skipped = [
         {
@@ -220,8 +259,12 @@ def evaluate(
         "min_score": min_score,
         "min_matched": min_matched,
         "title_boost": title_boost,
-        "summary": summarize(results, skipped_ids),
+        "summary": {
+            **summarize(results, skipped_ids),
+            **summarize_reference(reference_results),
+        },
         "results": results,
+        "reference": reference_results,
         "skipped": skipped,
     }
 

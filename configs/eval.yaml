@@ -43,3 +43,10 @@ abstention:
   - Q-M07
   - Q-M08
   - Q-M09
+# Definition questions answered through the terminology bridge and the CWP
+# reference channel rather than the main ranked index.
+reference:
+  - id: Q-E05
+    docs: [STD-CWP-043-catch, STD-CWP-043-effort]
+  - id: Q-M04
+    docs: [STD-CWP-043-catch, STD-CWP-043-effort]

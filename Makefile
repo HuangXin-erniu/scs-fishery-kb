@@ -1,4 +1,4 @@
-.PHONY: validate lint format test check ci ingest retrieve eval
+.PHONY: validate lint format test check ci ingest retrieve eval define
 
 validate:
 	python3 scripts/check_public_tree.py
@@ -21,6 +21,9 @@ retrieve:
 
 eval:
 	PYTHONPATH=src python3 -m scs_fkb eval
+
+define:
+	PYTHONPATH=src python3 -m scs_fkb define "$(TERM)"
 
 check: lint test validate
 

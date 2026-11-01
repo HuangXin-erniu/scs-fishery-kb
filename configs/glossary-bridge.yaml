@@ -1,0 +1,21 @@
+# Project-authored terminology bridge: Chinese statistical terms mapped to the
+# English concept labels used by the CWP definitions. Factual mapping only; no
+# CWP text is copied and the mapping is not a translation of that text.
+schema_version: 1
+updated_at: '2026-11-01'
+terms:
+  - zh: 捕捞努力量
+    en: [fishing, effort]
+    note: CWP reports nominal and effective fishing effort with standard measures A1-C6.
+  - zh: 上岸量
+    en: [landings]
+    note: CWP separates total landings (product weight) from nominal landings (live-weight equivalent).
+  - zh: 渔获量
+    en: [catch]
+    note: Domestic usage overlaps 产量; mapped to the CWP catch concept.
+  - zh: 作业日志
+    en: [logbook]
+    note: CWP recommends logbooks for recording the catch components used in statistics.
+  - zh: 产量
+    en: [catch, production]
+    note: The yearbooks use 产量 for output; CWP defines catch and nominal catch.
