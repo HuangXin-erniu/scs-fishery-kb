@@ -680,24 +680,41 @@ sources:
   acquisition: 'Fetched 2026-10-31 from the Fisheries Bureau: https://yyj.moa.gov.cn/gzdt/202507/t20250707_6475475.htm (HTTP 200; 132,017 bytes; published 2025-07-07).'
   notes: 'Data year 2024; national totals only, no provincial or South China Sea breakdown. Part of the 2020-2025 bulletin series.'
 - id: DICT-STAT-013
-  title: Statistical indicator definitions and data dictionary (candidate)
-  title_zh: 统计指标口径/数据字典（候选）
-  publisher: To be confirmed
-  year: null
+  title: 渔业统计指标解释（2024中国渔业统计年鉴附录3）
+  title_zh: 渔业统计指标解释（2024中国渔业统计年鉴附录3）
+  publisher: 农业农村部渔业渔政管理局
+  year: 2024
   type: data_dictionary
-  format: unknown
-  location: null
-  license: unknown
-  sensitivity: unknown
-  status: to_acquire
-  disposition: acquire
-  disposition_reason: Definitions of production, landed weight and fishing effort are required by three questions.
+  jurisdiction: national
+  format: pdf
+  location: raw/DICT-STAT-013/fisheries-statistical-indicator-explanations-2024.pdf
+  license: public
+  sensitivity: public
+  status: acquired
   priority: P1
-  volume: unknown
-  update_freq: static
-  hash: null
-  acquisition: Obtain indicator definitions and definitions from the statistics or data authority.
-  notes: Confirm the core definitions of production, landed weight, fishing effort and operation type.
+  volume: 1 PDF; 16 pages, printed pages 144-159
+  update_freq: annual
+  hash: 8f67eebf4ffdf4d834d5034ab6cd131486dfa3db4fe564e9e42eea67c4244567
+  acquisition: 'Owner-supplied 2024 yearbook PDF; pages 164-179 of that file were separated into this extract with poppler pdfseparate and pdfunite on 2026-11-01. Source file SHA-256: 43f94599c25c29d8676ae01669fc9b8715becaa34c882bc790e4d61ca2799d3d.'
+  notes: 'Appendix 3 of the fisheries yearbook. Defines the water-product concept and scope, the statistical year and reporting unit, the measurement basis (fresh weight, except salted jellyfish and dried algae), the culture-versus-capture rule, product classification, marine and freshwater culture classes, and capture production by sea area (Bohai, Yellow, East China and South China Sea boundaries) and by gear group (trawl, purse seine, gillnet, stow net, hook and line, other). This is the authoritative definition source for production questions.'
+- id: DICT-STAT-040
+  title: 中国统计年鉴2025主要统计指标解释（农业）
+  title_zh: 中国统计年鉴2025主要统计指标解释（农业）
+  publisher: 国家统计局
+  year: 2025
+  type: data_dictionary
+  jurisdiction: national
+  format: pdf
+  location: raw/DICT-STAT-040/china-statistical-yearbook-2025-agriculture-indicator-notes.pdf
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P1
+  volume: 1 PDF; 1 page
+  update_freq: annual
+  hash: 5ee68c21d985c31f0fe5e0163965d2c8234ba6227fc96b8b4d8d8667d93b1acc
+  acquisition: 'Chapter-12 indicator notes fetched 2026-11-01 from the National Bureau of Statistics: https://www.stats.gov.cn/sj/ndsj/2025/html/zb12.pdf (HTTP 200). The 2023 and 2024 editions carry the same text.'
+  notes: 'National statistical definition: water-product output is the final effective output of capture and culture, covering marine and freshwater fish, crustaceans, shellfish, cephalopods, algae and other products; the data are reported upward through fishery departments at each level; since 1996 shellfish are measured by fresh weight. It does not split marine capture production, so DICT-STAT-013 remains the operational definition for sea-area and gear breakdowns.'
 - id: DICT-META-014
   title: Metadata and data-quality rules (candidate)
   title_zh: 元数据/数据质量规范（候选）
