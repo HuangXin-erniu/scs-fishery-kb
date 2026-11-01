@@ -2,6 +2,11 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-01 — Sufficiency review accepted for the P1 scope
+
+- Reviewed the 24 draft questions against the register: 10 answerable, 6 partially answerable, 8 not answerable. All eight blocked questions point at deferred P2 candidate sources, so nothing in the P1 scope is blocked.
+- Three questions will be reworded to match what the yearbooks publish: production by operation type, the landed-weight and effort definitions, and the combined production-and-vessel-count question.
+- The eight blocked questions remain abstention tests; the remaining work is the port-classification mapping and the candidate close-out.
 ## 2026-11-01 — Core CSV extended to data year 2025
 
 - Appended the 140 verified 2025 rows to the local core CSV: 3,037 rows for 2017-2024 plus 140 for 2025, same 20-column layout, 2017-2024 untouched.

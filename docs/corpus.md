@@ -157,6 +157,14 @@ Known gaps:
 - No registered edition publishes capture production by operation type; production is available by sea area, gear group and species only.
 - The published South China Sea column includes Fujian in data years 2017–2020 and excludes it from 2021 onward. The CSV stores the published value, the Guangdong/Guangxi/Hainan subtotal and the difference.
 
+## 8a. Sufficiency review
+
+The 24 draft questions were checked against the registered sources on 2026-11-01: **10 are answerable, 6 partially answerable and 8 not answerable**. Every unanswerable question maps to a deferred candidate source (vessel/voyage dictionaries, ocean and fishery-product descriptions, historical fishing-ground records); nothing in the P1 scope is blocked.
+
+Three questions need rewording rather than new sources: the sea-area and operation-type production trend, which the yearbooks publish by sea area and gear but not by operation type; the production, landed-weight and effort definitions, of which only production has an official definition; and the combined production-and-vessel-count question, which mixes a published indicator with an unpublished one.
+
+The eight unanswerable questions stay as abstention tests until the deferred sources are acquired.
+
 ## 9. Local core CSV
 
 The local extraction has **3,177 rows**: 3,037 for 2017–2024 (capture 1,665, vessels 1,116, population 128, marine capture value 32 and coastal ports 96) plus 140 for 2025 covering six tables — output, capture by sea area, capture by gear, capture vessels by operation type, fishing ports and fishery population — for the national total and Guangdong, Guangxi and Hainan. The 2025 block is partial; species, power and length bands and value are still to be extracted. It preserves blanks, source locators and SHA-256; no values are published. Validation and coverage reports are in the local run root.
@@ -184,12 +192,13 @@ The 2025 block was checked against China Statistical Yearbook 2026 table 12-15: 
 
 ## 12. Gaps and next steps
 
-1. Review the local core CSV and decide whether the indicator coverage is sufficient.
+1. The sufficiency review is done: ten questions are answerable, six partial and eight are abstention tests (section 8a).
 2. Diff the registered People's Daily text against the npc.gov.cn page when that site is reachable again; the 2026-10-31 WAF block and the attempts are recorded in the register.
 3. The definition sources close `DICT-STAT-013`; the standards (including GB/T 5147—2026), the permit form and the permit regulation cover most of `OPS-LOG-002`, and the seven deferred candidates stay out of the current phase.
 4. Use the 2018 port plan as the port baseline and record the classification difference when extending the core CSV to ports.
-5. Extract the remaining 2026 tables, starting with capture by species (pages 41-43), and run a second-person spot check before the 2025 sample joins the core CSV.
-6. Do not plan or implement the retrieval pipeline until the sufficiency review is accepted.
+5. Extract the remaining 2026 tables, starting with capture by species (pages 41-43).
+6. Map the 2018 port-plan classes to the yearbook port classes and close the remaining candidate dispositions.
+7. Do not plan or implement the retrieval pipeline until the owner accepts the review verdict.
 
 ## 13. References
 
