@@ -53,11 +53,16 @@ def test_corpus_structure() -> None:
     assert [source["year"] for source in yearbooks] == list(range(2018, 2027))
     for source in yearbooks:
         assert source["type"] == "statistical_yearbook"
+        assert source["jurisdiction"] == "national"
         assert source["license"] == "internal"
         assert source["sensitivity"] == "internal"
         assert source["location"] == f"raw/{source['id']}/"
         assert re.fullmatch(r"[0-9a-f]{64}", source["hash"])
         assert source["volume"].endswith(("files", "pages"))
+
+    jurisdictions = {"national", "guangdong", "guangxi", "fujian"}
+    for source in acquired:
+        assert source.get("jurisdiction") in jurisdictions, source["id"]
 
     documents = [source for source in acquired if source["type"] != "statistical_yearbook"]
     assert {source["id"] for source in documents} == {
