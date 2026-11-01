@@ -2,6 +2,11 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-01 — Core CSV extended to data year 2025
+
+- Appended the 140 verified 2025 rows to the local core CSV: 3,037 rows for 2017-2024 plus 140 for 2025, same 20-column layout, 2017-2024 untouched.
+- Cross-checked the 2025 block against China Statistical Yearbook 2026 table 12-15: twelve cells match exactly, including the identity that the national yearbook's marine capture equals marine capture plus distant-water output in the fisheries yearbook.
+- The 2025 block is partial: species, power and length bands, marine capture value and the remaining tables still need extraction from the scan.
 ## 2026-11-01 — 2026 yearbook sampled: table list and six tables
 
 - Mapped the 166-page scan to a table list covering the seven parts and the appendices, with printed-page locators and a note on the new part/section layout introduced by the 2025 edition.
