@@ -19,7 +19,21 @@ The project turns documents, data dictionaries, product descriptions, fishery bu
 
 ## Status
 
-**Data preparation and corpus discovery.** Nine official/authorized yearbook editions (data years 2017–2025), six national statistical bulletins (data years 2020–2025), the China Statistical Yearbook 2026 and twenty-four legal and technical documents are registered. The yearbooks are internal, local-use sources; the public tree records only metadata, hashes and coverage counts. The coverage matrix and the 3,126-row local core CSV are built and stay outside the public tree. The M1 retrieval pipeline is deliberately deferred until the corpus is sufficient; no pipeline code is part of the public repository.
+**Corpus and data preparation (WP1) complete for this phase; the retrieval pipeline is not started.** Forty-three sources are registered: forty acquired and three candidates, all deferred. The acquired set is nine fishery yearbook editions (data years 2017–2025, 838 files — 837 Excel tables and one scanned PDF), six national fishery statistical bulletins (data years 2020–2025), the China Statistical Yearbook 2026, and twenty-four legal and technical documents — one law, ten regulations, four notices, five standard sets (including seventeen SC/T standards held as image-only reference PDFs, 295 pages), one operations reference, one port plan and two definition dictionaries. Licence, sensitivity, version and SHA-256 are recorded for every source; the yearbooks are internal, local-use sources. The coverage matrix and the 3,126-row local core CSV (2017–2024 plus a harmonised 2025 sample) stay outside the public tree. Three gaps are documented: no port table for data years 2018–2019, no marine vessel-length table for 2024, and 2025 as a sample. The sufficiency review is accepted: ten of the twenty-four draft questions are answerable, six partial and eight abstention tests. M1 starts on an owner decision, not on a corpus constraint.
+
+### Corpus at a glance
+
+| Item | Value |
+|---|---|
+| Registered sources | 43 — 40 acquired, 3 candidates (all deferred) |
+| Fishery yearbooks | 9 editions, data years 2017–2025, 838 files |
+| National bulletins | 6, data years 2020–2025 |
+| China Statistical Yearbook | 2026 edition |
+| Legal and technical documents | 24 — 1 law, 10 regulations, 4 notices, 5 standard sets, 1 operations reference, 1 port plan, 2 dictionaries |
+| SC/T standards held | 17 (295 pages, image-only reference PDFs) |
+| Local core CSV | 3,126 rows, not published |
+| Documented gaps | port classes 2018–2019; vessel length 2024; 2025 sampled |
+| Sufficiency review | 10 answerable, 6 partial, 8 abstention tests |
 
 This project has no versioned releases: no tags, no GitHub Releases and no semantic versions. `main` is the latest state; cite a commit SHA. Changes are recorded in the [project log](docs/project-log.md).
 
@@ -108,12 +122,12 @@ See [docs/data-policy.md](docs/data-policy.md) for details.
 | Milestone | Deliverable | Status |
 |---|---|---|
 | M0 | Framework: scope, architecture, plan, evaluation, corpus register, tooling | done |
-| M1 | Minimal pipeline: parse, chunk, index, retrieve, answer with citations | deferred until corpus sufficient |
+| M1 | Minimal pipeline: parse, chunk, index, retrieve, answer with citations | next: owner decision pending |
 | M2 | Retrieval baseline: BM25 / dense / hybrid comparison | planned |
 | M3 | Evaluation report and service prototype | planned |
 | M4 | `/v1` query interface contract for downstream integration | planned |
 
-Milestones describe work stages, not releases. The M4 contract is limited to `docs/interface.md` and `configs/interface.yaml` when it is added; it does not include data integration.
+Milestones describe work stages, not releases. The corpus sufficiency review was accepted on 2026-11-01, so the start of M1 is an owner decision rather than a corpus condition. The M4 contract is limited to `docs/interface.md` and `configs/interface.yaml` when it is added; it does not include data integration.
 
 ## Citation
 
