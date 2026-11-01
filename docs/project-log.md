@@ -2,6 +2,12 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-01 — Repository description refreshed to the accepted corpus state
+
+- Rewrote the README status to the accepted corpus: forty-three registered sources (forty acquired, three candidates), nine yearbook editions over 838 files, six national bulletins, the China Statistical Yearbook 2026, twenty-four legal and technical documents and seventeen SC/T standards over 295 pages; the 3,126-row core CSV stays local.
+- Added a corpus summary table and recorded the three gaps and the accepted sufficiency review (ten answerable, six partial, eight abstention tests).
+- Replaced the stale "M1 deferred until corpus sufficient" wording: the corpus is sufficient, so M1's start is now an owner decision.
+
 ## 2026-11-01 — Logbook candidate closed; document references corrected
 
 - Closed `OPS-LOG-002`: articles 50-53 of the permit regulation, the approved-operation block `OPS-FORM-036` and SC/T 9460-2025 cover the record fields and the reporting duty, so no separate acquisition is planned. The register now holds forty-three sources: forty acquired and three candidates, all deferred.
