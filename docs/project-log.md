@@ -2,6 +2,11 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-01 — Environment and fishery-product sources excluded; no duplicate registered
+
+- Removed the four environment and fishery-product candidates (sea surface temperature, chlorophyll/current/wind, fishing-ground bulletin, historical season record) from the register on owner instruction; the fishery_product type stays defined with zero sources.
+- Audited every remaining gap: logbook fields are partly covered by the permit regulation and the approved-operation form, port classes by the 2018 plan and the 2025 list, the definitions by the two acquired definition sources; the complete logbook field list, landed weight and effort definitions, metadata rules and the remaining 2025 tables have no public source or are extraction work, so nothing new was added and no acquired source was duplicated.
+- The register now holds forty-two sources: thirty-eight acquired and four candidates.
 ## 2026-11-01 — Sufficiency review accepted for the P1 scope
 
 - Reviewed the 24 draft questions against the register: 10 answerable, 6 partially answerable, 8 not answerable. All eight blocked questions point at deferred P2 candidate sources, so nothing in the P1 scope is blocked.
