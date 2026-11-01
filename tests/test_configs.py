@@ -33,7 +33,7 @@ def test_corpus_structure() -> None:
         "data_dictionary",
         "plan",
     }
-    assert len(data["sources"]) == 45
+    assert len(data["sources"]) == 46
 
     acquired = []
     candidates = []
@@ -46,18 +46,18 @@ def test_corpus_structure() -> None:
         else:
             candidates.append(source)
 
-    assert len(acquired) == 37
+    assert len(acquired) == 38
     assert len(candidates) == 8
     yearbooks = [source for source in acquired if source["id"].startswith("STAT-YB-")]
-    assert len(yearbooks) == 8
-    assert [source["year"] for source in yearbooks] == list(range(2018, 2026))
+    assert len(yearbooks) == 9
+    assert [source["year"] for source in yearbooks] == list(range(2018, 2027))
     for source in yearbooks:
         assert source["type"] == "statistical_yearbook"
         assert source["license"] == "internal"
         assert source["sensitivity"] == "internal"
         assert source["location"] == f"raw/{source['id']}/"
         assert re.fullmatch(r"[0-9a-f]{64}", source["hash"])
-        assert source["volume"].endswith("files")
+        assert source["volume"].endswith(("files", "pages"))
 
     documents = [source for source in acquired if source["type"] != "statistical_yearbook"]
     assert {source["id"] for source in documents} == {
@@ -91,6 +91,13 @@ def test_corpus_structure() -> None:
         assert source["location"].startswith("raw/")
         assert not source["location"].startswith("/")
         assert source["jurisdiction"] in {"national", "guangdong", "guangxi", "fujian"}
+
+    scan = [source for source in acquired if source["id"] == "STAT-YB-2026"]
+    assert len(scan) == 1
+    assert scan[0]["format"] == "pdf"
+    assert scan[0]["license"] == "internal"
+    assert "scanned pages" in scan[0]["volume"]
+    assert "OCR" in scan[0]["notes"]
 
     bulletin = [source for source in acquired if source["id"] == "STAT-BULL-025"]
     assert len(bulletin) == 1
@@ -151,7 +158,7 @@ def test_corpus_structure() -> None:
         for type_id in type_ids
     }
     assert type_counts == {
-        "statistical_yearbook": 15,
+        "statistical_yearbook": 16,
         "law": 1,
         "regulation": 10,
         "notice": 3,

@@ -19,7 +19,7 @@ The project turns documents, data dictionaries, product descriptions, fishery bu
 
 ## Status
 
-**Data preparation and corpus discovery.** Eight official/authorized yearbook editions (data years 2017–2024), six national statistical bulletins (data years 2020–2025), the China Statistical Yearbook 2026 and twenty-two legal and technical documents are registered. The yearbooks are internal, local-use sources; the public tree records only metadata, hashes and coverage counts. The coverage matrix and local core CSV are next. The M1 retrieval pipeline is deliberately deferred until the corpus is sufficient; no pipeline code is part of the public repository.
+**Data preparation and corpus discovery.** Nine official/authorized yearbook editions (data years 2017–2025), six national statistical bulletins (data years 2020–2025), the China Statistical Yearbook 2026 and twenty-two legal and technical documents are registered. The yearbooks are internal, local-use sources; the public tree records only metadata, hashes and coverage counts. The coverage matrix and local core CSV are next. The M1 retrieval pipeline is deliberately deferred until the corpus is sufficient; no pipeline code is part of the public repository.
 
 This project has no versioned releases: no tags, no GitHub Releases and no semantic versions. `main` is the latest state; cite a commit SHA. Changes are recorded in the [project log](docs/project-log.md).
 

@@ -1,6 +1,6 @@
 # Corpus Inventory
 
-- Status: data preparation and corpus discovery. Eight yearbook editions, six national bulletins, the China Statistical Yearbook 2026 and twenty-two legal and technical documents are acquired; eight candidates remain (one to acquire, seven deferred). The local core CSV has 3,037 rows and stays outside the public tree. No parsing or indexing in this phase.
+- Status: data preparation and corpus discovery. Nine yearbook editions, six national bulletins, the China Statistical Yearbook 2026 and twenty-two legal and technical documents are acquired; eight candidates remain (one to acquire, seven deferred). The local core CSV has 3,037 rows and stays outside the public tree. No parsing or indexing in this phase.
 - Register: [configs/corpus.yaml](../configs/corpus.yaml)
 - Indicator schema: [configs/statistics.yaml](../configs/statistics.yaml)
 - Date: 2026-10-31
@@ -35,7 +35,7 @@ It does **not** include raw environmental grids, reanalysis data, forecast raste
 
 ## 4. Acquired yearbooks
 
-All eight editions are owner-confirmed official/authorized Excel editions. The public metadata records edition, data year, file count and manifest SHA-256; values stay local.
+The first eight editions are owner-confirmed official/authorized Excel editions; the ninth is an image-only scan. The public metadata records edition, data year, file count and manifest SHA-256; values stay local.
 
 | Source | Edition | Data year | Files | Format | Manifest SHA-256 (short) |
 |---|---:|---:|---:|---|---|
@@ -47,8 +47,9 @@ All eight editions are owner-confirmed official/authorized Excel editions. The p
 | `STAT-YB-2023` | 2023 | 2022 | 84 | xlsx | `e8cb6104` |
 | `STAT-YB-2024` | 2024 | 2023 | 140 | xls | `dc4c7475` |
 | `STAT-YB-2025` | 2025 | 2024 | 82 | xlsx | `8768019d` |
+| `STAT-YB-2026` | 2026 | 2025 | 1 | pdf | `ef674e53` |
 
-The 2022 bundle contained a byte-identical duplicate of table 3-10; the duplicate was removed on 2026-10-31 and that edition's manifest regenerated, so its hash is the SHA-256 of the regenerated manifest. The 2024 edition is encrypted with the Excel default password; the originals are unchanged in `raw/STAT-YB-2024/`, and decrypted working copies are kept outside the public tree. The 2019, 2020 and 2024 editions use the older `.xls` layout.
+The 2026 edition is a 166-page scan with no text layer: the data year 2025 is registered for provenance, but no table has been extracted, so it does not yet appear in the coverage matrix. OCR or manual entry is the prerequisite. The 2022 bundle contained a byte-identical duplicate of table 3-10; the duplicate was removed on 2026-10-31 and that edition's manifest regenerated, so its hash is the SHA-256 of the regenerated manifest. The 2024 edition is encrypted with the Excel default password; the originals are unchanged in `raw/STAT-YB-2024/`, and decrypted working copies are kept outside the public tree. The 2019, 2020 and 2024 editions use the older `.xls` layout.
 
 The bulletin series `STAT-BULL-025` and `STAT-BULL-028`–`STAT-BULL-032` covers data years 2020–2025 (published 2021–2026). Each bulletin reports national totals only — no provincial or South China Sea breakdown — so the series extends the record in time but does not replace the yearbook editions. Values stay local.
 
@@ -119,12 +120,12 @@ The two agree on the concept and differ in scope: the national note sets the hea
 | Metric | Value |
 |---|---:|
 | Corpus types | 9 |
-| Registered sources | 45 |
-| Acquired sources | 37 |
+| Registered sources | 46 |
+| Acquired sources | 38 |
 | Remaining candidates | 8 |
-| Yearbook editions | 8 |
-| Yearbook data years | 2017–2024 |
-| Yearbook files | 838 |
+| Yearbook editions | 9 |
+| Yearbook data years | 2017–2025 |
+| Yearbook files | 839 |
 | Local core CSV rows | 3,037 |
 | Public values | 0 |
 
@@ -146,6 +147,7 @@ The coverage matrix uses the latest edition for each data year. Counts are table
 Known gaps:
 
 - Coastal-port infrastructure is missing from the yearbooks for data years 2018 and 2019: the 838-file inventory confirms that the 2019 and 2020 editions contain no infrastructure table. The 2018 national port plan (POL-PLAN-038) supplies a 2018 baseline with named central and first-class ports, and the 2025 recognition list (POL-PORT-037) adds 14 more, but the plan's port classes are not identical with the yearbook table and the 2025 list is still a proposal, so neither can be pasted into the core CSV without a mapping note.
+- Data year 2025 is registered in the 2026 edition but not yet extracted: the file is an image-only scan, so the coverage matrix ends at 2024 until OCR or manual entry is done.
 - The 2017 and 2021 source tables have only 沿海中心渔港 and 沿海一级渔港; the later tables add class 2, class 3 and unrated ports.
 - The vessel-length proxy is missing for data year 2024; the 2025 edition dropped the marine vessel-length table and keeps only the all-vessel and inland tables. The gap is accepted rather than filled from a non-comparable table.
 - The vessel-length table is a marine production-vessel proxy, not capture-only.

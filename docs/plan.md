@@ -2,9 +2,9 @@
 
 > **中文摘要**：本文件把项目范围拆成 WP0–WP6 工作包、M0–M4 阶段、角色、质量门与风险。
 > 里程碑是工作阶段，不是版本；项目不创建 tag 或 GitHub Release。
-> 当前处于 WP1（语料采集与登记）：已登记 8 版统计年鉴、6 份全国公报、中国统计年鉴 2026 和 22 份法规与技术文件，候选源已完成处置（2 个待采集、7 个暂缓），并生成 3,037 行本地核心指标长表；两处覆盖缺口已定稿；下一步复核指标充分性；M1 管线推迟到复核通过后再规划。
+> 当前处于 WP1（语料采集与登记）：已登记 9 版统计年鉴、6 份全国公报、中国统计年鉴 2026 和 22 份法规与技术文件，候选源已完成处置（1 个待采集、7 个暂缓），并生成 3,037 行本地核心指标长表；三处缺口已记录（2025 数据年待 OCR）；下一步复核指标充分性；M1 管线推迟到复核通过后再规划。
 
-- Status: active plan; WP1 has eight yearbook editions, six national bulletins, the China Statistical Yearbook 2026, twenty-two legal and technical documents, nine dispositioned candidates and a 3,037-row local core CSV; the sufficiency review is next.
+- Status: active plan; WP1 has nine yearbook editions, six national bulletins, the China Statistical Yearbook 2026, twenty-two legal and technical documents, eight candidates and a 3,037-row local core CSV; the sufficiency review is next.
 - No versioned releases are published. Milestones describe work stages, not release numbers.
 - Architecture: [architecture.md](architecture.md); evaluation: [evaluation.md](evaluation.md); scope: [../PROJECT.md](../PROJECT.md).
 
@@ -23,14 +23,14 @@ Detailed scope and non-goals are in [../PROJECT.md](../PROJECT.md). The architec
 | WP | Name | Deliverables | Acceptance |
 |---|---|---|---|
 | WP0 | Framework and governance | Scope, architecture, plan, evaluation, corpus register, questions, public tooling and CI | Documents reviewed; CI passes |
-| WP1 | Corpus acquisition and registration | Policy documents plus eight yearbook editions; licence, sensitivity, version and hash recorded | No unknown source ingested; acquisition path documented |
+| WP1 | Corpus acquisition and registration | Policy documents plus nine yearbook editions; licence, sensitivity, version and hash recorded | No unknown source ingested; acquisition path documented |
 | WP2 | Ingestion and knowledge organisation | Parser, chunker, table/indicator extraction; processed records and manifest | Page/section/table anchors present; manifest reproducible |
 | WP3 | Retrieval | BM25, dense retrieval, fusion, metadata/sensitivity filtering; retrieval report | Retrieval baseline measured on a reviewed subset |
 | WP4 | Answer generation and evidence | Evidence-only prompt, citation validation, abstention | No fabricated citation; out-of-scope refusal works |
 | WP5 | Evaluation | Reviewed question set; baselines; error analysis; evaluation report | Metrics and limitations reported |
 | WP6 | Service and interface | CLI/HTTP query surface; `/v1` interface contract (`docs/interface.md`, `configs/interface.yaml`) | Contract reviewed; no data integration implemented |
 
-WP0 is complete. WP1 is closed for this phase: forty-five sources are registered as eight yearbook editions (data years 2017–2024), six national statistical bulletins (data years 2020–2025), the China Statistical Yearbook 2026, twenty-two legal and technical documents (one law, ten regulations, three notices, four standards, one operations reference and one port plan) and nine dispositioned candidates (two to acquire, seven deferred). The yearbooks are internal, local-use sources. The 3,037-row core CSV is built locally and has passed source-hash and spot-value checks. Two coverage gaps are documented: no port infrastructure table exists for data years 2018–2019, and no marine vessel-length table exists for 2024. The sufficiency review is next. The legal corpus spans the national level and Guangdong, Guangxi and Fujian; the Fisheries Law is registered from the official People's Daily publication of 2026-02-25, with the duplicate copies removed, and the npc.gov.cn page itself returned HTTP 403 from this network on 2026-10-31. WP2–WP6 are deferred; no pipeline code is part of the current public tree.
+WP0 is complete. WP1 is closed for this phase: forty-six sources are registered as nine yearbook editions (data years 2017–2025), six national statistical bulletins (data years 2020–2025), the China Statistical Yearbook 2026, twenty-two legal and technical documents (one law, ten regulations, three notices, four standards, one operations reference and one port plan) and eight candidates (one to acquire, seven deferred). The yearbooks are internal, local-use sources. The 3,037-row core CSV is built locally and has passed source-hash and spot-value checks. Three coverage gaps are documented: no port infrastructure table exists for data years 2018–2019, no marine vessel-length table exists for 2024, and data year 2025 is registered only as an image scan that still needs OCR. The sufficiency review is next. The legal corpus spans the national level and Guangdong, Guangxi and Fujian; the Fisheries Law is registered from the official People's Daily publication of 2026-02-25, with the duplicate copies removed, and the npc.gov.cn page itself returned HTTP 403 from this network on 2026-10-31. WP2–WP6 are deferred; no pipeline code is part of the current public tree.
 
 ## 4. Milestones
 
