@@ -2,6 +2,13 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-01 — International definitions and species list registered
+
+- Acquired `STD-CWP-043`: three CWP Handbook pages (catch and landings, fishing effort, ISSCFG gear classification) that supply the international definition of catch, landings and effort; the domestic yearbooks still state no Chinese official definition for landed weight or effort.
+- Acquired `STD-ASFIS-044`: the ASFIS 2026.1 species list, 13,965 records with 3-alpha codes and 2,695 Chinese names, as a reference dictionary.
+- Both carry the FAO CC BY-NC-SA 3.0 IGO licence and stay local; neither enters the M1 index. A dry run adding the CWP pages lowered abstention from 5/6 to 4/6 without improving Chinese-question recall, so a bilingual term layer is the precondition.
+- The register now holds forty-five sources: forty-two acquired and three candidates.
+
 ## 2026-11-01 — Public corpus and anchor-level baseline
 
 - Indexed all twenty-nine public sources into 703 chunks: added PDF and legacy DOC adapters and stopped dropping table-of-contents and page-furniture lines.

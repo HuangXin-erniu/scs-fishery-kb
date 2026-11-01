@@ -1,0 +1,35 @@
+# CWP Handbook pages held as an international reference for fishery statistics.
+# Metadata only: the text stays in the local data root and is not published.
+schema_version: 1
+updated_at: '2026-11-01'
+series: STD-CWP-043
+publisher: FAO Coordinating Working Party on Fishery Statistics (CWP)
+license: cc-by-nc-sa-3.0-igo
+source: https://www.fao.org/cwp-on-fishery-statistics/handbook/
+scope: catch and landings concepts, fishing effort concepts and standard measures, ISSCFG gear classification
+documents: 3
+manifest_sha256: 'f871a96b3dfafa8dea1e2f56a8675d6d7b261fa36f1923744d875ace5a6871a9'
+manifest_formula: sha256 over the concatenated per-file sha256 hex values in filename order
+pages:
+  - file: cwp-catch-and-landings.html
+    title: Catch and landings
+    url: https://www.fao.org/cwp-on-fishery-statistics/handbook/capture-fisheries-statistics/catch-and-landings/en/
+    bytes: 32474
+    chars: 10206
+    sha256: '6aa13074ebbe55ae67343e8f2db0b49e3e6b14a7c3a9ba5e9d5fbf4a6f19c81f'
+  - file: cwp-fishing-effort.html
+    title: Fishing effort
+    url: https://www.fao.org/cwp-on-fishery-statistics/handbook/capture-fisheries-statistics/fishing-effort/en/
+    bytes: 39965
+    chars: 15928
+    sha256: '2adb870239bf49c2fa856f63cf9a12fa49e58943a29fb00c9e1e423df0e9588e'
+  - file: cwp-fishing-gear-classification.html
+    title: Fishing gear classification (ISSCFG)
+    url: https://www.fao.org/cwp-on-fishery-statistics/handbook/capture-fisheries-statistics/fishing-gear-classification/en/
+    bytes: 22761
+    chars: 3919
+    sha256: '199667afeef544b9ffbef4da62173ed45bb46582369711fe4f65c7ffc08e1a9f'
+notes:
+  - English only; the pages are not in the M1 index because the Chinese question set cannot reach English text.
+  - The definitions are the international statistical standard, not a Chinese official definition.
+  - Licence CC BY-NC-SA 3.0 IGO: local reference use only, no text copied into public documents.
