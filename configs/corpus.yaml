@@ -681,6 +681,7 @@ sources:
   title_zh: 中国渔业统计年鉴 2018（Excel 表）
   publisher: 农业农村部渔业渔政管理局 / 中国农业出版社
   year: 2018
+  jurisdiction: national
   format: xlsx
   location: raw/STAT-YB-2018/
   license: internal
@@ -698,6 +699,7 @@ sources:
   title_zh: 中国渔业统计年鉴 2019（Excel 表）
   publisher: 农业农村部渔业渔政管理局 / 中国农业出版社
   year: 2019
+  jurisdiction: national
   format: xls
   location: raw/STAT-YB-2019/
   license: internal
@@ -715,6 +717,7 @@ sources:
   title_zh: 中国渔业统计年鉴 2020（Excel 表）
   publisher: 农业农村部渔业渔政管理局 / 中国农业出版社
   year: 2020
+  jurisdiction: national
   format: xls
   location: raw/STAT-YB-2020/
   license: internal
@@ -732,6 +735,7 @@ sources:
   title_zh: 中国渔业统计年鉴 2021（Excel 表）
   publisher: 农业农村部渔业渔政管理局 / 中国农业出版社
   year: 2021
+  jurisdiction: national
   format: xlsx
   location: raw/STAT-YB-2021/
   license: internal
@@ -749,6 +753,7 @@ sources:
   title_zh: 中国渔业统计年鉴 2022（Excel 表）
   publisher: 农业农村部渔业渔政管理局 / 中国农业出版社
   year: 2022
+  jurisdiction: national
   format: xlsx
   location: raw/STAT-YB-2022/
   license: internal
@@ -766,6 +771,7 @@ sources:
   title_zh: 中国渔业统计年鉴 2023（Excel 表）
   publisher: 农业农村部渔业渔政管理局 / 中国农业出版社
   year: 2023
+  jurisdiction: national
   format: xlsx
   location: raw/STAT-YB-2023/
   license: internal
@@ -783,6 +789,7 @@ sources:
   title_zh: 中国渔业统计年鉴 2024（Excel 表）
   publisher: 农业农村部渔业渔政管理局 / 中国农业出版社
   year: 2024
+  jurisdiction: national
   format: xls
   location: raw/STAT-YB-2024/
   license: internal
@@ -800,6 +807,7 @@ sources:
   title_zh: 中国渔业统计年鉴 2025（Excel 表）
   publisher: 农业农村部渔业渔政管理局 / 中国农业出版社
   year: 2025
+  jurisdiction: national
   format: xlsx
   location: raw/STAT-YB-2025/
   license: internal
