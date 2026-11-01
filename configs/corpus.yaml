@@ -495,6 +495,24 @@ sources:
   hash: 8a87dda7a38c0008fe80243f2a66abc06c8b2a62b2a92c2bb522e3528312f022
   acquisition: Owner-supplied PDF received 2026-10-31; cover states 2018年4月.
   notes: 'National port construction plan. Describes ten coastal port groups (including Guangdong, Beibu Gulf, Hainan Island and the South China Sea groups), with per-county port counts by class and named central and first-class ports, and plans 64 central and 85 first-class ports. Supplies a 2018 port baseline where the yearbook infrastructure table is absent; the classification is not identical to the yearbook table.'
+- id: STD-SC-042
+  title: SC/T aquatic-industry standards relevant to the corpus (current set)
+  title_zh: 水产行业标准 SC/T（与本项目相关的现行文本）
+  publisher: 农业农村部
+  year: 2026
+  type: standard
+  jurisdiction: national
+  format: pdf
+  location: raw/SC-STD/
+  license: internal
+  sensitivity: internal
+  status: acquired
+  priority: P2
+  volume: 17 standards; 295 pages; one PDF each
+  update_freq: irregular
+  hash: 6ab8d85dfa1310a5d439b1a1cec346996ea09ff0b5644a8b2933e0396c00ff8f
+  acquisition: 'Retrieved 2026-11-01 from the national standards platform filing interface https://hbba.sacinfo.org.cn/stdQueryList (keyword SC/T: 977 records, 809 current) and filtered to the project scope; each text was taken from the public reader https://hbba.sacinfo.org.cn/hbba_onlineRead_page/<pk>/<index>.png and assembled with sips and pdfunite.'
+  notes: 'Official reference copies carrying the 参考件 watermark; image-only, no text layer. The scope is marine capture, gear and mesh, vessel management data, fishing ports, fishery statistics and surveys, resource surveys and terminology: twenty-four standards match, seventeen have a public text and seven do not (2000-2001 vessel coding and port design standards), which are listed in configs/sc-standards.yaml; SC/T 9460-2025 is registered separately as OPS-STD-035 and is not duplicated in this series. Aquaculture, feed, disease, processing, hull construction, ship equipment and freshwater survey series are out of scope; their downloaded copies were deleted.'
 - id: STAT-BULL-025
   title: 2025年全国渔业经济统计公报
   title_zh: 2025年全国渔业经济统计公报

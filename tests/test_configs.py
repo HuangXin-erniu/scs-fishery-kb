@@ -33,7 +33,7 @@ def test_corpus_structure() -> None:
         "data_dictionary",
         "plan",
     }
-    assert len(data["sources"]) == 43
+    assert len(data["sources"]) == 44
 
     acquired = []
     candidates = []
@@ -46,7 +46,7 @@ def test_corpus_structure() -> None:
         else:
             candidates.append(source)
 
-    assert len(acquired) == 39
+    assert len(acquired) == 40
     assert len(candidates) == 4
     yearbooks = [source for source in acquired if source["id"].startswith("STAT-YB-")]
     assert len(yearbooks) == 9
@@ -82,16 +82,29 @@ def test_corpus_structure() -> None:
         "POL-GEAR-016",
         "OPS-STD-039",
         "POL-SPEC-041",
+        "STD-SC-042",
         "DICT-STAT-013",
         "DICT-STAT-040",
     }
     for source in documents:
+        if source["id"] == "STD-SC-042":
+            continue
         assert source["license"] == "public"
         assert source["sensitivity"] == "public"
         assert re.fullmatch(r"[0-9a-f]{64}", source["hash"])
         assert source["location"].startswith("raw/")
         assert not source["location"].startswith("/")
         assert source["jurisdiction"] in {"national", "guangdong", "guangxi", "fujian"}
+
+    series = [source for source in acquired if source["id"] == "STD-SC-042"]
+    assert len(series) == 1
+    assert series[0]["type"] == "standard"
+    assert series[0]["format"] == "pdf"
+    assert series[0]["license"] == "internal"
+    assert series[0]["sensitivity"] == "internal"
+    assert series[0]["location"] == "raw/SC-STD/"
+    assert "17 standards" in series[0]["volume"]
+    assert re.fullmatch(r"[0-9a-f]{64}", series[0]["hash"])
 
     special = [source for source in acquired if source["id"] == "POL-SPEC-041"]
     assert len(special) == 1
@@ -172,7 +185,7 @@ def test_corpus_structure() -> None:
         "law": 1,
         "regulation": 10,
         "notice": 4,
-        "standard": 4,
+        "standard": 5,
         "operations": 2,
         "fishery_product": 0,
         "data_dictionary": 5,
@@ -311,3 +324,24 @@ def test_no_versioned_release_markers() -> None:
             if marker in text:
                 hits.append(f"{path.relative_to(ROOT)}: {marker}")
     assert not hits, hits
+
+
+def test_standards_catalog() -> None:
+    data = load_yaml("configs/sc-standards.yaml")
+    assert data["schema_version"] == 1
+    assert data["series"] == "STD-SC-042"
+    entries = data["standards"]
+    assert len(entries) == data["acquired"]
+    assert data["no_public_text"] == data["relevant_standards"] - data["acquired"]
+    assert len(data["not_available"]) == data["no_public_text"]
+    codes = [entry["code"] for entry in entries]
+    assert len(codes) == len(set(codes))
+    assert codes == sorted(codes)
+    for entry in entries:
+        assert entry["code"].startswith("SC/T ")
+        assert entry["name_zh"].strip()
+        assert entry["pages"] >= 1
+        assert re.fullmatch(r"[0-9a-f]{16}", entry["sha256"])
+    for entry in data["not_available"]:
+        assert entry["code"] not in codes
+        assert entry["reason"].strip()

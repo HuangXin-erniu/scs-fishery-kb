@@ -45,6 +45,7 @@ REQUIRED = [
     "configs/corpus.yaml",
     "configs/schema.yaml",
     "configs/statistics.yaml",
+    "configs/sc-standards.yaml",
     "docs/index.md",
     "docs/architecture.md",
     "docs/plan.md",
