@@ -1,0 +1,22 @@
+# Project-authored Chinese synonym groups for query expansion.
+# Only groups that survived the ablation stay active; the rejected ones are
+# kept here with their measurements so the decision stays auditable.
+schema_version: 1
+updated_at: '2026-11-01'
+groups:
+  - term: 例外
+    variants: [专项, 特许]
+    note: Q-M12 asks about 例外 while the rules speak of 专项（特许）许可; this group lifted Q-M12 into the top five and left recall, false refusals and abstention otherwise unchanged (9/11, 2, 5/6).
+rejected:
+  - term: 休渔
+    variants: [禁渔, 禁渔期, 休渔期]
+    note: Dropped; it cost Q-E01 and raised false refusals from two to three (7/11, 3).
+  - term: 捕捞日志
+    variants: [渔捞日志]
+    note: Dropped; it changed nothing on top of 例外 (same 9/11, 2, 5/6), so the lexicon stays minimal.
+  - term: 准入
+    variants: [申请, 许可条件, 审批]
+    note: Dropped; it removed both false refusals but cost Q-E09 and left recall at 8/11, a trade the baseline does not need.
+  - term: 网目
+    variants: [网眼]
+    note: Dropped; it did not recover Q-E10 and changed nothing else.

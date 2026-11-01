@@ -465,3 +465,16 @@ def test_eval_reference_section() -> None:
     assert [item["id"] for item in reference] == ["Q-E05", "Q-M04"]
     for item in reference:
         assert item["docs"] == ["STD-CWP-043-catch", "STD-CWP-043-effort"]
+
+
+def test_lexicon_config() -> None:
+    data = load_yaml("configs/lexicon.yaml")
+    assert data["schema_version"] == 1
+    active = data["groups"]
+    assert [group["term"] for group in active] == ["例外"]
+    assert active[0]["variants"] == ["专项", "特许"]
+    rejected = data["rejected"]
+    assert [group["term"] for group in rejected] == ["休渔", "捕捞日志", "准入", "网目"]
+    assert all(group["note"] for group in active + rejected)
+    pipeline = load_yaml("configs/pipeline.yaml")
+    assert pipeline["retrieval"]["lexicon_expand"] is False
