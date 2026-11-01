@@ -1,11 +1,22 @@
 from __future__ import annotations
 
+import re
+
 from .models import Chunk, Document
 from .parsers.base import Page
 from .patterns import ARTICLE_RE, SECTION_RE
 from .text import tokenize
 
 MAX_FALLBACK_CHARS = 800
+MIN_CHUNK_CHARS = 10
+
+# Table-of-contents lines: dot leaders followed by a page number. They carry no
+# answerable content and would otherwise become one tiny section chunk each.
+TOC_LINE_RE = re.compile(r"\.{4,}\s*\d+\s*$")
+
+
+def _content_lines(lines: list[str]) -> list[str]:
+    return [line for line in lines if line.strip() and not TOC_LINE_RE.search(line)]
 
 
 def _article_groups(lines: list[str]) -> list[tuple[str, list[str]]]:
@@ -70,11 +81,12 @@ def _fallback_groups(lines: list[str], max_chars: int) -> list[tuple[str, list[s
 
 
 def _page_groups(page: Page, max_chars: int) -> list[tuple[str, list[str]]]:
-    groups = _article_groups(page.lines)
+    lines = _content_lines(page.lines)
+    groups = _article_groups(lines)
     if not groups:
-        groups = _section_groups(page.lines)
+        groups = _section_groups(lines)
     if not groups:
-        groups = _fallback_groups(page.lines, max_chars)
+        groups = _fallback_groups(lines, max_chars)
     return groups
 
 
@@ -96,7 +108,7 @@ def chunk_document(
         page_text = page.text
         for section, parts in _page_groups(page, max_fallback_chars):
             chunk_text = "\n".join(parts).strip()
-            if not chunk_text:
+            if len(chunk_text) < MIN_CHUNK_CHARS:
                 continue
             start = page_text.find(chunk_text)
             if start < 0:

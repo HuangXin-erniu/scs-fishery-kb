@@ -317,3 +317,38 @@ def test_ingest_rejects_unknown_document(tmp_path: Path) -> None:
     )
     with pytest.raises(IngestError, match="source.missing"):
         ingest(config_path, pipeline_path, data_root)
+
+
+def test_chunking_drops_table_of_contents_lines() -> None:
+    text = (
+        "一、渔港的主要功能和重要作用.......... 1\n我国是海洋大国。\n二、沿海渔港建设情况...... 2"
+    )
+    chunks = chunk_document(_document(), _pages(text))
+    assert all("......" not in chunk.text for chunk in chunks)
+    assert all(".........." not in chunk.section for chunk in chunks)
+
+
+def test_chunking_skips_tiny_fragments() -> None:
+    pages = [
+        Page(number=0, lines=["目 录\nI"]),
+        Page(number=0, lines=["第一条 为了加强渔业资源的保护，制定本法。"]),
+    ]
+    chunks = chunk_document(_document(), pages)
+    assert [chunk.section for chunk in chunks] == ["第一条"]
+
+
+def test_ingest_rejects_duplicate_documents(tmp_path: Path) -> None:
+    config_path, pipeline_path, data_root = _write_minimal_corpus(tmp_path)
+    pipeline_path.write_text(
+        yaml.safe_dump(
+            {
+                "schema_version": 1,
+                "documents": ["TEST-001", "TEST-001"],
+                "chunking": {"max_fallback_chars": 800},
+            },
+            allow_unicode=True,
+        ),
+        encoding="utf-8",
+    )
+    with pytest.raises(IngestError, match="unique"):
+        ingest(config_path, pipeline_path, data_root)
