@@ -3,13 +3,15 @@ from __future__ import annotations
 from collections.abc import Callable
 from pathlib import Path
 
-from . import docx, html, ofd
+from . import doc, docx, html, ofd, pdf
 from .base import Page, ParsedDocument, ParseError, UnsupportedFormatError
 
 PARSERS: dict[str, Callable[[Path], ParsedDocument]] = {
     "html": html.parse,
     "docx": docx.parse,
     "ofd": ofd.parse,
+    "pdf": pdf.parse,
+    "doc": doc.parse,
 }
 
 
