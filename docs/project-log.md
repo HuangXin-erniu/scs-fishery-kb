@@ -2,6 +2,13 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-01 — Public corpus and anchor-level baseline
+
+- Indexed all twenty-nine public sources into 703 chunks: added PDF and legacy DOC adapters and stopped dropping table-of-contents and page-furniture lines.
+- Replaced document-level scoring with section and page anchors in `configs/eval.yaml`: eleven questions with one to three anchors and six abstention tests.
+- Added a title field boost to BM25 and recalibrated the evidence gate on the larger corpus: anchor-level Recall@5 8/11, abstention 5/6, two false refusals and 100% citation resolution.
+- Classified the three misses (Q-E10, Q-M10, Q-M12) as vocabulary mismatch between question and article, which is the recorded motivation for dense retrieval.
+
 ## 2026-11-01 — M1 extractive prototype evaluated
 
 - Restored the pipeline modules and added HTML, DOCX and OFD parsers, so `POL-STD-010`, `POL-LAW-009` and `POL-SPEC-041` parse into 178 chunks with article and page anchors.

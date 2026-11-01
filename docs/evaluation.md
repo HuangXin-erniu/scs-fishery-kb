@@ -5,7 +5,7 @@
 > 目标值是最低门槛，不是对外承诺；未达标指标要通过误差分析解释，不得改指标掩盖。
 
 - Status: protocol defined; the question set is a draft and has not been reviewed by domain experts.
-- Baseline (2026-11-01, local M1): document-level Recall@5 10/10 on the ten policy questions, abstention on 5/6 out-of-scope tests, one false refusal and 100% citation resolution. The abstention rule is a heuristic — the top chunk must reach a BM25 score floor and share three distinct query tokens — calibrated on the sixteen draft questions with no held-out set; it is not the final mechanism.
+- Baseline (2026-11-01, local M1 over twenty-nine public sources): anchor-level Recall@5 of 8/11, abstention on 5/6 out-of-scope tests, two false refusals and 100% citation resolution. Seven draft questions have no gold anchor in the current index: five need sources that are not registered (Q-E06, Q-M02, Q-M05, Q-M06, Q-M11) and two ask for definitions the corpus does not state explicitly (Q-E05, Q-M04). The answer gate (BM25 score floor 19, three shared query tokens) and the title boost (1.0) were calibrated on the same seventeen questions with no held-out split, so these are baseline numbers rather than unbiased estimates.
 - Related: [evaluation questions](questions.md), [project plan](plan.md), [data policy](data-policy.md).
 
 ## 1. Purpose
@@ -61,7 +61,7 @@ The public draft is [questions.md](questions.md).
 
 - Retrieval latency, end-to-end latency, index build time and memory peak.
 
-The M1 baseline is document-level only: it asks whether an expected document appears in the top five, not whether the answer is correct. Answer correctness, faithfulness and completeness need reviewed gold answers and stay with the later milestones.
+The instrument scores anchors, not answers: a question counts as retrieved when a top-5 chunk matches one of its gold anchors in `configs/eval.yaml` (document plus section prefix, or document plus page). Answer correctness, faithfulness and completeness still need reviewed gold answers. The three misses (Q-E10, Q-M10, Q-M12) are all ranking gaps caused by vocabulary mismatch between the question and the article: the 2013 mesh notice repeats the question's words while the standard tables do not, and the access and exception articles use different phrasing. That mismatch is the case for dense retrieval in M2.
 
 ## 4. Protocol
 

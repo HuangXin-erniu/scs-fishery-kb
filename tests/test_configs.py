@@ -377,3 +377,17 @@ def test_pipeline_config() -> None:
         assert source["status"] == "acquired"
         assert source["sensitivity"] == "public"
         assert source["format"] in {"html", "docx", "ofd", "pdf", "doc"}
+
+
+def test_eval_config() -> None:
+    config = load_yaml("configs/eval.yaml")
+    assert config["schema_version"] == 1
+    assert len(config["anchors"]) == 11
+    assert len(config["abstention"]) == 6
+    corpus = {source["id"] for source in load_yaml("configs/corpus.yaml")["sources"]}
+    for question_id, entries in config["anchors"].items():
+        assert question_id.startswith("Q-")
+        assert 1 <= len(entries) <= 3
+        for entry in entries:
+            assert entry["doc"] in corpus
+    assert set(config["abstention"]).isdisjoint(config["anchors"])
