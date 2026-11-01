@@ -9,6 +9,7 @@ import yaml
 
 from .answer import answer_question, validate_citations
 from .bm25 import BM25Index
+from .lexicon import expand_query
 from .reference import lookup as reference_lookup
 from .store import load_chunks
 from .text import tokenize
@@ -130,6 +131,7 @@ def evaluate(
     min_matched: int = 3,
     top_k: int = 5,
     title_boost: float = 0.0,
+    lexicon: list[dict[str, Any]] | None = None,
 ) -> dict[str, Any]:
     """Score retrieval at anchor level and check abstinence and citations."""
     rows = {row["id"]: row for row in parse_questions(questions_path)}
@@ -146,7 +148,8 @@ def evaluate(
         row = rows.get(question_id)
         if row is None:
             raise ValueError(f"anchor question is missing from the question table: {question_id}")
-        hits = index.search(row["question"], top_k=top_k)
+        query = expand_query(row["question"], lexicon) if lexicon else row["question"]
+        hits = index.search(query, top_k=top_k)
         matched = [
             anchor for anchor in anchors if any(anchor_matches(hit.chunk, anchor) for hit in hits)
         ]
@@ -188,7 +191,8 @@ def evaluate(
             raise ValueError(
                 f"abstention question is missing from the question table: {question_id}"
             )
-        hits = index.search(row["question"], top_k=top_k)
+        query = expand_query(row["question"], lexicon) if lexicon else row["question"]
+        hits = index.search(query, top_k=top_k)
         answer = answer_question(
             row["question"],
             hits,
@@ -259,6 +263,7 @@ def evaluate(
         "min_score": min_score,
         "min_matched": min_matched,
         "title_boost": title_boost,
+        "lexicon": bool(lexicon),
         "summary": {
             **summarize(results, skipped_ids),
             **summarize_reference(reference_results),

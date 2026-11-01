@@ -9,6 +9,7 @@ from .answer import answer_question
 from .config import (
     DEFAULT_ANCHORS,
     DEFAULT_CONFIG,
+    DEFAULT_LEXICON,
     DEFAULT_PIPELINE,
     REPO_ROOT,
     ConfigError,
@@ -18,6 +19,7 @@ from .config import (
 from .corpus import CorpusError
 from .evaluate import evaluate, title_tokens, write_report
 from .ingest import IngestError, ingest, load_pipeline
+from .lexicon import load_lexicon
 from .parsers import ParseError, UnsupportedFormatError
 from .reference import ReferenceError
 from .reference import lookup as reference_lookup
@@ -41,12 +43,21 @@ def _pipeline_options(pipeline_path: str) -> tuple[float, int, float]:
     )
 
 
-def _retriever(chunks, manifest, pipeline_path: str) -> Retriever:
+def _lexicon_for(args: argparse.Namespace) -> list[dict[str, object]]:
+    pipeline = load_pipeline(Path(args.pipeline))
+    retrieval_config = pipeline.get("retrieval") or {}
+    if not retrieval_config.get("lexicon_expand", False):
+        return []
+    return load_lexicon(Path(args.lexicon))
+
+
+def _retriever(chunks, manifest, pipeline_path: str, lexicon=None) -> Retriever:
     _, _, title_boost = _pipeline_options(pipeline_path)
     return Retriever(
         chunks,
         titles=title_tokens(manifest.get("documents", [])),
         title_boost=title_boost,
+        lexicon=lexicon,
     )
 
 
@@ -70,7 +81,7 @@ def _ingest(args: argparse.Namespace) -> int:
 
 def _retrieve(args: argparse.Namespace) -> int:
     chunks, manifest = load_chunks(_root(args.data_root))
-    hits = _retriever(chunks, manifest, args.pipeline).search(
+    hits = _retriever(chunks, manifest, args.pipeline, _lexicon_for(args)).search(
         args.query,
         top_k=args.top_k,
         sensitivity_ceiling=args.sensitivity,
@@ -99,7 +110,7 @@ def _retrieve(args: argparse.Namespace) -> int:
 
 def _ask(args: argparse.Namespace) -> int:
     chunks, manifest = load_chunks(_root(args.data_root))
-    hits = _retriever(chunks, manifest, args.pipeline).search(
+    hits = _retriever(chunks, manifest, args.pipeline, _lexicon_for(args)).search(
         args.question,
         top_k=args.top_k,
         sensitivity_ceiling=args.sensitivity,
@@ -162,6 +173,9 @@ def _eval(args: argparse.Namespace) -> int:
         min_matched=int(answer_config.get("min_matched", 3)),
         top_k=int(retrieval_config.get("top_k", 5)),
         title_boost=float(retrieval_config.get("title_boost", 0.0)),
+        lexicon=load_lexicon(Path(args.lexicon))
+        if retrieval_config.get("lexicon_expand", False)
+        else [],
     )
     if args.out:
         write_report(report, Path(args.out))
@@ -198,6 +212,7 @@ def build_parser() -> argparse.ArgumentParser:
     retrieve_parser.add_argument("query")
     retrieve_parser.add_argument("--top-k", type=int, default=5)
     retrieve_parser.add_argument("--pipeline", default=str(DEFAULT_PIPELINE))
+    retrieve_parser.add_argument("--lexicon", default=str(DEFAULT_LEXICON))
     retrieve_parser.add_argument("--sensitivity", default=sensitivity_ceiling())
     retrieve_parser.add_argument("--data-root", default=None)
     retrieve_parser.add_argument("--json", action="store_true")
@@ -207,6 +222,7 @@ def build_parser() -> argparse.ArgumentParser:
     ask_parser.add_argument("question")
     ask_parser.add_argument("--top-k", type=int, default=5)
     ask_parser.add_argument("--pipeline", default=str(DEFAULT_PIPELINE))
+    ask_parser.add_argument("--lexicon", default=str(DEFAULT_LEXICON))
     ask_parser.add_argument("--sensitivity", default=sensitivity_ceiling())
     ask_parser.add_argument("--data-root", default=None)
     ask_parser.add_argument("--json", action="store_true")
@@ -224,6 +240,7 @@ def build_parser() -> argparse.ArgumentParser:
     eval_parser = subparsers.add_parser("eval", help="evaluate retrieval, abstention and citations")
     eval_parser.add_argument("--questions", default=str(REPO_ROOT / "docs" / "questions.md"))
     eval_parser.add_argument("--anchors", default=str(DEFAULT_ANCHORS))
+    eval_parser.add_argument("--lexicon", default=str(DEFAULT_LEXICON))
     eval_parser.add_argument("--pipeline", default=str(DEFAULT_PIPELINE))
     eval_parser.add_argument("--data-root", default=None)
     eval_parser.add_argument("--out", default=None)
