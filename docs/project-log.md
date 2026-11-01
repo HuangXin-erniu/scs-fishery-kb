@@ -2,6 +2,14 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-01 — M1 extractive prototype evaluated
+
+- Restored the pipeline modules and added HTML, DOCX and OFD parsers, so `POL-STD-010`, `POL-LAW-009` and `POL-SPEC-041` parse into 178 chunks with article and page anchors.
+- Replaced the keyword-based refusal with an evidence gate: the top chunk must reach a BM25 score floor and share three distinct query tokens, and every refusal reports a reason.
+- Ran the draft question set: document-level Recall@5 of 10/10 on the ten policy questions, abstention on 5/6 out-of-scope tests, one false refusal and 100% citation resolution.
+- Corrected the expected evidence of Q-E10 to the two gear standards and recorded the ten-question M1 subset and the six abstention tests.
+- Documented the baseline as document-level only: answer correctness needs reviewed gold answers and stays with WP5.
+
 ## 2026-11-01 — Repository description refreshed to the accepted corpus state
 
 - Rewrote the README status to the accepted corpus: forty-three registered sources (forty acquired, three candidates), nine yearbook editions over 838 files, six national bulletins, the China Statistical Yearbook 2026, twenty-four legal and technical documents and seventeen SC/T standards over 295 pages; the 3,126-row core CSV stays local.

@@ -19,7 +19,7 @@ The project turns documents, data dictionaries, product descriptions, fishery bu
 
 ## Status
 
-**Corpus and data preparation (WP1) complete for this phase; the retrieval pipeline is not started.** Forty-three sources are registered: forty acquired and three candidates, all deferred. The acquired set is nine fishery yearbook editions (data years 2017–2025, 838 files — 837 Excel tables and one scanned PDF), six national fishery statistical bulletins (data years 2020–2025), the China Statistical Yearbook 2026, and twenty-four legal and technical documents — one law, ten regulations, four notices, five standard sets (including seventeen SC/T standards held as image-only reference PDFs, 295 pages), one operations reference, one port plan and two definition dictionaries. Licence, sensitivity, version and SHA-256 are recorded for every source; the yearbooks are internal, local-use sources. The coverage matrix and the 3,126-row local core CSV (2017–2024 plus a harmonised 2025 sample) stay outside the public tree. Three gaps are documented: no port table for data years 2018–2019, no marine vessel-length table for 2024, and 2025 as a sample. The sufficiency review is accepted: ten of the twenty-four draft questions are answerable, six partial and eight abstention tests. M1 starts on an owner decision, not on a corpus constraint.
+**Corpus and data preparation (WP1) complete for this phase; the retrieval pipeline runs only as a local prototype.** Forty-three sources are registered: forty acquired and three candidates, all deferred. The acquired set is nine fishery yearbook editions (data years 2017–2025, 838 files — 837 Excel tables and one scanned PDF), six national fishery statistical bulletins (data years 2020–2025), the China Statistical Yearbook 2026, and twenty-four legal and technical documents — one law, ten regulations, four notices, five standard sets (including seventeen SC/T standards held as image-only reference PDFs, 295 pages), one operations reference, one port plan and two definition dictionaries. Licence, sensitivity, version and SHA-256 are recorded for every source; the yearbooks are internal, local-use sources. The coverage matrix and the 3,126-row local core CSV (2017–2024 plus a harmonised 2025 sample) stay outside the public tree. Three gaps are documented: no port table for data years 2018–2019, no marine vessel-length table for 2024, and 2025 as a sample. The sufficiency review is accepted: ten of the twenty-four draft questions are answerable, six partial and eight abstention tests. M1 now runs locally as an extractive prototype: three public documents parse into 178 chunks with article and page anchors, BM25 retrieval returns evidence packs whose citations resolve, and the evaluation is reported below. Its code is public; the corpus, the processed store and the run reports stay local.
 
 ### Corpus at a glance
 
@@ -102,9 +102,17 @@ pip install -r requirements-dev.txt
 make check
 ```
 
-`make check` runs lint, format check, tests and the public-tree validation. `requirements.txt` currently contains only the data-preparation readers (PyYAML, openpyxl, xlrd); pipeline dependencies are deferred.
+`make check` runs lint, format check, tests and the public-tree validation. `requirements.txt` contains only the readers used for the register (PyYAML, openpyxl, xlrd); the pipeline itself uses the standard library.
 
-The repository does not download sources, parse them or build an index in this phase. Source files stay in the local data root and only metadata, hashes and coverage notes go into the public register.
+The pipeline reads sources from `SCS_FKB_DATA_ROOT` and writes the processed store there; no data and no index enter the repository:
+
+```sh
+export SCS_FKB_DATA_ROOT=/path/to/local/data
+make ingest   # parse the three configured documents and build the local chunks
+make eval     # document-level Recall@5, abstention and citation metrics
+```
+
+`make ingest` and `make eval` need the local data root; CI runs `make check` only, so the public tree stays data-free.
 
 ## Data and artifacts
 

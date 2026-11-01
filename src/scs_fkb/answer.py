@@ -10,21 +10,6 @@ SENTENCE_RE = re.compile(r"(?<=[。！？；])\s*|\n+")
 DATE_RANGE_RE = re.compile(r"\d{1,2}月\d{1,2}日.*?至.*?\d{1,2}月\d{1,2}日")
 TIME_WORDS = ("时间", "日期", "起止", "何时", "几月", "几号", "期间")
 IMPLEMENTATION_WORDS = ("实施", "生效", "施行")
-OUT_OF_SCOPE_TERMS = (
-    "产量",
-    "统计",
-    "年鉴",
-    "渔汛",
-    "叶绿素",
-    "海表温度",
-    "sst",
-    "航次",
-    "渔具标准",
-    "网目",
-    "渔情",
-    "中心渔场",
-    "cpue",
-)
 
 
 def _sentences(text: str) -> list[str]:
@@ -49,9 +34,9 @@ def _best_sentence(question: str, text: str) -> str | None:
     if any(word in question for word in TIME_WORDS) and not any(
         word in question for word in IMPLEMENTATION_WORDS
     ):
-        candidates = [sentence for sentence in candidates if DATE_RANGE_RE.search(sentence)]
-        if not candidates:
-            return None
+        dated = [sentence for sentence in candidates if DATE_RANGE_RE.search(sentence)]
+        if dated:
+            candidates = dated
     if "证书" in question:
         certificate_sentences = [sentence for sentence in candidates if "证书" in sentence]
         if certificate_sentences:
@@ -120,20 +105,42 @@ def validate_citations(text: str, hits: list[SearchHit]) -> tuple[bool, list[str
     return not invalid, invalid
 
 
-def answer_question(question: str, hits: list[SearchHit], max_evidence: int = 3) -> Answer:
-    normalized = question.lower()
-    if any(term in normalized for term in OUT_OF_SCOPE_TERMS):
-        return Answer(
-            text="证据不足：当前法律子集不包含统计、渔情、渔具或航次类来源。",
-            abstained=True,
-            reason="out_of_scope",
-        )
+def _matched_tokens(question: str, hit: SearchHit) -> int:
+    query_tokens = set(tokenize(question))
+    if not query_tokens:
+        return 0
+    return len(query_tokens & set(tokenize(hit.chunk.text)))
+
+
+def answer_question(
+    question: str,
+    hits: list[SearchHit],
+    max_evidence: int = 3,
+    min_score: float = 0.0,
+    min_matched: int = 3,
+) -> Answer:
+    """Answer from retrieved hits, abstaining when the best evidence is weak.
+
+    The gate is deliberately simple and measurable: the top chunk must reach
+    ``min_score`` and share at least ``min_matched`` distinct query tokens. The
+    thresholds are calibrated on the draft question set, not learned.
+    """
     usable = [hit for hit in hits if hit.score > 0]
     if not usable:
         return Answer(
             text="证据不足：索引语料中没有找到可支持回答的内容。",
             abstained=True,
             reason="no_evidence",
+        )
+
+    best = usable[0]
+    required = min(min_matched, len(set(tokenize(question))))
+    matched = _matched_tokens(question, best)
+    if best.score < min_score or matched < required:
+        return Answer(
+            text="证据不足：检索到的证据覆盖不足，无法支持回答。",
+            abstained=True,
+            reason="weak_evidence",
         )
 
     lines: list[str] = []

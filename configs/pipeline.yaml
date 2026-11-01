@@ -13,4 +13,5 @@ retrieval:
   sensitivity_ceiling: public
 answer:
   max_evidence: 3
-  min_score: 0.0
+  min_score: 6.0
+  min_matched: 3

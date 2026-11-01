@@ -15,6 +15,7 @@
 | [Project log](project-log.md) | Dated record of material project changes |
 | [Corpus register](../configs/corpus.yaml) | Machine-readable source register |
 | [Statistics schema](../configs/statistics.yaml) | Long-table columns, indicators and units; no values |
+| [Pipeline configuration](../configs/pipeline.yaml) | Documents, chunking, retrieval and answer parameters for the local prototype |
 | [Data schema](../configs/schema.yaml) | Document, chunk and citation fields |
 | [Citation metadata](../CITATION.cff) | How to cite the project |
 | [Governance](../GOVERNANCE.md) | Roles, decisions, versioning and public/private boundaries |
