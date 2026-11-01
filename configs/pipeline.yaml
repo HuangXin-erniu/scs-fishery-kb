@@ -1,0 +1,16 @@
+schema_version: 1
+updated_at: 2026-11-01
+documents:
+  - POL-LAW-009
+  - POL-STD-010
+  - POL-SPEC-041
+chunking:
+  max_fallback_chars: 800
+retrieval:
+  top_k: 5
+  bm25_k1: 1.5
+  bm25_b: 0.75
+  sensitivity_ceiling: public
+answer:
+  max_evidence: 3
+  min_score: 0.0

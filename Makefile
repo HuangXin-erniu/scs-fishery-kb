@@ -1,4 +1,4 @@
-.PHONY: validate lint format test check ci
+.PHONY: validate lint format test check ci ingest retrieve
 
 validate:
 	python3 scripts/check_public_tree.py
@@ -12,6 +12,12 @@ format:
 
 test:
 	pytest -q
+
+ingest:
+	PYTHONPATH=src python3 -m scs_fkb ingest
+
+retrieve:
+	PYTHONPATH=src python3 -m scs_fkb retrieve "$(Q)"
 
 check: lint test validate
 
