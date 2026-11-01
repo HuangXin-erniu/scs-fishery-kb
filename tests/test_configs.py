@@ -477,4 +477,15 @@ def test_lexicon_config() -> None:
     assert [group["term"] for group in rejected] == ["休渔", "捕捞日志", "准入", "网目"]
     assert all(group["note"] for group in active + rejected)
     pipeline = load_yaml("configs/pipeline.yaml")
-    assert pipeline["retrieval"]["lexicon_expand"] is False
+    assert pipeline["retrieval"]["lexicon_expand"] is True
+
+
+def test_retrieval_mode_config() -> None:
+    pipeline = load_yaml("configs/pipeline.yaml")
+    retrieval = pipeline["retrieval"]
+    assert retrieval["mode"] == "hybrid"
+    assert retrieval["lexicon_expand"] is True
+    assert retrieval["fusion_k"] == 60
+    assert retrieval["bm25_weight"] == 2.0
+    assert retrieval["dense_weight"] == 1.0
+    assert pipeline["answer"]["min_score"] == 19.0

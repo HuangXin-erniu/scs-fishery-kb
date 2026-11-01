@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import re
+from collections.abc import Callable
 from pathlib import Path
 from typing import Any
 
@@ -109,12 +110,14 @@ def summarize(results: list[dict[str, Any]], skipped: list[str]) -> dict[str, An
     recalled = sum(1 for row in answerable if row["hit"])
     refused = sum(1 for row in abstention if row["abstained"])
     resolved = sum(1 for row in answered if row["citation_valid"])
+    reciprocal = sum(1.0 / row["rank"] for row in answerable if row.get("rank"))
     return {
         "answerable_questions": len(answerable),
         "abstention_tests": len(abstention),
         "skipped_questions": len(skipped),
         "recall_hits": recalled,
         "recall_at_5": round(recalled / len(answerable), 4) if answerable else 0.0,
+        "mrr": round(reciprocal / len(answerable), 4) if answerable else 0.0,
         "abstained_tests": refused,
         "abstention_rate": round(refused / len(abstention), 4) if abstention else 0.0,
         "false_refusals": len(answerable) - len(answered),
@@ -132,6 +135,8 @@ def evaluate(
     top_k: int = 5,
     title_boost: float = 0.0,
     lexicon: list[dict[str, Any]] | None = None,
+    searcher: Callable[[str], list[Any]] | None = None,
+    gate: Callable[[str], bool] | None = None,
 ) -> dict[str, Any]:
     """Score retrieval at anchor level and check abstinence and citations."""
     rows = {row["id"]: row for row in parse_questions(questions_path)}
@@ -149,18 +154,26 @@ def evaluate(
         if row is None:
             raise ValueError(f"anchor question is missing from the question table: {question_id}")
         query = expand_query(row["question"], lexicon) if lexicon else row["question"]
-        hits = index.search(query, top_k=top_k)
+        hits = searcher(row["question"]) if searcher else index.search(query, top_k=top_k)
+        rank = 0
+        for position, hit in enumerate(hits, start=1):
+            if any(anchor_matches(hit.chunk, anchor) for anchor in anchors):
+                rank = position
+                break
         matched = [
             anchor for anchor in anchors if any(anchor_matches(hit.chunk, anchor) for hit in hits)
         ]
-        answer = answer_question(
-            row["question"],
-            hits,
-            min_score=min_score,
-            min_matched=min_matched,
-        )
+        if gate is not None and not gate(row["question"]):
+            answer = None
+        else:
+            answer = answer_question(
+                row["question"],
+                hits,
+                min_score=0.0 if searcher else min_score,
+                min_matched=0 if searcher else min_matched,
+            )
         citation_valid = True
-        if not answer.abstained:
+        if answer is not None and not answer.abstained:
             citation_valid, _ = validate_citations(answer.text, hits)
         results.append(
             {
@@ -178,9 +191,10 @@ def evaluate(
                     for hit in hits
                 ],
                 "hit": bool(matched),
+                "rank": rank,
                 "matched_anchors": matched,
-                "abstained": answer.abstained,
-                "reason": answer.reason,
+                "abstained": True if answer is None else answer.abstained,
+                "reason": "gate_failed" if answer is None else answer.reason,
                 "citation_valid": citation_valid,
             }
         )
@@ -192,13 +206,16 @@ def evaluate(
                 f"abstention question is missing from the question table: {question_id}"
             )
         query = expand_query(row["question"], lexicon) if lexicon else row["question"]
-        hits = index.search(query, top_k=top_k)
-        answer = answer_question(
-            row["question"],
-            hits,
-            min_score=min_score,
-            min_matched=min_matched,
-        )
+        hits = searcher(row["question"]) if searcher else index.search(query, top_k=top_k)
+        if gate is not None and not gate(row["question"]):
+            answer = None
+        else:
+            answer = answer_question(
+                row["question"],
+                hits,
+                min_score=0.0 if searcher else min_score,
+                min_matched=0 if searcher else min_matched,
+            )
         results.append(
             {
                 "id": question_id,
@@ -216,8 +233,8 @@ def evaluate(
                 ],
                 "hit": None,
                 "matched_anchors": [],
-                "abstained": answer.abstained,
-                "reason": answer.reason,
+                "abstained": True if answer is None else answer.abstained,
+                "reason": "gate_failed" if answer is None else answer.reason,
                 "citation_valid": True,
             }
         )
