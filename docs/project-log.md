@@ -2,6 +2,13 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-01 — Terminology bridge and reference channel
+
+- Added `configs/glossary-bridge.yaml`, a project-authored mapping of five Chinese statistical terms to the CWP English concepts; it contains no CWP text.
+- Added a reference channel that reads the three registered CWP pages, verifies their hashes against `configs/cwp-handbook.yaml` and answers concept queries, so Q-E05 and Q-M04 now return a standard definition passage (2/2).
+- The main index is untouched: still twenty-nine documents, 703 chunks, anchor-level Recall@5 8/11, abstention 5/6, two false refusals and 100% citation resolution.
+- Added the `define` command, which prints the CWP passages for a Chinese term such as 上岸量.
+
 ## 2026-11-01 — International definitions and species list registered
 
 - Acquired `STD-CWP-043`: three CWP Handbook pages (catch and landings, fishing effort, ISSCFG gear classification) that supply the international definition of catch, landings and effort; the domestic yearbooks still state no Chinese official definition for landed weight or effort.

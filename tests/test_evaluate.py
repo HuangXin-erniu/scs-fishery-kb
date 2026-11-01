@@ -100,3 +100,25 @@ def test_summarize_counts() -> None:
     assert summary["false_refusals"] == 1
     assert summary["skipped_questions"] == 1
     assert summary["citation_resolution"] == 1.0
+
+
+def test_load_anchors_rejects_malformed_reference(tmp_path: Path) -> None:
+    path = tmp_path / "eval.yaml"
+    path.write_text(
+        "schema_version: 1\nanchors:\n  Q-E01:\n    - {doc: POL-LAW-009}\n"
+        "reference:\n  - {id: Q-E05}\n",
+        encoding="utf-8",
+    )
+    with pytest.raises(ValueError, match="malformed reference"):
+        load_anchors(path)
+
+
+def test_summarize_reference() -> None:
+    from scs_fkb.evaluate import summarize_reference
+
+    rows = [{"hit": True}, {"hit": False}]
+    summary = summarize_reference(rows)
+    assert summary["reference_questions"] == 2
+    assert summary["reference_hits"] == 1
+    assert summary["reference_rate"] == 0.5
+    assert summarize_reference([])["reference_rate"] == 0.0

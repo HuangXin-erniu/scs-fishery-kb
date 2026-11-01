@@ -49,6 +49,7 @@ REQUIRED = [
     "configs/pipeline.yaml",
     "configs/eval.yaml",
     "configs/cwp-handbook.yaml",
+    "configs/glossary-bridge.yaml",
     "docs/index.md",
     "docs/architecture.md",
     "docs/plan.md",

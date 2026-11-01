@@ -6,6 +6,7 @@
 
 - Status: protocol defined; the question set is a draft and has not been reviewed by domain experts.
 - Baseline (2026-11-01, local M1 over twenty-nine public sources): anchor-level Recall@5 of 8/11, abstention on 5/6 out-of-scope tests, two false refusals and 100% citation resolution. Seven draft questions have no gold anchor in the current index: five need sources that are not registered (Q-E06, Q-M02, Q-M05, Q-M06, Q-M11) and two ask for definitions the corpus does not state explicitly (Q-E05, Q-M04). The answer gate (BM25 score floor 19, three shared query tokens) and the title boost (1.0) were calibrated on the same seventeen questions with no held-out split, so these are baseline numbers rather than unbiased estimates.
+- Reference channel (2026-11-01): the Chinese-to-English term bridge routes Q-E05 and Q-M04 to the CWP definition pages, and both return a passage (2/2). The channel is measured separately from the main ranked metrics, which do not change.
 - Related: [evaluation questions](questions.md), [project plan](plan.md), [data policy](data-policy.md).
 
 ## 1. Purpose
