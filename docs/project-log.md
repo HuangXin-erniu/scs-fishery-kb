@@ -2,6 +2,14 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-01 — 2025 sample folded into the long-table schema
+
+- Rebuilt the local core table so the 2025 data year uses the same regions, sea areas, indicators, units and derived rows as 2017–2024: 3,037 rows for 2017–2024 plus 89 harmonised rows for 2025, 3,126 in total.
+- Moved the 54 transcribed 2025 values outside the five indicator families (output and aquaculture totals, the port total, breed farms, household/township/village counts and three other sea areas) into a local extras file.
+- Added the three derived South China Sea rows for 2025 (published 2,626,036; three-province subtotal 2,626,036; difference 0).
+- Added Fujian to the region values in `configs/statistics.yaml` as a background row for the published South China Sea column in data years 2017–2020.
+- Every row now validates against the schema dimensions; the 2017–2024 prefix is unchanged.
+
 ## 2026-11-01 — Seven undigitised SC/T standards excluded from the project
 
 - Seven in-scope standards have no public text on the national standards platform: SC/T 0002.21, 0002.22, 0002.24, 0002.25 and 0002.26 (2001 vessel coding series), SC/T 8002-2000 (vessel terminology) and SC/T 9010-2000 (port design). The only official copies found are paid publications.

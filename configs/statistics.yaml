@@ -81,8 +81,9 @@ long_table:
 
 dimensions:
   region:
-    values: [China, Guangdong, Guangxi, Hainan]
-    names_zh: [全国, 广东, 广西, 海南]
+    values: [China, Guangdong, Guangxi, Hainan, Fujian]
+    names_zh: [全国, 广东, 广西, 海南, 福建]
+    notes: "Fujian appears only as a background row for the published South China Sea column in data years 2017-2020; the South China Sea column excludes it from 2021 onward."
   sea_area:
     values: [South China Sea]
     names_zh: [南海]
