@@ -2,6 +2,13 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-02 — Environment and marine-hazard layer opened
+
+- Registered `POL-OBS-072` (海洋观测预报管理条例, 国务院令第615号, revised 2023-07-20; 5,208 parsed characters), `STAT-ECO-073` (2025 中国海洋生态预警监测公报, 76 pages, 80,304 characters, published 2026-06-08) and `STAT-DIS-074` (2023 中国海洋灾害公报, 52 pages; text layer garbled, so provenance only with parseable false).
+- Added environment cues (观测, 预报, 海洋灾害, 赤潮, 绿潮, 海温, 生态, 灾害) and the three documents to the policy collection (twenty-seven documents).
+- Rejected the 2026 marine disaster emergency plan (body rendered by script on both ministry and gov.cn pages), the image-only GB/T 19201-2006 cyclone-grades PDF and the script-shell forecast-centre site; typhoon grading stays uncovered.
+- Register: 77 sources, 74 acquired; regulation 16, notice 13. Eval unchanged on every arm; the ecological-bulletin probe returns STAT-ECO-073 three times.
+
 ## 2026-11-02 — Guangxi hull catalog: not public, disclosure request prepared
 
 - The provincial notice and document lists answer 200 but are script shells; the former ocean-bureau domain and the Qinzhou approval that cited the catalog both return 404; the only reachable text is an inland pontoon standard, which is out of scope. The catalog cannot be registered from public pages today.

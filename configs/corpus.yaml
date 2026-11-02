@@ -658,6 +658,93 @@ sources:
     status: in_force
     as_of: '2026-11-02'
     note: Effective 2024-12-01 and the current edition; it replaces the 2021 edition (农办渔〔2021〕15号), which is not registered. The 2018 edition was published in 农业农村部公报 2018 年第 11 期 (http://www.moa.gov.cn/nybgb/2018/201811/201901/t20190102_6165927.htm) and sits as the named predecessor in the chain, not as a registered source.
+- id: POL-OBS-072
+  type: regulation
+  title: Regulations on the administration of ocean observation and forecasting
+  title_zh: 海洋观测预报管理条例
+  publisher: 国务院
+  year: 2023
+  jurisdiction: national
+  format: html
+  location: raw/POL-OBS-072/
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P1
+  volume: 1 HTML page; about 5200 characters
+  update_freq: static
+  hash: 2ff2302e890798305958f38b1e21cbf0e6f2ddaea2d2619edd94c699c9b03af6
+  acquisition: Downloaded 2026-11-02 from the national administrative regulations database (xzfg.moj.gov.cn), LawID 1683.
+  notes: 国务院令第615号, published 2012-03-01 and effective 2012-06-01, revised on 2023-07-20 by the State Council decision on amending and repealing administrative regulations. It governs ocean observation, forecasting and the duties around marine hazard warning.
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: collection
+    parseable: true
+    note: Registered in a reference collection.
+  lifecycle: active
+  validity:
+    status: in_force
+    as_of: '2026-11-02'
+    note: The 2023-07-20 revision is the text published by the national administrative regulations database.
+- id: STAT-ECO-073
+  type: notice
+  title: 2025 China marine ecological early-warning monitoring bulletin
+  title_zh: 2025年中国海洋生态预警监测公报
+  publisher: 自然资源部
+  year: 2026
+  jurisdiction: national
+  format: pdf
+  location: raw/STAT-ECO-073/
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P2
+  volume: 1 PDF; 76 pages; about 80300 characters
+  update_freq: annual
+  hash: a263e432d33b19dfbb012600789aef84e84bfaef4a9bdd931714cd04f2ca621f
+  acquisition: Downloaded 2026-11-02 from the marine disaster reduction centre bulletin list, published 2026-06-08.
+  notes: The current annual bulletin on marine ecological status and early warning, issued under the Marine Environment Protection Law. The PDF header marks it 报批稿; the file is registered as published, with the marker recorded.
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: collection
+    parseable: true
+    note: Registered in a reference collection.
+  lifecycle: active
+  validity:
+    status: in_force
+    as_of: '2026-11-02'
+    note: Published 2026-06-08 and the latest edition on the official bulletin list.
+- id: STAT-DIS-074
+  type: notice
+  title: 2023 China marine disaster bulletin
+  title_zh: 2023年中国海洋灾害公报
+  publisher: 自然资源部
+  year: 2024
+  jurisdiction: national
+  format: pdf
+  location: raw/STAT-DIS-074/
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P3
+  volume: 1 PDF; 52 pages
+  update_freq: annual
+  hash: d280c286c9c048707a92112101e3ab0a295c9cde23815bbe8c90a63a4acfb671
+  acquisition: Downloaded 2026-11-02 from the marine disaster reduction centre, published 2024-04-22.
+  notes: The latest published national marine disaster bulletin, covering storm surges, waves, sea ice, tsunamis, green tides and red tides, with loss statistics. Its embedded-font mapping garbles the text layer, so it is kept as provenance and is not citable; no 2024 edition was located on the official list.
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: collection
+    parseable: false
+    note: Text layer is garbled by the embedded-font mapping; provenance only.
+  lifecycle: active
+  validity:
+    status: in_force
+    as_of: '2026-11-02'
+    note: Latest published edition (2024-04-22); no 2024 bulletin was found on the official list.
 - id: POL-GEAR-033
   title: 海洋捕捞准用渔具最小网目（或网囊）尺寸标准
   title_zh: 海洋捕捞准用渔具最小网目（或网囊）尺寸标准
@@ -2284,7 +2371,7 @@ sources:
     note: Status not separately verified during the schema migration; the source note records the publisher and date.
 
 gaps:
-- Seventy-five sources are registered: seventy-two acquired and three candidates awaiting disposition.
+- Seventy-seven sources are registered: seventy-four acquired and three candidates awaiting disposition.
 - The yearbook coverage matrix has no values in the public repository; all values stay local.
 - The yearbook infrastructure table is missing for data years 2018 and 2019; the 2018 national port plan supplies a baseline whose port classes are close to, but not identical with, the yearbook table.
 - The vessel-length proxy is missing for data year 2024.
