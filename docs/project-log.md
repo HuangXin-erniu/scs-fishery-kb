@@ -2,6 +2,12 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-02 — Period questions lead with the date range
+
+- Period questions (时间/日期/起止/何时/几月/几号/期间, and no implementation word) now search every retrieved hit for a date-range sentence and cite it first; questions asking about implementation keep the implementation-date lead.
+- `ask "南海区伏季休渔的起止日期与适用范围是什么？"` now leads with `（三）北纬26度30分至北纬12度的东海和南海海域为5月1日12时至8月16日12时。 [POL-CLOS-015 §三、休渔时间]`; the exemption question keeps its §二 lead.
+- Retrieval, reference, statistics and abstention metrics are unchanged: hybrid 10/11, MRR 0.45, two false refusals, 100% citation resolution, reference 4/4, statistics 2/2, abstention 3/4.
+
 ## 2026-11-02 — Reference collections and corpus hash correction
 
 - Added the product (five English product documents) and policy (five Chinese governance documents) reference collections, reached through the terminology bridge; the main index, its dense vectors and its gate are untouched at twenty-nine documents, 703 chunks and index e4f8d55d7d49.
