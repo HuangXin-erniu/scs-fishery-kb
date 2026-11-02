@@ -2,6 +2,13 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-02 — Five national texts admitted; new baseline at 38 documents
+
+- Added POL-PEN-078, POL-PEN-080, POL-LIST-079, POL-WATCH-082 and POL-RANCH-083 to the main index: 38 documents, 896 chunks, index 499b420f49b0, dense af4b31ca3f941169.
+- Removed the script-shell html beside the ranch docx so the single-file directory rule holds; the registered artifact remains the publisher attachment.
+- New baseline: hybrid 10/11, MRR 0.44, abstention 3/4, two false refusals, citation 1.00; BM25 6/11, BM25 plus lexicon 7/11, dense 7/11 (MRR 0.30, three false refusals). The dilution is published as measured; the previous row is kept in docs/evaluation.md.
+- Register counts stay 85/82/3.
+
 ## 2026-11-02 — Navigation watchkeeping and marine ranches
 
 - Registered `POL-WATCH-082` (渔业船舶航行值班准则（试行）, 农渔发〔1999〕10号, listed in force by announcement No. 950; 3,492 parsed characters) and `POL-RANCH-083` (农业农村部公告第644号, eighth-batch marine-ranch list, 978 characters from the attachment).
