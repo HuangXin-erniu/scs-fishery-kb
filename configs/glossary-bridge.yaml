@@ -19,3 +19,21 @@ terms:
   - zh: 产量
     en: [catch, production]
     note: The yearbooks use 产量 for output; CWP defines catch and nominal catch.
+  - zh: 海表温度
+    en: [sea surface temperature, GHRSST]
+    note: The remote stack uses MUR 0.01° foundation SST; GHRSST names the product family.
+  - zh: SST
+    en: [sea surface temperature, GHRSST]
+    note: Same concept as 海表温度; questions often write the acronym directly.
+  - zh: 叶绿素
+    en: [chlorophyll, ocean colour]
+    note: The remote stack uses Sentinel-3 OLCI chlorophyll; ocean colour is the retrieval family.
+  - zh: 分辨率
+    en: [resolution]
+    note: Product questions ask for spatial and temporal resolution.
+  - zh: 距平
+    en: [anomaly]
+    note: SST anomaly is the departure from a reference climatology.
+  - zh: 遥感
+    en: [remote sensing]
+    note: The environment products are satellite retrievals.

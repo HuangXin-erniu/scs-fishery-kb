@@ -143,6 +143,12 @@ def _ask(args: argparse.Namespace) -> int:
         sensitivity_ceiling=args.sensitivity,
     )
     references = reference_lookup(args.question, root=_root(args.data_root))
+    product_references = reference_lookup(
+        args.question, root=_root(args.data_root), collection="product"
+    )
+    policy_references = reference_lookup(
+        args.question, root=_root(args.data_root), collection="policy"
+    )
     min_score, min_matched, _ = _pipeline_options(args.pipeline)
     if retriever.mode == "bm25":
         answer = answer_question(
@@ -172,6 +178,8 @@ def _ask(args: argparse.Namespace) -> int:
                 "hits": [hit.to_dict() for hit in hits],
                 "result": answer.to_dict(),
                 "reference": [hit.to_dict() for hit in references],
+                "product_reference": [hit.to_dict() for hit in product_references],
+                "policy_reference": [hit.to_dict() for hit in policy_references],
                 "statistics": [hit.to_dict() for hit in statistics],
             }
         )
@@ -183,6 +191,16 @@ def _ask(args: argparse.Namespace) -> int:
     if references:
         print("standard definition references:")
         for hit in references:
+            snippet = " ".join(hit.chunk.text.split())[:200]
+            print(f"  [{hit.chunk.doc_id}] {snippet}")
+    if product_references:
+        print("product references:")
+        for hit in product_references:
+            snippet = " ".join(hit.chunk.text.split())[:200]
+            print(f"  [{hit.chunk.doc_id}] {snippet}")
+    if policy_references:
+        print("policy references:")
+        for hit in policy_references:
             snippet = " ".join(hit.chunk.text.split())[:200]
             print(f"  [{hit.chunk.doc_id}] {snippet}")
     if statistics:

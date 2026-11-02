@@ -51,6 +51,7 @@ REQUIRED = [
     "configs/cwp-handbook.yaml",
     "configs/glossary-bridge.yaml",
     "configs/lexicon.yaml",
+    "configs/reference-collections.yaml",
     "docs/index.md",
     "docs/architecture.md",
     "docs/plan.md",

@@ -1,0 +1,78 @@
+# Reference collections that stay outside the main ranked index.
+# Each document is verified against the sha256 recorded here before use.
+schema_version: 1
+updated_at: '2026-11-02'
+collections:
+  product:
+    description: >-
+      English product documentation for the environment and vessel-tracking data behind the forecasting work.
+      Questions reach these documents through the Chinese-to-English terminology bridge.
+    concepts: [sea surface temperature, ghRSST, chlorophyll, ocean colour, resolution, anomaly, remote sensing, product]
+    documents:
+      - id: STD-MUR-045
+        title: GHRSST Level 4 MUR Global Foundation Sea Surface Temperature Analysis (v4.1) - product description
+        file: raw/STD-MUR-045/mur-v4.1-product-page.html
+        sha256: 22232edcac451598e82761a63150d81577493ba5cb3bde12e89fe0b4cae3fe12
+        license: cc-by-4.0
+        language: en
+      - id: STD-OLCI-046
+        title: Sentinel-3 OLCI Marine User Handbook
+        file: raw/STD-OLCI-046/sentinel-3-olci-marine-user-handbook.pdf
+        sha256: 4d076cff30d35a079e8719f9205b7e54d305eb68a6ca311b122001bc24a254c6
+        license: public
+        language: en
+      - id: DICT-GFW-047
+        title: Global Fishing Watch - apparent fishing effort versus fishing events
+        file: raw/DICT-GFW-047/gfw-apparent-fishing-effort-vs-events.html
+        sha256: 5a5e83ec804a3969d7ee93f28b15e08002363659e460d3c0827ff537779704b4
+        license: unknown
+        language: en
+      - id: DICT-GFW-048
+        title: Global Fishing Watch API client - Events API documentation
+        file: raw/DICT-GFW-048/gfw-events-api-documentation.html
+        sha256: 02cf947bde28cec931ce50a7d1134d9a1bb514b708077fe806f5788fd4c9782c
+        license: apache-2.0
+        language: en
+      - id: STD-CMEMS-049
+        title: Copernicus Marine Product User Manual - GLOBAL_MULTIYEAR_PHY_001_030
+        file: raw/STD-CMEMS-049/cmems-glo-pum-001-030.pdf
+        sha256: d52e962890fa131f8eecfd2f6b958919ddbdcb46e5076f0f845f5657d0a82f07
+        license: public
+        language: en
+  policy:
+    description: >-
+      Chinese statistical-governance, monitoring and vessel-certificate documents.
+      They answer process questions about statistics, monitoring and certificates, not the main legal corpus.
+    concepts: []
+    cues: [统计, 公布, 共享, 报送, 监测, 登记, 证书, 船位, 远洋]
+    documents:
+      - id: POL-STAT-050
+        title: 渔业统计工作规定
+        file: raw/POL-STAT-050/fishery-statistics-work-rules-2010.html
+        sha256: 1395e5dbd075b405a9de039d213aa2126bb5d452f56f8795c77af22634d2884a
+        license: public
+        language: zh
+      - id: POL-STAT-051
+        title: 渔业统计调查制度（2024 年批准）
+        file: raw/POL-STAT-051/fishery-statistics-survey-system-2024.html
+        sha256: ee29cca7e24cd18d5f4eb11c6b4219060143cb641f5d64610e8dd67f6980cf97
+        license: public
+        language: zh
+      - id: POL-YJ-052
+        title: 2017 年度渔情监测统计工作情况的通报
+        file: raw/POL-YJ-052/fishery-monitoring-circular-2017.html
+        sha256: 3e013bc8aa0cad097cee5d2597259dcb1dbee067dfc23157ba5f8321af24ecb6
+        license: public
+        language: zh
+      - id: POL-VMS-053
+        title: 远洋渔船船位监测管理办法（2019 年修订）
+        file: raw/POL-VMS-053/distant-water-vessel-monitoring-measures-2019.html
+        sha256: 307a185fc27b3584f0fb39e97f31813ce1ac7d00c9bfc4f7bb9d8e1f731a8d41
+        license: public
+        language: zh
+      - id: STD-ECERT-054
+        title: 渔业船网工具指标批准书、所有权登记证书和国籍证书电子证照标准
+        file: raw/STD-ECERT-054/e-certificate-notice-2025.html
+        sha256: cf18933006697482865f4563499dea02ca4054b1d56c38dede0bce2f2f5df26b
+        license: public
+        language: zh
