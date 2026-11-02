@@ -2,6 +2,13 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-02 — Full scope audit and boundary guard
+
+- Scanned every active entry's title and notes for aquaculture, breeding, ranching, processing, freshwater and inland terms; no further pure out-of-scope entry remains.
+- Recorded the borderline keeps with reasons in docs/corpus.md 5t: the resource levy and stocking regulation (capture instruments), the six fishery-economy bulletins and two indicator definitions (statistical context), the statistical yearbook chapter, the protected-species list and the ASFIS code list.
+- Added a test that fails when a new active entry carries an out-of-scope term in its title unless explicitly allowlisted.
+- No source deleted; counts 84/81/3 and the evaluation baseline unchanged.
+
 ## 2026-11-02 — Out-of-scope breeding and ranch material removed, index rebuilt
 
 - Deleted `POL-BREED-084` (人工繁育国家重点保护水生野生动物名录, aquaculture) and `POL-RANCH-083` (国家级海洋牧场示范区名单, ranching infrastructure) from the register, collection, watch and pipeline, and removed their local files; hashes 6b187aca… and 663f09b4… recorded for audit.
