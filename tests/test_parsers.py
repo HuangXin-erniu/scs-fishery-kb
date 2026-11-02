@@ -82,10 +82,10 @@ def test_ofd_without_pages_is_rejected(tmp_path: Path) -> None:
 
 
 def test_unsupported_format(tmp_path: Path) -> None:
-    path = tmp_path / "table.xlsx"
-    path.write_bytes(b"PK")
+    path = tmp_path / "report.rtf"
+    path.write_bytes(b"{\\rtf1}")
     with pytest.raises(UnsupportedFormatError, match="source.unsupported_format"):
-        parse_source(path, "xlsx")
+        parse_source(path, "rtf")
 
 
 def test_html_navigation_only_is_rejected(tmp_path: Path) -> None:
@@ -188,3 +188,58 @@ def test_doc_parses_a_real_source_when_provided() -> None:
         pytest.skip("SCS_FKB_TEST_DOC is not set")
     parsed = doc_parser.parse(Path(path))
     assert parsed.pages[0].lines
+
+
+def _write_xlsx(path: Path, rows: list[list[object]]) -> None:
+    from openpyxl import Workbook
+
+    workbook = Workbook()
+    sheet = workbook.active
+    sheet.title = "目录"
+    for row in rows:
+        sheet.append(row)
+    workbook.save(path)
+
+
+def test_xlsx_rows_become_pipe_joined_lines(tmp_path: Path) -> None:
+    path = tmp_path / "catalog.xlsx"
+    _write_xlsx(
+        path,
+        [["序号", "船型名称", "总长"], [1, "GD8401型刺网渔船", 18.8], [None, None, None]],
+    )
+    parsed = parse_source(path, "xlsx")
+    assert len(parsed.pages) == 1
+    lines = parsed.pages[0].lines
+    assert lines[0] == "目录"
+    assert lines[1] == "序号 | 船型名称 | 总长"
+    assert lines[2] == "1 | GD8401型刺网渔船 | 18.8"
+    assert all(line.strip() for line in lines)
+
+
+def test_xlsx_without_rows_is_rejected(tmp_path: Path) -> None:
+    path = tmp_path / "empty.xlsx"
+    _write_xlsx(path, [])
+    with pytest.raises(ParseError, match="text.empty"):
+        parse_source(path, "xlsx")
+
+
+def test_xls_uses_the_xls_parser(monkeypatch, tmp_path: Path) -> None:
+    path = tmp_path / "legacy.xls"
+    path.write_bytes(b"\xd0\xcf\x11\xe0legacy")
+    seen: list[Path] = []
+
+    def fake(path_arg: Path):
+        seen.append(path_arg)
+        return [type("P", (), {"number": 0, "lines": ["Sheet1", "a | b"], "layout": None})()]
+
+    monkeypatch.setattr("scs_fkb.parsers.table._parse_xls", fake)
+    parsed = parse_source(path, "xls")
+    assert seen == [path]
+    assert parsed.pages[0].lines == ["Sheet1", "a | b"]
+
+
+def test_invalid_xls_is_rejected(tmp_path: Path) -> None:
+    path = tmp_path / "broken.xls"
+    path.write_bytes(b"not a workbook")
+    with pytest.raises(ParseError, match="invalid_table"):
+        parse_source(path, "xls")

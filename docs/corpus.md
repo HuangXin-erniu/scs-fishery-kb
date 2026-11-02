@@ -28,7 +28,7 @@ It does **not** include raw environmental grids, reanalysis data, forecast raste
 | `law` | 法律 | 1 | National law adopted by the legislature |
 | `regulation` | 行政法规/规章/地方性法规 | 15 | Administrative regulations, departmental rules and local regulations |
 | `notice` | 通告/公告 | 10 | Official notices, announcements and seasonal measures |
-| `standard` | 标准/规范 | 11 | National, industry or provincial standards and operational norms |
+| `standard` | 标准/规范 | 15 | National, industry or provincial standards and operational norms |
 | `fishery_product` | 渔情/海况产品说明 | 4 | Product descriptions, fishery bulletins and historical records |
 | `data_dictionary` | 数据字典 | 8 | Field definitions, indicator definitions, metadata and quality rules |
 | `plan` | 规划/方案 | 1 | Official plans, programmes and construction layouts |
@@ -178,6 +178,19 @@ The hull-parameter gap closes here, and only here: the three catalogs are docx, 
 
 Two gaps were re-checked in the same task and stay open. The 2024 monitoring letter (农渔科函〔2025〕87号) still has no public full text: the ministry gazette issue pages are script shells without a file list and provincial sites only quote the letter. The Guangdong 2026 work plan (粤农农函〔2026〕208号) is not on the provincial agriculture site or the provincial gazette; the municipal notices of Shantou, Yangjiang, Zhongshan, Wuchuan and Zhanjiang cite it but none carries the provincial text as an attachment, so `POL-GD-061` remains the registered evidence and is labelled municipal.
 
+## 5i. Spreadsheet catalogs and the table channel
+
+| Source | Province | Sheet contents |
+|---|---|---|
+| `STD-GD-064` | Guangdong | 2020 second batch, 83 hull types with 总长, 公约船长, 型宽, 型深, 总功率, 总吨位, evaluation scores and the design unit |
+| `STD-GD-065` | Guangdong | 2021 batch, four hull types with the same parameter set |
+| `STD-HN-066` | Hainan | 2019 small-vessel catalog (附件2 on the page, but the figure on disk is the one named 小型 in its own header) |
+| `STD-HN-067` | Hainan | 2019 large and medium-vessel catalog (附件1), header sheet plus a data sheet |
+
+The pipeline now reads `.xlsx` with openpyxl and `.xls` with xlrd: one page per worksheet, the sheet name as the first line and each row joined by ` | `. Values are printed as published and never converted, so a citation shows the row itself. The reference loader already dispatches on the suffix, so the catalogs are reachable as soon as they are registered.
+
+One trap is worth recording: the Hainan page lists 附件1 (large and medium) after 附件2 (small), and the file names carry no hint, so the two downloads were opened and their sheet headers checked before registration; the ids follow the sheet content, not the link order. Guangdong has no announced later batch that this network can reach, so the two batches registered here are the latest public ones and the source-watch list keeps the announcement page under observation.
+
 ## 6. Candidate sources
 
 | ID | Type | Title | Priority | Disposition |
@@ -193,8 +206,8 @@ The four environment and fishery-product candidates were removed on owner instru
 | Metric | Value |
 |---|---:|
 | Corpus types | 9 |
-| Registered sources | 67 |
-| Acquired sources | 64 |
+| Registered sources | 71 |
+| Acquired sources | 68 |
 | Remaining candidates | 3 |
 | Yearbook editions | 9 |
 | Yearbook data years | 2017–2025 |

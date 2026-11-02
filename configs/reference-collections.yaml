@@ -164,3 +164,32 @@ collections:
         license: public
         language: zh
         jurisdiction: fujian
+      - id: STD-GD-064
+        title: 广东省2020年第二批海洋渔船标准船型目录
+        file: raw/STD-GD-064/guangdong-hull-catalog-2020-batch2.xlsx
+        sha256: b8e829a4d86aecadb7fe1447fdefea1314a782bcbb142067d2719ad904120cd8
+        license: public
+        language: zh
+        jurisdiction: guangdong
+      - id: STD-GD-065
+        title: 广东省2021年海洋渔船标准船型目录
+        file: raw/STD-GD-065/guangdong-hull-catalog-2021.xlsx
+        sha256: f6ed423220baca5ec45b9b83fe583c39093245194dba70c8417fea63ab0961ad
+        license: public
+        language: zh
+        jurisdiction: guangdong
+      - id: STD-HN-066
+        title: 海南省小型渔船标准船型目录
+        file: raw/STD-HN-066/hainan-hull-catalog-small-2019.xls
+        sha256: 4db86b28b700267efadf4f942258a1d835122946270269a265e2fc10836b1392
+        license: public
+        language: zh
+        jurisdiction: hainan
+      - id: STD-HN-067
+        title: 海南省大中型渔船标准船型目录
+        file: raw/STD-HN-067/hainan-hull-catalog-large-medium-2019.xls
+        sha256: 6b5bebcc6d2278a7b27d5a1ba2e581871b49f551e966fcadbc7d9890772ed709
+        license: public
+        language: zh
+        jurisdiction: hainan
+        jurisdiction: fujian

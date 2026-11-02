@@ -2,6 +2,13 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-02 — Spreadsheet parser and the Guangdong/Hainan hull catalogs
+
+- Added `src/scs_fkb/parsers/table.py`: xlsx via openpyxl and xls via xlrd, one page per worksheet, sheet name first and rows joined by ` | `; values as published, no conversion. Registered both formats in the parser dispatch and added openpyxl/xlrd to requirements-dev.txt (requirements.txt already declared them; the venv did not have them).
+- Registered `STD-GD-064` (2020 second batch, 83 types), `STD-GD-065` (2021, four types), `STD-HN-066` (2019 small catalog) and `STD-HN-067` (2019 large and medium catalog). The Hainan page lists 附件2 before 附件1 and the file names carry no hint, so the sheets were opened and the names checked before registration.
+- Probes: the Guangdong 18 m gillnet question returns the catalog row from `STD-GD-064`; the Hainan small-catalog question returns `STD-HN-066` first. The hull-parameter gap now covers Fujian, Guangdong and Hainan; only Guangxi has no public catalog.
+- Eval unchanged at index e4f8d55d7d49, hybrid 10/11, reference 4/4, statistics 2/2, abstention 3/4, jurisdiction 3/3. Register: 71 sources, 68 acquired; standard 15.
+
 ## 2026-11-02 — Reference blocks deduplicate per document
 
 - The standard, product and policy blocks now drop identical passages, cap one document at two passages and fill the remaining slot from the next document in rank order. A Hainan question shows POL-HN-059 twice at most plus POL-HN-058; the product block for Q-E08 shows MUR twice plus OLCI.
