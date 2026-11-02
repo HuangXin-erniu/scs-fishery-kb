@@ -2,6 +2,12 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-02 — National closure enforcement notice and validity blocks
+
+- Added `POL-ENF-068`, the 2026 joint enforcement notice of 农业农村部, 公安部 and 中国海警局 (2026-04-29, 4,767 characters): 1 May to 16 September, three priority tasks. It is an enforcement deployment under 农业农村部通告〔2023〕1号, not a change to the closure system.
+- Added a validity block (status, as_of, note) to POL-LAW-009, POL-STD-010, POL-CLOS-015, POL-RULE-018, POL-SPEC-041 and the new notice, so in-force status is recorded with its evidence: the 2023 notice is cited by the 2026 Hainan and Guangxi notices, the 2025 law took effect on 2026-05-01, and the 2022 permit regulation and 2020 implementing rules are watched for alignment.
+- The cue list is unchanged, so closure questions keep an empty policy block until the level-aware ordering lands. Register: 72 sources, 69 acquired; notice 11. Eval unchanged on every arm.
+
 ## 2026-11-02 — Watch works behind the TLS interception; gaps A and B re-checked
 
 - The first live watch run marked nine of ten sources unreachable; the cause was the local TLS interception, not the pages. The checker now honours `SCS_FKB_CA_BUNDLE`, falls back once to `/etc/ssl/cert.pem` on a certificate error and never disables verification. All ten seeded sources now answer 200 and are recorded as unbaselined.

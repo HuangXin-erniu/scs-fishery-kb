@@ -27,7 +27,7 @@ It does **not** include raw environmental grids, reanalysis data, forecast raste
 | `operations` | 作业知识 | 1 | Fishing methods, gear, vessel operations, logbooks and permit conditions |
 | `law` | 法律 | 1 | National law adopted by the legislature |
 | `regulation` | 行政法规/规章/地方性法规 | 15 | Administrative regulations, departmental rules and local regulations |
-| `notice` | 通告/公告 | 10 | Official notices, announcements and seasonal measures |
+| `notice` | 通告/公告 | 11 | Official notices, announcements and seasonal measures |
 | `standard` | 标准/规范 | 15 | National, industry or provincial standards and operational norms |
 | `fishery_product` | 渔情/海况产品说明 | 4 | Product descriptions, fishery bulletins and historical records |
 | `data_dictionary` | 数据字典 | 8 | Field definitions, indicator definitions, metadata and quality rules |
@@ -199,6 +199,20 @@ The gap review was repeated against the live pages and both gaps stay open. The 
 
 The NSOAS *China Ocean Satellite Application Report 2021* is recorded as a candidate, not a source. It states that 368 issues of near-real-time fishery and sea-state analysis and forecast information were released to national distant-water fishery enterprises in 2021, which is the best public evidence for the publication cadence behind Q-M07. The file, however, is 178 MB for 39 pages and would more than double the local data root, so the owner decides whether to accept that weight; it is not registered unilaterally.
 
+## 5k. National closure basis and the reference layer
+
+| Source | Level | Status | What it does |
+|---|---|---|---|
+| `POL-LAW-009` | national law | in force since 2026-05-01 | The legal basis the 2026 closure notices cite |
+| `POL-CLOS-015` | national notice | in force | The 2023 adjustment (农业农村部通告〔2023〕1号), the system basis; the 2026 Hainan and Guangxi notices cite it |
+| `POL-SPEC-041` | national notice | in force for 2026 | The 2026 special-permit and auxiliary-vessel arrangement |
+| `POL-ENF-068` | national notice | in force for 2026 | The 2026-04-29 three-ministry enforcement deployment, 1 May to 16 September |
+| `POL-STD-010`, `POL-RULE-018` | national regulations | in force | The 2022 permit regulation and the 2020 implementing rules; both predate the 2025 law and are watched for alignment |
+
+The provincial and municipal closure notices (`POL-HN-058`, `POL-HN-059`, `POL-GX-060`, `POL-GD-061`) stay registered as references. They do not define the system and they are not promoted to the national basis; a question about the institution is answered from the national notices, while a question that names a province can still use that province's notice.
+
+The chain is recorded rather than assumed: every entry above carries a validity block with status, an as-of date and the evidence for the status. Nothing is marked superseded without a named successor, and a text that was replaced before registration (the 2021 closure notice, the 2021 distant-water hull series) is named in the note but not registered as a source.
+
 ## 6. Candidate sources
 
 | ID | Type | Title | Priority | Disposition |
@@ -214,8 +228,8 @@ The four environment and fishery-product candidates were removed on owner instru
 | Metric | Value |
 |---|---:|
 | Corpus types | 9 |
-| Registered sources | 71 |
-| Acquired sources | 68 |
+| Registered sources | 72 |
+| Acquired sources | 69 |
 | Remaining candidates | 3 |
 | Yearbook editions | 9 |
 | Yearbook data years | 2017–2025 |

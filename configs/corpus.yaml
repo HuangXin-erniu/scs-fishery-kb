@@ -116,6 +116,11 @@ sources:
   hash: cdeaaf75a9992bc98642fbe6c004f790506549a4afaf223e3bf2b7b5eb365fa4
   acquisition: 'Owner-supplied DOCX received 2026-10-31, carrying the text of the official 人民日报 2026-02-25 publication (主席令第六十三号, 新华社 release).'
   notes: 'Adopted 2025-12-27, effective 2026-05-01. Verified seven chapters and 90 articles in order; the article openings were cross-checked against the electronic edition before the duplicate People''s Daily copies were removed on 2026-10-31. The registered DOCX is the single retained text.'
+  validity:
+    status: in_force
+    as_of: '2026-11-02'
+    note: The 2025 revision took effect on 2026-05-01; it is the legal basis the 2026 closure notices cite.
+
 - id: POL-STD-010
   title: 渔业捕捞许可管理规定（2022年修订）
   title_zh: 渔业捕捞许可管理规定（2022年修订）
@@ -134,6 +139,11 @@ sources:
   hash: 35e2069db4de910494c1e6e07c435c4aca91c846e912acba2d6178776b981910
   acquisition: 'Fetched 2026-10-31 from gov.cn: https://www.gov.cn/zhengce/2022-01/07/content_5721373.htm (农业农村部令2022年第1号; effective 2022-01-07).'
   notes: Current revision. The header states 2022-01-07 while Article 59 retains 2019-01-01; cite the header version and flag the discrepancy in answers. The HTML uses malformed or unclosed paragraph tags, so ingestion must extract the main content robustly. The official ministry PDF edition of the same text (29 pages, raw/POL-STD-010/fishing-permit-regulation-2022-moa.pdf, sha256 a9028d6a10aef6e765de680bc8b4b6aba0e96182b8301f073e3ff6a34e92f597) is retained as a format copy, not as a separate source; its articles 50-53 carry the logbook obligation.
+  validity:
+    status: in_force
+    as_of: '2026-11-02'
+    note: The 2022 revision is the latest order found; no 2026 revision was found, and alignment with the new Fisheries Law is still to watch.
+
 - id: POL-CLOS-015
   title: 农业农村部关于调整海洋伏季休渔制度的通告
   title_zh: 农业农村部关于调整海洋伏季休渔制度的通告
@@ -152,6 +162,11 @@ sources:
   hash: 15660ed713803ff440da583e1d5a219ab5e488c2237f3bb33cd30e7115174bdc
   acquisition: 'Fetched 2026-10-31 from moa.gov.cn: https://www.moa.gov.cn/govpublic/YYJ/202303/t20230314_6422986.htm (effective 2023-04-15; replaces the 2021 notice).'
   notes: Current closure system; no newer adjustment notice found on moa.gov.cn as of 2026-10-31. Covers the South China Sea north of 12°N; the 26°30′N–12°N closure runs from 1 May 12:00 to 16 August 12:00. Annual enforcement notices are separate.
+  validity:
+    status: in_force
+    as_of: '2026-11-02'
+    note: The 2026 Hainan and Guangxi closure notices both cite 农业农村部通告〔2023〕1号, so the 2023 adjustment remains the system basis; it replaced the 2021 notice, which is not registered.
+
 - id: POL-RULE-018
   title: 中华人民共和国渔业法实施细则
   title_zh: 中华人民共和国渔业法实施细则
@@ -170,6 +185,11 @@ sources:
   hash: 90d7e013d92361ec219a59b51ef255c70a08d5654f9a0351fd633c865028bf77
   acquisition: 'Owner-supplied DOCX received 2026-10-31; text of the 2020-11-29 second revision.'
   notes: 'Approved 1987-10-14 and published 1987-10-20 by 农牧渔业部; revised 2020-03-27 and 2020-11-29. 42 articles; implements the Fisheries Law.'
+  validity:
+    status: in_force
+    as_of: '2026-11-02'
+    note: The 2020 second revision is still marked in force; alignment with the 2025 Fisheries Law is still to watch.
+
 - id: POL-RULE-019
   title: 中华人民共和国渔业船舶检验条例
   title_zh: 中华人民共和国渔业船舶检验条例
@@ -350,6 +370,33 @@ sources:
   hash: b383ea35974fe85acea89f95c7c8c263a7cea382aefdc10f04733efb7118c647
   acquisition: 'Owner-supplied OFD received 2026-11-01, byte-identical to the official attachment https://www.moa.gov.cn/govpublic/YYJ/202604/P020260424354196891178.ofd linked from https://www.moa.gov.cn/govpublic/YYJ/202604/t20260424_6483594.htm (农业农村部通告〔2026〕2号, published 2026-04-21).'
   notes: '2026 closed-season special-permit arrangement issued under the 2023 closure notice (POL-CLOS-015) and the fishing-permit regulation. Annex 1 admits Sthenoteuthis oualaniensis permits in the South China Sea for Guangxi (36 vessels, 2,500 t, 20 June to 5 August, mask net 35 mm, Beihai Nanwan port) and Hainan (70 vessels, 5,000 t, 1 May to 15 August, mask net 35 mm, Sanya Yazhou, Qionghai Tanmen and Danzhou Baimajing central ports). Annex 2 operation-type permits cover only the Yellow and East China Seas north of 26 30 N. Annex 3 gives 26 Hainan auxiliary vessels serving the squid permit, landing at the three central ports plus the Sansha West fishing quay. The OFD is an XML container whose text layer extracts without OCR.'
+  validity:
+    status: in_force
+    as_of: '2026-11-02'
+    note: Current for the 2026 closure season; it arranges special permits under the 2023 notice.
+
+- id: POL-ENF-068
+  type: notice
+  title: Notice on the 2026 marine seasonal-closure enforcement action
+  title_zh: 农业农村部 公安部 中国海警局关于开展2026年海洋伏季休渔执法行动的通知
+  publisher: 农业农村部 / 公安部 / 中国海警局
+  year: 2026
+  jurisdiction: national
+  format: html
+  location: raw/POL-ENF-068/
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P1
+  volume: 1 HTML page; about 4800 characters
+  update_freq: annual
+  hash: 174ab3e343df18e09d8340272e329d956b062ce909216eea8282e206a6bca8af
+  acquisition: Downloaded 2026-11-02 from the Ministry of Agriculture and Rural Affairs page published 2026-04-29.
+  notes: A joint enforcement deployment of 农业农村部, 公安部 and 中国海警局 for 2026-05-01 to 2026-09-16, with three priority tasks. It is an enforcement arrangement, not a change to the closure system; the system basis remains 农业农村部通告〔2023〕1号.
+  validity:
+    status: in_force
+    as_of: '2026-11-02'
+    note: Current for the 2026 season; the page is the ministry publication of 2026-04-29.
 - id: POL-GEAR-033
   title: 海洋捕捞准用渔具最小网目（或网囊）尺寸标准
   title_zh: 海洋捕捞准用渔具最小网目（或网囊）尺寸标准
@@ -1342,7 +1389,7 @@ sources:
   acquisition: Downloaded 2026-11-02 from attachment 1 of the Hainan announcement of 2019-03-28.
   notes: Large and medium-vessel catalog, header sheet 附件1 plus a data sheet with 序号, 船型代号, 总长, 公约船长, 型宽, 型深 and the remaining columns. The file name and sheet order were reconciled before registration.
 gaps:
-- Seventy-one sources are registered: sixty-eight acquired and three candidates awaiting disposition.
+- Seventy-two sources are registered: sixty-nine acquired and three candidates awaiting disposition.
 - The yearbook coverage matrix has no values in the public repository; all values stay local.
 - The yearbook infrastructure table is missing for data years 2018 and 2019; the 2018 national port plan supplies a baseline whose port classes are close to, but not identical with, the yearbook table.
 - The vessel-length proxy is missing for data year 2024.
