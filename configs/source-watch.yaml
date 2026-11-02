@@ -199,3 +199,19 @@ sources:
     note: Attachment carrying the 2025 first-batch port-grade recognition list.
     status: ok
     sha256: fe142d1a8f9885668b6d2fb47764c50123bc52c6d60ca53703263970aa3ab44a
+  - id: WATCH-CMA-RULES
+    url: https://www.cma.gov.cn/2011zwxx/2011zflfg/2011zgfxwj/202111/t20211102_4122304.html
+    authority: B
+    publisher: 中国气象局
+    cadence: quarterly
+    note: Meteorological rules page; a text version of the 2023 warning-signal revision would appear here.
+    status: ok
+    sha256: 7850d0671659b1449d239ff709211cbb0312aa80dcda7c7f5e2d91f67c68b627
+  - id: WATCH-MNR-EMERGENCY
+    url: https://gi.mnr.gov.cn/202606/t20260626_2932773.html
+    authority: B
+    publisher: 自然资源部
+    cadence: quarterly
+    note: The 2026 marine disaster emergency plan page; a text-bearing upload would appear here.
+    status: ok
+    sha256: 39beae535a4b9adab86ecbda15b6613c187d8d79d5b6e93c3742436478c6ac4b

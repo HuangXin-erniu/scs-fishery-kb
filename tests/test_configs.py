@@ -953,3 +953,11 @@ def test_watch_coverage_is_complete() -> None:
         assert entry.get("status") == "ok" or "unreachable" in str(entry.get("note", "")).lower()
         if entry.get("status") == "ok":
             assert re.fullmatch(r"[0-9a-f]{64}", entry.get("sha256", ""))
+
+
+def test_climate_closure_record() -> None:
+    watch = load_yaml("configs/source-watch.yaml")["sources"]
+    ids = {entry["id"] for entry in watch}
+    assert {"WATCH-CMA-RULES", "WATCH-MNR-EMERGENCY"} <= ids
+    text = Path("docs/corpus.md").read_text(encoding="utf-8")
+    assert "## 5r. Climate and hazard" in text
