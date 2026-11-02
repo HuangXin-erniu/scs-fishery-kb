@@ -2,6 +2,13 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-02 — 2018 national evaluation results recorded as unattainable
+
+- Searched four phrasings, the ministry and bureau search endpoints (both HTTP 404), gazette issues 201804–201812 (script shells, zero 标准船型 occurrences) and archive.org (timeout). Only news restatements exist, so the 66-type list is recorded as unattainable and not reconstructed.
+- `STD-YY-071` now names 农业农村部公报 2018 年第 11 期 as the predecessor of the 2021 and 2024 editions, without registering the superseded text.
+- Added the bureau notice list to the watch with a recorded baseline, so a future hull-type evaluation announcement is detected.
+- No source registered; 74/71/3 unchanged and every eval arm unchanged.
+
 ## 2026-11-02 — Cleanup: one hard delete, one retirement, level corrections
 
 - Hard-deleted `DICT-GFW-047` under decision D-SCS-FKB-058: licence unknown with no official provenance, so it left the register, the product collection and the data root. Its file hash `5a5e83ec804a3969d7ee93f28b15e08002363659e460d3c0827ff537779704b4` is recorded here for audit.
