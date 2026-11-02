@@ -33,7 +33,7 @@ def test_corpus_structure() -> None:
         "data_dictionary",
         "plan",
     }
-    assert len(data["sources"]) == 50
+    assert len(data["sources"]) == 55
 
     acquired = []
     candidates = []
@@ -46,7 +46,7 @@ def test_corpus_structure() -> None:
         else:
             candidates.append(source)
 
-    assert len(acquired) == 47
+    assert len(acquired) == 52
     assert len(candidates) == 3
     yearbooks = [source for source in acquired if source["id"].startswith("STAT-YB-")]
     assert len(yearbooks) == 9
@@ -97,6 +97,11 @@ def test_corpus_structure() -> None:
         "DICT-GFW-047",
         "DICT-GFW-048",
         "STD-CMEMS-049",
+        "POL-STAT-050",
+        "POL-STAT-051",
+        "POL-YJ-052",
+        "POL-VMS-053",
+        "STD-ECERT-054",
     }
     for source in documents:
         if source["id"] in {
@@ -108,6 +113,11 @@ def test_corpus_structure() -> None:
             "DICT-GFW-047",
             "DICT-GFW-048",
             "STD-CMEMS-049",
+            "POL-STAT-050",
+            "POL-STAT-051",
+            "POL-YJ-052",
+            "POL-VMS-053",
+            "STD-ECERT-054",
         }:
             continue
         assert source["license"] == "public"
@@ -220,9 +230,9 @@ def test_corpus_structure() -> None:
     assert type_counts == {
         "statistical_yearbook": 16,
         "law": 1,
-        "regulation": 10,
-        "notice": 4,
-        "standard": 6,
+        "regulation": 13,
+        "notice": 5,
+        "standard": 7,
         "operations": 1,
         "fishery_product": 3,
         "data_dictionary": 8,
@@ -533,3 +543,26 @@ def test_remote_stack_documents() -> None:
         assert source["jurisdiction"] == "international"
         assert source["location"].startswith(f"raw/{source_id}/")
         assert len(source["hash"]) == 64
+
+
+def test_statistical_governance_documents() -> None:
+    data = load_yaml("configs/corpus.yaml")
+    sources = {source["id"]: source for source in data["sources"]}
+    expected = {
+        "POL-STAT-050": ("regulation", "P1"),
+        "POL-STAT-051": ("regulation", "P1"),
+        "POL-YJ-052": ("notice", "P2"),
+        "POL-VMS-053": ("regulation", "P2"),
+        "STD-ECERT-054": ("standard", "P2"),
+    }
+    for source_id, (source_type, priority) in expected.items():
+        source = sources[source_id]
+        assert source["type"] == source_type
+        assert source["priority"] == priority
+        assert source["status"] == "acquired"
+        assert source["jurisdiction"] == "national"
+        assert source["license"] == "public"
+        assert source["location"].startswith(f"raw/{source_id}/")
+        assert len(source["hash"]) == 64
+    assert "国统制〔2024〕120号" in sources["POL-STAT-051"]["notes"]
+    assert "农办渔〔2018〕30号" in sources["POL-YJ-052"]["volume"]

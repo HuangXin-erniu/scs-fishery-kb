@@ -2,6 +2,13 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-02 — Current statistical-governance and monitoring documents
+
+- Currency check before acquiring: the 2021 fishery statistics survey system had expired, so `POL-STAT-051` registers the 2024 text (国统制〔2024〕120号, valid to June 2027); the 2010 work rules show no repeal; the 2024 monitoring letter exists but has no public full text, so `POL-YJ-052` is the 2017 circular with the caveat; the 2019 distant-water measures replaced the 2014 version and stay in force; the 2025 e-certificate standards are current.
+- Added `POL-STAT-050` (work rules), `POL-STAT-051` (2024 survey system), `POL-YJ-052` (2017 monitoring circular), `POL-VMS-053` (distant-water monitoring measures) and `STD-ECERT-054` (three e-certificate standards, 61 pages).
+- SC/T 9403-2025 was already held inside `STD-SC-042`, so it was not registered twice. The register now holds 55 sources, 52 acquired and 3 candidates; regulation 13, notice 5 and standard 7.
+- Near-shore VMS definitions and a data-sharing metadata rule remain uncovered; Q-M02, Q-M06 and Q-M11 stay out of reach.
+
 ## 2026-11-02 — Five documentation sources for the remote data stack
 
 - Added `STD-MUR-045` (MUR 0.01° SST product page, CC BY 4.0), `STD-OLCI-046` (EUMETSAT OLCI marine handbook, 41 pages), `DICT-GFW-047` (apparent fishing effort versus fishing events), `DICT-GFW-048` (GFW Events API documentation, Apache 2.0) and `STD-CMEMS-049` (CMEMS GLOBAL_MULTIYEAR_PHY_001_030 user manual, Issue 1.7).
