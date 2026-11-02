@@ -26,7 +26,7 @@ from .jurisdiction import question_jurisdiction
 from .lexicon import load_lexicon
 from .models import Answer
 from .parsers import ParseError, UnsupportedFormatError
-from .reference import ReferenceError
+from .reference import ReferenceError, diverse_hits
 from .reference import lookup as reference_lookup
 from .reference import lookup_term as reference_lookup_term
 from .retrieve import Retriever
@@ -143,12 +143,12 @@ def _ask(args: argparse.Namespace) -> int:
         top_k=args.top_k,
         sensitivity_ceiling=args.sensitivity,
     )
-    references = reference_lookup(args.question, root=_root(args.data_root))
-    product_references = reference_lookup(
-        args.question, root=_root(args.data_root), collection="product"
+    references = diverse_hits(reference_lookup(args.question, top_k=8, root=_root(args.data_root)))
+    product_references = diverse_hits(
+        reference_lookup(args.question, top_k=8, root=_root(args.data_root), collection="product")
     )
-    policy_references = reference_lookup(
-        args.question, root=_root(args.data_root), collection="policy"
+    policy_references = diverse_hits(
+        reference_lookup(args.question, top_k=8, root=_root(args.data_root), collection="policy")
     )
     min_score, min_matched, _ = _pipeline_options(args.pipeline)
     if retriever.mode == "bm25":
