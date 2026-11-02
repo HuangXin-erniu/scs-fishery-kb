@@ -773,7 +773,7 @@ sources:
   validity:
     status: in_force
     as_of: '2026-11-02'
-    note: Listed among the ministry rules in force in the 2025-09 catalogue; no repeal found.
+    note: Listed among the ministry rules in force in the 2025-09 catalogue; no repeal found. Announcement No. 950 (2025-09-24) also lists this regulation among the rules in force.
 - id: STD-SPEC-076
   type: notice
   title: National key-protected wildlife list
@@ -889,7 +889,7 @@ sources:
   validity:
     status: in_force
     as_of: '2026-11-02'
-    note: The 2025-07-15 revision is the text published on the ministry rule page.
+    note: The 2025-07-15 revision is the text published on the ministry rule page. Announcement No. 950 (2025-09-24) also lists this regulation among the rules in force.
 - id: POL-LIST-079
   type: notice
   title: 'Announcement No. 950: catalogue of rules in force'
@@ -919,6 +919,35 @@ sources:
     status: in_force
     as_of: '2026-11-02'
     note: Published 2025-09-24 and the current catalogue of ministry rules in force.
+- id: POL-PEN-080
+  type: regulation
+  title: Provisions on fishery administrative penalties
+  title_zh: 渔业行政处罚规定
+  publisher: 农业农村部
+  year: 2025
+  jurisdiction: national
+  format: html
+  location: raw/POL-PEN-080/
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P1
+  volume: 1 HTML page; about 2800 characters
+  update_freq: static
+  hash: 57027911e2ce6b23d6e84aee6269f19623b19f927cdb31fcbad606e032756e81
+  acquisition: Downloaded 2026-11-02 from the ministry rule page, consolidated 2025 text.
+  notes: 农业部令第36号 (1998-01-05), revised on 2022-01-07 and again on 2025-07-15 by 农业农村部令2025年第3号. It sets the penalty types and ranges for fishery violations and the procedure that applies under the Fisheries Law.
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: collection
+    parseable: true
+    note: Registered in a reference collection.
+  lifecycle: active
+  validity:
+    status: in_force
+    as_of: '2026-11-02'
+    note: The consolidated text carries the 2025-07-15 revision (农业农村部令2025年第3号) on the ministry rule page.
 - id: POL-GEAR-033
   title: 海洋捕捞准用渔具最小网目（或网囊）尺寸标准
   title_zh: 海洋捕捞准用渔具最小网目（或网囊）尺寸标准
@@ -2545,7 +2574,7 @@ sources:
     note: Status not separately verified during the schema migration; the source note records the publisher and date.
 
 gaps:
-- Eighty-three sources are registered: eighty acquired and three candidates awaiting disposition.
+- Eighty-four sources are registered: eighty-one acquired and three candidates awaiting disposition.
 - The yearbook coverage matrix has no values in the public repository; all values stay local.
 - The yearbook infrastructure table is missing for data years 2018 and 2019; the 2018 national port plan supplies a baseline whose port classes are close to, but not identical with, the yearbook table.
 - The vessel-length proxy is missing for data year 2024.

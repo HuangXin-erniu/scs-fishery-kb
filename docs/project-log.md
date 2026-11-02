@@ -2,6 +2,13 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-02 — General penalty rules and the national validity sweep
+
+- Registered `POL-PEN-080` (渔业行政处罚规定, 农业部令第36号, revised 2022-01-07 and 2025-07-15 by 农业农村部令2025年第3号; 2,780 parsed characters).
+- Added the announcement No. 950 cross-check to `POL-RES-075` and `POL-PEN-078`; no status was upgraded without a citation.
+- Published a national validity sweep in docs/corpus.md 5q: thirty-one national entries remain unknown, grouped as data publications (17), notices/plans not covered by the catalogue (10), unacquired candidates (3) and the retired series (1), each with the reason.
+- Register: 84 sources, 81 acquired; regulation 20; policy collection thirty-two documents; both new rows in the currency table. Eval unchanged at the current baseline.
+
 ## 2026-11-02 — Enforcement rules and the in-force catalogue
 
 - Registered `POL-PEN-078` (中华人民共和国渔业港航监督行政处罚规定, 农业部令第34号, revised 2025-07-15 by 农业农村部令2025年第3号; 4,131 parsed characters) and `POL-LIST-079` (农业农村部公告第950号, 2025-09-24 catalogue of rules in force; 11,657 characters).

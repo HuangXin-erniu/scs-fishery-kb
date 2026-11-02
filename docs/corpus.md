@@ -30,7 +30,7 @@ Every entry carries schema v2 fields: `level` (national, provincial, municipal o
 | `statistical_yearbook` | 统计年鉴 | 16 | Official annual statistics and indicator tables |
 | `operations` | 作业知识 | 1 | Fishing methods, gear, vessel operations, logbooks and permit conditions |
 | `law` | 法律 | 1 | National law adopted by the legislature |
-| `regulation` | 行政法规/规章/地方性法规 | 19 | Administrative regulations, departmental rules and local regulations |
+| `regulation` | 行政法规/规章/地方性法规 | 20 | Administrative regulations, departmental rules and local regulations |
 | `notice` | 通告/公告 | 16 | Official notices, announcements and seasonal measures |
 | `standard` | 标准/规范 | 18 | National, industry or provincial standards and operational norms |
 | `fishery_product` | 渔情/海况产品说明 | 4 | Product descriptions, fishery bulletins and historical records |
@@ -284,6 +284,19 @@ Shelter anchorages stay uncovered: no national public list was found, only forei
 
 The catalogue is the evidence rather than an inference: it lists the fisheries crew measures and the fishing-permit regulation, so `POL-CREW-055` moved from unknown to in force with the announcement quoted, and `POL-STD-010` carries the same cross-check. It does not list the fishing-vessel inspection rules, which sit with the transport ministry, so that regulation is not registered here.
 
+## 5q. National validity sweep
+
+The in-force catalogue proves only the entries it names. After adding the general penalty rules, thirty-one national entries still carry `unknown`, and they are grouped here so the gap is visible and bounded rather than silent:
+
+| Group | Count | Entries | Why they stay unknown |
+|---|---|---|---|
+| Data publications | 17 | `STAT-BULL-025`, `STAT-BULL-028` to `STAT-BULL-032`, `STAT-CSY-027`, `STAT-YB-2018` to `STAT-YB-2026`, `DICT-STAT-013` | Editions and dictionaries, not normative acts; each edition is valid for its data year, so in-force/repealed does not apply in the same sense |
+| Notices, plans and operations not listed by the catalogue | 10 | `OPS-FORM-036`, `POL-PORT-037`, `POL-PLAN-038`, `POL-STAT-050`, `POL-STAT-051`, `POL-YJ-052`, `POL-VMS-053`, `STD-ECERT-054`, `POL-YJ-057`, `STD-HY1-056` | The catalogue covers ministry rules, not notices or plans; no publisher statement of currency was found |
+| Candidates not acquired | 3 | `VMS-DICT-003`, `VMS-SAMPLE-004`, `DICT-META-014` | Never acquired, so no status to verify |
+| Retired series | 1 | `STD-SC-042` | Retired as unparseable provenance; validity is moot |
+
+No status was upgraded without a citation. The two entries the catalogue does name, `POL-RES-075` and `POL-PEN-078`, now carry that cross-check in their validity notes.
+
 ## 6. Candidate sources
 
 | ID | Type | Title | Priority | Disposition |
@@ -299,8 +312,8 @@ The four environment and fishery-product candidates were removed on owner instru
 | Metric | Value |
 |---|---:|
 | Corpus types | 9 |
-| Registered sources | 83 |
-| Acquired sources | 80 |
+| Registered sources | 84 |
+| Acquired sources | 81 |
 | Remaining candidates | 3 |
 | Yearbook editions | 9 |
 | Yearbook data years | 2017–2025 |

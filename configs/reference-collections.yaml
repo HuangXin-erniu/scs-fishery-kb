@@ -317,3 +317,11 @@ collections:
         language: zh
         jurisdiction: national
         level: national
+      - id: POL-PEN-080
+        title: 渔业行政处罚规定
+        file: raw/POL-PEN-080/fishery-administrative-penalty-rules-2025.html
+        sha256: 57027911e2ce6b23d6e84aee6269f19623b19f927cdb31fcbad606e032756e81
+        license: public
+        language: zh
+        jurisdiction: national
+        level: national

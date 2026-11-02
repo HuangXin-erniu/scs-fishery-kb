@@ -33,7 +33,7 @@ def test_corpus_structure() -> None:
         "data_dictionary",
         "plan",
     }
-    assert len(data["sources"]) == 83
+    assert len(data["sources"]) == 84
 
     acquired = []
     candidates = []
@@ -46,7 +46,7 @@ def test_corpus_structure() -> None:
         else:
             candidates.append(source)
 
-    assert len(acquired) == 80
+    assert len(acquired) == 81
     assert len(candidates) == 3
     yearbooks = [source for source in acquired if source["id"].startswith("STAT-YB-")]
     assert len(yearbooks) == 9
@@ -130,6 +130,7 @@ def test_corpus_structure() -> None:
         "POL-PORT-078",
         "POL-PEN-078",
         "POL-LIST-079",
+        "POL-PEN-080",
     }
     for source in documents:
         if source["id"] in {
@@ -257,7 +258,7 @@ def test_corpus_structure() -> None:
     assert type_counts == {
         "statistical_yearbook": 16,
         "law": 1,
-        "regulation": 19,
+        "regulation": 20,
         "notice": 16,
         "standard": 18,
         "operations": 1,
@@ -647,6 +648,7 @@ def test_reference_collections_config() -> None:
         "POL-PORT-078",
         "POL-PEN-078",
         "POL-LIST-079",
+        "POL-PEN-080",
     }
     for document in collections["policy"]["documents"]:
         assert document["level"] in {"national", "provincial", "municipal"}
@@ -702,6 +704,7 @@ def test_corrected_corpus_hashes() -> None:
         "POL-PORT-078": "fe142d1a8f9885668b6d2fb47764c50123bc52c6d60ca53703263970aa3ab44a",
         "POL-PEN-078": "42884cb595529b9f687a4442ff5a8bf8f5706c5764cbb7df57859e29923bc428",
         "POL-LIST-079": "67c8240cc5bf63487b7ee43af3ea9800f41f60a29eeccbaa2c5b6f0feac9b29f",
+        "POL-PEN-080": "57027911e2ce6b23d6e84aee6269f19623b19f927cdb31fcbad606e032756e81",
     }
     for source_id, digest in expected.items():
         assert sources[source_id]["hash"] == digest
@@ -774,6 +777,7 @@ def test_validity_blocks() -> None:
         "POL-PORT-078",
         "POL-PEN-078",
         "POL-LIST-079",
+        "POL-PEN-080",
     }
     for source_id in expected:
         block = sources[source_id]["validity"]
@@ -794,8 +798,8 @@ def test_registry_schema_v2() -> None:
     from scs_fkb.registry import load_registry
 
     registry = load_registry("configs/corpus.yaml")
-    assert len(registry) == 83
-    assert sum(1 for entry in registry.values() if entry["status"] == "acquired") == 80
+    assert len(registry) == 84
+    assert sum(1 for entry in registry.values() if entry["status"] == "acquired") == 81
     for entry in registry.values():
         assert entry["lifecycle"] in {"active", "retired"}
         if entry["lifecycle"] == "retired":
@@ -826,7 +830,7 @@ def test_environment_layer() -> None:
     assert sources["STAT-ECO-073"]["retrieval"]["parseable"] is True
     assert sources["STAT-DIS-074"]["retrieval"]["parseable"] is False
     collections = load_yaml("configs/reference-collections.yaml")["collections"]
-    assert len(collections["policy"]["documents"]) == 31
+    assert len(collections["policy"]["documents"]) == 32
     assert "海洋灾害" in collections["policy"]["cues"]
 
 
@@ -888,3 +892,12 @@ def test_enforcement_layer() -> None:
     assert "No. 950" in crew["note"]
     cues = load_yaml("configs/reference-collections.yaml")["collections"]["policy"]["cues"]
     assert {"处罚", "罚款", "违法", "目录"} <= set(cues)
+
+
+def test_penalty_cross_checks() -> None:
+    data = load_yaml("configs/corpus.yaml")
+    sources = {source["id"]: source for source in data["sources"]}
+    for source_id in ("POL-RES-075", "POL-PEN-078"):
+        assert "No. 950" in sources[source_id]["validity"]["note"]
+    assert sources["POL-PEN-080"]["validity"]["status"] == "in_force"
+    assert sources["POL-PEN-080"]["retrieval"]["parseable"] is True
