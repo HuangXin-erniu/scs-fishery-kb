@@ -113,3 +113,11 @@ sources:
     note: The 2024 distant-water standard hull parameter series (农办渔〔2024〕15号).
     status: ok
     sha256: 78fd7c3b1d6a55eb8b01a35acbe6b97a3542757911d56911828976166c223888
+  - id: WATCH-MOA-YYJ-NOTICES
+    url: https://yyj.moa.gov.cn/tzgg/
+    authority: B
+    publisher: 农业农村部渔业渔政管理局
+    cadence: weekly
+    note: Bureau notice list; a future hull-type evaluation announcement would appear here.
+    status: ok
+    sha256: ecee3ce92f8dafaf303997c5d82e83604f02403b24da9e567ffe6f3914714cc2

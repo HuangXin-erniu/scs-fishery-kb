@@ -230,7 +230,15 @@ The chain is recorded rather than assumed: every entry above carries a validity 
 
 The national layer now states what the method is and how it is applied, and it carries one national parameter table. The scope boundary is recorded in the entry itself: the 2024 series covers ocean-going hull types, so it is not evidence for a near-shore parameter question, and the provincial catalogs (Fujian, Guangdong, Hainan) remain the near-shore reference layer. The earlier 2021 edition of the series is named as the superseded predecessor but is not registered.
 
+The 2018 distant-water parameter series was published in 农业农村部公报 2018 年第 11 期 and is named in `STD-YY-071` as the predecessor of the 2021 and 2024 editions; it is not registered because the 2024 edition is current.
+
 One national record stays open: the 2018 quarterly evaluation results (66 hull types, including Guangxi) would list provincial types, but only news restatements were found and no publisher page could be reached. It is recorded as unattainable rather than reconstructed, and SC/T 8003-2007 is explicitly noted as a code standard that cannot substitute for a parameter catalog.
+
+
+
+### 2018 search record
+
+The 2018 first-quarter evaluation results were pursued with four query phrasings, the ministry search endpoint and the bureau search path (both HTTP 404), the 2018 gazette issue pages 201804 to 201812 (about 85 KB each, script shells with zero occurrences of 标准船型), and the archive.org CDX interface (connection timed out from this network). The only reachable traces are news restatements on research-institute pages, which are pointers and not sources. The 66-type list therefore stays unattainable and is not reconstructed; the bureau notice list is in the watch list so a future upload is detected.
 
 ## 6. Candidate sources
 
