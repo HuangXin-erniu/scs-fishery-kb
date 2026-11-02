@@ -86,6 +86,17 @@ def resolve_source_file(source: Source, root: Path) -> tuple[Path, str]:
     path = (root / location).resolve()
     if not path.is_relative_to(root):
         raise CorpusError(f"source {source.id} location escapes the data root")
+    if path.is_dir():
+        files = [
+            candidate
+            for candidate in sorted(path.iterdir())
+            if candidate.is_file() and not candidate.name.startswith(".")
+        ]
+        if len(files) != 1:
+            raise CorpusError(
+                f"source.directory: expected exactly one file in {path}, found {len(files)}"
+            )
+        path = files[0]
     if not path.is_file():
         raise CorpusError(f"source.missing: file not found: {path}")
     digest = hashlib.sha256(path.read_bytes()).hexdigest()

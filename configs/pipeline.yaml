@@ -7,6 +7,7 @@ documents:
   - OPS-STD-035
   - OPS-STD-039
   - POL-CLOS-015
+  - POL-ENF-068
   - POL-FJ-025
   - POL-FJ-026
   - POL-GD-021
@@ -17,8 +18,11 @@ documents:
   - POL-GX-023
   - POL-GX-024
   - POL-LAW-009
+  - POL-OBS-072
   - POL-PLAN-038
   - POL-PORT-037
+  - POL-PORT-077
+  - POL-RES-075
   - POL-RULE-018
   - POL-RULE-019
   - POL-RULE-020

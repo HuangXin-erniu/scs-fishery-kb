@@ -2,6 +2,13 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-02 — Four national texts admitted; new baseline published
+
+- resolve_source_file now accepts a single-file directory, so sources that carry their document in a directory can enter the pipeline; empty or multi-file directories are rejected with tests.
+- Added POL-ENF-068, POL-OBS-072, POL-RES-075 and POL-PORT-077 to the main index: 33 documents, 794 chunks, index cd97744aa292, dense f15c73a5996702f5.
+- New baseline: hybrid 10/11, MRR 0.45, abstention 3/4, two false refusals, citation 1.00; BM25 7/11, BM25 plus lexicon 8/11, dense 8/11 (MRR 0.32, three false refusals). The comparison-arm drop is the expected dilution from 121 new chunks and is published rather than smoothed; the adopted hybrid arm is unchanged, so the batch is kept.
+- Registered-source counts stay 81/78/3.
+
 ## 2026-11-02 — Port and operations layer opened
 
 - Registered `POL-PORT-077` (中华人民共和国渔港水域交通安全管理条例, 国务院令第38号, amended 2019-03-02; 2,548 parsed characters) and `POL-PORT-078` (2025年第一批渔港等级认定名单, ministry attachment docx, 266 characters, twelve central ports and the first-class ports).

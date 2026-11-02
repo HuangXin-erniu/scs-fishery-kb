@@ -6,6 +6,7 @@
 
 - Status: protocol defined; the question set is a draft and has not been reviewed by domain experts.
 - Baseline (2026-11-01, M2 comparison over twenty-nine public sources): four arms on the same instrument — BM25 8/11, BM25 plus lexicon 9/11, dense-only 8/11 and hybrid 10/11, each with abstention 3/4, two false refusals and 100% citation resolution; hybrid MRR 0.45 and P95 17 ms.
+- Baseline (2026-11-02, after admitting the four national texts; 33 public sources, 794 chunks, index `cd97744aa292`, dense `f15c73a5996702f5`): hybrid holds at 10/11 with MRR 0.45, abstention 3/4, two false refusals and 100% citation resolution. The comparison arms move under the larger corpus: BM25 7/11 (was 8/11), BM25 plus lexicon 8/11 (was 9/11), dense 8/11 with MRR 0.32 (was 0.37) and three false refusals. The one-anchor drop in the BM25 arms is the expected dilution from 121 new chunks; the adopted arm is hybrid, so the batch is kept and the comparison numbers are published as they are rather than smoothed.
 
 | Arm | Recall@5 | MRR | Abstention | False refusals | P95 |
 |---|---|---|---|---|---|
