@@ -700,3 +700,19 @@ def test_crew_and_ocean_colour_documents() -> None:
         assert source["location"] == f"raw/{source_id}/"
     assert "附件4" in sources["POL-CREW-055"]["notes"]
     assert "1100 m" in sources["STD-HY1-056"]["notes"]
+
+
+def test_source_watch_config() -> None:
+    data = load_yaml("configs/source-watch.yaml")
+    assert data["schema_version"] == 1
+    assert set(data["authority_tiers"]) == {"A", "B", "C"}
+    sources = data["sources"]
+    assert len(sources) >= 8
+    ids = {entry["id"] for entry in sources}
+    assert len(ids) == len(sources)
+    for entry in sources:
+        assert entry["id"]
+        assert entry["url"].startswith(("http://", "https://"))
+        assert entry["authority"] in {"A", "B", "C"}
+        assert entry["publisher"]
+        assert entry["status"] in {"unchecked", "ok", "changed", "unbaselined", "unreachable"}

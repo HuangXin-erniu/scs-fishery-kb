@@ -33,6 +33,8 @@ from .retrieve import Retriever
 from .stats import StatsError
 from .stats import query as stats_query
 from .store import StoreError, load_chunks
+from .watch import DEFAULT_WATCH, WatchError, run_watch
+from .watch import write_report as write_watch_report
 
 
 def _root(value: str | None) -> Path:
@@ -287,6 +289,23 @@ def _stats(args: argparse.Namespace) -> int:
     return 0
 
 
+def _watch(args: argparse.Namespace) -> int:
+    report = run_watch(Path(args.config), offline=args.offline)
+    if args.report:
+        write_watch_report(report, Path(args.report))
+    if args.json:
+        _print_json(report)
+        return 0
+    for result in report["results"]:
+        digest = (result.get("sha256") or "-")[:12]
+        print(
+            f"{result['id']:28} {result['status']:12} "
+            f"http {result.get('http_status') or '-'} {digest}"
+        )
+    print(f"summary {report['summary']}")
+    return 0
+
+
 def _eval(args: argparse.Namespace) -> int:
     report = run_comparison(
         _root(args.data_root),
@@ -398,6 +417,13 @@ def build_parser() -> argparse.ArgumentParser:
     eval_parser.add_argument("--out", default=None)
     eval_parser.add_argument("--json", action="store_true")
     eval_parser.set_defaults(func=_eval)
+
+    watch_parser = subparsers.add_parser("watch", help="check the curated authoritative watch list")
+    watch_parser.add_argument("--config", default=str(DEFAULT_WATCH))
+    watch_parser.add_argument("--offline", action="store_true")
+    watch_parser.add_argument("--report", default=None)
+    watch_parser.add_argument("--json", action="store_true")
+    watch_parser.set_defaults(func=_watch)
     return parser
 
 
@@ -416,6 +442,7 @@ def main(argv: list[str] | None = None) -> int:
         DenseError,
         StatsError,
         StoreError,
+        WatchError,
         ValueError,
         FileNotFoundError,
     ) as exc:

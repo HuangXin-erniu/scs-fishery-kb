@@ -1,0 +1,83 @@
+# Curated watch list of authoritative pages. The checker reads these pages and reports
+# changes; it never downloads a document into the register and never edits corpus.yaml.
+# Authority tiers and the promotion rules live in docs/sources.md.
+schema_version: 1
+updated_at: '2026-11-02'
+defaults:
+  timeout_seconds: 15
+  user_agent: SCS-FKB-watch/1.0 (+https://github.com/HuangXin-erniu/scs-fishery-kb)
+authority_tiers:
+  A: Central ministry, provincial department or national law database page
+  B: Official gazette index or a government-information attachment
+  C: Municipal or county-level department page, used as a supplement only
+sources:
+  - id: WATCH-MOA-GAZETTE-2025
+    url: http://www.moa.gov.cn/nybgb/2025/
+    authority: B
+    publisher: 农业农村部
+    cadence: monthly
+    note: Gazette issue index for 2025; a published 2024 monitoring letter would appear here.
+    status: unchecked
+  - id: WATCH-MOA-GAZETTE-202505
+    url: http://www.moa.gov.cn/nybgb/2025/202505/
+    authority: B
+    publisher: 农业农村部
+    cadence: monthly
+    note: Issue 5 of 2025, the likeliest carrier of the April 2025 monitoring letter.
+    status: unchecked
+  - id: WATCH-MOA-GAZETTE-202504
+    url: http://www.moa.gov.cn/nybgb/2025/202504/
+    authority: B
+    publisher: 农业农村部
+    cadence: monthly
+    note: Issue 4 of 2025, the alternative carrier for the same letter.
+    status: unchecked
+  - id: WATCH-MOA-GAZETTE-202506
+    url: http://www.moa.gov.cn/nybgb/2025/202506/
+    authority: B
+    publisher: 农业农村部
+    cadence: monthly
+    note: Issue 6 of 2025.
+    status: unchecked
+  - id: WATCH-GD-ANNOUNCE-2020
+    url: https://dara.gd.gov.cn/zwgk/tzgg/content/post_3042147.html
+    authority: A
+    publisher: 广东省农业农村厅
+    cadence: static
+    note: Guangdong 2020 second-batch hull catalog announcement; watch for a later batch.
+    status: unchecked
+  - id: WATCH-GD-ANNOUNCE-2021
+    url: https://dara.gd.gov.cn/zwgk/tzgg/content/post_3234786.html
+    authority: A
+    publisher: 广东省农业农村厅
+    cadence: static
+    note: Guangdong 2021 hull catalog announcement; watch for a later batch.
+    status: unchecked
+  - id: WATCH-GD-NOTICES
+    url: https://dara.gd.gov.cn/zwgk/tzgg/
+    authority: A
+    publisher: 广东省农业农村厅
+    cadence: weekly
+    note: Provincial notice list; the 2026 closure work plan would be published here.
+    status: unchecked
+  - id: WATCH-GD-POLICY
+    url: https://dara.gd.gov.cn/zwgk/zcwj/
+    authority: A
+    publisher: 广东省农业农村厅
+    cadence: weekly
+    note: Provincial policy-document list.
+    status: unchecked
+  - id: WATCH-HN-HULL-2019
+    url: https://agri.hainan.gov.cn/hnsnyt/xxgk/tzgg/gggs/201903/t20190328_2480820.html
+    authority: A
+    publisher: 海南省农业农村厅
+    cadence: static
+    note: Hainan 2019 hull catalog announcement; the notice PDF and two xls catalogs sit here.
+    status: unchecked
+  - id: WATCH-NFTEC-MONITOR
+    url: http://www.nftec.agri.cn/yqxx/
+    authority: A
+    publisher: 全国水产技术推广总站
+    cadence: monthly
+    note: Fishery monitoring and statistics column; the 2020 circular was posted here.
+    status: unchecked
