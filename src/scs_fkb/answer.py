@@ -105,6 +105,34 @@ def validate_citations(text: str, hits: list[SearchHit]) -> tuple[bool, list[str
     return not invalid, invalid
 
 
+def _date_range_evidence(
+    question: str,
+    hits: list[SearchHit],
+) -> tuple[SearchHit, str] | None:
+    """Pick the best date-range sentence for a period question.
+
+    Only used when the question asks for a time period and does not ask for an
+    implementation date: the clause carrying the range often sits below the
+    evidence cut-off, so it is searched across every retrieved hit.
+    """
+    if not any(word in question for word in TIME_WORDS):
+        return None
+    if any(word in question for word in IMPLEMENTATION_WORDS):
+        return None
+    query_tokens = set(tokenize(question))
+    best: tuple[SearchHit, str] | None = None
+    best_score = -1
+    for hit in hits:
+        for sentence in _sentences(hit.chunk.text):
+            if not DATE_RANGE_RE.search(sentence):
+                continue
+            score = len(query_tokens & set(tokenize(sentence)))
+            if score > best_score:
+                best = (hit, sentence)
+                best_score = score
+    return best
+
+
 def _matched_tokens(question: str, hit: SearchHit) -> int:
     query_tokens = set(tokenize(question))
     if not query_tokens:
@@ -146,6 +174,16 @@ def answer_question(
     lines: list[str] = []
     citations: list[Citation] = []
     seen: set[tuple[str, str, str]] = set()
+    period = _date_range_evidence(question, usable)
+    if period is not None:
+        period_hit, period_sentence = period
+        period_sentence = _with_context(period_hit, period_sentence)
+        key = (period_hit.chunk.doc_id, period_hit.chunk.section, period_sentence)
+        if key not in seen:
+            seen.add(key)
+            citation = make_citation(period_hit, period_sentence)
+            citations.append(citation)
+            lines.append(f"{period_sentence} {citation_text(citation)}")
     for hit in usable[:max_evidence]:
         sentence = _best_sentence(question, hit.chunk.text)
         if not sentence:
