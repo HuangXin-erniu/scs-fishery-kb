@@ -143,6 +143,8 @@ Both are routed through reference collections. The crew rule sits in the policy 
 
 Hainan remains the open jurisdiction: the provincial government page carries the 2008 amendment and is marked 已修改, and the national law database confirms the 2013 revision is in force but serves the body only through a script-driven page and a signed attachment this network cannot extract. No superseded text is registered, so the Hainan gap stays open with its evidence rather than being filled with a stale copy.
 
+Four retrieval terms were added to the bridge in the same task: 水色 to ocean colour, 覆盖周期 to coverage cycle, 重访 to revisit and 幅宽 to swath. Before the addition, a question phrased only with those words returned an empty product block because the channel fires on bridged concepts; after it, 海洋水色产品的覆盖周期是多少？ and 海洋水色产品的幅宽与重访周期是多少？ both return `STD-HY1-056`, while `Q-E08` still leads with MUR and the four abstention tests are unchanged. The bridge is a retrieval mapping, not a translation, and each entry says so in its note.
+
 ## 6. Candidate sources
 
 | ID | Type | Title | Priority | Disposition |

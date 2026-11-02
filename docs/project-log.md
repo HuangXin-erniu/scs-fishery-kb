@@ -2,6 +2,12 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-02 — Four ocean-colour terms in the terminology bridge
+
+- Added 水色 → ocean colour, 覆盖周期 → coverage cycle, 重访 → revisit and 幅宽 → swath to `configs/glossary-bridge.yaml` (fifteen terms now). The bridge is a retrieval mapping used by the reference channels, not a translation, and each note says so.
+- Before: 海洋水色产品的覆盖周期是多少？ and 海洋水色产品的幅宽与重访周期是多少？ returned an empty product block, because the channel fires on bridged concepts and those words were unmapped. After: both return `STD-HY1-056`.
+- Guards held: Q-E08 still returns MUR first, Q-M09 still returns the Chinese page, the four abstention questions answer exactly as before, and the eval is unchanged at index e4f8d55d7d49, hybrid 10/11, MRR 0.45, reference 4/4, statistics 2/2, abstention 3/4.
+
 ## 2026-11-02 — Crew management, the Chinese ocean-colour page and the product-channel fix
 
 - Added `POL-CREW-055` (渔业船员管理办法, 2022 revision, 54 articles and four annexes) and `STD-HY1-056` (HY-1C/D 产品能力说明, 国家卫星海洋应用中心). The register now holds fifty-seven sources, fifty-four acquired and three candidates; regulation 14 and fishery_product 4.

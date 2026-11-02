@@ -56,6 +56,13 @@ def test_expanded_query_appends_concepts(tmp_path: Path) -> None:
     assert expanded_query("休渔期", []) == "休渔期"
 
 
+def test_project_bridge_maps_ocean_colour_terms() -> None:
+    bridge = load_bridge()
+    assert concepts_for("水色产品的覆盖周期是多少", bridge) == ["ocean colour", "coverage cycle"]
+    assert concepts_for("幅宽与重访", bridge) == ["swath", "revisit"]
+    assert concepts_for("海洋水色水温扫描仪", bridge) == ["ocean colour"]
+
+
 def test_bridge_rejects_malformed_entries(tmp_path: Path) -> None:
     path = tmp_path / "bad.yaml"
     payload = {"schema_version": 1, "terms": [{"zh": "产量"}]}

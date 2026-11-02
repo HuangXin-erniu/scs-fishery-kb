@@ -486,6 +486,7 @@ def test_glossary_bridge() -> None:
         assert entry["en"] and all(isinstance(item, str) and item for item in entry["en"])
         assert entry["note"]
     assert {"产量", "上岸量", "捕捞努力量"} <= seen
+    assert {"水色", "覆盖周期", "重访", "幅宽"} <= seen
 
 
 def test_eval_reference_section() -> None:
