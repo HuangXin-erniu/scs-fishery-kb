@@ -17,70 +17,80 @@ sources:
     publisher: 农业农村部
     cadence: monthly
     note: Gazette issue index for 2025; a published 2024 monitoring letter would appear here.
-    status: unchecked
+    status: ok
+    sha256: 6a1c0f572ba3c8a9dea9d702452eb562568f4bd2bf518aa3e031a35fb524a8b8
   - id: WATCH-MOA-GAZETTE-202505
     url: http://www.moa.gov.cn/nybgb/2025/202505/
     authority: B
     publisher: 农业农村部
     cadence: monthly
     note: Issue 5 of 2025, the likeliest carrier of the April 2025 monitoring letter.
-    status: unchecked
+    status: ok
+    sha256: eef7fc92927546fc7fb41f93d25946109b0a9532bfe99a36d886f524ea315098
   - id: WATCH-MOA-GAZETTE-202504
     url: http://www.moa.gov.cn/nybgb/2025/202504/
     authority: B
     publisher: 农业农村部
     cadence: monthly
     note: Issue 4 of 2025, the alternative carrier for the same letter.
-    status: unchecked
+    status: ok
+    sha256: f39606778b211c4854cdc484be0cb6b642040d53de9d4803ea2198ad470cdc26
   - id: WATCH-MOA-GAZETTE-202506
     url: http://www.moa.gov.cn/nybgb/2025/202506/
     authority: B
     publisher: 农业农村部
     cadence: monthly
     note: Issue 6 of 2025.
-    status: unchecked
+    status: ok
+    sha256: f4af779163661e9cb3a106e936ba13eec4ca674d44dcdde438ef4564a055ee5b
   - id: WATCH-GD-ANNOUNCE-2020
     url: https://dara.gd.gov.cn/zwgk/tzgg/content/post_3042147.html
     authority: A
     publisher: 广东省农业农村厅
     cadence: static
     note: Guangdong 2020 second-batch hull catalog announcement; watch for a later batch.
-    status: unchecked
+    status: ok
+    sha256: d8f4b551f2b248a07d4f9a9f16d81dc9ba46b0fa0875c22630ccd21d25a65226
   - id: WATCH-GD-ANNOUNCE-2021
     url: https://dara.gd.gov.cn/zwgk/tzgg/content/post_3234786.html
     authority: A
     publisher: 广东省农业农村厅
     cadence: static
     note: Guangdong 2021 hull catalog announcement; watch for a later batch.
-    status: unchecked
+    status: ok
+    sha256: 79878aa91c10db2962428ecd8f9f221c6b0554f8ea640ec60bb8d1269cccbe21
   - id: WATCH-GD-NOTICES
     url: https://dara.gd.gov.cn/zwgk/tzgg/
     authority: A
     publisher: 广东省农业农村厅
     cadence: weekly
     note: Provincial notice list; the 2026 closure work plan would be published here.
-    status: unchecked
+    status: ok
+    sha256: 0e5223ecdfcac12ff23bd3e97d9ff7f1274271464af03995c2088537e1fcebe7
   - id: WATCH-GD-POLICY
     url: https://dara.gd.gov.cn/zwgk/zcwj/
     authority: A
     publisher: 广东省农业农村厅
     cadence: weekly
     note: Provincial policy-document list.
-    status: unchecked
+    status: ok
+    sha256: 5e8ef4521bf18a0a9a8fe33d8a62e89056f3a97e562f83ea635f53555b9d6ad6
   - id: WATCH-HN-HULL-2019
     url: https://agri.hainan.gov.cn/hnsnyt/xxgk/tzgg/gggs/201903/t20190328_2480820.html
     authority: A
     publisher: 海南省农业农村厅
     cadence: static
     note: Hainan 2019 hull catalog announcement; the notice PDF and two xls catalogs sit here.
-    status: unchecked
+    status: ok
+    sha256: d9fa5c8fe5c1f7b2efa97c16831d3ad3b7850e9a0c6c0cebdaeb6d1361547e80
   - id: WATCH-NFTEC-MONITOR
     url: http://www.nftec.agri.cn/yqxx/
     authority: A
     publisher: 全国水产技术推广总站
     cadence: monthly
     note: Fishery monitoring and statistics column; the 2020 circular was posted here.
-    status: unchecked
+    status: ok
+    sha256: 4445e366ea38f479452741f38f2df1863a9b53c17fb351f6bbe72c044799f3e3
   - id: WATCH-MOA-CLOSURE-2023
     url: https://www.moa.gov.cn/govpublic/YYJ/202303/t20230314_6422986.htm
     authority: A
@@ -128,7 +138,9 @@ sources:
     cadence: weekly
     note: Provincial notice list; a hull-catalog announcement would appear here. The https endpoint presents a certificate whose hostname does not match, so the monitor uses http and records that limitation.
     status: ok
-    sha256: 12b756ecf737a20017e421adbb10ed01e7fdea9d21c6b6c6e08f7d0f9e334967
+    sha256: 229bec589b5b919d61c5a1a1eeac13f410f5861fa0d257688d1107308b4753ee
+    dynamic: true
+
   - id: WATCH-GX-HYJ-NOTICES
     url: http://hyj.gxzf.gov.cn/zwgk_66846/tzgg/
     authority: B
@@ -144,7 +156,9 @@ sources:
     cadence: static
     note: National administrative regulations database page for the ocean observation regulation.
     status: ok
-    sha256: 483349eb710791a63120e20c593ca2b7660f820e36bc29974fec89a6e7071e3b
+    sha256: c61df21d74afe895d18b4349f85784bb027bcf422a021a152360e4b98508fb2c
+    dynamic: true
+
   - id: WATCH-GOV-RES-075
     url: https://www.gov.cn/zhengce/2009-03/24/content_5721420.htm
     authority: B

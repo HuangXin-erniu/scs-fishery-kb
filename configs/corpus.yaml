@@ -147,6 +147,7 @@ sources:
     parseable: true
     note: Registered in the main index.
   lifecycle: active
+  watch_note: Static official file; no change feed. Rechecked at the quarterly review.
   validity:
     status: in_force
     as_of: '2026-11-02'
@@ -177,6 +178,7 @@ sources:
     parseable: true
     note: Registered in the main index.
   lifecycle: active
+  watch_note: Static publisher text; no change feed. Rechecked at the quarterly review against the in-force catalogue.
   validity:
     status: in_force
     as_of: '2026-11-02'
@@ -207,6 +209,7 @@ sources:
     parseable: true
     note: Registered in the main index.
   lifecycle: active
+  watch_ref: WATCH-MOA-CLOSURE-2023
   validity:
     status: in_force
     as_of: '2026-11-02'
@@ -237,6 +240,7 @@ sources:
     parseable: true
     note: Registered in the main index.
   lifecycle: active
+  watch_note: Static official file; no change feed. Rechecked at the quarterly review.
   validity:
     status: in_force
     as_of: '2026-11-02'
@@ -267,6 +271,7 @@ sources:
     parseable: true
     note: Registered in the main index.
   lifecycle: active
+  watch_note: Static official file; no change feed. Rechecked at the quarterly review.
   validity:
     status: in_force
     as_of: '2026-11-02'
@@ -297,6 +302,7 @@ sources:
     parseable: true
     note: Registered in the main index.
   lifecycle: active
+  watch_note: Static official file; no change feed. Rechecked at the quarterly review.
   validity:
     status: in_force
     as_of: '2026-11-02'
@@ -327,6 +333,7 @@ sources:
     parseable: true
     note: Registered in the main index.
   lifecycle: active
+  watch_note: Static official file; no change feed. Rechecked at the quarterly review.
   validity:
     status: in_force
     as_of: '2026-11-02'
@@ -357,6 +364,7 @@ sources:
     parseable: true
     note: Registered in the main index.
   lifecycle: active
+  watch_note: Static official file; no change feed. Rechecked at the quarterly review.
   validity:
     status: in_force
     as_of: '2026-11-02'
@@ -387,6 +395,7 @@ sources:
     parseable: true
     note: Registered in the main index.
   lifecycle: active
+  watch_note: Static official file; no change feed. Rechecked at the quarterly review.
   validity:
     status: in_force
     as_of: '2026-11-02'
@@ -417,6 +426,7 @@ sources:
     parseable: true
     note: Registered in the main index.
   lifecycle: active
+  watch_note: Static official file; no change feed. Rechecked at the quarterly review.
   validity:
     status: in_force
     as_of: '2026-11-02'
@@ -447,6 +457,7 @@ sources:
     parseable: true
     note: Registered in the main index.
   lifecycle: active
+  watch_note: Static official file; no change feed. Rechecked at the quarterly review.
   validity:
     status: in_force
     as_of: '2026-11-02'
@@ -477,6 +488,7 @@ sources:
     parseable: true
     note: Registered in the main index.
   lifecycle: active
+  watch_note: Static official file; no change feed. Rechecked at the quarterly review.
   validity:
     status: in_force
     as_of: '2026-11-02'
@@ -507,6 +519,7 @@ sources:
     parseable: true
     note: Registered in the main index.
   lifecycle: active
+  watch_ref: WATCH-MOA-YYJ-NOTICES
   validity:
     status: in_force
     as_of: '2026-11-02'
@@ -537,6 +550,7 @@ sources:
     parseable: true
     note: Registered in the main index.
   lifecycle: active
+  watch_note: Static official file; no change feed. Rechecked at the quarterly review.
   validity:
     status: in_force
     as_of: '2026-11-02'
@@ -567,6 +581,7 @@ sources:
     parseable: true
     note: Registered in the main index.
   lifecycle: active
+  watch_ref: WATCH-MOA-ENFORCE-2026
   validity:
     status: in_force
     as_of: '2026-11-02'
@@ -596,6 +611,7 @@ sources:
     parseable: true
     note: Registered in a reference collection.
   lifecycle: active
+  watch_note: Static publisher text; no change feed. Rechecked at the quarterly review against the in-force catalogue.
   validity:
     status: in_force
     as_of: '2026-11-02'
@@ -625,6 +641,7 @@ sources:
     parseable: true
     note: Registered in a reference collection.
   lifecycle: active
+  watch_note: Static official file; no change feed. Rechecked at the quarterly review.
   validity:
     status: in_force
     as_of: '2026-11-02'
@@ -654,6 +671,7 @@ sources:
     parseable: true
     note: Registered in a reference collection.
   lifecycle: active
+  watch_note: Static official file; no change feed. Rechecked at the quarterly review.
   validity:
     status: in_force
     as_of: '2026-11-02'
@@ -683,6 +701,7 @@ sources:
     parseable: true
     note: Registered in the main index.
   lifecycle: active
+  watch_ref: WATCH-MOJ-OBSERVATION
   validity:
     status: in_force
     as_of: '2026-11-02'
@@ -712,6 +731,7 @@ sources:
     parseable: true
     note: Registered in a reference collection.
   lifecycle: active
+  watch_note: Static official file; no change feed. Rechecked at the quarterly review.
   validity:
     status: in_force
     as_of: '2026-11-02'
@@ -741,6 +761,7 @@ sources:
     parseable: false
     note: Text layer is garbled by the embedded-font mapping; provenance only.
   lifecycle: active
+  watch_note: Static official file; no change feed. Rechecked at the quarterly review.
   validity:
     status: in_force
     as_of: '2026-11-02'
@@ -770,6 +791,7 @@ sources:
     parseable: true
     note: Registered in the main index.
   lifecycle: active
+  watch_ref: WATCH-GOV-RES-075
   validity:
     status: in_force
     as_of: '2026-11-02'
@@ -799,6 +821,7 @@ sources:
     parseable: false
     note: Image-only PDF with no text layer; provenance only.
   lifecycle: active
+  watch_note: Static official file; no change feed. Rechecked at the quarterly review.
   validity:
     status: in_force
     as_of: '2026-11-02'
@@ -828,6 +851,7 @@ sources:
     parseable: true
     note: Registered in the main index.
   lifecycle: active
+  watch_ref: WATCH-GOV-PORT-077
   validity:
     status: in_force
     as_of: '2026-11-02'
@@ -857,6 +881,7 @@ sources:
     parseable: true
     note: Registered in a reference collection.
   lifecycle: active
+  watch_note: Static publisher text; no change feed. Rechecked at the quarterly review against the in-force catalogue.
   validity:
     status: in_force
     as_of: '2026-11-02'
@@ -886,6 +911,7 @@ sources:
     parseable: true
     note: Registered in a reference collection.
   lifecycle: active
+  watch_note: Static publisher text; no change feed. Rechecked at the quarterly review against the in-force catalogue.
   validity:
     status: in_force
     as_of: '2026-11-02'
@@ -915,6 +941,7 @@ sources:
     parseable: true
     note: Registered in a reference collection.
   lifecycle: active
+  watch_note: Static publisher text; no change feed. Rechecked at the quarterly review against the in-force catalogue.
   validity:
     status: in_force
     as_of: '2026-11-02'
@@ -944,6 +971,7 @@ sources:
     parseable: true
     note: Registered in the main index.
   lifecycle: active
+  watch_note: Static official file; no change feed. Rechecked at the quarterly review.
   validity:
     status: in_force
     as_of: '2026-11-02'
@@ -974,6 +1002,7 @@ sources:
     parseable: true
     note: Registered in the main index.
   lifecycle: active
+  watch_note: Static official file; no change feed. Rechecked at the quarterly review.
   validity:
     status: in_force
     as_of: '2026-11-02'
@@ -1004,6 +1033,7 @@ sources:
     parseable: true
     note: Registered in the main index.
   lifecycle: active
+  watch_note: Static official file; no change feed. Rechecked at the quarterly review.
   validity:
     status: in_force
     as_of: '2026-11-02'
@@ -1034,6 +1064,7 @@ sources:
     parseable: true
     note: Registered in the main index.
   lifecycle: active
+  watch_note: Static official file; no change feed. Rechecked at the quarterly review.
   validity:
     status: unknown
     as_of: '2026-11-02'
@@ -1064,6 +1095,7 @@ sources:
     parseable: true
     note: Registered in the main index.
   lifecycle: active
+  watch_note: Static official file; no change feed. Rechecked at the quarterly review.
   validity:
     status: in_force
     as_of: '2026-11-02'
@@ -1094,6 +1126,7 @@ sources:
     parseable: true
     note: Registered in the main index.
   lifecycle: active
+  watch_ref: WATCH-MOA-YYJ-NOTICES
   validity:
     status: unknown
     as_of: '2026-11-02'
@@ -1124,6 +1157,7 @@ sources:
     parseable: true
     note: Registered in the main index.
   lifecycle: active
+  watch_note: Static official file; no change feed. Rechecked at the quarterly review.
   validity:
     status: unknown
     as_of: '2026-11-02'
@@ -1304,6 +1338,7 @@ sources:
     parseable: true
     note: Registered in a reference collection.
   lifecycle: active
+  watch_note: Static publisher text; no change feed. Rechecked at the quarterly review against the in-force catalogue.
   validity:
     status: unknown
     as_of: '2026-11-02'
@@ -1334,6 +1369,7 @@ sources:
     parseable: true
     note: Registered in a reference collection.
   lifecycle: active
+  watch_note: Static publisher text; no change feed. Rechecked at the quarterly review against the in-force catalogue.
   validity:
     status: unknown
     as_of: '2026-11-02'
@@ -1364,6 +1400,7 @@ sources:
     parseable: true
     note: Registered in a reference collection.
   lifecycle: active
+  watch_note: Static publisher text; no change feed. Rechecked at the quarterly review against the in-force catalogue.
   validity:
     status: unknown
     as_of: '2026-11-02'
@@ -1394,6 +1431,7 @@ sources:
     parseable: true
     note: Registered in a reference collection.
   lifecycle: active
+  watch_note: Static publisher text; no change feed. Rechecked at the quarterly review against the in-force catalogue.
   validity:
     status: unknown
     as_of: '2026-11-02'
@@ -1424,6 +1462,7 @@ sources:
     parseable: true
     note: Registered in a reference collection.
   lifecycle: active
+  watch_note: Static publisher text; no change feed. Rechecked at the quarterly review against the in-force catalogue.
   validity:
     status: unknown
     as_of: '2026-11-02'
@@ -1518,6 +1557,7 @@ sources:
     parseable: true
     note: Registered in the main index.
   lifecycle: active
+  watch_note: Internal data edition; not a web page to monitor.
   validity:
     status: not_applicable
     as_of: '2026-11-02'
@@ -1548,6 +1588,7 @@ sources:
     parseable: true
     note: Source for the statistical extracts.
   lifecycle: active
+  watch_note: Internal data edition; not a web page to monitor.
   validity:
     status: not_applicable
     as_of: '2026-11-02'
@@ -1578,6 +1619,7 @@ sources:
     parseable: true
     note: Registered in the main index.
   lifecycle: active
+  watch_note: Internal data edition; not a web page to monitor.
   validity:
     status: not_applicable
     as_of: '2026-11-02'
@@ -1608,6 +1650,7 @@ sources:
     parseable: true
     note: Registered in the main index.
   lifecycle: active
+  watch_note: Internal data edition; not a web page to monitor.
   validity:
     status: not_applicable
     as_of: '2026-11-02'
@@ -1638,6 +1681,7 @@ sources:
     parseable: true
     note: Registered in the main index.
   lifecycle: active
+  watch_note: Internal data edition; not a web page to monitor.
   validity:
     status: not_applicable
     as_of: '2026-11-02'
@@ -1668,6 +1712,7 @@ sources:
     parseable: true
     note: Registered in the main index.
   lifecycle: active
+  watch_note: Internal data edition; not a web page to monitor.
   validity:
     status: not_applicable
     as_of: '2026-11-02'
@@ -1698,6 +1743,7 @@ sources:
     parseable: true
     note: Registered in the main index.
   lifecycle: active
+  watch_note: Internal data edition; not a web page to monitor.
   validity:
     status: not_applicable
     as_of: '2026-11-02'
@@ -1728,6 +1774,7 @@ sources:
     parseable: true
     note: Registered in the main index.
   lifecycle: active
+  watch_note: Static official file; no change feed. Rechecked at the quarterly review.
   validity:
     status: not_applicable
     as_of: '2026-11-02'
@@ -1758,6 +1805,7 @@ sources:
     parseable: true
     note: Registered in the main index.
   lifecycle: active
+  watch_note: Static official file; no change feed. Rechecked at the quarterly review.
   validity:
     status: in_force
     as_of: '2026-11-02'
@@ -1819,6 +1867,7 @@ sources:
     parseable: true
     note: Source for the statistical extracts.
   lifecycle: active
+  watch_note: Internal data edition; not a web page to monitor.
   validity:
     status: not_applicable
     as_of: '2026-11-02'
@@ -1849,6 +1898,7 @@ sources:
     parseable: true
     note: Source for the statistical extracts.
   lifecycle: active
+  watch_note: Internal data edition; not a web page to monitor.
   validity:
     status: not_applicable
     as_of: '2026-11-02'
@@ -1879,6 +1929,7 @@ sources:
     parseable: true
     note: Source for the statistical extracts.
   lifecycle: active
+  watch_note: Internal data edition; not a web page to monitor.
   validity:
     status: not_applicable
     as_of: '2026-11-02'
@@ -1909,6 +1960,7 @@ sources:
     parseable: true
     note: Source for the statistical extracts.
   lifecycle: active
+  watch_note: Internal data edition; not a web page to monitor.
   validity:
     status: not_applicable
     as_of: '2026-11-02'
@@ -1939,6 +1991,7 @@ sources:
     parseable: true
     note: Source for the statistical extracts.
   lifecycle: active
+  watch_note: Internal data edition; not a web page to monitor.
   validity:
     status: not_applicable
     as_of: '2026-11-02'
@@ -1969,6 +2022,7 @@ sources:
     parseable: true
     note: Source for the statistical extracts.
   lifecycle: active
+  watch_note: Internal data edition; not a web page to monitor.
   validity:
     status: not_applicable
     as_of: '2026-11-02'
@@ -1999,6 +2053,7 @@ sources:
     parseable: true
     note: Source for the statistical extracts.
   lifecycle: active
+  watch_note: Internal data edition; not a web page to monitor.
   validity:
     status: not_applicable
     as_of: '2026-11-02'
@@ -2029,6 +2084,7 @@ sources:
     parseable: true
     note: Source for the statistical extracts.
   lifecycle: active
+  watch_note: Internal data edition; not a web page to monitor.
   validity:
     status: not_applicable
     as_of: '2026-11-02'
@@ -2059,6 +2115,7 @@ sources:
     parseable: false
     note: Source for the statistical extracts.
   lifecycle: active
+  watch_note: Internal data edition; not a web page to monitor.
   validity:
     status: not_applicable
     as_of: '2026-11-02'
@@ -2089,6 +2146,7 @@ sources:
     parseable: true
     note: Registered in a reference collection.
   lifecycle: active
+  watch_note: Static publisher text; no change feed. Rechecked at the quarterly review against the in-force catalogue.
   validity:
     status: in_force
     as_of: '2026-11-02'
@@ -2119,6 +2177,7 @@ sources:
     parseable: true
     note: Registered in a reference collection.
   lifecycle: active
+  watch_note: Static publisher text; no change feed. Rechecked at the quarterly review against the in-force catalogue.
   validity:
     status: unknown
     as_of: '2026-11-02'
@@ -2149,6 +2208,7 @@ sources:
     parseable: true
     note: Registered in a reference collection.
   lifecycle: active
+  watch_note: Static official file; no change feed. Rechecked at the quarterly review.
   validity:
     status: unknown
     as_of: '2026-11-02'
@@ -2179,6 +2239,7 @@ sources:
     parseable: true
     note: Registered in a reference collection.
   lifecycle: active
+  watch_note: Static publisher text; no change feed. Rechecked at the quarterly review against the in-force catalogue.
   validity:
     status: unknown
     as_of: '2026-11-02'
@@ -2209,6 +2270,7 @@ sources:
     parseable: true
     note: Registered in a reference collection.
   lifecycle: active
+  watch_note: Static publisher text; no change feed. Rechecked at the quarterly review against the in-force catalogue.
   validity:
     status: unknown
     as_of: '2026-11-02'
@@ -2239,6 +2301,7 @@ sources:
     parseable: true
     note: Registered in a reference collection.
   lifecycle: active
+  watch_note: Static publisher text; no change feed. Rechecked at the quarterly review against the in-force catalogue.
   validity:
     status: unknown
     as_of: '2026-11-02'
@@ -2299,6 +2362,7 @@ sources:
     parseable: true
     note: Registered in a reference collection.
   lifecycle: active
+  watch_note: Static official file; no change feed. Rechecked at the quarterly review.
   validity:
     status: in_force
     as_of: '2026-11-02'
@@ -2329,6 +2393,7 @@ sources:
     parseable: true
     note: Registered in a reference collection.
   lifecycle: active
+  watch_note: Static publisher text; no change feed. Rechecked at the quarterly review against the in-force catalogue.
   validity:
     status: unknown
     as_of: '2026-11-02'
@@ -2359,6 +2424,7 @@ sources:
     parseable: true
     note: Registered in a reference collection.
   lifecycle: active
+  watch_note: Static official file; no change feed. Rechecked at the quarterly review.
   validity:
     status: unknown
     as_of: '2026-11-02'
@@ -2389,6 +2455,7 @@ sources:
     parseable: true
     note: Registered in a reference collection.
   lifecycle: active
+  watch_note: Static official file; no change feed. Rechecked at the quarterly review.
   validity:
     status: unknown
     as_of: '2026-11-02'
@@ -2419,6 +2486,7 @@ sources:
     parseable: true
     note: Registered in a reference collection.
   lifecycle: active
+  watch_note: Static official file; no change feed. Rechecked at the quarterly review.
   validity:
     status: unknown
     as_of: '2026-11-02'
@@ -2449,6 +2517,7 @@ sources:
     parseable: true
     note: Registered in a reference collection.
   lifecycle: active
+  watch_note: Static publisher text; no change feed. Rechecked at the quarterly review against the in-force catalogue.
   validity:
     status: unknown
     as_of: '2026-11-02'
@@ -2479,6 +2548,7 @@ sources:
     parseable: true
     note: Registered in a reference collection.
   lifecycle: active
+  watch_note: Static publisher text; no change feed. Rechecked at the quarterly review against the in-force catalogue.
   validity:
     status: unknown
     as_of: '2026-11-02'
@@ -2509,6 +2579,7 @@ sources:
     parseable: true
     note: Registered in a reference collection.
   lifecycle: active
+  watch_note: Static publisher text; no change feed. Rechecked at the quarterly review against the in-force catalogue.
   validity:
     status: unknown
     as_of: '2026-11-02'
@@ -2539,6 +2610,7 @@ sources:
     parseable: true
     note: Registered in a reference collection.
   lifecycle: active
+  watch_note: Static publisher text; no change feed. Rechecked at the quarterly review against the in-force catalogue.
   validity:
     status: unknown
     as_of: '2026-11-02'

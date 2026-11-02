@@ -2,6 +2,13 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-02 — Watch baselines and coverage enforcement
+
+- Baselined the ten watch entries that had never run; the list is now fully baselined (23 ok) with the two dynamic pages marked `dynamic: true` because their content churns between requests.
+- Added `watch_ref` to seven sources whose page is watched and `watch_note` to sixty-five others, with the reason limited to three categories: internal data edition, international product documentation, or static text rechecked at the quarterly review.
+- Added `validate_watch_coverage` to the registry: an active acquired national or provincial source without a valid reference or a note fails the test suite.
+- Register counts and every eval arm are unchanged.
+
 ## 2026-11-02 — Corpus cleanup: duplicate port list, channel metadata, not_applicable
 
 - Deleted `POL-PORT-078`, which was byte-identical to `POL-PORT-037` (sha256 fe142d1a…) but titled as the final 2025 port list; the original keeps its proposed-recognition note and now records the mistaken duplicate.

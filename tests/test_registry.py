@@ -5,7 +5,12 @@ from pathlib import Path
 import pytest
 import yaml
 
-from scs_fkb.registry import RegistryError, load_registry, select
+from scs_fkb.registry import (
+    RegistryError,
+    load_registry,
+    select,
+    validate_watch_coverage,
+)
 
 
 def _entry(**overrides):
@@ -95,3 +100,28 @@ def test_not_applicable_status_is_accepted(tmp_path: Path) -> None:
     )
     registry = load_registry(_write(tmp_path, [entry]))
     assert registry["POL-TEST-001"]["validity"]["status"] == "not_applicable"
+
+
+def _watched(**overrides):
+    entry = _entry(**overrides)
+    return entry
+
+
+def test_watch_coverage_accepts_a_reference() -> None:
+    registry = {"A": _watched(watch_ref="WATCH-1")}
+    validate_watch_coverage(registry, [{"id": "WATCH-1"}])
+
+
+def test_watch_coverage_accepts_a_note() -> None:
+    registry = {"A": _watched(watch_note="static text; reviewed quarterly")}
+    validate_watch_coverage(registry, [])
+
+
+def test_watch_coverage_rejects_a_missing_link() -> None:
+    with pytest.raises(RegistryError, match="neither watch_ref nor watch_note"):
+        validate_watch_coverage({"A": _watched()}, [{"id": "WATCH-1"}])
+
+
+def test_watch_coverage_rejects_an_unknown_reference() -> None:
+    with pytest.raises(RegistryError, match="not in the watch list"):
+        validate_watch_coverage({"A": _watched(watch_ref="WATCH-9")}, [{"id": "WATCH-1"}])
