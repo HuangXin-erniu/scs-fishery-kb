@@ -28,7 +28,7 @@ It does **not** include raw environmental grids, reanalysis data, forecast raste
 | `law` | 法律 | 1 | National law adopted by the legislature |
 | `regulation` | 行政法规/规章/地方性法规 | 15 | Administrative regulations, departmental rules and local regulations |
 | `notice` | 通告/公告 | 11 | Official notices, announcements and seasonal measures |
-| `standard` | 标准/规范 | 15 | National, industry or provincial standards and operational norms |
+| `standard` | 标准/规范 | 18 | National, industry or provincial standards and operational norms |
 | `fishery_product` | 渔情/海况产品说明 | 4 | Product descriptions, fishery bulletins and historical records |
 | `data_dictionary` | 数据字典 | 8 | Field definitions, indicator definitions, metadata and quality rules |
 | `plan` | 规划/方案 | 1 | Official plans, programmes and construction layouts |
@@ -213,6 +213,20 @@ The provincial and municipal closure notices (`POL-HN-058`, `POL-HN-059`, `POL-G
 
 The chain is recorded rather than assumed: every entry above carries a validity block with status, an as-of date and the evidence for the status. Nothing is marked superseded without a named successor, and a text that was replaced before registration (the 2021 closure notice, the 2021 distant-water hull series) is named in the note but not registered as a source.
 
+## 5l. National hull-standard package and the 2018 record that stays open
+
+| Source | Level | Status | What it is |
+|---|---|---|---|
+| `STD-HULL-069` | national notice (农办渔〔2017〕5号) | in force | The promulgating notice for the evaluation method, with two annexes |
+| `STD-HULL-062` | national method (annex 1) | in force | The three-level evaluation and the naming rules |
+| `STD-HULL-070` | national usage notes (annex 2) | in force | The coefficients and scoring inputs behind the method |
+| `STD-YY-071` | national parameter series (农办渔〔2024〕15号) | in force since 2024-12-01 | The distant-water standard-hull parameter table, ten pages |
+| `SC/T 8003-2007` | national standard | in force | The hull-type classification and numbering code; no dimensions |
+
+The national layer now states what the method is and how it is applied, and it carries one national parameter table. The scope boundary is recorded in the entry itself: the 2024 series covers ocean-going hull types, so it is not evidence for a near-shore parameter question, and the provincial catalogs (Fujian, Guangdong, Hainan) remain the near-shore reference layer. The earlier 2021 edition of the series is named as the superseded predecessor but is not registered.
+
+One national record stays open: the 2018 quarterly evaluation results (66 hull types, including Guangxi) would list provincial types, but only news restatements were found and no publisher page could be reached. It is recorded as unattainable rather than reconstructed, and SC/T 8003-2007 is explicitly noted as a code standard that cannot substitute for a parameter catalog.
+
 ## 6. Candidate sources
 
 | ID | Type | Title | Priority | Disposition |
@@ -228,8 +242,8 @@ The four environment and fishery-product candidates were removed on owner instru
 | Metric | Value |
 |---|---:|
 | Corpus types | 9 |
-| Registered sources | 72 |
-| Acquired sources | 69 |
+| Registered sources | 75 |
+| Acquired sources | 72 |
 | Remaining candidates | 3 |
 | Yearbook editions | 9 |
 | Yearbook data years | 2017–2025 |

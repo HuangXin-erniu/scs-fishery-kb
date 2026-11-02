@@ -33,7 +33,7 @@ def test_corpus_structure() -> None:
         "data_dictionary",
         "plan",
     }
-    assert len(data["sources"]) == 72
+    assert len(data["sources"]) == 75
 
     acquired = []
     candidates = []
@@ -46,7 +46,7 @@ def test_corpus_structure() -> None:
         else:
             candidates.append(source)
 
-    assert len(acquired) == 69
+    assert len(acquired) == 72
     assert len(candidates) == 3
     yearbooks = [source for source in acquired if source["id"].startswith("STAT-YB-")]
     assert len(yearbooks) == 9
@@ -119,6 +119,9 @@ def test_corpus_structure() -> None:
         "STD-HN-066",
         "STD-HN-067",
         "POL-ENF-068",
+        "STD-HULL-069",
+        "STD-HULL-070",
+        "STD-YY-071",
     }
     for source in documents:
         if source["id"] in {
@@ -250,7 +253,7 @@ def test_corpus_structure() -> None:
         "law": 1,
         "regulation": 15,
         "notice": 11,
-        "standard": 15,
+        "standard": 18,
         "operations": 1,
         "fishery_product": 4,
         "data_dictionary": 8,
@@ -630,6 +633,9 @@ def test_reference_collections_config() -> None:
         "STD-HN-066",
         "STD-HN-067",
         "POL-ENF-068",
+        "STD-HULL-069",
+        "STD-HULL-070",
+        "STD-YY-071",
     }
     for document in collections["policy"]["documents"]:
         assert document["jurisdiction"] in {
@@ -672,6 +678,9 @@ def test_corrected_corpus_hashes() -> None:
         "STD-HN-066": "4db86b28b700267efadf4f942258a1d835122946270269a265e2fc10836b1392",
         "STD-HN-067": "6b5bebcc6d2278a7b27d5a1ba2e581871b49f551e966fcadbc7d9890772ed709",
         "POL-ENF-068": "174ab3e343df18e09d8340272e329d956b062ce909216eea8282e206a6bca8af",
+        "STD-HULL-069": "822a8c089528438ad1b6cf353df94403711e86ebf6a9197443b14987bdb7a316",
+        "STD-HULL-070": "f2e5f2f81200f3f69476f1792b5bd73658c9393b20932e5f62ac56a6fa44c6ef",
+        "STD-YY-071": "29b1f6afcf88c84d6a777d571036d1173467bc3823b936422d3e45111d1a2668",
     }
     for source_id, digest in expected.items():
         assert sources[source_id]["hash"] == digest
@@ -731,6 +740,10 @@ def test_validity_blocks() -> None:
         "POL-RULE-018",
         "POL-SPEC-041",
         "POL-ENF-068",
+        "STD-HULL-062",
+        "STD-HULL-069",
+        "STD-HULL-070",
+        "STD-YY-071",
     }
     for source_id in expected:
         block = sources[source_id]["validity"]
