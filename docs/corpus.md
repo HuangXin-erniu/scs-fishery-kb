@@ -191,6 +191,14 @@ The pipeline now reads `.xlsx` with openpyxl and `.xls` with xlrd: one page per 
 
 One trap is worth recording: the Hainan page lists 附件1 (large and medium) after 附件2 (small), and the file names carry no hint, so the two downloads were opened and their sheet headers checked before registration; the ids follow the sheet content, not the link order. Guangdong has no announced later batch that this network can reach, so the two batches registered here are the latest public ones and the source-watch list keeps the announcement page under observation.
 
+## 5j. Live watch run and the two open gaps
+
+The first live watch run reported nine of ten sources unreachable. That was a false negative, not a dead page: this network intercepts TLS and the project venv trust store lacks the interception root, so urllib raised a certificate-verification error while curl, reading the system keychain, succeeded. The checker now honours `SCS_FKB_CA_BUNDLE`, falls back once to `/etc/ssl/cert.pem` on a certificate error and never disables verification; with that change all ten seeded sources answer 200 and are recorded as unbaselined.
+
+The gap review was repeated against the live pages and both gaps stay open. The national station column (nftec.agri.cn/yqxx/) lists 2021–2026 news items, including a 2025 statistics workshop, but carries no full text of the 2024 monitoring letter. The Guangdong notice and policy lists answer 200 but neither shows the 2026 closure work plan (粤农农函〔2026〕208号) on its first page. The ministry gazette 2025 index answers with a small page that carries no file list, so the letter cannot be confirmed from there either. Nothing new is registered for either gap.
+
+The NSOAS *China Ocean Satellite Application Report 2021* is recorded as a candidate, not a source. It states that 368 issues of near-real-time fishery and sea-state analysis and forecast information were released to national distant-water fishery enterprises in 2021, which is the best public evidence for the publication cadence behind Q-M07. The file, however, is 178 MB for 39 pages and would more than double the local data root, so the owner decides whether to accept that weight; it is not registered unilaterally.
+
 ## 6. Candidate sources
 
 | ID | Type | Title | Priority | Disposition |

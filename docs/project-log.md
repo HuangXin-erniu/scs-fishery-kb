@@ -2,6 +2,13 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-02 — Watch works behind the TLS interception; gaps A and B re-checked
+
+- The first live watch run marked nine of ten sources unreachable; the cause was the local TLS interception, not the pages. The checker now honours `SCS_FKB_CA_BUNDLE`, falls back once to `/etc/ssl/cert.pem` on a certificate error and never disables verification. All ten seeded sources now answer 200 and are recorded as unbaselined.
+- Gap review repeated live: the national station column lists 2021–2026 news but no 2024 monitoring letter; the Guangdong notice and policy lists do not show 粤农农函〔2026〕208号 on their first pages; the ministry gazette index carries no file list. Nothing new is registered.
+- The NSOAS 2021 annual report is recorded as a candidate only: it documents 368 fishery-forecast issues in 2021 but weighs 178 MB for 39 pages, so the size decision stays with the owner.
+- Eval unchanged on every arm; make check and the private gate pass.
+
 ## 2026-11-02 — Curated source watch and written authority rules
 
 - Added configs/source-watch.yaml with ten authoritative pages (ministry gazette index and four 2025 issues, two Guangdong announcement pages, the Guangdong notice and policy lists, the Hainan 2019 hull announcement and the national station monitoring column), each with an A/B/C tier, publisher and cadence.
