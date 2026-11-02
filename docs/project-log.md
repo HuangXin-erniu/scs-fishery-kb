@@ -5,7 +5,7 @@ This log records material project changes by date. It does not use release versi
 ## 2026-11-02 — Species and resource-conservation layer opened
 
 - Registered `POL-RES-075` (水生生物增殖放流管理规定, 农业部令第20号, in force, 1,676 parsed characters) and `STD-SPEC-076` (国家重点保护野生动物名录, 2021年第3号, image-only PDF registered as provenance with parseable false).
-- Added species cues (物种, 保护, 名录, 放流, 增殖, 种质); the stocking regulation joined the policy collection while the image-only list stays provenance with channel none, and the collection index now skips any document marked parseable false.
+- Added species cues (物种, 保护, 名录, 放流, 增殖, 种质); the stocking regulation joined the policy collection while the image-only list stays provenance with channel none, so no collection document is unparseable.
 - Recorded two limits: ASFIS is a zip lookup the parser cannot read, and the germplasm-reserve download returned the superseded 2013 eco-environment bulletin.
 - Register: 79 sources, 76 acquired; regulation 17, notice 14. Eval unchanged on every arm.
 

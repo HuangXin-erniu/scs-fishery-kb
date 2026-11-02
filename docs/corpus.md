@@ -253,7 +253,7 @@ Guangxi is the one coastal province without a public marine hull catalog. The pr
 | `STAT-ECO-073` | national bulletin | latest edition (2026-06-08) | collection | The 2025 marine ecological early-warning monitoring bulletin, 76 pages on ecological status, pressures and early warning |
 | `STAT-DIS-074` | national bulletin | latest edition (2024-04-22) | none (provenance) | The 2023 marine disaster bulletin: storm surges, waves, sea ice, tsunami, green tide and red tide, with loss statistics |
 
-The disaster bulletin is registered with `parseable: false` and `retrieval.channel: none`: its embedded fonts map to garbled glyphs, so the text layer cannot be cited. It stays as provenance and as a candidate for a future text-robust extraction, not as an answer source or a collection document.
+The disaster bulletin is registered with `parseable: false` and `retrieval.channel: none`: its embedded fonts map to garbled glyphs, so the text layer cannot be cited. It stays as provenance with channel none, not as an answer source or a collection document.
 
 Rejected after checking: the 2026 marine disaster emergency plan (自然资办函〔2026〕1023号) renders its body by script on both the ministry and gov.cn pages, and the 2022 version it repeals is likewise unreadable, so neither is registered; the GB/T 19201-2006 cyclone-grades PDF is image-only; the national forecast centre site is a script shell. Typhoon grading therefore stays uncovered until a text-bearing official copy is available.
 
