@@ -74,6 +74,14 @@ def load_anchors(path: Path) -> dict[str, Any]:
     for item in reference:
         if not isinstance(item, dict) or not item.get("id") or not item.get("docs"):
             raise ValueError(f"malformed reference entry in {path}: {item}")
+    national = data.get("national") or []
+    if not isinstance(national, list):
+        raise ValueError(f"national must be a list in {path}")
+    for item in national:
+        if not isinstance(item, dict) or not item.get("id") or not item.get("query"):
+            raise ValueError(f"malformed national entry in {path}: {item}")
+        if not item.get("docs"):
+            raise ValueError(f"national entry has no docs in {path}: {item}")
     jurisdiction = data.get("jurisdiction") or []
     if not isinstance(jurisdiction, list):
         raise ValueError(f"jurisdiction must be a list in {path}")
@@ -88,6 +96,7 @@ def load_anchors(path: Path) -> dict[str, Any]:
         "reference": reference,
         "statistics": statistics,
         "jurisdiction": jurisdiction,
+        "national": national,
     }
 
 
@@ -118,6 +127,15 @@ def summarize_reference(rows: list[dict[str, Any]]) -> dict[str, Any]:
         "reference_questions": len(rows),
         "reference_hits": hits,
         "reference_rate": round(hits / len(rows), 4) if rows else 0.0,
+    }
+
+
+def summarize_national(rows: list[dict[str, Any]]) -> dict[str, Any]:
+    hits = sum(1 for row in rows if row["hit"])
+    return {
+        "national_questions": len(rows),
+        "national_hits": hits,
+        "national_rate": round(hits / len(rows), 4) if rows else 0.0,
     }
 
 
@@ -342,6 +360,25 @@ def evaluate(
             }
         )
 
+    national_results: list[dict[str, Any]] = []
+    for item in config.get("national", []):
+        query = str(item.get("query") or "")
+        expected = [str(doc) for doc in item["docs"]]
+        hits = reference_lookup(
+            query,
+            root=data_root,
+            collection=str(item.get("collection") or "policy"),
+        )
+        national_results.append(
+            {
+                "id": str(item["id"]),
+                "query": query,
+                "expected_docs": expected,
+                "top": [{"doc": hit.chunk.doc_id, "score": round(hit.score, 6)} for hit in hits],
+                "hit": any(hit.chunk.doc_id in expected for hit in hits),
+            }
+        )
+
     selected = set(config["anchors"]) | set(config["abstention"])
     skipped = [
         {
@@ -370,11 +407,13 @@ def evaluate(
             **summarize_reference(reference_results),
             **summarize_statistics(statistics_results),
             **summarize_jurisdiction(jurisdiction_results),
+            **summarize_national(national_results),
         },
         "results": results,
         "reference": reference_results,
         "statistics": statistics_results,
         "jurisdiction": jurisdiction_results,
+        "national": national_results,
         "skipped": skipped,
     }
 

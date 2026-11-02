@@ -10,6 +10,7 @@ from scs_fkb.evaluate import (
     parse_questions,
     summarize,
     summarize_jurisdiction,
+    summarize_national,
 )
 from scs_fkb.models import Chunk
 
@@ -200,3 +201,36 @@ def test_summarize_jurisdiction_counts_hits() -> None:
     assert summary["jurisdiction_questions"] == 3
     assert summary["jurisdiction_hits"] == 2
     assert summary["jurisdiction_rate"] == pytest.approx(0.6667, abs=0.0001)
+
+
+NATIONAL = (
+    ANCHORS
+    + """
+national:
+  - id: J4
+    query: 2026年海洋伏季休渔执法行动的重点任务是什么？
+    docs: [POL-ENF-068]
+"""
+)
+
+
+def test_load_anchors_reads_the_national_section(tmp_path: Path) -> None:
+    path = tmp_path / "eval.yaml"
+    path.write_text(NATIONAL, encoding="utf-8")
+    config = load_anchors(path)
+    assert config["national"][0]["id"] == "J4"
+    assert config["national"][0]["docs"] == ["POL-ENF-068"]
+
+
+def test_malformed_national_entry_raises(tmp_path: Path) -> None:
+    path = tmp_path / "eval.yaml"
+    path.write_text(ANCHORS + "\nnational:\n  - id: J4\n", encoding="utf-8")
+    with pytest.raises(ValueError, match="national"):
+        load_anchors(path)
+
+
+def test_summarize_national_counts_hits() -> None:
+    summary = summarize_national([{"hit": True}, {"hit": True}])
+    assert summary["national_questions"] == 2
+    assert summary["national_hits"] == 2
+    assert summary["national_rate"] == 1.0

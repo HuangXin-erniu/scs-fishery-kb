@@ -170,15 +170,26 @@ def lookup(
     if collection == "policy":
         hits = index.search(query, top_k=max(top_k * 4, top_k))
         target = question_jurisdiction(question)
-        if target:
-            jurisdictions = {
-                str(entry["id"]): str(entry.get("jurisdiction") or "")
-                for entry in config["documents"]  # type: ignore[index]
-            }
-            hits = sorted(
-                hits,
-                key=lambda hit: 0 if jurisdictions.get(hit.chunk.doc_id) == target else 1,
-            )
+        jurisdictions = {
+            str(entry["id"]): str(entry.get("jurisdiction") or "")
+            for entry in config["documents"]  # type: ignore[index]
+        }
+        level_order = {"national": 0, "provincial": 1, "municipal": 2}
+        levels = {
+            str(entry["id"]): str(entry.get("level") or "provincial")
+            for entry in config["documents"]  # type: ignore[index]
+        }
+
+        def order(hit: SearchHit) -> tuple[int, ...]:
+            doc_id = hit.chunk.doc_id
+            rank = level_order.get(levels.get(doc_id, "provincial"), 1)
+            if target:
+                if jurisdictions.get(doc_id) == target:
+                    return (0, 0)
+                return (1, rank)
+            return (rank,)
+
+        hits = sorted(hits, key=order)
         return hits[:top_k]
     return index.search(query, top_k=top_k)
 

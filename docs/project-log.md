@@ -2,6 +2,13 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-02 — Level-aware ordering and a national evaluation section
+
+- Every policy collection document now carries a level (national, provincial or municipal). The policy lookup sorts stably: named province first, then the national layer, then other provinces and the municipal layer; with no province named, national before provincial before municipal.
+- The closure cues 休渔, 伏季 and 执法 are back. The intended consequence is that the national closure question now has a policy block leading with the 2026 enforcement notice instead of an empty block; the province questions still lead with their own documents.
+- Added a separately scored national section: J4 expects `POL-ENF-068` and J5 expects `STD-YY-071`, both 2/2. Every existing arm is unchanged.
+- Four national pages were added to the watch list with hashes recorded from a live run, so a future change reports as changed rather than unbaselined.
+
 ## 2026-11-02 — National hull package completed
 
 - Added `STD-HULL-069` (农办渔〔2017〕5号 notice, 2017-02-07), `STD-HULL-070` (annex 2 usage notes, 4,531 characters) and `STD-YY-071` (远洋渔船标准化船型参数系列表 2024年版, 农办渔〔2024〕15号, 10 pages, effective 2024-12-01). The 2017 method now has its promulgating notice and its explanatory annex, and the national layer has one parameter table.

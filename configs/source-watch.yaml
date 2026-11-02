@@ -81,3 +81,35 @@ sources:
     cadence: monthly
     note: Fishery monitoring and statistics column; the 2020 circular was posted here.
     status: unchecked
+  - id: WATCH-MOA-CLOSURE-2023
+    url: https://www.moa.gov.cn/govpublic/YYJ/202303/t20230314_6422986.htm
+    authority: A
+    publisher: 农业农村部
+    cadence: static
+    note: The 2023 closure adjustment notice, the system basis the provincial notices cite.
+    status: ok
+    sha256: 15660ed713803ff440da583e1d5a219ab5e488c2237f3bb33cd30e7115174bdc
+  - id: WATCH-MOA-ENFORCE-2026
+    url: https://www.moa.gov.cn/govpublic/YYJ/202605/t20260507_6483948.htm
+    authority: A
+    publisher: 农业农村部
+    cadence: static
+    note: The 2026 three-ministry closure enforcement notice.
+    status: ok
+    sha256: 174ab3e343df18e09d8340272e329d956b062ce909216eea8282e206a6bca8af
+  - id: WATCH-MOA-HULL-2017
+    url: https://www.moa.gov.cn/govpublic/YYJ/201702/t20170217_5487411.htm
+    authority: A
+    publisher: 农业农村部
+    cadence: static
+    note: The 2017 standard hull evaluation notice (农办渔〔2017〕5号).
+    status: ok
+    sha256: 822a8c089528438ad1b6cf353df94403711e86ebf6a9197443b14987bdb7a316
+  - id: WATCH-MOA-YY-2024
+    url: https://www.moa.gov.cn/govpublic/YYJ/202411/t20241119_6466464.htm
+    authority: A
+    publisher: 农业农村部
+    cadence: static
+    note: The 2024 distant-water standard hull parameter series (农办渔〔2024〕15号).
+    status: ok
+    sha256: 78fd7c3b1d6a55eb8b01a35acbe6b97a3542757911d56911828976166c223888

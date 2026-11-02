@@ -50,7 +50,7 @@ collections:
       Chinese governance documents on statistics, monitoring, certificates, crew and seasonal-closure
       management. They answer process and jurisdiction questions that the main legal corpus does not hold.
     concepts: []
-    cues: [统计, 公布, 共享, 报送, 监测, 渔情, 海南, 广西, 广东, 福建, 汕头, 湛江, 阳江, 船型, 标准船型, 渔船标准船型, 登记, 证书, 船位, 远洋, 船员, 配员, 职务船员, 培训, 任职]
+    cues: [统计, 公布, 共享, 报送, 监测, 渔情, 伏季, 休渔, 执法, 海南, 广西, 广东, 福建, 汕头, 湛江, 阳江, 船型, 标准船型, 渔船标准船型, 登记, 证书, 船位, 远洋, 船员, 配员, 职务船员, 培训, 任职]
     documents:
       - id: POL-STAT-050
         title: 渔业统计工作规定
@@ -59,6 +59,8 @@ collections:
         license: public
         language: zh
         jurisdiction: national
+        level: national
+
       - id: POL-STAT-051
         title: 渔业统计调查制度（2024 年批准）
         file: raw/POL-STAT-051/fishery-statistics-survey-system-2024.html
@@ -66,6 +68,8 @@ collections:
         license: public
         language: zh
         jurisdiction: national
+        level: national
+
       - id: POL-YJ-052
         title: 2017 年度渔情监测统计工作情况的通报
         file: raw/POL-YJ-052/fishery-monitoring-circular-2017.html
@@ -73,6 +77,8 @@ collections:
         license: public
         language: zh
         jurisdiction: national
+        level: national
+
       - id: POL-VMS-053
         title: 远洋渔船船位监测管理办法（2019 年修订）
         file: raw/POL-VMS-053/distant-water-vessel-monitoring-measures-2019.html
@@ -80,6 +86,8 @@ collections:
         license: public
         language: zh
         jurisdiction: national
+        level: national
+
       - id: STD-ECERT-054
         title: 渔业船网工具指标批准书、所有权登记证书和国籍证书电子证照标准
         file: raw/STD-ECERT-054/e-certificate-notice-2025.html
@@ -87,6 +95,8 @@ collections:
         license: public
         language: zh
         jurisdiction: national
+        level: national
+
       - id: POL-CREW-055
         title: 中华人民共和国渔业船员管理办法（2022年修订）
         file: raw/POL-CREW-055/crew-management-measures-2022.html
@@ -94,6 +104,8 @@ collections:
         license: public
         language: zh
         jurisdiction: national
+        level: national
+
       - id: POL-YJ-057
         title: 关于通报2020年度渔情监测统计工作情况的函
         file: raw/POL-YJ-057/fishery-monitoring-circular-2020.pdf
@@ -101,6 +113,8 @@ collections:
         license: public
         language: zh
         jurisdiction: national
+        level: national
+
       - id: POL-HN-058
         title: 海南省实施《中华人民共和国渔业法》办法（2013年修订）
         file: raw/POL-HN-058/hainan-fisheries-law-measures-2013.html
@@ -108,6 +122,8 @@ collections:
         license: public
         language: zh
         jurisdiction: hainan
+        level: provincial
+
       - id: POL-HN-059
         title: 海南省2026年伏季休渔告知书
         file: raw/POL-HN-059/hainan-2026-closure-notice.html
@@ -115,6 +131,8 @@ collections:
         license: public
         language: zh
         jurisdiction: hainan
+        level: provincial
+
       - id: POL-GX-060
         title: 广西2026年海洋伏季休渔管理工作通知
         file: raw/POL-GX-060/guangxi-2026-closure-notice.html
@@ -122,6 +140,8 @@ collections:
         license: public
         language: zh
         jurisdiction: guangxi
+        level: provincial
+
       - id: POL-GD-061
         title: 汕头市2026年海洋伏季休渔通告
         file: raw/POL-GD-061/shantou-2026-closure-notice.html
@@ -129,6 +149,8 @@ collections:
         license: public
         language: zh
         jurisdiction: guangdong
+        level: municipal
+
       - id: STD-HULL-062
         title: 渔船标准船型评价方法（试行）
         file: raw/STD-HULL-062/hull-type-evaluation-method-2017.docx
@@ -136,6 +158,8 @@ collections:
         license: public
         language: zh
         jurisdiction: national
+        level: national
+
       - id: POL-FJ-063
         title: 关于公布福建省第六、七批渔船标准船型的通知
         file: raw/POL-FJ-063/fujian-hull-catalogs-notice-2025.html
@@ -143,6 +167,8 @@ collections:
         license: public
         language: zh
         jurisdiction: fujian
+        level: provincial
+
       - id: STD-FJ-064
         title: 福建省第六批在全省推荐使用渔船标准船型目录
         file: raw/STD-FJ-064/fujian-hull-catalog-batch6.docx
@@ -150,6 +176,8 @@ collections:
         license: public
         language: zh
         jurisdiction: fujian
+        level: provincial
+
       - id: STD-FJ-065
         title: 福建省第七批在全省推荐使用渔船标准船型目录
         file: raw/STD-FJ-065/fujian-hull-catalog-batch7.docx
@@ -157,6 +185,8 @@ collections:
         license: public
         language: zh
         jurisdiction: fujian
+        level: provincial
+
       - id: STD-FJ-066
         title: 福建省第七批仅限在平潭综合实验区推荐使用渔船标准船型目录
         file: raw/STD-FJ-066/fujian-hull-catalog-batch7-pingtan.docx
@@ -164,6 +194,8 @@ collections:
         license: public
         language: zh
         jurisdiction: fujian
+        level: provincial
+
       - id: STD-GD-064
         title: 广东省2020年第二批海洋渔船标准船型目录
         file: raw/STD-GD-064/guangdong-hull-catalog-2020-batch2.xlsx
@@ -171,6 +203,8 @@ collections:
         license: public
         language: zh
         jurisdiction: guangdong
+        level: provincial
+
       - id: STD-GD-065
         title: 广东省2021年海洋渔船标准船型目录
         file: raw/STD-GD-065/guangdong-hull-catalog-2021.xlsx
@@ -178,6 +212,8 @@ collections:
         license: public
         language: zh
         jurisdiction: guangdong
+        level: provincial
+
       - id: STD-HN-066
         title: 海南省小型渔船标准船型目录
         file: raw/STD-HN-066/hainan-hull-catalog-small-2019.xls
@@ -185,6 +221,8 @@ collections:
         license: public
         language: zh
         jurisdiction: hainan
+        level: provincial
+
       - id: STD-HN-067
         title: 海南省大中型渔船标准船型目录
         file: raw/STD-HN-067/hainan-hull-catalog-large-medium-2019.xls
@@ -192,6 +230,8 @@ collections:
         license: public
         language: zh
         jurisdiction: hainan
+        level: provincial
+
       - id: POL-ENF-068
         title: 农业农村部 公安部 中国海警局关于开展2026年海洋伏季休渔执法行动的通知
         file: raw/POL-ENF-068/2026-closure-enforcement-notice.html
@@ -199,6 +239,8 @@ collections:
         license: public
         language: zh
         jurisdiction: national
+        level: national
+
       - id: STD-HULL-069
         title: 农业部办公厅关于印发《渔船标准船型评价方法（试行）》的通知
         file: raw/STD-HULL-069/hull-evaluation-notice-2017.html
@@ -206,6 +248,8 @@ collections:
         license: public
         language: zh
         jurisdiction: national
+        level: national
+
       - id: STD-HULL-070
         title: 《渔船标准船型评价方法（试行）》使用说明
         file: raw/STD-HULL-070/hull-evaluation-usage-notes-2017.docx
@@ -213,6 +257,8 @@ collections:
         license: public
         language: zh
         jurisdiction: national
+        level: national
+
       - id: STD-YY-071
         title: 远洋渔船标准化船型参数系列表（2024年版）
         file: raw/STD-YY-071/distant-water-hull-parameter-series-2024.ofd
@@ -220,3 +266,4 @@ collections:
         license: public
         language: zh
         jurisdiction: fujian
+        level: national

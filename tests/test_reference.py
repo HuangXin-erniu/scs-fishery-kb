@@ -329,3 +329,82 @@ def test_diverse_hits_drops_identical_passages() -> None:
 def test_diverse_hits_keeps_a_short_single_document() -> None:
     hits = [_passage("A", "一", "x")]
     assert diverse_hits(hits) == hits
+
+
+def _level_root(tmp_path: Path) -> Path:
+    bodies = {
+        "DOC-MUN": "休渔 休渔 休渔 休渔 休渔时间从5月1日12时至8月16日12时。",
+        "DOC-PROV": "休渔 休渔 休渔时间从5月1日12时至8月16日12时。",
+        "DOC-NAT": "休渔时间从5月1日12时至8月16日12时。",
+        "DOC-NOLEVEL": "休渔时间从5月1日12时至8月16日12时。",
+    }
+    for doc_id, body in bodies.items():
+        directory = tmp_path / "raw" / doc_id
+        directory.mkdir(parents=True)
+        (directory / "page.html").write_text(
+            f"<html><body><p>{body}</p></body></html>", encoding="utf-8"
+        )
+    return tmp_path
+
+
+def _level_config(root: Path, *, with_province: bool = True) -> Path:
+    entries = [
+        ("DOC-MUN", "municipal", ""),
+        ("DOC-PROV", "provincial", "hainan" if with_province else ""),
+        ("DOC-NAT", "national", ""),
+        ("DOC-NOLEVEL", None, ""),
+    ]
+    documents = []
+    for doc_id, level, jurisdiction in entries:
+        entry = {
+            "id": doc_id,
+            "title": doc_id,
+            "file": f"raw/{doc_id}/page.html",
+            "sha256": _sha(root / "raw" / doc_id / "page.html"),
+            "license": "public",
+            "language": "zh",
+        }
+        if level:
+            entry["level"] = level
+        if jurisdiction:
+            entry["jurisdiction"] = jurisdiction
+        documents.append(entry)
+    data = {
+        "schema_version": 1,
+        "collections": {"policy": {"cues": ["休渔"], "documents": documents}},
+    }
+    path = root / "levels.yaml"
+    path.write_text(yaml.safe_dump(data, allow_unicode=True), encoding="utf-8")
+    return path
+
+
+def test_policy_lookup_puts_national_first_without_a_province(tmp_path: Path) -> None:
+    root = _level_root(tmp_path)
+    config = _level_config(root)
+    hits = lookup(
+        "休渔时间是什么？", top_k=4, root=root, collections_path=config, collection="policy"
+    )
+    ids = [hit.chunk.doc_id for hit in hits]
+    assert ids[0] == "DOC-NAT"
+    assert ids[1] == "DOC-PROV"
+    assert ids[-1] == "DOC-MUN"
+
+
+def test_policy_lookup_puts_the_named_province_before_national(tmp_path: Path) -> None:
+    root = _level_root(tmp_path)
+    config = _level_config(root)
+    hits = lookup(
+        "海南省的休渔时间是什么？", root=root, collections_path=config, collection="policy"
+    )
+    assert hits[0].chunk.doc_id == "DOC-PROV"
+    assert hits[1].chunk.doc_id == "DOC-NAT"
+
+
+def test_policy_lookup_treats_a_missing_level_as_provincial(tmp_path: Path) -> None:
+    root = _level_root(tmp_path)
+    config = _level_config(root)
+    hits = lookup(
+        "休渔时间是什么？", top_k=4, root=root, collections_path=config, collection="policy"
+    )
+    ids = [hit.chunk.doc_id for hit in hits]
+    assert ids.index("DOC-NOLEVEL") < ids.index("DOC-MUN")

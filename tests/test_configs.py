@@ -638,6 +638,7 @@ def test_reference_collections_config() -> None:
         "STD-YY-071",
     }
     for document in collections["policy"]["documents"]:
+        assert document["level"] in {"national", "provincial", "municipal"}
         assert document["jurisdiction"] in {
             "national",
             "hainan",
@@ -750,3 +751,11 @@ def test_validity_blocks() -> None:
         assert block["status"] in {"in_force", "superseded", "repealed", "unknown"}
         assert block["as_of"]
         assert block["note"]
+
+
+def test_national_eval_section() -> None:
+    config = load_yaml("configs/eval.yaml")
+    entries = config["national"]
+    assert [item["id"] for item in entries] == ["J4", "J5"]
+    assert entries[0]["docs"] == ["POL-ENF-068"]
+    assert entries[1]["docs"] == ["STD-YY-071"]
