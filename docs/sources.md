@@ -50,7 +50,26 @@ Answers must be reproducible from a fixed index, citable to a specific document 
 
 Fields, enums and lifecycle rules are defined in [data-model.md](data-model.md). In short: level separates the national basis from provincial, municipal and international material; authority tier records whether the page is the publisher's own; validity records whether the text is current and on what evidence; retrieval records whether the text is actually reachable; lifecycle separates active from retired. Unverified validity is `unknown`, never assumed.
 
-## 9. References
+## 9. National currency table
+
+| Source | Status | As of | What triggers a review |
+|---|---|---|---|
+| `POL-LAW-009` | in force | 2026-11-02 | A further amendment to the Fisheries Law |
+| `POL-CLOS-015` | in force | 2026-11-02 | A new ministry closure notice replacing 2023 年 1 号 |
+| `POL-SPEC-041` | in force (2026 season) | 2026-11-02 | The 2027 special-permit notice |
+| `POL-ENF-068` | in force (2026 season) | 2026-11-02 | The 2027 enforcement notice |
+| `POL-OBS-072` | in force | 2026-11-02 | A new State Council revision of the observation regulation |
+| `POL-RES-075` | in force | 2026-11-02 | Repeal or replacement of 农业部令第 20 号 |
+| `POL-PORT-077` | in force | 2026-11-02 | A new amendment of the port traffic regulation |
+| `POL-PORT-078` | current 2025 batch | 2026-11-02 | The next port-grade recognition batch |
+| `STAT-ECO-073` | latest edition | 2026-11-02 | The 2026 ecological bulletin |
+| `STAT-DIS-074` | latest edition | 2026-11-02 | A 2024 disaster bulletin, or a text-robust copy |
+| `STD-SPEC-076` | in force | 2026-11-02 | A revised protected-wildlife list |
+| `STD-YY-071` | in force | 2026-11-02 | A new distant-water parameter series |
+
+The next quarterly review is **2027-02-02**. A watch entry that reports `changed` is a prompt to review the page, not an automatic update: the operator checks the page, decides whether the register needs a new entry or a validity change, and records the decision.
+
+## 10. References
 
 - Source register: [configs/corpus.yaml](../configs/corpus.yaml)
 - Watch list: [configs/source-watch.yaml](../configs/source-watch.yaml)
