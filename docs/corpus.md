@@ -27,8 +27,8 @@ It does **not** include raw environmental grids, reanalysis data, forecast raste
 | `operations` | 作业知识 | 1 | Fishing methods, gear, vessel operations, logbooks and permit conditions |
 | `law` | 法律 | 1 | National law adopted by the legislature |
 | `regulation` | 行政法规/规章/地方性法规 | 15 | Administrative regulations, departmental rules and local regulations |
-| `notice` | 通告/公告 | 9 | Official notices, announcements and seasonal measures |
-| `standard` | 标准/规范 | 8 | National, industry or provincial standards and operational norms |
+| `notice` | 通告/公告 | 10 | Official notices, announcements and seasonal measures |
+| `standard` | 标准/规范 | 11 | National, industry or provincial standards and operational norms |
 | `fishery_product` | 渔情/海况产品说明 | 4 | Product descriptions, fishery bulletins and historical records |
 | `data_dictionary` | 数据字典 | 8 | Field definitions, indicator definitions, metadata and quality rules |
 | `plan` | 规划/方案 | 1 | Official plans, programmes and construction layouts |
@@ -165,6 +165,19 @@ The audit gap closes here: Hainan had no document at all while Guangdong, Guangx
 
 The task was to register a hull-parameter catalog. The three near-shore provinces publish none in a form this pipeline can read. Guangdong announces 83 hull types in the 2020 second batch and 4 in 2021 on dara.gd.gov.cn, but the parameters are xlsx attachments and the pages are mostly navigation. Hainan announces 7 large and 15 small types in its 2019 notice, but the notice PDF is an image-only scan and the two catalogs are xls attachments. Guangxi has no public catalog found. The extraction pipeline has no xlsx parser, so registering a catalog would create the very defect the audit found: a document in the register that no question can reach. The evaluation method is parseable, upstream of all three catalogs and cited by the Hainan announcement, so it is registered instead. Hull-parameter questions stay uncovered until the project adds an xlsx or table channel, and that is a separate decision rather than an assumption.
 
+## 5h. Fujian standard hull catalogs and the two open gaps
+
+| Source | Scope | What it provides |
+|---|---|---|
+| `POL-FJ-063` | provincial (Fujian), 闽海渔〔2025〕4号 | The notice that publishes the sixth and seventh batches; cites 农办渔〔2017〕5号 and marks itself 有效 |
+| `STD-FJ-064` | province-wide | The sixth-batch catalog: 船型名称, 总长, 船长, 型宽, 型深, 主机功率, 总吨位 and 版权单位 |
+| `STD-FJ-065` | province-wide | The seventh-batch catalog with the same parameter set plus 图纸名称, for example the 31.7 m GRP jigging vessel at 26.70 m length, 6.20 m beam, 202 kW and 132 GT |
+| `STD-FJ-066` | Pingtan pilot zone only | One 33.6 m steel jigging type; the scope limit must travel with any answer drawn from it |
+
+The hull-parameter gap closes here, and only here: the three catalogs are docx, the parser dispatch added in the previous task reads them, and the parameter tables come out as text. They cover Fujian hull types and nothing else. Guangdong still publishes its catalogs as xlsx attachments and Hainan as an image-only scan, so the Guangdong and Hainan parameter questions stay uncovered and the register does not pretend otherwise.
+
+Two gaps were re-checked in the same task and stay open. The 2024 monitoring letter (农渔科函〔2025〕87号) still has no public full text: the ministry gazette issue pages are script shells without a file list and provincial sites only quote the letter. The Guangdong 2026 work plan (粤农农函〔2026〕208号) is not on the provincial agriculture site or the provincial gazette; the municipal notices of Shantou, Yangjiang, Zhongshan, Wuchuan and Zhanjiang cite it but none carries the provincial text as an attachment, so `POL-GD-061` remains the registered evidence and is labelled municipal.
+
 ## 6. Candidate sources
 
 | ID | Type | Title | Priority | Disposition |
@@ -180,8 +193,8 @@ The four environment and fishery-product candidates were removed on owner instru
 | Metric | Value |
 |---|---:|
 | Corpus types | 9 |
-| Registered sources | 63 |
-| Acquired sources | 60 |
+| Registered sources | 67 |
+| Acquired sources | 64 |
 | Remaining candidates | 3 |
 | Yearbook editions | 9 |
 | Yearbook data years | 2017–2025 |
