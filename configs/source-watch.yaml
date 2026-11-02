@@ -215,3 +215,19 @@ sources:
     note: The 2026 marine disaster emergency plan page; a text-bearing upload would appear here.
     status: ok
     sha256: 39beae535a4b9adab86ecbda15b6613c187d8d79d5b6e93c3742436478c6ac4b
+  - id: WATCH-MOA-WATCH-1999
+    url: https://www.moa.gov.cn/gk/nyncbgzk/gzk/202210/t20221010_6412884.htm
+    authority: B
+    publisher: 农业农村部
+    cadence: quarterly
+    note: Ministry rule page carrying the navigation watch standards.
+    status: ok
+    sha256: 8eecbc9171dbc0dbc1cfc82d7e92b42bcf874c47c66a533cf8ed4b6cb6ec3bba
+  - id: WATCH-NFTEC-RANCH-644
+    url: http://www.nftec.agri.cn/bwzc/202302/t20230206_7934391.htm
+    authority: B
+    publisher: 全国水产技术推广总站
+    cadence: annual
+    note: Station notice page carrying the eighth-batch marine-ranch announcement.
+    status: ok
+    sha256: 503420c3aad3f793eaac86c1ac3bb8bee08506cee5aa9d5af1d832887295cd3c

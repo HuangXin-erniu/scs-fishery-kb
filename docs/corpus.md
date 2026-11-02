@@ -28,10 +28,10 @@ Every entry carries schema v2 fields: `level` (national, provincial, municipal o
 | Type | Name (zh) | Sources | Description |
 |---|---|---:|---|
 | `statistical_yearbook` | 统计年鉴 | 16 | Official annual statistics and indicator tables |
-| `operations` | 作业知识 | 1 | Fishing methods, gear, vessel operations, logbooks and permit conditions |
+| `operations` | 作业知识 | 2 | Fishing methods, gear, vessel operations, logbooks and permit conditions |
 | `law` | 法律 | 1 | National law adopted by the legislature |
 | `regulation` | 行政法规/规章/地方性法规 | 20 | Administrative regulations, departmental rules and local regulations |
-| `notice` | 通告/公告 | 15 | Official notices, announcements and seasonal measures |
+| `notice` | 通告/公告 | 16 | Official notices, announcements and seasonal measures |
 | `standard` | 标准/规范 | 18 | National, industry or provincial standards and operational norms |
 | `fishery_product` | 渔情/海况产品说明 | 4 | Product descriptions, fishery bulletins and historical records |
 | `data_dictionary` | 数据字典 | 7 | Field definitions, indicator definitions, metadata and quality rules |
@@ -311,6 +311,15 @@ Four official routes were checked and none yields citable text today. They are r
 
 The domain therefore stays uncovered on purpose: no typhoon grade, storm-surge or wave-warning text is cited, and no answer should imply one. `WATCH-CMA-RULES` and `WATCH-MNR-EMERGENCY` carry the monitoring.
 
+## 5s. Navigation watchkeeping and marine ranches
+
+| Source | Level | Current | Retrieval | What it provides |
+|---|---|---|---|---|
+| `POL-WATCH-082` | national operations standard | in force (announcement No. 950 lists it) | collection | 渔业船舶航行值班准则（试行）: watchkeeping, lookout, safety and record duties on fishing vessels |
+| `POL-RANCH-083` | national announcement | eighth batch (2023-01-19) | collection | 国家级海洋牧场示范区名单（第八批）: sixteen ranches with sea area and management unit |
+
+The ranch list is registered as the eighth batch with an explicit note that later batches may exist and are not covered, rather than claiming to be the complete current set. The host page is a script shell, so the publisher-owned attachment is the registered artifact.
+
 ## 6. Candidate sources
 
 | ID | Type | Title | Priority | Disposition |
@@ -326,8 +335,8 @@ The four environment and fishery-product candidates were removed on owner instru
 | Metric | Value |
 |---|---:|
 | Corpus types | 9 |
-| Registered sources | 83 |
-| Acquired sources | 80 |
+| Registered sources | 85 |
+| Acquired sources | 82 |
 | Remaining candidates | 3 |
 | Yearbook editions | 9 |
 | Yearbook data years | 2017–2025 |

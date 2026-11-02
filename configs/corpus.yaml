@@ -946,6 +946,66 @@ sources:
     status: in_force
     as_of: '2026-11-02'
     note: The consolidated text carries the 2025-07-15 revision (农业农村部令2025年第3号) on the ministry rule page.
+- id: POL-WATCH-082
+  type: operations
+  title: Standards for navigation watchkeeping on fishing vessels (trial)
+  title_zh: 渔业船舶航行值班准则（试行）
+  publisher: 农业部
+  year: 1999
+  jurisdiction: national
+  format: html
+  location: raw/POL-WATCH-082/
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P1
+  volume: 1 HTML page; about 3500 characters
+  update_freq: static
+  hash: 8eecbc9171dbc0dbc1cfc82d7e92b42bcf874c47c66a533cf8ed4b6cb6ec3bba
+  acquisition: Downloaded 2026-11-02 from the ministry rule page.
+  notes: 农渔发〔1999〕10号 (1999-11-08), listed among the ministry rules in force by announcement No. 950. It sets watchkeeping, lookout, safety and record duties for fishing vessels under way or at anchor.
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: collection
+    parseable: true
+    note: Registered in a reference collection.
+  lifecycle: active
+  watch_ref: WATCH-MOA-YYJ-NOTICES
+  validity:
+    status: in_force
+    as_of: '2026-11-02'
+    note: Announcement No. 950 (2025-09-24) lists 渔业船舶航行值班准则（试行） among the ministry rules in force.
+- id: POL-RANCH-083
+  type: notice
+  title: 'Announcement No. 644: eighth-batch national marine-ranch demonstration list'
+  title_zh: 中华人民共和国农业农村部公告 第644号
+  publisher: 农业农村部
+  year: 2023
+  jurisdiction: national
+  format: docx
+  location: raw/POL-RANCH-083/
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P2
+  volume: 1 DOCX; about 1000 characters
+  update_freq: annual
+  hash: 663f09b4e929edc27b10bdf0afc25955f5315151308a4b324a17e66c9a77e061
+  acquisition: Downloaded 2026-11-02 from the station notice page as the attachment to announcement No. 644 (2023-01-19).
+  notes: The attachment lists sixteen national marine-ranch demonstration areas with sea area and management unit. The host page is a script shell, so the publisher-owned attachment is registered; later batches may exist and are not covered.
+  level: national
+  authority_tier: B
+  retrieval:
+    channel: collection
+    parseable: true
+    note: Registered in a reference collection.
+  lifecycle: active
+  watch_note: Static official attachment; no change feed. Rechecked at the quarterly review.
+  validity:
+    status: in_force
+    as_of: '2026-11-02'
+    note: The eighth-batch announcement of 2023-01-19 is the registered list; later batches may exist.
 - id: POL-GEAR-033
   title: 海洋捕捞准用渔具最小网目（或网囊）尺寸标准
   title_zh: 海洋捕捞准用渔具最小网目（或网囊）尺寸标准
@@ -2617,7 +2677,7 @@ sources:
     note: Status not separately verified during the schema migration; the source note records the publisher and date.
 
 gaps:
-- Eighty-three sources are registered: eighty acquired and three candidates awaiting disposition.
+- Eighty-five sources are registered: eighty-two acquired and three candidates awaiting disposition.
 - The yearbook coverage matrix has no values in the public repository; all values stay local.
 - The yearbook infrastructure table is missing for data years 2018 and 2019; the 2018 national port plan supplies a baseline whose port classes are close to, but not identical with, the yearbook table.
 - The vessel-length proxy is missing for data year 2024.
