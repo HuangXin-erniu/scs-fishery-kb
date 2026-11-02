@@ -2,6 +2,12 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-02 — 2020 fishery-monitoring circular registered, 2024 letter recorded as unpublished
+
+- Added `POL-YJ-057`, 关于通报2020年度渔情监测统计工作情况的函 (农渔科函〔2021〕21号, 2021-04-15, 7 pages, text layer). It documents the annual cadence, the responsible bodies and the data-quality machinery of 渔情监测统计, and is newer than `POL-YJ-052` (the 2017 circular) without duplicating it.
+- The 2024 letter (农渔科函〔2025〕87号) is quoted by provincial sites but is not published in full; the ministry gazette index exposes no file list and the national marine forecast portal is a single-page service without a downloadable product document. The 2020 circular is therefore the newest publicly posted text, and Q-M07 stays uncovered rather than being filled with a restatement.
+- Registered in the policy collection; the monitoring probe returns `POL-YJ-057` first, Q-M07 still abstains, and the eval is unchanged at index e4f8d55d7d49, hybrid 10/11, MRR 0.45, reference 4/4, statistics 2/2, abstention 3/4. Register: 58 sources, 55 acquired, 3 candidates; notice 6.
+
 ## 2026-11-02 — Four ocean-colour terms in the terminology bridge
 
 - Added 水色 → ocean colour, 覆盖周期 → coverage cycle, 重访 → revisit and 幅宽 → swath to `configs/glossary-bridge.yaml` (fifteen terms now). The bridge is a retrieval mapping used by the reference channels, not a translation, and each note says so.
