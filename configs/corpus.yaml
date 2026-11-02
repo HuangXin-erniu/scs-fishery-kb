@@ -599,7 +599,7 @@ sources:
   priority: P1
   volume: 1 HTML page; 3,037 characters; 农渔发〔2010〕5号
   update_freq: irregular
-  hash: c99bb8af388421c43a4e65444d590331134f1d3399a3b0fefb06d05cc531d354
+  hash: 1395e5dbd075b405a9de039d213aa2126bb5d452f56f8795c77af22634d2884a
   acquisition: 'Fetched 2026-11-02 from https://www.moa.gov.cn/govpublic/YYJ/201006/t20100606_1538703.htm (HTTP 200; 20,915 bytes; issued 2010-02-10, published 2010-03-01).'
   notes: 'Current: no repeal or replacement found as of 2026-11-02. Defines the statistical duties, data submission and quality responsibilities that sit behind the yearbook, so it supports Q-M03, Q-E06 and Q-M05. Read together with the 2024 survey system (POL-STAT-051), which replaces the 2021 approval.'
 - id: POL-STAT-051
@@ -617,7 +617,7 @@ sources:
   priority: P1
   volume: 1 HTML page; 3,535 characters; 国统制〔2024〕120号, valid to June 2027
   update_freq: every 3 years
-  hash: 2de02668e5c3c3708feba8aa780b687df4b22414e8c81e7403a9a0450f2a3817
+  hash: ee29cca7e24cd18d5f4eb11c6b4219060143cb641f5d64610e8dd67f6980cf97
   acquisition: 'Fetched 2026-11-02 from https://www.stats.gov.cn/fw/bmdcxmsp/bmzd/202407/t20240719_1955798.html (HTTP 200; 82,024 bytes; published 2024-07-19).'
   notes: 'Current version: the 2021 approval 国统制〔2021〕15号 expired in February 2024 and this 2024 text carries 国统制〔2024〕120号 with validity to June 2027, so the older page is not registered. States the survey purpose, scope, indicators, reporting levels and publication rules, which is the statistical-process layer for Q-M03 and Q-M05.'
 - id: POL-YJ-052
@@ -635,7 +635,7 @@ sources:
   priority: P2
   volume: 1 HTML page; 4,869 characters; 农办渔〔2018〕30号
   update_freq: annual
-  hash: 98809b56b1117465b25dddda19002dcdd32f9a47d82556fc3c68b82867f018fd
+  hash: 3e013bc8aa0cad097cee5d2597259dcb1dbee067dfc23157ba5f8321af24ecb6
   acquisition: 'Fetched 2026-11-02 from http://www.moa.gov.cn/govpublic/YYJ/201804/t20180410_6139884.htm (HTTP 200; 48,696 bytes; issued 2018-04-08).'
   notes: 'Latest publicly posted full text of the annual monitoring circular as of 2026-11-02. It names the agencies, the annual cadence and the reporting format of fishery monitoring work, which supports Q-M07 and part of Q-E11. The 2024 letter 农渔科函〔2025〕87号 exists in provincial news but its full text is not published, so the register records this caveat instead of claiming currency.'
 - id: POL-VMS-053
@@ -653,7 +653,7 @@ sources:
   priority: P2
   volume: 1 HTML page; 4,380 characters; State Council Gazette 2019 No. 33
   update_freq: irregular
-  hash: e31076804d6c25cec312c0a5d73ef9c59c469ed5ae8782e953f62ac22eaa7f68
+  hash: 307a185fc27b3584f0fb39e97f31813ce1ac7d00c9bfc4f7bb9d8e1f731a8d41
   acquisition: 'Fetched 2026-11-02 from https://www.gov.cn/gongbao/content/2019/content_5456825.htm (HTTP 200; 40,858 bytes).'
   notes: 'Current revision, which repealed the 2014 measures (农办渔〔2014〕58号). It covers distant-water vessel position reporting frequency and equipment duties, not near-shore VMS field definitions, so Q-M02 and Q-M06 remain uncovered; registered as the only publicly available position-monitoring regulation.'
 - id: STD-ECERT-054

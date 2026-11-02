@@ -38,18 +38,24 @@ anchors:
     - {doc: POL-LAW-009, section: "第七十八条"}
 abstention:
   - Q-E07
-  - Q-E08
   - Q-E11
   - Q-M07
   - Q-M08
-  - Q-M09
-# Definition questions answered through the terminology bridge and the CWP
-# reference channel rather than the main ranked index.
+# Definition and product questions answered through reference collections rather than the main
+# ranked index. Each entry declares its collection.
 reference:
   - id: Q-E05
+    collection: cwp
     docs: [STD-CWP-043-catch, STD-CWP-043-effort]
   - id: Q-M04
+    collection: cwp
     docs: [STD-CWP-043-catch, STD-CWP-043-effort]
+  - id: Q-E08
+    collection: product
+    docs: [STD-MUR-045, STD-OLCI-046]
+  - id: Q-M09
+    collection: product
+    docs: [STD-MUR-045, STD-OLCI-046, STD-CMEMS-049]
 # Statistical questions answered through the local yearbook channel rather than
 # the public index. The channel is scored separately from the main metrics.
 statistics:

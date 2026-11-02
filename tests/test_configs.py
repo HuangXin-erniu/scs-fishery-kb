@@ -424,7 +424,7 @@ def test_eval_config() -> None:
     config = load_yaml("configs/eval.yaml")
     assert config["schema_version"] == 1
     assert len(config["anchors"]) == 11
-    assert len(config["abstention"]) == 6
+    assert len(config["abstention"]) == 4
     corpus = {source["id"] for source in load_yaml("configs/corpus.yaml")["sources"]}
     for question_id, entries in config["anchors"].items():
         assert question_id.startswith("Q-")
@@ -489,9 +489,11 @@ def test_glossary_bridge() -> None:
 def test_eval_reference_section() -> None:
     config = load_yaml("configs/eval.yaml")
     reference = config["reference"]
-    assert [item["id"] for item in reference] == ["Q-E05", "Q-M04"]
-    for item in reference:
-        assert item["docs"] == ["STD-CWP-043-catch", "STD-CWP-043-effort"]
+    assert [item["id"] for item in reference] == ["Q-E05", "Q-M04", "Q-E08", "Q-M09"]
+    assert [item.get("collection") for item in reference] == ["cwp", "cwp", "product", "product"]
+    assert reference[0]["docs"] == ["STD-CWP-043-catch", "STD-CWP-043-effort"]
+    assert reference[2]["docs"] == ["STD-MUR-045", "STD-OLCI-046"]
+    assert reference[3]["docs"] == ["STD-MUR-045", "STD-OLCI-046", "STD-CMEMS-049"]
 
 
 def test_lexicon_config() -> None:
@@ -596,3 +598,16 @@ def test_reference_collections_config() -> None:
             assert collection is collections["policy"] or document["language"] == "en"
             assert len(document["sha256"]) == 64
             assert document["id"] in corpus
+
+
+def test_corrected_corpus_hashes() -> None:
+    data = load_yaml("configs/corpus.yaml")
+    sources = {source["id"]: source for source in data["sources"]}
+    expected = {
+        "POL-STAT-050": "1395e5dbd075b405a9de039d213aa2126bb5d452f56f8795c77af22634d2884a",
+        "POL-STAT-051": "ee29cca7e24cd18d5f4eb11c6b4219060143cb641f5d64610e8dd67f6980cf97",
+        "POL-YJ-052": "3e013bc8aa0cad097cee5d2597259dcb1dbee067dfc23157ba5f8321af24ecb6",
+        "POL-VMS-053": "307a185fc27b3584f0fb39e97f31813ce1ac7d00c9bfc4f7bb9d8e1f731a8d41",
+    }
+    for source_id, digest in expected.items():
+        assert sources[source_id]["hash"] == digest

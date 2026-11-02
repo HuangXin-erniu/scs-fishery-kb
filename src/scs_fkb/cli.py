@@ -294,6 +294,12 @@ def _eval(args: argparse.Namespace) -> int:
             f"abstain {summary['abstained_tests']}/{summary['abstention_tests']} "
             f"false {summary['false_refusals']} cite {summary['citation_resolution']:.2f}{latency}"
         )
+    reference = report.get("reference_summary") or {}
+    if reference:
+        print(
+            f"reference {reference.get('reference_hits', 0)}/"
+            f"{reference.get('reference_questions', 0)}"
+        )
     statistics = report.get("statistics_summary") or {}
     if statistics:
         skipped = statistics.get("statistics_skipped", 0)
