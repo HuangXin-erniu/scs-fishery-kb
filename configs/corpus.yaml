@@ -1197,8 +1197,80 @@ sources:
   hash: e6e94a8aaf1bffdb11229204aca667971b71a1550ae0c818dd94ce6f05904bce
   acquisition: Downloaded 2026-11-02 from the ministry site (moa.gov.cn); it is the annex to 农办渔〔2017〕5号 published 2017-02-17.
   notes: The three-level evaluation (形式审查, 量化评分, 专家评分), the naming method and the application forms for marine capture vessels over 12 m. It is the method the provincial catalogs implement and the Hainan 2019 announcement cites it as 农办渔〔2017〕5号. It does not carry hull parameters; the Guangdong and Hainan parameter catalogs are xlsx or scanned and are not indexable.
+- id: POL-FJ-063
+  type: notice
+  title: Notice publishing the sixth and seventh batches of Fujian standard fishing-vessel hull types
+  title_zh: 关于公布福建省第六、七批渔船标准船型的通知
+  publisher: 福建省海洋与渔业局
+  year: 2025
+  jurisdiction: fujian
+  format: html
+  location: raw/POL-FJ-063/
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P1
+  volume: 1 HTML page; three docx attachments
+  update_freq: static
+  hash: 6def833b7a5eecba15e4f46f4e5985dc8e36fd6c9ee4565bb742a50a5743851c
+  acquisition: Downloaded 2026-11-02 from the Fujian ocean and fisheries bureau, published 2025-01-17 as 闽海渔〔2025〕4号; the page marks the document 有效.
+  notes: The notice publishes two province-wide catalogs and one Pingtan-only catalog and cites 农办渔〔2017〕5号 as its basis. The catalogs are registered separately as STD-FJ-064, STD-FJ-065 and STD-FJ-066 so each file keeps its own hash and can be parsed on its own.
+- id: STD-FJ-064
+  type: standard
+  title: Fujian sixth-batch standard fishing-vessel hull type catalog
+  title_zh: 福建省第六批在全省推荐使用渔船标准船型目录
+  publisher: 福建省海洋与渔业局
+  year: 2025
+  jurisdiction: fujian
+  format: docx
+  location: raw/STD-FJ-064/
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P2
+  volume: 1 DOCX; about 920 characters
+  update_freq: static
+  hash: 11b7e632e969039a417c09878fba12e59b657b09439754cbf7f7453ff39a15c9
+  acquisition: Downloaded 2026-11-02 as attachment 1 of 闽海渔〔2025〕4号.
+  notes: Province-wide catalog. Parses to a parameter table with 船型名称, 总长, 船长, 型宽, 型深, 主机功率, 总吨位 and 版权单位, for example the 43 m steel jigging vessel FJ ZY8358 with 36.14 m registered length and 6.60 m beam. It covers Fujian hull types only, not Guangdong, Guangxi or Hainan.
+- id: STD-FJ-065
+  type: standard
+  title: Fujian seventh-batch standard fishing-vessel hull type catalog
+  title_zh: 福建省第七批在全省推荐使用渔船标准船型目录
+  publisher: 福建省海洋与渔业局
+  year: 2025
+  jurisdiction: fujian
+  format: docx
+  location: raw/STD-FJ-065/
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P2
+  volume: 1 DOCX; about 3300 characters
+  update_freq: static
+  hash: 693e4fd69a61d505f523f2e41cb1f59ca64e739b6dd3f5dc2b231e7e3b439677
+  acquisition: Downloaded 2026-11-02 as attachment 2 of 闽海渔〔2025〕4号.
+  notes: Province-wide catalog. Parses to a parameter table with 标准船型名称, 图纸名称, 船长, 船宽, 型深, 主机功率, 总吨 and 版权单位, for example the 31.7 m glass-reinforced plastic cold-storage jigging vessel HGW8384 with 26.70 m length, 6.20 m beam, 202 kW and 132 GT. Fujian hull types only.
+- id: STD-FJ-066
+  type: standard
+  title: Fujian seventh-batch standard hull catalog for the Pingtan pilot zone only
+  title_zh: 福建省第七批仅限在平潭综合实验区推荐使用渔船标准船型目录
+  publisher: 福建省海洋与渔业局
+  year: 2025
+  jurisdiction: fujian
+  format: docx
+  location: raw/STD-FJ-066/
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P2
+  volume: 1 DOCX; about 160 characters
+  update_freq: static
+  hash: 38d52286e5c5ba9498d848a090c546d31137df9c78f0faee53af521768de04ce
+  acquisition: Downloaded 2026-11-02 as attachment 3 of 闽海渔〔2025〕4号.
+  notes: One hull type, the 33.6 m steel jigging vessel SHK8370, usable only inside the Pingtan comprehensive experimental zone. The scope limit must travel with any answer drawn from this file.
 gaps:
-- Sixty-three sources are registered: sixty acquired and three candidates awaiting disposition.
+- Sixty-seven sources are registered: sixty-four acquired and three candidates awaiting disposition.
 - The yearbook coverage matrix has no values in the public repository; all values stay local.
 - The yearbook infrastructure table is missing for data years 2018 and 2019; the 2018 national port plan supplies a baseline whose port classes are close to, but not identical with, the yearbook table.
 - The vessel-length proxy is missing for data year 2024.

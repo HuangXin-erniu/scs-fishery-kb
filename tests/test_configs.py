@@ -33,7 +33,7 @@ def test_corpus_structure() -> None:
         "data_dictionary",
         "plan",
     }
-    assert len(data["sources"]) == 63
+    assert len(data["sources"]) == 67
 
     acquired = []
     candidates = []
@@ -46,7 +46,7 @@ def test_corpus_structure() -> None:
         else:
             candidates.append(source)
 
-    assert len(acquired) == 60
+    assert len(acquired) == 64
     assert len(candidates) == 3
     yearbooks = [source for source in acquired if source["id"].startswith("STAT-YB-")]
     assert len(yearbooks) == 9
@@ -110,6 +110,10 @@ def test_corpus_structure() -> None:
         "POL-GX-060",
         "POL-GD-061",
         "STD-HULL-062",
+        "POL-FJ-063",
+        "STD-FJ-064",
+        "STD-FJ-065",
+        "STD-FJ-066",
     }
     for source in documents:
         if source["id"] in {
@@ -240,8 +244,8 @@ def test_corpus_structure() -> None:
         "statistical_yearbook": 16,
         "law": 1,
         "regulation": 15,
-        "notice": 9,
-        "standard": 8,
+        "notice": 10,
+        "standard": 11,
         "operations": 1,
         "fishery_product": 4,
         "data_dictionary": 8,
@@ -612,6 +616,10 @@ def test_reference_collections_config() -> None:
         "POL-GX-060",
         "POL-GD-061",
         "STD-HULL-062",
+        "POL-FJ-063",
+        "STD-FJ-064",
+        "STD-FJ-065",
+        "STD-FJ-066",
     }
     corpus = {source["id"]: source for source in load_yaml("configs/corpus.yaml")["sources"]}
     for collection in collections.values():
@@ -637,6 +645,10 @@ def test_corrected_corpus_hashes() -> None:
         "POL-GX-060": "b9028450c6f0a587b35a866b759ca503f6f69415c744b32aa5845cbfe31ea516",
         "POL-GD-061": "1194cd62c59f176bb70e0f04db4c9873e1f322a37e30eac1627f61cb132a602e",
         "STD-HULL-062": "e6e94a8aaf1bffdb11229204aca667971b71a1550ae0c818dd94ce6f05904bce",
+        "POL-FJ-063": "6def833b7a5eecba15e4f46f4e5985dc8e36fd6c9ee4565bb742a50a5743851c",
+        "STD-FJ-064": "11b7e632e969039a417c09878fba12e59b657b09439754cbf7f7453ff39a15c9",
+        "STD-FJ-065": "693e4fd69a61d505f523f2e41cb1f59ca64e739b6dd3f5dc2b231e7e3b439677",
+        "STD-FJ-066": "38d52286e5c5ba9498d848a090c546d31137df9c78f0faee53af521768de04ce",
     }
     for source_id, digest in expected.items():
         assert sources[source_id]["hash"] == digest

@@ -2,6 +2,13 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-02 — Fujian hull catalogs registered; hull parameters become answerable
+
+- Added `POL-FJ-063` (闽海渔〔2025〕4号, 2025-01-17) and its three docx catalogs: `STD-FJ-064` (sixth batch), `STD-FJ-065` (seventh batch) and `STD-FJ-066` (Pingtan-only). The docx suffix dispatch from the previous task reads them, and the parameter tables come out as text: 船型名称, 船长, 型宽, 型深, 主机功率, 总吨位, 版权单位.
+- The hull-parameter gap closes for Fujian only. Guangdong still publishes xlsx attachments and Hainan an image-only scan, so those questions stay uncovered and the notes say so.
+- Gap re-checks recorded, not filled: the 2024 monitoring letter still has no public full text and the gazette issue pages remain script shells; the Guangdong 2026 work plan is cited by five municipal notices but none carries the provincial text, so `POL-GD-061` stays municipal.
+- Probe: the 31.7 m GRP jigging-vessel question returns `STD-FJ-065` first with the parameter row; the Guangdong batch-count question returns no number and the main answer abstains. Eval unchanged at index e4f8d55d7d49, hybrid 10/11, MRR 0.45, reference 4/4, statistics 2/2, abstention 3/4. Register: 67 sources, 64 acquired; standard 11, notice 10.
+
 ## 2026-11-02 — Reference collections dispatch by suffix; hull evaluation method registered
 
 - Fixed a loader defect: the reference-collection loader passed html for every file that was not a pdf, so a docx source failed with text.encoding. It now dispatches on the suffix (pdf, docx, ofd, doc, html fallback), and a new test builds a docx collection document and asserts the lookup reaches it.
