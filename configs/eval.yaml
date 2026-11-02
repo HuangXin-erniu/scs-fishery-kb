@@ -65,3 +65,16 @@ statistics:
   - id: Q-M05
     query: 2019年南海区拖网渔船数量
     expect: vessel_count
+
+# Jurisdiction questions answered through the policy reference collection. They are scored
+# separately because they exercise the province-first re-ranking and the answer lead.
+jurisdiction:
+  - id: J1
+    query: 海南省2026年伏季休渔的时间和海域是什么？
+    docs: [POL-HN-059]
+  - id: J2
+    query: 广西2026年海洋伏季休渔的时间与要求是什么？
+    docs: [POL-GX-060]
+  - id: J3
+    query: 汕头市2026年海洋伏季休渔有哪些管理要求？
+    docs: [POL-GD-061]

@@ -204,3 +204,89 @@ def test_collection_dispatches_docx(tmp_path: Path) -> None:
     hits = lookup("统计资料如何公布？", root=root, collections_path=config, collection="policy")
     assert [hit.chunk.doc_id for hit in hits] == ["DOC-D"]
     assert "统计资料" in hits[0].chunk.text
+
+
+def _province_root(tmp_path: Path) -> Path:
+    for doc_id, text in {
+        "DOC-HN": "海南省 2026年休渔时间从5月1日12时至8月16日12时。",
+        "DOC-GX": "广西 2026年休渔时间从5月1日12时起至8月16日12时止。",
+        "DOC-GD": "广东省休渔管理要求，违规出海依法查处。",
+    }.items():
+        directory = tmp_path / "raw" / doc_id
+        directory.mkdir(parents=True)
+        (directory / "page.html").write_text(
+            f"<html><body><p>{text}</p></body></html>", encoding="utf-8"
+        )
+    return tmp_path
+
+
+def _province_config(root: Path, *, jurisdictions: bool = True) -> Path:
+    documents = []
+    for doc_id, code in (("DOC-HN", "hainan"), ("DOC-GX", "guangxi"), ("DOC-GD", "guangdong")):
+        entry = {
+            "id": doc_id,
+            "title": doc_id,
+            "file": f"raw/{doc_id}/page.html",
+            "sha256": _sha(root / "raw" / doc_id / "page.html"),
+            "license": "public",
+            "language": "zh",
+        }
+        if jurisdictions:
+            entry["jurisdiction"] = code
+        documents.append(entry)
+    data = {
+        "schema_version": 1,
+        "collections": {"policy": {"cues": ["休渔"], "documents": documents}},
+    }
+    path = root / ("jurisdictions.yaml" if jurisdictions else "plain.yaml")
+    path.write_text(yaml.safe_dump(data, allow_unicode=True), encoding="utf-8")
+    return path
+
+
+def test_policy_lookup_prefers_the_named_province(tmp_path: Path) -> None:
+    root = _province_root(tmp_path)
+    config = _province_config(root)
+    hits = lookup(
+        "海南省的休渔时间是什么？", root=root, collections_path=config, collection="policy"
+    )
+    assert hits[0].chunk.doc_id == "DOC-HN"
+    hits = lookup("广西的休渔时间是什么？", root=root, collections_path=config, collection="policy")
+    assert hits[0].chunk.doc_id == "DOC-GX"
+
+
+def test_policy_lookup_without_a_province_keeps_the_score_order(tmp_path: Path) -> None:
+    root = _province_root(tmp_path)
+    with_j = _province_config(root)
+    without_j = _province_config(root, jurisdictions=False)
+    baseline = [
+        hit.chunk.doc_id
+        for hit in lookup(
+            "休渔时间是什么？", root=root, collections_path=without_j, collection="policy"
+        )
+    ]
+    ranked = [
+        hit.chunk.doc_id
+        for hit in lookup(
+            "休渔时间是什么？", root=root, collections_path=with_j, collection="policy"
+        )
+    ]
+    assert ranked == baseline
+
+
+def test_policy_lookup_with_an_unknown_province_keeps_the_score_order(tmp_path: Path) -> None:
+    root = _province_root(tmp_path)
+    with_j = _province_config(root)
+    without_j = _province_config(root, jurisdictions=False)
+    baseline = [
+        hit.chunk.doc_id
+        for hit in lookup(
+            "福建省的休渔时间是什么？", root=root, collections_path=without_j, collection="policy"
+        )
+    ]
+    ranked = [
+        hit.chunk.doc_id
+        for hit in lookup(
+            "福建省的休渔时间是什么？", root=root, collections_path=with_j, collection="policy"
+        )
+    ]
+    assert ranked == baseline

@@ -116,4 +116,10 @@ def run_comparison(
                 for key, value in result["summary"].items()
                 if key.startswith("statistics_")
             }
+            report["jurisdiction"] = result["jurisdiction"]
+            report["jurisdiction_summary"] = {
+                key: value
+                for key, value in result["summary"].items()
+                if key.startswith("jurisdiction_")
+            }
     return report

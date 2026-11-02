@@ -4,7 +4,13 @@ from pathlib import Path
 
 import pytest
 
-from scs_fkb.evaluate import anchor_matches, load_anchors, parse_questions, summarize
+from scs_fkb.evaluate import (
+    anchor_matches,
+    load_anchors,
+    parse_questions,
+    summarize,
+    summarize_jurisdiction,
+)
 from scs_fkb.models import Chunk
 
 TABLE = """# Questions
@@ -161,3 +167,36 @@ def test_summarize_statistics() -> None:
     assert summary["statistics_hits"] == 1
     assert summary["statistics_skipped"] == 1
     assert summarize_statistics([])["statistics_rate"] == 0.0
+
+
+JURISDICTION = (
+    ANCHORS
+    + """
+jurisdiction:
+  - id: J1
+    query: 海南省休渔时间是什么？
+    docs: [POL-HN-059]
+"""
+)
+
+
+def test_load_anchors_reads_the_jurisdiction_section(tmp_path: Path) -> None:
+    path = tmp_path / "eval.yaml"
+    path.write_text(JURISDICTION, encoding="utf-8")
+    config = load_anchors(path)
+    assert config["jurisdiction"][0]["id"] == "J1"
+    assert config["jurisdiction"][0]["docs"] == ["POL-HN-059"]
+
+
+def test_malformed_jurisdiction_entry_raises(tmp_path: Path) -> None:
+    path = tmp_path / "eval.yaml"
+    path.write_text(ANCHORS + "\njurisdiction:\n  - id: J1\n", encoding="utf-8")
+    with pytest.raises(ValueError, match="jurisdiction"):
+        load_anchors(path)
+
+
+def test_summarize_jurisdiction_counts_hits() -> None:
+    summary = summarize_jurisdiction([{"hit": True}, {"hit": False}, {"hit": True}])
+    assert summary["jurisdiction_questions"] == 3
+    assert summary["jurisdiction_hits"] == 2
+    assert summary["jurisdiction_rate"] == pytest.approx(0.6667, abs=0.0001)
