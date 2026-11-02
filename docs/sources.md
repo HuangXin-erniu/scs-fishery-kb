@@ -40,6 +40,8 @@ A newer version supersedes an older one but never deletes it: the register keeps
 
 The checker verifies TLS. Some networks intercept it, so the venv trust store may reject a certificate that the system keychain accepts; the checker honours `SCS_FKB_CA_BUNDLE` first, then falls back once to the system bundle on a certificate-verification error, and it never creates an unverified context. The bundle used is recorded in each result.
 
+The coverage rule is enforced in code: every active acquired national or provincial source carries either `watch_ref` naming its watch entry or a `watch_note` explaining why it is not individually monitored. The reasons are limited to three categories — an internal data edition that is not a web page, international product documentation watched upstream, and static publisher text with no change feed that is rechecked at the quarterly review. `validate_watch_coverage` fails the test suite when a new source arrives without either field, so the monitoring surface cannot silently fall behind the register.
+
 The checker is read-only by design. It never downloads a document into the register, never edits `configs/corpus.yaml` and never changes a collection. A change in the report is a prompt: the operator reviews the page, and if it is worth registering, the normal flow applies — decision, contract, download, hash, register, test.
 
 ## 7. Why the answer path is not allowed to fetch

@@ -129,3 +129,29 @@ def select(
             continue
         chosen.append(entry)
     return chosen
+
+
+def validate_watch_coverage(
+    registry: dict[str, dict[str, Any]], watch_sources: Iterable[Any]
+) -> None:
+    """Each active acquired national or provincial source names a watch entry or says why not."""
+    watch_ids = {
+        str(source["id"])
+        for source in watch_sources
+        if isinstance(source, dict) and source.get("id")
+    }
+    errors: list[str] = []
+    for source_id, source in registry.items():
+        if source.get("lifecycle") != "active" or source.get("status") != "acquired":
+            continue
+        if source.get("level") not in ("national", "provincial"):
+            continue
+        ref = source.get("watch_ref")
+        note = source.get("watch_note")
+        if ref:
+            if str(ref) not in watch_ids:
+                errors.append(f"{source_id}: watch_ref {ref!r} is not in the watch list")
+        elif not (note and str(note).strip()):
+            errors.append(f"{source_id}: has neither watch_ref nor watch_note")
+    if errors:
+        raise RegistryError("; ".join(errors))

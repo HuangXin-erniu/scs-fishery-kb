@@ -927,3 +927,29 @@ def test_cleanup_080_state() -> None:
     }
     for source_id in data_publications:
         assert registry[source_id]["validity"]["status"] == "not_applicable"
+
+
+def test_watch_coverage_is_complete() -> None:
+    from scs_fkb.registry import load_registry, validate_watch_coverage
+
+    registry = load_registry("configs/corpus.yaml")
+    watch = load_yaml("configs/source-watch.yaml")["sources"]
+    validate_watch_coverage(registry, watch)
+    ids = {entry["id"] for entry in watch}
+    for source_id in (
+        "WATCH-MOA-GAZETTE-2025",
+        "WATCH-MOA-GAZETTE-202505",
+        "WATCH-MOA-GAZETTE-202504",
+        "WATCH-MOA-GAZETTE-202506",
+        "WATCH-GD-ANNOUNCE-2020",
+        "WATCH-GD-ANNOUNCE-2021",
+        "WATCH-GD-NOTICES",
+        "WATCH-GD-POLICY",
+        "WATCH-HN-HULL-2019",
+        "WATCH-NFTEC-MONITOR",
+    ):
+        assert source_id in ids
+    for entry in watch:
+        assert entry.get("status") == "ok" or "unreachable" in str(entry.get("note", "")).lower()
+        if entry.get("status") == "ok":
+            assert re.fullmatch(r"[0-9a-f]{64}", entry.get("sha256", ""))
