@@ -2,6 +2,13 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-02 — Navigation watchkeeping and marine ranches
+
+- Registered `POL-WATCH-082` (渔业船舶航行值班准则（试行）, 农渔发〔1999〕10号, listed in force by announcement No. 950; 3,492 parsed characters) and `POL-RANCH-083` (农业农村部公告第644号, eighth-batch marine-ranch list, 978 characters from the attachment).
+- Added cues 值班, 航行, 安全, 海洋牧场, 示范区 and both documents to the policy collection (thirty-three documents); the eighth-batch list notes that later batches are not covered.
+- Added WATCH-MOA-WATCH-1999 and WATCH-NFTEC-RANCH-644 with live baselines.
+- Register: 85 sources, 82 acquired; operations 2, notice 16. Eval unchanged.
+
 ## 2026-11-02 — Climate and hazard: documented unavailability
 
 - Checked four official routes for climate and hazard text and recorded each failure in docs/corpus.md 5r: the gov.cn warning-signal text is the 2007 order and the current 2023 revision (气发〔2023〕34号) is not published as text; the cyclone-grade PDF is image-only; the storm-surge and wave standards have no public text; the 2026 emergency plan renders by script.
