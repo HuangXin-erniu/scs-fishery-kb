@@ -68,6 +68,7 @@ Fields, enums and lifecycle rules are defined in [data-model.md](data-model.md).
 | `STD-YY-071` | in force | 2026-11-02 | A new distant-water parameter series |
 | `POL-PEN-078` | in force | 2026-11-02 | A new revision of the penalty rules |
 | `POL-LIST-079` | current | 2026-11-02 | The next annual catalogue of rules in force |
+| `POL-PEN-080` | in force | 2026-11-02 | A new revision of the general penalty rules |
 
 The next quarterly review is **2027-02-02**. A watch entry that reports `changed` is a prompt to review the page, not an automatic update: the operator checks the page, decides whether the register needs a new entry or a validity change, and records the decision.
 
