@@ -2,6 +2,12 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-02 — Watch cover for the new national pages and a currency table
+
+- Added six watch entries with live baselines: the administrative regulations page for the observation regulation, the gov.cn pages for the stocking and port regulations, the marine disaster reduction bulletin list, the forestry announcement page for the species list and the fishery administration port-list attachment.
+- Added a national currency table to docs/sources.md: twelve entries with status, as-of date and the event that triggers a review, plus the next quarterly review date (2027-02-02). A changed watch status is a prompt to review, not an automatic update.
+- Register counts stay 81/78/3; the eval baseline stays at 33 documents, 794 chunks, index cd97744aa292, hybrid 10/11.
+
 ## 2026-11-02 — Four national texts admitted; new baseline published
 
 - resolve_source_file now accepts a single-file directory, so sources that carry their document in a directory can enter the pipeline; empty or multi-file directories are rejected with tests.

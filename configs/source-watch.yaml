@@ -137,3 +137,51 @@ sources:
     note: Ocean bureau notice list; a hull-catalog announcement would appear here.
     status: ok
     sha256: aed3cee1ecc46b5ac403d34ec5fb6a6263f656e8187e32b76f084d4492fbc62c
+  - id: WATCH-MOJ-OBSERVATION
+    url: https://xzfg.moj.gov.cn/front/law/detail?LawID=1683
+    authority: B
+    publisher: 国务院
+    cadence: static
+    note: National administrative regulations database page for the ocean observation regulation.
+    status: ok
+    sha256: 483349eb710791a63120e20c593ca2b7660f820e36bc29974fec89a6e7071e3b
+  - id: WATCH-GOV-RES-075
+    url: https://www.gov.cn/zhengce/2009-03/24/content_5721420.htm
+    authority: B
+    publisher: 农业部
+    cadence: static
+    note: gov.cn policy-library page for the aquatic stocking regulation.
+    status: ok
+    sha256: 90abf8647b254325125ed7f79bff16a4c573aab0a773fb166fb0dc79c3ec5971
+  - id: WATCH-GOV-PORT-077
+    url: https://www.gov.cn/gongbao/content/2019/content_5468915.htm
+    authority: B
+    publisher: 国务院
+    cadence: static
+    note: State Council gazette page for the fishing-port traffic regulation.
+    status: ok
+    sha256: 1ff9570272738ada371f4e412c3b47ef13eaf94c68481a31640421fda6fc1fd2
+  - id: WATCH-NMHMS-BULLETINS
+    url: https://www.nmhms.org.cn/Maritime-bulletin___fgqgTvDzhY/1.html
+    authority: B
+    publisher: 自然资源部海洋减灾中心
+    cadence: annual
+    note: Bulletin list carrying the marine ecological and marine disaster bulletins.
+    status: ok
+    sha256: abcacc928f072e6a8e8d62bd04ab061821f3fe9673bfd80007a9df48eb8b3109
+  - id: WATCH-FORESTRY-SPECIES
+    url: https://www.forestry.gov.cn/c/www/gkgjlyjgb/43000.jhtml
+    authority: B
+    publisher: 国家林业和草原局
+    cadence: static
+    note: Announcement page carrying the 2021 national key-protected wildlife list.
+    status: ok
+    sha256: c952ba813e8062d81fc5f07eb7f2a98fdaab3725eff605a224392dc3fad1a3ff
+  - id: WATCH-YZB-PORTS
+    url: http://www.yzbzzx.agri.cn/tzgg/tzgglist/202501/P020250116600504099279.docx
+    authority: B
+    publisher: 农业农村部办公厅
+    cadence: annual
+    note: Attachment carrying the 2025 first-batch port-grade recognition list.
+    status: ok
+    sha256: fe142d1a8f9885668b6d2fb47764c50123bc52c6d60ca53703263970aa3ab44a

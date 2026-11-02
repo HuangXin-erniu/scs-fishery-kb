@@ -849,3 +849,21 @@ def test_new_national_documents_are_indexed() -> None:
     assert {"POL-ENF-068", "POL-OBS-072", "POL-RES-075", "POL-PORT-077"} <= documents
     assert "STAT-ECO-073" not in documents
     assert "STAT-DIS-074" not in documents
+
+
+def test_watch_has_the_new_national_pages() -> None:
+    data = load_yaml("configs/source-watch.yaml")
+    sources = {source["id"]: source for source in data["sources"]}
+    assert len(sources) >= 16
+    expected = {
+        "WATCH-MOJ-OBSERVATION",
+        "WATCH-GOV-RES-075",
+        "WATCH-GOV-PORT-077",
+        "WATCH-NMHMS-BULLETINS",
+        "WATCH-FORESTRY-SPECIES",
+        "WATCH-YZB-PORTS",
+    }
+    assert expected <= set(sources)
+    for source in sources.values():
+        if source.get("status") == "ok":
+            assert re.fullmatch(r"[0-9a-f]{64}", source.get("sha256", ""))
