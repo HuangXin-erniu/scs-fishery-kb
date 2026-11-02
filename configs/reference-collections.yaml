@@ -7,7 +7,7 @@ collections:
     description: >-
       English product documentation for the environment and vessel-tracking data behind the forecasting work.
       Questions reach these documents through the Chinese-to-English terminology bridge.
-    concepts: [sea surface temperature, ghRSST, chlorophyll, ocean colour, resolution, anomaly, remote sensing, product]
+    concepts: [sea surface temperature, ghRSST, chlorophyll, ocean colour, resolution, anomaly, remote sensing, coverage cycle, revisit, swath, product]
     documents:
       - id: STD-MUR-045
         title: GHRSST Level 4 MUR Global Foundation Sea Surface Temperature Analysis (v4.1) - product description
@@ -39,12 +39,18 @@ collections:
         sha256: d52e962890fa131f8eecfd2f6b958919ddbdcb46e5076f0f845f5657d0a82f07
         license: public
         language: en
+      - id: STD-HY1-056
+        title: 海洋水色卫星（HY-1C/D）产品能力说明
+        file: raw/STD-HY1-056/hy-1cd-ocean-colour-satellite.html
+        sha256: 8e876496069141af2c728c69b71d8b85654f4537775492562ad6e76c4d64addf
+        license: public
+        language: zh
   policy:
     description: >-
       Chinese statistical-governance, monitoring and vessel-certificate documents.
       They answer process questions about statistics, monitoring and certificates, not the main legal corpus.
     concepts: []
-    cues: [统计, 公布, 共享, 报送, 监测, 登记, 证书, 船位, 远洋]
+    cues: [统计, 公布, 共享, 报送, 监测, 登记, 证书, 船位, 远洋, 船员, 配员, 职务船员, 培训, 任职]
     documents:
       - id: POL-STAT-050
         title: 渔业统计工作规定
@@ -74,5 +80,11 @@ collections:
         title: 渔业船网工具指标批准书、所有权登记证书和国籍证书电子证照标准
         file: raw/STD-ECERT-054/e-certificate-notice-2025.html
         sha256: cf18933006697482865f4563499dea02ca4054b1d56c38dede0bce2f2f5df26b
+        license: public
+        language: zh
+      - id: POL-CREW-055
+        title: 中华人民共和国渔业船员管理办法（2022年修订）
+        file: raw/POL-CREW-055/crew-management-measures-2022.html
+        sha256: 2c316eb3171f388de2bb340ee3b5d1b815eaea606cf529f909ab11cdffe28e17
         license: public
         language: zh

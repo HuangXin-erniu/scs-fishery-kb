@@ -55,7 +55,7 @@ reference:
     docs: [STD-MUR-045, STD-OLCI-046]
   - id: Q-M09
     collection: product
-    docs: [STD-MUR-045, STD-OLCI-046, STD-CMEMS-049]
+    docs: [STD-MUR-045, STD-OLCI-046, STD-CMEMS-049, STD-HY1-056]
 # Statistical questions answered through the local yearbook channel rather than
 # the public index. The channel is scored separately from the main metrics.
 statistics:

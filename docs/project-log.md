@@ -2,6 +2,14 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-02 — Crew management, the Chinese ocean-colour page and the product-channel fix
+
+- Added `POL-CREW-055` (渔业船员管理办法, 2022 revision, 54 articles and four annexes) and `STD-HY1-056` (HY-1C/D 产品能力说明, 国家卫星海洋应用中心). The register now holds fifty-seven sources, fifty-four acquired and three candidates; regulation 14 and fishery_product 4.
+- `POL-CREW-055` joined the policy reference collection and answers the minimum-manning question through the existing cues. The Guangdong, Guangxi and Fujian port-and-vessel regulations state crew duties only in principle; this is the national rule with the manning table (附件4) and the captain duty to fill the fishing log.
+- The product channel now searches with the bridged English concepts plus the original question, so a Chinese-language document in the collection can rank. `Q-E08` still returns MUR first, `Q-M09` now also expects `STD-HY1-056`, and the reference arm stays 4/4 with the main metrics unchanged.
+- Hainan stayed out of the register: the provincial government page carries the 2008 amendment and is marked 已修改, and the national law database serves the in-force 2013 revision only through a script-driven page and a signed attachment this network cannot extract. No superseded text was registered.
+- The main index and its baseline are untouched: twenty-nine documents, 703 chunks, index e4f8d55d7d49, hybrid 10/11 with MRR 0.45, abstention 3/4 and two false refusals.
+
 ## 2026-11-02 — Period questions lead with the date range
 
 - Period questions (时间/日期/起止/何时/几月/几号/期间, and no implementation word) now search every retrieved hit for a date-range sentence and cite it first; questions asking about implementation keep the implementation-date lead.

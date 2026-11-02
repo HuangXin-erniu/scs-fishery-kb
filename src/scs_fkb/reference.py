@@ -148,7 +148,10 @@ def lookup(
         matched = [concept for concept in concepts if concept.lower() in allowed]
         if not matched:
             return []
-        query = " ".join(matched)
+        # Search with the bridged English concepts plus the original question so that a
+        # Chinese-language document in the same collection stays reachable, while English
+        # documents keep ranking on the concept terms.
+        query = " ".join([*matched, question])
     else:
         cues = [str(cue) for cue in config.get("cues") or []]
         if cues and not any(cue in question for cue in cues):
