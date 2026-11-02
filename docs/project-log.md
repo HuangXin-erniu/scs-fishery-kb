@@ -2,6 +2,13 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-02 — Five documentation sources for the remote data stack
+
+- Added `STD-MUR-045` (MUR 0.01° SST product page, CC BY 4.0), `STD-OLCI-046` (EUMETSAT OLCI marine handbook, 41 pages), `DICT-GFW-047` (apparent fishing effort versus fishing events), `DICT-GFW-048` (GFW Events API documentation, Apache 2.0) and `STD-CMEMS-049` (CMEMS GLOBAL_MULTIYEAR_PHY_001_030 user manual, Issue 1.7).
+- The register now holds fifty sources, forty-seven acquired and three candidates; `fishery_product` went from zero to three and `data_dictionary` from six to eight.
+- These documents describe the data the remote forecasting project actually runs on, so the knowledge base can explain product resolution, latency and field semantics. They are registered but not indexed: adding them to the pipeline and turning Q-E08/Q-M09 into answerable questions is a separate task.
+- The GFW FAQ page states only site Terms of Use, so its licence is recorded as unknown and it stays local like every other acquired document.
+
 ## 2026-11-01 — Local statistics channel
 
 - The 3,126-row yearbook indicator table now sits under the data root and is queryable locally: `scs-fkb stats "2019年南海区海洋捕捞产量"` returns the published South China Sea row with its edition and table citation, and `stats` also answers region, gear, vessel, population, value and port questions.
