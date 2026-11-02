@@ -2,6 +2,13 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-02 — Hainan joins the register and the 2026 closure implementations land
+
+- Added `POL-HN-058` (海南省实施《中华人民共和国渔业法》办法, 2013 revision, 41 articles, in force since 2014-01-01) and the three 2026 closure implementations: `POL-HN-059` (海南省2026年伏季休渔告知书, 2026-04-24), `POL-GX-060` (广西2026年海洋伏季休渔管理工作通知, 2026-04-22) and `POL-GD-061` (汕头市2026年海洋伏季休渔通告, 2026-04-28, municipal).
+- Hainan had no document at all; the 2008 page on the same portal is marked 已修改, so the in-force 2013 revision is registered instead. Guangdong is the honest asymmetry: the provincial 2026 work plan 粤农农函〔2026〕208号 is cited by municipal notices but not published on the provincial site, so the Shantou notice is registered as municipal and labelled.
+- The four documents join the policy collection; cues were narrowed to 海南, 广西 and 广东 so a national closure question no longer pulls provincial notices into its reference block.
+- Probes: the Hainan, Guangxi and Guangdong questions all return their province document within the top three, but not always first, because the notices share the closure vocabulary; closure question keeps its §三 main answer and an empty policy block. Eval unchanged at index e4f8d55d7d49, hybrid 10/11, MRR 0.45, reference 4/4, statistics 2/2, abstention 3/4. Register: 62 sources, 59 acquired, 3 candidates; regulation 15, notice 9.
+
 ## 2026-11-02 — 2020 fishery-monitoring circular registered, 2024 letter recorded as unpublished
 
 - Added `POL-YJ-057`, 关于通报2020年度渔情监测统计工作情况的函 (农渔科函〔2021〕21号, 2021-04-15, 7 pages, text layer). It documents the annual cadence, the responsible bodies and the data-quality machinery of 渔情监测统计, and is newer than `POL-YJ-052` (the 2017 circular) without duplicating it.

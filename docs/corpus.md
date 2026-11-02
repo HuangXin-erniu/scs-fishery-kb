@@ -26,8 +26,8 @@ It does **not** include raw environmental grids, reanalysis data, forecast raste
 | `statistical_yearbook` | 统计年鉴 | 16 | Official annual statistics and indicator tables |
 | `operations` | 作业知识 | 1 | Fishing methods, gear, vessel operations, logbooks and permit conditions |
 | `law` | 法律 | 1 | National law adopted by the legislature |
-| `regulation` | 行政法规/规章/地方性法规 | 14 | Administrative regulations, departmental rules and local regulations |
-| `notice` | 通告/公告 | 6 | Official notices, announcements and seasonal measures |
+| `regulation` | 行政法规/规章/地方性法规 | 15 | Administrative regulations, departmental rules and local regulations |
+| `notice` | 通告/公告 | 9 | Official notices, announcements and seasonal measures |
 | `standard` | 标准/规范 | 7 | National, industry or provincial standards and operational norms |
 | `fishery_product` | 渔情/海况产品说明 | 4 | Product descriptions, fishery bulletins and historical records |
 | `data_dictionary` | 数据字典 | 8 | Field definitions, indicator definitions, metadata and quality rules |
@@ -146,6 +146,17 @@ Hainan remains the open jurisdiction: the provincial government page carries the
 
 Four retrieval terms were added to the bridge in the same task: 水色 to ocean colour, 覆盖周期 to coverage cycle, 重访 to revisit and 幅宽 to swath. Before the addition, a question phrased only with those words returned an empty product block because the channel fires on bridged concepts; after it, 海洋水色产品的覆盖周期是多少？ and 海洋水色产品的幅宽与重访周期是多少？ both return `STD-HY1-056`, while `Q-E08` still leads with MUR and the four abstention tests are unchanged. The bridge is a retrieval mapping, not a translation, and each entry says so in its note.
 
+## 5f. Jurisdiction documents for the 2026 closure
+
+| Source | Level | Currency | What it provides |
+|---|---|---|---|
+| `POL-HN-058` | provincial (Hainan) | In force; 2013 revision, published 2013-12-03, effective 2014-01-01 | The Hainan implementing measures: capture permits, closed areas and seasons, protected areas and legal liability |
+| `POL-HN-059` | provincial (Hainan) | Current for 2026; published 2026-04-24 | The Hainan closure notice: dates, the 26°30′N to 12°N area, vessel classes, port and gear rules, the 2026-law penalty ladder and the subsidy deduction |
+| `POL-GX-060` | provincial (Guangxi) | Current for 2026; published 2026-04-22 | The Guangxi closure notice: the same dates and the 12°N boundary, port-of-registry berthing, special permits, the subsidy deduction and the 15-day departure ban |
+| `POL-GD-061` | municipal (Shantou) | Current for 2026; published 2026-04-28 | The Shantou notice: the Guangdong area boundary (12°N to the Fujian-Guangdong line), the dates, the closure classes, 船进港、人上岸、网入库 and the 2000000 yuan ceiling |
+
+The audit gap closes here: Hainan had no document at all while Guangdong, Guangxi and Fujian carried two regulations each. The Hainan entry is the in-force 2013 revision; the earlier 2008 page on the same portal is marked 已修改 and is deliberately not registered. Guangdong is the one honest asymmetry: the provincial 2026 work plan (粤农农函〔2026〕208号) is cited by municipal notices but is not published on the provincial site, so the register holds the Shantou municipal implementation and its notes say so rather than presenting it as the provincial text. The policy cues were narrowed to the province names only, so the national closure question does not pull provincial notices into its reference block. Ranking inside the collection is vocabulary-driven: the correct province document appears in the top three but is not always first, because the three notices share the closure vocabulary. A jurisdiction or title weighting in the channel is the next fix, and the main extractive answer for a province question still leads with the national §三 list while the province passage sits in the reference block.
+
 ## 6. Candidate sources
 
 | ID | Type | Title | Priority | Disposition |
@@ -161,8 +172,8 @@ The four environment and fishery-product candidates were removed on owner instru
 | Metric | Value |
 |---|---:|
 | Corpus types | 9 |
-| Registered sources | 58 |
-| Acquired sources | 55 |
+| Registered sources | 62 |
+| Acquired sources | 59 |
 | Remaining candidates | 3 |
 | Yearbook editions | 9 |
 | Yearbook data years | 2017–2025 |
