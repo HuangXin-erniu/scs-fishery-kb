@@ -78,3 +78,13 @@ jurisdiction:
   - id: J3
     query: 汕头市2026年海洋伏季休渔有哪些管理要求？
     docs: [POL-GD-061]
+
+# National-layer questions answered through the policy collection. They are scored separately
+# because they exercise the national-first ordering.
+national:
+  - id: J4
+    query: 2026年海洋伏季休渔执法行动由哪些部门开展、重点任务是什么？
+    docs: [POL-ENF-068]
+  - id: J5
+    query: 远洋渔船标准化船型参数系列表（2024年版）有哪些船型和参数？
+    docs: [STD-YY-071]

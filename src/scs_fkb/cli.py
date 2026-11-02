@@ -335,6 +335,11 @@ def _eval(args: argparse.Namespace) -> int:
             f"reference {reference.get('reference_hits', 0)}/"
             f"{reference.get('reference_questions', 0)}"
         )
+    national = report.get("national_summary") or {}
+    if national:
+        print(
+            f"national {national.get('national_hits', 0)}/{national.get('national_questions', 0)}"
+        )
     jurisdiction = report.get("jurisdiction_summary") or {}
     if jurisdiction:
         print(
