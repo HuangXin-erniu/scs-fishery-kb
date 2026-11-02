@@ -1053,8 +1053,44 @@ sources:
   hash: ef674e53123265b2f9367ad0c5cbc2544e3d738b5b52c916cc8e3fc4babec3f1
   acquisition: Owner-supplied scan received 2026-11-01 (KONICA MINOLTA bizhub C226, created 2026-08-02). The file has no text layer.
   notes: Data year 2025; image-only scan (0 extractable characters). No table has been extracted, so the 2025 data year is registered but not yet in the coverage matrix. OCR or manual entry is required before it enters the core CSV. Public metadata only; no values.
+- id: POL-CREW-055
+  type: regulation
+  title: Measures for the administration of fishery crew members (2022 revision)
+  title_zh: 中华人民共和国渔业船员管理办法（2022年修订）
+  publisher: 农业农村部
+  year: 2022
+  jurisdiction: national
+  format: html
+  location: raw/POL-CREW-055/
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P1
+  volume: 1 HTML page; 54 articles and four annexes
+  update_freq: static
+  hash: 2c316eb3171f388de2bb340ee3b5d1b815eaea606cf529f909ab11cdffe28e17
+  acquisition: Downloaded 2026-11-02 from the Ministry of Agriculture and Rural Affairs page that republished the text on 2022-01-07 after 农业农村部令2022年第1号.
+  notes: Certificate grades, the minimum manning table (附件4) and the captain duty to fill the fishing log (第二十三条第四项). It states the crew, safety-equipment and training duties that the provincial port-and-vessel regulations carry only in principle. It is not a Hainan source and it does not define voyage or port-stay fields.
+- id: STD-HY1-056
+  type: fishery_product
+  title: Ocean colour satellite HY-1C/D - payload capability and product description
+  title_zh: 海洋水色卫星（HY-1C/D）产品能力说明
+  publisher: 国家卫星海洋应用中心
+  year: 2018
+  jurisdiction: national
+  format: html
+  location: raw/STD-HY1-056/
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P2
+  volume: 1 HTML page; payload and band tables
+  update_freq: static
+  hash: 8e876496069141af2c728c69b71d8b85654f4537775492562ad6e76c4d64addf
+  acquisition: Downloaded 2026-11-02 from the National Satellite Ocean Application Service topic page published 2018-11-02.
+  notes: Coverage cycle one day for a single satellite and half a day for the C/D pair; ground sample distance 1100 m for the ocean-colour scanner and 50 m for the coastal-zone imager; swath 2900 km. Retrieved variables include chlorophyll, suspended sediment, dissolved organic matter and sea surface temperature. It is the Chinese counterpart of the English MUR and OLCI documentation, but it is a payload capability page rather than a product user manual with validation and version history.
 gaps:
-- Fifty-five sources are registered: fifty-two acquired and three candidates awaiting disposition.
+- Fifty-seven sources are registered: fifty-four acquired and three candidates awaiting disposition.
 - The yearbook coverage matrix has no values in the public repository; all values stay local.
 - The yearbook infrastructure table is missing for data years 2018 and 2019; the 2018 national port plan supplies a baseline whose port classes are close to, but not identical with, the yearbook table.
 - The vessel-length proxy is missing for data year 2024.

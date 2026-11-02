@@ -33,7 +33,7 @@ def test_corpus_structure() -> None:
         "data_dictionary",
         "plan",
     }
-    assert len(data["sources"]) == 55
+    assert len(data["sources"]) == 57
 
     acquired = []
     candidates = []
@@ -46,7 +46,7 @@ def test_corpus_structure() -> None:
         else:
             candidates.append(source)
 
-    assert len(acquired) == 52
+    assert len(acquired) == 54
     assert len(candidates) == 3
     yearbooks = [source for source in acquired if source["id"].startswith("STAT-YB-")]
     assert len(yearbooks) == 9
@@ -68,6 +68,7 @@ def test_corpus_structure() -> None:
     assert {source["id"] for source in documents} == {
         "POL-LAW-009",
         "POL-STD-010",
+        "POL-CREW-055",
         "POL-CLOS-015",
         "POL-RULE-018",
         "POL-RULE-019",
@@ -97,6 +98,7 @@ def test_corpus_structure() -> None:
         "DICT-GFW-047",
         "DICT-GFW-048",
         "STD-CMEMS-049",
+        "STD-HY1-056",
         "POL-STAT-050",
         "POL-STAT-051",
         "POL-YJ-052",
@@ -230,11 +232,11 @@ def test_corpus_structure() -> None:
     assert type_counts == {
         "statistical_yearbook": 16,
         "law": 1,
-        "regulation": 13,
+        "regulation": 14,
         "notice": 5,
         "standard": 7,
         "operations": 1,
-        "fishery_product": 3,
+        "fishery_product": 4,
         "data_dictionary": 8,
         "plan": 1,
     }
@@ -493,7 +495,12 @@ def test_eval_reference_section() -> None:
     assert [item.get("collection") for item in reference] == ["cwp", "cwp", "product", "product"]
     assert reference[0]["docs"] == ["STD-CWP-043-catch", "STD-CWP-043-effort"]
     assert reference[2]["docs"] == ["STD-MUR-045", "STD-OLCI-046"]
-    assert reference[3]["docs"] == ["STD-MUR-045", "STD-OLCI-046", "STD-CMEMS-049"]
+    assert reference[3]["docs"] == [
+        "STD-MUR-045",
+        "STD-OLCI-046",
+        "STD-CMEMS-049",
+        "STD-HY1-056",
+    ]
 
 
 def test_lexicon_config() -> None:
@@ -582,6 +589,7 @@ def test_reference_collections_config() -> None:
         "DICT-GFW-047",
         "DICT-GFW-048",
         "STD-CMEMS-049",
+        "STD-HY1-056",
     }
     assert policy_ids == {
         "POL-STAT-050",
@@ -589,13 +597,14 @@ def test_reference_collections_config() -> None:
         "POL-YJ-052",
         "POL-VMS-053",
         "STD-ECERT-054",
+        "POL-CREW-055",
     }
     corpus = {source["id"]: source for source in load_yaml("configs/corpus.yaml")["sources"]}
     for collection in collections.values():
         for document in collection["documents"]:
             relative = document.get("file") or document.get("location") or ""
             assert relative.startswith(f"raw/{document['id']}/")
-            assert collection is collections["policy"] or document["language"] == "en"
+            assert document["language"] in {"en", "zh"}
             assert len(document["sha256"]) == 64
             assert document["id"] in corpus
 
@@ -611,3 +620,31 @@ def test_corrected_corpus_hashes() -> None:
     }
     for source_id, digest in expected.items():
         assert sources[source_id]["hash"] == digest
+
+
+def test_crew_and_ocean_colour_documents() -> None:
+    data = load_yaml("configs/corpus.yaml")
+    sources = {source["id"]: source for source in data["sources"]}
+    expected = {
+        "POL-CREW-055": (
+            "regulation",
+            "P1",
+            "2c316eb3171f388de2bb340ee3b5d1b815eaea606cf529f909ab11cdffe28e17",
+        ),
+        "STD-HY1-056": (
+            "fishery_product",
+            "P2",
+            "8e876496069141af2c728c69b71d8b85654f4537775492562ad6e76c4d64addf",
+        ),
+    }
+    for source_id, (source_type, priority, digest) in expected.items():
+        source = sources[source_id]
+        assert source["type"] == source_type
+        assert source["priority"] == priority
+        assert source["hash"] == digest
+        assert source["status"] == "acquired"
+        assert source["jurisdiction"] == "national"
+        assert source["license"] == "public"
+        assert source["location"] == f"raw/{source_id}/"
+    assert "附件4" in sources["POL-CREW-055"]["notes"]
+    assert "1100 m" in sources["STD-HY1-056"]["notes"]

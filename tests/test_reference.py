@@ -92,6 +92,56 @@ def test_product_lookup_ignores_questions_without_concepts(tmp_path: Path) -> No
     )
 
 
+def test_product_lookup_reaches_chinese_documents(tmp_path: Path) -> None:
+    root = _root(tmp_path)
+    (root / "raw" / "DOC-C").mkdir(parents=True)
+    (root / "raw" / "DOC-C" / "c.html").write_text(
+        "<html><body><p>海洋水色水温扫描仪覆盖周期：1天（单颗卫星）。</p></body></html>",
+        encoding="utf-8",
+    )
+    data = {
+        "schema_version": 1,
+        "collections": {
+            "product": {
+                "concepts": ["ocean colour", "coverage cycle", "resolution"],
+                "documents": [
+                    {
+                        "id": "DOC-C",
+                        "title": "C",
+                        "file": "raw/DOC-C/c.html",
+                        "sha256": _sha(root / "raw" / "DOC-C" / "c.html"),
+                        "license": "public",
+                        "language": "zh",
+                    }
+                ],
+            },
+            "policy": {
+                "cues": ["统计"],
+                "documents": [
+                    {
+                        "id": "DOC-B",
+                        "title": "B",
+                        "file": "raw/DOC-B/b.html",
+                        "sha256": _sha(root / "raw" / "DOC-B" / "b.html"),
+                        "license": "public",
+                        "language": "zh",
+                    }
+                ],
+            },
+        },
+    }
+    config = tmp_path / "chinese-collections.yaml"
+    config.write_text(yaml.safe_dump(data, allow_unicode=True), encoding="utf-8")
+    hits = lookup(
+        "海洋水色产品的覆盖周期与分辨率是多少？",
+        root=root,
+        collections_path=config,
+        collection="product",
+    )
+    assert [hit.chunk.doc_id for hit in hits] == ["DOC-C"]
+    assert "覆盖周期" in hits[0].chunk.text
+
+
 def test_policy_lookup_requires_a_cue(tmp_path: Path) -> None:
     root = _root(tmp_path)
     config = _config(root)

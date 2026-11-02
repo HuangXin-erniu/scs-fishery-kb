@@ -26,10 +26,10 @@ It does **not** include raw environmental grids, reanalysis data, forecast raste
 | `statistical_yearbook` | 统计年鉴 | 16 | Official annual statistics and indicator tables |
 | `operations` | 作业知识 | 1 | Fishing methods, gear, vessel operations, logbooks and permit conditions |
 | `law` | 法律 | 1 | National law adopted by the legislature |
-| `regulation` | 行政法规/规章/地方性法规 | 13 | Administrative regulations, departmental rules and local regulations |
+| `regulation` | 行政法规/规章/地方性法规 | 14 | Administrative regulations, departmental rules and local regulations |
 | `notice` | 通告/公告 | 5 | Official notices, announcements and seasonal measures |
 | `standard` | 标准/规范 | 7 | National, industry or provincial standards and operational norms |
-| `fishery_product` | 渔情/海况产品说明 | 3 | Product descriptions, fishery bulletins and historical records |
+| `fishery_product` | 渔情/海况产品说明 | 4 | Product descriptions, fishery bulletins and historical records |
 | `data_dictionary` | 数据字典 | 8 | Field definitions, indicator definitions, metadata and quality rules |
 | `plan` | 规划/方案 | 1 | Official plans, programmes and construction layouts |
 
@@ -64,6 +64,7 @@ The bulletin series `STAT-BULL-025` and `STAT-BULL-028`–`STAT-BULL-032` covers
 | `POL-RULE-019` | `regulation` | national | Regulation on fishing-vessel inspection, 2003 | acquired |
 | `POL-RULE-020` | `regulation` | national | Measures for levying and using the fishery resource proliferation fee, 2011 revision | acquired |
 | `POL-STD-010` | `regulation` | national | Fishing permit regulation, 2022 revision | acquired |
+| `POL-CREW-055` | `regulation` | national | Measures for the administration of fishery crew members, 2022 revision | acquired; 2022-01-07 republication, 54 articles and four annexes |
 | `POL-CLOS-015` | `notice` | national | Seasonal closure notice, 2023 | acquired |
 | `POL-GD-021` | `regulation` | guangdong | Guangdong fishery management regulations, 2019 amendment | acquired |
 | `POL-GD-022` | `regulation` | guangdong | Guangdong fishing-port and fishing-vessel regulations, 2020 amendment | acquired |
@@ -113,8 +114,9 @@ The two agree on the concept and differ in scope: the national note sets the hea
 | `DICT-GFW-047` | Global Fishing Watch | Apparent fishing effort versus fishing events and how positions are grouped | Indexed in the product reference collection |
 | `DICT-GFW-048` | Global Fishing Watch | The Events API documentation for port visits, encounters, loitering and fishing events | Indexed in the product reference collection |
 | `STD-CMEMS-049` | Mercator Ocean International | The GLOBAL_MULTIYEAR_PHY_001_030 user manual: the 1/12° background physics layer | Indexed in the product reference collection |
+| `STD-HY1-056` | 国家卫星海洋应用中心 | The HY-1C/D payload capability page: coverage cycle, ground sample distance, swath and the retrieved ocean-colour variables | Indexed in the product reference collection; Chinese-language |
 
-Both carry the FAO open-access licence CC BY-NC-SA 3.0 IGO, so they stay local and nothing is copied into this repository. A project-authored terminology bridge in [configs/glossary-bridge.yaml](../configs/glossary-bridge.yaml) maps five Chinese statistical terms to the CWP concepts and feeds a reference channel, so a Chinese definition question can reach these English pages without joining the main index. They are the international counterpart of definitions the domestic yearbooks leave implicit: `DICT-STAT-013` and `DICT-STAT-040` define production, while landed weight and fishing effort only have the CWP definitions. A Chinese official definition is still missing, and the English pages cannot be reached by the Chinese question set until a bilingual term layer exists. Per-page hashes live in [configs/cwp-handbook.yaml](../configs/cwp-handbook.yaml). Five product and method documents for the remote data stack joined the register on 2026-11-02: the MUR SST product page (CC BY 4.0), the EUMETSAT OLCI marine handbook, the GFW effort-versus-events FAQ, the GFW Events API documentation (Apache 2.0) and the CMEMS product user manual. They fill the previously empty `fishery_product` type and explain the data the remote forecasting work actually uses; all five are indexed in the product reference collection and scored as Q-E08 and Q-M09.
+Both carry the FAO open-access licence CC BY-NC-SA 3.0 IGO, so they stay local and nothing is copied into this repository. A project-authored terminology bridge in [configs/glossary-bridge.yaml](../configs/glossary-bridge.yaml) maps five Chinese statistical terms to the CWP concepts and feeds a reference channel, so a Chinese definition question can reach these English pages without joining the main index. They are the international counterpart of definitions the domestic yearbooks leave implicit: `DICT-STAT-013` and `DICT-STAT-040` define production, while landed weight and fishing effort only have the CWP definitions. A Chinese official definition is still missing, and the English pages cannot be reached by the Chinese question set until a bilingual term layer exists. Per-page hashes live in [configs/cwp-handbook.yaml](../configs/cwp-handbook.yaml). Five product and method documents for the remote data stack joined the register on 2026-11-02: the MUR SST product page (CC BY 4.0), the EUMETSAT OLCI marine handbook, the GFW effort-versus-events FAQ, the GFW Events API documentation (Apache 2.0) and the CMEMS product user manual. They fill the previously empty `fishery_product` type and explain the data the remote forecasting work actually uses; all five are indexed in the product reference collection and scored as Q-E08 and Q-M09. A sixth, `STD-HY1-056`, joined on 2026-11-02 as the Chinese counterpart of those descriptions and now forms part of the Q-M09 expectation.
 
 ## 5d. Statistical governance and monitoring
 
@@ -127,6 +129,19 @@ Both carry the FAO open-access licence CC BY-NC-SA 3.0 IGO, so they stay local a
 | `STD-ECERT-054` | 农业农村部办公厅 | Current (2025) | Electronic certificate standards C 0402—2024, C 0403—2024 and C 0374—2024 for quota approval, ownership registration and nationality |
 
 All five are indexed in the policy reference collection; the currency check changed two candidates. The 2021 survey system has expired, so `POL-STAT-051` registers the 2024 text with its new approval number. The 2024 monitoring letter (农渔科函〔2025〕87号) is referenced by provincial news but its full text is not published, so `POL-YJ-052` is the latest public full text and says so. SC/T 9403-2025 turned out to be already held inside the SC/T series (`STD-SC-042`, 37 pages), so it was not registered twice. Near-shore VMS definitions and a data-sharing metadata rule remain uncovered, and Q-M02, Q-M06 and Q-M11 stay out of reach.
+
+## 5e. Crew management and the Chinese ocean-colour description
+
+| Source | Publisher | Currency | What it provides |
+|---|---|---|---|
+| `POL-CREW-055` | 农业农村部 | Current; the 2014 order was amended in 2017 and 2022, registered from the 2022-01-07 republication | Certificate grades, the minimum manning table, the captain duty to fill the fishing log and the penalty range for crew and owner breaches |
+| `STD-HY1-056` | 国家卫星海洋应用中心 | The current description of the in-orbit HY-1C/D pair, published 2018-11-02 | Coverage cycle (one day for a single satellite, half a day for the pair), ground sample distance (1100 m for the ocean-colour scanner, 50 m for the coastal-zone imager), a 2900 km swath, the band table and the retrieved variables including chlorophyll and sea surface temperature |
+
+Two holes from the corpus audit close here. The crew rule turns the crew line from a provincial principle into a national rule: the Guangdong, Guangxi and Fujian port-and-vessel regulations state crew and safety duties in general terms, while `POL-CREW-055` carries the manning table and the certificate grades. The HY-1C/D page is the Chinese counterpart of the English MUR and OLCI documentation; it is a payload capability page rather than a product user manual, so it explains what the sensors measure and how often, not how a product is validated.
+
+Both are routed through reference collections. The crew rule sits in the policy collection, which already passes the raw Chinese question. The ocean-colour page sits in the product collection, and the channel had to change to reach it: the product channel previously searched only with the bridged English concepts, so a Chinese-language document could never rank. It now searches with the concepts plus the original question, while the bridged concepts still decide whether the channel fires at all. `Q-E08` still returns MUR first; `Q-M09` now also expects `STD-HY1-056`, because a Chinese question about spatio-temporal resolution should reach the Chinese page.
+
+Hainan remains the open jurisdiction: the provincial government page carries the 2008 amendment and is marked 已修改, and the national law database confirms the 2013 revision is in force but serves the body only through a script-driven page and a signed attachment this network cannot extract. No superseded text is registered, so the Hainan gap stays open with its evidence rather than being filled with a stale copy.
 
 ## 6. Candidate sources
 
@@ -143,8 +158,8 @@ The four environment and fishery-product candidates were removed on owner instru
 | Metric | Value |
 |---|---:|
 | Corpus types | 9 |
-| Registered sources | 55 |
-| Acquired sources | 52 |
+| Registered sources | 57 |
+| Acquired sources | 54 |
 | Remaining candidates | 3 |
 | Yearbook editions | 9 |
 | Yearbook data years | 2017–2025 |
