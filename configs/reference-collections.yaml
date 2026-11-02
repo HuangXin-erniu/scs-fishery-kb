@@ -293,14 +293,6 @@ collections:
         language: zh
         jurisdiction: national
         level: national
-      - id: POL-PORT-078
-        title: 2025年第一批渔港等级认定名单
-        file: raw/POL-PORT-078/central-first-class-fishing-port-list-2025.docx
-        sha256: fe142d1a8f9885668b6d2fb47764c50123bc52c6d60ca53703263970aa3ab44a
-        license: public
-        language: zh
-        jurisdiction: national
-        level: national
       - id: POL-PEN-078
         title: 中华人民共和国渔业港航监督行政处罚规定
         file: raw/POL-PEN-078/fishing-port-navigation-penalty-rules-2025.html
