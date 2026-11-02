@@ -435,8 +435,8 @@ def test_pipeline_config() -> None:
     pipeline = load_yaml("configs/pipeline.yaml")
     assert pipeline["schema_version"] == 1
     documents = pipeline["documents"]
-    assert len(documents) == 33
-    assert len(set(documents)) == 33
+    assert len(documents) == 38
+    assert len(set(documents)) == 38
     assert pipeline["chunking"]["max_fallback_chars"] >= 200
 
     corpus = load_yaml("configs/corpus.yaml")
@@ -860,7 +860,17 @@ def test_port_layer() -> None:
 def test_new_national_documents_are_indexed() -> None:
     pipeline = load_yaml("configs/pipeline.yaml")
     documents = set(pipeline["documents"])
-    assert {"POL-ENF-068", "POL-OBS-072", "POL-RES-075", "POL-PORT-077"} <= documents
+    assert {
+        "POL-ENF-068",
+        "POL-OBS-072",
+        "POL-RES-075",
+        "POL-PORT-077",
+        "POL-PEN-078",
+        "POL-PEN-080",
+        "POL-LIST-079",
+        "POL-WATCH-082",
+        "POL-RANCH-083",
+    } <= documents
     assert "STAT-ECO-073" not in documents
     assert "STAT-DIS-074" not in documents
 
