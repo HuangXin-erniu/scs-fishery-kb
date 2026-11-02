@@ -31,7 +31,7 @@ Every entry carries schema v2 fields: `level` (national, provincial, municipal o
 | `operations` | 作业知识 | 2 | Fishing methods, gear, vessel operations, logbooks and permit conditions |
 | `law` | 法律 | 1 | National law adopted by the legislature |
 | `regulation` | 行政法规/规章/地方性法规 | 20 | Administrative regulations, departmental rules and local regulations |
-| `notice` | 通告/公告 | 16 | Official notices, announcements and seasonal measures |
+| `notice` | 通告/公告 | 17 | Official notices, announcements and seasonal measures |
 | `standard` | 标准/规范 | 18 | National, industry or provincial standards and operational norms |
 | `fishery_product` | 渔情/海况产品说明 | 4 | Product descriptions, fishery bulletins and historical records |
 | `data_dictionary` | 数据字典 | 7 | Field definitions, indicator definitions, metadata and quality rules |
@@ -322,6 +322,14 @@ The domain therefore stays uncovered on purpose: no typhoon grade, storm-surge o
 
 The ranch list is registered as the eighth batch with an explicit note that later batches may exist and are not covered, rather than claiming to be the complete current set. The host page is a script shell, so the publisher-owned attachment is the registered artifact.
 
+## 5t. Species: the first text-bearing list
+
+| Source | Level | Current | Retrieval | What it provides |
+|---|---|---|---|---|
+| `POL-BREED-084` | national announcement | in force (announced 2021-11-16) | collection | 人工繁育国家重点保护水生野生动物名录（第三批）: ten species with Chinese and Latin names, from 岩原鲤 to 乌龟 |
+
+This is the first species list in the corpus whose text can actually be cited: the protected-species list is image-only and ASFIS is a zip the parser cannot read. The announcement states 自公告发布之日起生效, and the gazette page is watched for a fourth batch. The list covers only the approved-for-breeding subset, so it does not answer a general protected-status question.
+
 ## 6. Candidate sources
 
 | ID | Type | Title | Priority | Disposition |
@@ -337,8 +345,8 @@ The four environment and fishery-product candidates were removed on owner instru
 | Metric | Value |
 |---|---:|
 | Corpus types | 9 |
-| Registered sources | 85 |
-| Acquired sources | 82 |
+| Registered sources | 86 |
+| Acquired sources | 83 |
 | Remaining candidates | 3 |
 | Yearbook editions | 9 |
 | Yearbook data years | 2017–2025 |

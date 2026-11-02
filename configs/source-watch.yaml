@@ -231,3 +231,11 @@ sources:
     note: Station notice page carrying the eighth-batch marine-ranch announcement.
     status: ok
     sha256: 503420c3aad3f793eaac86c1ac3bb8bee08506cee5aa9d5af1d832887295cd3c
+  - id: WATCH-MOA-BREED-490
+    url: https://www.moa.gov.cn/nybgb/2022/202201/202203/t20220302_6390352.htm
+    authority: B
+    publisher: 农业农村部
+    cadence: annual
+    note: Gazette page carrying the third-batch artificial-breeding list; a fourth batch would appear here.
+    status: ok
+    sha256: 072661ac6618049a196095420bb6a6e71ce8faebc011ba1749c1fcb0ea08006b
