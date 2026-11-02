@@ -1,11 +1,14 @@
 from __future__ import annotations
 
 import hashlib
+import ssl
+import urllib.error
 from pathlib import Path
 
 import pytest
 import yaml
 
+from scs_fkb import watch
 from scs_fkb.watch import WatchError, check_source, load_watch, run_watch
 
 BODY = b"page body"
@@ -99,3 +102,70 @@ def test_unknown_authority_is_rejected(tmp_path: Path) -> None:
     path = _config(tmp_path, [_entry(authority="Z")])
     with pytest.raises(WatchError, match="authority"):
         load_watch(path)
+
+
+def test_explicit_ca_bundle_is_honoured(monkeypatch, tmp_path: Path) -> None:
+    calls: dict[str, object] = {}
+
+    def fake_context(cafile=None):
+        calls["cafile"] = cafile
+        return object()
+
+    monkeypatch.setattr("scs_fkb.watch.ssl.create_default_context", fake_context)
+    monkeypatch.setenv("SCS_FKB_CA_BUNDLE", "/custom/bundle.pem")
+    context, explicit = watch._ssl_context()
+    assert context is not None
+    assert explicit == "/custom/bundle.pem"
+    assert calls["cafile"] == "/custom/bundle.pem"
+
+
+def test_fallback_bundle_follows_the_system_path(monkeypatch, tmp_path: Path) -> None:
+    existing = tmp_path / "cert.pem"
+    existing.write_text("x", encoding="utf-8")
+    monkeypatch.setattr(watch, "SYSTEM_CA_BUNDLE", str(existing))
+    assert watch._fallback_bundle() == str(existing)
+    monkeypatch.setattr(watch, "SYSTEM_CA_BUNDLE", str(tmp_path / "missing.pem"))
+    assert watch._fallback_bundle() is None
+
+
+def test_certificate_error_retries_once_with_the_system_bundle(monkeypatch, tmp_path: Path) -> None:
+    contexts: list[object] = []
+
+    class Response:
+        status = 200
+        headers: dict[str, str] = {}
+
+        def read(self) -> bytes:
+            return BODY
+
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *args):
+            return False
+
+    def fake_urlopen(request, timeout=None, context=None):
+        contexts.append(context)
+        if len(contexts) == 1:
+            raise urllib.error.URLError(ssl.SSLCertVerificationError("self signed"))
+        return Response()
+
+    monkeypatch.delenv("SCS_FKB_CA_BUNDLE", raising=False)
+    monkeypatch.setattr("scs_fkb.watch.urllib.request.urlopen", fake_urlopen)
+    monkeypatch.setattr("scs_fkb.watch.ssl.create_default_context", lambda cafile=None: object())
+    monkeypatch.setattr(watch, "_fallback_bundle", lambda: "/system/cert.pem")
+    status, headers, body = watch._default_opener("https://example.invalid", {}, 1.0)
+    assert status == 200
+    assert body == BODY
+    assert len(contexts) == 2
+
+
+def test_certificate_error_without_a_bundle_is_unreachable(monkeypatch) -> None:
+    def fake_urlopen(request, timeout=None, context=None):
+        raise urllib.error.URLError(ssl.SSLCertVerificationError("self signed"))
+
+    monkeypatch.delenv("SCS_FKB_CA_BUNDLE", raising=False)
+    monkeypatch.setattr("scs_fkb.watch.urllib.request.urlopen", fake_urlopen)
+    monkeypatch.setattr(watch, "_fallback_bundle", lambda: None)
+    record = check_source(_entry(), opener=watch._default_opener)
+    assert record["status"] == "unreachable"

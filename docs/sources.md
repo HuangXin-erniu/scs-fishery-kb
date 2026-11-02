@@ -38,6 +38,8 @@ A newer version supersedes an older one but never deletes it: the register keeps
 
 [configs/source-watch.yaml](../configs/source-watch.yaml) lists a curated set of authoritative pages with a tier, a publisher and an expected cadence. `scs-fkb watch` reads them, compares the body hash and the caching headers against the recorded baseline and writes a local report; `--offline` replays the recorded statuses without opening a socket.
 
+The checker verifies TLS. Some networks intercept it, so the venv trust store may reject a certificate that the system keychain accepts; the checker honours `SCS_FKB_CA_BUNDLE` first, then falls back once to the system bundle on a certificate-verification error, and it never creates an unverified context. The bundle used is recorded in each result.
+
 The checker is read-only by design. It never downloads a document into the register, never edits `configs/corpus.yaml` and never changes a collection. A change in the report is a prompt: the operator reviews the page, and if it is worth registering, the normal flow applies — decision, contract, download, hash, register, test.
 
 ## 7. Why the answer path is not allowed to fetch

@@ -2,6 +2,8 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
+import ssl
 import urllib.error
 import urllib.request
 from collections.abc import Callable
@@ -16,6 +18,9 @@ from .config import REPO_ROOT
 DEFAULT_WATCH = REPO_ROOT / "configs" / "source-watch.yaml"
 DEFAULT_TIMEOUT = 15.0
 DEFAULT_USER_AGENT = "SCS-FKB-watch/1.0 (+https://github.com/HuangXin-erniu/scs-fishery-kb)"
+CA_BUNDLE_ENV = "SCS_FKB_CA_BUNDLE"
+SYSTEM_CA_BUNDLE = "/etc/ssl/cert.pem"
+_ACTIVE_CA_BUNDLE: str | None = None
 STATUSES = {"ok", "changed", "unbaselined", "unreachable"}
 TIERS = {"A", "B", "C"}
 OPENER = Callable[[str, dict[str, str], float], tuple[int, dict[str, str], bytes]]
@@ -51,10 +56,39 @@ def load_watch(path: Path | str = DEFAULT_WATCH) -> dict[str, Any]:
     return data
 
 
+def _ssl_context() -> tuple[ssl.SSLContext, str | None]:
+    explicit = os.environ.get(CA_BUNDLE_ENV) or None
+    if explicit:
+        return ssl.create_default_context(cafile=explicit), explicit
+    return ssl.create_default_context(), None
+
+
+def _fallback_bundle() -> str | None:
+    return SYSTEM_CA_BUNDLE if Path(SYSTEM_CA_BUNDLE).is_file() else None
+
+
+def _is_certificate_error(exc: BaseException) -> bool:
+    reason = getattr(exc, "reason", None)
+    return isinstance(reason, ssl.SSLCertVerificationError) or "CERTIFICATE_VERIFY_FAILED" in str(
+        exc
+    )
+
+
 def _default_opener(url: str, headers: dict[str, str], timeout: float) -> tuple[int, dict, bytes]:
+    global _ACTIVE_CA_BUNDLE
     request = urllib.request.Request(url, headers=headers, method="GET")
-    with urllib.request.urlopen(request, timeout=timeout) as response:  # noqa: S310 - curated list
-        return response.status, dict(response.headers), response.read()
+    context, explicit = _ssl_context()
+    try:
+        with urllib.request.urlopen(request, timeout=timeout, context=context) as response:  # noqa: S310
+            return response.status, dict(response.headers), response.read()
+    except urllib.error.URLError as exc:
+        fallback = _fallback_bundle()
+        if explicit is None and fallback and _is_certificate_error(exc):
+            retry = ssl.create_default_context(cafile=fallback)
+            with urllib.request.urlopen(request, timeout=timeout, context=retry) as response:  # noqa: S310
+                _ACTIVE_CA_BUNDLE = fallback
+                return response.status, dict(response.headers), response.read()
+        raise
 
 
 def check_source(
@@ -68,6 +102,7 @@ def check_source(
     headers = {"User-Agent": user_agent}
     record: dict[str, Any] = {
         "id": str(entry["id"]),
+        "ca_bundle": _ACTIVE_CA_BUNDLE,
         "url": str(entry["url"]),
         "authority": entry.get("authority"),
         "sha256": None,
