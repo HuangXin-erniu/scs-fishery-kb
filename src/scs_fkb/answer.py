@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import re
 
+from .jurisdiction import question_jurisdiction
 from .models import Answer, Citation, SearchHit
 from .text import tokenize
 
@@ -133,6 +134,41 @@ def _date_range_evidence(
     return best
 
 
+def _jurisdiction_lead(
+    question: str,
+    extra_hits: list[SearchHit],
+) -> tuple[Citation, str] | None:
+    """Return the first province sentence and its citation, when a province is named."""
+    if not extra_hits or question_jurisdiction(question) is None:
+        return None
+
+    def lead(hit: SearchHit, sentence: str) -> tuple[Citation, str]:
+        sentence = _with_context(hit, sentence)
+        citation = make_citation(hit, sentence)
+        return citation, f"{sentence} {citation_text(citation)}"
+
+    if any(word in question for word in ("后果", "处罚", "罚", "责任", "违规")):
+        query_tokens = set(tokenize(question))
+        best: tuple[SearchHit, str] | None = None
+        best_score = -1
+        for hit in extra_hits:
+            for candidate in _sentences(hit.chunk.text):
+                if not any(word in candidate for word in ("罚", "责任", "查处", "没收", "扣减")):
+                    continue
+                score = len(query_tokens & set(tokenize(candidate)))
+                if score > best_score:
+                    best = (hit, candidate)
+                    best_score = score
+        if best is not None:
+            return lead(*best)
+
+    for hit in extra_hits:
+        sentence = _best_sentence(question, hit.chunk.text)
+        if sentence:
+            return lead(hit, sentence)
+    return None
+
+
 def _matched_tokens(question: str, hit: SearchHit) -> int:
     query_tokens = set(tokenize(question))
     if not query_tokens:
@@ -146,6 +182,7 @@ def answer_question(
     max_evidence: int = 3,
     min_score: float = 0.0,
     min_matched: int = 3,
+    extra_hits: list[SearchHit] | None = None,
 ) -> Answer:
     """Answer from retrieved hits, abstaining when the best evidence is weak.
 
@@ -153,8 +190,17 @@ def answer_question(
     ``min_score`` and share at least ``min_matched`` distinct query tokens. The
     thresholds are calibrated on the draft question set, not learned.
     """
+    used_extra = list(extra_hits or [])
+    lead = _jurisdiction_lead(question, used_extra)
     usable = [hit for hit in hits if hit.score > 0]
     if not usable:
+        if lead is not None:
+            return Answer(
+                text=lead[1],
+                citations=[lead[0]],
+                abstained=False,
+                reason="jurisdiction_evidence",
+            )
         return Answer(
             text="证据不足：索引语料中没有找到可支持回答的内容。",
             abstained=True,
@@ -165,6 +211,13 @@ def answer_question(
     required = min(min_matched, len(set(tokenize(question))))
     matched = _matched_tokens(question, best)
     if best.score < min_score or matched < required:
+        if lead is not None:
+            return Answer(
+                text=lead[1],
+                citations=[lead[0]],
+                abstained=False,
+                reason="jurisdiction_evidence",
+            )
         return Answer(
             text="证据不足：检索到的证据覆盖不足，无法支持回答。",
             abstained=True,
@@ -174,7 +227,12 @@ def answer_question(
     lines: list[str] = []
     citations: list[Citation] = []
     seen: set[tuple[str, str, str]] = set()
-    period = _date_range_evidence(question, usable)
+    if lead is not None:
+        lead_citation, lead_text = lead
+        seen.add((lead_citation.doc_id, lead_citation.section, lead_text))
+        citations.append(lead_citation)
+        lines.append(lead_text)
+    period = None if lead is not None else _date_range_evidence(question, usable)
     if period is not None:
         period_hit, period_sentence = period
         period_sentence = _with_context(period_hit, period_sentence)
@@ -187,6 +245,11 @@ def answer_question(
     for hit in usable[:max_evidence]:
         sentence = _best_sentence(question, hit.chunk.text)
         if not sentence:
+            continue
+        if lead is not None and not any(
+            word in sentence
+            for word in ("海南", "广西", "广东", "福建", "南海", "北部湾", "汕头", "湛江", "阳江")
+        ):
             continue
         sentence = _with_context(hit, sentence)
         key = (hit.chunk.doc_id, hit.chunk.section, sentence)
@@ -205,7 +268,7 @@ def answer_question(
         )
 
     text = "\n".join(lines)
-    ok, invalid = validate_citations(text, usable)
+    ok, invalid = validate_citations(text, usable + used_extra)
     if not ok:
         return Answer(
             text=f"引用校验失败：{'; '.join(invalid)}",

@@ -74,11 +74,20 @@ def load_anchors(path: Path) -> dict[str, Any]:
     for item in reference:
         if not isinstance(item, dict) or not item.get("id") or not item.get("docs"):
             raise ValueError(f"malformed reference entry in {path}: {item}")
+    jurisdiction = data.get("jurisdiction") or []
+    if not isinstance(jurisdiction, list):
+        raise ValueError(f"jurisdiction must be a list in {path}")
+    for item in jurisdiction:
+        if not isinstance(item, dict) or not item.get("id") or not item.get("query"):
+            raise ValueError(f"malformed jurisdiction entry in {path}: {item}")
+        if not item.get("docs"):
+            raise ValueError(f"jurisdiction entry has no docs in {path}: {item}")
     return {
         "anchors": anchors,
         "abstention": [str(item) for item in abstention],
         "reference": reference,
         "statistics": statistics,
+        "jurisdiction": jurisdiction,
     }
 
 
@@ -109,6 +118,15 @@ def summarize_reference(rows: list[dict[str, Any]]) -> dict[str, Any]:
         "reference_questions": len(rows),
         "reference_hits": hits,
         "reference_rate": round(hits / len(rows), 4) if rows else 0.0,
+    }
+
+
+def summarize_jurisdiction(rows: list[dict[str, Any]]) -> dict[str, Any]:
+    hits = sum(1 for row in rows if row["hit"])
+    return {
+        "jurisdiction_questions": len(rows),
+        "jurisdiction_hits": hits,
+        "jurisdiction_rate": round(hits / len(rows), 4) if rows else 0.0,
     }
 
 
@@ -305,6 +323,25 @@ def evaluate(
             entry["notes"] = [note for hit in hits for note in hit.notes][:2]
         statistics_results.append(entry)
 
+    jurisdiction_results: list[dict[str, Any]] = []
+    for item in config.get("jurisdiction", []):
+        query = str(item.get("query") or "")
+        expected = [str(doc) for doc in item["docs"]]
+        hits = reference_lookup(
+            query,
+            root=data_root,
+            collection=str(item.get("collection") or "policy"),
+        )
+        jurisdiction_results.append(
+            {
+                "id": str(item["id"]),
+                "query": query,
+                "expected_docs": expected,
+                "top": [{"doc": hit.chunk.doc_id, "score": round(hit.score, 6)} for hit in hits],
+                "hit": any(hit.chunk.doc_id in expected for hit in hits),
+            }
+        )
+
     selected = set(config["anchors"]) | set(config["abstention"])
     skipped = [
         {
@@ -332,10 +369,12 @@ def evaluate(
             **summarize(results, skipped_ids),
             **summarize_reference(reference_results),
             **summarize_statistics(statistics_results),
+            **summarize_jurisdiction(jurisdiction_results),
         },
         "results": results,
         "reference": reference_results,
         "statistics": statistics_results,
+        "jurisdiction": jurisdiction_results,
         "skipped": skipped,
     }
 

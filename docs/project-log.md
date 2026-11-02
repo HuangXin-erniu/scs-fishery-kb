@@ -2,6 +2,13 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-02 — Jurisdiction-aware ranking and answer assembly
+
+- The policy reference collection now carries a jurisdiction code per document, indexes document titles with a title boost, and stably puts a named province first; the main index and its vectors are untouched.
+- `answer_question` accepts optional extra hits: a province question leads with the province sentence and its citation, and a question the main index would have abstained on is answered from the province evidence with reason `jurisdiction_evidence`. National or unrelated sentences are filtered out of province answers.
+- Behaviour: 海南省2026年休渔时间和海域？ now answers 2026年5月1日12时至8月16日12时 with [POL-HN-059 §一、休渔时间]; 广西 leads with POL-GX-060; 广东 consequence questions lead with POL-GD-061 §四; the national closure question keeps its POL-CLOS-015 §三 answer and an empty policy block.
+- Evaluation: a separate jurisdiction section scores J1/J2/J3 at 3/3. The main arms are unchanged at index e4f8d55d7d49, hybrid 10/11, MRR 0.45, abstention 3/4, two false refusals, reference 4/4 and statistics 2/2. The three questions are same-set calibration, not a held-out split.
+
 ## 2026-11-02 — Fujian hull catalogs registered; hull parameters become answerable
 
 - Added `POL-FJ-063` (闽海渔〔2025〕4号, 2025-01-17) and its three docx catalogs: `STD-FJ-064` (sixth batch), `STD-FJ-065` (seventh batch) and `STD-FJ-066` (Pingtan-only). The docx suffix dispatch from the previous task reads them, and the parameter tables come out as text: 船型名称, 船长, 型宽, 型深, 主机功率, 总吨位, 版权单位.

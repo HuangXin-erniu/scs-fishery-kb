@@ -22,6 +22,7 @@ from .dense import DenseError, DenseIndex, embeddings_dir, index_path
 from .embed import DEFAULT_MODEL, FastEmbedEncoder
 from .evaluate import title_tokens, write_report
 from .ingest import IngestError, ingest, load_pipeline
+from .jurisdiction import question_jurisdiction
 from .lexicon import load_lexicon
 from .models import Answer
 from .parsers import ParseError, UnsupportedFormatError
@@ -156,9 +157,24 @@ def _ask(args: argparse.Namespace) -> int:
             hits,
             min_score=min_score,
             min_matched=min_matched,
+            extra_hits=policy_references,
         )
     elif retriever.gate_ok(args.question, min_score, min_matched):
-        answer = answer_question(args.question, hits, min_score=0.0, min_matched=0)
+        answer = answer_question(
+            args.question,
+            hits,
+            min_score=0.0,
+            min_matched=0,
+            extra_hits=policy_references,
+        )
+    elif policy_references and question_jurisdiction(args.question):
+        answer = answer_question(
+            args.question,
+            [],
+            min_score=0.0,
+            min_matched=0,
+            extra_hits=policy_references,
+        )
     else:
         answer = Answer(
             text="证据不足：检索到的证据覆盖不足，无法支持回答。",
@@ -299,6 +315,12 @@ def _eval(args: argparse.Namespace) -> int:
         print(
             f"reference {reference.get('reference_hits', 0)}/"
             f"{reference.get('reference_questions', 0)}"
+        )
+    jurisdiction = report.get("jurisdiction_summary") or {}
+    if jurisdiction:
+        print(
+            f"jurisdiction {jurisdiction.get('jurisdiction_hits', 0)}/"
+            f"{jurisdiction.get('jurisdiction_questions', 0)}"
         )
     statistics = report.get("statistics_summary") or {}
     if statistics:

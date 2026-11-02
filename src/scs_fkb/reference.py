@@ -11,9 +11,11 @@ from .chunking import chunk_document
 from .config import REPO_ROOT
 from .config import data_root as default_data_root
 from .expand import DEFAULT_BRIDGE, concepts_for, load_bridge
+from .jurisdiction import question_jurisdiction
 from .models import Document, SearchHit
 from .parsers import PARSERS, parse_source
 from .parsers.html import parse
+from .text import tokenize
 
 DEFAULT_CATALOG = REPO_ROOT / "configs" / "cwp-handbook.yaml"
 DEFAULT_COLLECTIONS = REPO_ROOT / "configs" / "reference-collections.yaml"
@@ -119,7 +121,11 @@ def _collection_index(config_path: str, name: str, root: str) -> BM25Index:
             file_hash=digest,
         )
         chunks.extend(chunk_document(document, parsed.pages))
-    return BM25Index(chunks)
+    titles = {
+        str(entry["id"]): set(tokenize(str(entry.get("title") or entry["id"])))
+        for entry in collection["documents"]  # type: ignore[index]
+    }
+    return BM25Index(chunks, titles=titles, title_boost=2.0)
 
 
 def lookup(
@@ -161,6 +167,19 @@ def lookup(
             return []
         query = question
     index = _collection_index(str(collections_path), collection, resolved)
+    if collection == "policy":
+        hits = index.search(query, top_k=max(top_k * 4, top_k))
+        target = question_jurisdiction(question)
+        if target:
+            jurisdictions = {
+                str(entry["id"]): str(entry.get("jurisdiction") or "")
+                for entry in config["documents"]  # type: ignore[index]
+            }
+            hits = sorted(
+                hits,
+                key=lambda hit: 0 if jurisdictions.get(hit.chunk.doc_id) == target else 1,
+            )
+        return hits[:top_k]
     return index.search(query, top_k=top_k)
 
 

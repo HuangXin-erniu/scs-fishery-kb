@@ -621,6 +621,14 @@ def test_reference_collections_config() -> None:
         "STD-FJ-065",
         "STD-FJ-066",
     }
+    for document in collections["policy"]["documents"]:
+        assert document["jurisdiction"] in {
+            "national",
+            "hainan",
+            "guangxi",
+            "guangdong",
+            "fujian",
+        }
     corpus = {source["id"]: source for source in load_yaml("configs/corpus.yaml")["sources"]}
     for collection in collections.values():
         for document in collection["documents"]:
