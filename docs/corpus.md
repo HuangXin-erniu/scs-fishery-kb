@@ -30,8 +30,8 @@ Every entry carries schema v2 fields: `level` (national, provincial, municipal o
 | `statistical_yearbook` | 统计年鉴 | 16 | Official annual statistics and indicator tables |
 | `operations` | 作业知识 | 1 | Fishing methods, gear, vessel operations, logbooks and permit conditions |
 | `law` | 法律 | 1 | National law adopted by the legislature |
-| `regulation` | 行政法规/规章/地方性法规 | 15 | Administrative regulations, departmental rules and local regulations |
-| `notice` | 通告/公告 | 11 | Official notices, announcements and seasonal measures |
+| `regulation` | 行政法规/规章/地方性法规 | 16 | Administrative regulations, departmental rules and local regulations |
+| `notice` | 通告/公告 | 13 | Official notices, announcements and seasonal measures |
 | `standard` | 标准/规范 | 18 | National, industry or provincial standards and operational norms |
 | `fishery_product` | 渔情/海况产品说明 | 4 | Product descriptions, fishery bulletins and historical records |
 | `data_dictionary` | 数据字典 | 7 | Field definitions, indicator definitions, metadata and quality rules |
@@ -245,6 +245,18 @@ The 2018 first-quarter evaluation results were pursued with four query phrasings
 
 Guangxi is the one coastal province without a public marine hull catalog. The provincial notice and document lists (https://nynct.gxzf.gov.cn/xxgk/jcxxgk/tzgg/ and /wjzl/) answer 200 but are script shells with zero 船型 occurrences; the former ocean bureau domain http://www.gxao.org.cn/gxhyj_bumenwenjian returns 404; the Qinzhou approval that cited the catalog (http://nynct.gxzf.gov.cn/xwdt/gxlb/qz/t11054826.shtml) also returns 404. The only reachable material is the 2020 inland pontoon standard (桂农厅办发〔2020〕47号), which is inland and out of scope, and municipal approvals that reference the catalog without carrying it. The catalog therefore cannot be registered from public pages today. The owner has a ready-to-submit disclosure request in [foi-guangxi-hull-catalog.md](foi-guangxi-hull-catalog.md); both department lists are in the watch list so a future upload is detected.
 
+## 5m. Environment, climate and marine hazards
+
+| Source | Level | Current | Retrieval | What it provides |
+|---|---|---|---|---|
+| `POL-OBS-072` | national regulation | in force (2023-07-20 revision) | collection | The Ocean Observation and Forecasting Regulation: observation networks, forecasting duties and marine hazard warning responsibilities |
+| `STAT-ECO-073` | national bulletin | latest edition (2026-06-08) | collection | The 2025 marine ecological early-warning monitoring bulletin, 76 pages on ecological status, pressures and early warning |
+| `STAT-DIS-074` | national bulletin | latest edition (2024-04-22) | provenance only | The 2023 marine disaster bulletin: storm surges, waves, sea ice, tsunami, green tide and red tide, with loss statistics |
+
+The disaster bulletin is registered with `parseable: false`: its embedded fonts map to garbled glyphs, so the text layer cannot be cited. It stays as provenance and as a candidate for a future text-robust extraction, not as an answer source.
+
+Rejected after checking: the 2026 marine disaster emergency plan (自然资办函〔2026〕1023号) renders its body by script on both the ministry and gov.cn pages, and the 2022 version it repeals is likewise unreadable, so neither is registered; the GB/T 19201-2006 cyclone-grades PDF is image-only; the national forecast centre site is a script shell. Typhoon grading therefore stays uncovered until a text-bearing official copy is available.
+
 ## 6. Candidate sources
 
 | ID | Type | Title | Priority | Disposition |
@@ -260,8 +272,8 @@ The four environment and fishery-product candidates were removed on owner instru
 | Metric | Value |
 |---|---:|
 | Corpus types | 9 |
-| Registered sources | 74 |
-| Acquired sources | 71 |
+| Registered sources | 77 |
+| Acquired sources | 74 |
 | Remaining candidates | 3 |
 | Yearbook editions | 9 |
 | Yearbook data years | 2017–2025 |
