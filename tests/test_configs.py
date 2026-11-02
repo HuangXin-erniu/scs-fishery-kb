@@ -997,3 +997,31 @@ def test_pipeline_documents_report_the_main_channel() -> None:
     registry = load_registry("configs/corpus.yaml")
     for doc_id in pipeline:
         assert registry[doc_id]["retrieval"]["channel"] == "main"
+
+
+def test_provincial_validity_is_closed() -> None:
+    from scs_fkb.registry import load_registry
+
+    registry = load_registry("configs/corpus.yaml")
+    provincial = [
+        "POL-HN-058",
+        "POL-HN-059",
+        "POL-GX-060",
+        "POL-FJ-063",
+        "STD-FJ-064",
+        "STD-FJ-065",
+        "STD-FJ-066",
+        "STD-GD-064",
+        "STD-GD-065",
+        "STD-HN-066",
+        "STD-HN-067",
+    ]
+    for source_id in provincial:
+        validity = registry[source_id]["validity"]
+        assert validity["status"] == "in_force"
+        assert validity["note"]
+    assert not [
+        entry
+        for entry in registry.values()
+        if entry["level"] == "provincial" and entry["validity"]["status"] == "unknown"
+    ]
