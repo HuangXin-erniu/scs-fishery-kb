@@ -321,6 +321,22 @@ Two entries were removed on 2026-11-02 under this rule: `POL-BREED-084` (人工�
 
 In scope and kept: `POL-WATCH-082` (渔业船舶航行值班准则, vessel operations) and `POL-RES-075` (水生生物增殖放流管理规定, releases that restore capture stocks — a fishery-resource instrument, not a farming standard). Purely inland and freshwater material is also out of scope.
 
+## 5t. Scope audit of the register
+
+Every active entry was scanned on its title and notes for 养殖, 繁育, 海洋牧场, 加工, 饲料, 病害, 淡水, 内陆, 内河 and their English equivalents. No further pure aquaculture, breeding, ranching, processing or inland entry remains. The borderline entries are kept with a stated reason rather than left ambiguous:
+
+| Entry | Why it stays |
+|---|---|
+| `POL-RULE-020` 渔业资源增殖保护费征收使用办法 | Charges capture, not farming; a resource-management instrument |
+| `POL-RES-075` 水生生物增殖放流管理规定 | Governs releases that restore capture stocks; a fishery-resource instrument |
+| `STAT-BULL-025` and `STAT-BULL-028` to `STAT-BULL-032` | Official national fishery-economy bulletins: they report capture alongside culture totals and are the statistical context for the capture series |
+| `DICT-STAT-013`, `DICT-STAT-040` | Indicator definitions needed to read the statistics; they define capture and culture output separately |
+| `STAT-CSY-027` | The statistical yearbook chapter used by the statistics channel |
+| `STD-SPEC-076` | National protected-species list, kept as provenance for bycatch and protection reference; image-only |
+| `STD-ASFIS-044` | Capture species code list, registered but not indexed |
+
+The rule is enforced by a test: a new active entry whose title contains an out-of-scope term fails unless its id is explicitly allowlisted.
+
 ## 6. Candidate sources
 
 | ID | Type | Title | Priority | Disposition |

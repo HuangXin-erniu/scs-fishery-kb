@@ -1033,3 +1033,19 @@ def test_out_of_scope_material_is_removed() -> None:
     cues = load_yaml("configs/reference-collections.yaml")["collections"]["policy"]["cues"]
     assert not {"海洋牧场", "示范区", "繁育", "水生野生动物"} & set(cues)
     assert {"值班", "航行", "安全"} <= set(cues)
+
+
+def test_out_of_scope_titles_are_allowlisted() -> None:
+    import re
+
+    from scs_fkb.registry import load_registry
+
+    banned = re.compile(r"养殖|繁育|海洋牧场|加工|饲料|病害|淡水|内陆|内河")
+    allowlist = {"POL-RULE-020", "POL-RES-075"}
+    registry = load_registry("configs/corpus.yaml")
+    for source_id, entry in registry.items():
+        if entry.get("lifecycle") != "active":
+            continue
+        title = f"{entry.get('title') or ''} {entry.get('title_zh') or ''}"
+        if banned.search(title):
+            assert source_id in allowlist, f"{source_id} carries an out-of-scope term: {title}"
