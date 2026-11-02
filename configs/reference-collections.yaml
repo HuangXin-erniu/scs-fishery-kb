@@ -192,4 +192,10 @@ collections:
         license: public
         language: zh
         jurisdiction: hainan
+      - id: POL-ENF-068
+        title: 农业农村部 公安部 中国海警局关于开展2026年海洋伏季休渔执法行动的通知
+        file: raw/POL-ENF-068/2026-closure-enforcement-notice.html
+        sha256: 174ab3e343df18e09d8340272e329d956b062ce909216eea8282e206a6bca8af
+        license: public
+        language: zh
         jurisdiction: fujian

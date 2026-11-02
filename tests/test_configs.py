@@ -33,7 +33,7 @@ def test_corpus_structure() -> None:
         "data_dictionary",
         "plan",
     }
-    assert len(data["sources"]) == 71
+    assert len(data["sources"]) == 72
 
     acquired = []
     candidates = []
@@ -46,7 +46,7 @@ def test_corpus_structure() -> None:
         else:
             candidates.append(source)
 
-    assert len(acquired) == 68
+    assert len(acquired) == 69
     assert len(candidates) == 3
     yearbooks = [source for source in acquired if source["id"].startswith("STAT-YB-")]
     assert len(yearbooks) == 9
@@ -118,6 +118,7 @@ def test_corpus_structure() -> None:
         "STD-GD-065",
         "STD-HN-066",
         "STD-HN-067",
+        "POL-ENF-068",
     }
     for source in documents:
         if source["id"] in {
@@ -248,7 +249,7 @@ def test_corpus_structure() -> None:
         "statistical_yearbook": 16,
         "law": 1,
         "regulation": 15,
-        "notice": 10,
+        "notice": 11,
         "standard": 15,
         "operations": 1,
         "fishery_product": 4,
@@ -628,6 +629,7 @@ def test_reference_collections_config() -> None:
         "STD-GD-065",
         "STD-HN-066",
         "STD-HN-067",
+        "POL-ENF-068",
     }
     for document in collections["policy"]["documents"]:
         assert document["jurisdiction"] in {
@@ -669,6 +671,7 @@ def test_corrected_corpus_hashes() -> None:
         "STD-GD-065": "f6ed423220baca5ec45b9b83fe583c39093245194dba70c8417fea63ab0961ad",
         "STD-HN-066": "4db86b28b700267efadf4f942258a1d835122946270269a265e2fc10836b1392",
         "STD-HN-067": "6b5bebcc6d2278a7b27d5a1ba2e581871b49f551e966fcadbc7d9890772ed709",
+        "POL-ENF-068": "174ab3e343df18e09d8340272e329d956b062ce909216eea8282e206a6bca8af",
     }
     for source_id, digest in expected.items():
         assert sources[source_id]["hash"] == digest
@@ -716,3 +719,21 @@ def test_source_watch_config() -> None:
         assert entry["authority"] in {"A", "B", "C"}
         assert entry["publisher"]
         assert entry["status"] in {"unchecked", "ok", "changed", "unbaselined", "unreachable"}
+
+
+def test_validity_blocks() -> None:
+    data = load_yaml("configs/corpus.yaml")
+    sources = {source["id"]: source for source in data["sources"]}
+    expected = {
+        "POL-LAW-009",
+        "POL-STD-010",
+        "POL-CLOS-015",
+        "POL-RULE-018",
+        "POL-SPEC-041",
+        "POL-ENF-068",
+    }
+    for source_id in expected:
+        block = sources[source_id]["validity"]
+        assert block["status"] in {"in_force", "superseded", "repealed", "unknown"}
+        assert block["as_of"]
+        assert block["note"]
