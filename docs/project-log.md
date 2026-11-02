@@ -2,6 +2,14 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-02 — Cleanup: one hard delete, one retirement, level corrections
+
+- Hard-deleted `DICT-GFW-047` under decision D-SCS-FKB-058: licence unknown with no official provenance, so it left the register, the product collection and the data root. Its file hash `5a5e83ec804a3969d7ee93f28b15e08002363659e460d3c0827ff537779704b4` is recorded here for audit.
+- Retired `STD-SC-042` (17 SC/T standards, image-only, no text layer): lifecycle retired with date, reason and decision key, retrieval stays `none`, and the hash and local file are kept as provenance rather than deleted.
+- Corrected four levels from national to international for the remote-stack sources whose jurisdiction is international: `STD-MUR-045`, `STD-OLCI-046`, `DICT-GFW-048`, `STD-CMEMS-049`, all tier B.
+- `STD-ASFIS-044` stays active for the species task; `STAT-YB-2026` stays active because its data reaches the project through the statistical extracts.
+- Register: 74 sources, 71 acquired, 3 candidates; product collection five documents; every eval arm unchanged.
+
 ## 2026-11-02 — Registry schema v2 and migration
 
 - Added `src/scs_fkb/registry.py`: loads the register and validates level, authority tier, validity, retrieval and lifecycle, with a retirement block required for retired entries and unique ids enforced.

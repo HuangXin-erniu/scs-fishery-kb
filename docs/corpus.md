@@ -34,7 +34,7 @@ Every entry carries schema v2 fields: `level` (national, provincial, municipal o
 | `notice` | 通告/公告 | 11 | Official notices, announcements and seasonal measures |
 | `standard` | 标准/规范 | 18 | National, industry or provincial standards and operational norms |
 | `fishery_product` | 渔情/海况产品说明 | 4 | Product descriptions, fishery bulletins and historical records |
-| `data_dictionary` | 数据字典 | 8 | Field definitions, indicator definitions, metadata and quality rules |
+| `data_dictionary` | 数据字典 | 7 | Field definitions, indicator definitions, metadata and quality rules |
 | `plan` | 规划/方案 | 1 | Official plans, programmes and construction layouts |
 
 ## 4. Acquired yearbooks
@@ -96,7 +96,7 @@ The Fisheries Law text is the owner-supplied DOCX of the official 人民日报 p
 | `OPS-STD-039` | `standard` | GB/T 5147—2026 fishing-gear classification, naming and codes | The national classification that maps yearbook gear groups and permit operation types |
 | `STD-SC-042` | `standard` | SC/T aquatic-industry standards in scope (17 held) | Gear and mesh, vessel management data, fishing ports, fishery statistics and surveys, resource surveys and terminology |
 
-The mesh tables and the form are annexes 1, 2 and 3 of the 2013 notice `POL-GEAR-016`, which entered into force on 2014-06-01 and repealed the 2003 notice. SC/T 9460—2025 was published 2025-12-09 and takes effect 2026-05-01; GB/T 5147—2026 was published 2026-02-27 and takes effect 2026-09-01, replacing the 2003 edition. `STD-SC-042` is a series entry: the national standards platform lists 809 current SC/T standards and 17 fall inside the project scope with a public text, which the project holds as image-only reference copies (`configs/sc-standards.yaml`). The seven in-scope standards without a public text were excluded from the project on 2026-11-01. SC/T 9460—2025 stays registered as `OPS-STD-035` and is not duplicated in the series; aquaculture, feed, disease, processing, hull-construction, ship-equipment and freshwater-survey series are out of scope.
+The mesh tables and the form are annexes 1, 2 and 3 of the 2013 notice `POL-GEAR-016`, which entered into force on 2014-06-01 and repealed the 2003 notice. SC/T 9460—2025 was published 2025-12-09 and takes effect 2026-05-01; GB/T 5147—2026 was published 2026-02-27 and takes effect 2026-09-01, replacing the 2003 edition. `STD-SC-042` is a series entry: the national standards platform lists 809 current SC/T standards and 17 fall inside the project scope with a public text, which the project holds as image-only reference copies (`configs/sc-standards.yaml`). The series is retired: the copies have no text layer and no retrieval channel, so the entry keeps its hash and file as provenance but is not citable. The seven in-scope standards without a public text were excluded from the project on 2026-11-01. SC/T 9460—2025 stays registered as `OPS-STD-035` and is not duplicated in the series; aquaculture, feed, disease, processing, hull-construction, ship-equipment and freshwater-survey series are out of scope.
 
 ## 5b. Acquired definitions
 
@@ -115,12 +115,11 @@ The two agree on the concept and differ in scope: the national note sets the hea
 | `STD-ASFIS-044` | FAO Fisheries and Aquaculture Division | The ASFIS 2026.1 species list: 3-alpha codes, ISSCAAP groups, scientific names and common names in six languages, 2,695 with Chinese names | Not indexed: a lookup table rather than narrative text |
 | `STD-MUR-045` | NASA JPL PO.DAAC | The 0.01° daily MUR foundation SST product description: algorithm, latency and licence | Indexed in the product reference collection, not the main index |
 | `STD-OLCI-046` | EUMETSAT | The OLCI marine user handbook: L1B/L2 marine products and the retrievals behind the 4 km chlorophyll product | Indexed in the product reference collection |
-| `DICT-GFW-047` | Global Fishing Watch | Apparent fishing effort versus fishing events and how positions are grouped | Indexed in the product reference collection |
 | `DICT-GFW-048` | Global Fishing Watch | The Events API documentation for port visits, encounters, loitering and fishing events | Indexed in the product reference collection |
 | `STD-CMEMS-049` | Mercator Ocean International | The GLOBAL_MULTIYEAR_PHY_001_030 user manual: the 1/12° background physics layer | Indexed in the product reference collection |
 | `STD-HY1-056` | 国家卫星海洋应用中心 | The HY-1C/D payload capability page: coverage cycle, ground sample distance, swath and the retrieved ocean-colour variables | Indexed in the product reference collection; Chinese-language |
 
-Both carry the FAO open-access licence CC BY-NC-SA 3.0 IGO, so they stay local and nothing is copied into this repository. A project-authored terminology bridge in [configs/glossary-bridge.yaml](../configs/glossary-bridge.yaml) maps five Chinese statistical terms to the CWP concepts and feeds a reference channel, so a Chinese definition question can reach these English pages without joining the main index. They are the international counterpart of definitions the domestic yearbooks leave implicit: `DICT-STAT-013` and `DICT-STAT-040` define production, while landed weight and fishing effort only have the CWP definitions. A Chinese official definition is still missing, and the English pages cannot be reached by the Chinese question set until a bilingual term layer exists. Per-page hashes live in [configs/cwp-handbook.yaml](../configs/cwp-handbook.yaml). Five product and method documents for the remote data stack joined the register on 2026-11-02: the MUR SST product page (CC BY 4.0), the EUMETSAT OLCI marine handbook, the GFW effort-versus-events FAQ, the GFW Events API documentation (Apache 2.0) and the CMEMS product user manual. They fill the previously empty `fishery_product` type and explain the data the remote forecasting work actually uses; all five are indexed in the product reference collection and scored as Q-E08 and Q-M09. A sixth, `STD-HY1-056`, joined on 2026-11-02 as the Chinese counterpart of those descriptions and now forms part of the Q-M09 expectation.
+Both carry the FAO open-access licence CC BY-NC-SA 3.0 IGO, so they stay local and nothing is copied into this repository. A project-authored terminology bridge in [configs/glossary-bridge.yaml](../configs/glossary-bridge.yaml) maps five Chinese statistical terms to the CWP concepts and feeds a reference channel, so a Chinese definition question can reach these English pages without joining the main index. They are the international counterpart of definitions the domestic yearbooks leave implicit: `DICT-STAT-013` and `DICT-STAT-040` define production, while landed weight and fishing effort only have the CWP definitions. A Chinese official definition is still missing, and the English pages cannot be reached by the Chinese question set until a bilingual term layer exists. Per-page hashes live in [configs/cwp-handbook.yaml](../configs/cwp-handbook.yaml). Four product and method documents for the remote data stack joined the register on 2026-11-02: the MUR SST product page (CC BY 4.0), the EUMETSAT OLCI marine handbook, the GFW Events API documentation (Apache 2.0) and the CMEMS product user manual. They fill the previously empty `fishery_product` type and explain the data the remote forecasting work actually uses; all five are indexed in the product reference collection and scored as Q-E08 and Q-M09. A fifth, `STD-HY1-056`, joined on 2026-11-02 as the Chinese counterpart of those descriptions and now forms part of the Q-M09 expectation.
 
 ## 5d. Statistical governance and monitoring
 
@@ -248,8 +247,8 @@ The four environment and fishery-product candidates were removed on owner instru
 | Metric | Value |
 |---|---:|
 | Corpus types | 9 |
-| Registered sources | 75 |
-| Acquired sources | 72 |
+| Registered sources | 74 |
+| Acquired sources | 71 |
 | Remaining candidates | 3 |
 | Yearbook editions | 9 |
 | Yearbook data years | 2017–2025 |

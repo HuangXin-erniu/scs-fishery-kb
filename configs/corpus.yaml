@@ -916,8 +916,8 @@ sources:
   hash: 22232edcac451598e82761a63150d81577493ba5cb3bde12e89fe0b4cae3fe12
   acquisition: 'Fetched 2026-11-02 from https://registry.opendata.aws/nasa-mur-jpl-l4-glob-v41/ (HTTP 200; 11,837 bytes).'
   notes: 'Product description of the 0.01° daily multi-scale foundation SST analysis (wavelet optimal interpolation, four-day retrospective latency, night-time GHRSST L2P inputs) that is the SST layer of the remote environment stack. It is the citable resolution and method reference for Q-E08 and Q-M09, not a data copy. Licence CC BY 4.0, attribution required.'
-  level: national
-  authority_tier: A
+  level: international
+  authority_tier: B
   retrieval:
     channel: collection
     parseable: true
@@ -946,37 +946,7 @@ sources:
   hash: 4d076cff30d35a079e8719f9205b7e54d305eb68a6ca311b122001bc24a254c6
   acquisition: 'Downloaded 2026-11-02 from https://earth.esa.int/eogateway/documents/20142/1564943/Sentinel-3-OLCI-Marine-User-Handbook.pdf (HTTP 200; 2,113,222 bytes; EUM/OPS-SEN3/MAN/17/907205 v1H, 4 July 2018).'
   notes: 'Documents the OLCI L1B and L2 marine products, bands and retrieval assumptions; the remote 4 km L3m chlorophyll product is binned from these L2 CHL retrievals, so the handbook is the citable resolution and retrieval reference for Q-E08 and Q-M09. The cover states "This Document is Public".'
-  level: national
-  authority_tier: A
-  retrieval:
-    channel: collection
-    parseable: true
-    note: Registered in a reference collection.
-  lifecycle: active
-  validity:
-    status: unknown
-    as_of: '2026-11-02'
-    note: Status not separately verified during the schema migration; the source note records the publisher and date.
-
-- id: DICT-GFW-047
-  title: Global Fishing Watch - apparent fishing effort versus fishing events
-  title_zh: Global Fishing Watch——表观捕捞努力量与捕捞事件的区别
-  publisher: Global Fishing Watch
-  year: 2025
-  type: data_dictionary
-  jurisdiction: international
-  format: html
-  location: raw/DICT-GFW-047/gfw-apparent-fishing-effort-vs-events.html
-  license: unknown
-  sensitivity: public
-  status: acquired
-  priority: P2
-  volume: 1 HTML page; 7,544 characters
-  update_freq: irregular
-  hash: 5a5e83ec804a3969d7ee93f28b15e08002363659e460d3c0827ff537779704b4
-  acquisition: 'Fetched 2026-11-02 from https://globalfishingwatch.org/faqs/difference-between-fishing-effort-and-fishing-events/ (HTTP 200; 385,430 bytes).'
-  notes: 'Explains that apparent fishing effort counts every position classified as fishing whereas fishing events group consecutive positions into a track segment; this is the definition layer behind the remote apparent_fishing_effort and fishing_events products. The page carries only site Terms of Use, so the licence is recorded as unknown and the file stays local; GFW data itself is CC BY-NC 4.0.'
-  level: national
+  level: international
   authority_tier: B
   retrieval:
     channel: collection
@@ -1006,7 +976,7 @@ sources:
   hash: 02cf947bde28cec931ce50a7d1134d9a1bb514b708077fe806f5788fd4c9782c
   acquisition: 'Fetched 2026-11-02 from https://globalfishingwatch.github.io/gfw-api-python-client/usage-guides/events-api.html (HTTP 200; 94,466 bytes).'
   notes: 'Defines the PORT_VISIT, ENCOUNTER, LOITERING and FISHING event datasets and their fields, the vocabulary behind the remote port_visits, encounters and loitering products. The client documentation publishes the Apache License 2.0 on its licence page.'
-  level: national
+  level: international
   authority_tier: B
   retrieval:
     channel: collection
@@ -1036,8 +1006,8 @@ sources:
   hash: d52e962890fa131f8eecfd2f6b958919ddbdcb46e5076f0f845f5657d0a82f07
   acquisition: 'Downloaded 2026-11-02 from https://documentation.marine.copernicus.eu/PUM/CMEMS-GLO-PUM-001-030.pdf (HTTP 200; 792,021 bytes; Issue 1.7, November 2025).'
   notes: 'Documents the 1/12° global physics reanalysis used as the background layer (uo/vo/zos) in the remote environment stack: product resolution, variables, quality information and the attribution the Copernicus Marine Service licence requires.'
-  level: national
-  authority_tier: A
+  level: international
+  authority_tier: B
   retrieval:
     channel: collection
     parseable: true
@@ -1252,7 +1222,11 @@ sources:
     channel: none
     parseable: false
     note: Not routed to a retrieval channel.
-  lifecycle: active
+  lifecycle: retired
+  retirement:
+    date: '2026-11-02'
+    reason: Image-only series with no text layer and no retrieval channel; kept as provenance, not citable.
+    decision_key: D-SCS-FKB-058
   validity:
     status: unknown
     as_of: '2026-11-02'

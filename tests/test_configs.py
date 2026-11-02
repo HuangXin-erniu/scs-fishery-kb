@@ -33,7 +33,7 @@ def test_corpus_structure() -> None:
         "data_dictionary",
         "plan",
     }
-    assert len(data["sources"]) == 75
+    assert len(data["sources"]) == 74
 
     acquired = []
     candidates = []
@@ -46,7 +46,7 @@ def test_corpus_structure() -> None:
         else:
             candidates.append(source)
 
-    assert len(acquired) == 72
+    assert len(acquired) == 71
     assert len(candidates) == 3
     yearbooks = [source for source in acquired if source["id"].startswith("STAT-YB-")]
     assert len(yearbooks) == 9
@@ -95,7 +95,6 @@ def test_corpus_structure() -> None:
         "STD-CWP-043",
         "STD-MUR-045",
         "STD-OLCI-046",
-        "DICT-GFW-047",
         "DICT-GFW-048",
         "STD-CMEMS-049",
         "STD-HY1-056",
@@ -130,7 +129,6 @@ def test_corpus_structure() -> None:
             "STD-CWP-043",
             "STD-MUR-045",
             "STD-OLCI-046",
-            "DICT-GFW-047",
             "DICT-GFW-048",
             "STD-CMEMS-049",
             "POL-STAT-050",
@@ -217,10 +215,9 @@ def test_corpus_structure() -> None:
         "DICT-STAT-013",
         "DICT-STAT-040",
         "STD-ASFIS-044",
-        "DICT-GFW-047",
         "DICT-GFW-048",
     }
-    international = {"STD-ASFIS-044", "DICT-GFW-047", "DICT-GFW-048"}
+    international = {"STD-ASFIS-044", "DICT-GFW-048"}
     for source in dictionaries:
         if source["id"] in international:
             continue
@@ -256,7 +253,7 @@ def test_corpus_structure() -> None:
         "standard": 18,
         "operations": 1,
         "fishery_product": 4,
-        "data_dictionary": 8,
+        "data_dictionary": 7,
         "plan": 1,
     }
 
@@ -560,7 +557,6 @@ def test_remote_stack_documents() -> None:
     expected = {
         "STD-MUR-045": ("fishery_product", "cc-by-4.0"),
         "STD-OLCI-046": ("fishery_product", "public"),
-        "DICT-GFW-047": ("data_dictionary", "unknown"),
         "DICT-GFW-048": ("data_dictionary", "apache-2.0"),
         "STD-CMEMS-049": ("fishery_product", "public"),
     }
@@ -606,7 +602,6 @@ def test_reference_collections_config() -> None:
     assert product_ids == {
         "STD-MUR-045",
         "STD-OLCI-046",
-        "DICT-GFW-047",
         "DICT-GFW-048",
         "STD-CMEMS-049",
         "STD-HY1-056",
@@ -765,7 +760,22 @@ def test_registry_schema_v2() -> None:
     from scs_fkb.registry import load_registry
 
     registry = load_registry("configs/corpus.yaml")
-    assert len(registry) == 75
-    assert sum(1 for entry in registry.values() if entry["status"] == "acquired") == 72
+    assert len(registry) == 74
+    assert sum(1 for entry in registry.values() if entry["status"] == "acquired") == 71
     for entry in registry.values():
-        assert entry["lifecycle"] == "active"
+        assert entry["lifecycle"] in {"active", "retired"}
+        if entry["lifecycle"] == "retired":
+            assert entry["retirement"]["decision_key"]
+
+
+def test_cleanup_state() -> None:
+    from scs_fkb.registry import load_registry
+
+    registry = load_registry("configs/corpus.yaml")
+    assert "DICT-GFW-047" not in registry
+    series = registry["STD-SC-042"]
+    assert series["lifecycle"] == "retired"
+    assert series["retirement"]["decision_key"] == "D-SCS-FKB-058"
+    assert series["retrieval"]["channel"] == "none"
+    for source_id in ("STD-MUR-045", "STD-OLCI-046", "DICT-GFW-048", "STD-CMEMS-049"):
+        assert registry[source_id]["level"] == "international"

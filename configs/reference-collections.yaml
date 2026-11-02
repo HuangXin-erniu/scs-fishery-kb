@@ -21,12 +21,6 @@ collections:
         sha256: 4d076cff30d35a079e8719f9205b7e54d305eb68a6ca311b122001bc24a254c6
         license: public
         language: en
-      - id: DICT-GFW-047
-        title: Global Fishing Watch - apparent fishing effort versus fishing events
-        file: raw/DICT-GFW-047/gfw-apparent-fishing-effort-vs-events.html
-        sha256: 5a5e83ec804a3969d7ee93f28b15e08002363659e460d3c0827ff537779704b4
-        license: unknown
-        language: en
       - id: DICT-GFW-048
         title: Global Fishing Watch API client - Events API documentation
         file: raw/DICT-GFW-048/gfw-events-api-documentation.html
