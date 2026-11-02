@@ -7,7 +7,8 @@ from pathlib import Path
 import pytest
 import yaml
 
-from scs_fkb.reference import ReferenceError, load_collections, lookup
+from scs_fkb.models import Chunk, SearchHit
+from scs_fkb.reference import ReferenceError, diverse_hits, load_collections, lookup
 
 PRODUCT = "Sea surface temperature analysis with chlorophyll ocean colour resolution anomaly."
 POLICY = "统计资料应当定期公布，并与有关部门共享。年报统计资料于翌年发布。"
@@ -290,3 +291,41 @@ def test_policy_lookup_with_an_unknown_province_keeps_the_score_order(tmp_path: 
         )
     ]
     assert ranked == baseline
+
+
+def _passage(doc: str, section: str, text: str, score: float = 1.0) -> SearchHit:
+    chunk = Chunk(
+        chunk_id=f"{doc}-{section}",
+        doc_id=doc,
+        source_id=doc,
+        page=0,
+        section=section,
+        text=text,
+        token_count=1,
+        char_start=0,
+        char_end=len(text),
+        sensitivity="public",
+    )
+    return SearchHit(chunk=chunk, score=score)
+
+
+def test_diverse_hits_caps_one_document_and_fills_from_the_next() -> None:
+    hits = [
+        _passage("A", "一", "x"),
+        _passage("A", "二", "y"),
+        _passage("A", "三", "z"),
+        _passage("B", "一", "w"),
+    ]
+    selected = diverse_hits(hits, per_doc=2, limit=3)
+    assert [hit.chunk.doc_id for hit in selected] == ["A", "A", "B"]
+
+
+def test_diverse_hits_drops_identical_passages() -> None:
+    same = _passage("A", "一", "x")
+    selected = diverse_hits([same, same], per_doc=2, limit=3)
+    assert len(selected) == 1
+
+
+def test_diverse_hits_keeps_a_short_single_document() -> None:
+    hits = [_passage("A", "一", "x")]
+    assert diverse_hits(hits) == hits

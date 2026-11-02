@@ -2,6 +2,11 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-02 — Reference blocks deduplicate per document
+
+- The standard, product and policy blocks now drop identical passages, cap one document at two passages and fill the remaining slot from the next document in rank order. A Hainan question shows POL-HN-059 twice at most plus POL-HN-058; the product block for Q-E08 shows MUR twice plus OLCI.
+- `lookup()` is unchanged, so the evaluation reference arm still reads the raw ranking: reference 4/4, jurisdiction 3/3, statistics 2/2, hybrid 10/11 and MRR 0.45 all hold.
+
 ## 2026-11-02 — Jurisdiction-aware ranking and answer assembly
 
 - The policy reference collection now carries a jurisdiction code per document, indexes document titles with a title boost, and stably puts a named province first; the main index and its vectors are untouched.

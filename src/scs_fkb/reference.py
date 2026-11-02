@@ -183,6 +183,29 @@ def lookup(
     return index.search(query, top_k=top_k)
 
 
+def diverse_hits(
+    hits: list[SearchHit],
+    per_doc: int = 2,
+    limit: int = 3,
+) -> list[SearchHit]:
+    """Drop duplicate passages and cap how many passages one document contributes."""
+    seen: set[tuple[str, str, str]] = set()
+    counts: dict[str, int] = {}
+    selected: list[SearchHit] = []
+    for hit in hits:
+        key = (hit.chunk.doc_id, hit.chunk.section, hit.chunk.text)
+        if key in seen:
+            continue
+        if counts.get(hit.chunk.doc_id, 0) >= per_doc:
+            continue
+        seen.add(key)
+        counts[hit.chunk.doc_id] = counts.get(hit.chunk.doc_id, 0) + 1
+        selected.append(hit)
+        if len(selected) >= limit:
+            break
+    return selected
+
+
 def lookup_term(term: str, top_k: int = 3, **kwargs) -> list[SearchHit]:
     """Alias of lookup for a single term."""
     return lookup(term, top_k=top_k, **kwargs)
