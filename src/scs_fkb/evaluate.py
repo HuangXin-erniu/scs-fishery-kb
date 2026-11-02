@@ -267,7 +267,8 @@ def evaluate(
             raise ValueError(
                 f"reference question is missing from the question table: {question_id}"
             )
-        hits = reference_lookup(row["question"], root=data_root)
+        collection = str(item.get("collection") or "cwp")
+        hits = reference_lookup(row["question"], root=data_root, collection=collection)
         expected = [str(doc) for doc in item["docs"]]
         reference_results.append(
             {

@@ -5,16 +5,17 @@
 > 目标值是最低门槛，不是对外承诺；未达标指标要通过误差分析解释，不得改指标掩盖。
 
 - Status: protocol defined; the question set is a draft and has not been reviewed by domain experts.
-- Baseline (2026-11-01, M2 comparison over twenty-nine public sources): four arms on the same instrument — BM25 8/11, BM25 plus lexicon 9/11, dense-only 8/11 and hybrid 10/11, each with abstention 5/6, two false refusals and 100% citation resolution; hybrid MRR 0.45 and P95 17 ms.
+- Baseline (2026-11-01, M2 comparison over twenty-nine public sources): four arms on the same instrument — BM25 8/11, BM25 plus lexicon 9/11, dense-only 8/11 and hybrid 10/11, each with abstention 3/4, two false refusals and 100% citation resolution; hybrid MRR 0.45 and P95 17 ms.
 
 | Arm | Recall@5 | MRR | Abstention | False refusals | P95 |
 |---|---|---|---|---|---|
-| BM25 | 8/11 | 0.37 | 5/6 | 2 | — |
-| BM25 + lexicon | 9/11 | 0.40 | 5/6 | 2 | — |
-| Dense (bge-small-zh) | 8/11 | 0.37 | 5/6 | 2 | 16 ms |
-| **Hybrid (adopted)** | **10/11** | **0.45** | **5/6** | **2** | **17 ms** |
+| BM25 | 8/11 | 0.37 | 3/4 | 2 | — |
+| BM25 + lexicon | 9/11 | 0.40 | 3/4 | 2 | — |
+| Dense (bge-small-zh) | 8/11 | 0.37 | 3/4 | 2 | 16 ms |
+| **Hybrid (adopted)** | **10/11** | **0.45** | **3/4** | **2** | **17 ms** |
 - Statistics channel (2026-11-01): the two statistical questions are scored separately. Q-E06 runs 南海区海洋捕捞产量历年趋势 and expects the sea-area production series; Q-M05 runs 2019年南海区拖网渔船数量 and expects vessel counts. Both return rows with edition and table citations (2/2). The channel also states the two gaps: production has no operation-type dimension and vessel counts have no sea-area dimension.
-- Reference channel (2026-11-01): the Chinese-to-English term bridge routes Q-E05 and Q-M04 to the CWP definition pages, and both return a passage (2/2). The channel is measured separately from the main ranked metrics, which do not change.
+- Reference collections (2026-11-02): four questions are scored outside the main index. Q-E05 and Q-M04 use the CWP definition collection; Q-E08 and Q-M09 use the product collection (MUR, OLCI and CMEMS documentation) and both return a passage from the expected documents (4/4). The collections are measured separately from the main ranked metrics, which do not change.
+- Abstention denominator: Q-E08 and Q-M09 moved from the abstention list to the product collection, so four out-of-scope tests remain (Q-E07, Q-E11, Q-M07, Q-M08) and three abstain; Q-E07 is still the known answered test. The percentage is therefore not comparable with earlier 5/6 figures.
 - Related: [evaluation questions](questions.md), [project plan](plan.md), [data policy](data-policy.md).
 
 ## 1. Purpose

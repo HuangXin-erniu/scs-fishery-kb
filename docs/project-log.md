@@ -2,6 +2,12 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-02 — Reference collections and corpus hash correction
+
+- Added the product (five English product documents) and policy (five Chinese governance documents) reference collections, reached through the terminology bridge; the main index, its dense vectors and its gate are untouched at twenty-nine documents, 703 chunks and index e4f8d55d7d49.
+- Q-E08 and Q-M09 moved from abstention tests to product-collection questions; the evaluation now reports reference 4/4, statistics 2/2, abstention 3/4 and the unchanged main hybrid 10/11 with MRR 0.45, two false refusals and 100% citation resolution.
+- Corrected four corpus hashes (POL-STAT-050, POL-STAT-051, POL-YJ-052, POL-VMS-053) that had recorded a concatenation of hex instead of the file hash; the e-certificate concatenated hash was re-verified and left as documented.
+
 ## 2026-11-02 — Current statistical-governance and monitoring documents
 
 - Currency check before acquiring: the 2021 fishery statistics survey system had expired, so `POL-STAT-051` registers the 2024 text (国统制〔2024〕120号, valid to June 2027); the 2010 work rules show no repeal; the 2024 monitoring letter exists but has no public full text, so `POL-YJ-052` is the 2017 circular with the caveat; the 2019 distant-water measures replaced the 2014 version and stay in force; the 2025 e-certificate standards are current.
