@@ -2,6 +2,13 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-02 — Enforcement rules and the in-force catalogue
+
+- Registered `POL-PEN-078` (中华人民共和国渔业港航监督行政处罚规定, 农业部令第34号, revised 2025-07-15 by 农业农村部令2025年第3号; 4,131 parsed characters) and `POL-LIST-079` (农业农村部公告第950号, 2025-09-24 catalogue of rules in force; 11,657 characters).
+- The catalogue is used as evidence, not inference: `POL-CREW-055` moves from unknown to in force with the announcement quoted, and `POL-STD-010` carries the same cross-check. The catalogue does not list the fishing-vessel inspection rules (they sit with the transport ministry), so that regulation is not registered.
+- Added enforcement cues (处罚, 罚款, 违法, 目录) and both documents to the policy collection (thirty-one documents); added both rows to the national currency table.
+- Register: 83 sources, 80 acquired; regulation 19, notice 16. Eval unchanged at the current baseline.
+
 ## 2026-11-02 — Watch cover for the new national pages and a currency table
 
 - Added six watch entries with live baselines: the administrative regulations page for the observation regulation, the gov.cn pages for the stocking and port regulations, the marine disaster reduction bulletin list, the forestry announcement page for the species list and the fishery administration port-list attachment.
