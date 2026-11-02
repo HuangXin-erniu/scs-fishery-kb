@@ -33,7 +33,7 @@ def test_corpus_structure() -> None:
         "data_dictionary",
         "plan",
     }
-    assert len(data["sources"]) == 79
+    assert len(data["sources"]) == 81
 
     acquired = []
     candidates = []
@@ -46,7 +46,7 @@ def test_corpus_structure() -> None:
         else:
             candidates.append(source)
 
-    assert len(acquired) == 76
+    assert len(acquired) == 78
     assert len(candidates) == 3
     yearbooks = [source for source in acquired if source["id"].startswith("STAT-YB-")]
     assert len(yearbooks) == 9
@@ -126,6 +126,8 @@ def test_corpus_structure() -> None:
         "STAT-DIS-074",
         "POL-RES-075",
         "STD-SPEC-076",
+        "POL-PORT-077",
+        "POL-PORT-078",
     }
     for source in documents:
         if source["id"] in {
@@ -253,8 +255,8 @@ def test_corpus_structure() -> None:
     assert type_counts == {
         "statistical_yearbook": 16,
         "law": 1,
-        "regulation": 17,
-        "notice": 14,
+        "regulation": 18,
+        "notice": 15,
         "standard": 18,
         "operations": 1,
         "fishery_product": 4,
@@ -639,6 +641,8 @@ def test_reference_collections_config() -> None:
         "POL-OBS-072",
         "STAT-ECO-073",
         "POL-RES-075",
+        "POL-PORT-077",
+        "POL-PORT-078",
     }
     for document in collections["policy"]["documents"]:
         assert document["level"] in {"national", "provincial", "municipal"}
@@ -690,6 +694,8 @@ def test_corrected_corpus_hashes() -> None:
         "STAT-DIS-074": "d280c286c9c048707a92112101e3ab0a295c9cde23815bbe8c90a63a4acfb671",
         "POL-RES-075": "90abf8647b254325125ed7f79bff16a4c573aab0a773fb166fb0dc79c3ec5971",
         "STD-SPEC-076": "8b45d11547577041e15c5837a3ff8f283d2dd2c2b87f83eb8026ad3feb8662c3",
+        "POL-PORT-077": "1ff9570272738ada371f4e412c3b47ef13eaf94c68481a31640421fda6fc1fd2",
+        "POL-PORT-078": "fe142d1a8f9885668b6d2fb47764c50123bc52c6d60ca53703263970aa3ab44a",
     }
     for source_id, digest in expected.items():
         assert sources[source_id]["hash"] == digest
@@ -758,6 +764,8 @@ def test_validity_blocks() -> None:
         "STAT-DIS-074",
         "POL-RES-075",
         "STD-SPEC-076",
+        "POL-PORT-077",
+        "POL-PORT-078",
     }
     for source_id in expected:
         block = sources[source_id]["validity"]
@@ -778,8 +786,8 @@ def test_registry_schema_v2() -> None:
     from scs_fkb.registry import load_registry
 
     registry = load_registry("configs/corpus.yaml")
-    assert len(registry) == 79
-    assert sum(1 for entry in registry.values() if entry["status"] == "acquired") == 76
+    assert len(registry) == 81
+    assert sum(1 for entry in registry.values() if entry["status"] == "acquired") == 78
     for entry in registry.values():
         assert entry["lifecycle"] in {"active", "retired"}
         if entry["lifecycle"] == "retired":
@@ -810,7 +818,7 @@ def test_environment_layer() -> None:
     assert sources["STAT-ECO-073"]["retrieval"]["parseable"] is True
     assert sources["STAT-DIS-074"]["retrieval"]["parseable"] is False
     collections = load_yaml("configs/reference-collections.yaml")["collections"]
-    assert len(collections["policy"]["documents"]) == 27
+    assert len(collections["policy"]["documents"]) == 29
     assert "海洋灾害" in collections["policy"]["cues"]
 
 
@@ -823,3 +831,13 @@ def test_species_layer() -> None:
     assert sources["STD-SPEC-076"]["validity"]["status"] == "in_force"
     cues = load_yaml("configs/reference-collections.yaml")["collections"]["policy"]["cues"]
     assert {"物种", "保护", "名录", "放流", "增殖", "种质"} <= set(cues)
+
+
+def test_port_layer() -> None:
+    data = load_yaml("configs/corpus.yaml")
+    sources = {source["id"]: source for source in data["sources"]}
+    for source_id in ("POL-PORT-077", "POL-PORT-078"):
+        assert sources[source_id]["retrieval"]["parseable"] is True
+        assert sources[source_id]["validity"]["status"] == "in_force"
+    cues = load_yaml("configs/reference-collections.yaml")["collections"]["policy"]["cues"]
+    assert {"渔港", "锚地", "避风", "泊位", "靠泊"} <= set(cues)

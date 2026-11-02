@@ -30,8 +30,8 @@ Every entry carries schema v2 fields: `level` (national, provincial, municipal o
 | `statistical_yearbook` | 统计年鉴 | 16 | Official annual statistics and indicator tables |
 | `operations` | 作业知识 | 1 | Fishing methods, gear, vessel operations, logbooks and permit conditions |
 | `law` | 法律 | 1 | National law adopted by the legislature |
-| `regulation` | 行政法规/规章/地方性法规 | 17 | Administrative regulations, departmental rules and local regulations |
-| `notice` | 通告/公告 | 14 | Official notices, announcements and seasonal measures |
+| `regulation` | 行政法规/规章/地方性法规 | 18 | Administrative regulations, departmental rules and local regulations |
+| `notice` | 通告/公告 | 15 | Official notices, announcements and seasonal measures |
 | `standard` | 标准/规范 | 18 | National, industry or provincial standards and operational norms |
 | `fishery_product` | 渔情/海况产品说明 | 4 | Product descriptions, fishery bulletins and historical records |
 | `data_dictionary` | 数据字典 | 7 | Field definitions, indicator definitions, metadata and quality rules |
@@ -266,6 +266,15 @@ Rejected after checking: the 2026 marine disaster emergency plan (自然资办�
 
 Two limits are recorded rather than hidden. The ASFIS species list (`STD-ASFIS-044`) is a zip of an xlsx and a csv; the parser does not read archives, so it stays a registered lookup rather than an indexed source. The germplasm-reserve download from the Chinese Academy of Fishery Sciences returned the 2013 fishery eco-environment bulletin instead of the reserve list; that bulletin is superseded and is not registered.
 
+## 5o. Ports, anchorages and operations
+
+| Source | Level | Current | Retrieval | What it provides |
+|---|---|---|---|---|
+| `POL-PORT-077` | national regulation | in force (2019-03-02 amendment) | collection | The fishing-port traffic safety regulation: navigation, berthing, safety and supervision in port waters |
+| `POL-PORT-078` | national announcement | current 2025 first batch | collection | The 2025 port-grade recognition list: twelve central ports and the first-class ports |
+
+Shelter anchorages stay uncovered: no national public list was found, only foreign regulations and provincial documents that reference lists without publishing them. The twelve operation types are already covered by `POL-STD-010` and the gear standards, so no duplicate source was registered for them.
+
 ## 6. Candidate sources
 
 | ID | Type | Title | Priority | Disposition |
@@ -281,8 +290,8 @@ The four environment and fishery-product candidates were removed on owner instru
 | Metric | Value |
 |---|---:|
 | Corpus types | 9 |
-| Registered sources | 79 |
-| Acquired sources | 76 |
+| Registered sources | 81 |
+| Acquired sources | 78 |
 | Remaining candidates | 3 |
 | Yearbook editions | 9 |
 | Yearbook data years | 2017–2025 |
