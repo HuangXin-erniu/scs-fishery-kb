@@ -2,6 +2,13 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-02 — Fishery-economy bulletins removed; capture-only statistics
+
+- Deleted STAT-BULL-025 and STAT-BULL-028 to STAT-BULL-032 from the register, the pipeline and the data root: they report total output including culture, and the owner asked for statistics that carry a capture series only.
+- Kept the nine fishery yearbooks, the China Statistical Yearbook 2026 and the two indicator definitions; the statistics section still scores 2/2.
+- Rebuilt at 31 documents and 846 chunks (index 2ad41cc64de3, dense dd318a16c295a32f). Hybrid holds 10/11 with MRR 0.44; abstention 3/4 with three false refusals (one more than before), published as measured because this is a scope decision.
+- Register: 78 sources, 75 acquired; statistical_yearbook 10.
+
 ## 2026-11-02 — Full scope audit and boundary guard
 
 - Scanned every active entry's title and notes for aquaculture, breeding, ranching, processing, freshwater and inland terms; no further pure out-of-scope entry remains.

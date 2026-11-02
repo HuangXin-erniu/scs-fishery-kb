@@ -32,12 +32,6 @@ documents:
   - POL-SPEC-041
   - POL-STD-010
   - POL-WATCH-082
-  - STAT-BULL-025
-  - STAT-BULL-028
-  - STAT-BULL-029
-  - STAT-BULL-030
-  - STAT-BULL-031
-  - STAT-BULL-032
 chunking:
   max_fallback_chars: 800
 retrieval:

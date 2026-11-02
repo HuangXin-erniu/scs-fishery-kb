@@ -1,6 +1,6 @@
 # Corpus Inventory
 
-- Status: data preparation and corpus discovery. Nine yearbook editions, six national bulletins, the China Statistical Yearbook 2026 and twenty-six legal and technical documents are acquired, including two international reference sources; three candidates remain (all deferred). The local core CSV has 3,126 rows and stays outside the public tree. No parsing or indexing in this phase.
+- Status: data preparation and corpus discovery. Nine yearbook editions, the China Statistical Yearbook 2026 and the legal and technical corpus are acquired, including two international reference sources; three candidates remain (all deferred). The local core CSV has 3,126 rows and stays outside the public tree. No parsing or indexing in this phase.
 - Register: [configs/corpus.yaml](../configs/corpus.yaml)
 - Indicator schema: [configs/statistics.yaml](../configs/statistics.yaml)
 - Date: 2026-11-01
@@ -27,7 +27,7 @@ Every entry carries schema v2 fields: `level` (national, provincial, municipal o
 
 | Type | Name (zh) | Sources | Description |
 |---|---|---:|---|
-| `statistical_yearbook` | 统计年鉴 | 16 | Official annual statistics and indicator tables |
+| `statistical_yearbook` | 统计年鉴 | 10 | Official annual statistics and indicator tables |
 | `operations` | 作业知识 | 2 | Fishing methods, gear, vessel operations, logbooks and permit conditions |
 | `law` | 法律 | 1 | National law adopted by the legislature |
 | `regulation` | 行政法规/规章/地方性法规 | 20 | Administrative regulations, departmental rules and local regulations |
@@ -55,7 +55,7 @@ The first eight editions are owner-confirmed official/authorized Excel editions;
 
 The 2026 edition is a 166-page scan with no text layer. Its contents were mapped to a table list covering seven parts and the appendices, and six tables were transcribed for the national total plus Guangdong, Guangxi and Hainan (140 non-empty cells): output, capture by sea area, capture by gear, capture vessels by operation type, fishing ports and fishery population. Values stay in the local run root. The remaining tables, including the species breakdown, are not extracted yet. OCR or manual entry is the prerequisite. The 2022 bundle contained a byte-identical duplicate of table 3-10; the duplicate was removed on 2026-10-31 and that edition's manifest regenerated, so its hash is the SHA-256 of the regenerated manifest. The 2024 edition is encrypted with the Excel default password; the originals are unchanged in `raw/STAT-YB-2024/`, and decrypted working copies are kept outside the public tree. The 2019, 2020 and 2024 editions use the older `.xls` layout.
 
-The bulletin series `STAT-BULL-025` and `STAT-BULL-028`–`STAT-BULL-032` covers data years 2020–2025 (published 2021–2026). Each bulletin reports national totals only — no provincial or South China Sea breakdown — so the series extends the record in time but does not replace the yearbook editions. Values stay local.
+The six national fishery-economy bulletins were removed on 2026-11-02: they report total output including culture, and the corpus keeps only statistics that carry a capture series. The capture record now comes from the nine yearbook editions and the China Statistical Yearbook chapter 12.
 
 `STAT-CSY-027` is the China Statistical Yearbook 2026 Excel set (1,318 files, Chinese and English editions, internal). Its chapter 12 covers agriculture; table 12-15 gives a national aquatic-production series and provincial 2025 totals with marine capture and aquaculture splits. The Excel set does not include the printed indicator explanations, so it is not a definition source.
 
@@ -286,7 +286,7 @@ The catalogue is the evidence rather than an inference: it lists the fisheries c
 
 ## 5q. National validity sweep
 
-The in-force catalogue proves only the entries it names. Seventeen data publications now carry `not_applicable` instead of `unknown`, because an edition or a dictionary is not a normative act: `STAT-BULL-025`, `STAT-BULL-028` to `STAT-BULL-032`, `STAT-CSY-027`, `STAT-YB-2018` to `STAT-YB-2026` and `DICT-STAT-013`.
+The in-force catalogue proves only the entries it names. Eleven data publications now carry `not_applicable` instead of `unknown`, because an edition or a dictionary is not a normative act: `STAT-CSY-027`, `STAT-YB-2018` to `STAT-YB-2026` and `DICT-STAT-013`.
 
 All eleven provincial entries now carry evidence-based `in_force` status: the Hainan regulation quotes its own commencement clause, the Fujian notice page marks 有效性: 有效, the Hainan and Guangxi notices are the 2026 season implementations, the Fujian catalogs are that notice's attachments, and the Guangdong and Hainan catalogs are the latest batches found with no successor.
 
@@ -329,7 +329,6 @@ Every active entry was scanned on its title and notes for 养殖, 繁育, 海洋
 |---|---|
 | `POL-RULE-020` 渔业资源增殖保护费征收使用办法 | Charges capture, not farming; a resource-management instrument |
 | `POL-RES-075` 水生生物增殖放流管理规定 | Governs releases that restore capture stocks; a fishery-resource instrument |
-| `STAT-BULL-025` and `STAT-BULL-028` to `STAT-BULL-032` | Official national fishery-economy bulletins: they report capture alongside culture totals and are the statistical context for the capture series |
 | `DICT-STAT-013`, `DICT-STAT-040` | Indicator definitions needed to read the statistics; they define capture and culture output separately |
 | `STAT-CSY-027` | The statistical yearbook chapter used by the statistics channel |
 | `STD-SPEC-076` | National protected-species list, kept as provenance for bycatch and protection reference; image-only |
@@ -352,8 +351,8 @@ The four environment and fishery-product candidates were removed on owner instru
 | Metric | Value |
 |---|---:|
 | Corpus types | 9 |
-| Registered sources | 84 |
-| Acquired sources | 81 |
+| Registered sources | 78 |
+| Acquired sources | 75 |
 | Remaining candidates | 3 |
 | Yearbook editions | 9 |
 | Yearbook data years | 2017–2025 |
