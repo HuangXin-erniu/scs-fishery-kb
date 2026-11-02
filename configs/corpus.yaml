@@ -584,6 +584,96 @@ sources:
   hash: d52e962890fa131f8eecfd2f6b958919ddbdcb46e5076f0f845f5657d0a82f07
   acquisition: 'Downloaded 2026-11-02 from https://documentation.marine.copernicus.eu/PUM/CMEMS-GLO-PUM-001-030.pdf (HTTP 200; 792,021 bytes; Issue 1.7, November 2025).'
   notes: 'Documents the 1/12° global physics reanalysis used as the background layer (uo/vo/zos) in the remote environment stack: product resolution, variables, quality information and the attribution the Copernicus Marine Service licence requires.'
+- id: POL-STAT-050
+  title: 渔业统计工作规定
+  title_zh: 渔业统计工作规定
+  publisher: 农业农村部（原农业部）
+  year: 2010
+  type: regulation
+  jurisdiction: national
+  format: html
+  location: raw/POL-STAT-050/fishery-statistics-work-rules-2010.html
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P1
+  volume: 1 HTML page; 3,037 characters; 农渔发〔2010〕5号
+  update_freq: irregular
+  hash: c99bb8af388421c43a4e65444d590331134f1d3399a3b0fefb06d05cc531d354
+  acquisition: 'Fetched 2026-11-02 from https://www.moa.gov.cn/govpublic/YYJ/201006/t20100606_1538703.htm (HTTP 200; 20,915 bytes; issued 2010-02-10, published 2010-03-01).'
+  notes: 'Current: no repeal or replacement found as of 2026-11-02. Defines the statistical duties, data submission and quality responsibilities that sit behind the yearbook, so it supports Q-M03, Q-E06 and Q-M05. Read together with the 2024 survey system (POL-STAT-051), which replaces the 2021 approval.'
+- id: POL-STAT-051
+  title: 渔业统计调查制度（2024 年批准）
+  title_zh: 渔业统计调查制度（2024 年批准）
+  publisher: 国家统计局（批准）／农业农村部（实施）
+  year: 2024
+  type: regulation
+  jurisdiction: national
+  format: html
+  location: raw/POL-STAT-051/fishery-statistics-survey-system-2024.html
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P1
+  volume: 1 HTML page; 3,535 characters; 国统制〔2024〕120号, valid to June 2027
+  update_freq: every 3 years
+  hash: 2de02668e5c3c3708feba8aa780b687df4b22414e8c81e7403a9a0450f2a3817
+  acquisition: 'Fetched 2026-11-02 from https://www.stats.gov.cn/fw/bmdcxmsp/bmzd/202407/t20240719_1955798.html (HTTP 200; 82,024 bytes; published 2024-07-19).'
+  notes: 'Current version: the 2021 approval 国统制〔2021〕15号 expired in February 2024 and this 2024 text carries 国统制〔2024〕120号 with validity to June 2027, so the older page is not registered. States the survey purpose, scope, indicators, reporting levels and publication rules, which is the statistical-process layer for Q-M03 and Q-M05.'
+- id: POL-YJ-052
+  title: 2017 年度渔情监测统计工作情况的通报
+  title_zh: 2017 年度渔情监测统计工作情况的通报
+  publisher: 农业农村部办公厅
+  year: 2018
+  type: notice
+  jurisdiction: national
+  format: html
+  location: raw/POL-YJ-052/fishery-monitoring-circular-2017.html
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P2
+  volume: 1 HTML page; 4,869 characters; 农办渔〔2018〕30号
+  update_freq: annual
+  hash: 98809b56b1117465b25dddda19002dcdd32f9a47d82556fc3c68b82867f018fd
+  acquisition: 'Fetched 2026-11-02 from http://www.moa.gov.cn/govpublic/YYJ/201804/t20180410_6139884.htm (HTTP 200; 48,696 bytes; issued 2018-04-08).'
+  notes: 'Latest publicly posted full text of the annual monitoring circular as of 2026-11-02. It names the agencies, the annual cadence and the reporting format of fishery monitoring work, which supports Q-M07 and part of Q-E11. The 2024 letter 农渔科函〔2025〕87号 exists in provincial news but its full text is not published, so the register records this caveat instead of claiming currency.'
+- id: POL-VMS-053
+  title: 远洋渔船船位监测管理办法（2019 年修订）
+  title_zh: 远洋渔船船位监测管理办法（2019 年修订）
+  publisher: 农业农村部
+  year: 2019
+  type: regulation
+  jurisdiction: national
+  format: html
+  location: raw/POL-VMS-053/distant-water-vessel-monitoring-measures-2019.html
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P2
+  volume: 1 HTML page; 4,380 characters; State Council Gazette 2019 No. 33
+  update_freq: irregular
+  hash: e31076804d6c25cec312c0a5d73ef9c59c469ed5ae8782e953f62ac22eaa7f68
+  acquisition: 'Fetched 2026-11-02 from https://www.gov.cn/gongbao/content/2019/content_5456825.htm (HTTP 200; 40,858 bytes).'
+  notes: 'Current revision, which repealed the 2014 measures (农办渔〔2014〕58号). It covers distant-water vessel position reporting frequency and equipment duties, not near-shore VMS field definitions, so Q-M02 and Q-M06 remain uncovered; registered as the only publicly available position-monitoring regulation.'
+- id: STD-ECERT-054
+  title: 渔业船网工具指标批准书、所有权登记证书和国籍证书电子证照标准
+  title_zh: 渔业船网工具指标批准书、所有权登记证书和国籍证书电子证照标准
+  publisher: 农业农村部办公厅
+  year: 2025
+  type: standard
+  jurisdiction: national
+  format: html+pdf
+  location: raw/STD-ECERT-054/
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P2
+  volume: 1 HTML notice and 3 PDF standards; 61 pages total (19 + 20 + 22); C 0402—2024, C 0403—2024 and C 0374—2024
+  update_freq: irregular
+  hash: 20e88e80806ee9c28034934863fade7a3a20d3a40495bfbdef06f689d659b71e
+  acquisition: 'Fetched 2026-11-02 from https://www.moa.gov.cn/nybgb/2025/202504/202504/t20250414_6473120.htm and its three PDF attachments (P020250414364144659756.pdf 773,210 bytes; P020250414364145111024.pdf 848,453 bytes; P020250414364145506713.pdf 955,461 bytes; total 2,630,218 bytes). The hash is sha256 over the concatenated per-file sha256 hex values in filename order; per-file hashes: cf189330… (notice), a0436e98…, 51d70fcc…, 8ca70496… .'
+  notes: 'Current 2025 standards for the electronic certificates of fishing-vessel quota approval, ownership registration and nationality. They define certificate metadata and field mappings, which supports the metadata side of Q-M11 and part of the vessel-record questions, but they are certificate schemas rather than data-sharing licence rules.'
 - id: STD-CWP-043
   title: CWP Handbook of Fishery Statistics - capture statistics concepts
   title_zh: CWP 渔业统计手册——捕捞统计概念（渔获、上岸、捕捞努力量、渔具分类）
@@ -964,7 +1054,7 @@ sources:
   acquisition: Owner-supplied scan received 2026-11-01 (KONICA MINOLTA bizhub C226, created 2026-08-02). The file has no text layer.
   notes: Data year 2025; image-only scan (0 extractable characters). No table has been extracted, so the 2025 data year is registered but not yet in the coverage matrix. OCR or manual entry is required before it enters the core CSV. Public metadata only; no values.
 gaps:
-- Fifty sources are registered: forty-seven acquired and three candidates awaiting disposition.
+- Fifty-five sources are registered: fifty-two acquired and three candidates awaiting disposition.
 - The yearbook coverage matrix has no values in the public repository; all values stay local.
 - The yearbook infrastructure table is missing for data years 2018 and 2019; the 2018 national port plan supplies a baseline whose port classes are close to, but not identical with, the yearbook table.
 - The vessel-length proxy is missing for data year 2024.

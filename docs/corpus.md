@@ -26,9 +26,9 @@ It does **not** include raw environmental grids, reanalysis data, forecast raste
 | `statistical_yearbook` | 统计年鉴 | 16 | Official annual statistics and indicator tables |
 | `operations` | 作业知识 | 1 | Fishing methods, gear, vessel operations, logbooks and permit conditions |
 | `law` | 法律 | 1 | National law adopted by the legislature |
-| `regulation` | 行政法规/规章/地方性法规 | 10 | Administrative regulations, departmental rules and local regulations |
-| `notice` | 通告/公告 | 4 | Official notices, announcements and seasonal measures |
-| `standard` | 标准/规范 | 6 | National, industry or provincial standards and operational norms |
+| `regulation` | 行政法规/规章/地方性法规 | 13 | Administrative regulations, departmental rules and local regulations |
+| `notice` | 通告/公告 | 5 | Official notices, announcements and seasonal measures |
+| `standard` | 标准/规范 | 7 | National, industry or provincial standards and operational norms |
 | `fishery_product` | 渔情/海况产品说明 | 3 | Product descriptions, fishery bulletins and historical records |
 | `data_dictionary` | 数据字典 | 8 | Field definitions, indicator definitions, metadata and quality rules |
 | `plan` | 规划/方案 | 1 | Official plans, programmes and construction layouts |
@@ -116,6 +116,18 @@ The two agree on the concept and differ in scope: the national note sets the hea
 
 Both carry the FAO open-access licence CC BY-NC-SA 3.0 IGO, so they stay local and nothing is copied into this repository. A project-authored terminology bridge in [configs/glossary-bridge.yaml](../configs/glossary-bridge.yaml) maps five Chinese statistical terms to the CWP concepts and feeds a reference channel, so a Chinese definition question can reach these English pages without joining the main index. They are the international counterpart of definitions the domestic yearbooks leave implicit: `DICT-STAT-013` and `DICT-STAT-040` define production, while landed weight and fishing effort only have the CWP definitions. A Chinese official definition is still missing, and the English pages cannot be reached by the Chinese question set until a bilingual term layer exists. Per-page hashes live in [configs/cwp-handbook.yaml](../configs/cwp-handbook.yaml). Five product and method documents for the remote data stack joined the register on 2026-11-02: the MUR SST product page (CC BY 4.0), the EUMETSAT OLCI marine handbook, the GFW effort-versus-events FAQ, the GFW Events API documentation (Apache 2.0) and the CMEMS product user manual. They fill the previously empty `fishery_product` type and explain the data the remote forecasting work actually uses; they are registered but not indexed yet, and turning Q-E08 and Q-M09 into answerable questions is a separate task.
 
+## 5d. Statistical governance and monitoring
+
+| Source | Publisher | Status on 2026-11-02 | What it provides |
+|---|---|---|---|
+| `POL-STAT-050` | 农业农村部（原农业部） | Current; no repeal found (农渔发〔2010〕5号) | Duties, submission and quality rules for fishery statistics: the process behind the yearbook |
+| `POL-STAT-051` | 国家统计局 / 农业农村部 | Current; 国统制〔2024〕120号, valid to June 2027 | The 2024 fishery statistics survey system, replacing the 2021 approval that expired in February 2024 |
+| `POL-YJ-052` | 农业农村部办公厅 | Latest publicly posted full text (农办渔〔2018〕30号) | Agencies, annual cadence and format of fishery monitoring work |
+| `POL-VMS-053` | 农业农村部 | Current; repealed the 2014 measures | Distant-water vessel position monitoring duties, not near-shore VMS fields |
+| `STD-ECERT-054` | 农业农村部办公厅 | Current (2025) | Electronic certificate standards C 0402—2024, C 0403—2024 and C 0374—2024 for quota approval, ownership registration and nationality |
+
+The currency check changed two candidates. The 2021 survey system has expired, so `POL-STAT-051` registers the 2024 text with its new approval number. The 2024 monitoring letter (农渔科函〔2025〕87号) is referenced by provincial news but its full text is not published, so `POL-YJ-052` is the latest public full text and says so. SC/T 9403-2025 turned out to be already held inside the SC/T series (`STD-SC-042`, 37 pages), so it was not registered twice. Near-shore VMS definitions and a data-sharing metadata rule remain uncovered, and Q-M02, Q-M06 and Q-M11 stay out of reach.
+
 ## 6. Candidate sources
 
 | ID | Type | Title | Priority | Disposition |
@@ -131,8 +143,8 @@ The four environment and fishery-product candidates were removed on owner instru
 | Metric | Value |
 |---|---:|
 | Corpus types | 9 |
-| Registered sources | 50 |
-| Acquired sources | 47 |
+| Registered sources | 55 |
+| Acquired sources | 52 |
 | Remaining candidates | 3 |
 | Yearbook editions | 9 |
 | Yearbook data years | 2017–2025 |
