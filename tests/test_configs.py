@@ -759,3 +759,13 @@ def test_national_eval_section() -> None:
     assert [item["id"] for item in entries] == ["J4", "J5"]
     assert entries[0]["docs"] == ["POL-ENF-068"]
     assert entries[1]["docs"] == ["STD-YY-071"]
+
+
+def test_registry_schema_v2() -> None:
+    from scs_fkb.registry import load_registry
+
+    registry = load_registry("configs/corpus.yaml")
+    assert len(registry) == 75
+    assert sum(1 for entry in registry.values() if entry["status"] == "acquired") == 72
+    for entry in registry.values():
+        assert entry["lifecycle"] == "active"

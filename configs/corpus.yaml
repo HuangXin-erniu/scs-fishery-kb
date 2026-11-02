@@ -79,6 +79,18 @@ sources:
   hash: null
   acquisition: Obtain field definitions and voyage definitions from the data owner or a project partner.
   notes: Field and voyage definitions only; no full AIS/VMS tracks.
+  level: national
+  authority_tier: B
+  retrieval:
+    channel: none
+    parseable: true
+    note: Not routed to a retrieval channel.
+  lifecycle: active
+  validity:
+    status: unknown
+    as_of: '2026-11-02'
+    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+
 - id: VMS-SAMPLE-004
   title: Desensitised voyage sample description (candidate)
   title_zh: 脱敏航次样本与字段说明（候选）
@@ -98,6 +110,18 @@ sources:
   hash: null
   acquisition: Request a small sample after the licence and desensitisation plan are approved.
   notes: Review licence and compliance before use; never commit the sample or send it to an external API.
+  level: national
+  authority_tier: B
+  retrieval:
+    channel: none
+    parseable: true
+    note: Not routed to a retrieval channel.
+  lifecycle: active
+  validity:
+    status: unknown
+    as_of: '2026-11-02'
+    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+
 - id: POL-LAW-009
   title: 中华人民共和国渔业法（2025年修订）
   title_zh: 中华人民共和国渔业法（2025年修订）
@@ -116,6 +140,13 @@ sources:
   hash: cdeaaf75a9992bc98642fbe6c004f790506549a4afaf223e3bf2b7b5eb365fa4
   acquisition: 'Owner-supplied DOCX received 2026-10-31, carrying the text of the official 人民日报 2026-02-25 publication (主席令第六十三号, 新华社 release).'
   notes: 'Adopted 2025-12-27, effective 2026-05-01. Verified seven chapters and 90 articles in order; the article openings were cross-checked against the electronic edition before the duplicate People''s Daily copies were removed on 2026-10-31. The registered DOCX is the single retained text.'
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: main
+    parseable: true
+    note: Registered in the main index.
+  lifecycle: active
   validity:
     status: in_force
     as_of: '2026-11-02'
@@ -139,6 +170,13 @@ sources:
   hash: 35e2069db4de910494c1e6e07c435c4aca91c846e912acba2d6178776b981910
   acquisition: 'Fetched 2026-10-31 from gov.cn: https://www.gov.cn/zhengce/2022-01/07/content_5721373.htm (农业农村部令2022年第1号; effective 2022-01-07).'
   notes: Current revision. The header states 2022-01-07 while Article 59 retains 2019-01-01; cite the header version and flag the discrepancy in answers. The HTML uses malformed or unclosed paragraph tags, so ingestion must extract the main content robustly. The official ministry PDF edition of the same text (29 pages, raw/POL-STD-010/fishing-permit-regulation-2022-moa.pdf, sha256 a9028d6a10aef6e765de680bc8b4b6aba0e96182b8301f073e3ff6a34e92f597) is retained as a format copy, not as a separate source; its articles 50-53 carry the logbook obligation.
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: main
+    parseable: true
+    note: Registered in the main index.
+  lifecycle: active
   validity:
     status: in_force
     as_of: '2026-11-02'
@@ -162,6 +200,13 @@ sources:
   hash: 15660ed713803ff440da583e1d5a219ab5e488c2237f3bb33cd30e7115174bdc
   acquisition: 'Fetched 2026-10-31 from moa.gov.cn: https://www.moa.gov.cn/govpublic/YYJ/202303/t20230314_6422986.htm (effective 2023-04-15; replaces the 2021 notice).'
   notes: Current closure system; no newer adjustment notice found on moa.gov.cn as of 2026-10-31. Covers the South China Sea north of 12°N; the 26°30′N–12°N closure runs from 1 May 12:00 to 16 August 12:00. Annual enforcement notices are separate.
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: main
+    parseable: true
+    note: Registered in the main index.
+  lifecycle: active
   validity:
     status: in_force
     as_of: '2026-11-02'
@@ -185,6 +230,13 @@ sources:
   hash: 90d7e013d92361ec219a59b51ef255c70a08d5654f9a0351fd633c865028bf77
   acquisition: 'Owner-supplied DOCX received 2026-10-31; text of the 2020-11-29 second revision.'
   notes: 'Approved 1987-10-14 and published 1987-10-20 by 农牧渔业部; revised 2020-03-27 and 2020-11-29. 42 articles; implements the Fisheries Law.'
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: main
+    parseable: true
+    note: Registered in the main index.
+  lifecycle: active
   validity:
     status: in_force
     as_of: '2026-11-02'
@@ -208,6 +260,18 @@ sources:
   hash: 413acf724b599a83bc61480168bc5b3452fad0ad0bcff65cb94e17b05ce69165
   acquisition: 'Owner-supplied DOCX received 2026-10-31; consolidated text of the 2003 regulation.'
   notes: '国务院令第383号; adopted 2003-06-11, effective 2003-08-01. 40 articles.'
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: main
+    parseable: true
+    note: Registered in the main index.
+  lifecycle: active
+  validity:
+    status: in_force
+    as_of: '2026-11-02'
+    note: Source note records 国务院令第383号; adopted 2003-06-11, effective 2003-08-01. 40 articles.
+
 - id: POL-RULE-020
   title: 渔业资源增殖保护费征收使用办法
   title_zh: 渔业资源增殖保护费征收使用办法
@@ -226,6 +290,18 @@ sources:
   hash: abedb250e0982b34bd66b0d00bccdfdc92c750d5f04d2f2919db858dfe4e8302
   acquisition: 'Owner-supplied DOCX received 2026-10-31; text of the 2011-01-08 revision.'
   notes: 'Approved 1988-10-09, issued 1988-10-31 as 农业部、财政部、国家物价局令第1号; revised 2011-01-08; effective 1989-01-01. 18 articles.'
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: main
+    parseable: true
+    note: Registered in the main index.
+  lifecycle: active
+  validity:
+    status: in_force
+    as_of: '2026-11-02'
+    note: Source note records Approved 1988-10-09, issued 1988-10-31 as 农业部、财政部、国家物价局令第1号; revised 2011-01-08; effective 1989-01-01. 18 articles.
+
 - id: POL-GD-021
   title: 广东省渔业管理条例
   title_zh: 广东省渔业管理条例
@@ -244,6 +320,18 @@ sources:
   hash: 7cd26c0c5fb8db0b515ed79da1a5968b863e08d1a31615ad504043100e6b998b
   acquisition: 'Owner-supplied DOCX received 2026-10-31; consolidated text of the 2019-09-25 third amendment.'
   notes: 'Adopted 2003-07-25; amended 2012-07-26, 2015-12-30 and 2019-09-25; effective 2003-09-01. 47 articles.'
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: main
+    parseable: true
+    note: Registered in the main index.
+  lifecycle: active
+  validity:
+    status: in_force
+    as_of: '2026-11-02'
+    note: Source note records Adopted 2003-07-25; amended 2012-07-26, 2015-12-30 and 2019-09-25; effective 2003-09-01. 47 articles.
+
 - id: POL-GD-022
   title: 广东省渔港和渔业船舶管理条例
   title_zh: 广东省渔港和渔业船舶管理条例
@@ -262,6 +350,18 @@ sources:
   hash: 6ce9089d55e911f00647639bc024e216fbd830c48c862c05342e142d01f17a2b
   acquisition: 'Owner-supplied DOCX received 2026-10-31; consolidated text of the 2020-09-29 second amendment.'
   notes: 'Adopted 2011-09-29; amended 2019-01-16 and 2020-09-29; effective 2011-12-01. 44 articles.'
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: main
+    parseable: true
+    note: Registered in the main index.
+  lifecycle: active
+  validity:
+    status: in_force
+    as_of: '2026-11-02'
+    note: Source note records Adopted 2011-09-29; amended 2019-01-16 and 2020-09-29; effective 2011-12-01. 44 articles.
+
 - id: POL-GX-023
   title: 广西壮族自治区实施《中华人民共和国渔业法》办法
   title_zh: 广西壮族自治区实施《中华人民共和国渔业法》办法
@@ -280,6 +380,18 @@ sources:
   hash: 3f85441ad37f266b6d2675fda1d012a34e0d49f6a30501895bde093ad7505de9
   acquisition: 'Owner-supplied DOCX received 2026-10-31; consolidated text of the 2016-03-31 second amendment.'
   notes: 'Adopted 1989-09-16; amended 2004-06-03; revised 2010-03-31; amended again 2016-03-31; effective 2010-05-01. 48 articles.'
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: main
+    parseable: true
+    note: Registered in the main index.
+  lifecycle: active
+  validity:
+    status: in_force
+    as_of: '2026-11-02'
+    note: Source note records Adopted 1989-09-16; amended 2004-06-03; revised 2010-03-31; amended again 2016-03-31; effective 2010-05-01. 48 articles.
+
 - id: POL-GX-024
   title: 广西壮族自治区渔港渔业船舶管理条例
   title_zh: 广西壮族自治区渔港渔业船舶管理条例
@@ -298,6 +410,18 @@ sources:
   hash: 9a6239830a762cc79d45c5edd0c82622b8ad414fba877ab542bc232b635b4b31
   acquisition: 'Owner-supplied DOCX received 2026-10-31; consolidated text of the 2024-11-28 third amendment.'
   notes: 'Adopted 2001-09-28; amended 2004-07-31, 2010-09-29 and 2024-11-28; effective 2002-01-01. 37 articles.'
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: main
+    parseable: true
+    note: Registered in the main index.
+  lifecycle: active
+  validity:
+    status: in_force
+    as_of: '2026-11-02'
+    note: Source note records Adopted 2001-09-28; amended 2004-07-31, 2010-09-29 and 2024-11-28; effective 2002-01-01. 37 articles.
+
 - id: POL-FJ-025
   title: 福建省实施《中华人民共和国渔业法》办法
   title_zh: 福建省实施《中华人民共和国渔业法》办法
@@ -316,6 +440,18 @@ sources:
   hash: 2bc7fc1382737d874bf5a5a252fa6f17bd2c038affcb95654cdcf4547127b92d
   acquisition: 'Owner-supplied DOCX received 2026-10-31; consolidated text of the 2019-11-27 amendment.'
   notes: 'Adopted 1989-03-10; amended 1993-03-07, 1997-10-25 and 2002-03-28; revised 2007-03-28; amended 2012-03-29, 2016-04-01 and 2019-11-27; effective 2007-05-01. Five chapters, 61 articles.'
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: main
+    parseable: true
+    note: Registered in the main index.
+  lifecycle: active
+  validity:
+    status: in_force
+    as_of: '2026-11-02'
+    note: Source note records Adopted 1989-03-10; amended 1993-03-07, 1997-10-25 and 2002-03-28; revised 2007-03-28; amended 2012-03-29, 2016-04-01 and 2019-11-27; effective 2007-05-01. Five chapters, 61 articles.
+
 - id: POL-FJ-026
   title: 福建省渔港和渔业船舶管理条例
   title_zh: 福建省渔港和渔业船舶管理条例
@@ -334,6 +470,18 @@ sources:
   hash: 3052385ad2009f7e0bf811b789acf12594e502ba08fa1f526c54e8e0db68daf6
   acquisition: 'Owner-supplied DOCX received 2026-10-31; consolidated text of the 2010-09-30 amendment.'
   notes: 'Adopted 2004-06-02; amended 2010-09-30; effective 2004-09-01. Seven chapters, 46 articles. Covers the fishing-port definition, port planning and the fishing-vessel register.'
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: main
+    parseable: true
+    note: Registered in the main index.
+  lifecycle: active
+  validity:
+    status: in_force
+    as_of: '2026-11-02'
+    note: Source note records Adopted 2004-06-02; amended 2010-09-30; effective 2004-09-01. Seven chapters, 46 articles. Covers the fishing-port definition, port planning and the fishing-vessel register.
+
 - id: POL-GEAR-016
   title: 农业部关于实施海洋捕捞准用渔具和过渡渔具最小网目尺寸制度的通告
   title_zh: 农业部关于实施海洋捕捞准用渔具和过渡渔具最小网目尺寸制度的通告
@@ -352,6 +500,18 @@ sources:
   hash: 94fa54b1133ec4c9e87b7c29d1ce212747bef8b4762282d5fffce659a6fc2794
   acquisition: 'Owner-supplied capture of the ministry page https://yyj.moa.gov.cn/tzgg/201404/t20140402_6300664.htm (page dated 2014-04-02; notice issued 2013-11-29).'
   notes: 'Establishes the minimum-mesh system for permitted and transitional marine capture gear, in force from 2014-06-01 across the Huanghai-Bohai, East China and South China Sea areas; repeals the 2003 notice. Annexes 1, 2 and 3 are registered as POL-GEAR-033, POL-GEAR-034 and OPS-FORM-036. Mesh is measured under GB/T 6964-2010 with a flat wedge gauge. Provincial authorities may set stricter sizes and special permits for designated species.'
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: main
+    parseable: true
+    note: Registered in the main index.
+  lifecycle: active
+  validity:
+    status: in_force
+    as_of: '2026-11-02'
+    note: Source note records Establishes the minimum-mesh system for permitted and transitional marine capture gear, in force from 2014-06-01 across the Huanghai-Bohai, East China and South China Sea areas; repeals the 2003 notice. Annexes 1, 2 a...
+
 - id: POL-SPEC-041
   title: 农业农村部关于2026年伏季休渔期间专项捕捞许可和捕捞辅助船配套服务安排的通告
   title_zh: 农业农村部关于2026年伏季休渔期间专项捕捞许可和捕捞辅助船配套服务安排的通告
@@ -370,6 +530,13 @@ sources:
   hash: b383ea35974fe85acea89f95c7c8c263a7cea382aefdc10f04733efb7118c647
   acquisition: 'Owner-supplied OFD received 2026-11-01, byte-identical to the official attachment https://www.moa.gov.cn/govpublic/YYJ/202604/P020260424354196891178.ofd linked from https://www.moa.gov.cn/govpublic/YYJ/202604/t20260424_6483594.htm (农业农村部通告〔2026〕2号, published 2026-04-21).'
   notes: '2026 closed-season special-permit arrangement issued under the 2023 closure notice (POL-CLOS-015) and the fishing-permit regulation. Annex 1 admits Sthenoteuthis oualaniensis permits in the South China Sea for Guangxi (36 vessels, 2,500 t, 20 June to 5 August, mask net 35 mm, Beihai Nanwan port) and Hainan (70 vessels, 5,000 t, 1 May to 15 August, mask net 35 mm, Sanya Yazhou, Qionghai Tanmen and Danzhou Baimajing central ports). Annex 2 operation-type permits cover only the Yellow and East China Seas north of 26 30 N. Annex 3 gives 26 Hainan auxiliary vessels serving the squid permit, landing at the three central ports plus the Sansha West fishing quay. The OFD is an XML container whose text layer extracts without OCR.'
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: main
+    parseable: true
+    note: Registered in the main index.
+  lifecycle: active
   validity:
     status: in_force
     as_of: '2026-11-02'
@@ -393,6 +560,13 @@ sources:
   hash: 174ab3e343df18e09d8340272e329d956b062ce909216eea8282e206a6bca8af
   acquisition: Downloaded 2026-11-02 from the Ministry of Agriculture and Rural Affairs page published 2026-04-29.
   notes: A joint enforcement deployment of 农业农村部, 公安部 and 中国海警局 for 2026-05-01 to 2026-09-16, with three priority tasks. It is an enforcement arrangement, not a change to the closure system; the system basis remains 农业农村部通告〔2023〕1号.
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: collection
+    parseable: true
+    note: Registered in a reference collection.
+  lifecycle: active
   validity:
     status: in_force
     as_of: '2026-11-02'
@@ -415,6 +589,13 @@ sources:
   hash: 822a8c089528438ad1b6cf353df94403711e86ebf6a9197443b14987bdb7a316
   acquisition: Downloaded 2026-11-02 from the ministry site; the notice is 农办渔〔2017〕5号, dated 2017-02-07.
   notes: The promulgating notice for the standard hull evaluation method. Annex 1 is registered as STD-HULL-062 and annex 2, the usage notes, as STD-HULL-070. It states the policy basis (国发〔2013〕11号) and the selection work it expects provinces to run.
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: collection
+    parseable: true
+    note: Registered in a reference collection.
+  lifecycle: active
   validity:
     status: in_force
     as_of: '2026-11-02'
@@ -437,6 +618,13 @@ sources:
   hash: f2e5f2f81200f3f69476f1792b5bd73658c9393b20932e5f62ac56a6fa44c6ef
   acquisition: Downloaded 2026-11-02 as annex 2 of the 2017 notice (P020170217581833706033.docx).
   notes: Explains the naval-architecture coefficients and the inputs behind the scoring, including the Admiralty coefficient, freeboard, ballast, light-ship weight, stability and tank-volume factors. It is the explanatory companion to STD-HULL-062 and carries no hull parameters itself.
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: collection
+    parseable: true
+    note: Registered in a reference collection.
+  lifecycle: active
   validity:
     status: in_force
     as_of: '2026-11-02'
@@ -459,6 +647,13 @@ sources:
   hash: 29b1f6afcf88c84d6a777d571036d1173467bc3823b936422d3e45111d1a2668
   acquisition: Downloaded 2026-11-02 from the ministry site; 农办渔〔2024〕15号, effective 2024-12-01.
   notes: The national standard-hull parameter series for distant-water vessels, with registered length, length between perpendiculars, beam, depth, draught, displacement, hold volume, gross tonnage and a power ceiling per type. Scope limit is that the hull types are ocean-going, so this table must not be used to answer a near-shore parameter question; the provincial catalogs remain the near-shore reference layer.
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: collection
+    parseable: true
+    note: Registered in a reference collection.
+  lifecycle: active
   validity:
     status: in_force
     as_of: '2026-11-02'
@@ -481,6 +676,18 @@ sources:
   hash: db05eefba1ed312e608c791ca44a26301382b5fbcc20a66c6383690138b8397a
   acquisition: Owner-supplied DOC received 2026-10-31 (file titled 附件1); the issuing notice is POL-GEAR-016.
   notes: 'Annex 1 to the 2013 minimum-mesh notice (POL-GEAR-016), in force from 2014-06-01. Table of minimum mesh or codend sizes for permitted marine capture gear, by sea area (Huanghai-Bohai, East China Sea, South China Sea including the Beibu Gulf), gear class (gillnet, purse seine, miscellaneous) and target species.'
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: main
+    parseable: true
+    note: Registered in the main index.
+  lifecycle: active
+  validity:
+    status: in_force
+    as_of: '2026-11-02'
+    note: Source note records Annex 1 to the 2013 minimum-mesh notice (POL-GEAR-016), in force from 2014-06-01. Table of minimum mesh or codend sizes for permitted marine capture gear, by sea area (Huanghai-Bohai, East China Sea, South China Sea i...
+
 - id: POL-GEAR-034
   title: 海洋捕捞过渡渔具最小网目（或网囊）尺寸标准
   title_zh: 海洋捕捞过渡渔具最小网目（或网囊）尺寸标准
@@ -499,6 +706,18 @@ sources:
   hash: 64819ecac9345bedd7af229fc4de7e95c89ab8b2038faa06c05f06a9e91c39f2
   acquisition: Owner-supplied DOC received 2026-10-31 (file titled 附件2); the issuing notice is POL-GEAR-016.
   notes: 'Annex 2 to the 2013 minimum-mesh notice (POL-GEAR-016), in force from 2014-06-01. Table of minimum mesh or codend sizes for transitional marine capture gear, by sea area, gear class (trawl, gillnet, purse seine, stow net, cage, trap) and target species.'
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: main
+    parseable: true
+    note: Registered in the main index.
+  lifecycle: active
+  validity:
+    status: in_force
+    as_of: '2026-11-02'
+    note: Source note records Annex 2 to the 2013 minimum-mesh notice (POL-GEAR-016), in force from 2014-06-01. Table of minimum mesh or codend sizes for transitional marine capture gear, by sea area, gear class (trawl, gillnet, purse seine, stow ...
+
 - id: OPS-STD-035
   title: 海洋捕捞信息采集抽样调查规范（SC/T 9460—2025）
   title_zh: 海洋捕捞信息采集抽样调查规范（SC/T 9460—2025）
@@ -517,6 +736,18 @@ sources:
   hash: 1608be902fe8bf8c389518f6820dc7ec6121523d7e2b9e6b343e189a76684365
   acquisition: Owner-supplied PDF received 2026-10-31 (SC/T 9460—2025, 发布 2025-12-09).
   notes: 'Aquaculture-industry standard, effective 2026-05-01. Defines marine capture information, sample vessels and collectors; covers stratified vessel sampling, monthly information survey, data quality control, statistical analysis and archiving. Normatively cites GB/T 5147—2003 for gear classification and naming, which is the reference for operation-type definitions.'
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: main
+    parseable: true
+    note: Registered in the main index.
+  lifecycle: active
+  validity:
+    status: in_force
+    as_of: '2026-11-02'
+    note: Source note records Aquaculture-industry standard, effective 2026-05-01. Defines marine capture information, sample vessels and collectors; covers stratified vessel sampling, monthly information survey, data quality control, statistical ...
+
 - id: OPS-FORM-036
   title: 《渔业捕捞许可证》中“核准作业内容”修正样式和填写说明
   title_zh: 《渔业捕捞许可证》中“核准作业内容”修正样式和填写说明
@@ -535,6 +766,18 @@ sources:
   hash: ba3c773a0ce3bc05a098642e9a241c0164da71ae02d38ece1f74a3c48fcfbeb9
   acquisition: Owner-supplied DOC received 2026-10-31 (file titled 附件3); the parent document is POL-GEAR-016.
   notes: 'Annex 3 to the 2013 minimum-mesh notice (POL-GEAR-016). Before-and-after layout of the approved-operation block on a fishing permit, with filling rules: one of nine operation types, at most two operation methods, at most two gear names, minimum mesh size, carried quantity, target species and quota. Adjusts the block first set by 农业部公告第1100号 and 第1288号. The nine-type list is the practical answer to the operation-type classification question.'
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: main
+    parseable: true
+    note: Registered in the main index.
+  lifecycle: active
+  validity:
+    status: unknown
+    as_of: '2026-11-02'
+    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+
 - id: OPS-STD-039
   title: 渔具分类、命名及代号（GB/T 5147—2026）
   title_zh: 渔具分类、命名及代号（GB/T 5147—2026）
@@ -553,6 +796,18 @@ sources:
   hash: 2d9ade00dda4fe0d29e6a1ce4499cb1e67a0f5aca56a96e422bbae9349ebcbee
   acquisition: Owner-supplied PDF received 2026-10-31 (GB/T 5147—2026, 发布 2026-02-27).
   notes: 'National standard for fishing-gear classification, naming and codes, effective 2026-09-01 and replacing GB/T 5147—2003. It is the classification reference cited by SC/T 9460—2025 and the basis for mapping the yearbook gear groups and the permit operation types.'
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: main
+    parseable: true
+    note: Registered in the main index.
+  lifecycle: active
+  validity:
+    status: in_force
+    as_of: '2026-11-02'
+    note: Source note records National standard for fishing-gear classification, naming and codes, effective 2026-09-01 and replacing GB/T 5147—2003. It is the classification reference cited by SC/T 9460—2025 and the basis for mapping the yearbook...
+
 - id: POL-PORT-037
   title: 中心渔港、一级渔港认定名单
   title_zh: 中心渔港、一级渔港认定名单
@@ -571,6 +826,18 @@ sources:
   hash: fe142d1a8f9885668b6d2fb47764c50123bc52c6d60ca53703263970aa3ab44a
   acquisition: 'Owner-supplied DOCX received 2026-10-31; attachment to the ministry notice https://yyj.moa.gov.cn/tzgg/202501/t20250115_6469192.htm (公示 dated 2025-01-15).'
   notes: 'Proposed recognition (拟认定) rather than a final decision: 12 central ports (Liaoning, Shandong, Zhejiang, Fujian, Guangdong, Guangxi, Hainan) and 2 first-class ports in Shandong, open for comment until 2025-01-22. Confirm the final recognition before citing it as settled.'
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: main
+    parseable: true
+    note: Registered in the main index.
+  lifecycle: active
+  validity:
+    status: unknown
+    as_of: '2026-11-02'
+    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+
 - id: POL-PLAN-038
   title: 全国沿海渔港建设规划（2018—2025年）
   title_zh: 全国沿海渔港建设规划（2018—2025年）
@@ -589,6 +856,18 @@ sources:
   hash: 8a87dda7a38c0008fe80243f2a66abc06c8b2a62b2a92c2bb522e3528312f022
   acquisition: Owner-supplied PDF received 2026-10-31; cover states 2018年4月.
   notes: 'National port construction plan. Describes ten coastal port groups (including Guangdong, Beibu Gulf, Hainan Island and the South China Sea groups), with per-county port counts by class and named central and first-class ports, and plans 64 central and 85 first-class ports. Supplies a 2018 port baseline where the yearbook infrastructure table is absent; the classification is not identical to the yearbook table.'
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: main
+    parseable: true
+    note: Registered in the main index.
+  lifecycle: active
+  validity:
+    status: unknown
+    as_of: '2026-11-02'
+    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+
 - id: STD-ASFIS-044
   title: ASFIS List of Species for Fishery Statistics Purposes (2026.1)
   title_zh: 渔业统计物种名录 ASFIS（2026.1 版）
@@ -607,6 +886,18 @@ sources:
   hash: 41ffe32651ca4c88c203212617e3741ea76286a70b371fa34711637edee45e89
   acquisition: 'Downloaded 2026-11-01 from https://www.fao.org/fishery/static/ASFIS/ASFIS_sp.zip (2,007,548 bytes; contains ASFIS_sp_2026.1.xlsx and ASFIS_sp_2026.1.csv).'
   notes: 'Reference list: 3-alpha codes, ISSCAAP group, taxonomic code, scientific name and common names in six languages including Chinese. A lookup table rather than narrative text, so it is not added to the M1 index; kept local, never published. Licence CC BY-NC-SA 3.0 IGO: reference use only, no table copied into public documents.'
+  level: international
+  authority_tier: B
+  retrieval:
+    channel: none
+    parseable: true
+    note: Not routed to a retrieval channel.
+  lifecycle: active
+  validity:
+    status: unknown
+    as_of: '2026-11-02'
+    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+
 - id: STD-MUR-045
   title: GHRSST Level 4 MUR Global Foundation Sea Surface Temperature Analysis (v4.1) - product description
   title_zh: MUR 全球基础海表温度分析 v4.1——产品说明
@@ -625,6 +916,18 @@ sources:
   hash: 22232edcac451598e82761a63150d81577493ba5cb3bde12e89fe0b4cae3fe12
   acquisition: 'Fetched 2026-11-02 from https://registry.opendata.aws/nasa-mur-jpl-l4-glob-v41/ (HTTP 200; 11,837 bytes).'
   notes: 'Product description of the 0.01° daily multi-scale foundation SST analysis (wavelet optimal interpolation, four-day retrospective latency, night-time GHRSST L2P inputs) that is the SST layer of the remote environment stack. It is the citable resolution and method reference for Q-E08 and Q-M09, not a data copy. Licence CC BY 4.0, attribution required.'
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: collection
+    parseable: true
+    note: Registered in a reference collection.
+  lifecycle: active
+  validity:
+    status: unknown
+    as_of: '2026-11-02'
+    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+
 - id: STD-OLCI-046
   title: Sentinel-3 OLCI Marine User Handbook
   title_zh: Sentinel-3 OLCI 海洋用户手册
@@ -643,6 +946,18 @@ sources:
   hash: 4d076cff30d35a079e8719f9205b7e54d305eb68a6ca311b122001bc24a254c6
   acquisition: 'Downloaded 2026-11-02 from https://earth.esa.int/eogateway/documents/20142/1564943/Sentinel-3-OLCI-Marine-User-Handbook.pdf (HTTP 200; 2,113,222 bytes; EUM/OPS-SEN3/MAN/17/907205 v1H, 4 July 2018).'
   notes: 'Documents the OLCI L1B and L2 marine products, bands and retrieval assumptions; the remote 4 km L3m chlorophyll product is binned from these L2 CHL retrievals, so the handbook is the citable resolution and retrieval reference for Q-E08 and Q-M09. The cover states "This Document is Public".'
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: collection
+    parseable: true
+    note: Registered in a reference collection.
+  lifecycle: active
+  validity:
+    status: unknown
+    as_of: '2026-11-02'
+    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+
 - id: DICT-GFW-047
   title: Global Fishing Watch - apparent fishing effort versus fishing events
   title_zh: Global Fishing Watch——表观捕捞努力量与捕捞事件的区别
@@ -661,6 +976,18 @@ sources:
   hash: 5a5e83ec804a3969d7ee93f28b15e08002363659e460d3c0827ff537779704b4
   acquisition: 'Fetched 2026-11-02 from https://globalfishingwatch.org/faqs/difference-between-fishing-effort-and-fishing-events/ (HTTP 200; 385,430 bytes).'
   notes: 'Explains that apparent fishing effort counts every position classified as fishing whereas fishing events group consecutive positions into a track segment; this is the definition layer behind the remote apparent_fishing_effort and fishing_events products. The page carries only site Terms of Use, so the licence is recorded as unknown and the file stays local; GFW data itself is CC BY-NC 4.0.'
+  level: national
+  authority_tier: B
+  retrieval:
+    channel: collection
+    parseable: true
+    note: Registered in a reference collection.
+  lifecycle: active
+  validity:
+    status: unknown
+    as_of: '2026-11-02'
+    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+
 - id: DICT-GFW-048
   title: Global Fishing Watch API client - Events API documentation
   title_zh: Global Fishing Watch API 客户端——事件接口文档
@@ -679,6 +1006,18 @@ sources:
   hash: 02cf947bde28cec931ce50a7d1134d9a1bb514b708077fe806f5788fd4c9782c
   acquisition: 'Fetched 2026-11-02 from https://globalfishingwatch.github.io/gfw-api-python-client/usage-guides/events-api.html (HTTP 200; 94,466 bytes).'
   notes: 'Defines the PORT_VISIT, ENCOUNTER, LOITERING and FISHING event datasets and their fields, the vocabulary behind the remote port_visits, encounters and loitering products. The client documentation publishes the Apache License 2.0 on its licence page.'
+  level: national
+  authority_tier: B
+  retrieval:
+    channel: collection
+    parseable: true
+    note: Registered in a reference collection.
+  lifecycle: active
+  validity:
+    status: unknown
+    as_of: '2026-11-02'
+    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+
 - id: STD-CMEMS-049
   title: Copernicus Marine Product User Manual - GLOBAL_MULTIYEAR_PHY_001_030
   title_zh: 哥白尼海洋产品用户手册——GLOBAL_MULTIYEAR_PHY_001_030
@@ -697,6 +1036,18 @@ sources:
   hash: d52e962890fa131f8eecfd2f6b958919ddbdcb46e5076f0f845f5657d0a82f07
   acquisition: 'Downloaded 2026-11-02 from https://documentation.marine.copernicus.eu/PUM/CMEMS-GLO-PUM-001-030.pdf (HTTP 200; 792,021 bytes; Issue 1.7, November 2025).'
   notes: 'Documents the 1/12° global physics reanalysis used as the background layer (uo/vo/zos) in the remote environment stack: product resolution, variables, quality information and the attribution the Copernicus Marine Service licence requires.'
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: collection
+    parseable: true
+    note: Registered in a reference collection.
+  lifecycle: active
+  validity:
+    status: unknown
+    as_of: '2026-11-02'
+    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+
 - id: POL-STAT-050
   title: 渔业统计工作规定
   title_zh: 渔业统计工作规定
@@ -715,6 +1066,18 @@ sources:
   hash: 1395e5dbd075b405a9de039d213aa2126bb5d452f56f8795c77af22634d2884a
   acquisition: 'Fetched 2026-11-02 from https://www.moa.gov.cn/govpublic/YYJ/201006/t20100606_1538703.htm (HTTP 200; 20,915 bytes; issued 2010-02-10, published 2010-03-01).'
   notes: 'Current: no repeal or replacement found as of 2026-11-02. Defines the statistical duties, data submission and quality responsibilities that sit behind the yearbook, so it supports Q-M03, Q-E06 and Q-M05. Read together with the 2024 survey system (POL-STAT-051), which replaces the 2021 approval.'
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: collection
+    parseable: true
+    note: Registered in a reference collection.
+  lifecycle: active
+  validity:
+    status: unknown
+    as_of: '2026-11-02'
+    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+
 - id: POL-STAT-051
   title: 渔业统计调查制度（2024 年批准）
   title_zh: 渔业统计调查制度（2024 年批准）
@@ -733,6 +1096,18 @@ sources:
   hash: ee29cca7e24cd18d5f4eb11c6b4219060143cb641f5d64610e8dd67f6980cf97
   acquisition: 'Fetched 2026-11-02 from https://www.stats.gov.cn/fw/bmdcxmsp/bmzd/202407/t20240719_1955798.html (HTTP 200; 82,024 bytes; published 2024-07-19).'
   notes: 'Current version: the 2021 approval 国统制〔2021〕15号 expired in February 2024 and this 2024 text carries 国统制〔2024〕120号 with validity to June 2027, so the older page is not registered. States the survey purpose, scope, indicators, reporting levels and publication rules, which is the statistical-process layer for Q-M03 and Q-M05.'
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: collection
+    parseable: true
+    note: Registered in a reference collection.
+  lifecycle: active
+  validity:
+    status: unknown
+    as_of: '2026-11-02'
+    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+
 - id: POL-YJ-052
   title: 2017 年度渔情监测统计工作情况的通报
   title_zh: 2017 年度渔情监测统计工作情况的通报
@@ -751,6 +1126,18 @@ sources:
   hash: 3e013bc8aa0cad097cee5d2597259dcb1dbee067dfc23157ba5f8321af24ecb6
   acquisition: 'Fetched 2026-11-02 from http://www.moa.gov.cn/govpublic/YYJ/201804/t20180410_6139884.htm (HTTP 200; 48,696 bytes; issued 2018-04-08).'
   notes: 'Latest publicly posted full text of the annual monitoring circular as of 2026-11-02. It names the agencies, the annual cadence and the reporting format of fishery monitoring work, which supports Q-M07 and part of Q-E11. The 2024 letter 农渔科函〔2025〕87号 exists in provincial news but its full text is not published, so the register records this caveat instead of claiming currency.'
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: collection
+    parseable: true
+    note: Registered in a reference collection.
+  lifecycle: active
+  validity:
+    status: unknown
+    as_of: '2026-11-02'
+    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+
 - id: POL-VMS-053
   title: 远洋渔船船位监测管理办法（2019 年修订）
   title_zh: 远洋渔船船位监测管理办法（2019 年修订）
@@ -769,6 +1156,18 @@ sources:
   hash: 307a185fc27b3584f0fb39e97f31813ce1ac7d00c9bfc4f7bb9d8e1f731a8d41
   acquisition: 'Fetched 2026-11-02 from https://www.gov.cn/gongbao/content/2019/content_5456825.htm (HTTP 200; 40,858 bytes).'
   notes: 'Current revision, which repealed the 2014 measures (农办渔〔2014〕58号). It covers distant-water vessel position reporting frequency and equipment duties, not near-shore VMS field definitions, so Q-M02 and Q-M06 remain uncovered; registered as the only publicly available position-monitoring regulation.'
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: collection
+    parseable: true
+    note: Registered in a reference collection.
+  lifecycle: active
+  validity:
+    status: unknown
+    as_of: '2026-11-02'
+    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+
 - id: STD-ECERT-054
   title: 渔业船网工具指标批准书、所有权登记证书和国籍证书电子证照标准
   title_zh: 渔业船网工具指标批准书、所有权登记证书和国籍证书电子证照标准
@@ -787,6 +1186,18 @@ sources:
   hash: 20e88e80806ee9c28034934863fade7a3a20d3a40495bfbdef06f689d659b71e
   acquisition: 'Fetched 2026-11-02 from https://www.moa.gov.cn/nybgb/2025/202504/202504/t20250414_6473120.htm and its three PDF attachments (P020250414364144659756.pdf 773,210 bytes; P020250414364145111024.pdf 848,453 bytes; P020250414364145506713.pdf 955,461 bytes; total 2,630,218 bytes). The hash is sha256 over the concatenated per-file sha256 hex values in filename order; per-file hashes: cf189330… (notice), a0436e98…, 51d70fcc…, 8ca70496… .'
   notes: 'Current 2025 standards for the electronic certificates of fishing-vessel quota approval, ownership registration and nationality. They define certificate metadata and field mappings, which supports the metadata side of Q-M11 and part of the vessel-record questions, but they are certificate schemas rather than data-sharing licence rules.'
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: collection
+    parseable: true
+    note: Registered in a reference collection.
+  lifecycle: active
+  validity:
+    status: unknown
+    as_of: '2026-11-02'
+    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+
 - id: STD-CWP-043
   title: CWP Handbook of Fishery Statistics - capture statistics concepts
   title_zh: CWP 渔业统计手册——捕捞统计概念（渔获、上岸、捕捞努力量、渔具分类）
@@ -805,6 +1216,18 @@ sources:
   hash: f871a96b3dfafa8dea1e2f56a8675d6d7b261fa36f1923744d875ace5a6871a9
   acquisition: 'Fetched 2026-11-01 from the CWP Handbook capture-statistics pages (catch and landings, fishing effort, fishing gear classification; 32,474 / 39,965 / 22,761 bytes). Per-page hashes and character counts are in configs/cwp-handbook.yaml.'
   notes: 'The international statistical standard for catch, landings and fishing effort, not a Chinese official definition: the domestic yearbooks do not state their own definitions. The pages are English; a dry run adding them to the index lowered abstention from 5/6 to 4/6 without improving Chinese-question recall, so they stay out of configs/pipeline.yaml until a bilingual term layer exists. Licence CC BY-NC-SA 3.0 IGO: reference use only, no text copied into public documents.'
+  level: international
+  authority_tier: B
+  retrieval:
+    channel: collection
+    parseable: true
+    note: Registered in a reference collection.
+  lifecycle: active
+  validity:
+    status: unknown
+    as_of: '2026-11-02'
+    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+
 - id: STD-SC-042
   title: SC/T aquatic-industry standards relevant to the corpus (current set)
   title_zh: 水产行业标准 SC/T（与本项目相关的现行文本）
@@ -823,6 +1246,18 @@ sources:
   hash: 6ab8d85dfa1310a5d439b1a1cec346996ea09ff0b5644a8b2933e0396c00ff8f
   acquisition: 'Retrieved 2026-11-01 from the national standards platform filing interface https://hbba.sacinfo.org.cn/stdQueryList (keyword SC/T: 977 records, 809 current) and filtered to the project scope; each text was taken from the public reader https://hbba.sacinfo.org.cn/hbba_onlineRead_page/<pk>/<index>.png and assembled with sips and pdfunite.'
   notes: 'Official reference copies carrying the 参考件 watermark; image-only, no text layer. The scope is marine capture, gear and mesh, vessel management data, fishing ports, fishery statistics and surveys, resource surveys and terminology: seventeen standards are held and listed in configs/sc-standards.yaml, and the seven in-scope standards without a public text were excluded from the project. SC/T 9460-2025 is registered separately as OPS-STD-035 and is not duplicated in this series. Aquaculture, feed, disease, processing, hull construction, ship equipment and freshwater survey series are out of scope; their downloaded copies were deleted.'
+  level: national
+  authority_tier: B
+  retrieval:
+    channel: none
+    parseable: false
+    note: Not routed to a retrieval channel.
+  lifecycle: active
+  validity:
+    status: unknown
+    as_of: '2026-11-02'
+    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+
 - id: STAT-BULL-025
   title: 2025年全国渔业经济统计公报
   title_zh: 2025年全国渔业经济统计公报
@@ -841,6 +1276,18 @@ sources:
   hash: 6395fdbb9feb6574ad853b2a09701d8d1d9509eed3069459160ae158f92bc229
   acquisition: 'Fetched 2026-10-31 from the Fisheries Bureau: http://yyj.moa.gov.cn/gzdt/202607/t20260727_6486230.htm (HTTP 200; 167,431 bytes; published 2026-07-27).'
   notes: 'Data year 2025. National totals only: no provincial or South China Sea breakdown, so it extends the series in time but does not replace the yearbook editions.'
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: main
+    parseable: true
+    note: Registered in the main index.
+  lifecycle: active
+  validity:
+    status: unknown
+    as_of: '2026-11-02'
+    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+
 - id: STAT-CSY-027
   title: 中国统计年鉴 2026（Excel）
   title_zh: 中国统计年鉴 2026（Excel）
@@ -859,6 +1306,18 @@ sources:
   hash: a950d0c55ce0ddb9950326e95bfb5a49dba7bccc4dfafbb7a988c0ab0df63a5a
   acquisition: 'Owner-provided Excel set received 2026-10-31 (Chinese and English editions, 1,318 files, 17.5 MB); the yearbook is published by the National Bureau of Statistics and the data are public, kept internal for local use only.'
   notes: 'Data year 2025. Chapter 12 covers agriculture: 12-2 main agricultural and fishery production, 12-3 gross output value, 12-15 aquatic production with a national time series and provincial 2025 totals including marine capture and aquaculture splits. The Excel set does not include the printed indicator explanations, so it is not a definition source.'
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: statistics
+    parseable: true
+    note: Source for the statistical extracts.
+  lifecycle: active
+  validity:
+    status: unknown
+    as_of: '2026-11-02'
+    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+
 - id: STAT-BULL-028
   title: 2020年全国渔业经济统计公报
   title_zh: 2020年全国渔业经济统计公报
@@ -877,6 +1336,18 @@ sources:
   hash: 7fedae886ddcf5a88bc507b7a7decd33377d514ff25bf0ee4045b998f68e8e2f
   acquisition: 'Fetched 2026-10-31 from the Fisheries Bureau: https://yyj.moa.gov.cn/gzdt/202107/t20210728_6372958.htm (HTTP 200; 156,495 bytes; published 2021-07-28).'
   notes: 'Data year 2020; national totals only, no provincial or South China Sea breakdown. Part of the 2020-2025 bulletin series.'
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: main
+    parseable: true
+    note: Registered in the main index.
+  lifecycle: active
+  validity:
+    status: unknown
+    as_of: '2026-11-02'
+    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+
 - id: STAT-BULL-029
   title: 2021年全国渔业经济统计公报
   title_zh: 2021年全国渔业经济统计公报
@@ -895,6 +1366,18 @@ sources:
   hash: 15fcd6a1270d5f10d3d78c4bc7c3331e7deeeaaa3accbccf3d0c8e8a01bbaffe
   acquisition: 'Fetched 2026-10-31 from the Fisheries Bureau: https://yyj.moa.gov.cn/gzdt/202207/t20220721_6405222.htm (HTTP 200; 154,035 bytes; published 2022-07-21).'
   notes: 'Data year 2021; national totals only, no provincial or South China Sea breakdown. Part of the 2020-2025 bulletin series.'
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: main
+    parseable: true
+    note: Registered in the main index.
+  lifecycle: active
+  validity:
+    status: unknown
+    as_of: '2026-11-02'
+    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+
 - id: STAT-BULL-030
   title: 2022年全国渔业经济统计公报
   title_zh: 2022年全国渔业经济统计公报
@@ -913,6 +1396,18 @@ sources:
   hash: 97ddf1be5ab85853b6906443cdedaf35007568dff739f2980d5c935e26aa8606
   acquisition: 'Fetched 2026-10-31 from the Fisheries Bureau: https://yyj.moa.gov.cn/yqxx/202306/t20230628_6431131.htm (HTTP 200; 62,072 bytes; published 2023-06-28).'
   notes: 'Data year 2022; national totals only, no provincial or South China Sea breakdown. Part of the 2020-2025 bulletin series.'
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: main
+    parseable: true
+    note: Registered in the main index.
+  lifecycle: active
+  validity:
+    status: unknown
+    as_of: '2026-11-02'
+    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+
 - id: STAT-BULL-031
   title: 2023年全国渔业经济统计公报
   title_zh: 2023年全国渔业经济统计公报
@@ -931,6 +1426,18 @@ sources:
   hash: b4c968ba9cca3dffb737599c355592aede70cea98f28137a26c33c05bcff4528
   acquisition: 'Fetched 2026-10-31 from the Fisheries Bureau: https://yyj.moa.gov.cn/gzdt/202407/t20240705_6458486.htm (HTTP 200; 154,762 bytes; published 2024-07-05).'
   notes: 'Data year 2023; national totals only, no provincial or South China Sea breakdown. Part of the 2020-2025 bulletin series.'
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: main
+    parseable: true
+    note: Registered in the main index.
+  lifecycle: active
+  validity:
+    status: unknown
+    as_of: '2026-11-02'
+    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+
 - id: STAT-BULL-032
   title: 2024年全国渔业经济统计公报
   title_zh: 2024年全国渔业经济统计公报
@@ -949,6 +1456,18 @@ sources:
   hash: f16cebbf418955bb0ef4fefe1abf2179f9bb52e79a3aab2af44418b0efd9928f
   acquisition: 'Fetched 2026-10-31 from the Fisheries Bureau: https://yyj.moa.gov.cn/gzdt/202507/t20250707_6475475.htm (HTTP 200; 132,017 bytes; published 2025-07-07).'
   notes: 'Data year 2024; national totals only, no provincial or South China Sea breakdown. Part of the 2020-2025 bulletin series.'
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: main
+    parseable: true
+    note: Registered in the main index.
+  lifecycle: active
+  validity:
+    status: unknown
+    as_of: '2026-11-02'
+    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+
 - id: DICT-STAT-013
   title: 渔业统计指标解释（2024中国渔业统计年鉴附录3）
   title_zh: 渔业统计指标解释（2024中国渔业统计年鉴附录3）
@@ -967,6 +1486,18 @@ sources:
   hash: 8f67eebf4ffdf4d834d5034ab6cd131486dfa3db4fe564e9e42eea67c4244567
   acquisition: 'Owner-supplied 2024 yearbook PDF; pages 164-179 of that file were separated into this extract with poppler pdfseparate and pdfunite on 2026-11-01. Source file SHA-256: 43f94599c25c29d8676ae01669fc9b8715becaa34c882bc790e4d61ca2799d3d.'
   notes: 'Appendix 3 of the fisheries yearbook. Defines the water-product concept and scope, the statistical year and reporting unit, the measurement basis (fresh weight, except salted jellyfish and dried algae), the culture-versus-capture rule, product classification, marine and freshwater culture classes, and capture production by sea area (Bohai, Yellow, East China and South China Sea boundaries) and by gear group (trawl, purse seine, gillnet, stow net, hook and line, other). This is the authoritative definition source for production questions.'
+  level: national
+  authority_tier: B
+  retrieval:
+    channel: main
+    parseable: true
+    note: Registered in the main index.
+  lifecycle: active
+  validity:
+    status: unknown
+    as_of: '2026-11-02'
+    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+
 - id: DICT-STAT-040
   title: 中国统计年鉴2025主要统计指标解释（农业）
   title_zh: 中国统计年鉴2025主要统计指标解释（农业）
@@ -985,6 +1516,18 @@ sources:
   hash: 5ee68c21d985c31f0fe5e0163965d2c8234ba6227fc96b8b4d8d8667d93b1acc
   acquisition: 'Chapter-12 indicator notes fetched 2026-11-01 from the National Bureau of Statistics: https://www.stats.gov.cn/sj/ndsj/2025/html/zb12.pdf (HTTP 200). The 2023 and 2024 editions carry the same text.'
   notes: 'National statistical definition: water-product output is the final effective output of capture and culture, covering marine and freshwater fish, crustaceans, shellfish, cephalopods, algae and other products; the data are reported upward through fishery departments at each level; since 1996 shellfish are measured by fresh weight. It does not split marine capture production, so DICT-STAT-013 remains the operational definition for sea-area and gear breakdowns.'
+  level: national
+  authority_tier: B
+  retrieval:
+    channel: main
+    parseable: true
+    note: Registered in the main index.
+  lifecycle: active
+  validity:
+    status: in_force
+    as_of: '2026-11-02'
+    note: Source note records National statistical definition - water-product output is the final effective output of capture and culture, covering marine and freshwater fish, crustaceans, shellfish, cephalopods, algae and other products; the data ...
+
 - id: DICT-META-014
   title: Metadata and data-quality rules (candidate)
   title_zh: 元数据/数据质量规范（候选）
@@ -1004,6 +1547,18 @@ sources:
   hash: null
   acquisition: Obtain the metadata standard and quality rules from the data publisher.
   notes: Used to align source registration, versions, hashes and citation fields.
+  level: national
+  authority_tier: B
+  retrieval:
+    channel: none
+    parseable: true
+    note: Not routed to a retrieval channel.
+  lifecycle: active
+  validity:
+    status: unknown
+    as_of: '2026-11-02'
+    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+
 - id: STAT-YB-2018
   type: statistical_yearbook
   title: China Fisheries Statistical Yearbook 2018 (Excel tables)
@@ -1022,6 +1577,18 @@ sources:
   hash: 9b5ddea632421ba0250e7a0c7231e4b5cd5e15c3609d153abd5268a1d609d4a9
   acquisition: Owner-provided official/authorized Excel edition; publisher/ISBN, procurement and official internal export confirmed by the owner; local use only.
   notes: Data year 2017; 86 Excel files. Public metadata only; no values. Edition manifest under the run root.
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: statistics
+    parseable: true
+    note: Source for the statistical extracts.
+  lifecycle: active
+  validity:
+    status: unknown
+    as_of: '2026-11-02'
+    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+
 - id: STAT-YB-2019
   type: statistical_yearbook
   title: China Fisheries Statistical Yearbook 2019 (Excel tables)
@@ -1040,6 +1607,18 @@ sources:
   hash: 025f4a43fa98448f5de27309450b4e510e1cd10d9fba1c5b8d51330e886056f5
   acquisition: Owner-provided official/authorized Excel edition; publisher/ISBN, procurement and official internal export confirmed by the owner; local use only.
   notes: Data year 2018; 137 Excel files. Public metadata only; no values. Edition manifest under the run root.
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: statistics
+    parseable: true
+    note: Source for the statistical extracts.
+  lifecycle: active
+  validity:
+    status: unknown
+    as_of: '2026-11-02'
+    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+
 - id: STAT-YB-2020
   type: statistical_yearbook
   title: China Fisheries Statistical Yearbook 2020 (Excel tables)
@@ -1058,6 +1637,18 @@ sources:
   hash: 71d5033b79565f2d580c5c3417713644d40677d51a0b177df07f4a267ad0abbb
   acquisition: Owner-provided official/authorized Excel edition; publisher/ISBN, procurement and official internal export confirmed by the owner; local use only.
   notes: Data year 2019; 140 Excel files. Public metadata only; no values. Edition manifest under the run root.
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: statistics
+    parseable: true
+    note: Source for the statistical extracts.
+  lifecycle: active
+  validity:
+    status: unknown
+    as_of: '2026-11-02'
+    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+
 - id: STAT-YB-2021
   type: statistical_yearbook
   title: China Fisheries Statistical Yearbook 2021 (Excel tables)
@@ -1076,6 +1667,18 @@ sources:
   hash: edd634e9c62c759ed782c3ba2efc40e69bfdaa95bf99f6c70e805a6ef9248a4e
   acquisition: Owner-provided official/authorized Excel edition; publisher/ISBN, procurement and official internal export confirmed by the owner; local use only.
   notes: Data year 2020; 84 Excel files. Public metadata only; no values. Edition manifest under the run root.
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: statistics
+    parseable: true
+    note: Source for the statistical extracts.
+  lifecycle: active
+  validity:
+    status: unknown
+    as_of: '2026-11-02'
+    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+
 - id: STAT-YB-2022
   type: statistical_yearbook
   title: China Fisheries Statistical Yearbook 2022 (Excel tables)
@@ -1094,6 +1697,18 @@ sources:
   hash: 4d6f56e806e3b8ea9d300030db45774fdf78f6ac7e5992de4269809ca796ab70
   acquisition: Owner-provided official/authorized Excel edition; publisher/ISBN, procurement and official internal export confirmed by the owner; local use only.
   notes: Data year 2021; 84 Excel files. The bundle contained a byte-identical duplicate of table 3-10 (stored as a "(1)" copy); the duplicate was removed on 2026-10-31 and the edition manifest regenerated, so this hash is the SHA-256 of the regenerated manifest file. Public metadata only; no values.
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: statistics
+    parseable: true
+    note: Source for the statistical extracts.
+  lifecycle: active
+  validity:
+    status: unknown
+    as_of: '2026-11-02'
+    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+
 - id: STAT-YB-2023
   type: statistical_yearbook
   title: China Fisheries Statistical Yearbook 2023 (Excel tables)
@@ -1112,6 +1727,18 @@ sources:
   hash: e8cb6104ad587948c6390dc979a6101dcaf49f7b98086a88a6106d8cc85210d1
   acquisition: Owner-provided official/authorized Excel edition; publisher/ISBN, procurement and official internal export confirmed by the owner; local use only.
   notes: Data year 2022; 84 Excel files. Public metadata only; no values. Edition manifest under the run root.
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: statistics
+    parseable: true
+    note: Source for the statistical extracts.
+  lifecycle: active
+  validity:
+    status: unknown
+    as_of: '2026-11-02'
+    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+
 - id: STAT-YB-2024
   type: statistical_yearbook
   title: China Fisheries Statistical Yearbook 2024 (Excel tables)
@@ -1130,6 +1757,18 @@ sources:
   hash: dc4c747565a3d5190f51133bc238d56ea999383f417b5d5b5eba04ef5fe64de9
   acquisition: Owner-provided official/authorized Excel edition; publisher/ISBN, procurement and official internal export confirmed by the owner; local use only.
   notes: Data year 2023; 140 Excel files. Public metadata only; no values. Edition manifest under the run root. The 2024 files use Excel default encryption; decrypted working copies are under incoming/working/STAT-YB-2024, originals unchanged.
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: statistics
+    parseable: true
+    note: Source for the statistical extracts.
+  lifecycle: active
+  validity:
+    status: unknown
+    as_of: '2026-11-02'
+    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+
 - id: STAT-YB-2025
   type: statistical_yearbook
   title: China Fisheries Statistical Yearbook 2025 (Excel tables)
@@ -1148,6 +1787,18 @@ sources:
   hash: 8768019d672c0197df01617c119c64a114ccd652026dd999e4c99ee696847c87
   acquisition: Owner-provided official/authorized Excel edition; publisher/ISBN, procurement and official internal export confirmed by the owner; local use only.
   notes: Data year 2024; 82 Excel files. Public metadata only; no values. Edition manifest under the run root.
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: statistics
+    parseable: true
+    note: Source for the statistical extracts.
+  lifecycle: active
+  validity:
+    status: unknown
+    as_of: '2026-11-02'
+    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+
 - id: STAT-YB-2026
   type: statistical_yearbook
   title: China Fisheries Statistical Yearbook 2026 (scanned PDF)
@@ -1166,6 +1817,18 @@ sources:
   hash: ef674e53123265b2f9367ad0c5cbc2544e3d738b5b52c916cc8e3fc4babec3f1
   acquisition: Owner-supplied scan received 2026-11-01 (KONICA MINOLTA bizhub C226, created 2026-08-02). The file has no text layer.
   notes: Data year 2025; image-only scan (0 extractable characters). No table has been extracted, so the 2025 data year is registered but not yet in the coverage matrix. OCR or manual entry is required before it enters the core CSV. Public metadata only; no values.
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: statistics
+    parseable: false
+    note: Source for the statistical extracts.
+  lifecycle: active
+  validity:
+    status: unknown
+    as_of: '2026-11-02'
+    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+
 - id: POL-CREW-055
   type: regulation
   title: Measures for the administration of fishery crew members (2022 revision)
@@ -1184,6 +1847,18 @@ sources:
   hash: 2c316eb3171f388de2bb340ee3b5d1b815eaea606cf529f909ab11cdffe28e17
   acquisition: Downloaded 2026-11-02 from the Ministry of Agriculture and Rural Affairs page that republished the text on 2022-01-07 after 农业农村部令2022年第1号.
   notes: Certificate grades, the minimum manning table (附件4) and the captain duty to fill the fishing log (第二十三条第四项). It states the crew, safety-equipment and training duties that the provincial port-and-vessel regulations carry only in principle. It is not a Hainan source and it does not define voyage or port-stay fields.
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: collection
+    parseable: true
+    note: Registered in a reference collection.
+  lifecycle: active
+  validity:
+    status: unknown
+    as_of: '2026-11-02'
+    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+
 - id: STD-HY1-056
   type: fishery_product
   title: Ocean colour satellite HY-1C/D - payload capability and product description
@@ -1202,6 +1877,18 @@ sources:
   hash: 8e876496069141af2c728c69b71d8b85654f4537775492562ad6e76c4d64addf
   acquisition: Downloaded 2026-11-02 from the National Satellite Ocean Application Service topic page published 2018-11-02.
   notes: Coverage cycle one day for a single satellite and half a day for the C/D pair; ground sample distance 1100 m for the ocean-colour scanner and 50 m for the coastal-zone imager; swath 2900 km. Retrieved variables include chlorophyll, suspended sediment, dissolved organic matter and sea surface temperature. It is the Chinese counterpart of the English MUR and OLCI documentation, but it is a payload capability page rather than a product user manual with validation and version history.
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: collection
+    parseable: true
+    note: Registered in a reference collection.
+  lifecycle: active
+  validity:
+    status: unknown
+    as_of: '2026-11-02'
+    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+
 - id: POL-YJ-057
   type: notice
   title: Circular on the 2020 fishery monitoring and statistics work
@@ -1220,6 +1907,18 @@ sources:
   hash: 03a7a6ff3f88590c6e18884cdf10b996667b1acaf01f4d5842c8573aa29507b8
   acquisition: Downloaded 2026-11-02 from the national station site (nftec.agri.cn), document 农渔科函〔2021〕21号, dated 2021-04-15.
   notes: Documents the annual cadence, the responsible bodies and the data-quality machinery of 渔情监测统计. It is not a fishery-bulletin product and does not answer the publisher, frequency and format of 渔场/渔汛预报通报. It is newer than POL-YJ-052 (the 2017 circular) and does not duplicate it; the 2024 letter (农渔科函〔2025〕87号) is quoted by provincial sites but is not published in full.
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: collection
+    parseable: true
+    note: Registered in a reference collection.
+  lifecycle: active
+  validity:
+    status: unknown
+    as_of: '2026-11-02'
+    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+
 - id: POL-HN-058
   type: regulation
   title: Measures of Hainan Province for implementing the Fisheries Law
@@ -1238,6 +1937,18 @@ sources:
   hash: 554997f45e7215751bd17a27f9389703eb5735611c43178834763ac499179c0d
   acquisition: Downloaded 2026-11-02 from the Hainan provincial portal, published 2013-12-03; the page marks the text 有效.
   notes: In force since 2014-01-01 and the in-force 2013 revision; the earlier 2008 page on the same portal is marked 已修改 and is not registered. Covers capture permits, closed areas and seasons, protected areas and legal liability, and closes the missing Hainan jurisdiction. The page has not yet been updated for the 2026 Fisheries Law, so article-level alignment is a later check.
+  level: provincial
+  authority_tier: A
+  retrieval:
+    channel: collection
+    parseable: true
+    note: Registered in a reference collection.
+  lifecycle: active
+  validity:
+    status: unknown
+    as_of: '2026-11-02'
+    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+
 - id: POL-HN-059
   type: notice
   title: Hainan 2026 seasonal closure notice
@@ -1256,6 +1967,18 @@ sources:
   hash: f8bb3e3f5ad8cf9be7fe697fd811b069d353fb6e1d2a4a8b3bbe29779065a756
   acquisition: Downloaded 2026-11-02 from the Hainan agriculture department, published 2026-04-24.
   notes: Provincial implementation of the 2026 closure, covering 5月1日12时至8月16日12时, 26°30′N to 12°N including the Beibu Gulf, the must-close and voluntary-close vessel classes, port and gear requirements, and the penalty ladder quoted from the 2026 Fisheries Law (200000 yuan, 2000000 yuan for serious cases) plus the subsidy deduction rule.
+  level: provincial
+  authority_tier: A
+  retrieval:
+    channel: collection
+    parseable: true
+    note: Registered in a reference collection.
+  lifecycle: active
+  validity:
+    status: unknown
+    as_of: '2026-11-02'
+    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+
 - id: POL-GX-060
   type: notice
   title: Guangxi 2026 seasonal closure management notice
@@ -1274,6 +1997,18 @@ sources:
   hash: b9028450c6f0a587b35a866b759ca503f6f69415c744b32aa5845cbfe31ea516
   acquisition: Downloaded 2026-11-02 from the Guangxi agriculture department, published 2026-04-22.
   notes: Provincial implementation of the 2026 closure with the same dates and the 12°N boundary, port-of-registry berthing with filing, special-permit handling, the subsidy deduction and the 15-day departure ban after the closure ends, and the reference to 农业农村部通告〔2023〕1号.
+  level: provincial
+  authority_tier: A
+  retrieval:
+    channel: collection
+    parseable: true
+    note: Registered in a reference collection.
+  lifecycle: active
+  validity:
+    status: unknown
+    as_of: '2026-11-02'
+    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+
 - id: POL-GD-061
   type: notice
   title: Shantou 2026 seasonal closure notice (municipal)
@@ -1292,6 +2027,18 @@ sources:
   hash: 1194cd62c59f176bb70e0f04db4c9873e1f322a37e30eac1627f61cb132a602e
   acquisition: Downloaded 2026-11-02 from the Shantou agriculture bureau, published 2026-04-28.
   notes: Municipal implementation of 粤农农函〔2026〕208号, and the notes say so. It states the Guangdong fishing-area boundary (12°N to the Fujian-Guangdong line), the dates, the must-close and voluntary-close classes, the 船进港、人上岸、网入库 requirement and the 2000000 yuan ceiling under the new law. The provincial 2026 work plan itself is not published on the provincial site and is only cited by municipal notices, so this entry is municipal and must not be read as the provincial text.
+  level: municipal
+  authority_tier: C
+  retrieval:
+    channel: collection
+    parseable: true
+    note: Registered in a reference collection.
+  lifecycle: active
+  validity:
+    status: unknown
+    as_of: '2026-11-02'
+    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+
 - id: STD-HULL-062
   type: standard
   title: Standard fishing-vessel hull type evaluation method (trial)
@@ -1310,6 +2057,13 @@ sources:
   hash: e6e94a8aaf1bffdb11229204aca667971b71a1550ae0c818dd94ce6f05904bce
   acquisition: Downloaded 2026-11-02 from the ministry site (moa.gov.cn); it is the annex to 农办渔〔2017〕5号 published 2017-02-17.
   notes: The three-level evaluation (形式审查, 量化评分, 专家评分), the naming method and the application forms for marine capture vessels over 12 m. It is the method the provincial catalogs implement and the Hainan 2019 announcement cites it as 农办渔〔2017〕5号. It does not carry hull parameters; the Guangdong and Hainan parameter catalogs are xlsx or scanned and are not indexable.
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: collection
+    parseable: true
+    note: Registered in a reference collection.
+  lifecycle: active
   validity:
     status: in_force
     as_of: '2026-11-02'
@@ -1333,6 +2087,18 @@ sources:
   hash: 6def833b7a5eecba15e4f46f4e5985dc8e36fd6c9ee4565bb742a50a5743851c
   acquisition: Downloaded 2026-11-02 from the Fujian ocean and fisheries bureau, published 2025-01-17 as 闽海渔〔2025〕4号; the page marks the document 有效.
   notes: The notice publishes two province-wide catalogs and one Pingtan-only catalog and cites 农办渔〔2017〕5号 as its basis. The catalogs are registered separately as STD-FJ-064, STD-FJ-065 and STD-FJ-066 so each file keeps its own hash and can be parsed on its own.
+  level: provincial
+  authority_tier: A
+  retrieval:
+    channel: collection
+    parseable: true
+    note: Registered in a reference collection.
+  lifecycle: active
+  validity:
+    status: unknown
+    as_of: '2026-11-02'
+    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+
 - id: STD-FJ-064
   type: standard
   title: Fujian sixth-batch standard fishing-vessel hull type catalog
@@ -1351,6 +2117,18 @@ sources:
   hash: 11b7e632e969039a417c09878fba12e59b657b09439754cbf7f7453ff39a15c9
   acquisition: Downloaded 2026-11-02 as attachment 1 of 闽海渔〔2025〕4号.
   notes: Province-wide catalog. Parses to a parameter table with 船型名称, 总长, 船长, 型宽, 型深, 主机功率, 总吨位 and 版权单位, for example the 43 m steel jigging vessel FJ ZY8358 with 36.14 m registered length and 6.60 m beam. It covers Fujian hull types only, not Guangdong, Guangxi or Hainan.
+  level: provincial
+  authority_tier: A
+  retrieval:
+    channel: collection
+    parseable: true
+    note: Registered in a reference collection.
+  lifecycle: active
+  validity:
+    status: unknown
+    as_of: '2026-11-02'
+    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+
 - id: STD-FJ-065
   type: standard
   title: Fujian seventh-batch standard fishing-vessel hull type catalog
@@ -1369,6 +2147,18 @@ sources:
   hash: 693e4fd69a61d505f523f2e41cb1f59ca64e739b6dd3f5dc2b231e7e3b439677
   acquisition: Downloaded 2026-11-02 as attachment 2 of 闽海渔〔2025〕4号.
   notes: Province-wide catalog. Parses to a parameter table with 标准船型名称, 图纸名称, 船长, 船宽, 型深, 主机功率, 总吨 and 版权单位, for example the 31.7 m glass-reinforced plastic cold-storage jigging vessel HGW8384 with 26.70 m length, 6.20 m beam, 202 kW and 132 GT. Fujian hull types only.
+  level: provincial
+  authority_tier: A
+  retrieval:
+    channel: collection
+    parseable: true
+    note: Registered in a reference collection.
+  lifecycle: active
+  validity:
+    status: unknown
+    as_of: '2026-11-02'
+    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+
 - id: STD-FJ-066
   type: standard
   title: Fujian seventh-batch standard hull catalog for the Pingtan pilot zone only
@@ -1387,6 +2177,18 @@ sources:
   hash: 38d52286e5c5ba9498d848a090c546d31137df9c78f0faee53af521768de04ce
   acquisition: Downloaded 2026-11-02 as attachment 3 of 闽海渔〔2025〕4号.
   notes: One hull type, the 33.6 m steel jigging vessel SHK8370, usable only inside the Pingtan comprehensive experimental zone. The scope limit must travel with any answer drawn from this file.
+  level: provincial
+  authority_tier: A
+  retrieval:
+    channel: collection
+    parseable: true
+    note: Registered in a reference collection.
+  lifecycle: active
+  validity:
+    status: unknown
+    as_of: '2026-11-02'
+    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+
 - id: STD-GD-064
   type: standard
   title: Guangdong 2020 second-batch marine fishing-vessel standard hull catalog
@@ -1405,6 +2207,18 @@ sources:
   hash: b8e829a4d86aecadb7fe1447fdefea1314a782bcbb142067d2719ad904120cd8
   acquisition: Downloaded 2026-11-02 from the attachment of the Guangdong announcement of 2020-07-10 (dara.gd.gov.cn, post_3042147).
   notes: The sheet lists 83 hull types with 序号, 船型名称, 样船船名, 图号, 图纸批准文号, 总长, 公约船长, 型宽, 型深, 主机功率 and 总吨. Values are printed exactly as published; nothing is derived or converted.
+  level: provincial
+  authority_tier: A
+  retrieval:
+    channel: collection
+    parseable: true
+    note: Registered in a reference collection.
+  lifecycle: active
+  validity:
+    status: unknown
+    as_of: '2026-11-02'
+    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+
 - id: STD-GD-065
   type: standard
   title: Guangdong 2021 marine fishing-vessel standard hull catalog
@@ -1423,6 +2237,18 @@ sources:
   hash: f6ed423220baca5ec45b9b83fe583c39093245194dba70c8417fea63ab0961ad
   acquisition: Downloaded 2026-11-02 from the attachment of the Guangdong announcement of 2021-03-04 (dara.gd.gov.cn, post_3234786).
   notes: Four hull types with 序号, 船型名称, 样船船名, 图纸批准文号, 总长, 公约船长 and the remaining parameter columns. It is the latest Guangdong batch found; later batches are monitored rather than assumed.
+  level: provincial
+  authority_tier: A
+  retrieval:
+    channel: collection
+    parseable: true
+    note: Registered in a reference collection.
+  lifecycle: active
+  validity:
+    status: unknown
+    as_of: '2026-11-02'
+    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+
 - id: STD-HN-066
   type: standard
   title: Hainan 2019 small fishing-vessel standard hull catalog
@@ -1441,6 +2267,18 @@ sources:
   hash: 4db86b28b700267efadf4f942258a1d835122946270269a265e2fc10836b1392
   acquisition: Downloaded 2026-11-02 from attachment 2 of the Hainan announcement of 2019-03-28; the page lists 附件2 before 附件1, so the file names were checked against their sheets before registering.
   notes: Small-vessel catalog from the 2019 publication of 7 large and 15 small hull types. The sheet header names it 附件2 海南省小型渔船标准船型目录 even though it is the numerically first attachment on the page.
+  level: provincial
+  authority_tier: A
+  retrieval:
+    channel: collection
+    parseable: true
+    note: Registered in a reference collection.
+  lifecycle: active
+  validity:
+    status: unknown
+    as_of: '2026-11-02'
+    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+
 - id: STD-HN-067
   type: standard
   title: Hainan 2019 large and medium fishing-vessel standard hull catalog
@@ -1459,6 +2297,18 @@ sources:
   hash: 6b5bebcc6d2278a7b27d5a1ba2e581871b49f551e966fcadbc7d9890772ed709
   acquisition: Downloaded 2026-11-02 from attachment 1 of the Hainan announcement of 2019-03-28.
   notes: Large and medium-vessel catalog, header sheet 附件1 plus a data sheet with 序号, 船型代号, 总长, 公约船长, 型宽, 型深 and the remaining columns. The file name and sheet order were reconciled before registration.
+  level: provincial
+  authority_tier: A
+  retrieval:
+    channel: collection
+    parseable: true
+    note: Registered in a reference collection.
+  lifecycle: active
+  validity:
+    status: unknown
+    as_of: '2026-11-02'
+    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+
 gaps:
 - Seventy-five sources are registered: seventy-two acquired and three candidates awaiting disposition.
 - The yearbook coverage matrix has no values in the public repository; all values stay local.
