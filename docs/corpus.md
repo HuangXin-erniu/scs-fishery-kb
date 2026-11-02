@@ -240,6 +240,11 @@ One national record stays open: the 2018 quarterly evaluation results (66 hull t
 
 The 2018 first-quarter evaluation results were pursued with four query phrasings, the ministry search endpoint and the bureau search path (both HTTP 404), the 2018 gazette issue pages 201804 to 201812 (about 85 KB each, script shells with zero occurrences of 标准船型), and the archive.org CDX interface (connection timed out from this network). The only reachable traces are news restatements on research-institute pages, which are pointers and not sources. The 66-type list therefore stays unattainable and is not reconstructed; the bureau notice list is in the watch list so a future upload is detected.
 
+
+### 广西 hull-catalog search record
+
+Guangxi is the one coastal province without a public marine hull catalog. The provincial notice and document lists (https://nynct.gxzf.gov.cn/xxgk/jcxxgk/tzgg/ and /wjzl/) answer 200 but are script shells with zero 船型 occurrences; the former ocean bureau domain http://www.gxao.org.cn/gxhyj_bumenwenjian returns 404; the Qinzhou approval that cited the catalog (http://nynct.gxzf.gov.cn/xwdt/gxlb/qz/t11054826.shtml) also returns 404. The only reachable material is the 2020 inland pontoon standard (桂农厅办发〔2020〕47号), which is inland and out of scope, and municipal approvals that reference the catalog without carrying it. The catalog therefore cannot be registered from public pages today. The owner has a ready-to-submit disclosure request in [foi-guangxi-hull-catalog.md](foi-guangxi-hull-catalog.md); both department lists are in the watch list so a future upload is detected.
+
 ## 6. Candidate sources
 
 | ID | Type | Title | Priority | Disposition |

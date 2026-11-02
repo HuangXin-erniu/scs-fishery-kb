@@ -121,3 +121,19 @@ sources:
     note: Bureau notice list; a future hull-type evaluation announcement would appear here.
     status: ok
     sha256: ecee3ce92f8dafaf303997c5d82e83604f02403b24da9e567ffe6f3914714cc2
+  - id: WATCH-GX-NYNCT-NOTICES
+    url: http://nynct.gxzf.gov.cn/xxgk/jcxxgk/tzgg/
+    authority: B
+    publisher: 广西壮族自治区农业农村厅
+    cadence: weekly
+    note: Provincial notice list; a hull-catalog announcement would appear here. The https endpoint presents a certificate whose hostname does not match, so the monitor uses http and records that limitation.
+    status: ok
+    sha256: 12b756ecf737a20017e421adbb10ed01e7fdea9d21c6b6c6e08f7d0f9e334967
+  - id: WATCH-GX-HYJ-NOTICES
+    url: http://hyj.gxzf.gov.cn/zwgk_66846/tzgg/
+    authority: B
+    publisher: 广西壮族自治区海洋局
+    cadence: weekly
+    note: Ocean bureau notice list; a hull-catalog announcement would appear here.
+    status: ok
+    sha256: aed3cee1ecc46b5ac403d34ec5fb6a6263f656e8187e32b76f084d4492fbc62c
