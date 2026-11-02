@@ -877,9 +877,9 @@ sources:
   level: national
   authority_tier: A
   retrieval:
-    channel: collection
+    channel: main
     parseable: true
-    note: Registered in a reference collection.
+    note: Registered in the main index.
   lifecycle: active
   watch_note: Static publisher text; no change feed. Rechecked at the quarterly review against the in-force catalogue.
   validity:
@@ -907,9 +907,9 @@ sources:
   level: national
   authority_tier: A
   retrieval:
-    channel: collection
+    channel: main
     parseable: true
-    note: Registered in a reference collection.
+    note: Registered in the main index.
   lifecycle: active
   watch_note: Static publisher text; no change feed. Rechecked at the quarterly review against the in-force catalogue.
   validity:
@@ -937,9 +937,9 @@ sources:
   level: national
   authority_tier: A
   retrieval:
-    channel: collection
+    channel: main
     parseable: true
-    note: Registered in a reference collection.
+    note: Registered in the main index.
   lifecycle: active
   watch_note: Static publisher text; no change feed. Rechecked at the quarterly review against the in-force catalogue.
   validity:
@@ -967,9 +967,9 @@ sources:
   level: national
   authority_tier: A
   retrieval:
-    channel: collection
+    channel: main
     parseable: true
-    note: Registered in a reference collection.
+    note: Registered in the main index.
   lifecycle: active
   watch_ref: WATCH-MOA-YYJ-NOTICES
   validity:
@@ -997,9 +997,9 @@ sources:
   level: national
   authority_tier: B
   retrieval:
-    channel: collection
+    channel: main
     parseable: true
-    note: Registered in a reference collection.
+    note: Registered in the main index.
   lifecycle: active
   watch_note: Static official attachment; no change feed. Rechecked at the quarterly review.
   validity:

@@ -988,3 +988,12 @@ def test_operations_resource_layer() -> None:
     assert "No. 950" in sources["POL-WATCH-082"]["validity"]["note"]
     cues = load_yaml("configs/reference-collections.yaml")["collections"]["policy"]["cues"]
     assert {"值班", "航行", "安全", "海洋牧场", "示范区"} <= set(cues)
+
+
+def test_pipeline_documents_report_the_main_channel() -> None:
+    from scs_fkb.registry import load_registry
+
+    pipeline = load_yaml("configs/pipeline.yaml")["documents"]
+    registry = load_registry("configs/corpus.yaml")
+    for doc_id in pipeline:
+        assert registry[doc_id]["retrieval"]["channel"] == "main"
