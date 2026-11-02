@@ -33,7 +33,7 @@ def test_corpus_structure() -> None:
         "data_dictionary",
         "plan",
     }
-    assert len(data["sources"]) == 84
+    assert len(data["sources"]) == 83
 
     acquired = []
     candidates = []
@@ -46,7 +46,7 @@ def test_corpus_structure() -> None:
         else:
             candidates.append(source)
 
-    assert len(acquired) == 81
+    assert len(acquired) == 80
     assert len(candidates) == 3
     yearbooks = [source for source in acquired if source["id"].startswith("STAT-YB-")]
     assert len(yearbooks) == 9
@@ -127,7 +127,6 @@ def test_corpus_structure() -> None:
         "POL-RES-075",
         "STD-SPEC-076",
         "POL-PORT-077",
-        "POL-PORT-078",
         "POL-PEN-078",
         "POL-LIST-079",
         "POL-PEN-080",
@@ -259,7 +258,7 @@ def test_corpus_structure() -> None:
         "statistical_yearbook": 16,
         "law": 1,
         "regulation": 20,
-        "notice": 16,
+        "notice": 15,
         "standard": 18,
         "operations": 1,
         "fishery_product": 4,
@@ -645,7 +644,6 @@ def test_reference_collections_config() -> None:
         "STAT-ECO-073",
         "POL-RES-075",
         "POL-PORT-077",
-        "POL-PORT-078",
         "POL-PEN-078",
         "POL-LIST-079",
         "POL-PEN-080",
@@ -701,7 +699,6 @@ def test_corrected_corpus_hashes() -> None:
         "POL-RES-075": "90abf8647b254325125ed7f79bff16a4c573aab0a773fb166fb0dc79c3ec5971",
         "STD-SPEC-076": "8b45d11547577041e15c5837a3ff8f283d2dd2c2b87f83eb8026ad3feb8662c3",
         "POL-PORT-077": "1ff9570272738ada371f4e412c3b47ef13eaf94c68481a31640421fda6fc1fd2",
-        "POL-PORT-078": "fe142d1a8f9885668b6d2fb47764c50123bc52c6d60ca53703263970aa3ab44a",
         "POL-PEN-078": "42884cb595529b9f687a4442ff5a8bf8f5706c5764cbb7df57859e29923bc428",
         "POL-LIST-079": "67c8240cc5bf63487b7ee43af3ea9800f41f60a29eeccbaa2c5b6f0feac9b29f",
         "POL-PEN-080": "57027911e2ce6b23d6e84aee6269f19623b19f927cdb31fcbad606e032756e81",
@@ -774,7 +771,6 @@ def test_validity_blocks() -> None:
         "POL-RES-075",
         "STD-SPEC-076",
         "POL-PORT-077",
-        "POL-PORT-078",
         "POL-PEN-078",
         "POL-LIST-079",
         "POL-PEN-080",
@@ -798,8 +794,8 @@ def test_registry_schema_v2() -> None:
     from scs_fkb.registry import load_registry
 
     registry = load_registry("configs/corpus.yaml")
-    assert len(registry) == 84
-    assert sum(1 for entry in registry.values() if entry["status"] == "acquired") == 81
+    assert len(registry) == 83
+    assert sum(1 for entry in registry.values() if entry["status"] == "acquired") == 80
     for entry in registry.values():
         assert entry["lifecycle"] in {"active", "retired"}
         if entry["lifecycle"] == "retired":
@@ -830,7 +826,7 @@ def test_environment_layer() -> None:
     assert sources["STAT-ECO-073"]["retrieval"]["parseable"] is True
     assert sources["STAT-DIS-074"]["retrieval"]["parseable"] is False
     collections = load_yaml("configs/reference-collections.yaml")["collections"]
-    assert len(collections["policy"]["documents"]) == 32
+    assert len(collections["policy"]["documents"]) == 31
     assert "海洋灾害" in collections["policy"]["cues"]
 
 
@@ -848,7 +844,7 @@ def test_species_layer() -> None:
 def test_port_layer() -> None:
     data = load_yaml("configs/corpus.yaml")
     sources = {source["id"]: source for source in data["sources"]}
-    for source_id in ("POL-PORT-077", "POL-PORT-078"):
+    for source_id in ("POL-PORT-077",):
         assert sources[source_id]["retrieval"]["parseable"] is True
         assert sources[source_id]["validity"]["status"] == "in_force"
     cues = load_yaml("configs/reference-collections.yaml")["collections"]["policy"]["cues"]
@@ -901,3 +897,33 @@ def test_penalty_cross_checks() -> None:
         assert "No. 950" in sources[source_id]["validity"]["note"]
     assert sources["POL-PEN-080"]["validity"]["status"] == "in_force"
     assert sources["POL-PEN-080"]["retrieval"]["parseable"] is True
+
+
+def test_cleanup_080_state() -> None:
+    from scs_fkb.registry import load_registry
+
+    registry = load_registry("configs/corpus.yaml")
+    assert "POL-PORT-078" not in registry
+    for source_id in ("POL-ENF-068", "POL-OBS-072", "POL-RES-075", "POL-PORT-077"):
+        assert registry[source_id]["retrieval"]["channel"] == "main"
+    data_publications = {
+        "STAT-BULL-025",
+        "STAT-BULL-028",
+        "STAT-BULL-029",
+        "STAT-BULL-030",
+        "STAT-BULL-031",
+        "STAT-BULL-032",
+        "STAT-CSY-027",
+        "STAT-YB-2018",
+        "STAT-YB-2019",
+        "STAT-YB-2020",
+        "STAT-YB-2021",
+        "STAT-YB-2022",
+        "STAT-YB-2023",
+        "STAT-YB-2024",
+        "STAT-YB-2025",
+        "STAT-YB-2026",
+        "DICT-STAT-013",
+    }
+    for source_id in data_publications:
+        assert registry[source_id]["validity"]["status"] == "not_applicable"

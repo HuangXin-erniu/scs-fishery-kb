@@ -87,3 +87,11 @@ def test_select_filters_by_level_and_channel() -> None:
     }
     assert [entry["id"] for entry in select(sources, level="national")] == ["A", "C"]
     assert [entry["id"] for entry in select(sources, channel="main")] == ["C"]
+
+
+def test_not_applicable_status_is_accepted(tmp_path: Path) -> None:
+    entry = _entry(
+        validity={"status": "not_applicable", "as_of": "2026-11-02", "note": "data edition"}
+    )
+    registry = load_registry(_write(tmp_path, [entry]))
+    assert registry["POL-TEST-001"]["validity"]["status"] == "not_applicable"

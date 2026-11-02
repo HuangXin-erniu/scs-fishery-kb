@@ -27,7 +27,7 @@
 
 ```yaml
 validity:
-  status: in_force | superseded | repealed | unknown
+  status: in_force | superseded | repealed | unknown | not_applicable
   as_of: '2026-11-02'
   supersedes: [POL-...]        # optional, registered or named predecessors
   superseded_by: [POL-...]     # optional, required when status is superseded
@@ -39,6 +39,7 @@ Rules:
 - `in_force` requires a recorded evidence sentence (a citation by a later official document, an effective date, or the publisher's own current marker).
 - `superseded` requires a named successor; otherwise use `unknown` and name the suspected successor in the note.
 - `repealed` requires the repealing act.
+- `not_applicable` marks a data publication (yearbook edition, statistical bulletin, dictionary, dataset): it is not a normative act, so in-force and repealed do not apply; a later edition supersedes it for current-year data.
 - `unknown` is the honest default for anything not verified. It is not a placeholder to be left forever: the national entries are re-checked in the currency table.
 
 ## 3. Retrieval

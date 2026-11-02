@@ -10,7 +10,7 @@ from .config import DEFAULT_CONFIG
 
 LEVELS = frozenset({"national", "provincial", "municipal", "international"})
 TIERS = frozenset({"A", "B", "C"})
-VALIDITY = frozenset({"in_force", "superseded", "repealed", "unknown"})
+VALIDITY = frozenset({"in_force", "superseded", "repealed", "unknown", "not_applicable"})
 CHANNELS = frozenset({"main", "collection", "statistics", "watch", "none"})
 LIFECYCLES = frozenset({"active", "retired"})
 REQUIRED = ("level", "authority_tier", "validity", "retrieval", "lifecycle")

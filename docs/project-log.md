@@ -2,6 +2,14 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-02 — Corpus cleanup: duplicate port list, channel metadata, not_applicable
+
+- Deleted `POL-PORT-078`, which was byte-identical to `POL-PORT-037` (sha256 fe142d1a…) but titled as the final 2025 port list; the original keeps its proposed-recognition note and now records the mistaken duplicate.
+- Corrected the retrieval channel of the four national texts admitted to the main index: `POL-ENF-068`, `POL-OBS-072`, `POL-RES-075` and `POL-PORT-077` now report `main`, matching the thirty-three-document pipeline.
+- Added the `not_applicable` validity status and migrated seventeen data publications (yearbooks, bulletins, the statistical yearbook and one dictionary); national `unknown` falls from thirty-one to fourteen.
+- Fixed the stale counts in plan and README: 83/80/3, twenty regulations, fifteen notices, eighteen standard sets, fifty-six legal and technical documents plus seven reference dictionaries.
+- Register: 83 sources, 80 acquired; policy collection thirty-one documents. Eval unchanged.
+
 ## 2026-11-02 — General penalty rules and the national validity sweep
 
 - Registered `POL-PEN-080` (渔业行政处罚规定, 农业部令第36号, revised 2022-01-07 and 2025-07-15 by 农业农村部令2025年第3号; 2,780 parsed characters).

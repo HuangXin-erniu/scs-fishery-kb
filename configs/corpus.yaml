@@ -563,9 +563,9 @@ sources:
   level: national
   authority_tier: A
   retrieval:
-    channel: collection
+    channel: main
     parseable: true
-    note: Registered in a reference collection.
+    note: Registered in the main index.
   lifecycle: active
   validity:
     status: in_force
@@ -679,9 +679,9 @@ sources:
   level: national
   authority_tier: A
   retrieval:
-    channel: collection
+    channel: main
     parseable: true
-    note: Registered in a reference collection.
+    note: Registered in the main index.
   lifecycle: active
   validity:
     status: in_force
@@ -766,9 +766,9 @@ sources:
   level: national
   authority_tier: A
   retrieval:
-    channel: collection
+    channel: main
     parseable: true
-    note: Registered in a reference collection.
+    note: Registered in the main index.
   lifecycle: active
   validity:
     status: in_force
@@ -824,43 +824,14 @@ sources:
   level: national
   authority_tier: B
   retrieval:
-    channel: collection
+    channel: main
     parseable: true
-    note: Registered in a reference collection.
+    note: Registered in the main index.
   lifecycle: active
   validity:
     status: in_force
     as_of: '2026-11-02'
     note: The 2019-03-02 amendment is the text published in the State Council gazette.
-- id: POL-PORT-078
-  type: notice
-  title: 2025 first-batch fishing-port grade recognition list
-  title_zh: 2025年第一批渔港等级认定名单
-  publisher: 农业农村部办公厅
-  year: 2025
-  jurisdiction: national
-  format: docx
-  location: raw/POL-PORT-078/
-  license: public
-  sensitivity: public
-  status: acquired
-  priority: P2
-  volume: 1 DOCX; about 270 characters
-  update_freq: annual
-  hash: fe142d1a8f9885668b6d2fb47764c50123bc52c6d60ca53703263970aa3ab44a
-  acquisition: Downloaded 2026-11-02 as the attachment to the 2025-01 notice on fishing-port grade recognition.
-  notes: The attachment to the 2025 first-batch port grade notice, listing twelve central ports and the first-class ports. The surrounding notice page is a script shell, so the publisher-owned attachment is registered and the notice is named here.
-  level: national
-  authority_tier: B
-  retrieval:
-    channel: collection
-    parseable: true
-    note: Registered in a reference collection.
-  lifecycle: active
-  validity:
-    status: in_force
-    as_of: '2026-11-02'
-    note: The 2025 first-batch list is the current recognition round on the ministry attachment.
 - id: POL-PEN-078
   type: regulation
   title: Provisions on administrative penalties for fishing port and navigation supervision
@@ -1115,7 +1086,7 @@ sources:
   update_freq: irregular
   hash: fe142d1a8f9885668b6d2fb47764c50123bc52c6d60ca53703263970aa3ab44a
   acquisition: 'Owner-supplied DOCX received 2026-10-31; attachment to the ministry notice https://yyj.moa.gov.cn/tzgg/202501/t20250115_6469192.htm (公示 dated 2025-01-15).'
-  notes: 'Proposed recognition (拟认定) rather than a final decision: 12 central ports (Liaoning, Shandong, Zhejiang, Fujian, Guangdong, Guangxi, Hainan) and 2 first-class ports in Shandong, open for comment until 2025-01-22. Confirm the final recognition before citing it as settled.'
+  notes: 'Proposed recognition (拟认定) rather than a final decision: 12 central ports (Liaoning, Shandong, Zhejiang, Fujian, Guangdong, Guangxi, Hainan) and 2 first-class ports in Shandong, open for comment until 2025-01-22. Confirm the final recognition before citing it as settled. The same file was mistakenly registered a second time as POL-PORT-078 under a title claiming it was the final 2025 list; that duplicate was deleted on 2026-11-02 and no final recognition announcement was found.'
   level: national
   authority_tier: A
   retrieval:
@@ -1548,9 +1519,9 @@ sources:
     note: Registered in the main index.
   lifecycle: active
   validity:
-    status: unknown
+    status: not_applicable
     as_of: '2026-11-02'
-    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+    note: An edition or dictionary is not a normative act; it is valid for its data year, so in-force and repealed do not apply. A later edition supersedes it for current-year data.
 
 - id: STAT-CSY-027
   title: 中国统计年鉴 2026（Excel）
@@ -1578,9 +1549,9 @@ sources:
     note: Source for the statistical extracts.
   lifecycle: active
   validity:
-    status: unknown
+    status: not_applicable
     as_of: '2026-11-02'
-    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+    note: An edition or dictionary is not a normative act; it is valid for its data year, so in-force and repealed do not apply. A later edition supersedes it for current-year data.
 
 - id: STAT-BULL-028
   title: 2020年全国渔业经济统计公报
@@ -1608,9 +1579,9 @@ sources:
     note: Registered in the main index.
   lifecycle: active
   validity:
-    status: unknown
+    status: not_applicable
     as_of: '2026-11-02'
-    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+    note: An edition or dictionary is not a normative act; it is valid for its data year, so in-force and repealed do not apply. A later edition supersedes it for current-year data.
 
 - id: STAT-BULL-029
   title: 2021年全国渔业经济统计公报
@@ -1638,9 +1609,9 @@ sources:
     note: Registered in the main index.
   lifecycle: active
   validity:
-    status: unknown
+    status: not_applicable
     as_of: '2026-11-02'
-    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+    note: An edition or dictionary is not a normative act; it is valid for its data year, so in-force and repealed do not apply. A later edition supersedes it for current-year data.
 
 - id: STAT-BULL-030
   title: 2022年全国渔业经济统计公报
@@ -1668,9 +1639,9 @@ sources:
     note: Registered in the main index.
   lifecycle: active
   validity:
-    status: unknown
+    status: not_applicable
     as_of: '2026-11-02'
-    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+    note: An edition or dictionary is not a normative act; it is valid for its data year, so in-force and repealed do not apply. A later edition supersedes it for current-year data.
 
 - id: STAT-BULL-031
   title: 2023年全国渔业经济统计公报
@@ -1698,9 +1669,9 @@ sources:
     note: Registered in the main index.
   lifecycle: active
   validity:
-    status: unknown
+    status: not_applicable
     as_of: '2026-11-02'
-    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+    note: An edition or dictionary is not a normative act; it is valid for its data year, so in-force and repealed do not apply. A later edition supersedes it for current-year data.
 
 - id: STAT-BULL-032
   title: 2024年全国渔业经济统计公报
@@ -1728,9 +1699,9 @@ sources:
     note: Registered in the main index.
   lifecycle: active
   validity:
-    status: unknown
+    status: not_applicable
     as_of: '2026-11-02'
-    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+    note: An edition or dictionary is not a normative act; it is valid for its data year, so in-force and repealed do not apply. A later edition supersedes it for current-year data.
 
 - id: DICT-STAT-013
   title: 渔业统计指标解释（2024中国渔业统计年鉴附录3）
@@ -1758,9 +1729,9 @@ sources:
     note: Registered in the main index.
   lifecycle: active
   validity:
-    status: unknown
+    status: not_applicable
     as_of: '2026-11-02'
-    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+    note: An edition or dictionary is not a normative act; it is valid for its data year, so in-force and repealed do not apply. A later edition supersedes it for current-year data.
 
 - id: DICT-STAT-040
   title: 中国统计年鉴2025主要统计指标解释（农业）
@@ -1849,9 +1820,9 @@ sources:
     note: Source for the statistical extracts.
   lifecycle: active
   validity:
-    status: unknown
+    status: not_applicable
     as_of: '2026-11-02'
-    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+    note: An edition or dictionary is not a normative act; it is valid for its data year, so in-force and repealed do not apply. A later edition supersedes it for current-year data.
 
 - id: STAT-YB-2019
   type: statistical_yearbook
@@ -1879,9 +1850,9 @@ sources:
     note: Source for the statistical extracts.
   lifecycle: active
   validity:
-    status: unknown
+    status: not_applicable
     as_of: '2026-11-02'
-    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+    note: An edition or dictionary is not a normative act; it is valid for its data year, so in-force and repealed do not apply. A later edition supersedes it for current-year data.
 
 - id: STAT-YB-2020
   type: statistical_yearbook
@@ -1909,9 +1880,9 @@ sources:
     note: Source for the statistical extracts.
   lifecycle: active
   validity:
-    status: unknown
+    status: not_applicable
     as_of: '2026-11-02'
-    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+    note: An edition or dictionary is not a normative act; it is valid for its data year, so in-force and repealed do not apply. A later edition supersedes it for current-year data.
 
 - id: STAT-YB-2021
   type: statistical_yearbook
@@ -1939,9 +1910,9 @@ sources:
     note: Source for the statistical extracts.
   lifecycle: active
   validity:
-    status: unknown
+    status: not_applicable
     as_of: '2026-11-02'
-    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+    note: An edition or dictionary is not a normative act; it is valid for its data year, so in-force and repealed do not apply. A later edition supersedes it for current-year data.
 
 - id: STAT-YB-2022
   type: statistical_yearbook
@@ -1969,9 +1940,9 @@ sources:
     note: Source for the statistical extracts.
   lifecycle: active
   validity:
-    status: unknown
+    status: not_applicable
     as_of: '2026-11-02'
-    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+    note: An edition or dictionary is not a normative act; it is valid for its data year, so in-force and repealed do not apply. A later edition supersedes it for current-year data.
 
 - id: STAT-YB-2023
   type: statistical_yearbook
@@ -1999,9 +1970,9 @@ sources:
     note: Source for the statistical extracts.
   lifecycle: active
   validity:
-    status: unknown
+    status: not_applicable
     as_of: '2026-11-02'
-    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+    note: An edition or dictionary is not a normative act; it is valid for its data year, so in-force and repealed do not apply. A later edition supersedes it for current-year data.
 
 - id: STAT-YB-2024
   type: statistical_yearbook
@@ -2029,9 +2000,9 @@ sources:
     note: Source for the statistical extracts.
   lifecycle: active
   validity:
-    status: unknown
+    status: not_applicable
     as_of: '2026-11-02'
-    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+    note: An edition or dictionary is not a normative act; it is valid for its data year, so in-force and repealed do not apply. A later edition supersedes it for current-year data.
 
 - id: STAT-YB-2025
   type: statistical_yearbook
@@ -2059,9 +2030,9 @@ sources:
     note: Source for the statistical extracts.
   lifecycle: active
   validity:
-    status: unknown
+    status: not_applicable
     as_of: '2026-11-02'
-    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+    note: An edition or dictionary is not a normative act; it is valid for its data year, so in-force and repealed do not apply. A later edition supersedes it for current-year data.
 
 - id: STAT-YB-2026
   type: statistical_yearbook
@@ -2089,9 +2060,9 @@ sources:
     note: Source for the statistical extracts.
   lifecycle: active
   validity:
-    status: unknown
+    status: not_applicable
     as_of: '2026-11-02'
-    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+    note: An edition or dictionary is not a normative act; it is valid for its data year, so in-force and repealed do not apply. A later edition supersedes it for current-year data.
 
 - id: POL-CREW-055
   type: regulation
@@ -2574,7 +2545,7 @@ sources:
     note: Status not separately verified during the schema migration; the source note records the publisher and date.
 
 gaps:
-- Eighty-four sources are registered: eighty-one acquired and three candidates awaiting disposition.
+- Eighty-three sources are registered: eighty acquired and three candidates awaiting disposition.
 - The yearbook coverage matrix has no values in the public repository; all values stay local.
 - The yearbook infrastructure table is missing for data years 2018 and 2019; the 2018 national port plan supplies a baseline whose port classes are close to, but not identical with, the yearbook table.
 - The vessel-length proxy is missing for data year 2024.
