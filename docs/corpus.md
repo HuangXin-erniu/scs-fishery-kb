@@ -30,8 +30,8 @@ Every entry carries schema v2 fields: `level` (national, provincial, municipal o
 | `statistical_yearbook` | 统计年鉴 | 16 | Official annual statistics and indicator tables |
 | `operations` | 作业知识 | 1 | Fishing methods, gear, vessel operations, logbooks and permit conditions |
 | `law` | 法律 | 1 | National law adopted by the legislature |
-| `regulation` | 行政法规/规章/地方性法规 | 16 | Administrative regulations, departmental rules and local regulations |
-| `notice` | 通告/公告 | 13 | Official notices, announcements and seasonal measures |
+| `regulation` | 行政法规/规章/地方性法规 | 17 | Administrative regulations, departmental rules and local regulations |
+| `notice` | 通告/公告 | 14 | Official notices, announcements and seasonal measures |
 | `standard` | 标准/规范 | 18 | National, industry or provincial standards and operational norms |
 | `fishery_product` | 渔情/海况产品说明 | 4 | Product descriptions, fishery bulletins and historical records |
 | `data_dictionary` | 数据字典 | 7 | Field definitions, indicator definitions, metadata and quality rules |
@@ -251,11 +251,20 @@ Guangxi is the one coastal province without a public marine hull catalog. The pr
 |---|---|---|---|---|
 | `POL-OBS-072` | national regulation | in force (2023-07-20 revision) | collection | The Ocean Observation and Forecasting Regulation: observation networks, forecasting duties and marine hazard warning responsibilities |
 | `STAT-ECO-073` | national bulletin | latest edition (2026-06-08) | collection | The 2025 marine ecological early-warning monitoring bulletin, 76 pages on ecological status, pressures and early warning |
-| `STAT-DIS-074` | national bulletin | latest edition (2024-04-22) | provenance only | The 2023 marine disaster bulletin: storm surges, waves, sea ice, tsunami, green tide and red tide, with loss statistics |
+| `STAT-DIS-074` | national bulletin | latest edition (2024-04-22) | none (provenance) | The 2023 marine disaster bulletin: storm surges, waves, sea ice, tsunami, green tide and red tide, with loss statistics |
 
-The disaster bulletin is registered with `parseable: false`: its embedded fonts map to garbled glyphs, so the text layer cannot be cited. It stays as provenance and as a candidate for a future text-robust extraction, not as an answer source.
+The disaster bulletin is registered with `parseable: false` and `retrieval.channel: none`: its embedded fonts map to garbled glyphs, so the text layer cannot be cited. It stays as provenance with channel none, not as an answer source or a collection document.
 
 Rejected after checking: the 2026 marine disaster emergency plan (自然资办函〔2026〕1023号) renders its body by script on both the ministry and gov.cn pages, and the 2022 version it repeals is likewise unreadable, so neither is registered; the GB/T 19201-2006 cyclone-grades PDF is image-only; the national forecast centre site is a script shell. Typhoon grading therefore stays uncovered until a text-bearing official copy is available.
+
+## 5n. Species and resource conservation
+
+| Source | Level | Current | Retrieval | What it provides |
+|---|---|---|---|---|
+| `POL-RES-075` | national regulation | in force | collection | The 2009 aquatic stocking regulation: planning, species choice, quarantine, supervision and evaluation of stock enhancement |
+| `STD-SPEC-076` | national announcement | in force (2021-02-05) | none (provenance) | The 2021 national key-protected wildlife list (980 species and 8 groups); the PDF is image-only, so it is provenance only and cannot answer a species-level question |
+
+Two limits are recorded rather than hidden. The ASFIS species list (`STD-ASFIS-044`) is a zip of an xlsx and a csv; the parser does not read archives, so it stays a registered lookup rather than an indexed source. The germplasm-reserve download from the Chinese Academy of Fishery Sciences returned the 2013 fishery eco-environment bulletin instead of the reserve list; that bulletin is superseded and is not registered.
 
 ## 6. Candidate sources
 
@@ -272,8 +281,8 @@ The four environment and fishery-product candidates were removed on owner instru
 | Metric | Value |
 |---|---:|
 | Corpus types | 9 |
-| Registered sources | 77 |
-| Acquired sources | 74 |
+| Registered sources | 79 |
+| Acquired sources | 76 |
 | Remaining candidates | 3 |
 | Yearbook editions | 9 |
 | Yearbook data years | 2017–2025 |
