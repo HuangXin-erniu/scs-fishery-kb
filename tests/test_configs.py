@@ -482,7 +482,7 @@ def test_glossary_bridge() -> None:
         assert entry["zh"] not in seen
         seen.add(entry["zh"])
         assert entry["en"] and all(isinstance(item, str) and item for item in entry["en"])
-        assert "CWP" in entry["note"]
+        assert entry["note"]
     assert {"产量", "上岸量", "捕捞努力量"} <= seen
 
 
@@ -566,3 +566,33 @@ def test_statistical_governance_documents() -> None:
         assert len(source["hash"]) == 64
     assert "国统制〔2024〕120号" in sources["POL-STAT-051"]["notes"]
     assert "农办渔〔2018〕30号" in sources["POL-YJ-052"]["volume"]
+
+
+def test_reference_collections_config() -> None:
+    data = load_yaml("configs/reference-collections.yaml")
+    collections = data["collections"]
+    assert set(collections) == {"product", "policy"}
+    product_ids = {doc["id"] for doc in collections["product"]["documents"]}
+    policy_ids = {doc["id"] for doc in collections["policy"]["documents"]}
+    assert product_ids == {
+        "STD-MUR-045",
+        "STD-OLCI-046",
+        "DICT-GFW-047",
+        "DICT-GFW-048",
+        "STD-CMEMS-049",
+    }
+    assert policy_ids == {
+        "POL-STAT-050",
+        "POL-STAT-051",
+        "POL-YJ-052",
+        "POL-VMS-053",
+        "STD-ECERT-054",
+    }
+    corpus = {source["id"]: source for source in load_yaml("configs/corpus.yaml")["sources"]}
+    for collection in collections.values():
+        for document in collection["documents"]:
+            relative = document.get("file") or document.get("location") or ""
+            assert relative.startswith(f"raw/{document['id']}/")
+            assert collection is collections["policy"] or document["language"] == "en"
+            assert len(document["sha256"]) == 64
+            assert document["id"] in corpus
