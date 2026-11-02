@@ -2,6 +2,13 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-02 — National hull package completed
+
+- Added `STD-HULL-069` (农办渔〔2017〕5号 notice, 2017-02-07), `STD-HULL-070` (annex 2 usage notes, 4,531 characters) and `STD-YY-071` (远洋渔船标准化船型参数系列表 2024年版, 农办渔〔2024〕15号, 10 pages, effective 2024-12-01). The 2017 method now has its promulgating notice and its explanatory annex, and the national layer has one parameter table.
+- Validity blocks added to the four national hull entries. The 2024 series names the 2021 edition as the superseded predecessor but does not register it. A scope note on `STD-YY-071` says the hull types are ocean-going and must not answer near-shore parameter questions; the provincial catalogs stay the near-shore reference.
+- The 2018 quarterly evaluation results (66 types, including Guangxi) stay unattainable: only news restatements were found, no publisher page. SC/T 8003-2007 is recorded as the code standard with no dimensions, so it cannot substitute for a parameter catalog.
+- Register: 75 sources, 72 acquired; standard 18. The cue list is unchanged, so the closure question still answers from POL-CLOS-015 §三 with an empty policy block. Eval unchanged on every arm.
+
 ## 2026-11-02 — National closure enforcement notice and validity blocks
 
 - Added `POL-ENF-068`, the 2026 joint enforcement notice of 农业农村部, 公安部 and 中国海警局 (2026-04-29, 4,767 characters): 1 May to 16 September, three priority tasks. It is an enforcement deployment under 农业农村部通告〔2023〕1号, not a change to the closure system.

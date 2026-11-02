@@ -198,4 +198,25 @@ collections:
         sha256: 174ab3e343df18e09d8340272e329d956b062ce909216eea8282e206a6bca8af
         license: public
         language: zh
+        jurisdiction: national
+      - id: STD-HULL-069
+        title: 农业部办公厅关于印发《渔船标准船型评价方法（试行）》的通知
+        file: raw/STD-HULL-069/hull-evaluation-notice-2017.html
+        sha256: 822a8c089528438ad1b6cf353df94403711e86ebf6a9197443b14987bdb7a316
+        license: public
+        language: zh
+        jurisdiction: national
+      - id: STD-HULL-070
+        title: 《渔船标准船型评价方法（试行）》使用说明
+        file: raw/STD-HULL-070/hull-evaluation-usage-notes-2017.docx
+        sha256: f2e5f2f81200f3f69476f1792b5bd73658c9393b20932e5f62ac56a6fa44c6ef
+        license: public
+        language: zh
+        jurisdiction: national
+      - id: STD-YY-071
+        title: 远洋渔船标准化船型参数系列表（2024年版）
+        file: raw/STD-YY-071/distant-water-hull-parameter-series-2024.ofd
+        sha256: 29b1f6afcf88c84d6a777d571036d1173467bc3823b936422d3e45111d1a2668
+        license: public
+        language: zh
         jurisdiction: fujian
