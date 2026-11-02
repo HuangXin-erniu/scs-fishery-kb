@@ -298,6 +298,19 @@ Fourteen national entries still carry `unknown`, grouped here so the gap is visi
 
 No status was upgraded without a citation. The two entries the catalogue does name, `POL-RES-075` and `POL-PEN-078`, carry that cross-check in their validity notes.
 
+## 5r. Climate and hazard: documented unavailability
+
+Four official routes were checked and none yields citable text today. They are recorded rather than replaced:
+
+| Route | Evidence | Consequence |
+|---|---|---|
+| 气象灾害预警信号发布与传播办法 (中国气象局令第16号) | The gov.cn text at https://www.gov.cn/zhengce/2007-06/12/content_5720083.htm parses 1,862 characters, but it is the 2007 order; a Jiangsu meteorological document states the current version is the March 2023 revision 气发〔2023〕34号 | The 2007 text is not registered; a 2023 text page was not found, so the watch monitors the CMA rules page |
+| GB/T 19201-2006 热带气旋等级 | The cma.gov.cn PDF (234,082 bytes) is image-only and parses no text | Not registered; a text-bearing copy would be needed |
+| GB/T 19721.1/.2/.3-2017 storm-surge and wave warning standards | No public text copy exists; the standard platform exposes metadata only | Not registered; covered by the same unavailability record |
+| 2026 marine disaster emergency plan (自然资办函〔2026〕1023号) | Both gi.mnr.gov.cn and gov.cn render the body by script; the 2022 predecessor is likewise unreadable | Not registered; the ministry page is watched for a text upload |
+
+The domain therefore stays uncovered on purpose: no typhoon grade, storm-surge or wave-warning text is cited, and no answer should imply one. `WATCH-CMA-RULES` and `WATCH-MNR-EMERGENCY` carry the monitoring.
+
 ## 6. Candidate sources
 
 | ID | Type | Title | Priority | Disposition |

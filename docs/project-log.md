@@ -2,6 +2,12 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-02 — Climate and hazard: documented unavailability
+
+- Checked four official routes for climate and hazard text and recorded each failure in docs/corpus.md 5r: the gov.cn warning-signal text is the 2007 order and the current 2023 revision (气发〔2023〕34号) is not published as text; the cyclone-grade PDF is image-only; the storm-surge and wave standards have no public text; the 2026 emergency plan renders by script.
+- Added and baselined WATCH-CMA-RULES and WATCH-MNR-EMERGENCY so a future text upload is detected; no source was registered and no status was invented.
+- Register counts stay 83/80/3; every eval arm unchanged.
+
 ## 2026-11-02 — Watch baselines and coverage enforcement
 
 - Baselined the ten watch entries that had never run; the list is now fully baselined (23 ok) with the two dynamic pages marked `dynamic: true` because their content churns between requests.
