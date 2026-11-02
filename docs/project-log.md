@@ -2,6 +2,13 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-02 — Registry schema v2 and migration
+
+- Added `src/scs_fkb/registry.py`: loads the register and validates level, authority tier, validity, retrieval and lifecycle, with a retirement block required for retired entries and unique ids enforced.
+- Migrated all 75 entries: 61 national, 11 provincial, 2 international and 1 municipal; 29 main-index, 31 collection, 10 statistics and 5 unrouted; 24 entries carry `in_force` with a quoted evidence sentence and 51 carry `unknown` rather than an assumed status.
+- Added docs/data-model.md with the field table, enums and the admission, supersession, retirement, deletion and main-index rules; the data policy now states retirement-versus-deletion explicitly.
+- Counts and every eval arm are unchanged; the main index is untouched.
+
 ## 2026-11-02 — Level-aware ordering and a national evaluation section
 
 - Every policy collection document now carries a level (national, provincial or municipal). The policy lookup sorts stably: named province first, then the national layer, then other provinces and the municipal layer; with no province named, national before provincial before municipal.

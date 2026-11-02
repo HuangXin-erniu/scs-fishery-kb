@@ -19,6 +19,10 @@ It does **not** include raw environmental grids, reanalysis data, forecast raste
 4. Keep source files in the local data root; the public register contains metadata, hashes and coverage counts only.
 5. Do not parse or index sources in this phase.
 
+## 2a. Registry fields
+
+Every entry carries schema v2 fields: `level` (national, provincial, municipal or international), `authority_tier` (A publisher page, B gazette or compilation, C municipal), `validity` (status, as-of date, predecessor and successor, evidence note), `retrieval` (channel and whether the text is parseable) and `lifecycle` (active or retired). The field table and the admission, retirement and deletion rules are in [data-model.md](data-model.md); `src/scs_fkb/registry.py` enforces them in CI.
+
 ## 3. Types
 
 | Type | Name (zh) | Sources | Description |

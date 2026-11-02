@@ -32,7 +32,8 @@ Every source must be registered in [configs/corpus.yaml](../configs/corpus.yaml)
 - year, type and format,
 - location and acquisition path,
 - licence and sensitivity,
-- status, priority, volume, update frequency and hash.
+- status, priority, volume, update frequency and hash,
+- level, authority tier, validity, retrieval channel and lifecycle (schema v2, see [data-model.md](data-model.md)).
 
 A source with `license: unknown` or `sensitivity: unknown` is held. It must not be ingested or indexed.
 
@@ -76,6 +77,8 @@ This repository does not distribute data. Access to a source depends on the sour
 - The project owner decides how long local source files and run artifacts are retained.
 - Before deleting a source, confirm that evaluation evidence and citations remain reproducible.
 - Removing a source from the public repository does not remove the owner's original copy.
+- Retirement is the default for replaced, unparseable or orphaned sources: the entry keeps its id, hash and local file, moves to `lifecycle: retired` and leaves every retrieval channel.
+- Hard deletion is limited to sources with no licence and no official provenance. It removes the register entry, the collection entry and the local file, and records the decision key that authorised it.
 
 ## 10. Reporting a problem
 

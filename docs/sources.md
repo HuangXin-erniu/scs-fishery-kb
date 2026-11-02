@@ -46,7 +46,11 @@ The checker is read-only by design. It never downloads a document into the regis
 
 Answers must be reproducible from a fixed index, citable to a specific document version and checkable against the recorded hash. A live fetch would break all three, and it would also bypass the licence check. External retrieval therefore belongs to discovery, verification and monitoring, not to answering.
 
-## 8. References
+## 8. The register schema
+
+Fields, enums and lifecycle rules are defined in [data-model.md](data-model.md). In short: level separates the national basis from provincial, municipal and international material; authority tier records whether the page is the publisher's own; validity records whether the text is current and on what evidence; retrieval records whether the text is actually reachable; lifecycle separates active from retired. Unverified validity is `unknown`, never assumed.
+
+## 9. References
 
 - Source register: [configs/corpus.yaml](../configs/corpus.yaml)
 - Watch list: [configs/source-watch.yaml](../configs/source-watch.yaml)
