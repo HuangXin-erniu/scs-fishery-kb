@@ -37,3 +37,15 @@ terms:
   - zh: 遥感
     en: [remote sensing]
     note: The environment products are satellite retrievals.
+  - zh: 水色
+    en: [ocean colour]
+    note: Retrieval mapping for the product channel, not a translation; HY-1C/D, OLCI and the chlorophyll family all carry a 水色 wording.
+  - zh: 覆盖周期
+    en: [coverage cycle]
+    note: Retrieval mapping for the product channel, not a translation; product pages and questions both state how often a sensor revisits a point.
+  - zh: 重访
+    en: [revisit]
+    note: Retrieval mapping for the product channel, not a translation; the shorter form of 重访周期 used in capability tables.
+  - zh: 幅宽
+    en: [swath]
+    note: Retrieval mapping for the product channel, not a translation; the swath width is published beside resolution and coverage cycle.
