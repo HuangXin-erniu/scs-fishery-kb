@@ -29,8 +29,8 @@ It does **not** include raw environmental grids, reanalysis data, forecast raste
 | `regulation` | 行政法规/规章/地方性法规 | 10 | Administrative regulations, departmental rules and local regulations |
 | `notice` | 通告/公告 | 4 | Official notices, announcements and seasonal measures |
 | `standard` | 标准/规范 | 6 | National, industry or provincial standards and operational norms |
-| `fishery_product` | 渔情/海况产品说明 | 0 | Product descriptions, fishery bulletins and historical records |
-| `data_dictionary` | 数据字典 | 6 | Field definitions, indicator definitions, metadata and quality rules |
+| `fishery_product` | 渔情/海况产品说明 | 3 | Product descriptions, fishery bulletins and historical records |
+| `data_dictionary` | 数据字典 | 8 | Field definitions, indicator definitions, metadata and quality rules |
 | `plan` | 规划/方案 | 1 | Official plans, programmes and construction layouts |
 
 ## 4. Acquired yearbooks
@@ -108,8 +108,13 @@ The two agree on the concept and differ in scope: the national note sets the hea
 |---|---|---|---|
 | `STD-CWP-043` | FAO Coordinating Working Party on Fishery Statistics | The CWP Handbook pages that define catch, landings and fishing effort, list the standard effort measures (A1-C6) and publish the ISSCFG gear classification | Not indexed: English text, and a dry run lowered abstention from 5/6 to 4/6 without improving Chinese-question recall |
 | `STD-ASFIS-044` | FAO Fisheries and Aquaculture Division | The ASFIS 2026.1 species list: 3-alpha codes, ISSCAAP groups, scientific names and common names in six languages, 2,695 with Chinese names | Not indexed: a lookup table rather than narrative text |
+| `STD-MUR-045` | NASA JPL PO.DAAC | The 0.01° daily MUR foundation SST product description: algorithm, latency and licence | Not indexed yet: product documentation for the remote environment stack |
+| `STD-OLCI-046` | EUMETSAT | The OLCI marine user handbook: L1B/L2 marine products and the retrievals behind the 4 km chlorophyll product | Not indexed yet |
+| `DICT-GFW-047` | Global Fishing Watch | Apparent fishing effort versus fishing events and how positions are grouped | Not indexed yet |
+| `DICT-GFW-048` | Global Fishing Watch | The Events API documentation for port visits, encounters, loitering and fishing events | Not indexed yet |
+| `STD-CMEMS-049` | Mercator Ocean International | The GLOBAL_MULTIYEAR_PHY_001_030 user manual: the 1/12° background physics layer | Not indexed yet |
 
-Both carry the FAO open-access licence CC BY-NC-SA 3.0 IGO, so they stay local and nothing is copied into this repository. A project-authored terminology bridge in [configs/glossary-bridge.yaml](../configs/glossary-bridge.yaml) maps five Chinese statistical terms to the CWP concepts and feeds a reference channel, so a Chinese definition question can reach these English pages without joining the main index. They are the international counterpart of definitions the domestic yearbooks leave implicit: `DICT-STAT-013` and `DICT-STAT-040` define production, while landed weight and fishing effort only have the CWP definitions. A Chinese official definition is still missing, and the English pages cannot be reached by the Chinese question set until a bilingual term layer exists. Per-page hashes live in [configs/cwp-handbook.yaml](../configs/cwp-handbook.yaml).
+Both carry the FAO open-access licence CC BY-NC-SA 3.0 IGO, so they stay local and nothing is copied into this repository. A project-authored terminology bridge in [configs/glossary-bridge.yaml](../configs/glossary-bridge.yaml) maps five Chinese statistical terms to the CWP concepts and feeds a reference channel, so a Chinese definition question can reach these English pages without joining the main index. They are the international counterpart of definitions the domestic yearbooks leave implicit: `DICT-STAT-013` and `DICT-STAT-040` define production, while landed weight and fishing effort only have the CWP definitions. A Chinese official definition is still missing, and the English pages cannot be reached by the Chinese question set until a bilingual term layer exists. Per-page hashes live in [configs/cwp-handbook.yaml](../configs/cwp-handbook.yaml). Five product and method documents for the remote data stack joined the register on 2026-11-02: the MUR SST product page (CC BY 4.0), the EUMETSAT OLCI marine handbook, the GFW effort-versus-events FAQ, the GFW Events API documentation (Apache 2.0) and the CMEMS product user manual. They fill the previously empty `fishery_product` type and explain the data the remote forecasting work actually uses; they are registered but not indexed yet, and turning Q-E08 and Q-M09 into answerable questions is a separate task.
 
 ## 6. Candidate sources
 
@@ -126,8 +131,8 @@ The four environment and fishery-product candidates were removed on owner instru
 | Metric | Value |
 |---|---:|
 | Corpus types | 9 |
-| Registered sources | 45 |
-| Acquired sources | 42 |
+| Registered sources | 50 |
+| Acquired sources | 47 |
 | Remaining candidates | 3 |
 | Yearbook editions | 9 |
 | Yearbook data years | 2017–2025 |

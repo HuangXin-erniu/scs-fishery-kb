@@ -33,7 +33,7 @@ def test_corpus_structure() -> None:
         "data_dictionary",
         "plan",
     }
-    assert len(data["sources"]) == 45
+    assert len(data["sources"]) == 50
 
     acquired = []
     candidates = []
@@ -46,7 +46,7 @@ def test_corpus_structure() -> None:
         else:
             candidates.append(source)
 
-    assert len(acquired) == 42
+    assert len(acquired) == 47
     assert len(candidates) == 3
     yearbooks = [source for source in acquired if source["id"].startswith("STAT-YB-")]
     assert len(yearbooks) == 9
@@ -92,9 +92,23 @@ def test_corpus_structure() -> None:
         "DICT-STAT-040",
         "STD-ASFIS-044",
         "STD-CWP-043",
+        "STD-MUR-045",
+        "STD-OLCI-046",
+        "DICT-GFW-047",
+        "DICT-GFW-048",
+        "STD-CMEMS-049",
     }
     for source in documents:
-        if source["id"] in {"STD-SC-042", "STD-ASFIS-044", "STD-CWP-043"}:
+        if source["id"] in {
+            "STD-SC-042",
+            "STD-ASFIS-044",
+            "STD-CWP-043",
+            "STD-MUR-045",
+            "STD-OLCI-046",
+            "DICT-GFW-047",
+            "DICT-GFW-048",
+            "STD-CMEMS-049",
+        }:
             continue
         assert source["license"] == "public"
         assert source["sensitivity"] == "public"
@@ -172,9 +186,12 @@ def test_corpus_structure() -> None:
         "DICT-STAT-013",
         "DICT-STAT-040",
         "STD-ASFIS-044",
+        "DICT-GFW-047",
+        "DICT-GFW-048",
     }
+    international = {"STD-ASFIS-044", "DICT-GFW-047", "DICT-GFW-048"}
     for source in dictionaries:
-        if source["id"] == "STD-ASFIS-044":
+        if source["id"] in international:
             continue
         assert source["license"] == "public"
         assert source["jurisdiction"] == "national"
@@ -207,8 +224,8 @@ def test_corpus_structure() -> None:
         "notice": 4,
         "standard": 6,
         "operations": 1,
-        "fishery_product": 0,
-        "data_dictionary": 6,
+        "fishery_product": 3,
+        "data_dictionary": 8,
         "plan": 1,
     }
 
@@ -496,3 +513,23 @@ def test_eval_statistics_section() -> None:
     entries = config["statistics"]
     assert [item["id"] for item in entries] == ["Q-E06", "Q-M05"]
     assert [item["expect"] for item in entries] == ["capture_production_sea_area", "vessel_count"]
+
+
+def test_remote_stack_documents() -> None:
+    data = load_yaml("configs/corpus.yaml")
+    sources = {source["id"]: source for source in data["sources"]}
+    expected = {
+        "STD-MUR-045": ("fishery_product", "cc-by-4.0"),
+        "STD-OLCI-046": ("fishery_product", "public"),
+        "DICT-GFW-047": ("data_dictionary", "unknown"),
+        "DICT-GFW-048": ("data_dictionary", "apache-2.0"),
+        "STD-CMEMS-049": ("fishery_product", "public"),
+    }
+    for source_id, (source_type, licence) in expected.items():
+        source = sources[source_id]
+        assert source["type"] == source_type
+        assert source["license"] == licence
+        assert source["status"] == "acquired"
+        assert source["jurisdiction"] == "international"
+        assert source["location"].startswith(f"raw/{source_id}/")
+        assert len(source["hash"]) == 64
