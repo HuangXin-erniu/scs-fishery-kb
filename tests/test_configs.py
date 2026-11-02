@@ -33,7 +33,7 @@ def test_corpus_structure() -> None:
         "data_dictionary",
         "plan",
     }
-    assert len(data["sources"]) == 67
+    assert len(data["sources"]) == 71
 
     acquired = []
     candidates = []
@@ -46,7 +46,7 @@ def test_corpus_structure() -> None:
         else:
             candidates.append(source)
 
-    assert len(acquired) == 64
+    assert len(acquired) == 68
     assert len(candidates) == 3
     yearbooks = [source for source in acquired if source["id"].startswith("STAT-YB-")]
     assert len(yearbooks) == 9
@@ -114,6 +114,10 @@ def test_corpus_structure() -> None:
         "STD-FJ-064",
         "STD-FJ-065",
         "STD-FJ-066",
+        "STD-GD-064",
+        "STD-GD-065",
+        "STD-HN-066",
+        "STD-HN-067",
     }
     for source in documents:
         if source["id"] in {
@@ -245,7 +249,7 @@ def test_corpus_structure() -> None:
         "law": 1,
         "regulation": 15,
         "notice": 10,
-        "standard": 11,
+        "standard": 15,
         "operations": 1,
         "fishery_product": 4,
         "data_dictionary": 8,
@@ -620,6 +624,10 @@ def test_reference_collections_config() -> None:
         "STD-FJ-064",
         "STD-FJ-065",
         "STD-FJ-066",
+        "STD-GD-064",
+        "STD-GD-065",
+        "STD-HN-066",
+        "STD-HN-067",
     }
     for document in collections["policy"]["documents"]:
         assert document["jurisdiction"] in {
@@ -657,6 +665,10 @@ def test_corrected_corpus_hashes() -> None:
         "STD-FJ-064": "11b7e632e969039a417c09878fba12e59b657b09439754cbf7f7453ff39a15c9",
         "STD-FJ-065": "693e4fd69a61d505f523f2e41cb1f59ca64e739b6dd3f5dc2b231e7e3b439677",
         "STD-FJ-066": "38d52286e5c5ba9498d848a090c546d31137df9c78f0faee53af521768de04ce",
+        "STD-GD-064": "b8e829a4d86aecadb7fe1447fdefea1314a782bcbb142067d2719ad904120cd8",
+        "STD-GD-065": "f6ed423220baca5ec45b9b83fe583c39093245194dba70c8417fea63ab0961ad",
+        "STD-HN-066": "4db86b28b700267efadf4f942258a1d835122946270269a265e2fc10836b1392",
+        "STD-HN-067": "6b5bebcc6d2278a7b27d5a1ba2e581871b49f551e966fcadbc7d9890772ed709",
     }
     for source_id, digest in expected.items():
         assert sources[source_id]["hash"] == digest

@@ -1269,8 +1269,80 @@ sources:
   hash: 38d52286e5c5ba9498d848a090c546d31137df9c78f0faee53af521768de04ce
   acquisition: Downloaded 2026-11-02 as attachment 3 of 闽海渔〔2025〕4号.
   notes: One hull type, the 33.6 m steel jigging vessel SHK8370, usable only inside the Pingtan comprehensive experimental zone. The scope limit must travel with any answer drawn from this file.
+- id: STD-GD-064
+  type: standard
+  title: Guangdong 2020 second-batch marine fishing-vessel standard hull catalog
+  title_zh: 广东省2020年第二批海洋渔船标准船型目录
+  publisher: 广东省农业农村厅
+  year: 2020
+  jurisdiction: guangdong
+  format: xlsx
+  location: raw/STD-GD-064/
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P2
+  volume: 1 XLSX; 1 sheet; 86 rows; about 11900 characters
+  update_freq: static
+  hash: b8e829a4d86aecadb7fe1447fdefea1314a782bcbb142067d2719ad904120cd8
+  acquisition: Downloaded 2026-11-02 from the attachment of the Guangdong announcement of 2020-07-10 (dara.gd.gov.cn, post_3042147).
+  notes: The sheet lists 83 hull types with 序号, 船型名称, 样船船名, 图号, 图纸批准文号, 总长, 公约船长, 型宽, 型深, 主机功率 and 总吨. Values are printed exactly as published; nothing is derived or converted.
+- id: STD-GD-065
+  type: standard
+  title: Guangdong 2021 marine fishing-vessel standard hull catalog
+  title_zh: 广东省2021年海洋渔船标准船型目录
+  publisher: 广东省农业农村厅
+  year: 2021
+  jurisdiction: guangdong
+  format: xlsx
+  location: raw/STD-GD-065/
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P2
+  volume: 1 XLSX; 1 sheet; 7 rows; about 760 characters
+  update_freq: static
+  hash: f6ed423220baca5ec45b9b83fe583c39093245194dba70c8417fea63ab0961ad
+  acquisition: Downloaded 2026-11-02 from the attachment of the Guangdong announcement of 2021-03-04 (dara.gd.gov.cn, post_3234786).
+  notes: Four hull types with 序号, 船型名称, 样船船名, 图纸批准文号, 总长, 公约船长 and the remaining parameter columns. It is the latest Guangdong batch found; later batches are monitored rather than assumed.
+- id: STD-HN-066
+  type: standard
+  title: Hainan 2019 small fishing-vessel standard hull catalog
+  title_zh: 海南省小型渔船标准船型目录
+  publisher: 海南省农业农村厅
+  year: 2019
+  jurisdiction: hainan
+  format: xls
+  location: raw/STD-HN-066/
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P2
+  volume: 1 XLS; 1 sheet; 20 rows; about 1400 characters
+  update_freq: static
+  hash: 4db86b28b700267efadf4f942258a1d835122946270269a265e2fc10836b1392
+  acquisition: Downloaded 2026-11-02 from attachment 2 of the Hainan announcement of 2019-03-28; the page lists 附件2 before 附件1, so the file names were checked against their sheets before registering.
+  notes: Small-vessel catalog from the 2019 publication of 7 large and 15 small hull types. The sheet header names it 附件2 海南省小型渔船标准船型目录 even though it is the numerically first attachment on the page.
+- id: STD-HN-067
+  type: standard
+  title: Hainan 2019 large and medium fishing-vessel standard hull catalog
+  title_zh: 海南省大中型渔船标准船型目录
+  publisher: 海南省农业农村厅
+  year: 2019
+  jurisdiction: hainan
+  format: xls
+  location: raw/STD-HN-067/
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P2
+  volume: 1 XLS; 2 sheets; about 1950 characters
+  update_freq: static
+  hash: 6b5bebcc6d2278a7b27d5a1ba2e581871b49f551e966fcadbc7d9890772ed709
+  acquisition: Downloaded 2026-11-02 from attachment 1 of the Hainan announcement of 2019-03-28.
+  notes: Large and medium-vessel catalog, header sheet 附件1 plus a data sheet with 序号, 船型代号, 总长, 公约船长, 型宽, 型深 and the remaining columns. The file name and sheet order were reconciled before registration.
 gaps:
-- Sixty-seven sources are registered: sixty-four acquired and three candidates awaiting disposition.
+- Seventy-one sources are registered: sixty-eight acquired and three candidates awaiting disposition.
 - The yearbook coverage matrix has no values in the public repository; all values stay local.
 - The yearbook infrastructure table is missing for data years 2018 and 2019; the 2018 national port plan supplies a baseline whose port classes are close to, but not identical with, the yearbook table.
 - The vessel-length proxy is missing for data year 2024.

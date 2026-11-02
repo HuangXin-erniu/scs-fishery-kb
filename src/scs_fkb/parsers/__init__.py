@@ -3,7 +3,7 @@ from __future__ import annotations
 from collections.abc import Callable
 from pathlib import Path
 
-from . import doc, docx, html, ofd, pdf
+from . import doc, docx, html, ofd, pdf, table
 from .base import Page, ParsedDocument, ParseError, UnsupportedFormatError
 
 PARSERS: dict[str, Callable[[Path], ParsedDocument]] = {
@@ -12,6 +12,8 @@ PARSERS: dict[str, Callable[[Path], ParsedDocument]] = {
     "ofd": ofd.parse,
     "pdf": pdf.parse,
     "doc": doc.parse,
+    "xlsx": table.parse,
+    "xls": table.parse,
 }
 
 
