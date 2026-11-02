@@ -44,7 +44,7 @@ collections:
       Chinese governance documents on statistics, monitoring, certificates, crew and seasonal-closure
       management. They answer process and jurisdiction questions that the main legal corpus does not hold.
     concepts: []
-    cues: [统计, 公布, 共享, 报送, 监测, 渔情, 伏季, 休渔, 执法, 观测, 预报, 海洋灾害, 赤潮, 绿潮, 海温, 生态, 灾害, 物种, 保护, 名录, 放流, 增殖, 种质, 渔港, 锚地, 避风, 泊位, 靠泊, 海南, 广西, 广东, 福建, 汕头, 湛江, 阳江, 船型, 标准船型, 渔船标准船型, 登记, 证书, 船位, 远洋, 船员, 配员, 职务船员, 培训, 任职]
+    cues: [统计, 公布, 共享, 报送, 监测, 渔情, 伏季, 休渔, 执法, 观测, 预报, 海洋灾害, 赤潮, 绿潮, 海温, 生态, 灾害, 物种, 保护, 名录, 放流, 增殖, 种质, 渔港, 锚地, 避风, 泊位, 靠泊, 处罚, 罚款, 违法, 目录, 海南, 广西, 广东, 福建, 汕头, 湛江, 阳江, 船型, 标准船型, 渔船标准船型, 登记, 证书, 船位, 远洋, 船员, 配员, 职务船员, 培训, 任职]
     documents:
       - id: POL-STAT-050
         title: 渔业统计工作规定
@@ -297,6 +297,22 @@ collections:
         title: 2025年第一批渔港等级认定名单
         file: raw/POL-PORT-078/central-first-class-fishing-port-list-2025.docx
         sha256: fe142d1a8f9885668b6d2fb47764c50123bc52c6d60ca53703263970aa3ab44a
+        license: public
+        language: zh
+        jurisdiction: national
+        level: national
+      - id: POL-PEN-078
+        title: 中华人民共和国渔业港航监督行政处罚规定
+        file: raw/POL-PEN-078/fishing-port-navigation-penalty-rules-2025.html
+        sha256: 42884cb595529b9f687a4442ff5a8bf8f5706c5764cbb7df57859e29923bc428
+        license: public
+        language: zh
+        jurisdiction: national
+        level: national
+      - id: POL-LIST-079
+        title: 中华人民共和国农业农村部公告 第950号
+        file: raw/POL-LIST-079/moa-current-rules-catalogue-950-2025.html
+        sha256: 67c8240cc5bf63487b7ee43af3ea9800f41f60a29eeccbaa2c5b6f0feac9b29f
         license: public
         language: zh
         jurisdiction: national

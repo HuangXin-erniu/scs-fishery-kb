@@ -180,7 +180,7 @@ sources:
   validity:
     status: in_force
     as_of: '2026-11-02'
-    note: The 2022 revision is the latest order found; no 2026 revision was found, and alignment with the new Fisheries Law is still to watch.
+    note: The 2022 revision is the latest order found; no 2026 revision was found, and alignment with the new Fisheries Law is still to watch. Announcement No. 950 (2025-09-24) also lists the fishing-permit regulation among the rules in force.
 
 - id: POL-CLOS-015
   title: 农业农村部关于调整海洋伏季休渔制度的通告
@@ -861,6 +861,64 @@ sources:
     status: in_force
     as_of: '2026-11-02'
     note: The 2025 first-batch list is the current recognition round on the ministry attachment.
+- id: POL-PEN-078
+  type: regulation
+  title: Provisions on administrative penalties for fishing port and navigation supervision
+  title_zh: 中华人民共和国渔业港航监督行政处罚规定
+  publisher: 农业农村部
+  year: 2025
+  jurisdiction: national
+  format: html
+  location: raw/POL-PEN-078/
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P1
+  volume: 1 HTML page; about 4100 characters
+  update_freq: static
+  hash: 42884cb595529b9f687a4442ff5a8bf8f5706c5764cbb7df57859e29923bc428
+  acquisition: Downloaded 2026-11-02 from the ministry rule page.
+  notes: 农业部令第34号 (2000-06-13), revised on 2025-07-15 by 农业农村部令2025年第3号. It sets the penalty grounds and ranges for fishing-port and navigation violations, including the port traffic and fisheries-law duties.
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: collection
+    parseable: true
+    note: Registered in a reference collection.
+  lifecycle: active
+  validity:
+    status: in_force
+    as_of: '2026-11-02'
+    note: The 2025-07-15 revision is the text published on the ministry rule page.
+- id: POL-LIST-079
+  type: notice
+  title: 'Announcement No. 950: catalogue of rules in force'
+  title_zh: 中华人民共和国农业农村部公告 第950号
+  publisher: 农业农村部法规司
+  year: 2025
+  jurisdiction: national
+  format: html
+  location: raw/POL-LIST-079/
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P1
+  volume: 1 HTML page; about 11700 characters
+  update_freq: annual
+  hash: 67c8240cc5bf63487b7ee43af3ea9800f41f60a29eeccbaa2c5b6f0feac9b29f
+  acquisition: Downloaded 2026-11-02 from the ministry government-information page, published 2025-09-24.
+  notes: The ministry catalogue of rules in force. It lists the fisheries crew measures and the fishing-permit regulation, so it is used as the citation for their in-force status; it does not list the fishing-vessel inspection rules, which moved to the transport ministry.
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: collection
+    parseable: true
+    note: Registered in a reference collection.
+  lifecycle: active
+  validity:
+    status: in_force
+    as_of: '2026-11-02'
+    note: Published 2025-09-24 and the current catalogue of ministry rules in force.
 - id: POL-GEAR-033
   title: 海洋捕捞准用渔具最小网目（或网囊）尺寸标准
   title_zh: 海洋捕捞准用渔具最小网目（或网囊）尺寸标准
@@ -2032,9 +2090,9 @@ sources:
     note: Registered in a reference collection.
   lifecycle: active
   validity:
-    status: unknown
+    status: in_force
     as_of: '2026-11-02'
-    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+    note: Announcement No. 950 (2025-09-24) lists the fisheries crew measures among the ministry rules in force.
 
 - id: STD-HY1-056
   type: fishery_product
@@ -2487,7 +2545,7 @@ sources:
     note: Status not separately verified during the schema migration; the source note records the publisher and date.
 
 gaps:
-- Eighty-one sources are registered: seventy-eight acquired and three candidates awaiting disposition.
+- Eighty-three sources are registered: eighty acquired and three candidates awaiting disposition.
 - The yearbook coverage matrix has no values in the public repository; all values stay local.
 - The yearbook infrastructure table is missing for data years 2018 and 2019; the 2018 national port plan supplies a baseline whose port classes are close to, but not identical with, the yearbook table.
 - The vessel-length proxy is missing for data year 2024.
