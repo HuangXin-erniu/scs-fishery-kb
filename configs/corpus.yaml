@@ -2301,9 +2301,9 @@ sources:
   lifecycle: active
   watch_note: Static publisher text; no change feed. Rechecked at the quarterly review against the in-force catalogue.
   validity:
-    status: unknown
+    status: in_force
     as_of: '2026-11-02'
-    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+    note: The text states 自2014年1月1日起施行; the portal page also marks the text 有效.
 
 - id: POL-HN-059
   type: notice
@@ -2332,9 +2332,9 @@ sources:
   lifecycle: active
   watch_note: Static publisher text; no change feed. Rechecked at the quarterly review against the in-force catalogue.
   validity:
-    status: unknown
+    status: in_force
     as_of: '2026-11-02'
-    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+    note: Published 2026-04-24 as the 2026 provincial implementation; applies to the 2026 closure season.
 
 - id: POL-GX-060
   type: notice
@@ -2363,9 +2363,9 @@ sources:
   lifecycle: active
   watch_note: Static publisher text; no change feed. Rechecked at the quarterly review against the in-force catalogue.
   validity:
-    status: unknown
+    status: in_force
     as_of: '2026-11-02'
-    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+    note: Published 2026-04-22 as the 2026 provincial implementation; applies to the 2026 closure season.
 
 - id: POL-GD-061
   type: notice
@@ -2455,9 +2455,9 @@ sources:
   lifecycle: active
   watch_note: Static publisher text; no change feed. Rechecked at the quarterly review against the in-force catalogue.
   validity:
-    status: unknown
+    status: in_force
     as_of: '2026-11-02'
-    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+    note: The notice page marks 有 效 性： 有效 (published 2025-01-17).
 
 - id: STD-FJ-064
   type: standard
@@ -2486,9 +2486,9 @@ sources:
   lifecycle: active
   watch_note: Static official file; no change feed. Rechecked at the quarterly review.
   validity:
-    status: unknown
+    status: in_force
     as_of: '2026-11-02'
-    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+    note: Attachment published by 闽海渔〔2025〕4号, whose page marks 有效; no successor catalog found.
 
 - id: STD-FJ-065
   type: standard
@@ -2517,9 +2517,9 @@ sources:
   lifecycle: active
   watch_note: Static official file; no change feed. Rechecked at the quarterly review.
   validity:
-    status: unknown
+    status: in_force
     as_of: '2026-11-02'
-    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+    note: Attachment published by 闽海渔〔2025〕4号, whose page marks 有效; no successor catalog found.
 
 - id: STD-FJ-066
   type: standard
@@ -2548,9 +2548,9 @@ sources:
   lifecycle: active
   watch_note: Static official file; no change feed. Rechecked at the quarterly review.
   validity:
-    status: unknown
+    status: in_force
     as_of: '2026-11-02'
-    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+    note: Attachment published by 闽海渔〔2025〕4号, whose page marks 有效; no successor catalog found.
 
 - id: STD-GD-064
   type: standard
@@ -2579,9 +2579,9 @@ sources:
   lifecycle: active
   watch_note: Static publisher text; no change feed. Rechecked at the quarterly review against the in-force catalogue.
   validity:
-    status: unknown
+    status: in_force
     as_of: '2026-11-02'
-    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+    note: Published with the 2020-07-10 announcement; no later Guangdong batch was found.
 
 - id: STD-GD-065
   type: standard
@@ -2610,9 +2610,9 @@ sources:
   lifecycle: active
   watch_note: Static publisher text; no change feed. Rechecked at the quarterly review against the in-force catalogue.
   validity:
-    status: unknown
+    status: in_force
     as_of: '2026-11-02'
-    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+    note: Published with the 2021-03-04 announcement; the latest Guangdong batch found.
 
 - id: STD-HN-066
   type: standard
@@ -2641,9 +2641,9 @@ sources:
   lifecycle: active
   watch_note: Static publisher text; no change feed. Rechecked at the quarterly review against the in-force catalogue.
   validity:
-    status: unknown
+    status: in_force
     as_of: '2026-11-02'
-    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+    note: Published with the 2019-03-28 announcement; no later Hainan catalog was found.
 
 - id: STD-HN-067
   type: standard
@@ -2672,9 +2672,9 @@ sources:
   lifecycle: active
   watch_note: Static publisher text; no change feed. Rechecked at the quarterly review against the in-force catalogue.
   validity:
-    status: unknown
+    status: in_force
     as_of: '2026-11-02'
-    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+    note: Published with the 2019-03-28 announcement; no later Hainan catalog was found.
 
 gaps:
 - Eighty-five sources are registered: eighty-two acquired and three candidates awaiting disposition.

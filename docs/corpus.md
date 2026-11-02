@@ -288,6 +288,8 @@ The catalogue is the evidence rather than an inference: it lists the fisheries c
 
 The in-force catalogue proves only the entries it names. Seventeen data publications now carry `not_applicable` instead of `unknown`, because an edition or a dictionary is not a normative act: `STAT-BULL-025`, `STAT-BULL-028` to `STAT-BULL-032`, `STAT-CSY-027`, `STAT-YB-2018` to `STAT-YB-2026` and `DICT-STAT-013`.
 
+All eleven provincial entries now carry evidence-based `in_force` status: the Hainan regulation quotes its own commencement clause, the Fujian notice page marks 有效性: 有效, the Hainan and Guangxi notices are the 2026 season implementations, the Fujian catalogs are that notice's attachments, and the Guangdong and Hainan catalogs are the latest batches found with no successor.
+
 Fourteen national entries still carry `unknown`, grouped here so the gap is visible and bounded rather than silent:
 
 | Group | Count | Entries | Why they stay unknown |
