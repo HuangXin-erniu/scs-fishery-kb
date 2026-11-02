@@ -96,20 +96,7 @@ def _collection_index(config_path: str, name: str, root: str) -> BM25Index:
     collections = load_collections(config_path)
     collection = collections[name]
     chunks = []
-    unparseable: set[str] = set()
-    try:
-        from .registry import load_registry
-
-        unparseable = {
-            source_id
-            for source_id, source in load_registry().items()
-            if not (source.get("retrieval") or {}).get("parseable", True)
-        }
-    except Exception:  # noqa: BLE001 - a missing register only disables the skip
-        unparseable = set()
     for entry in collection["documents"]:  # type: ignore[index]
-        if str(entry["id"]) in unparseable:
-            continue
         path = Path(root) / str(entry["file"])
         if not path.is_file():
             raise ReferenceError(f"reference file not found: {path}")
