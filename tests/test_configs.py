@@ -33,7 +33,7 @@ def test_corpus_structure() -> None:
         "data_dictionary",
         "plan",
     }
-    assert len(data["sources"]) == 62
+    assert len(data["sources"]) == 63
 
     acquired = []
     candidates = []
@@ -46,7 +46,7 @@ def test_corpus_structure() -> None:
         else:
             candidates.append(source)
 
-    assert len(acquired) == 59
+    assert len(acquired) == 60
     assert len(candidates) == 3
     yearbooks = [source for source in acquired if source["id"].startswith("STAT-YB-")]
     assert len(yearbooks) == 9
@@ -109,6 +109,7 @@ def test_corpus_structure() -> None:
         "POL-HN-059",
         "POL-GX-060",
         "POL-GD-061",
+        "STD-HULL-062",
     }
     for source in documents:
         if source["id"] in {
@@ -240,7 +241,7 @@ def test_corpus_structure() -> None:
         "law": 1,
         "regulation": 15,
         "notice": 9,
-        "standard": 7,
+        "standard": 8,
         "operations": 1,
         "fishery_product": 4,
         "data_dictionary": 8,
@@ -610,6 +611,7 @@ def test_reference_collections_config() -> None:
         "POL-HN-059",
         "POL-GX-060",
         "POL-GD-061",
+        "STD-HULL-062",
     }
     corpus = {source["id"]: source for source in load_yaml("configs/corpus.yaml")["sources"]}
     for collection in collections.values():
@@ -634,6 +636,7 @@ def test_corrected_corpus_hashes() -> None:
         "POL-HN-059": "f8bb3e3f5ad8cf9be7fe697fd811b069d353fb6e1d2a4a8b3bbe29779065a756",
         "POL-GX-060": "b9028450c6f0a587b35a866b759ca503f6f69415c744b32aa5845cbfe31ea516",
         "POL-GD-061": "1194cd62c59f176bb70e0f04db4c9873e1f322a37e30eac1627f61cb132a602e",
+        "STD-HULL-062": "e6e94a8aaf1bffdb11229204aca667971b71a1550ae0c818dd94ce6f05904bce",
     }
     for source_id, digest in expected.items():
         assert sources[source_id]["hash"] == digest

@@ -28,7 +28,7 @@ It does **not** include raw environmental grids, reanalysis data, forecast raste
 | `law` | 法律 | 1 | National law adopted by the legislature |
 | `regulation` | 行政法规/规章/地方性法规 | 15 | Administrative regulations, departmental rules and local regulations |
 | `notice` | 通告/公告 | 9 | Official notices, announcements and seasonal measures |
-| `standard` | 标准/规范 | 7 | National, industry or provincial standards and operational norms |
+| `standard` | 标准/规范 | 8 | National, industry or provincial standards and operational norms |
 | `fishery_product` | 渔情/海况产品说明 | 4 | Product descriptions, fishery bulletins and historical records |
 | `data_dictionary` | 数据字典 | 8 | Field definitions, indicator definitions, metadata and quality rules |
 | `plan` | 规划/方案 | 1 | Official plans, programmes and construction layouts |
@@ -157,6 +157,14 @@ Four retrieval terms were added to the bridge in the same task: 水色 to ocean 
 
 The audit gap closes here: Hainan had no document at all while Guangdong, Guangxi and Fujian carried two regulations each. The Hainan entry is the in-force 2013 revision; the earlier 2008 page on the same portal is marked 已修改 and is deliberately not registered. Guangdong is the one honest asymmetry: the provincial 2026 work plan (粤农农函〔2026〕208号) is cited by municipal notices but is not published on the provincial site, so the register holds the Shantou municipal implementation and its notes say so rather than presenting it as the provincial text. The policy cues were narrowed to the province names only, so the national closure question does not pull provincial notices into its reference block. Ranking inside the collection is vocabulary-driven: the correct province document appears in the top three but is not always first, because the three notices share the closure vocabulary. A jurisdiction or title weighting in the channel is the next fix, and the main extractive answer for a province question still leads with the national §三 list while the province passage sits in the reference block.
 
+## 5g. Standard hull types and the catalog block
+
+| Source | Level | What it provides |
+|---|---|---|
+| `STD-HULL-062` | ministerial (annex to 农办渔〔2017〕5号) | The three-level hull-type evaluation (形式审查, 量化评分, 专家评分), the naming method and the application forms for marine capture vessels over 12 m |
+
+The task was to register a hull-parameter catalog. The three near-shore provinces publish none in a form this pipeline can read. Guangdong announces 83 hull types in the 2020 second batch and 4 in 2021 on dara.gd.gov.cn, but the parameters are xlsx attachments and the pages are mostly navigation. Hainan announces 7 large and 15 small types in its 2019 notice, but the notice PDF is an image-only scan and the two catalogs are xls attachments. Guangxi has no public catalog found. The extraction pipeline has no xlsx parser, so registering a catalog would create the very defect the audit found: a document in the register that no question can reach. The evaluation method is parseable, upstream of all three catalogs and cited by the Hainan announcement, so it is registered instead. Hull-parameter questions stay uncovered until the project adds an xlsx or table channel, and that is a separate decision rather than an assumption.
+
 ## 6. Candidate sources
 
 | ID | Type | Title | Priority | Disposition |
@@ -172,8 +180,8 @@ The four environment and fishery-product candidates were removed on owner instru
 | Metric | Value |
 |---|---:|
 | Corpus types | 9 |
-| Registered sources | 62 |
-| Acquired sources | 59 |
+| Registered sources | 63 |
+| Acquired sources | 60 |
 | Remaining candidates | 3 |
 | Yearbook editions | 9 |
 | Yearbook data years | 2017–2025 |

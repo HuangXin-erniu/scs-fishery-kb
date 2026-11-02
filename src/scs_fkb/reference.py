@@ -12,7 +12,7 @@ from .config import REPO_ROOT
 from .config import data_root as default_data_root
 from .expand import DEFAULT_BRIDGE, concepts_for, load_bridge
 from .models import Document, SearchHit
-from .parsers import parse_source
+from .parsers import PARSERS, parse_source
 from .parsers.html import parse
 
 DEFAULT_CATALOG = REPO_ROOT / "configs" / "cwp-handbook.yaml"
@@ -101,7 +101,10 @@ def _collection_index(config_path: str, name: str, root: str) -> BM25Index:
         digest = hashlib.sha256(path.read_bytes()).hexdigest()
         if digest != str(entry["sha256"]):
             raise ReferenceError(f"reference hash mismatch: {entry['id']}")
-        parsed = parse_source(path, "pdf" if path.suffix.lower() == ".pdf" else "html")
+        source_format = path.suffix.lower().lstrip(".")
+        if source_format not in PARSERS:
+            source_format = "html"
+        parsed = parse_source(path, source_format)
         document = Document(
             doc_id=str(entry["id"]),
             source_id=str(entry["id"]),

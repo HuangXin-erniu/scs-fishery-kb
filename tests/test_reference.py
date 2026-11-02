@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import hashlib
+import zipfile
 from pathlib import Path
 
 import pytest
@@ -164,3 +165,42 @@ def test_unknown_collection_raises(tmp_path: Path) -> None:
     config = _config(root)
     with pytest.raises(ReferenceError, match="unknown reference collection"):
         lookup("海表温度", root=root, collections_path=config, collection="magic")
+
+
+DOCX_BODY = (
+    '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
+    '<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">'
+    "<w:body><w:p><w:r><w:t>统计资料应当定期公布，并与有关部门共享。</w:t></w:r></w:p></w:body>"
+    "</w:document>"
+)
+
+
+def test_collection_dispatches_docx(tmp_path: Path) -> None:
+    root = _root(tmp_path)
+    (root / "raw" / "DOC-D").mkdir(parents=True)
+    path = root / "raw" / "DOC-D" / "d.docx"
+    with zipfile.ZipFile(path, "w") as archive:
+        archive.writestr("word/document.xml", DOCX_BODY)
+    data = {
+        "schema_version": 1,
+        "collections": {
+            "policy": {
+                "cues": ["统计"],
+                "documents": [
+                    {
+                        "id": "DOC-D",
+                        "title": "D",
+                        "file": "raw/DOC-D/d.docx",
+                        "sha256": _sha(path),
+                        "license": "public",
+                        "language": "zh",
+                    }
+                ],
+            }
+        },
+    }
+    config = tmp_path / "docx-collections.yaml"
+    config.write_text(yaml.safe_dump(data, allow_unicode=True), encoding="utf-8")
+    hits = lookup("统计资料如何公布？", root=root, collections_path=config, collection="policy")
+    assert [hit.chunk.doc_id for hit in hits] == ["DOC-D"]
+    assert "统计资料" in hits[0].chunk.text

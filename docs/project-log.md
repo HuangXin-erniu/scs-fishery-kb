@@ -2,6 +2,13 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-02 — Reference collections dispatch by suffix; hull evaluation method registered
+
+- Fixed a loader defect: the reference-collection loader passed html for every file that was not a pdf, so a docx source failed with text.encoding. It now dispatches on the suffix (pdf, docx, ofd, doc, html fallback), and a new test builds a docx collection document and asserts the lookup reaches it.
+- Registered `STD-HULL-062`, 渔船标准船型评价方法（试行） (annex to 农办渔〔2017〕5号, 2017): the three-level evaluation, the naming method and the application forms for marine capture vessels over 12 m. It is the method the provincial catalogs implement and the Hainan 2019 announcement cites it by number.
+- Recorded the catalog block in docs/corpus.md 5g: Guangdong announces 83 types in the 2020 second batch and 4 in 2021 with xlsx attachments and navigation-heavy pages, Hainan announces 7 large and 15 small types in 2019 with an image-only notice PDF and two xls catalogs, Guangxi has no public catalog, and the pipeline has no xlsx parser, so no catalog is registered and hull-parameter questions stay uncovered.
+- The Guangdong batch-count probe returns the evaluation method but no number, so it abstains rather than fabricating; the evaluation-method probe returns `STD-HULL-062` first. Eval unchanged at index e4f8d55d7d49, hybrid 10/11, MRR 0.45, reference 4/4, statistics 2/2, abstention 3/4. Register: 63 sources, 60 acquired; standard 8.
+
 ## 2026-11-02 — Hainan joins the register and the 2026 closure implementations land
 
 - Added `POL-HN-058` (海南省实施《中华人民共和国渔业法》办法, 2013 revision, 41 articles, in force since 2014-01-01) and the three 2026 closure implementations: `POL-HN-059` (海南省2026年伏季休渔告知书, 2026-04-24), `POL-GX-060` (广西2026年海洋伏季休渔管理工作通知, 2026-04-22) and `POL-GD-061` (汕头市2026年海洋伏季休渔通告, 2026-04-28, municipal).
