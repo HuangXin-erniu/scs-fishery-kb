@@ -2,6 +2,13 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-02 — Out-of-scope breeding and ranch material removed, index rebuilt
+
+- Deleted `POL-BREED-084` (人工繁育国家重点保护水生野生动物名录, aquaculture) and `POL-RANCH-083` (国家级海洋牧场示范区名单, ranching infrastructure) from the register, collection, watch and pipeline, and removed their local files; hashes 6b187aca… and 663f09b4… recorded for audit.
+- Removed the four cues created only for them and replaced the two sections with a scope boundary: capture, vessel operations and fishery-condition material in; aquaculture, breeding, ranching production and processing out; the stocking regulation stays because it restores capture stocks.
+- Rebuilt the index at thirty-seven documents and 894 chunks (`a28bbbf43a22`, dense `273e42c147570649`): every evaluation arm is unchanged from the thirty-eight-document baseline.
+- Register: 84 sources, 81 acquired; notice 15; policy collection thirty-two documents.
+
 ## 2026-11-02 — First text-bearing species list
 
 - Registered `POL-BREED-084`, the third-batch list of aquatic wildlife approved for artificial breeding (公告第490号, announced 2021-11-16): ten species with Chinese and Latin names, 318 parsed characters from the attachment doc.

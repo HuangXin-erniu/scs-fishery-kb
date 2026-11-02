@@ -33,7 +33,7 @@ def test_corpus_structure() -> None:
         "data_dictionary",
         "plan",
     }
-    assert len(data["sources"]) == 86
+    assert len(data["sources"]) == 84
 
     acquired = []
     candidates = []
@@ -46,7 +46,7 @@ def test_corpus_structure() -> None:
         else:
             candidates.append(source)
 
-    assert len(acquired) == 83
+    assert len(acquired) == 81
     assert len(candidates) == 3
     yearbooks = [source for source in acquired if source["id"].startswith("STAT-YB-")]
     assert len(yearbooks) == 9
@@ -131,8 +131,6 @@ def test_corpus_structure() -> None:
         "POL-LIST-079",
         "POL-PEN-080",
         "POL-WATCH-082",
-        "POL-RANCH-083",
-        "POL-BREED-084",
     }
     for source in documents:
         if source["id"] in {
@@ -261,7 +259,7 @@ def test_corpus_structure() -> None:
         "statistical_yearbook": 16,
         "law": 1,
         "regulation": 20,
-        "notice": 17,
+        "notice": 15,
         "standard": 18,
         "operations": 2,
         "fishery_product": 4,
@@ -436,8 +434,8 @@ def test_pipeline_config() -> None:
     pipeline = load_yaml("configs/pipeline.yaml")
     assert pipeline["schema_version"] == 1
     documents = pipeline["documents"]
-    assert len(documents) == 38
-    assert len(set(documents)) == 38
+    assert len(documents) == 37
+    assert len(set(documents)) == 37
     assert pipeline["chunking"]["max_fallback_chars"] >= 200
 
     corpus = load_yaml("configs/corpus.yaml")
@@ -651,8 +649,6 @@ def test_reference_collections_config() -> None:
         "POL-LIST-079",
         "POL-PEN-080",
         "POL-WATCH-082",
-        "POL-RANCH-083",
-        "POL-BREED-084",
     }
     for document in collections["policy"]["documents"]:
         assert document["level"] in {"national", "provincial", "municipal"}
@@ -709,8 +705,6 @@ def test_corrected_corpus_hashes() -> None:
         "POL-LIST-079": "67c8240cc5bf63487b7ee43af3ea9800f41f60a29eeccbaa2c5b6f0feac9b29f",
         "POL-PEN-080": "57027911e2ce6b23d6e84aee6269f19623b19f927cdb31fcbad606e032756e81",
         "POL-WATCH-082": "8eecbc9171dbc0dbc1cfc82d7e92b42bcf874c47c66a533cf8ed4b6cb6ec3bba",
-        "POL-RANCH-083": "663f09b4e929edc27b10bdf0afc25955f5315151308a4b324a17e66c9a77e061",
-        "POL-BREED-084": "6b187aca68ef9cd71302036663f94c36383624e74e4ef5bd3b7fafd57f9c5779",
     }
     for source_id, digest in expected.items():
         assert sources[source_id]["hash"] == digest
@@ -803,8 +797,8 @@ def test_registry_schema_v2() -> None:
     from scs_fkb.registry import load_registry
 
     registry = load_registry("configs/corpus.yaml")
-    assert len(registry) == 86
-    assert sum(1 for entry in registry.values() if entry["status"] == "acquired") == 83
+    assert len(registry) == 84
+    assert sum(1 for entry in registry.values() if entry["status"] == "acquired") == 81
     for entry in registry.values():
         assert entry["lifecycle"] in {"active", "retired"}
         if entry["lifecycle"] == "retired":
@@ -835,7 +829,7 @@ def test_environment_layer() -> None:
     assert sources["STAT-ECO-073"]["retrieval"]["parseable"] is True
     assert sources["STAT-DIS-074"]["retrieval"]["parseable"] is False
     collections = load_yaml("configs/reference-collections.yaml")["collections"]
-    assert len(collections["policy"]["documents"]) == 34
+    assert len(collections["policy"]["documents"]) == 32
     assert "海洋灾害" in collections["policy"]["cues"]
 
 
@@ -872,7 +866,6 @@ def test_new_national_documents_are_indexed() -> None:
         "POL-PEN-080",
         "POL-LIST-079",
         "POL-WATCH-082",
-        "POL-RANCH-083",
     } <= documents
     assert "STAT-ECO-073" not in documents
     assert "STAT-DIS-074" not in documents
@@ -985,12 +978,12 @@ def test_climate_closure_record() -> None:
 def test_operations_resource_layer() -> None:
     data = load_yaml("configs/corpus.yaml")
     sources = {source["id"]: source for source in data["sources"]}
-    for source_id in ("POL-WATCH-082", "POL-RANCH-083"):
+    for source_id in ("POL-WATCH-082",):
         assert sources[source_id]["retrieval"]["parseable"] is True
         assert sources[source_id]["validity"]["status"] == "in_force"
     assert "No. 950" in sources["POL-WATCH-082"]["validity"]["note"]
     cues = load_yaml("configs/reference-collections.yaml")["collections"]["policy"]["cues"]
-    assert {"值班", "航行", "安全", "海洋牧场", "示范区"} <= set(cues)
+    assert {"值班", "航行", "安全"} <= set(cues)
 
 
 def test_pipeline_documents_report_the_main_channel() -> None:
@@ -1030,12 +1023,13 @@ def test_provincial_validity_is_closed() -> None:
     ]
 
 
-def test_species_text_list() -> None:
-    data = load_yaml("configs/corpus.yaml")
-    sources = {source["id"]: source for source in data["sources"]}
-    entry = sources["POL-BREED-084"]
-    assert entry["retrieval"]["parseable"] is True
-    assert entry["validity"]["status"] == "in_force"
-    assert entry["watch_ref"] == "WATCH-MOA-BREED-490"
+def test_out_of_scope_material_is_removed() -> None:
+    from scs_fkb.registry import load_registry
+
+    registry = load_registry("configs/corpus.yaml")
+    assert "POL-BREED-084" not in registry
+    assert "POL-RANCH-083" not in registry
+    assert "POL-RANCH-083" not in load_yaml("configs/pipeline.yaml")["documents"]
     cues = load_yaml("configs/reference-collections.yaml")["collections"]["policy"]["cues"]
-    assert {"繁育", "水生野生动物"} <= set(cues)
+    assert not {"海洋牧场", "示范区", "繁育", "水生野生动物"} & set(cues)
+    assert {"值班", "航行", "安全"} <= set(cues)

@@ -31,7 +31,7 @@ Every entry carries schema v2 fields: `level` (national, provincial, municipal o
 | `operations` | 作业知识 | 2 | Fishing methods, gear, vessel operations, logbooks and permit conditions |
 | `law` | 法律 | 1 | National law adopted by the legislature |
 | `regulation` | 行政法规/规章/地方性法规 | 20 | Administrative regulations, departmental rules and local regulations |
-| `notice` | 通告/公告 | 17 | Official notices, announcements and seasonal measures |
+| `notice` | 通告/公告 | 15 | Official notices, announcements and seasonal measures |
 | `standard` | 标准/规范 | 18 | National, industry or provincial standards and operational norms |
 | `fishery_product` | 渔情/海况产品说明 | 4 | Product descriptions, fishery bulletins and historical records |
 | `data_dictionary` | 数据字典 | 7 | Field definitions, indicator definitions, metadata and quality rules |
@@ -313,22 +313,13 @@ Four official routes were checked and none yields citable text today. They are r
 
 The domain therefore stays uncovered on purpose: no typhoon grade, storm-surge or wave-warning text is cited, and no answer should imply one. `WATCH-CMA-RULES` and `WATCH-MNR-EMERGENCY` carry the monitoring.
 
-## 5s. Navigation watchkeeping and marine ranches
+## 5s. Scope boundary: capture, not aquaculture
 
-| Source | Level | Current | Retrieval | What it provides |
-|---|---|---|---|---|
-| `POL-WATCH-082` | national operations standard | in force (announcement No. 950 lists it) | collection | 渔业船舶航行值班准则（试行）: watchkeeping, lookout, safety and record duties on fishing vessels |
-| `POL-RANCH-083` | national announcement | eighth batch (2023-01-19) | collection | 国家级海洋牧场示范区名单（第八批）: sixteen ranches with sea area and management unit |
+The knowledge base covers nearshore South China Sea capture, fishing-vessel operations and fishery-condition material. Aquaculture, artificial breeding, marine-ranching production and processing are out of scope and are not registered.
 
-The ranch list is registered as the eighth batch with an explicit note that later batches may exist and are not covered, rather than claiming to be the complete current set. The host page is a script shell, so the publisher-owned attachment is the registered artifact.
+Two entries were removed on 2026-11-02 under this rule: `POL-BREED-084` (人工繁育国家重点保护水生野生动物名录) and `POL-RANCH-083` (国家级海洋牧场示范区名单), together with their collection entries, watch entries, pipeline reference and local files. Both describe breeding or ranching support rather than capture.
 
-## 5t. Species: the first text-bearing list
-
-| Source | Level | Current | Retrieval | What it provides |
-|---|---|---|---|---|
-| `POL-BREED-084` | national announcement | in force (announced 2021-11-16) | collection | 人工繁育国家重点保护水生野生动物名录（第三批）: ten species with Chinese and Latin names, from 岩原鲤 to 乌龟 |
-
-This is the first species list in the corpus whose text can actually be cited: the protected-species list is image-only and ASFIS is a zip the parser cannot read. The announcement states 自公告发布之日起生效, and the gazette page is watched for a fourth batch. The list covers only the approved-for-breeding subset, so it does not answer a general protected-status question.
+In scope and kept: `POL-WATCH-082` (渔业船舶航行值班准则, vessel operations) and `POL-RES-075` (水生生物增殖放流管理规定, releases that restore capture stocks — a fishery-resource instrument, not a farming standard). Purely inland and freshwater material is also out of scope.
 
 ## 6. Candidate sources
 
@@ -345,8 +336,8 @@ The four environment and fishery-product candidates were removed on owner instru
 | Metric | Value |
 |---|---:|
 | Corpus types | 9 |
-| Registered sources | 86 |
-| Acquired sources | 83 |
+| Registered sources | 84 |
+| Acquired sources | 81 |
 | Remaining candidates | 3 |
 | Yearbook editions | 9 |
 | Yearbook data years | 2017–2025 |
