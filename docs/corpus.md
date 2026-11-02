@@ -27,7 +27,7 @@ It does **not** include raw environmental grids, reanalysis data, forecast raste
 | `operations` | 作业知识 | 1 | Fishing methods, gear, vessel operations, logbooks and permit conditions |
 | `law` | 法律 | 1 | National law adopted by the legislature |
 | `regulation` | 行政法规/规章/地方性法规 | 14 | Administrative regulations, departmental rules and local regulations |
-| `notice` | 通告/公告 | 5 | Official notices, announcements and seasonal measures |
+| `notice` | 通告/公告 | 6 | Official notices, announcements and seasonal measures |
 | `standard` | 标准/规范 | 7 | National, industry or provincial standards and operational norms |
 | `fishery_product` | 渔情/海况产品说明 | 4 | Product descriptions, fishery bulletins and historical records |
 | `data_dictionary` | 数据字典 | 8 | Field definitions, indicator definitions, metadata and quality rules |
@@ -127,8 +127,9 @@ Both carry the FAO open-access licence CC BY-NC-SA 3.0 IGO, so they stay local a
 | `POL-YJ-052` | 农业农村部办公厅 | Latest publicly posted full text (农办渔〔2018〕30号) | Agencies, annual cadence and format of fishery monitoring work |
 | `POL-VMS-053` | 农业农村部 | Current; repealed the 2014 measures | Distant-water vessel position monitoring duties, not near-shore VMS fields |
 | `STD-ECERT-054` | 农业农村部办公厅 | Current (2025) | Electronic certificate standards C 0402—2024, C 0403—2024 and C 0374—2024 for quota approval, ownership registration and nationality |
+| `POL-YJ-057` | 农业农村部渔业渔政管理局 | Newest publicly posted full text: 农渔科函〔2021〕21号, 2021-04-15 | The 2020 fishery-monitoring circular: annual cadence, responsible bodies and the data-quality machinery of 渔情监测统计 |
 
-All five are indexed in the policy reference collection; the currency check changed two candidates. The 2021 survey system has expired, so `POL-STAT-051` registers the 2024 text with its new approval number. The 2024 monitoring letter (农渔科函〔2025〕87号) is referenced by provincial news but its full text is not published, so `POL-YJ-052` is the latest public full text and says so. SC/T 9403-2025 turned out to be already held inside the SC/T series (`STD-SC-042`, 37 pages), so it was not registered twice. Near-shore VMS definitions and a data-sharing metadata rule remain uncovered, and Q-M02, Q-M06 and Q-M11 stay out of reach.
+All six are indexed in the policy reference collection; the currency check changed two candidates. The 2021 survey system has expired, so `POL-STAT-051` registers the 2024 text with its new approval number. The 2024 monitoring letter (农渔科函〔2025〕87号) is referenced by provincial news but its full text is not published, so `POL-YJ-052` is the latest public full text and says so. SC/T 9403-2025 turned out to be already held inside the SC/T series (`STD-SC-042`, 37 pages), so it was not registered twice. Near-shore VMS definitions and a data-sharing metadata rule remain uncovered, and Q-M02, Q-M06 and Q-M11 stay out of reach. The 2024 monitoring letter (农渔科函〔2025〕87号) is quoted by provincial sites but not published in full; the ministry gazette index exposes no file list and the national marine forecast portal is a single-page service without a downloadable product document, so the 2020 circular is the newest publicly posted text and Q-M07 stays uncovered.
 
 ## 5e. Crew management and the Chinese ocean-colour description
 
@@ -160,8 +161,8 @@ The four environment and fishery-product candidates were removed on owner instru
 | Metric | Value |
 |---|---:|
 | Corpus types | 9 |
-| Registered sources | 57 |
-| Acquired sources | 54 |
+| Registered sources | 58 |
+| Acquired sources | 55 |
 | Remaining candidates | 3 |
 | Yearbook editions | 9 |
 | Yearbook data years | 2017–2025 |

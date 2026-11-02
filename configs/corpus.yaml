@@ -1089,8 +1089,26 @@ sources:
   hash: 8e876496069141af2c728c69b71d8b85654f4537775492562ad6e76c4d64addf
   acquisition: Downloaded 2026-11-02 from the National Satellite Ocean Application Service topic page published 2018-11-02.
   notes: Coverage cycle one day for a single satellite and half a day for the C/D pair; ground sample distance 1100 m for the ocean-colour scanner and 50 m for the coastal-zone imager; swath 2900 km. Retrieved variables include chlorophyll, suspended sediment, dissolved organic matter and sea surface temperature. It is the Chinese counterpart of the English MUR and OLCI documentation, but it is a payload capability page rather than a product user manual with validation and version history.
+- id: POL-YJ-057
+  type: notice
+  title: Circular on the 2020 fishery monitoring and statistics work
+  title_zh: 关于通报2020年度渔情监测统计工作情况的函
+  publisher: 农业农村部渔业渔政管理局
+  year: 2021
+  jurisdiction: national
+  format: pdf
+  location: raw/POL-YJ-057/
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P2
+  volume: 1 PDF; 7 pages
+  update_freq: annual
+  hash: 03a7a6ff3f88590c6e18884cdf10b996667b1acaf01f4d5842c8573aa29507b8
+  acquisition: Downloaded 2026-11-02 from the national station site (nftec.agri.cn), document 农渔科函〔2021〕21号, dated 2021-04-15.
+  notes: Documents the annual cadence, the responsible bodies and the data-quality machinery of 渔情监测统计. It is not a fishery-bulletin product and does not answer the publisher, frequency and format of 渔场/渔汛预报通报. It is newer than POL-YJ-052 (the 2017 circular) and does not duplicate it; the 2024 letter (农渔科函〔2025〕87号) is quoted by provincial sites but is not published in full.
 gaps:
-- Fifty-seven sources are registered: fifty-four acquired and three candidates awaiting disposition.
+- Fifty-eight sources are registered: fifty-five acquired and three candidates awaiting disposition.
 - The yearbook coverage matrix has no values in the public repository; all values stay local.
 - The yearbook infrastructure table is missing for data years 2018 and 2019; the 2018 national port plan supplies a baseline whose port classes are close to, but not identical with, the yearbook table.
 - The vessel-length proxy is missing for data year 2024.

@@ -50,7 +50,7 @@ collections:
       Chinese statistical-governance, monitoring and vessel-certificate documents.
       They answer process questions about statistics, monitoring and certificates, not the main legal corpus.
     concepts: []
-    cues: [统计, 公布, 共享, 报送, 监测, 登记, 证书, 船位, 远洋, 船员, 配员, 职务船员, 培训, 任职]
+    cues: [统计, 公布, 共享, 报送, 监测, 渔情, 登记, 证书, 船位, 远洋, 船员, 配员, 职务船员, 培训, 任职]
     documents:
       - id: POL-STAT-050
         title: 渔业统计工作规定
@@ -86,5 +86,11 @@ collections:
         title: 中华人民共和国渔业船员管理办法（2022年修订）
         file: raw/POL-CREW-055/crew-management-measures-2022.html
         sha256: 2c316eb3171f388de2bb340ee3b5d1b815eaea606cf529f909ab11cdffe28e17
+        license: public
+        language: zh
+      - id: POL-YJ-057
+        title: 关于通报2020年度渔情监测统计工作情况的函
+        file: raw/POL-YJ-057/fishery-monitoring-circular-2020.pdf
+        sha256: 03a7a6ff3f88590c6e18884cdf10b996667b1acaf01f4d5842c8573aa29507b8
         license: public
         language: zh
