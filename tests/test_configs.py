@@ -33,7 +33,7 @@ def test_corpus_structure() -> None:
         "data_dictionary",
         "plan",
     }
-    assert len(data["sources"]) == 58
+    assert len(data["sources"]) == 62
 
     acquired = []
     candidates = []
@@ -46,7 +46,7 @@ def test_corpus_structure() -> None:
         else:
             candidates.append(source)
 
-    assert len(acquired) == 55
+    assert len(acquired) == 59
     assert len(candidates) == 3
     yearbooks = [source for source in acquired if source["id"].startswith("STAT-YB-")]
     assert len(yearbooks) == 9
@@ -60,7 +60,7 @@ def test_corpus_structure() -> None:
         assert re.fullmatch(r"[0-9a-f]{64}", source["hash"])
         assert source["volume"].endswith(("files", "pages"))
 
-    jurisdictions = {"national", "guangdong", "guangxi", "fujian", "international"}
+    jurisdictions = {"national", "guangdong", "guangxi", "hainan", "fujian", "international"}
     for source in acquired:
         assert source.get("jurisdiction") in jurisdictions, source["id"]
 
@@ -105,6 +105,10 @@ def test_corpus_structure() -> None:
         "POL-VMS-053",
         "STD-ECERT-054",
         "POL-YJ-057",
+        "POL-HN-058",
+        "POL-HN-059",
+        "POL-GX-060",
+        "POL-GD-061",
     }
     for source in documents:
         if source["id"] in {
@@ -132,6 +136,7 @@ def test_corpus_structure() -> None:
             "national",
             "guangdong",
             "guangxi",
+            "hainan",
             "fujian",
             "international",
         }
@@ -233,8 +238,8 @@ def test_corpus_structure() -> None:
     assert type_counts == {
         "statistical_yearbook": 16,
         "law": 1,
-        "regulation": 14,
-        "notice": 6,
+        "regulation": 15,
+        "notice": 9,
         "standard": 7,
         "operations": 1,
         "fishery_product": 4,
@@ -601,6 +606,10 @@ def test_reference_collections_config() -> None:
         "STD-ECERT-054",
         "POL-CREW-055",
         "POL-YJ-057",
+        "POL-HN-058",
+        "POL-HN-059",
+        "POL-GX-060",
+        "POL-GD-061",
     }
     corpus = {source["id"]: source for source in load_yaml("configs/corpus.yaml")["sources"]}
     for collection in collections.values():
@@ -621,6 +630,10 @@ def test_corrected_corpus_hashes() -> None:
         "POL-YJ-052": "3e013bc8aa0cad097cee5d2597259dcb1dbee067dfc23157ba5f8321af24ecb6",
         "POL-VMS-053": "307a185fc27b3584f0fb39e97f31813ce1ac7d00c9bfc4f7bb9d8e1f731a8d41",
         "POL-YJ-057": "03a7a6ff3f88590c6e18884cdf10b996667b1acaf01f4d5842c8573aa29507b8",
+        "POL-HN-058": "554997f45e7215751bd17a27f9389703eb5735611c43178834763ac499179c0d",
+        "POL-HN-059": "f8bb3e3f5ad8cf9be7fe697fd811b069d353fb6e1d2a4a8b3bbe29779065a756",
+        "POL-GX-060": "b9028450c6f0a587b35a866b759ca503f6f69415c744b32aa5845cbfe31ea516",
+        "POL-GD-061": "1194cd62c59f176bb70e0f04db4c9873e1f322a37e30eac1627f61cb132a602e",
     }
     for source_id, digest in expected.items():
         assert sources[source_id]["hash"] == digest

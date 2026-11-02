@@ -1107,8 +1107,80 @@ sources:
   hash: 03a7a6ff3f88590c6e18884cdf10b996667b1acaf01f4d5842c8573aa29507b8
   acquisition: Downloaded 2026-11-02 from the national station site (nftec.agri.cn), document 农渔科函〔2021〕21号, dated 2021-04-15.
   notes: Documents the annual cadence, the responsible bodies and the data-quality machinery of 渔情监测统计. It is not a fishery-bulletin product and does not answer the publisher, frequency and format of 渔场/渔汛预报通报. It is newer than POL-YJ-052 (the 2017 circular) and does not duplicate it; the 2024 letter (农渔科函〔2025〕87号) is quoted by provincial sites but is not published in full.
+- id: POL-HN-058
+  type: regulation
+  title: Measures of Hainan Province for implementing the Fisheries Law
+  title_zh: 海南省实施《中华人民共和国渔业法》办法
+  publisher: 海南省人民代表大会常务委员会
+  year: 2013
+  jurisdiction: hainan
+  format: html
+  location: raw/POL-HN-058/
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P1
+  volume: 1 HTML page; 41 articles
+  update_freq: static
+  hash: 554997f45e7215751bd17a27f9389703eb5735611c43178834763ac499179c0d
+  acquisition: Downloaded 2026-11-02 from the Hainan provincial portal, published 2013-12-03; the page marks the text 有效.
+  notes: In force since 2014-01-01 and the in-force 2013 revision; the earlier 2008 page on the same portal is marked 已修改 and is not registered. Covers capture permits, closed areas and seasons, protected areas and legal liability, and closes the missing Hainan jurisdiction. The page has not yet been updated for the 2026 Fisheries Law, so article-level alignment is a later check.
+- id: POL-HN-059
+  type: notice
+  title: Hainan 2026 seasonal closure notice
+  title_zh: 海南省2026年伏季休渔告知书
+  publisher: 海南省农业农村厅
+  year: 2026
+  jurisdiction: hainan
+  format: html
+  location: raw/POL-HN-059/
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P2
+  volume: 1 HTML page
+  update_freq: annual
+  hash: f8bb3e3f5ad8cf9be7fe697fd811b069d353fb6e1d2a4a8b3bbe29779065a756
+  acquisition: Downloaded 2026-11-02 from the Hainan agriculture department, published 2026-04-24.
+  notes: Provincial implementation of the 2026 closure, covering 5月1日12时至8月16日12时, 26°30′N to 12°N including the Beibu Gulf, the must-close and voluntary-close vessel classes, port and gear requirements, and the penalty ladder quoted from the 2026 Fisheries Law (200000 yuan, 2000000 yuan for serious cases) plus the subsidy deduction rule.
+- id: POL-GX-060
+  type: notice
+  title: Guangxi 2026 seasonal closure management notice
+  title_zh: 广西2026年海洋伏季休渔管理工作通知
+  publisher: 广西壮族自治区农业农村厅办公室
+  year: 2026
+  jurisdiction: guangxi
+  format: html
+  location: raw/POL-GX-060/
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P2
+  volume: 1 HTML page
+  update_freq: annual
+  hash: b9028450c6f0a587b35a866b759ca503f6f69415c744b32aa5845cbfe31ea516
+  acquisition: Downloaded 2026-11-02 from the Guangxi agriculture department, published 2026-04-22.
+  notes: Provincial implementation of the 2026 closure with the same dates and the 12°N boundary, port-of-registry berthing with filing, special-permit handling, the subsidy deduction and the 15-day departure ban after the closure ends, and the reference to 农业农村部通告〔2023〕1号.
+- id: POL-GD-061
+  type: notice
+  title: Shantou 2026 seasonal closure notice (municipal)
+  title_zh: 汕头市2026年海洋伏季休渔通告
+  publisher: 汕头市农业农村局
+  year: 2026
+  jurisdiction: guangdong
+  format: html
+  location: raw/POL-GD-061/
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P2
+  volume: 1 HTML page
+  update_freq: annual
+  hash: 1194cd62c59f176bb70e0f04db4c9873e1f322a37e30eac1627f61cb132a602e
+  acquisition: Downloaded 2026-11-02 from the Shantou agriculture bureau, published 2026-04-28.
+  notes: Municipal implementation of 粤农农函〔2026〕208号, and the notes say so. It states the Guangdong fishing-area boundary (12°N to the Fujian-Guangdong line), the dates, the must-close and voluntary-close classes, the 船进港、人上岸、网入库 requirement and the 2000000 yuan ceiling under the new law. The provincial 2026 work plan itself is not published on the provincial site and is only cited by municipal notices, so this entry is municipal and must not be read as the provincial text.
 gaps:
-- Fifty-eight sources are registered: fifty-five acquired and three candidates awaiting disposition.
+- Sixty-two sources are registered: fifty-nine acquired and three candidates awaiting disposition.
 - The yearbook coverage matrix has no values in the public repository; all values stay local.
 - The yearbook infrastructure table is missing for data years 2018 and 2019; the 2018 national port plan supplies a baseline whose port classes are close to, but not identical with, the yearbook table.
 - The vessel-length proxy is missing for data year 2024.
