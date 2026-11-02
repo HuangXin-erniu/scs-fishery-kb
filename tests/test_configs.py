@@ -33,7 +33,7 @@ def test_corpus_structure() -> None:
         "data_dictionary",
         "plan",
     }
-    assert len(data["sources"]) == 77
+    assert len(data["sources"]) == 79
 
     acquired = []
     candidates = []
@@ -46,7 +46,7 @@ def test_corpus_structure() -> None:
         else:
             candidates.append(source)
 
-    assert len(acquired) == 74
+    assert len(acquired) == 76
     assert len(candidates) == 3
     yearbooks = [source for source in acquired if source["id"].startswith("STAT-YB-")]
     assert len(yearbooks) == 9
@@ -124,6 +124,8 @@ def test_corpus_structure() -> None:
         "POL-OBS-072",
         "STAT-ECO-073",
         "STAT-DIS-074",
+        "POL-RES-075",
+        "STD-SPEC-076",
     }
     for source in documents:
         if source["id"] in {
@@ -251,8 +253,8 @@ def test_corpus_structure() -> None:
     assert type_counts == {
         "statistical_yearbook": 16,
         "law": 1,
-        "regulation": 16,
-        "notice": 13,
+        "regulation": 17,
+        "notice": 14,
         "standard": 18,
         "operations": 1,
         "fishery_product": 4,
@@ -636,7 +638,7 @@ def test_reference_collections_config() -> None:
         "STD-YY-071",
         "POL-OBS-072",
         "STAT-ECO-073",
-        "STAT-DIS-074",
+        "POL-RES-075",
     }
     for document in collections["policy"]["documents"]:
         assert document["level"] in {"national", "provincial", "municipal"}
@@ -686,6 +688,8 @@ def test_corrected_corpus_hashes() -> None:
         "POL-OBS-072": "2ff2302e890798305958f38b1e21cbf0e6f2ddaea2d2619edd94c699c9b03af6",
         "STAT-ECO-073": "a263e432d33b19dfbb012600789aef84e84bfaef4a9bdd931714cd04f2ca621f",
         "STAT-DIS-074": "d280c286c9c048707a92112101e3ab0a295c9cde23815bbe8c90a63a4acfb671",
+        "POL-RES-075": "90abf8647b254325125ed7f79bff16a4c573aab0a773fb166fb0dc79c3ec5971",
+        "STD-SPEC-076": "8b45d11547577041e15c5837a3ff8f283d2dd2c2b87f83eb8026ad3feb8662c3",
     }
     for source_id, digest in expected.items():
         assert sources[source_id]["hash"] == digest
@@ -752,6 +756,8 @@ def test_validity_blocks() -> None:
         "POL-OBS-072",
         "STAT-ECO-073",
         "STAT-DIS-074",
+        "POL-RES-075",
+        "STD-SPEC-076",
     }
     for source_id in expected:
         block = sources[source_id]["validity"]
@@ -772,8 +778,8 @@ def test_registry_schema_v2() -> None:
     from scs_fkb.registry import load_registry
 
     registry = load_registry("configs/corpus.yaml")
-    assert len(registry) == 77
-    assert sum(1 for entry in registry.values() if entry["status"] == "acquired") == 74
+    assert len(registry) == 79
+    assert sum(1 for entry in registry.values() if entry["status"] == "acquired") == 76
     for entry in registry.values():
         assert entry["lifecycle"] in {"active", "retired"}
         if entry["lifecycle"] == "retired":
@@ -806,3 +812,14 @@ def test_environment_layer() -> None:
     collections = load_yaml("configs/reference-collections.yaml")["collections"]
     assert len(collections["policy"]["documents"]) == 27
     assert "海洋灾害" in collections["policy"]["cues"]
+
+
+def test_species_layer() -> None:
+    data = load_yaml("configs/corpus.yaml")
+    sources = {source["id"]: source for source in data["sources"]}
+    assert sources["POL-RES-075"]["retrieval"]["parseable"] is True
+    assert sources["POL-RES-075"]["validity"]["status"] == "in_force"
+    assert sources["STD-SPEC-076"]["retrieval"]["parseable"] is False
+    assert sources["STD-SPEC-076"]["validity"]["status"] == "in_force"
+    cues = load_yaml("configs/reference-collections.yaml")["collections"]["policy"]["cues"]
+    assert {"物种", "保护", "名录", "放流", "增殖", "种质"} <= set(cues)

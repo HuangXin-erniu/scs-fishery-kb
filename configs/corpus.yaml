@@ -737,7 +737,7 @@ sources:
   level: national
   authority_tier: A
   retrieval:
-    channel: collection
+    channel: none
     parseable: false
     note: Text layer is garbled by the embedded-font mapping; provenance only.
   lifecycle: active
@@ -745,6 +745,64 @@ sources:
     status: in_force
     as_of: '2026-11-02'
     note: Latest published edition (2024-04-22); no 2024 bulletin was found on the official list.
+- id: POL-RES-075
+  type: regulation
+  title: Regulations on the administration of aquatic organism stock enhancement
+  title_zh: 水生生物增殖放流管理规定
+  publisher: 农业部
+  year: 2009
+  jurisdiction: national
+  format: html
+  location: raw/POL-RES-075/
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P1
+  volume: 1 HTML page; about 1700 characters
+  update_freq: static
+  hash: 90abf8647b254325125ed7f79bff16a4c573aab0a773fb166fb0dc79c3ec5971
+  acquisition: Downloaded 2026-11-02 from the gov.cn policy library.
+  notes: 农业部令第20号, effective 2009-05-01, still listed among the ministry rules in force in September 2025. It sets the rules for stock enhancement planning, species choice, quarantine, supervision and evaluation.
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: collection
+    parseable: true
+    note: Registered in a reference collection.
+  lifecycle: active
+  validity:
+    status: in_force
+    as_of: '2026-11-02'
+    note: Listed among the ministry rules in force in the 2025-09 catalogue; no repeal found.
+- id: STD-SPEC-076
+  type: notice
+  title: National key-protected wildlife list
+  title_zh: 国家重点保护野生动物名录
+  publisher: 国家林业和草原局 / 农业农村部
+  year: 2021
+  jurisdiction: national
+  format: pdf
+  location: raw/STD-SPEC-076/
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P2
+  volume: 1 PDF
+  update_freq: static
+  hash: 8b45d11547577041e15c5837a3ff8f283d2dd2c2b87f83eb8026ad3feb8662c3
+  acquisition: Downloaded 2026-11-02 from the forestry and grassland administration announcement page (2021年第3号).
+  notes: Announced 2021-02-05 by 国家林业和草原局 and 农业农村部 and effective on publication; it lists 980 species and 8 groups. The PDF is image-only with no text layer, so it is provenance only and cannot answer a species-level question.
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: none
+    parseable: false
+    note: Image-only PDF with no text layer; provenance only.
+  lifecycle: active
+  validity:
+    status: in_force
+    as_of: '2026-11-02'
+    note: Announced 2021-02-05 and effective on publication; no replacement list found.
 - id: POL-GEAR-033
   title: 海洋捕捞准用渔具最小网目（或网囊）尺寸标准
   title_zh: 海洋捕捞准用渔具最小网目（或网囊）尺寸标准
@@ -2371,7 +2429,7 @@ sources:
     note: Status not separately verified during the schema migration; the source note records the publisher and date.
 
 gaps:
-- Seventy-seven sources are registered: seventy-four acquired and three candidates awaiting disposition.
+- Seventy-nine sources are registered: seventy-six acquired and three candidates awaiting disposition.
 - The yearbook coverage matrix has no values in the public repository; all values stay local.
 - The yearbook infrastructure table is missing for data years 2018 and 2019; the 2018 national port plan supplies a baseline whose port classes are close to, but not identical with, the yearbook table.
 - The vessel-length proxy is missing for data year 2024.
