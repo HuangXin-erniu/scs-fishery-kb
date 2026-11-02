@@ -2,6 +2,13 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-02 — Port and operations layer opened
+
+- Registered `POL-PORT-077` (中华人民共和国渔港水域交通安全管理条例, 国务院令第38号, amended 2019-03-02; 2,548 parsed characters) and `POL-PORT-078` (2025年第一批渔港等级认定名单, ministry attachment docx, 266 characters, twelve central ports and the first-class ports).
+- Added port cues (渔港, 锚地, 避风, 泊位, 靠泊) and both documents to the policy collection (twenty-nine documents).
+- Shelter anchorages recorded as unattainable: no national public list, only foreign regulations and provincial references. The 12 operation types stay covered by POL-STD-010 and the gear standards.
+- Register: 81 sources, 78 acquired; regulation 18, notice 15. Eval unchanged on every arm; the port probe returns POL-PORT-077 three times.
+
 ## 2026-11-02 — Species and resource-conservation layer opened
 
 - Registered `POL-RES-075` (水生生物增殖放流管理规定, 农业部令第20号, in force, 1,676 parsed characters) and `STD-SPEC-076` (国家重点保护野生动物名录, 2021年第3号, image-only PDF registered as provenance with parseable false).

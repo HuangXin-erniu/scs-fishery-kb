@@ -803,6 +803,64 @@ sources:
     status: in_force
     as_of: '2026-11-02'
     note: Announced 2021-02-05 and effective on publication; no replacement list found.
+- id: POL-PORT-077
+  type: regulation
+  title: Regulations on traffic safety in fishing port waters
+  title_zh: 中华人民共和国渔港水域交通安全管理条例
+  publisher: 国务院
+  year: 2019
+  jurisdiction: national
+  format: html
+  location: raw/POL-PORT-077/
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P1
+  volume: 1 HTML page; about 2500 characters
+  update_freq: static
+  hash: 1ff9570272738ada371f4e412c3b47ef13eaf94c68481a31640421fda6fc1fd2
+  acquisition: Downloaded 2026-11-02 from the State Council gazette page.
+  notes: 国务院令第38号 (1989-07-03), amended in 2011, 2017 and on 2019-03-02; the text is the gazette version. It governs navigation, berthing, safety and supervision in fishing port waters.
+  level: national
+  authority_tier: B
+  retrieval:
+    channel: collection
+    parseable: true
+    note: Registered in a reference collection.
+  lifecycle: active
+  validity:
+    status: in_force
+    as_of: '2026-11-02'
+    note: The 2019-03-02 amendment is the text published in the State Council gazette.
+- id: POL-PORT-078
+  type: notice
+  title: 2025 first-batch fishing-port grade recognition list
+  title_zh: 2025年第一批渔港等级认定名单
+  publisher: 农业农村部办公厅
+  year: 2025
+  jurisdiction: national
+  format: docx
+  location: raw/POL-PORT-078/
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P2
+  volume: 1 DOCX; about 270 characters
+  update_freq: annual
+  hash: fe142d1a8f9885668b6d2fb47764c50123bc52c6d60ca53703263970aa3ab44a
+  acquisition: Downloaded 2026-11-02 as the attachment to the 2025-01 notice on fishing-port grade recognition.
+  notes: The attachment to the 2025 first-batch port grade notice, listing twelve central ports and the first-class ports. The surrounding notice page is a script shell, so the publisher-owned attachment is registered and the notice is named here.
+  level: national
+  authority_tier: B
+  retrieval:
+    channel: collection
+    parseable: true
+    note: Registered in a reference collection.
+  lifecycle: active
+  validity:
+    status: in_force
+    as_of: '2026-11-02'
+    note: The 2025 first-batch list is the current recognition round on the ministry attachment.
 - id: POL-GEAR-033
   title: 海洋捕捞准用渔具最小网目（或网囊）尺寸标准
   title_zh: 海洋捕捞准用渔具最小网目（或网囊）尺寸标准
@@ -2429,7 +2487,7 @@ sources:
     note: Status not separately verified during the schema migration; the source note records the publisher and date.
 
 gaps:
-- Seventy-nine sources are registered: seventy-six acquired and three candidates awaiting disposition.
+- Eighty-one sources are registered: seventy-eight acquired and three candidates awaiting disposition.
 - The yearbook coverage matrix has no values in the public repository; all values stay local.
 - The yearbook infrastructure table is missing for data years 2018 and 2019; the 2018 national port plan supplies a baseline whose port classes are close to, but not identical with, the yearbook table.
 - The vessel-length proxy is missing for data year 2024.
