@@ -33,7 +33,7 @@ def test_corpus_structure() -> None:
         "data_dictionary",
         "plan",
     }
-    assert len(data["sources"]) == 84
+    assert len(data["sources"]) == 78
 
     acquired = []
     candidates = []
@@ -46,7 +46,7 @@ def test_corpus_structure() -> None:
         else:
             candidates.append(source)
 
-    assert len(acquired) == 81
+    assert len(acquired) == 75
     assert len(candidates) == 3
     yearbooks = [source for source in acquired if source["id"].startswith("STAT-YB-")]
     assert len(yearbooks) == 9
@@ -188,23 +188,8 @@ def test_corpus_structure() -> None:
     assert "scanned pages" in scan[0]["volume"]
     assert "OCR" in scan[0]["notes"]
 
-    bulletin = [source for source in acquired if source["id"] == "STAT-BULL-025"]
-    assert len(bulletin) == 1
-    assert bulletin[0]["type"] == "statistical_yearbook"
-    assert bulletin[0]["format"] == "html"
-    assert bulletin[0]["jurisdiction"] == "national"
-    assert bulletin[0]["license"] == "public"
-    assert re.fullmatch(r"[0-9a-f]{64}", bulletin[0]["hash"])
-
     bulletins = [source for source in acquired if source["id"].startswith("STAT-BULL-")]
-    assert {source["id"] for source in bulletins} == {
-        "STAT-BULL-025",
-        "STAT-BULL-028",
-        "STAT-BULL-029",
-        "STAT-BULL-030",
-        "STAT-BULL-031",
-        "STAT-BULL-032",
-    }
+    assert {source["id"] for source in bulletins} == set()
     for source in bulletins:
         assert source["type"] == "statistical_yearbook"
         assert source["format"] == "html"
@@ -256,7 +241,7 @@ def test_corpus_structure() -> None:
         for type_id in type_ids
     }
     assert type_counts == {
-        "statistical_yearbook": 16,
+        "statistical_yearbook": 10,
         "law": 1,
         "regulation": 20,
         "notice": 15,
@@ -434,8 +419,8 @@ def test_pipeline_config() -> None:
     pipeline = load_yaml("configs/pipeline.yaml")
     assert pipeline["schema_version"] == 1
     documents = pipeline["documents"]
-    assert len(documents) == 37
-    assert len(set(documents)) == 37
+    assert len(documents) == 31
+    assert len(set(documents)) == 31
     assert pipeline["chunking"]["max_fallback_chars"] >= 200
 
     corpus = load_yaml("configs/corpus.yaml")
@@ -797,8 +782,8 @@ def test_registry_schema_v2() -> None:
     from scs_fkb.registry import load_registry
 
     registry = load_registry("configs/corpus.yaml")
-    assert len(registry) == 84
-    assert sum(1 for entry in registry.values() if entry["status"] == "acquired") == 81
+    assert len(registry) == 78
+    assert sum(1 for entry in registry.values() if entry["status"] == "acquired") == 75
     for entry in registry.values():
         assert entry["lifecycle"] in {"active", "retired"}
         if entry["lifecycle"] == "retired":
@@ -919,12 +904,6 @@ def test_cleanup_080_state() -> None:
     for source_id in ("POL-ENF-068", "POL-OBS-072", "POL-RES-075", "POL-PORT-077"):
         assert registry[source_id]["retrieval"]["channel"] == "main"
     data_publications = {
-        "STAT-BULL-025",
-        "STAT-BULL-028",
-        "STAT-BULL-029",
-        "STAT-BULL-030",
-        "STAT-BULL-031",
-        "STAT-BULL-032",
         "STAT-CSY-027",
         "STAT-YB-2018",
         "STAT-YB-2019",
@@ -1049,3 +1028,22 @@ def test_out_of_scope_titles_are_allowlisted() -> None:
         title = f"{entry.get('title') or ''} {entry.get('title_zh') or ''}"
         if banned.search(title):
             assert source_id in allowlist, f"{source_id} carries an out-of-scope term: {title}"
+
+
+def test_bulletins_removed() -> None:
+    from scs_fkb.registry import load_registry
+
+    registry = load_registry("configs/corpus.yaml")
+    pipeline = load_yaml("configs/pipeline.yaml")["documents"]
+    for source_id in (
+        "STAT-BULL-025",
+        "STAT-BULL-028",
+        "STAT-BULL-029",
+        "STAT-BULL-030",
+        "STAT-BULL-031",
+        "STAT-BULL-032",
+    ):
+        assert source_id not in registry
+        assert source_id not in pipeline
+    yearbooks = [s for s in registry.values() if s["type"] == "statistical_yearbook"]
+    assert len(yearbooks) == 10
