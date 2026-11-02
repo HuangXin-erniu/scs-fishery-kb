@@ -2,6 +2,13 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-02 — Guangxi hull catalog: not public, disclosure request prepared
+
+- The provincial notice and document lists answer 200 but are script shells; the former ocean-bureau domain and the Qinzhou approval that cited the catalog both return 404; the only reachable text is an inland pontoon standard, which is out of scope. The catalog cannot be registered from public pages today.
+- Added docs/foi-guangxi-hull-catalog.md: a ready-to-submit government-information disclosure request with the exact scope (hull name, main dimensions, power, tonnage, material, gear, area, publication number, date, validity), the legal basis, the channels, the materials and the 20-working-day clock. Submission is the owner's action; the project records the outcome.
+- Added the provincial notice list and the ocean-bureau notice list to the watch with recorded baselines; the provincial https endpoint presents a hostname-mismatched certificate, so the monitor uses http and records the limitation.
+- No source registered; 74/71/3 unchanged and every eval arm unchanged.
+
 ## 2026-11-02 — 2018 national evaluation results recorded as unattainable
 
 - Searched four phrasings, the ministry and bureau search endpoints (both HTTP 404), gazette issues 201804–201812 (script shells, zero 标准船型 occurrences) and archive.org (timeout). Only news restatements exist, so the 66-type list is recorded as unattainable and not reconstructed.
