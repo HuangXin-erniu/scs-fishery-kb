@@ -1179,8 +1179,26 @@ sources:
   hash: 1194cd62c59f176bb70e0f04db4c9873e1f322a37e30eac1627f61cb132a602e
   acquisition: Downloaded 2026-11-02 from the Shantou agriculture bureau, published 2026-04-28.
   notes: Municipal implementation of 粤农农函〔2026〕208号, and the notes say so. It states the Guangdong fishing-area boundary (12°N to the Fujian-Guangdong line), the dates, the must-close and voluntary-close classes, the 船进港、人上岸、网入库 requirement and the 2000000 yuan ceiling under the new law. The provincial 2026 work plan itself is not published on the provincial site and is only cited by municipal notices, so this entry is municipal and must not be read as the provincial text.
+- id: STD-HULL-062
+  type: standard
+  title: Standard fishing-vessel hull type evaluation method (trial)
+  title_zh: 渔船标准船型评价方法（试行）
+  publisher: 农业农村部办公厅
+  year: 2017
+  jurisdiction: national
+  format: docx
+  location: raw/STD-HULL-062/
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P2
+  volume: 1 DOCX; about 5100 characters
+  update_freq: static
+  hash: e6e94a8aaf1bffdb11229204aca667971b71a1550ae0c818dd94ce6f05904bce
+  acquisition: Downloaded 2026-11-02 from the ministry site (moa.gov.cn); it is the annex to 农办渔〔2017〕5号 published 2017-02-17.
+  notes: The three-level evaluation (形式审查, 量化评分, 专家评分), the naming method and the application forms for marine capture vessels over 12 m. It is the method the provincial catalogs implement and the Hainan 2019 announcement cites it as 农办渔〔2017〕5号. It does not carry hull parameters; the Guangdong and Hainan parameter catalogs are xlsx or scanned and are not indexable.
 gaps:
-- Sixty-two sources are registered: fifty-nine acquired and three candidates awaiting disposition.
+- Sixty-three sources are registered: sixty acquired and three candidates awaiting disposition.
 - The yearbook coverage matrix has no values in the public repository; all values stay local.
 - The yearbook infrastructure table is missing for data years 2018 and 2019; the 2018 national port plan supplies a baseline whose port classes are close to, but not identical with, the yearbook table.
 - The vessel-length proxy is missing for data year 2024.
