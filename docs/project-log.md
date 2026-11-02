@@ -2,6 +2,12 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-02 — Channel metadata aligned with the pipeline
+
+- Set retrieval.channel to main for the five documents admitted in the previous batch, so the register no longer contradicts the thirty-eight-document pipeline.
+- Added a test that every pipeline document reports channel main; the two can no longer drift apart.
+- Register counts and the evaluation baseline are unchanged.
+
 ## 2026-11-02 — Five national texts admitted; new baseline at 38 documents
 
 - Added POL-PEN-078, POL-PEN-080, POL-LIST-079, POL-WATCH-082 and POL-RANCH-083 to the main index: 38 documents, 896 chunks, index 499b420f49b0, dense af4b31ca3f941169.
