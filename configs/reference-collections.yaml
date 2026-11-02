@@ -44,7 +44,7 @@ collections:
       Chinese governance documents on statistics, monitoring, certificates, crew and seasonal-closure
       management. They answer process and jurisdiction questions that the main legal corpus does not hold.
     concepts: []
-    cues: [统计, 公布, 共享, 报送, 监测, 渔情, 伏季, 休渔, 执法, 观测, 预报, 海洋灾害, 赤潮, 绿潮, 海温, 生态, 灾害, 物种, 保护, 名录, 放流, 增殖, 种质, 渔港, 锚地, 避风, 泊位, 靠泊, 处罚, 罚款, 违法, 目录, 值班, 航行, 安全, 海洋牧场, 示范区, 海南, 广西, 广东, 福建, 汕头, 湛江, 阳江, 船型, 标准船型, 渔船标准船型, 登记, 证书, 船位, 远洋, 船员, 配员, 职务船员, 培训, 任职]
+    cues: [统计, 公布, 共享, 报送, 监测, 渔情, 伏季, 休渔, 执法, 观测, 预报, 海洋灾害, 赤潮, 绿潮, 海温, 生态, 灾害, 物种, 保护, 名录, 放流, 增殖, 种质, 渔港, 锚地, 避风, 泊位, 靠泊, 处罚, 罚款, 违法, 目录, 值班, 航行, 安全, 海洋牧场, 示范区, 繁育, 水生野生动物, 海南, 广西, 广东, 福建, 汕头, 湛江, 阳江, 船型, 标准船型, 渔船标准船型, 登记, 证书, 船位, 远洋, 船员, 配员, 职务船员, 培训, 任职]
     documents:
       - id: POL-STAT-050
         title: 渔业统计工作规定
@@ -329,6 +329,14 @@ collections:
         title: 中华人民共和国农业农村部公告 第644号
         file: raw/POL-RANCH-083/marine-ranch-demonstration-list-batch8.docx
         sha256: 663f09b4e929edc27b10bdf0afc25955f5315151308a4b324a17e66c9a77e061
+        license: public
+        language: zh
+        jurisdiction: national
+        level: national
+      - id: POL-BREED-084
+        title: 人工繁育国家重点保护水生野生动物名录（第三批）
+        file: raw/POL-BREED-084/artificial-breeding-aquatic-wildlife-list-batch3-2021.doc
+        sha256: 6b187aca68ef9cd71302036663f94c36383624e74e4ef5bd3b7fafd57f9c5779
         license: public
         language: zh
         jurisdiction: national

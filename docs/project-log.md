@@ -2,6 +2,12 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-02 — First text-bearing species list
+
+- Registered `POL-BREED-084`, the third-batch list of aquatic wildlife approved for artificial breeding (公告第490号, announced 2021-11-16): ten species with Chinese and Latin names, 318 parsed characters from the attachment doc.
+- Added cues 繁育, 水生野生动物 and the document to the policy collection (thirty-four documents); the gazette page is watched for a fourth batch.
+- Register: 86 sources, 83 acquired; notice 17. Eval unchanged.
+
 ## 2026-11-02 — Provincial validity closed with evidence
 
 - All eleven provincial entries moved from unknown to in_force with the sentence that supports each: the Hainan regulation's 自2014年1月1日起施行 clause, the Fujian notice page's 有效性: 有效 marker, the 2026 Hainan and Guangxi implementations, the three Fujian catalog attachments, and the Guangdong and Hainan catalogs as the latest batches found.
