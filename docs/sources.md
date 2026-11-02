@@ -1,0 +1,52 @@
+# Sources and Authority
+
+> **中文摘要**：本文件规定什么算权威来源、什么样的页面可以进入语料登记、以及如何用受控的外部检索保持时效。
+> 外部网络只用于发现、核对与监测，不在回答时抓取；新闻、转载、聚合页与需登录页面只能当线索，不能作为引用来源。
+
+## 1. Scope
+
+The knowledge base cites documents, not pages in general. Every citable source must be a document published by the body that owns it, registered in [configs/corpus.yaml](../configs/corpus.yaml) with a publisher, a document number where one exists, a date, a validity marker and a licence. This file states what may become such a source and how the project keeps itself current without turning answers into live web fetches.
+
+## 2. Authority tiers
+
+| Tier | What it is | Examples |
+|---|---|---|
+| A | A central ministry, a provincial department or a national law database page | 农业农村部, 广东省农业农村厅, 海南省农业农村厅, 国家法律法规数据库, 交通运输部海事局, 国家卫星海洋应用中心 |
+| B | An official gazette index or a government-information attachment | 农业农村部公报各期, 政府信息公开附件, 公报 PDF |
+| C | A municipal or county-level department page, used only as a supplement and always labelled with its level | 汕头市农业农村局, 湛江市农业农村局 |
+
+Tier C never substitutes for a missing provincial or national document. When the only available text is municipal, the register says so in the entry notes.
+
+## 3. What may enter the register
+
+- A page or attachment under the publisher's own domain, reachable without login, with a stable URL.
+- The publisher, a document number (文号) when one exists, the publication date and the validity marker (有效 / 已修改 / 废止) recorded from the page itself.
+- A licence the project can name. A page that states only site terms is recorded as `unknown` and held: it may be kept locally for reference but not ingested or indexed.
+
+## 4. What may not
+
+- News items, reposts, aggregators, WeChat posts and search-engine caches. They may point at a document; they are never the document.
+- Pages behind a login, a paywall or an explicit no-copy notice.
+- A rewritten or summarised version of a source. If the body text is unreachable, the gap is recorded, not filled.
+- A newer text used to answer an older question without saying which version is cited.
+
+## 5. Versions and supersession
+
+A newer version supersedes an older one but never deletes it: the register keeps the older entry with its date and the newer entry records what it replaces. Answers cite the version actually used. A page marked 已修改 is not registered as current, which is why the Hainan 2008 page stayed out while the in-force 2013 revision entered.
+
+## 6. The watch workflow
+
+[configs/source-watch.yaml](../configs/source-watch.yaml) lists a curated set of authoritative pages with a tier, a publisher and an expected cadence. `scs-fkb watch` reads them, compares the body hash and the caching headers against the recorded baseline and writes a local report; `--offline` replays the recorded statuses without opening a socket.
+
+The checker is read-only by design. It never downloads a document into the register, never edits `configs/corpus.yaml` and never changes a collection. A change in the report is a prompt: the operator reviews the page, and if it is worth registering, the normal flow applies — decision, contract, download, hash, register, test.
+
+## 7. Why the answer path is not allowed to fetch
+
+Answers must be reproducible from a fixed index, citable to a specific document version and checkable against the recorded hash. A live fetch would break all three, and it would also bypass the licence check. External retrieval therefore belongs to discovery, verification and monitoring, not to answering.
+
+## 8. References
+
+- Source register: [configs/corpus.yaml](../configs/corpus.yaml)
+- Watch list: [configs/source-watch.yaml](../configs/source-watch.yaml)
+- Data policy: [data-policy.md](data-policy.md)
+- Corpus: [corpus.md](corpus.md)

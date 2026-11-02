@@ -2,6 +2,13 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-02 — Curated source watch and written authority rules
+
+- Added configs/source-watch.yaml with ten authoritative pages (ministry gazette index and four 2025 issues, two Guangdong announcement pages, the Guangdong notice and policy lists, the Hainan 2019 hull announcement and the national station monitoring column), each with an A/B/C tier, publisher and cadence.
+- Added src/scs_fkb/watch.py and the `scs-fkb watch` subcommand: read-only GET with a timeout and user agent, body-hash and caching-header comparison, statuses ok/changed/unbaselined/unreachable, JSON report on request, and an offline mode that never opens a socket. It never edits the register or downloads documents.
+- Added docs/sources.md: authority tiers, what may enter the register, what may not (news, reposts, aggregators, login-gated pages), version and supersession rules, and why the answer path is not allowed to fetch live.
+- Tests cover 200 changed/unchanged, 304, 404, timeout, unbaselined, offline and malformed entries; CI needs no network. Eval unchanged on every arm.
+
 ## 2026-11-02 — Spreadsheet parser and the Guangdong/Hainan hull catalogs
 
 - Added `src/scs_fkb/parsers/table.py`: xlsx via openpyxl and xls via xlrd, one page per worksheet, sheet name first and rows joined by ` | `; values as published, no conversion. Registered both formats in the parser dispatch and added openpyxl/xlrd to requirements-dev.txt (requirements.txt already declared them; the venv did not have them).
