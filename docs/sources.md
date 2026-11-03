@@ -116,3 +116,16 @@ Neither is added as a card in this batch: adding OLCI alone would add roughly ni
 ## Knowledge notes
 
 A card is evidence; a note is knowledge. Each note states a handful of labelled facts with a sea area, an as-of date, a review date and the sources it rests on, pinned by SHA-256. Notes are validated by `scs-fkb knowledge check`; a changed card hash or an expired hazard note marks the note stale, and stale notes are never approved or indexed. Only A-tier official sources may be approved automatically; the rest start as drafts and need a human decision. The layer and its ten-note pilot are described in [knowledge.md](knowledge.md).
+
+## Watch run 2026-11-03
+
+The first online run after the card layer returned **22 ok and 4 changed**. Changed means the page body hash moved; it is a review prompt, not an automatic update.
+
+| Watch id | Status |
+|---|---|
+| WATCH-GD-NOTICES | changed |
+| WATCH-GX-NYNCT-NOTICES | changed |
+| WATCH-GX-HYJ-NOTICES | changed |
+| WATCH-MOJ-OBSERVATION | changed |
+
+The four pages stay queued for manual reading; baselines are not refreshed and no corpus entry changes until a human confirms whether a new instrument appeared. The quarterly review reminder is scheduled for 2027-02-02, and the gap file holds one entry.
