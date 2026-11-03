@@ -212,6 +212,7 @@ def ingest(
     knowledge_dir: Path | None = None,
     include_web: bool = True,
     include_knowledge: bool = True,
+    external_only: bool = False,
 ) -> dict[str, Any]:
     """Parse the configured sources, chunk them and write the processed store."""
     register = load_corpus(config_path)
@@ -232,7 +233,7 @@ def ingest(
     parsers: dict[str, str] = {}
     source_entries = []
 
-    for doc_id in pipeline["documents"]:
+    for doc_id in [] if external_only else pipeline["documents"]:
         source = sources.get(doc_id)
         if source is None:
             raise IngestError(f"source.missing: {doc_id} is not an acquired source")
