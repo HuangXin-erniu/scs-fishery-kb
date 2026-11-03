@@ -2,6 +2,13 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-03 — Twenty-one unknown entries resolved by category
+
+- Four normative documents upgraded with quoted evidence: POL-STAT-050 (本规定自发布之日起施行), POL-STAT-051 (国统制〔2024〕120号), STD-ECERT-054 (three certificate standards published 2025-01-01, now registered from the notice page with the PDFs noted) and POL-GD-061 (published 2026-04-28, 2026 season).
+- Fifteen non-normative entries moved to not_applicable with a category-first note: six international product documents, three unacquired candidates, the retired SC/T series, the 2017 and 2020 work notices, the 2018-2025 port plan, the HY-1C/D product note and the permit-form instruction.
+- Two remain unknown on purpose: POL-PORT-037 (proposal, no final announcement) and POL-VMS-053 (no commencement clause in the registered text).
+- Status counts: 50 in_force, 26 not_applicable, 2 unknown; register 78/75/3 and the eval baseline unchanged.
+
 ## 2026-11-02 — Fishery-economy bulletins removed; capture-only statistics
 
 - Deleted STAT-BULL-025 and STAT-BULL-028 to STAT-BULL-032 from the register, the pipeline and the data root: they report total output including culture, and the owner asked for statistics that carry a capture series only.
