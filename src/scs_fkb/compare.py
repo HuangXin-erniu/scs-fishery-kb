@@ -4,6 +4,7 @@ import time
 from pathlib import Path
 from typing import Any
 
+from .claims import load_claims
 from .dense import DenseIndex, embeddings_dir, index_path
 from .embed import DEFAULT_MODEL, FastEmbedEncoder
 from .evaluate import evaluate, title_tokens
@@ -91,6 +92,8 @@ def run_comparison(
         "dense": corpus_retriever("dense", False),
         "hybrid": corpus_retriever("hybrid", True),
     }
+    claims_path = Path(pipeline_path).parent / "claims.yaml"
+    claims_config = load_claims(claims_path) if claims_path.is_file() else None
     report: dict[str, Any] = {"index_version": version, "model": model, "arms": {}}
     for name, arm in arms.items():
         latencies: list[float] = []
@@ -110,6 +113,7 @@ def run_comparison(
                 top_k=5,
                 title_boost=title_boost,
                 lexicon=lexicon if name == "bm25_lexicon" else [],
+                claims_config=claims_config,
                 corpus_searcher=(
                     (lambda question, arm=corpus_arms[name]: arm.search(question))
                     if require_corpus

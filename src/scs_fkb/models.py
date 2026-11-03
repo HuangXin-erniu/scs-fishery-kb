@@ -50,6 +50,9 @@ class Chunk:
     url: str = ""
     retrieved_at: str = ""
     kind: str = "corpus"
+    source_class: str = ""
+    trust: str = ""
+    review_due: str = ""
 
 
 @dataclass(frozen=True)

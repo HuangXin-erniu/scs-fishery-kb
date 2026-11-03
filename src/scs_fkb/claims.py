@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from datetime import date
 from pathlib import Path
 from typing import Any
 
@@ -81,4 +82,47 @@ def classify(question: str, config: dict[str, Any]) -> dict[str, Any]:
         "nature_hits": nature_scores.get(best_nature, 0),
         "domain_hits": domain_scores.get(best_domain, 0),
         "confidence": "high" if nature_scores.get(best_nature, 0) >= 2 else "medium",
+    }
+
+
+def select_evidence(
+    question: str,
+    hits: list[Any],
+    config: dict[str, Any],
+    *,
+    today: date | None = None,
+) -> dict[str, Any]:
+    """Filter hits by the claim matrix and return primary plus supporting evidence."""
+    result = classify(question, config)
+    nature = result["nature"]
+    current = today or date.today()
+    if nature == "general":
+        rules: dict[str, Any] = {"kinds": ["corpus"], "classes": [], "trust": []}
+        window = None
+    else:
+        nature_config = config["natures"][nature]
+        rules = nature_config["primary"]
+        window = nature_config.get("window_days")
+    kept = []
+    for hit in hits:
+        chunk = hit.chunk
+        if rules.get("kinds") and chunk.kind not in rules["kinds"]:
+            continue
+        if rules.get("classes") and chunk.source_class not in rules["classes"]:
+            continue
+        if rules.get("trust") and chunk.trust not in rules["trust"]:
+            continue
+        if window and nature in {"status", "quantity", "warning"} and chunk.review_due:
+            try:
+                if date.fromisoformat(chunk.review_due) < current:
+                    continue
+            except ValueError:
+                pass
+        kept.append(hit)
+    return {
+        "nature": nature,
+        "domain": result["domain"],
+        "primary": kept[0] if kept else None,
+        "supporting": kept[1:4],
+        "admissible": kept,
     }

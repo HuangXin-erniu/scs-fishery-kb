@@ -10,6 +10,7 @@ import yaml
 
 from .answer import answer_question, validate_citations
 from .bm25 import BM25Index
+from .claims import select_evidence
 from .lexicon import expand_query
 from .reference import lookup as reference_lookup
 from .stats import StatsError
@@ -211,6 +212,7 @@ def evaluate(
     require_corpus: bool = False,
     gate_min_score: float = 0.0,
     corpus_searcher: Callable[[str], list[Any]] | None = None,
+    claims_config: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     """Score retrieval at anchor level and check abstinence and citations."""
     rows = {row["id"]: row for row in parse_questions(questions_path)}
@@ -237,12 +239,22 @@ def evaluate(
         matched = [
             anchor for anchor in anchors if any(anchor_matches(hit.chunk, anchor) for hit in hits)
         ]
+        evidence = select_evidence(row["question"], hits, claims_config) if claims_config else None
         if gate is not None and not gate(row["question"]):
+            answer = None
+        elif evidence is not None and evidence["primary"] is None:
             answer = None
         elif corpus_searcher is not None and _corpus_abstains(
             row["question"], corpus_searcher(row["question"]), min_score, min_matched
         ):
             answer = None
+        elif evidence is not None:
+            answer = answer_question(
+                row["question"],
+                evidence["admissible"],
+                min_score=0.0 if searcher else min_score,
+                min_matched=0 if searcher else min_matched,
+            )
         else:
             answer = answer_question(
                 row["question"],
@@ -285,12 +297,22 @@ def evaluate(
             )
         query = expand_query(row["question"], lexicon) if lexicon else row["question"]
         hits = searcher(row["question"]) if searcher else index.search(query, top_k=top_k)
+        evidence = select_evidence(row["question"], hits, claims_config) if claims_config else None
         if gate is not None and not gate(row["question"]):
+            answer = None
+        elif evidence is not None and evidence["primary"] is None:
             answer = None
         elif corpus_searcher is not None and _corpus_abstains(
             row["question"], corpus_searcher(row["question"]), min_score, min_matched
         ):
             answer = None
+        elif evidence is not None:
+            answer = answer_question(
+                row["question"],
+                evidence["admissible"],
+                min_score=0.0 if searcher else min_score,
+                min_matched=0 if searcher else min_matched,
+            )
         else:
             answer = answer_question(
                 row["question"],

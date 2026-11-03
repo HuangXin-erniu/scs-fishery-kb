@@ -8,6 +8,13 @@ This log records material project changes by date. It does not use release versi
 - Documented the rhythm: weekly watch, monthly refresh, quarterly review 2027-02-02; due items are prompts, never automatic rewrites.
 - Added glossary terms source_class, currency, review_due and web card.
 - Adopted baseline unchanged: 36 documents, 849 chunks, index 5135e00cfa3d, hybrid 11/11.
+## 2026-11-03 — Claim matrix applied as evidence filter
+
+- Chunks now carry source_class, trust and review_due; web cards are standard/reference, notes inherit trust from their sources, corpus chunks from the register.
+- claims.select_evidence filters hits by nature, trust, kind and freshness; no admissible primary means abstain.
+- Measured the 287-document index: BM25 abstention 3/4 but hybrid 9/11 with abstention 2/4; the enlarged dense pool itself changes corpus ranking, so the filter alone cannot restore the baseline.
+- Restored the corpus-only index (28 documents, 785 chunks, 20910f0964df): hybrid 11/11, abstention 3/4. Notes and cards stay unindexed.
+
 ## 2026-11-03 — Two-level claim taxonomy and router
 
 - Added configs/claims.yaml: seven claim natures with freshness windows and primary-evidence rules, seven domains with keyword lists.
