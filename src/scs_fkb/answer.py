@@ -295,3 +295,30 @@ def answer_question(
             reason="citation_invalid",
         )
     return Answer(text=text, citations=citations, abstained=False, reason="ok")
+
+
+def augment_with_external(answer: Answer, hits: list[SearchHit]) -> Answer:
+    """Append external supporting evidence to a non-abstained answer."""
+    if answer.abstained or not hits:
+        return answer
+    lines = [answer.text, "", "外部知识（辅助，不改变主结论）："]
+    citations = list(answer.citations)
+    for hit in hits[:3]:
+        citation = make_citation(hit, _best_sentence("", hit.chunk.text) or hit.chunk.text[:80])
+        if "example.invalid" in (citation.url or ""):
+            citation = Citation(
+                doc_id=citation.doc_id,
+                title=citation.title,
+                page=citation.page,
+                section=citation.section,
+                snippet=citation.snippet,
+                score=citation.score,
+            )
+        citations.append(citation)
+        lines.append(f"- {citation_text(citation)}")
+    return Answer(
+        text="\n".join(lines),
+        citations=citations,
+        abstained=False,
+        reason=answer.reason,
+    )

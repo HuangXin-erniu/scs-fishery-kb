@@ -8,6 +8,13 @@ This log records material project changes by date. It does not use release versi
 - Documented the rhythm: weekly watch, monthly refresh, quarterly review 2027-02-02; due items are prompts, never automatic rewrites.
 - Added glossary terms source_class, currency, review_due and web card.
 - Adopted baseline unchanged: 36 documents, 849 chunks, index 5135e00cfa3d, hybrid 11/11.
+## 2026-11-03 — Two-index architecture: corpus decides, external supplements
+
+- Ingest gained --external-only: it skips corpus documents and writes cards/notes to a separate data root. The external store holds 140 notes (the card cache lives beside the corpus root).
+- Ask now queries the external index only after a non-abstained corpus answer and appends labelled supporting evidence; abstention is untouched.
+- Built and embedded the external store (140 documents, 140 chunks); corpus baseline stays 20910f0964df with hybrid 11/11 and abstention 3/4.
+- Fixed ask to tolerate the removed product collection and hid placeholder URLs in external citations.
+
 ## 2026-11-03 — Claim matrix applied as evidence filter
 
 - Chunks now carry source_class, trust and review_due; web cards are standard/reference, notes inherit trust from their sources, corpus chunks from the register.

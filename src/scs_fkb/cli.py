@@ -6,7 +6,7 @@ import sys
 from datetime import date
 from pathlib import Path
 
-from .answer import answer_question
+from .answer import answer_question, augment_with_external
 from .compare import run_comparison
 from .config import (
     DEFAULT_ANCHORS,
@@ -105,6 +105,7 @@ def _ingest(args: argparse.Namespace) -> int:
         knowledge_dir=Path(args.knowledge_dir) if args.knowledge_dir else None,
         include_web=not args.no_web,
         include_knowledge=not args.no_knowledge,
+        external_only=args.external_only,
     )
     if args.json:
         _print_json(summary)
@@ -158,9 +159,14 @@ def _ask(args: argparse.Namespace) -> int:
         sensitivity_ceiling=args.sensitivity,
     )
     references = diverse_hits(reference_lookup(args.question, top_k=8, root=_root(args.data_root)))
-    product_references = diverse_hits(
-        reference_lookup(args.question, top_k=8, root=_root(args.data_root), collection="product")
-    )
+    try:
+        product_references = diverse_hits(
+            reference_lookup(
+                args.question, top_k=8, root=_root(args.data_root), collection="product"
+            )
+        )
+    except (ReferenceError, KeyError):
+        product_references = []
     policy_references = diverse_hits(
         reference_lookup(args.question, top_k=8, root=_root(args.data_root), collection="policy")
     )
@@ -202,6 +208,18 @@ def _ask(args: argparse.Namespace) -> int:
             abstained=True,
             reason="weak_evidence",
         )
+    if not answer.abstained:
+        external_root = _root(args.data_root) / "external"
+        try:
+            ext_chunks, ext_manifest = load_chunks(external_root)
+            ext_retriever = _retriever(
+                ext_chunks, ext_manifest, args.pipeline, _lexicon_for(args), root=external_root
+            )
+            ext_hits = ext_retriever.search(args.question, top_k=3)
+            answer = augment_with_external(answer, ext_hits)
+        except (StoreError, DenseError, OSError):
+            pass
+
     statistics = []
     try:
         statistics = stats_query(args.question, root=_root(args.data_root))
@@ -468,6 +486,7 @@ def build_parser() -> argparse.ArgumentParser:
     ingest_parser.add_argument("--knowledge-dir", default=None)
     ingest_parser.add_argument("--no-web", action="store_true")
     ingest_parser.add_argument("--no-knowledge", action="store_true")
+    ingest_parser.add_argument("--external-only", action="store_true")
     ingest_parser.add_argument("--json", action="store_true")
     ingest_parser.set_defaults(func=_ingest)
 

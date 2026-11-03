@@ -43,3 +43,15 @@ Domains: policy, gear, environment, hazard, species, statistics, port. The natur
 ## 5. Configuration
 
 The machine-readable matrix is [configs/claims.yaml](../configs/claims.yaml); the classifier is `src/scs_fkb/claims.py`. The matrix is reviewed with every quarterly sweep, and a change to a window or trust rule is a decision recorded in the project log.
+
+## 6. Two-index architecture
+
+The corpus store (28 documents, index `20910f0964df`) and the external store (`$SCS_FKB_DATA_ROOT/external`, cards and notes) are built and embedded separately. Answering always starts from the corpus index: abstention is decided there and nowhere else. Only when the corpus answer is not an abstention does `ask` query the external index and append labelled supporting evidence (`外部知识（辅助，不改变主结论）`). External evidence therefore cannot make an out-of-scope question answerable, and the corpus metrics are unchanged by construction.
+
+Build and refresh:
+
+```bash
+scs-fkb ingest                      # corpus store
+scs-fkb ingest --external-only --data-root "$SCS_FKB_DATA_ROOT/external"
+scs-fkb embed --data-root "$SCS_FKB_DATA_ROOT/external"
+```
