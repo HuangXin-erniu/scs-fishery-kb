@@ -959,3 +959,21 @@ def test_vms_measure_is_closed_with_its_clause() -> None:
     registry = load_registry("configs/corpus.yaml")
     currency = registry["POL-VMS-053"]["currency"]
     assert "Article 32" in currency["note"] or "2020年1月1日" in currency["note"]
+
+
+def test_web_cards_registry() -> None:
+    cards = load_yaml("configs/web-cards.yaml")["cards"]
+    expected = {
+        "WEB-WORMS-LARIMICHTHYS-CROCEA",
+        "WEB-WORMS-TRICHIURUS-LEPTURUS",
+        "WEB-WORMS-DECAPTERUS-MARUADSI",
+        "WEB-WORMS-FENNEROPENAEUS-CHINENSIS",
+        "WEB-FAO-ISSCFG-GEAR",
+    }
+    assert {card["id"] for card in cards} == expected
+    for card in cards:
+        assert card["url"].startswith("https://")
+        assert card["source_class"] == "reference"
+        assert card["status"] == "ok"
+        assert len(card["sha256"]) == 64
+        assert card["excerpt"]

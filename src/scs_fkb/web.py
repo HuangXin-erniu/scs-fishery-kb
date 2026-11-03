@@ -117,6 +117,12 @@ def is_allowed(url: str, allowlist: list[dict[str, Any]]) -> tuple[bool, str]:
 
 def _tls_context() -> ssl.SSLContext:
     try:
+        import certifi
+
+        return ssl.create_default_context(cafile=certifi.where())
+    except ImportError:
+        pass
+    try:
         return ssl.create_default_context()
     except ssl.SSLError:
         fallback = Path("/etc/ssl/cert.pem")
@@ -135,7 +141,14 @@ def fetch(url: str, *, timeout: float, max_bytes: int, user_agent: str) -> tuple
 
 
 def _extract(payload: bytes, content_type: str, url: str, cache_dir: Path) -> tuple[str, str]:
-    if "pdf" in content_type.lower() or url.lower().endswith(".pdf"):
+    lowered = content_type.lower()
+    cache_dir.mkdir(parents=True, exist_ok=True)
+    if "json" in lowered or lowered.startswith("text/plain"):
+        text = payload.decode("utf-8", errors="replace").strip()
+        if not text:
+            raise WebError(f"web.extract.empty: {url}")
+        return text, "json"
+    if "pdf" in lowered or url.lower().endswith(".pdf"):
         suffix, fmt = ".pdf", "pdf"
     else:
         suffix, fmt = ".html", "html"
