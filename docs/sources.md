@@ -113,3 +113,6 @@ Q-E08 and Q-M09 need MUR and OLCI documents to be restored. The probe found one 
 | PO.DAAC MUR dataset page (podaac.jpl.nasa.gov) | TLS reset, no response |
 
 Neither is added as a card in this batch: adding OLCI alone would add roughly ninety English chunks without restoring either question. Both questions stay parked until a reachable MUR document exists; the OLCI PDF is the first candidate once that happens, and `esa.int` would join the allowlist then.
+## Knowledge notes
+
+A card is evidence; a note is knowledge. Each note states a handful of labelled facts with a sea area, an as-of date, a review date and the sources it rests on, pinned by SHA-256. Notes are validated by `scs-fkb knowledge check`; a changed card hash or an expired hazard note marks the note stale, and stale notes are never approved or indexed. Only A-tier official sources may be approved automatically; the rest start as drafts and need a human decision. The layer and its ten-note pilot are described in [knowledge.md](knowledge.md).

@@ -1,0 +1,74 @@
+schema_version: 1
+topic: policy
+notes:
+- id: KNO-POLICY-001
+  title: 南海区伏季休渔时间与海域（2023 通告）
+  summary: 2023 年通告规定南海区休渔海域、时间与小型张网规则。
+  facts:
+  - label: 休渔海域
+    value: 北纬12度以北的南海（含北部湾）
+  - label: 休渔时间
+    value: 北纬26度30分至北纬12度：5月1日12时至8月16日12时
+  - label: 小型张网
+    value: 5月1日12时起，不少于3个月，结束时间由省级主管部门确定并报备
+  - label: 捕捞辅助船
+    value: 原则上执行所在海域最长休渔时间
+  sea_area: 南海
+  as_of: '2026-11-03'
+  review_due: '2026-12-03'
+  status: approved
+  confidence: high
+  sources:
+  - doc: POL-CLOS-015
+    sha256: 15660ed713803ff440da583e1d5a219ab5e488c2237f3bb33cd30e7115174bdc
+    url: https://example.invalid/POL-CLOS-015
+    publisher: 官网
+    fetched_at: '2026-11-03'
+  tags:
+  - closure
+  - policy
+- id: KNO-POLICY-002
+  title: 申请渔业捕捞许可证需提交的材料
+  summary: 《渔业捕捞许可证管理规定》第二十八条列出基础材料与海洋许可证附加材料。
+  facts:
+  - label: 基础材料
+    value: 申请书；户口簿或营业执照；检验证书、国籍证书和所有权登记证书（徒手作业除外）；渔具和捕捞方法符合准用目录与技术标准的说明
+  - label: 海洋许可证附加
+    value: 渔业组织意见；首次或重新申请提供船网工具指标批准书；换发提供原捕捞许可证
+  sea_area: 全国
+  as_of: '2026-11-03'
+  review_due: '2026-12-03'
+  status: approved
+  confidence: high
+  sources:
+  - doc: POL-STD-010
+    sha256: 35e2069db4de910494c1e6e07c435c4aca91c846e912acba2d6178776b981910
+    url: https://example.invalid/POL-STD-010
+    publisher: 官网
+    fetched_at: '2026-11-03'
+  tags:
+  - permit
+  - policy
+- id: KNO-POLICY-003
+  title: 2026 年伏季休渔专项捕捞品种
+  summary: 2026 年南海区按品种专项捕捞许可的八个品种。
+  facts:
+  - label: 品种
+    value: 海蜇、沙海蜇、口虾蛄、毛虾、鱿鱼、银鱼、丁香鱼、鸢乌贼
+  - label: 作业条件
+    value: 作业场所、时限、最大船数、捕捞限额、作业类型与最小网目由专项通告规定
+  sea_area: 南海
+  as_of: '2026-11-03'
+  review_due: '2026-12-03'
+  status: approved
+  confidence: high
+  sources:
+  - doc: POL-SPEC-041
+    sha256: b383ea35974fe85acea89f95c7c8c263a7cea382aefdc10f04733efb7118c647
+    url: https://example.invalid/POL-SPEC-041
+    publisher: 官网
+    fetched_at: '2026-11-03'
+  tags:
+  - closure
+  - special-permit
+  - policy

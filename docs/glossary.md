@@ -47,3 +47,4 @@ expert before treating a definition as authoritative.
 | currency | 时效 | as_of, basis, review_due and an optional evidence note. |
 | review_due | 复查日期 | When an entry or card must be checked again; the watch report lists what is due. |
 | web card | 网络卡片 | A cached allowlisted page with public metadata and private text, indexed beside the corpus. |
+| knowledge note | 知识条目 | Structured facts distilled from cards or corpus documents, pinned to source hashes and carrying an as-of date, a review date and a status. |

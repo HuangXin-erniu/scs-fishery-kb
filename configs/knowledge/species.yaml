@@ -1,0 +1,123 @@
+schema_version: 1
+topic: species
+notes:
+- id: KNO-SPECIES-001
+  title: 大黄鱼 Larimichthys crocea
+  summary: 大黄鱼在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Larimichthys crocea
+  - label: 命名人
+    value: (Richardson, 1846)
+  - label: 分类
+    value: Chordata > Teleostei > Eupercaria incertae sedis1 > Sciaenidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=1 淡水=0
+  - label: WoRMS ID
+    value: '281271'
+  sea_area: 南海
+  species:
+  - Larimichthys crocea
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-LARIMICHTHYS-CROCEA
+    sha256: 0949f07c12fb917f06ddd9cc6040d349b27907d622cc8d98531d31a2dd5eca25
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Larimichthys%20crocea?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:01:14+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-002
+  title: 带鱼 Trichiurus lepturus
+  summary: 带鱼在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Trichiurus lepturus
+  - label: 命名人
+    value: Linnaeus, 1758
+  - label: 分类
+    value: Chordata > Teleostei > Scombriformes > Trichiuridae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=1 淡水=0
+  - label: WoRMS ID
+    value: '127089'
+  sea_area: 南海
+  species:
+  - Trichiurus lepturus
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-TRICHIURUS-LEPTURUS
+    sha256: d32d0821a39c832b3d5ec0b000eb4ac31eefd149adbc8f8ac3fd37fbae5dd036
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Trichiurus%20lepturus?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:01:14+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-003
+  title: 蓝圆鲹 Decapterus maruadsi
+  summary: 蓝圆鲹在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Decapterus maruadsi
+  - label: 命名人
+    value: (Temminck & Schlegel, 1843)
+  - label: 分类
+    value: Chordata > Teleostei > Carangiformes > Carangidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=0 淡水=0
+  - label: WoRMS ID
+    value: '273278'
+  sea_area: 南海
+  species:
+  - Decapterus maruadsi
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-DECAPTERUS-MARUADSI
+    sha256: 52d13dc407c0482a929e64d0459943ee29aae81047e44f0f390947ad3d6559c6
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Decapterus%20maruadsi?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:01:14+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-004
+  title: 中国明对虾 Fenneropenaeus chinensis
+  summary: 中国明对虾在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Fenneropenaeus chinensis
+  - label: 命名人
+    value: (Osbeck, 1765)
+  - label: 分类
+    value: Arthropoda > Malacostraca > Decapoda > Penaeidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=1 淡水=0
+  - label: WoRMS ID
+    value: '246390'
+  sea_area: 南海
+  species:
+  - Fenneropenaeus chinensis
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-FENNEROPENAEUS-CHINENSIS
+    sha256: bd073fad1978e2c09db83271e394c00178ad398c76cfbf5b03da051337061941
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Fenneropenaeus%20chinensis?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:01:14+00:00'
+  tags:
+  - species
+  - taxonomy
