@@ -35,6 +35,7 @@ from .stats import query as stats_query
 from .store import StoreError, load_chunks
 from .watch import DEFAULT_WATCH, WatchError, run_watch
 from .watch import write_report as write_watch_report
+from .web import WebError, is_allowed, load_cards, load_web_sources, refresh
 
 
 def _root(value: str | None) -> Path:
@@ -306,6 +307,43 @@ def _watch(args: argparse.Namespace) -> int:
     return 0
 
 
+def _web_refresh(args: argparse.Namespace) -> int:
+    sources = load_web_sources(Path(args.sources))
+    cards = load_cards(Path(args.cards))
+    if args.dry_run:
+        rows = []
+        for card in cards["cards"]:
+            allowed, reason = is_allowed(str(card["url"]), sources["allowlist"])
+            rows.append({"id": card["id"], "allowed": allowed, "reason": reason})
+        if args.json:
+            _print_json({"cards": rows})
+        else:
+            for row in rows:
+                verdict = "allowed" if row["allowed"] else "blocked"
+                print(f"{row['id']:24} {verdict:8} {row['reason']}")
+        return 0 if all(row["allowed"] for row in rows) else 1
+    cache = Path(args.cache_root).expanduser() if args.cache_root else data_root() / "web"
+    report = refresh(Path(args.cards), Path(args.sources), cache, topic=args.topic)
+    if args.json:
+        _print_json(report)
+    else:
+        for row in report["cards"]:
+            digest = (row.get("sha256") or "-")[:12]
+            print(f"{row['id']:24} {row['status']:8} {digest} {row.get('error', '')}".rstrip())
+        print(f"summary {{'ok': {report['ok']}, 'failed': {report['failed']}}}")
+    return 0 if report["failed"] == 0 else 1
+
+
+def _web_check(args: argparse.Namespace) -> int:
+    sources = load_web_sources(Path(args.sources))
+    allowed, reason = is_allowed(args.url, sources["allowlist"])
+    if args.json:
+        _print_json({"url": args.url, "allowed": allowed, "reason": reason})
+    else:
+        print(f"{'allowed' if allowed else 'blocked'}: {reason}")
+    return 0 if allowed else 1
+
+
 def _eval(args: argparse.Namespace) -> int:
     report = run_comparison(
         _root(args.data_root),
@@ -429,6 +467,26 @@ def build_parser() -> argparse.ArgumentParser:
     watch_parser.add_argument("--report", default=None)
     watch_parser.add_argument("--json", action="store_true")
     watch_parser.set_defaults(func=_watch)
+
+    web_parser = subparsers.add_parser("web", help="manage cached web cards")
+    web_subparsers = web_parser.add_subparsers(dest="web_command", required=True)
+    refresh_parser = web_subparsers.add_parser(
+        "refresh", help="fetch allowlisted cards into the cache"
+    )
+    refresh_parser.add_argument("--cards", default=str(REPO_ROOT / "configs" / "web-cards.yaml"))
+    refresh_parser.add_argument(
+        "--sources", default=str(REPO_ROOT / "configs" / "web-sources.yaml")
+    )
+    refresh_parser.add_argument("--cache-root", default=None)
+    refresh_parser.add_argument("--topic", default=None)
+    refresh_parser.add_argument("--dry-run", action="store_true")
+    refresh_parser.add_argument("--json", action="store_true")
+    refresh_parser.set_defaults(func=_web_refresh)
+    check_parser = web_subparsers.add_parser("check", help="check a URL against the allowlist")
+    check_parser.add_argument("url")
+    check_parser.add_argument("--sources", default=str(REPO_ROOT / "configs" / "web-sources.yaml"))
+    check_parser.add_argument("--json", action="store_true")
+    check_parser.set_defaults(func=_web_check)
     return parser
 
 
@@ -448,6 +506,7 @@ def main(argv: list[str] | None = None) -> int:
         StatsError,
         StoreError,
         WatchError,
+        WebError,
         ValueError,
         FileNotFoundError,
     ) as exc:

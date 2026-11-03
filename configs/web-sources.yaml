@@ -1,0 +1,43 @@
+# Web card sources: the only hosts the refresh command may fetch.
+# Answers never fetch; cards are cached at refresh time and read offline.
+schema_version: 1
+allowlist:
+  - {domain: gov.cn, publisher: 中国政府网, tier: A}
+  - {domain: moa.gov.cn, publisher: 农业农村部, tier: A}
+  - {domain: stats.gov.cn, publisher: 国家统计局, tier: A}
+  - {domain: cma.gov.cn, publisher: 中国气象局, tier: A}
+  - {domain: mnr.gov.cn, publisher: 自然资源部, tier: A}
+  - {domain: nsoas.org.cn, publisher: 国家卫星海洋应用中心, tier: A}
+  - {domain: gd.gov.cn, publisher: 广东省人民政府, tier: A}
+  - {domain: gxzf.gov.cn, publisher: 广西壮族自治区人民政府, tier: A}
+  - {domain: hainan.gov.cn, publisher: 海南省人民政府, tier: A}
+  - {domain: fj.gov.cn, publisher: 福建省人民政府, tier: A}
+  - {domain: fao.org, publisher: FAO, tier: A}
+  - {domain: marinespecies.org, publisher: WoRMS, tier: A}
+  - {domain: fishbase.se, publisher: FishBase, tier: A}
+  - {domain: iucnredlist.org, publisher: IUCN, tier: B}
+  - {domain: marine.copernicus.eu, publisher: Copernicus Marine, tier: A}
+  - {domain: noaa.gov, publisher: NOAA, tier: A}
+  - {domain: earthdata.nasa.gov, publisher: NASA Earthdata, tier: A}
+topics:
+  species:
+    description: Species identity, distribution and protection status.
+    cadence_days: 30
+    max_cards: 12
+  gear:
+    description: Gear classes, operation methods and restrictions.
+    cadence_days: 30
+    max_cards: 8
+  environment:
+    description: Sea surface temperature, chlorophyll, wind and product definitions.
+    cadence_days: 30
+    max_cards: 8
+  hazard:
+    description: Typhoon, storm surge, wave and algal-bloom warnings.
+    cadence_days: 30
+    max_cards: 8
+refresh:
+  timeout_seconds: 30
+  rate_limit_seconds: 2
+  max_bytes: 4000000
+  user_agent: scs-fkb/1.0 (+https://github.com/HuangXin-erniu/scs-fishery-kb)

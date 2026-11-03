@@ -80,3 +80,14 @@ The next quarterly review is **2027-02-02**. A watch entry that reports `changed
 - Watch list: [configs/source-watch.yaml](../configs/source-watch.yaml)
 - Data policy: [data-policy.md](data-policy.md)
 - Corpus: [corpus.md](corpus.md)
+
+## Web cards
+
+The corpus is fixed at refresh time; answers never browse. External knowledge arrives as **web cards**: a card names an allowlisted URL, a topic, a publisher and a licence, and `scs-fkb web refresh` fetches it, extracts text and writes two things:
+
+- the extracted text under `$SCS_FKB_DATA_ROOT/web/<CARD_ID>/text.txt` (private);
+- the card metadata in [configs/web-cards.yaml](../configs/web-cards.yaml) — URL, title, publisher, fetch time, SHA-256, content type, licence, a 300-character excerpt and a status (public).
+
+Only hosts in [configs/web-sources.yaml](../configs/web-sources.yaml) may be fetched: the central ministries and the four provincial governments, FAO, WoRMS, FishBase, IUCN, Copernicus Marine, NOAA and NASA Earthdata. The check is exact-host or subdomain, https only; anything else fails with a recorded reason and no request.
+
+Refresh is manual and per topic (`species`, `gear`, `environment`, `hazard`); the default cadence is 30 days and the watch report lists cards whose review date has passed. Failures do not abort the batch: the card keeps its previous text and records the error. Nothing fetched is republished in full; the public tree carries metadata and a short excerpt only, so the licence of each page still governs its text.
