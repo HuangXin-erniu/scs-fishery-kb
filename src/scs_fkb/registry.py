@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Iterable
+from datetime import date
 from pathlib import Path
 from typing import Any
 
@@ -10,10 +11,11 @@ from .config import DEFAULT_CONFIG
 
 LEVELS = frozenset({"national", "provincial", "municipal", "international"})
 TIERS = frozenset({"A", "B", "C"})
-VALIDITY = frozenset({"in_force", "superseded", "repealed", "unknown", "not_applicable"})
+SOURCE_CLASSES = frozenset({"normative", "official_statistics", "standard", "reference"})
+BASES = frozenset({"publication", "edition", "announcement", "retrieval"})
 CHANNELS = frozenset({"main", "collection", "statistics", "watch", "none"})
 LIFECYCLES = frozenset({"active", "retired"})
-REQUIRED = ("level", "authority_tier", "validity", "retrieval", "lifecycle")
+REQUIRED = ("level", "authority_tier", "source_class", "currency", "retrieval", "lifecycle")
 
 
 class RegistryError(RuntimeError):
@@ -61,7 +63,12 @@ def validate_entry(entry: dict[str, Any]) -> list[str]:
     tier = entry.get("authority_tier")
     if tier is not None and tier not in TIERS:
         errors.append(f"{source_id}: authority_tier {tier!r} not in {sorted(TIERS)}")
-    errors.extend(_validate_validity(source_id, entry.get("validity")))
+    if "validity" in entry:
+        errors.append(f"{source_id}: validity is retired; use source_class and currency")
+    source_class = entry.get("source_class")
+    if source_class is not None and source_class not in SOURCE_CLASSES:
+        errors.append(f"{source_id}: source_class {source_class!r} not in {sorted(SOURCE_CLASSES)}")
+    errors.extend(_validate_currency(source_id, entry.get("currency")))
     errors.extend(_validate_retrieval(source_id, entry.get("retrieval")))
     lifecycle = entry.get("lifecycle")
     if lifecycle is not None and lifecycle not in LIFECYCLES:
@@ -77,22 +84,30 @@ def validate_entry(entry: dict[str, Any]) -> list[str]:
     return errors
 
 
-def _validate_validity(source_id: str, validity: Any) -> list[str]:
-    if validity is None:
-        return []
-    if not isinstance(validity, dict):
-        return [f"{source_id}: validity is not a mapping"]
+def _validate_currency(source_id: str, currency: Any) -> list[str]:
+    if currency is None:
+        return [f"{source_id}: currency is missing"]
+    if not isinstance(currency, dict):
+        return [f"{source_id}: currency is not a mapping"]
     errors: list[str] = []
-    status = validity.get("status")
-    if status not in VALIDITY:
-        errors.append(f"{source_id}: validity.status {status!r} not in {sorted(VALIDITY)}")
-    for key in ("as_of", "note"):
-        if not validity.get(key):
-            errors.append(f"{source_id}: validity.{key} is empty")
-    for key in ("supersedes", "superseded_by"):
-        value = validity.get(key)
-        if value is not None and not isinstance(value, list):
-            errors.append(f"{source_id}: validity.{key} is not a list")
+    dates: dict[str, date] = {}
+    for key in ("as_of", "review_due"):
+        value = currency.get(key)
+        if not value:
+            errors.append(f"{source_id}: currency.{key} is empty")
+            continue
+        try:
+            dates[key] = date.fromisoformat(str(value))
+        except ValueError:
+            errors.append(f"{source_id}: currency.{key} is not an ISO date")
+    basis = currency.get("basis")
+    if basis not in BASES:
+        errors.append(f"{source_id}: currency.basis {basis!r} not in {sorted(BASES)}")
+    if "as_of" in dates and "review_due" in dates and dates["review_due"] < dates["as_of"]:
+        errors.append(f"{source_id}: currency.review_due is before as_of")
+    note = currency.get("note")
+    if note is not None and not str(note).strip():
+        errors.append(f"{source_id}: currency.note is empty")
     return errors
 
 

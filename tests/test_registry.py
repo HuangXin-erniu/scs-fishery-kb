@@ -20,7 +20,12 @@ def _entry(**overrides):
         "status": "acquired",
         "level": "national",
         "authority_tier": "A",
-        "validity": {"status": "in_force", "as_of": "2026-11-02", "note": "current"},
+        "source_class": "normative",
+        "currency": {
+            "as_of": "2026-11-03",
+            "basis": "publication",
+            "review_due": "2026-12-03",
+        },
         "retrieval": {"channel": "collection", "parseable": True, "note": "registered"},
         "lifecycle": "active",
     }
@@ -54,9 +59,39 @@ def test_bad_authority_tier_is_rejected(tmp_path: Path) -> None:
         load_registry(_write(tmp_path, [_entry(authority_tier="Z")]))
 
 
-def test_unknown_validity_status_is_rejected(tmp_path: Path) -> None:
-    entry = _entry(validity={"status": "maybe", "as_of": "2026-11-02", "note": "x"})
-    with pytest.raises(RegistryError, match="validity.status"):
+def test_bad_source_class_is_rejected(tmp_path: Path) -> None:
+    with pytest.raises(RegistryError, match="source_class"):
+        load_registry(_write(tmp_path, [_entry(source_class="current")]))
+
+
+def test_legacy_validity_is_rejected(tmp_path: Path) -> None:
+    entry = _entry()
+    del entry["source_class"]
+    del entry["currency"]
+    entry["validity"] = {"status": "in_force", "as_of": "2026-11-02", "note": "x"}
+    with pytest.raises(RegistryError, match="validity is retired"):
+        load_registry(_write(tmp_path, [entry]))
+
+
+def test_bad_basis_is_rejected(tmp_path: Path) -> None:
+    entry = _entry(currency={"as_of": "2026-11-03", "basis": "guess", "review_due": "2026-12-03"})
+    with pytest.raises(RegistryError, match="currency.basis"):
+        load_registry(_write(tmp_path, [entry]))
+
+
+def test_malformed_currency_date_is_rejected(tmp_path: Path) -> None:
+    entry = _entry(
+        currency={"as_of": "03/11/2026", "basis": "publication", "review_due": "2026-12-03"}
+    )
+    with pytest.raises(RegistryError, match="currency.as_of"):
+        load_registry(_write(tmp_path, [entry]))
+
+
+def test_review_due_before_as_of_is_rejected(tmp_path: Path) -> None:
+    entry = _entry(
+        currency={"as_of": "2026-11-03", "basis": "publication", "review_due": "2026-01-01"}
+    )
+    with pytest.raises(RegistryError, match="review_due is before as_of"):
         load_registry(_write(tmp_path, [entry]))
 
 
@@ -94,12 +129,13 @@ def test_select_filters_by_level_and_channel() -> None:
     assert [entry["id"] for entry in select(sources, channel="main")] == ["C"]
 
 
-def test_not_applicable_status_is_accepted(tmp_path: Path) -> None:
+def test_reference_class_is_accepted(tmp_path: Path) -> None:
     entry = _entry(
-        validity={"status": "not_applicable", "as_of": "2026-11-02", "note": "data edition"}
+        source_class="reference",
+        currency={"as_of": "2026-11-03", "basis": "retrieval", "review_due": "2027-05-02"},
     )
     registry = load_registry(_write(tmp_path, [entry]))
-    assert registry["POL-TEST-001"]["validity"]["status"] == "not_applicable"
+    assert registry["POL-TEST-001"]["source_class"] == "reference"
 
 
 def _watched(**overrides):

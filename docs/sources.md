@@ -5,7 +5,7 @@
 
 ## 1. Scope
 
-The knowledge base cites documents, not pages in general. Every citable source must be a document published by the body that owns it, registered in [configs/corpus.yaml](../configs/corpus.yaml) with a publisher, a document number where one exists, a date, a validity marker and a licence. This file states what may become such a source and how the project keeps itself current without turning answers into live web fetches.
+The knowledge base cites documents, not pages in general. Every citable source must be a document published by the body that owns it, registered in [configs/corpus.yaml](../configs/corpus.yaml) with a publisher, a document number where one exists, a date, a source class, a review date and a licence. This file states what may become such a source and how the project keeps itself current without turning answers into live web fetches.
 
 ## 2. Authority tiers
 
@@ -20,7 +20,7 @@ Tier C never substitutes for a missing provincial or national document. When the
 ## 3. What may enter the register
 
 - A page or attachment under the publisher's own domain, reachable without login, with a stable URL.
-- The publisher, a document number (文号) when one exists, the publication date and the validity marker (有效 / 已修改 / 废止) recorded from the page itself.
+- The publisher, a document number (文号) when one exists, the publication date, the source class and the date on which the page itself was checked.
 - A licence the project can name. A page that states only site terms is recorded as `unknown` and held: it may be kept locally for reference but not ingested or indexed.
 
 ## 4. What may not
@@ -50,7 +50,7 @@ Answers must be reproducible from a fixed index, citable to a specific document 
 
 ## 8. The register schema
 
-Fields, enums and lifecycle rules are defined in [data-model.md](data-model.md). In short: level separates the national basis from provincial, municipal and international material; authority tier records whether the page is the publisher's own; validity records whether the text is current and on what evidence; retrieval records whether the text is actually reachable; lifecycle separates active from retired. Unverified validity is `unknown`, never assumed.
+Fields, enums and lifecycle rules are defined in [data-model.md](data-model.md). In short: level separates the national basis from provincial, municipal and international material; authority tier records whether the page is the publisher's own; source_class records what kind of source it is; currency records when it was last checked and when it must be checked again; retrieval records whether the text is actually reachable; lifecycle separates active from retired. Nothing is assumed current: the review date is the contract.
 
 ## 9. National currency table
 
@@ -72,7 +72,7 @@ Fields, enums and lifecycle rules are defined in [data-model.md](data-model.md).
 | `POL-LIST-079` | current | 2026-11-02 | The next annual catalogue of rules in force |
 | `POL-PEN-080` | in force | 2026-11-02 | A new revision of the general penalty rules |
 
-The next quarterly review is **2027-02-02**. A watch entry that reports `changed` is a prompt to review the page, not an automatic update: the operator checks the page, decides whether the register needs a new entry or a validity change, and records the decision.
+The next quarterly review is **2027-02-02**. A watch entry that reports `changed` is a prompt to review the page, not an automatic update: the operator checks the page, decides whether the register needs a new entry or a currency update, and records the decision.
 
 ## 10. References
 

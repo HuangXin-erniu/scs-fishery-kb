@@ -2,6 +2,13 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-03 — Validity model replaced by source class and currency
+
+- Removed `validity` from all 69 entries: the in-force / not-applicable / unknown states are gone, and category notes were dropped because the class now states what the source is.
+- Added `source_class` (33 normative, 10 official_statistics, 18 standard, 8 reference) and `currency` (as_of 2026-11-03; review_due 2026-12-03 for normative, 2027-02-01 for standard, 2027-11-03 for official statistics, 2027-05-02 for reference). Evidence sentences moved into `currency.note`.
+- The validator now rejects a legacy validity block, a bad class, a bad basis, a malformed date and a review date before the check date.
+- Index unchanged at 28 documents, 785 chunks, index 20910f0964df.
+
 ## 2026-11-03 — Nine dead entries removed and the index rebuilt
 
 - Deleted the three unacquired candidates, the retired SC/T series, the 2017 and 2020 monitoring circulars, the permit-form instruction, the expired 2018-2025 port plan and the port-list proposal, with their data files; the proposal was the last unknown.

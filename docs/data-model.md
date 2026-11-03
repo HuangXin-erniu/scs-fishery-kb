@@ -1,6 +1,6 @@
 # Data Model
 
-> **中文摘要**：本文件定义语料登记 schema v2。每条来源必须声明层级（国家/省/市/国际）、权威等级（A/B/C）、现行性（状态、核验日期、前身后继）、可检索性（通道、可解析）和生命周期（在用/退役）。未核验的现行性一律写 unknown，不得默认有效；退役保留哈希与文件，删除只用于无许可或非官方来源。
+> **中文摘要**：本文件定义语料登记 schema v2。每条来源必须声明层级（国家/省/市/国际）、权威等级（A/B/C）、来源类别（规范/官方统计/标准/参考）、时效（核验日期、依据、复查日期）、可检索性（通道、可解析）和生命周期（在用/退役）。不再判断"是否现行"；复查日期到期由 watch 提醒，网络卡片另有 30 天周期。退役保留哈希与文件，删除只用于无许可或非官方来源。
 
 ## 1. Fields
 
@@ -18,29 +18,28 @@
 | `status` | string | yes | Acquisition status: acquired, candidate, deferred |
 | `level` | enum | yes | `national` / `provincial` / `municipal` / `international` |
 | `authority_tier` | enum | yes | `A` publisher's own page, `B` gazette or official attachment or compilation, `C` municipal page |
-| `validity` | mapping | yes | See section 2 |
+| `source_class` | enum | yes | `normative` / `official_statistics` / `standard` / `reference` |
+| `currency` | mapping | yes | See section 2 |
 | `retrieval` | mapping | yes | See section 3 |
 | `lifecycle` | enum | yes | `active` / `retired` |
 | `retirement` | mapping | when retired | `date`, `reason`, `decision_key` |
 
-## 2. Validity
+## 2. Source class and currency
 
 ```yaml
-validity:
-  status: in_force | superseded | repealed | unknown | not_applicable
-  as_of: '2026-11-02'
-  supersedes: [POL-...]        # optional, registered or named predecessors
-  superseded_by: [POL-...]     # optional, required when status is superseded
-  note: the evidence sentence or the reason the status is unknown
+source_class: normative | official_statistics | standard | reference
+currency:
+  as_of: '2026-11-03'
+  basis: publication | edition | announcement | retrieval
+  review_due: '2026-12-03'
+  note: optional evidence sentence or review remark
 ```
 
-Rules:
-
-- `in_force` requires a recorded evidence sentence (a citation by a later official document, an effective date, or the publisher's own current marker).
-- `superseded` requires a named successor; otherwise use `unknown` and name the suspected successor in the note.
-- `repealed` requires the repealing act.
-- `not_applicable` marks a data publication (yearbook edition, statistical bulletin, dictionary, dataset): it is not a normative act, so in-force and repealed do not apply; a later edition supersedes it for current-year data.
-- `unknown` is the honest default for anything not verified. It is not a placeholder to be left forever: the national entries are re-checked in the currency table.
+- `source_class` says what kind of source it is, not whether it is current. `normative` covers laws, regulations and notices; `official_statistics` covers yearbook editions and statistical series; `standard` covers technical standards and operational norms; `reference` covers definitions, product documentation and other reference material.
+- `currency.as_of` is the date the entry was last checked; `basis` names what that check rested on; `review_due` is when it must be checked again.
+- Default review periods: normative 30 days, standard 90 days, official_statistics one annual edition, reference 180 days; web cards 30 days.
+- `currency.note` carries the evidence sentence where one exists (an effective date, an approval number, a publication date) or a short review remark. It is optional, not a status field.
+- There is no in-force / not-applicable / unknown state. An entry that cannot be checked keeps its existing dates, and the watch report lists it as due.
 
 ## 3. Retrieval
 
