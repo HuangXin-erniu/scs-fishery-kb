@@ -1,11 +1,29 @@
 schema_version: 1
 cards:
+- topic: environment
+  fetched_at: '2026-11-03T05:01:14+00:00'
+  sha256: 0a1e77b0543320f52d29cc60d372872ebd595adabbbbb29cf7cb58f4ec97d906
+  content_type: text/html; charset=UTF-8
+  license: eumetsat-terms
+  sensitivity: public
+  source_class: reference
+  file: WEB-EUMETSAT-SENTINEL3/text.txt
+  status: ok
+  excerpt: Sentinel-3 | EUMETSAT Skip to main content Main navigation IMAGES IMAGES
+    Real time imagery EUMETView (Real-time images) Earth view Imagery and media Image
+    of the week Choose your Meteosat image Videos and podcasts Data visualisation
+    SATELLITES SATELLITES What we monitor Weather Climate Ocean Land At
+  id: WEB-EUMETSAT-SENTINEL3
+  title: Sentinel-3 mission and OLCI instrument
+  publisher: EUMETSAT
+  url: https://www.eumetsat.int/sentinel-3
+  error: ''
 - id: WEB-FAO-ISSCFG-GEAR
   topic: gear
   title: Definition and classification of fishing gear categories (ISSCFG)
   publisher: FAO
   url: https://www.fao.org/4/x2465e/x2465e00.htm
-  fetched_at: '2026-11-03T04:38:22+00:00'
+  fetched_at: '2026-11-03T05:02:09+00:00'
   sha256: 516e1eebaa5ef9345dd3f7a6220c76ba8a04f042acfb3191f4c9f3bd18859ce3
   content_type: text/html
   license: fao-copyright
@@ -18,12 +36,47 @@ cards:
     Thailand, 18-30 May 1998 FAO FISHERIES TECHNICAL PAPER 382 DANIDA Food and Agriculture
     Organization of the United Nations Rome, 1999 ISSN 0429-934
   error: ''
+- topic: hazard
+  fetched_at: '2026-11-03T05:01:14+00:00'
+  sha256: 8280090b25aabf87d5b10482616f5228b47dc386fca8b58f4a2525599ba5e4ba
+  content_type: text/html
+  license: public
+  sensitivity: public
+  source_class: reference
+  file: WEB-GOV-CMA-WARNING-2007/text.txt
+  status: ok
+  excerpt: 第一条 为了规范气象灾害预警信号发布与传播，防御和减轻气象灾害，保护国家和人民生命财产安全，依据《中华人民共和国气象法》、《国家突发公共事件总体应急预案》，制定本办法。
+    第二条 在中华人民共和国领域和中华人民共和国管辖的其他海域发布与传播气象灾害预警信号，必须遵守本办法。 本办法所称气象灾害预警信号（以下简称预警信号），是指各级气象主管机构所属的气象台站向社会公众发布的预警信息。
+    预警信号由名称、图标、标准和防御指南组成，分为台风、暴雨、暴雪、寒潮、大风、沙尘暴、高温、干旱、雷电、冰雹、霜冻、大雾、霾、道路结冰等。 第三条 预警信号的级别依据气象灾害可能造成的危害程度、紧急程度和发展态势一般划
+  id: WEB-GOV-CMA-WARNING-2007
+  title: 气象灾害预警信号发布与传播办法
+  publisher: 中国政府网
+  url: https://www.gov.cn/zhengce/2007-06/12/content_5720083.htm
+  error: ''
+- topic: environment
+  fetched_at: '2026-11-03T05:01:14+00:00'
+  sha256: 2710de58e23afe2b187cdba3baa28a4044ee76c184149df76f233017abe910ba
+  content_type: text/html; charset=UTF-8
+  license: public
+  sensitivity: public
+  source_class: reference
+  file: WEB-NASA-OCEANCOLOR/text.txt
+  status: ok
+  excerpt: Ocean Biology DAAC | NASA Earthdata Skip to main content Delivery of new
+    Suomi NPP data ceases on Nov. 2, 2026. Users should transition to alternative
+    products. Suomi NPP data announcement Migration to Consolidated Ingest and Archive
+    will interrupt data ingestion at PO.DAAC, ASF DAAC, and GES DISC o
+  id: WEB-NASA-OCEANCOLOR
+  title: Ocean Biology DAAC ocean-colour products
+  publisher: NASA
+  url: https://oceancolor.gsfc.nasa.gov/
+  error: ''
 - id: WEB-WORMS-DECAPTERUS-MARUADSI
   topic: species
   title: Decapterus maruadsi (蓝圆鲹) taxonomic record
   publisher: WoRMS
   url: https://www.marinespecies.org/rest/AphiaRecordsByName/Decapterus%20maruadsi?like=false&marine_only=true
-  fetched_at: '2026-11-03T04:38:22+00:00'
+  fetched_at: '2026-11-03T05:01:14+00:00'
   sha256: 52d13dc407c0482a929e64d0459943ee29aae81047e44f0f390947ad3d6559c6
   content_type: application/json
   license: cc-by-4.0
@@ -40,7 +93,7 @@ cards:
   title: Fenneropenaeus chinensis (中国明对虾) taxonomic record
   publisher: WoRMS
   url: https://www.marinespecies.org/rest/AphiaRecordsByName/Fenneropenaeus%20chinensis?like=false&marine_only=true
-  fetched_at: '2026-11-03T04:38:22+00:00'
+  fetched_at: '2026-11-03T05:01:14+00:00'
   sha256: bd073fad1978e2c09db83271e394c00178ad398c76cfbf5b03da051337061941
   content_type: application/json
   license: cc-by-4.0
@@ -56,7 +109,7 @@ cards:
   title: Larimichthys crocea (大黄鱼) taxonomic record
   publisher: WoRMS
   url: https://www.marinespecies.org/rest/AphiaRecordsByName/Larimichthys%20crocea?like=false&marine_only=true
-  fetched_at: '2026-11-03T04:38:22+00:00'
+  fetched_at: '2026-11-03T05:01:14+00:00'
   sha256: 0949f07c12fb917f06ddd9cc6040d349b27907d622cc8d98531d31a2dd5eca25
   content_type: application/json
   license: cc-by-4.0
@@ -73,7 +126,7 @@ cards:
   title: Trichiurus lepturus (带鱼) taxonomic record
   publisher: WoRMS
   url: https://www.marinespecies.org/rest/AphiaRecordsByName/Trichiurus%20lepturus?like=false&marine_only=true
-  fetched_at: '2026-11-03T04:38:22+00:00'
+  fetched_at: '2026-11-03T05:01:14+00:00'
   sha256: d32d0821a39c832b3d5ec0b000eb4ac31eefd149adbc8f8ac3fd37fbae5dd036
   content_type: application/json
   license: cc-by-4.0

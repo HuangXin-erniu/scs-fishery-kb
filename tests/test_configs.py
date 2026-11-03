@@ -969,6 +969,9 @@ def test_web_cards_registry() -> None:
         "WEB-WORMS-DECAPTERUS-MARUADSI",
         "WEB-WORMS-FENNEROPENAEUS-CHINENSIS",
         "WEB-FAO-ISSCFG-GEAR",
+        "WEB-GOV-CMA-WARNING-2007",
+        "WEB-NASA-OCEANCOLOR",
+        "WEB-EUMETSAT-SENTINEL3",
     }
     assert {card["id"] for card in cards} == expected
     for card in cards:

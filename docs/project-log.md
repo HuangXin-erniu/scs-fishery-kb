@@ -2,6 +2,12 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-03 — Environment and hazard cards added
+
+- Allowlisted nasa.gov and eumetsat.int, and fetched three static pages: the 2007 warning-signal measures (gov.cn), the NASA Ocean Biology DAAC ocean-colour page and the EUMETSAT Sentinel-3 page.
+- Eight cards are now ok; the FAO card was retried after a transient TLS EOF. Copernicus PUM PDF (TLS reset) and PO.DAAC MUR (timeout) failed and are recorded.
+- Rebuilt at 36 documents / 849 chunks (index 5135e00cfa3d, dense 56b9551d4b080bc3); arms unchanged, so the measurement stays interim and the 28-document baseline stays adopted.
+
 ## 2026-11-03 — Retrieval tuning reviewed, baseline kept
 
 - Measured title_boost 0/0.5/1/2, BM25:dense 2:1/1:1/1:2 and three lexicon expansions; none recovered Q-M10, and lexicon changes cost two other questions.

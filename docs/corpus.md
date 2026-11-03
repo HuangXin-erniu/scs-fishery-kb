@@ -322,7 +322,7 @@ The rule is enforced by a test: a new active entry whose title contains an out-o
 
 ## 5u. Web cards
 
-Five cached cards extend the corpus beyond its normative and statistical core. They are indexed beside it and cited with URL and fetch date.
+Eight cached cards extend the corpus beyond its normative and statistical core. They are indexed beside it and cited with URL and fetch date.
 
 | Card | Topic | Publisher | Fetched | SHA-256 (short) | What it provides |
 |---|---|---|---|---|---|
@@ -331,8 +331,11 @@ Five cached cards extend the corpus beyond its normative and statistical core. T
 | `WEB-WORMS-DECAPTERUS-MARUADSI` | species | WoRMS | 2026-11-03 | `52d13dc407c0` | Aphia taxonomy record for 蓝圆鲹 |
 | `WEB-WORMS-FENNEROPENAEUS-CHINENSIS` | species | WoRMS | 2026-11-03 | `bd073fad1978` | Aphia taxonomy record for 中国明对虾 |
 | `WEB-FAO-ISSCFG-GEAR` | gear | FAO | 2026-11-03 | `516e1eebaa5e` | ISSCFG fishing-gear categories and definitions |
+| `WEB-GOV-CMA-WARNING-2007` | hazard | 中国政府网 | 2026-11-03 | `8280090b25aa` | 气象灾害预警信号发布与传播办法: typhoon and gale signal levels |
+| `WEB-NASA-OCEANCOLOR` | environment | NASA | 2026-11-03 | `2710de58e23a` | Ocean Biology DAAC ocean-colour product description |
+| `WEB-EUMETSAT-SENTINEL3` | environment | EUMETSAT | 2026-11-03 | `0a1e77b05433` | Sentinel-3 mission and OLCI instrument description |
 
-Cards are fetched only by `scs-fkb web refresh`; the text lives under the private data root and the public register keeps URL, publisher, fetch time, hash and a 300-character excerpt. The layer is deliberately small: it covers what the corpus cannot state (species identity, international gear classes), and the review date is 30 days.
+Two attempts failed and are recorded rather than replaced with weaker sources: the Copernicus catalogue PUM PDF reset the TLS connection, and the PO.DAAC MUR product page timed out. Cards are fetched only by `scs-fkb web refresh`; the text lives under the private data root and the public register keeps URL, publisher, fetch time, hash and a 300-character excerpt. The layer is deliberately small: it covers what the corpus cannot state (species identity, international gear classes), and the review date is 30 days.
 
 ## 6. Candidate sources
 
