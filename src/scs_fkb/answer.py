@@ -77,6 +77,8 @@ def make_citation(hit: SearchHit, snippet: str) -> Citation:
         section=hit.chunk.section,
         snippet=snippet,
         score=hit.score,
+        url=hit.chunk.url,
+        retrieved_at=hit.chunk.retrieved_at,
     )
 
 
@@ -86,7 +88,11 @@ def citation_text(citation: Citation) -> str:
         parts.append(f"p.{citation.page}")
     if citation.section:
         parts.append(f"§{citation.section}")
-    return "[" + " ".join(parts) + "]"
+    text = "[" + " ".join(parts) + "]"
+    if citation.url:
+        stamp = f" ({citation.retrieved_at})" if citation.retrieved_at else ""
+        text = f"{text} {citation.url}{stamp}"
+    return text
 
 
 def _citation_key(doc_id: str, page: str | None, section: str | None) -> tuple[str, int, str]:

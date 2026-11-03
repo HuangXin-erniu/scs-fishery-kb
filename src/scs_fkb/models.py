@@ -47,6 +47,8 @@ class Chunk:
     char_start: int
     char_end: int
     sensitivity: str
+    url: str = ""
+    retrieved_at: str = ""
 
 
 @dataclass(frozen=True)
@@ -73,6 +75,8 @@ class Citation:
     section: str
     snippet: str
     score: float
+    url: str = ""
+    retrieved_at: str = ""
 
 
 @dataclass(frozen=True)

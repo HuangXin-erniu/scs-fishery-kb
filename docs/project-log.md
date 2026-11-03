@@ -2,6 +2,13 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-03 — Web cards indexed beside the corpus with URL citations
+
+- Chunk and Citation now carry url and retrieved_at with defaults, so old records still load.
+- Ingest turns each ok, cached card into a document (doc_type web_card) and chunks its text, attaching the card URL and fetch date; failed or cache-less cards are skipped.
+- Citations render as `[WEB-xxx] https://… (fetched date)`; the manifest records web cards with parser web and kind web_card.
+- With configs/web-cards.yaml empty, the index is unchanged at 28 documents / 785 chunks / 20910f0964df.
+
 ## 2026-11-03 — Web card layer with an allowlisted refresh command
 
 - Added configs/web-sources.yaml (17 allowlisted domains, four topics, 30-day cadence, TLS/rate/size limits) and configs/web-cards.yaml (public card metadata, empty until the first refresh).
