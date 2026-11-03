@@ -33,7 +33,7 @@ from .retrieve import Retriever
 from .stats import StatsError
 from .stats import query as stats_query
 from .store import StoreError, load_chunks
-from .watch import DEFAULT_WATCH, WatchError, run_watch
+from .watch import DEFAULT_WATCH, WatchError, due_report, run_watch
 from .watch import write_report as write_watch_report
 from .web import WebError, is_allowed, load_cards, load_web_sources, refresh
 
@@ -292,6 +292,11 @@ def _stats(args: argparse.Namespace) -> int:
 
 def _watch(args: argparse.Namespace) -> int:
     report = run_watch(Path(args.config), offline=args.offline)
+    report["due"] = due_report(
+        DEFAULT_CONFIG,
+        REPO_ROOT / "configs" / "web-cards.yaml",
+        REPO_ROOT / "configs" / "web-sources.yaml",
+    )
     if args.report:
         write_watch_report(report, Path(args.report))
     if args.json:
@@ -304,6 +309,10 @@ def _watch(args: argparse.Namespace) -> int:
             f"http {result.get('http_status') or '-'} {digest}"
         )
     print(f"summary {report['summary']}")
+    for row in report["due"]["corpus"]:
+        print(f"due corpus {row['id']:24} {row['review_due']}")
+    for row in report["due"]["cards"]:
+        print(f"due card   {row['id']:24} {row['review_due']}")
     return 0
 
 

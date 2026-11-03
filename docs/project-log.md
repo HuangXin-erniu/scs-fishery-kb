@@ -2,6 +2,12 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-03 — Watch report lists review dates
+
+- Added due_report to watch.py: corpus entries whose currency.review_due has arrived and ok cards whose fetched_at plus topic cadence has arrived.
+- The watch handler adds the lists to the JSON report and prints one line per due item; nothing is refreshed automatically.
+- Tests cover due/not-due corpus dates, card cadence and exclusion of failed cards.
+
 ## 2026-11-03 — Environment and hazard cards added
 
 - Allowlisted nasa.gov and eumetsat.int, and fetched three static pages: the 2007 warning-signal measures (gov.cn), the NASA Ocean Biology DAAC ocean-colour page and the EUMETSAT Sentinel-3 page.

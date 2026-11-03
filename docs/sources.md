@@ -72,7 +72,7 @@ Fields, enums and lifecycle rules are defined in [data-model.md](data-model.md).
 | `POL-LIST-079` | current | 2026-11-02 | The next annual catalogue of rules in force |
 | `POL-PEN-080` | in force | 2026-11-02 | A new revision of the general penalty rules |
 
-The next quarterly review is **2027-02-02**. A watch entry that reports `changed` is a prompt to review the page, not an automatic update: the operator checks the page, decides whether the register needs a new entry or a currency update, and records the decision.
+The watch report now also lists entries and cards whose review date has arrived: `currency.review_due` for register entries and `fetched_at` plus the topic cadence for cards. The next quarterly review is **2027-02-02**. A watch entry that reports `changed` is a prompt to review the page, not an automatic update: the operator checks the page, decides whether the register needs a new entry or a currency update, and records the decision.
 
 ## 10. References
 
