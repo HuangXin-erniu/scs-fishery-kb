@@ -24,3 +24,26 @@ def test_gap_creates_parent_and_appends(tmp_path: Path) -> None:
     lines = path.read_text(encoding="utf-8").splitlines()
     assert len(lines) == 2
     assert json.loads(lines[1])["question"] == "第二问"
+
+
+def test_gap_summary_counts_and_recent(tmp_path: Path) -> None:
+    from scs_fkb.claims import summarize_gaps
+
+    path = tmp_path / "gaps.jsonl"
+    record_gap(path, "第一问", "weak_evidence", "status", "policy")
+    record_gap(path, "第二问", "no_evidence", "definition", "policy")
+    record_gap(path, "第三问", "weak_evidence", "status", "gear")
+    report = summarize_gaps(path)
+    assert report["total"] == 3
+    assert report["by_nature"]["status"] == 2
+    assert report["by_domain"]["policy"] == 2
+    assert report["by_reason"]["weak_evidence"] == 2
+    assert report["recent"][-1] == "第三问"
+
+
+def test_gap_summary_handles_missing_file(tmp_path: Path) -> None:
+    from scs_fkb.claims import summarize_gaps
+
+    report = summarize_gaps(tmp_path / "absent.jsonl")
+    assert report["total"] == 0
+    assert report["by_nature"] == {}

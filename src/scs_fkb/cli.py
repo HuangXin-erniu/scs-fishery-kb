@@ -7,7 +7,7 @@ from datetime import date
 from pathlib import Path
 
 from .answer import answer_question, augment_with_external
-from .claims import classify, load_claims, record_gap
+from .claims import classify, load_claims, record_gap, summarize_gaps
 from .compare import run_comparison
 from .config import (
     DEFAULT_ANCHORS,
@@ -395,6 +395,18 @@ def _knowledge_check(args: argparse.Namespace) -> int:
     return 0
 
 
+def _knowledge_gaps(args: argparse.Namespace) -> int:
+    path = Path(args.path) if args.path else data_root() / "gaps.jsonl"
+    report = summarize_gaps(path)
+    if args.json:
+        _print_json(report)
+    else:
+        print(f"total {report['total']}")
+        for field in ("nature", "domain", "reason"):
+            print(f"{field}: {report['by_' + field]}")
+    return 0
+
+
 def _knowledge_approve(args: argparse.Namespace) -> int:
     result = approve_note(Path(args.dir), args.note_id)
     if args.json:
@@ -582,6 +594,10 @@ def build_parser() -> argparse.ArgumentParser:
     check_parser.add_argument("--write", action="store_true")
     check_parser.add_argument("--json", action="store_true")
     check_parser.set_defaults(func=_knowledge_check)
+    gaps_parser = knowledge_sub.add_parser("gaps", help="summarise refused questions")
+    gaps_parser.add_argument("--path", default=None)
+    gaps_parser.add_argument("--json", action="store_true")
+    gaps_parser.set_defaults(func=_knowledge_gaps)
     approve_parser = knowledge_sub.add_parser("approve", help="approve a draft note")
     approve_parser.add_argument("note_id")
     approve_parser.add_argument("--dir", default=str(REPO_ROOT / "configs" / "knowledge"))
