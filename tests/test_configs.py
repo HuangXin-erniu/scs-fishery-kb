@@ -33,7 +33,7 @@ def test_corpus_structure() -> None:
         "data_dictionary",
         "plan",
     }
-    assert len(data["sources"]) == 69
+    assert len(data["sources"]) == 63
 
     acquired = []
     candidates = []
@@ -46,7 +46,7 @@ def test_corpus_structure() -> None:
         else:
             candidates.append(source)
 
-    assert len(acquired) == 69
+    assert len(acquired) == 63
     assert len(candidates) == 0
     yearbooks = [source for source in acquired if source["id"].startswith("STAT-YB-")]
     assert len(yearbooks) == 9
@@ -87,13 +87,7 @@ def test_corpus_structure() -> None:
         "POL-SPEC-041",
         "DICT-STAT-013",
         "DICT-STAT-040",
-        "STD-ASFIS-044",
         "STD-CWP-043",
-        "STD-MUR-045",
-        "STD-OLCI-046",
-        "DICT-GFW-048",
-        "STD-CMEMS-049",
-        "STD-HY1-056",
         "POL-STAT-050",
         "POL-STAT-051",
         "POL-VMS-053",
@@ -128,12 +122,7 @@ def test_corpus_structure() -> None:
     }
     for source in documents:
         if source["id"] in {
-            "STD-ASFIS-044",
             "STD-CWP-043",
-            "STD-MUR-045",
-            "STD-OLCI-046",
-            "DICT-GFW-048",
-            "STD-CMEMS-049",
             "POL-STAT-050",
             "POL-STAT-051",
             "POL-VMS-053",
@@ -191,13 +180,8 @@ def test_corpus_structure() -> None:
     assert {source["id"] for source in dictionaries} == {
         "DICT-STAT-013",
         "DICT-STAT-040",
-        "STD-ASFIS-044",
-        "DICT-GFW-048",
     }
-    international = {"STD-ASFIS-044", "DICT-GFW-048"}
     for source in dictionaries:
-        if source["id"] in international:
-            continue
         assert source["license"] == "public"
         assert source["jurisdiction"] == "national"
         assert re.fullmatch(r"[0-9a-f]{64}", source["hash"])
@@ -229,8 +213,8 @@ def test_corpus_structure() -> None:
         "notice": 12,
         "standard": 17,
         "operations": 1,
-        "fishery_product": 4,
-        "data_dictionary": 4,
+        "fishery_product": 0,
+        "data_dictionary": 2,
         "plan": 0,
     }
 
@@ -439,15 +423,17 @@ def test_international_references() -> None:
     assert cwp["location"] == "raw/STD-CWP-043/"
     assert "not a Chinese official definition" in cwp["notes"]
 
-    asfis = by_id["STD-ASFIS-044"]
-    assert asfis["type"] == "data_dictionary"
-    assert asfis["jurisdiction"] == "international"
-    assert asfis["license"] == "cc-by-nc-sa-3.0-igo"
-    assert asfis["location"] == "raw/STD-ASFIS-044/"
-
     pipeline = load_yaml("configs/pipeline.yaml")
     assert cwp["id"] not in pipeline["documents"]
-    assert asfis["id"] not in pipeline["documents"]
+    for removed in (
+        "STD-MUR-045",
+        "STD-OLCI-046",
+        "DICT-GFW-048",
+        "STD-CMEMS-049",
+        "STD-HY1-056",
+        "STD-ASFIS-044",
+    ):
+        assert removed not in by_id
 
 
 def test_cwp_catalog() -> None:
@@ -485,16 +471,10 @@ def test_glossary_bridge() -> None:
 def test_eval_reference_section() -> None:
     config = load_yaml("configs/eval.yaml")
     reference = config["reference"]
-    assert [item["id"] for item in reference] == ["Q-E05", "Q-M04", "Q-E08", "Q-M09"]
-    assert [item.get("collection") for item in reference] == ["cwp", "cwp", "product", "product"]
+    assert [item["id"] for item in reference] == ["Q-E05", "Q-M04"]
+    assert [item.get("collection") for item in reference] == ["cwp", "cwp"]
     assert reference[0]["docs"] == ["STD-CWP-043-catch", "STD-CWP-043-effort"]
-    assert reference[2]["docs"] == ["STD-MUR-045", "STD-OLCI-046"]
-    assert reference[3]["docs"] == [
-        "STD-MUR-045",
-        "STD-OLCI-046",
-        "STD-CMEMS-049",
-        "STD-HY1-056",
-    ]
+    assert [item["id"] for item in config["web"]] == ["Q-E08", "Q-M09"]
 
 
 def test_lexicon_config() -> None:
@@ -528,25 +508,6 @@ def test_eval_statistics_section() -> None:
     assert [item["expect"] for item in entries] == ["capture_production_sea_area", "vessel_count"]
 
 
-def test_remote_stack_documents() -> None:
-    data = load_yaml("configs/corpus.yaml")
-    sources = {source["id"]: source for source in data["sources"]}
-    expected = {
-        "STD-MUR-045": ("fishery_product", "cc-by-4.0"),
-        "STD-OLCI-046": ("fishery_product", "public"),
-        "DICT-GFW-048": ("data_dictionary", "apache-2.0"),
-        "STD-CMEMS-049": ("fishery_product", "public"),
-    }
-    for source_id, (source_type, licence) in expected.items():
-        source = sources[source_id]
-        assert source["type"] == source_type
-        assert source["license"] == licence
-        assert source["status"] == "acquired"
-        assert source["jurisdiction"] == "international"
-        assert source["location"].startswith(f"raw/{source_id}/")
-        assert len(source["hash"]) == 64
-
-
 def test_statistical_governance_documents() -> None:
     data = load_yaml("configs/corpus.yaml")
     sources = {source["id"]: source for source in data["sources"]}
@@ -571,16 +532,8 @@ def test_statistical_governance_documents() -> None:
 def test_reference_collections_config() -> None:
     data = load_yaml("configs/reference-collections.yaml")
     collections = data["collections"]
-    assert set(collections) == {"product", "policy"}
-    product_ids = {doc["id"] for doc in collections["product"]["documents"]}
+    assert set(collections) == {"policy"}
     policy_ids = {doc["id"] for doc in collections["policy"]["documents"]}
-    assert product_ids == {
-        "STD-MUR-045",
-        "STD-OLCI-046",
-        "DICT-GFW-048",
-        "STD-CMEMS-049",
-        "STD-HY1-056",
-    }
     assert policy_ids == {
         "POL-STAT-050",
         "POL-STAT-051",
@@ -671,32 +624,18 @@ def test_corrected_corpus_hashes() -> None:
         assert sources[source_id]["hash"] == digest
 
 
-def test_crew_and_ocean_colour_documents() -> None:
+def test_crew_document() -> None:
     data = load_yaml("configs/corpus.yaml")
     sources = {source["id"]: source for source in data["sources"]}
-    expected = {
-        "POL-CREW-055": (
-            "regulation",
-            "P1",
-            "2c316eb3171f388de2bb340ee3b5d1b815eaea606cf529f909ab11cdffe28e17",
-        ),
-        "STD-HY1-056": (
-            "fishery_product",
-            "P2",
-            "8e876496069141af2c728c69b71d8b85654f4537775492562ad6e76c4d64addf",
-        ),
-    }
-    for source_id, (source_type, priority, digest) in expected.items():
-        source = sources[source_id]
-        assert source["type"] == source_type
-        assert source["priority"] == priority
-        assert source["hash"] == digest
-        assert source["status"] == "acquired"
-        assert source["jurisdiction"] == "national"
-        assert source["license"] == "public"
-        assert source["location"] == f"raw/{source_id}/"
-    assert "附件4" in sources["POL-CREW-055"]["notes"]
-    assert "1100 m" in sources["STD-HY1-056"]["notes"]
+    source = sources["POL-CREW-055"]
+    assert source["type"] == "regulation"
+    assert source["priority"] == "P1"
+    assert source["hash"] == "2c316eb3171f388de2bb340ee3b5d1b815eaea606cf529f909ab11cdffe28e17"
+    assert source["status"] == "acquired"
+    assert source["jurisdiction"] == "national"
+    assert source["license"] == "public"
+    assert source["location"] == "raw/POL-CREW-055/"
+    assert "附件4" in source["notes"]
 
 
 def test_source_watch_config() -> None:
@@ -739,8 +678,8 @@ def test_registry_schema_v2() -> None:
     from scs_fkb.registry import load_registry
 
     registry = load_registry("configs/corpus.yaml")
-    assert len(registry) == 69
-    assert sum(1 for entry in registry.values() if entry["status"] == "acquired") == 69
+    assert len(registry) == 63
+    assert sum(1 for entry in registry.values() if entry["status"] == "acquired") == 63
     for entry in registry.values():
         assert entry["lifecycle"] in {"active", "retired"}
         if entry["lifecycle"] == "retired":
@@ -752,8 +691,16 @@ def test_cleanup_state() -> None:
 
     registry = load_registry("configs/corpus.yaml")
     assert "DICT-GFW-047" not in registry
-    for source_id in ("STD-MUR-045", "STD-OLCI-046", "DICT-GFW-048", "STD-CMEMS-049"):
-        assert registry[source_id]["level"] == "international"
+    for source_id in (
+        "STD-MUR-045",
+        "STD-OLCI-046",
+        "DICT-GFW-048",
+        "STD-CMEMS-049",
+        "STD-HY1-056",
+        "STD-ASFIS-044",
+    ):
+        assert source_id not in registry
+    assert registry["STD-CWP-043"]["level"] == "international"
 
 
 def test_environment_layer() -> None:

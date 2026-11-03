@@ -2,6 +2,12 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-03 — Product documents and ASFIS removed, CWP kept
+
+- Deleted STD-MUR-045, STD-OLCI-046, DICT-GFW-048, STD-CMEMS-049, STD-HY1-056 and STD-ASFIS-044, with their data files and the product reference collection.
+- Kept STD-CWP-043 as the definitions core: Q-E05 and Q-M04 still hit, so the reference set is 2/2; Q-E08 and Q-M09 moved to a `web` queue and will be restored with cached cards in phase three.
+- Register: 63 sources, 63 acquired; fishery_product 0, data_dictionary 2; counts elsewhere unchanged; main index still 28 documents / 785 chunks / `20910f0964df`.
+
 ## 2026-11-03 — Validity model replaced by source class and currency
 
 - Removed `validity` from all 69 entries: the in-force / not-applicable / unknown states are gone, and category notes were dropped because the class now states what the source is.
