@@ -19,21 +19,19 @@ The project turns documents, data dictionaries, product descriptions, fishery bu
 
 ## Status
 
-**Corpus and data preparation (WP1) complete for this phase; the retrieval pipeline runs only as a local prototype.** Sixty-three sources are registered: sixty-three acquired and three candidates, all deferred. The acquired set is nine fishery yearbook editions (data years 2017–2025, 838 files — 837 Excel tables and one scanned PDF), the China Statistical Yearbook 2026, and fifty-seven legal and technical documents — one law, twenty regulations, fifteen notices, eighteen standard sets (including seventeen SC/T standards held as image-only reference PDFs, 295 pages and the CWP statistical definitions), one operations reference, one port plan, three reference dictionaries, four remote-stack documents (MUR SST product page, OLCI marine handbook, the GFW Events API documentation, the CMEMS product manual and the Chinese HY-1C/D ocean-colour page), and five statistical-governance and monitoring documents (the 2010 work rules, the 2024 survey system, the 2017 monitoring circular, the 2019 distant-water monitoring measures and the 2025 e-certificate standards). Licence, sensitivity, version and SHA-256 are recorded for every source; the yearbooks are internal, local-use sources. The coverage matrix and the 3,126-row local core CSV (2017–2024 plus a harmonised 2025 sample) stay outside the public tree. Three gaps are documented: no port table for data years 2018–2019, no marine vessel-length table for 2024, and 2025 as a sample. The sufficiency review is accepted: ten of the twenty-four draft questions are answerable, six partial and eight abstention tests. M1 now runs locally as an extractive prototype: the twenty-eight indexed public sources parse into 785 chunks with article, section and page anchors, the hybrid BM25 plus dense configuration reaches anchor-level Recall@5 of 10/11 on the eleven questions with gold anchors (MRR 0.45), three reference collections plus a project-authored Chinese-to-English term bridge answer definition and product questions (CWP 2/2, product 2/2), a local statistics channel answers yearbook questions with edition and table citations (2/2) while naming the two dimensions the yearbooks do not publish, every returned citation resolves, and the four-arm evaluation is reported below. Its code is public; the corpus, the processed store and the run reports stay local.
+**Corpus and retrieval prototype (WP2) complete for this phase; evaluation is in progress on a draft question set.** Sixty-three sources are registered: sixty-three acquired and no candidates. The set is one law, twenty regulations, twelve notices, seventeen standards, ten statistical yearbooks (nine fishery yearbook editions for data years 2017–2025 and the China Statistical Yearbook 2026), two data dictionaries and one operations reference. Licence, sensitivity, version and SHA-256 are recorded for every source; the yearbooks are internal, local-use sources. The coverage matrix and the 3,126-row local core CSV (2017–2024 plus a harmonised 2025 sample) stay outside the public tree. Three gaps are documented: no port table for data years 2018–2019, no marine vessel-length table for 2024, and 2025 as a sample. The twenty-eight indexed public sources parse into 785 chunks with section and page anchors; the hybrid BM25 plus dense configuration reaches anchor-level Recall@5 of 11/11 (MRR 0.56) on the eleven questions with gold anchors, with abstention 3/4, two false refusals, citation resolution 1.00 and P95 19 ms. The CWP definition channel answers Q-E05 and Q-M04 (2/2), the local statistics channel answers Q-E06 and Q-M05 (2/2), the jurisdiction section scores 3/3 and the national section 2/2; Q-E08 and Q-M09 remain parked for the web channel. Cards and notes live in a separate external store and do not enter the corpus index. The evaluation question set is still a draft and has not been reviewed by domain experts. Its code is public; the corpus, the processed store and the run reports stay local.
 
 ### Corpus at a glance
 
 | Item | Value |
 |---|---|
-| Registered sources | 63 — 63 acquired, 3 candidates (all deferred) |
+| Registered sources | 63 — 63 acquired, 0 candidates |
 | Fishery yearbooks | 9 editions, data years 2017–2025, 838 files |
-| National bulletins | 6, data years 2020–2025 |
 | China Statistical Yearbook | 2026 edition |
-| Legal and technical documents | 26 — 1 law, 10 regulations, 4 notices, 6 standard sets, 1 operations reference, 1 port plan, 3 dictionaries |
-| SC/T standards held | 17 (295 pages, image-only reference PDFs) |
+| Legal and technical documents | 53 — 1 law, 20 regulations, 12 notices, 17 standards, 2 data dictionaries, 1 operations reference |
 | Local core CSV | 3,126 rows, not published |
 | Documented gaps | port classes 2018–2019; vessel length 2024; 2025 sampled |
-| Sufficiency review | 10 answerable, 6 partial, 8 abstention tests |
+| Evaluation instrument | 11 anchor questions, 4 abstention tests; question set still a draft |
 
 This project has no versioned releases: no tags, no GitHub Releases and no semantic versions. `main` is the latest state; cite a commit SHA. Changes are recorded in the [project log](docs/project-log.md).
 
@@ -64,7 +62,7 @@ This project has no versioned releases: no tags, no GitHub Releases and no seman
 | [Architecture](docs/architecture.md) | Layers, components, data flow, data contracts and runtime |
 | [Project plan](docs/plan.md) | Work packages, milestones, roles, quality gates and risks |
 | [Evaluation](docs/evaluation.md) | Question set, metrics, protocol, targets and reporting |
-| [Corpus inventory](docs/corpus.md) | Acquired and candidate sources, licences, sensitivity and priorities |
+| [Corpus inventory](docs/corpus.md) | Registered sources, licences, sensitivity and coverage |
 | [Project log](docs/project-log.md) | Dated record of material project changes |
 | [Governance](GOVERNANCE.md) | Roles, decisions, version policy and boundaries |
 | [Glossary](docs/glossary.md) | Bilingual terminology for fishery and retrieval concepts |
@@ -102,13 +100,13 @@ pip install -r requirements-dev.txt
 make check
 ```
 
-`make check` runs lint, format check, tests and the public-tree validation. `requirements.txt` contains only the readers used for the register (PyYAML, openpyxl, xlrd); the pipeline itself uses the standard library.
+`make check` runs lint, format check, tests and the public-tree validation. `requirements.txt` carries the readers used for the register (PyYAML, openpyxl, xlrd) plus the optional fastembed ONNX encoder for the dense arm; CI installs `requirements-dev.txt` and runs the public checks without a model download.
 
 The pipeline reads sources from `SCS_FKB_DATA_ROOT` and writes the processed store there; no data and no index enter the repository:
 
 ```sh
 export SCS_FKB_DATA_ROOT=/path/to/local/data
-make ingest   # parse the thirty-three indexed documents and build the local chunks
+make ingest   # parse the twenty-eight indexed documents and build the local chunks
 PYTHONPATH=src python3 -m scs_fkb embed   # build the local dense index once
 make eval     # four-arm Recall@5, MRR, abstention, citation and reference metrics
 make define TERM=上岸量   # CWP definition passages for a Chinese term
@@ -133,12 +131,12 @@ See [docs/data-policy.md](docs/data-policy.md) for details.
 | Milestone | Deliverable | Status |
 |---|---|---|
 | M0 | Framework: scope, architecture, plan, evaluation, corpus register, tooling | done |
-| M1 | Minimal pipeline: parse, chunk, index, retrieve, answer with citations | next: owner decision pending |
-| M2 | Retrieval baseline: BM25 / dense / hybrid comparison | planned |
-| M3 | Evaluation report and service prototype | planned |
-| M4 | `/v1` query interface contract for downstream integration | planned |
+| M1 | Minimal pipeline: parse, chunk, index, retrieve, answer with citations | done |
+| M2 | Retrieval baseline: BM25 / dense / hybrid comparison | done |
+| M3 | Evaluation report and service prototype | in progress |
+| M4 | `/v1` query interface contract for downstream integration | deferred |
 
-Milestones describe work stages, not releases. The corpus sufficiency review was accepted on 2026-11-01, so the start of M1 is an owner decision rather than a corpus condition. The M4 contract is limited to `docs/interface.md` and `configs/interface.yaml` when it is added; it does not include data integration.
+Milestones describe work stages, not releases. M1 and M2 are complete; the current phase is M3, with the evaluation question set still a draft pending expert review. The M4 contract is limited to `docs/interface.md` and `configs/interface.yaml` when it is added; it does not include data integration.
 
 ## Citation
 

@@ -9,7 +9,7 @@
 | [Architecture](architecture.md) | Layers, components, data flow, data contracts and runtime |
 | [Project plan](plan.md) | Work packages, milestones, roles, quality gates and risks |
 | [Evaluation](evaluation.md) | Question set, metrics, protocol, targets and reporting |
-| [Corpus inventory](corpus.md) | Acquired and candidate sources, licences, sensitivity and priorities |
+| [Corpus inventory](corpus.md) | Registered sources, licences, sensitivity and coverage |
 | [Evaluation questions](questions.md) | Draft question set for retrieval and answer evaluation |
 | [Data policy](data-policy.md) | What is published, what stays local, and how sensitivity is handled |
 | [Project log](project-log.md) | Dated record of material project changes |

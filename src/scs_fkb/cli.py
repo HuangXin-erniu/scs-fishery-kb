@@ -122,7 +122,9 @@ def _ingest(args: argparse.Namespace) -> int:
 
 def _retrieve(args: argparse.Namespace) -> int:
     chunks, manifest = load_chunks(_root(args.data_root))
-    hits = _retriever(chunks, manifest, args.pipeline, _lexicon_for(args)).search(
+    hits = _retriever(
+        chunks, manifest, args.pipeline, _lexicon_for(args), root=_root(args.data_root)
+    ).search(
         args.query,
         top_k=args.top_k,
         sensitivity_ceiling=args.sensitivity,
