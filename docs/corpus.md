@@ -28,14 +28,14 @@ Every entry carries schema v2 fields: `level` (national, provincial, municipal o
 | Type | Name (zh) | Sources | Description |
 |---|---|---:|---|
 | `statistical_yearbook` | 统计年鉴 | 10 | Official annual statistics and indicator tables |
-| `operations` | 作业知识 | 2 | Fishing methods, gear, vessel operations, logbooks and permit conditions |
+| `operations` | 作业知识 | 1 | Fishing methods, gear, vessel operations, logbooks and permit conditions |
 | `law` | 法律 | 1 | National law adopted by the legislature |
 | `regulation` | 行政法规/规章/地方性法规 | 20 | Administrative regulations, departmental rules and local regulations |
-| `notice` | 通告/公告 | 15 | Official notices, announcements and seasonal measures |
-| `standard` | 标准/规范 | 18 | National, industry or provincial standards and operational norms |
+| `notice` | 通告/公告 | 12 | Official notices, announcements and seasonal measures |
+| `standard` | 标准/规范 | 17 | National, industry or provincial standards and operational norms |
 | `fishery_product` | 渔情/海况产品说明 | 4 | Product descriptions, fishery bulletins and historical records |
-| `data_dictionary` | 数据字典 | 7 | Field definitions, indicator definitions, metadata and quality rules |
-| `plan` | 规划/方案 | 1 | Official plans, programmes and construction layouts |
+| `data_dictionary` | 数据字典 | 4 | Field definitions, indicator definitions, metadata and quality rules |
+| `plan` | 规划/方案 | 0 | Official plans, programmes and construction layouts |
 
 ## 4. Acquired yearbooks
 
@@ -76,10 +76,8 @@ The six national fishery-economy bulletins were removed on 2026-11-02: they repo
 | `POL-GX-024` | `regulation` | guangxi | Guangxi fishing-port and fishing-vessel regulations, 2024 amendment | acquired |
 | `POL-FJ-025` | `regulation` | fujian | Fujian measures implementing the Fisheries Law, 2019 amendment | acquired |
 | `POL-FJ-026` | `regulation` | fujian | Fujian fishing-port and fishing-vessel regulations, 2010 amendment | acquired |
-| `POL-PORT-037` | `notice` | national | Central and first-class fishing-port recognition list | acquired; 12 central and 2 first-class ports, proposed 2025-01-15 |
 | `POL-GEAR-016` | `notice` | national | Minimum-mesh system for permitted and transitional gear, 2013 | acquired; in force 2014-06-01, annexes registered separately |
 | `POL-SPEC-041` | `notice` | national | Closed-season special-permit arrangement for 2026 | acquired; permits Sthenoteuthis oualaniensis in the South China Sea for Guangxi and Hainan |
-| `POL-PLAN-038` | `plan` | national | National coastal fishing-port construction plan, 2018–2025 | acquired |
 
 The legal corpus now covers the national law, its implementing rules, vessel inspection, the resource levy, the fishing-permit rules, the seasonal closure and the 2026 special-permit arrangement, plus the Guangdong, Guangxi and Fujian regulations. Each document records its publisher, revision history, article count and SHA-256. Article counts: Fisheries Law 90, implementing rules 42, vessel inspection 40, levy measures 18, permit regulation 59, closure notice 4 sections, special-permit notice 3 annexes, Guangdong fishery 47, Guangdong port and vessel 44, Guangxi implementation 48, Guangxi port and vessel 37, Fujian implementation 61, Fujian port and vessel 46. The 2026 notice is registered from the ministry's OFD attachment, a 22-page XML container whose text layer extracts without OCR; it allows Sthenoteuthis oualaniensis permits in the South China Sea north of 12°N (36 Guangxi vessels and 2,500 t from 20 June to 5 August; 70 Hainan vessels and 5,000 t from 1 May to 15 August; mask net 35 mm) and adds 26 Hainan auxiliary vessels. Its operation-type permits cover only the Yellow and East China Seas.
 
@@ -92,11 +90,9 @@ The Fisheries Law text is the owner-supplied DOCX of the official 人民日报 p
 | `POL-GEAR-033` | `standard` | Minimum mesh sizes for permitted marine capture gear | Gear classes and minimum mesh by sea area and target species |
 | `POL-GEAR-034` | `standard` | Minimum mesh sizes for transitional gear | Trawl, gillnet, purse seine, stow-net, cage and trap classes |
 | `OPS-STD-035` | `standard` | SC/T 9460—2025 marine capture information sampling survey | Defines marine capture information and sample vessels; sets monthly collection and quality control; cites GB/T 5147—2003 for gear classification |
-| `OPS-FORM-036` | `operations` | Approved-operation block, form and filling instructions | Nine operation types, at most two operation methods and two gear names, minimum mesh size, quota |
 | `OPS-STD-039` | `standard` | GB/T 5147—2026 fishing-gear classification, naming and codes | The national classification that maps yearbook gear groups and permit operation types |
-| `STD-SC-042` | `standard` | SC/T aquatic-industry standards in scope (17 held) | Gear and mesh, vessel management data, fishing ports, fishery statistics and surveys, resource surveys and terminology |
 
-The mesh tables and the form are annexes 1, 2 and 3 of the 2013 notice `POL-GEAR-016`, which entered into force on 2014-06-01 and repealed the 2003 notice. SC/T 9460—2025 was published 2025-12-09 and takes effect 2026-05-01; GB/T 5147—2026 was published 2026-02-27 and takes effect 2026-09-01, replacing the 2003 edition. `STD-SC-042` is a series entry: the national standards platform lists 809 current SC/T standards and 17 fall inside the project scope with a public text, which the project holds as image-only reference copies (`configs/sc-standards.yaml`). The series is retired: the copies have no text layer and no retrieval channel, so the entry keeps its hash and file as provenance but is not citable. The seven in-scope standards without a public text were excluded from the project on 2026-11-01. SC/T 9460—2025 stays registered as `OPS-STD-035` and is not duplicated in the series; aquaculture, feed, disease, processing, hull-construction, ship-equipment and freshwater-survey series are out of scope.
+The mesh tables are annexes 1 and 2 of the 2013 notice `POL-GEAR-016`, which entered into force on 2014-06-01 and repealed the 2003 notice. SC/T 9460—2025 was published 2025-12-09 and takes effect 2026-05-01; GB/T 5147—2026 was published 2026-02-27 and takes effect 2026-09-01, replacing the 2003 edition. The SC/T series entry was removed on 2026-11-03 together with the permit-form instruction; the seventeen image-only reference copies remain catalogued in `configs/sc-standards.yaml`. The seven in-scope standards without a public text were excluded from the project on 2026-11-01. SC/T 9460—2025 stays registered as `OPS-STD-035`; aquaculture, feed, disease, processing, hull-construction, ship-equipment and freshwater-survey series are out of scope.
 
 ## 5b. Acquired definitions
 
@@ -127,12 +123,10 @@ Both carry the FAO open-access licence CC BY-NC-SA 3.0 IGO, so they stay local a
 |---|---|---|---|
 | `POL-STAT-050` | 农业农村部（原农业部） | Current; no repeal found (农渔发〔2010〕5号) | Duties, submission and quality rules for fishery statistics: the process behind the yearbook |
 | `POL-STAT-051` | 国家统计局 / 农业农村部 | Current; 国统制〔2024〕120号, valid to June 2027 | The 2024 fishery statistics survey system, replacing the 2021 approval that expired in February 2024 |
-| `POL-YJ-052` | 农业农村部办公厅 | Latest publicly posted full text (农办渔〔2018〕30号) | Agencies, annual cadence and format of fishery monitoring work |
 | `POL-VMS-053` | 农业农村部 | Current; repealed the 2014 measures | Distant-water vessel position monitoring duties, not near-shore VMS fields |
 | `STD-ECERT-054` | 农业农村部办公厅 | Current (2025) | Electronic certificate standards C 0402—2024, C 0403—2024 and C 0374—2024 for quota approval, ownership registration and nationality |
-| `POL-YJ-057` | 农业农村部渔业渔政管理局 | Newest publicly posted full text: 农渔科函〔2021〕21号, 2021-04-15 | The 2020 fishery-monitoring circular: annual cadence, responsible bodies and the data-quality machinery of 渔情监测统计 |
 
-All six are indexed in the policy reference collection; the currency check changed two candidates. The 2021 survey system has expired, so `POL-STAT-051` registers the 2024 text with its new approval number. The 2024 monitoring letter (农渔科函〔2025〕87号) is referenced by provincial news but its full text is not published, so `POL-YJ-052` is the latest public full text and says so. SC/T 9403-2025 turned out to be already held inside the SC/T series (`STD-SC-042`, 37 pages), so it was not registered twice. Near-shore VMS definitions and a data-sharing metadata rule remain uncovered, and Q-M02, Q-M06 and Q-M11 stay out of reach. The 2024 monitoring letter (农渔科函〔2025〕87号) is quoted by provincial sites but not published in full; the ministry gazette index exposes no file list and the national marine forecast portal is a single-page service without a downloadable product document, so the 2020 circular is the newest publicly posted text and Q-M07 stays uncovered.
+All four remaining entries are indexed in the policy reference collection. The 2021 survey system has expired, so `POL-STAT-051` registers the 2024 text with its new approval number. Both annual monitoring circulars were removed on 2026-11-03 as historical work records. The 2024 monitoring letter (农渔科函〔2025〕87号) is quoted by provincial sites but not published in full; the ministry gazette index exposes no file list and the national marine forecast portal is a single-page service without a downloadable product document, so Q-M07 stays uncovered. Near-shore VMS definitions and a data-sharing metadata rule remain uncovered, and Q-M02, Q-M06 and Q-M11 stay out of reach.
 
 ## 5e. Crew management and the Chinese ocean-colour description
 
@@ -292,9 +286,9 @@ Every entry carries a status that means one of three things:
 |---|---|---|
 | `in_force` | A normative document whose text carries evidence: a commencement clause, an approval number, a publication date with effect, or a publisher's validity marker (有效) | Fisheries Law, closure notices, penalty rules, hull catalogs, the 2024 survey system, the 2025 e-certificate standards |
 | `not_applicable` | A non-normative document, in one of eight categories: data edition, product documentation edition, candidate not acquired, retired provenance, annual work notice, planning document, product capability note, form instruction | CWP/ASFIS/MUR/OLCI/CMEMS/GFW documents, the three candidates, the retired SC/T series, the 2017 and 2020 work notices, the 2018-2025 port plan, HY-1C/D, the permit-form instruction |
-| `unknown` | A normative document with no evidence available, or a genuinely open question | `POL-PORT-037` (proposed recognition, no final announcement found). `POL-VMS-053` was closed on 2026-11-03: its Article 32 states 本办法自2020年1月1日起执行, which an earlier sweep missed because it searched for 施行 rather than 执行. |
+| `unknown` | A normative document with no evidence available, or a genuinely open question | None: the last open item, the port-list proposal, was removed on 2026-11-03. |
 
-The 2026-11-03 sweep closed nineteen of the twenty-one: four normative documents were upgraded with quoted evidence (the 2010 statistics rules' 自发布之日起施行 clause, the 2024 survey system's approval number, the 2025 e-certificate publication date, the Shantou notice's 2026-04-28 date), fifteen non-normative entries moved to `not_applicable`, and two remain `unknown` on purpose. The register now reads 51 `in_force`, 26 `not_applicable` and 1 `unknown`.
+The 2026-11-03 sweep closed nineteen of the twenty-one: four normative documents were upgraded with quoted evidence (the 2010 statistics rules' 自发布之日起施行 clause, the 2024 survey system's approval number, the 2025 e-certificate publication date, the Shantou notice's 2026-04-28 date), fifteen non-normative entries moved to `not_applicable`, and two remain `unknown` on purpose. The register now reads 51 `in_force`, 18 `not_applicable` and no `unknown`.
 
 ## 5r. Climate and hazard: documented unavailability
 
@@ -334,21 +328,15 @@ The rule is enforced by a test: a new active entry whose title contains an out-o
 
 ## 6. Candidate sources
 
-| ID | Type | Title | Priority | Disposition |
-|---|---|---|---|---|
-| `VMS-DICT-003` | `data_dictionary` | Vessel/voyage data dictionary | P2 | defer |
-| `VMS-SAMPLE-004` | `data_dictionary` | Desensitised voyage sample description | P2 | defer |
-| `DICT-META-014` | `data_dictionary` | Metadata and data-quality rules | P2 | defer |
-
-The four environment and fishery-product candidates were removed on owner instruction on 2026-11-01; the fishery_product type stays defined with no sources. The logbook candidate was closed on 2026-11-01: articles 50-53 of `POL-STD-010`, the approved-operation block `OPS-FORM-036` and SC/T 9460-2025 already cover the record fields and the reporting duty, so no separate source is acquired. `OPS-STAT-001`, the generic yearbook candidate, was removed from the register because the editions supersede it. All three remaining candidates are deferred, which keeps them in the register but out of the current phase. Papers and reports were removed from the register because they are not accepted as authoritative project sources at this stage.
+None. The three vessel/voyage and metadata candidates were removed on 2026-11-03 as unacquired and outside the current phase. Papers and reports were removed from the register because they are not accepted as authoritative project sources at this stage.
 
 ## 7. Status summary
 
 | Metric | Value |
 |---|---:|
 | Corpus types | 9 |
-| Registered sources | 78 |
-| Acquired sources | 75 |
+| Registered sources | 69 |
+| Acquired sources | 69 |
 | Remaining candidates | 3 |
 | Yearbook editions | 9 |
 | Yearbook data years | 2017–2025 |
@@ -375,7 +363,7 @@ The coverage matrix uses the latest edition for each data year. Counts are table
 
 Known gaps:
 
-- Coastal-port infrastructure is missing from the yearbooks for data years 2018 and 2019: the 838-file inventory confirms that the 2019 and 2020 editions contain no infrastructure table. The 2018 national port plan (POL-PLAN-038) supplies a 2018 baseline with named central and first-class ports, and the 2025 recognition list (POL-PORT-037) adds 14 more, but the plan's port classes are not identical with the yearbook table and the 2025 list is still a proposal, so neither can be pasted into the core CSV without a mapping note.
+- Coastal-port infrastructure is missing from the yearbooks for data years 2018 and 2019: the 838-file inventory confirms that the 2019 and 2020 editions contain no infrastructure table. The port plan and the recognition proposal that could have supplied a baseline were removed on 2026-11-03, so the gap stays open rather than being filled from a non-comparable table.
 - Data year 2025 is sampled, not complete: the six transcribed tables cover output, capture by sea area and gear, capture vessels by operation type, ports and population, while the species breakdown, power and length bands, value and the remaining tables are still to be extracted from the scan.
 - The 2017 and 2021 source tables have only 沿海中心渔港 and 沿海一级渔港; the later tables add class 2, class 3 and unrated ports.
 - The vessel-length proxy is missing for data year 2024; the 2025 edition dropped the marine vessel-length table and keeps only the all-vessel and inland tables. The gap is accepted rather than filled from a non-comparable table.
@@ -396,8 +384,8 @@ The eight unanswerable questions stay as abstention tests until the deferred sou
 
 | Gap | Outcome |
 |---|---|
-| Logbook fields | Partly covered: `POL-STD-010` articles 50-53 and `OPS-FORM-036` give the obligation and the approved-operation fields; the complete field list has no public source |
-| Port classes for 2018-2019 | Covered: `POL-PLAN-038` supplies the 2018 baseline and `POL-PORT-037` the 2025 proposal; the yearbook tables themselves do not exist |
+| Logbook fields | Partly covered: `POL-STD-010` articles 50-53 give the obligation; the complete field list has no public source |
+| Port classes for 2018-2019 | Not covered: the plan and the recognition proposal were removed on 2026-11-03; the yearbook tables themselves do not exist |
 | Landed weight and fishing effort | International definition held (`STD-CWP-043`); Chinese official definition still missing. Only production is defined domestically (`DICT-STAT-013`, `DICT-STAT-040`), and the CWP pages are English and outside the index |
 | Metadata and quality rules | No public source |
 | Remaining 2025 tables | Source in hand (`STAT-YB-2026`); extraction work, not a new source |

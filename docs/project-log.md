@@ -2,6 +2,12 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-03 — Nine dead entries removed and the index rebuilt
+
+- Deleted the three unacquired candidates, the retired SC/T series, the 2017 and 2020 monitoring circulars, the permit-form instruction, the expired 2018-2025 port plan and the port-list proposal, with their data files; the proposal was the last unknown.
+- Register: 69 sources, 69 acquired, no candidates, no retired entry, no unknown (51 in_force, 18 not_applicable); policy collection 30; pipeline 28 documents.
+- Rebuilt at 28 documents and 785 chunks (index 20910f0964df, dense 58ded7342e4c66fe). Hybrid 9/11 (MRR 0.42) after losing Q-M10 to the smaller index; published as measured, with a retrieval follow-up noted. Reference 4/4, statistics 2/2, jurisdiction 3/3, national 2/2 unchanged.
+
 ## 2026-11-03 — Vessel-monitoring measure closed
 
 - `POL-VMS-053` moved to in_force: 农渔发〔2019〕22号 (2019-08-01), Article 32 states 本办法自2020年1月1日起执行, and the 2014 predecessor is repealed. The earlier sweep missed the clause because it searched for 施行 rather than 执行.

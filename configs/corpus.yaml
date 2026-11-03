@@ -60,68 +60,6 @@ types:
   name_zh: 数据字典
   description: Field definitions, indicator definitions, metadata and quality rules.
 sources:
-- id: VMS-DICT-003
-  title: Vessel/voyage data dictionary (candidate)
-  title_zh: 船位/航次数据字典（候选）
-  publisher: To be confirmed
-  year: null
-  type: data_dictionary
-  format: unknown
-  location: null
-  license: unknown
-  sensitivity: unknown
-  status: to_acquire
-  disposition: defer
-  disposition_reason: Vessel and voyage dictionaries are likely restricted; no public edition has been confirmed.
-  priority: P2
-  volume: unknown
-  update_freq: static
-  hash: null
-  acquisition: Obtain field definitions and voyage definitions from the data owner or a project partner.
-  notes: Field and voyage definitions only; no full AIS/VMS tracks.
-  level: national
-  authority_tier: B
-  retrieval:
-    channel: none
-    parseable: true
-    note: Not routed to a retrieval channel.
-  lifecycle: active
-  validity:
-    status: not_applicable
-    as_of: '2026-11-02'
-    note: Candidate not acquired; there is no validity to verify.
-
-- id: VMS-SAMPLE-004
-  title: Desensitised voyage sample description (candidate)
-  title_zh: 脱敏航次样本与字段说明（候选）
-  publisher: To be confirmed
-  year: null
-  type: data_dictionary
-  format: unknown
-  location: null
-  license: unknown
-  sensitivity: unknown
-  status: to_acquire
-  disposition: defer
-  disposition_reason: Depends on the vessel data licence; deferred with the vessel dictionary.
-  priority: P2
-  volume: unknown
-  update_freq: static
-  hash: null
-  acquisition: Request a small sample after the licence and desensitisation plan are approved.
-  notes: Review licence and compliance before use; never commit the sample or send it to an external API.
-  level: national
-  authority_tier: B
-  retrieval:
-    channel: none
-    parseable: true
-    note: Not routed to a retrieval channel.
-  lifecycle: active
-  validity:
-    status: not_applicable
-    as_of: '2026-11-02'
-    note: Candidate not acquired; there is no validity to verify.
-
 - id: POL-LAW-009
   title: 中华人民共和国渔业法（2025年修订）
   title_zh: 中华人民共和国渔业法（2025年修订）
@@ -1069,37 +1007,6 @@ sources:
     as_of: '2026-11-02'
     note: Source note records Aquaculture-industry standard, effective 2026-05-01. Defines marine capture information, sample vessels and collectors; covers stratified vessel sampling, monthly information survey, data quality control, statistical ...
 
-- id: OPS-FORM-036
-  title: 《渔业捕捞许可证》中“核准作业内容”修正样式和填写说明
-  title_zh: 《渔业捕捞许可证》中“核准作业内容”修正样式和填写说明
-  publisher: 农业部
-  year: 2013
-  type: operations
-  jurisdiction: national
-  format: doc
-  location: raw/OPS-FORM-036/permit-approved-operation-form.doc
-  license: public
-  sensitivity: public
-  status: acquired
-  priority: P1
-  volume: 1 DOC; annex 3, form and filling instructions
-  update_freq: static
-  hash: ba3c773a0ce3bc05a098642e9a241c0164da71ae02d38ece1f74a3c48fcfbeb9
-  acquisition: Owner-supplied DOC received 2026-10-31 (file titled 附件3); the parent document is POL-GEAR-016.
-  notes: 'Annex 3 to the 2013 minimum-mesh notice (POL-GEAR-016). Before-and-after layout of the approved-operation block on a fishing permit, with filling rules: one of nine operation types, at most two operation methods, at most two gear names, minimum mesh size, carried quantity, target species and quota. Adjusts the block first set by 农业部公告第1100号 and 第1288号. The nine-type list is the practical answer to the operation-type classification question.'
-  level: national
-  authority_tier: A
-  retrieval:
-    channel: main
-    parseable: true
-    note: Registered in the main index.
-  lifecycle: active
-  watch_note: Static official file; no change feed. Rechecked at the quarterly review.
-  validity:
-    status: not_applicable
-    as_of: '2026-11-02'
-    note: Form instruction - layout and completion notes for the permit form; not a normative act.
-
 - id: OPS-STD-039
   title: 渔具分类、命名及代号（GB/T 5147—2026）
   title_zh: 渔具分类、命名及代号（GB/T 5147—2026）
@@ -1130,68 +1037,6 @@ sources:
     status: in_force
     as_of: '2026-11-02'
     note: Source note records National standard for fishing-gear classification, naming and codes, effective 2026-09-01 and replacing GB/T 5147—2003. It is the classification reference cited by SC/T 9460—2025 and the basis for mapping the yearbook...
-
-- id: POL-PORT-037
-  title: 中心渔港、一级渔港认定名单
-  title_zh: 中心渔港、一级渔港认定名单
-  publisher: 农业农村部渔业渔政管理局
-  year: 2025
-  type: notice
-  jurisdiction: national
-  format: docx
-  location: raw/POL-PORT-037/central-and-first-class-port-list.docx
-  license: public
-  sensitivity: public
-  status: acquired
-  priority: P1
-  volume: 1 DOCX; 14 ports (12 central, 2 first-class)
-  update_freq: irregular
-  hash: fe142d1a8f9885668b6d2fb47764c50123bc52c6d60ca53703263970aa3ab44a
-  acquisition: 'Owner-supplied DOCX received 2026-10-31; attachment to the ministry notice https://yyj.moa.gov.cn/tzgg/202501/t20250115_6469192.htm (公示 dated 2025-01-15).'
-  notes: 'Proposed recognition (拟认定) rather than a final decision: 12 central ports (Liaoning, Shandong, Zhejiang, Fujian, Guangdong, Guangxi, Hainan) and 2 first-class ports in Shandong, open for comment until 2025-01-22. Confirm the final recognition before citing it as settled. The same file was mistakenly registered a second time as POL-PORT-078 under a title claiming it was the final 2025 list; that duplicate was deleted on 2026-11-02 and no final recognition announcement was found.'
-  level: national
-  authority_tier: A
-  retrieval:
-    channel: main
-    parseable: true
-    note: Registered in the main index.
-  lifecycle: active
-  watch_ref: WATCH-MOA-YYJ-NOTICES
-  validity:
-    status: unknown
-    as_of: '2026-11-02'
-    note: Proposed recognition list (拟认定); the final recognition announcement was not found.
-
-- id: POL-PLAN-038
-  title: 全国沿海渔港建设规划（2018—2025年）
-  title_zh: 全国沿海渔港建设规划（2018—2025年）
-  publisher: 农业农村部
-  year: 2018
-  type: plan
-  jurisdiction: national
-  format: pdf
-  location: raw/POL-PLAN-038/national-coastal-fishing-port-plan-2018-2025.pdf
-  license: public
-  sensitivity: public
-  status: acquired
-  priority: P1
-  volume: 1 PDF; 57 pages, 10 port groups
-  update_freq: static
-  hash: 8a87dda7a38c0008fe80243f2a66abc06c8b2a62b2a92c2bb522e3528312f022
-  acquisition: Owner-supplied PDF received 2026-10-31; cover states 2018年4月.
-  notes: 'National port construction plan. Describes ten coastal port groups (including Guangdong, Beibu Gulf, Hainan Island and the South China Sea groups), with per-county port counts by class and named central and first-class ports, and plans 64 central and 85 first-class ports. Supplies a 2018 port baseline where the yearbook infrastructure table is absent; the classification is not identical to the yearbook table.'
-  level: national
-  authority_tier: A
-  retrieval:
-    channel: main
-    parseable: true
-    note: Registered in the main index.
-  lifecycle: active
-  watch_note: Static official file; no change feed. Rechecked at the quarterly review.
-  validity:
-    status: not_applicable
-    as_of: '2026-11-02'
-    note: Planning document - horizon 2018-2025 ended; superseded in practice by later port policy, not registered here.
 
 - id: STD-ASFIS-044
   title: ASFIS List of Species for Fishery Statistics Purposes (2026.1)
@@ -1405,37 +1250,6 @@ sources:
     as_of: '2026-11-02'
     note: Approved as 国统制〔2024〕120号; the registered text is the 2024 survey system.
 
-- id: POL-YJ-052
-  title: 2017 年度渔情监测统计工作情况的通报
-  title_zh: 2017 年度渔情监测统计工作情况的通报
-  publisher: 农业农村部办公厅
-  year: 2018
-  type: notice
-  jurisdiction: national
-  format: html
-  location: raw/POL-YJ-052/fishery-monitoring-circular-2017.html
-  license: public
-  sensitivity: public
-  status: acquired
-  priority: P2
-  volume: 1 HTML page; 4,869 characters; 农办渔〔2018〕30号
-  update_freq: annual
-  hash: 3e013bc8aa0cad097cee5d2597259dcb1dbee067dfc23157ba5f8321af24ecb6
-  acquisition: 'Fetched 2026-11-02 from http://www.moa.gov.cn/govpublic/YYJ/201804/t20180410_6139884.htm (HTTP 200; 48,696 bytes; issued 2018-04-08).'
-  notes: 'Latest publicly posted full text of the annual monitoring circular as of 2026-11-02. It names the agencies, the annual cadence and the reporting format of fishery monitoring work, which supports Q-M07 and part of Q-E11. The 2024 letter 农渔科函〔2025〕87号 exists in provincial news but its full text is not published, so the register records this caveat instead of claiming currency.'
-  level: national
-  authority_tier: A
-  retrieval:
-    channel: collection
-    parseable: true
-    note: Registered in a reference collection.
-  lifecycle: active
-  watch_note: Static publisher text; no change feed. Rechecked at the quarterly review against the in-force catalogue.
-  validity:
-    status: not_applicable
-    as_of: '2026-11-02'
-    note: Annual work notice - historical record of 2017 work, not a standing rule.
-
 - id: POL-VMS-053
   title: 远洋渔船船位监测管理办法（2019 年修订）
   title_zh: 远洋渔船船位监测管理办法（2019 年修订）
@@ -1527,40 +1341,6 @@ sources:
     status: not_applicable
     as_of: '2026-11-02'
     note: Product documentation edition - CWP handbook pages; not a normative act.
-
-- id: STD-SC-042
-  title: SC/T aquatic-industry standards relevant to the corpus (current set)
-  title_zh: 水产行业标准 SC/T（与本项目相关的现行文本）
-  publisher: 农业农村部
-  year: 2026
-  type: standard
-  jurisdiction: national
-  format: pdf
-  location: raw/SC-STD/
-  license: internal
-  sensitivity: internal
-  status: acquired
-  priority: P2
-  volume: 17 standards; 295 pages; one PDF each
-  update_freq: irregular
-  hash: 6ab8d85dfa1310a5d439b1a1cec346996ea09ff0b5644a8b2933e0396c00ff8f
-  acquisition: 'Retrieved 2026-11-01 from the national standards platform filing interface https://hbba.sacinfo.org.cn/stdQueryList (keyword SC/T: 977 records, 809 current) and filtered to the project scope; each text was taken from the public reader https://hbba.sacinfo.org.cn/hbba_onlineRead_page/<pk>/<index>.png and assembled with sips and pdfunite.'
-  notes: 'Official reference copies carrying the 参考件 watermark; image-only, no text layer. The scope is marine capture, gear and mesh, vessel management data, fishing ports, fishery statistics and surveys, resource surveys and terminology: seventeen standards are held and listed in configs/sc-standards.yaml, and the seven in-scope standards without a public text were excluded from the project. SC/T 9460-2025 is registered separately as OPS-STD-035 and is not duplicated in this series. Aquaculture, feed, disease, processing, hull construction, ship equipment and freshwater survey series are out of scope; their downloaded copies were deleted.'
-  level: national
-  authority_tier: B
-  retrieval:
-    channel: none
-    parseable: false
-    note: Not routed to a retrieval channel.
-  lifecycle: retired
-  retirement:
-    date: '2026-11-02'
-    reason: Image-only series with no text layer and no retrieval channel; kept as provenance, not citable.
-    decision_key: D-SCS-FKB-058
-  validity:
-    status: not_applicable
-    as_of: '2026-11-02'
-    note: Retired provenance - image-only series with no retrieval channel; validity is moot.
 
 - id: STAT-CSY-027
   title: 中国统计年鉴 2026（Excel）
@@ -1654,37 +1434,6 @@ sources:
     status: in_force
     as_of: '2026-11-02'
     note: Source note records National statistical definition - water-product output is the final effective output of capture and culture, covering marine and freshwater fish, crustaceans, shellfish, cephalopods, algae and other products; the data ...
-
-- id: DICT-META-014
-  title: Metadata and data-quality rules (candidate)
-  title_zh: 元数据/数据质量规范（候选）
-  publisher: To be confirmed
-  year: null
-  type: data_dictionary
-  format: unknown
-  location: null
-  license: unknown
-  sensitivity: unknown
-  status: to_acquire
-  disposition: defer
-  disposition_reason: Metadata and quality rules have no identified official public document.
-  priority: P2
-  volume: unknown
-  update_freq: static
-  hash: null
-  acquisition: Obtain the metadata standard and quality rules from the data publisher.
-  notes: Used to align source registration, versions, hashes and citation fields.
-  level: national
-  authority_tier: B
-  retrieval:
-    channel: none
-    parseable: true
-    note: Not routed to a retrieval channel.
-  lifecycle: active
-  validity:
-    status: not_applicable
-    as_of: '2026-11-02'
-    note: Candidate not acquired; there is no validity to verify.
 
 - id: STAT-YB-2018
   type: statistical_yearbook
@@ -2026,37 +1775,6 @@ sources:
     status: not_applicable
     as_of: '2026-11-02'
     note: Product capability note - HY-1C/D payload description; not a normative act.
-
-- id: POL-YJ-057
-  type: notice
-  title: Circular on the 2020 fishery monitoring and statistics work
-  title_zh: 关于通报2020年度渔情监测统计工作情况的函
-  publisher: 农业农村部渔业渔政管理局
-  year: 2021
-  jurisdiction: national
-  format: pdf
-  location: raw/POL-YJ-057/
-  license: public
-  sensitivity: public
-  status: acquired
-  priority: P2
-  volume: 1 PDF; 7 pages
-  update_freq: annual
-  hash: 03a7a6ff3f88590c6e18884cdf10b996667b1acaf01f4d5842c8573aa29507b8
-  acquisition: Downloaded 2026-11-02 from the national station site (nftec.agri.cn), document 农渔科函〔2021〕21号, dated 2021-04-15.
-  notes: Documents the annual cadence, the responsible bodies and the data-quality machinery of 渔情监测统计. It is not a fishery-bulletin product and does not answer the publisher, frequency and format of 渔场/渔汛预报通报. It is newer than POL-YJ-052 (the 2017 circular) and does not duplicate it; the 2024 letter (农渔科函〔2025〕87号) is quoted by provincial sites but is not published in full.
-  level: national
-  authority_tier: A
-  retrieval:
-    channel: collection
-    parseable: true
-    note: Registered in a reference collection.
-  lifecycle: active
-  watch_note: Static official file; no change feed. Rechecked at the quarterly review.
-  validity:
-    status: not_applicable
-    as_of: '2026-11-02'
-    note: Annual work notice - historical record of 2020 work, not a standing rule.
 
 - id: POL-HN-058
   type: regulation
@@ -2461,7 +2179,7 @@ sources:
     note: Published with the 2019-03-28 announcement; no later Hainan catalog was found.
 
 gaps:
-- Seventy-eight sources are registered: seventy-five acquired and three candidates awaiting disposition.
+- Sixty-nine sources are registered: sixty-nine acquired and no candidates awaiting disposition.
 - The yearbook coverage matrix has no values in the public repository; all values stay local.
 - The yearbook infrastructure table is missing for data years 2018 and 2019; the 2018 national port plan supplies a baseline whose port classes are close to, but not identical with, the yearbook table.
 - The vessel-length proxy is missing for data year 2024.
