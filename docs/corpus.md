@@ -1,9 +1,9 @@
 # Corpus Inventory
 
-- Status: data preparation and corpus discovery. Nine yearbook editions, the China Statistical Yearbook 2026 and the legal and technical corpus are acquired, including two international reference sources; three candidates remain (all deferred). The local core CSV has 3,126 rows and stays outside the public tree. No parsing or indexing in this phase.
+- Status: corpus and web layers registered and indexed for this phase. 63 sources (63 acquired, 0 candidates) and 140 knowledge notes with 119 fetched cards; 28 public documents are indexed (785 chunks, index `20910f0964df`) and cards/notes live in a separate external store. The local core CSV has 3,126 rows and stays outside the public tree.
 - Register: [configs/corpus.yaml](../configs/corpus.yaml)
 - Indicator schema: [configs/statistics.yaml](../configs/statistics.yaml)
-- Date: 2026-11-01
+- Date: 2026-11-03
 
 ## 1. Purpose and scope
 
@@ -13,15 +13,15 @@ It does **not** include raw environmental grids, reanalysis data, forecast raste
 
 ## 2. Method
 
-1. Define nine corpus types and register each source with title, publisher, year, type, format, location, licence, sensitivity, status, priority, volume, update frequency, hash and acquisition notes.
+1. Define seven corpus types and register each source with title, publisher, year, type, format, location, licence, sensitivity, status, priority, volume, update frequency, hash and acquisition notes.
 2. Hold every source whose licence or sensitivity is `unknown`.
 3. Acquire only from official or owner-confirmed authoritative channels; record the retrieval path, date and SHA-256.
 4. Keep source files in the local data root; the public register contains metadata, hashes and coverage counts only.
-5. Do not parse or index sources in this phase.
+5. Parse and index the 28 public sources in the corpus store; cards and notes are built into a separate external store.
 
 ## 2a. Registry fields
 
-Every entry carries schema v2 fields: `level` (national, provincial, municipal or international), `authority_tier` (A publisher page, B gazette or compilation, C municipal), `validity` (status, as-of date, predecessor and successor, evidence note), `retrieval` (channel and whether the text is parseable) and `lifecycle` (active or retired). The field table and the admission, retirement and deletion rules are in [data-model.md](data-model.md); `src/scs_fkb/registry.py` enforces them in CI.
+Every entry carries schema v2 fields: `level` (national, provincial, municipal or international), `authority_tier` (A publisher page, B gazette or compilation, C municipal), `source_class` (normative, official_statistics, standard or reference), `currency` (as-of date, basis and review date), `retrieval` (channel and whether the text is parseable) and `lifecycle` (active or retired). The field table and the admission, retirement and deletion rules are in [data-model.md](data-model.md); `src/scs_fkb/registry.py` enforces them in CI.
 
 ## 3. Types
 
@@ -189,7 +189,7 @@ The first live watch run reported nine of ten sources unreachable. That was a fa
 
 The gap review was repeated against the live pages and both gaps stay open. The national station column (nftec.agri.cn/yqxx/) lists 2021–2026 news items, including a 2025 statistics workshop, but carries no full text of the 2024 monitoring letter. The Guangdong notice and policy lists answer 200 but neither shows the 2026 closure work plan (粤农农函〔2026〕208号) on its first page. The ministry gazette 2025 index answers with a small page that carries no file list, so the letter cannot be confirmed from there either. Nothing new is registered for either gap.
 
-The NSOAS *China Ocean Satellite Application Report 2021* is recorded as a candidate, not a source. It states that 368 issues of near-real-time fishery and sea-state analysis and forecast information were released to national distant-water fishery enterprises in 2021, which is the best public evidence for the publication cadence behind Q-M07. The file, however, is 178 MB for 39 pages and would more than double the local data root, so the owner decides whether to accept that weight; it is not registered unilaterally.
+The NSOAS *China Ocean Satellite Application Report 2021* is not registered. It states that 368 issues of near-real-time fishery and sea-state analysis and forecast information were released to national distant-water fishery enterprises in 2021, which is the best public evidence for the publication cadence behind Q-M07. The file, however, is 178 MB for 39 pages and would more than double the local data root, so the owner decides whether to accept that weight; it is not registered unilaterally.
 
 ## 5k. National closure basis and the reference layer
 
@@ -203,7 +203,7 @@ The NSOAS *China Ocean Satellite Application Report 2021* is recorded as a candi
 
 The provincial and municipal closure notices (`POL-HN-058`, `POL-HN-059`, `POL-GX-060`, `POL-GD-061`) stay registered as references. They do not define the system and they are not promoted to the national basis; a question about the institution is answered from the national notices, while a question that names a province can still use that province's notice.
 
-The chain is recorded rather than assumed: every entry above carries a validity block with status, an as-of date and the evidence for the status. Nothing is marked superseded without a named successor, and a text that was replaced before registration (the 2021 closure notice, the 2021 distant-water hull series) is named in the note but not registered as a source.
+The chain is recorded rather than assumed: every entry above carries a currency block with an as-of date, a basis and a review date. Nothing is marked superseded without a named successor, and a text that was replaced before registration (the 2021 closure notice, the 2021 distant-water hull series) is named in the note but not registered as a source.
 
 ## 5l. National hull-standard package and the 2018 record that stays open
 
@@ -345,10 +345,10 @@ None. The three vessel/voyage and metadata candidates were removed on 2026-11-03
 
 | Metric | Value |
 |---|---:|
-| Corpus types | 9 |
+| Corpus types | 7 |
 | Registered sources | 63 |
 | Acquired sources | 63 |
-| Remaining candidates | 3 |
+| Remaining candidates | 0 |
 | Yearbook editions | 9 |
 | Yearbook data years | 2017–2025 |
 | Yearbook files | 838 |
@@ -385,11 +385,11 @@ Known gaps:
 
 ## 8a. Sufficiency review
 
-The 24 draft questions were checked against the registered sources on 2026-11-01: **10 are answerable, 6 partially answerable and 8 not answerable**. Every unanswerable question maps to material outside the registration scope (vessel/voyage dictionaries and the excluded environment and fishery-product sources); nothing in the P1 scope is blocked.
+The 24 draft questions were checked against the registered sources on 2026-11-01: **10 are answerable, 6 partially answerable and 8 not answerable**. Every unanswerable question maps to material outside the registration scope (vessel/voyage dictionaries and the excluded environment and fishery-product sources); nothing in the P1 scope is blocked. The draft has since been edited: Q-E08 and Q-M09 moved to the parked web list, Q-E01 and Q-M10 were reworded, and M02/M06/M11 still cite dictionaries that are not registered. The current instrument therefore scores 11 anchor questions and 4 abstention tests; a full re-review of the 24-question set belongs to the evaluation task.
 
 Three questions need rewording rather than new sources: the sea-area and operation-type production trend, which the yearbooks publish by sea area and gear but not by operation type; the production, landed-weight and effort definitions, of which only production has an official definition; and the combined production-and-vessel-count question, which mixes a published indicator with an unpublished one.
 
-The eight unanswerable questions stay as abstention tests until the deferred sources are acquired.
+The unanswerable questions remain abstention candidates; the current instrument runs four of them (Q-E07, Q-E11, Q-M07 and Q-M08).
 
 ## 8b. Gap audit: covered or unattainable, never duplicated
 
@@ -430,9 +430,9 @@ The 2025 block was checked against China Statistical Yearbook 2026 table 12-15: 
 
 ## 12. Gaps and next steps
 
-1. The sufficiency review is done: ten questions are answerable, six partial and eight are abstention tests (section 8a).
+1. The sufficiency review is done for the 2026-11-01 draft: ten questions answerable, six partial and eight abstention tests (section 8a); the current instrument scores 11 anchors and 4 abstention tests.
 2. Diff the registered People's Daily text against the npc.gov.cn page when that site is reachable again; the 2026-10-31 WAF block and the attempts are recorded in the register.
-3. The definition sources close `DICT-STAT-013`; the standards (including GB/T 5147—2026), the permit form and the permit regulation closed the logbook candidate, and the three deferred candidates stay out of the current phase.
+3. The definition sources close `DICT-STAT-013`; the standards (including GB/T 5147—2026), the permit form and the permit regulation closed the logbook candidate; the deferred candidates were removed and the register has none.
 4. Use the 2018 port plan as the port baseline and record the classification difference when extending the core CSV to ports.
 5. Extract the remaining 2026 tables, starting with capture by species (pages 41-43).
 6. Map the 2018 port-plan classes to the yearbook port classes when the core table is extended to ports.

@@ -2,6 +2,13 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-03 — Hybrid retrieve fixed; public docs aligned to the adopted baseline
+
+- Fixed `scs-fkb retrieve` under the adopted hybrid mode: `_retrieve` now passes the data root to the retriever, matching `ask`; added a CLI regression test.
+- Synced the current-state sections of README, PROJECT, evaluation, plan, knowledge, corpus, questions, data-policy and index to the measured baseline: 63 sources and 0 candidates; 28 documents, 785 chunks, index 20910f0964df; hybrid 11/11, MRR 0.56, abstention 3/4, citation resolution 1.00; external store 259 documents and 315 chunks.
+- Historical bullets and project-log entries keep their original figures; only current-state statements were corrected.
+- No corpus, config, index or data change; the corpus baseline stays 20910f0964df.
+
 ## 2026-11-03 — Product-manual probe and operating rhythm
 
 - OLCI Marine User Handbook PDF is reachable and parses to 88,763 characters; the PO.DAAC MUR page fails at TLS. Neither is carded yet because Q-E08 and Q-M09 need both.

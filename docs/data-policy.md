@@ -33,7 +33,7 @@ Every source must be registered in [configs/corpus.yaml](../configs/corpus.yaml)
 - location and acquisition path,
 - licence and sensitivity,
 - status, priority, volume, update frequency and hash,
-- level, authority tier, validity, retrieval channel and lifecycle (schema v2, see [data-model.md](data-model.md)).
+- level, authority tier, source class, currency, retrieval channel and lifecycle (schema v2, see [data-model.md](data-model.md)).
 
 A source with `license: unknown` or `sensitivity: unknown` is held. It must not be ingested or indexed.
 

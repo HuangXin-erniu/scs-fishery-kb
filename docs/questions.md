@@ -18,7 +18,7 @@
 |---|---|---|---|---|---|
 | Q-E01 | What are the start and end dates and the scope of the seasonal fishing closure in the South China Sea? | 南海区伏季休渔的起止日期与适用范围是什么？ | policy | POL-LAW-009 | Confirm sea area and year |
 | Q-E02 | Which operation types may be exempted or obtain a special permit during the closure? | 哪些作业类型在休渔期可以豁免或申请特许？ | policy | POL-LAW-009 / POL-STD-010 | Confirm operation type and approval level |
-| Q-E03 | Which fields must a fishing vessel logbook record for a given vessel type? | 某类渔船的捕捞日志必须记录哪些字段？ | procedure | POL-STD-010 / OPS-FORM-036 | Confirm vessel and operation type |
+| Q-E03 | Which fields must a fishing vessel logbook record for a given vessel type? | 某类渔船的捕捞日志必须记录哪些字段？ | procedure | POL-STD-010 / POL-WATCH-082 | Logbook form OPS-FORM-036 is not registered |
 | Q-E04 | What are the administrative consequences of missing or incorrect logbook entries? | 捕捞日志漏填或错填会有什么管理后果？ | policy | POL-STD-010 / POL-LAW-009 | Confirm legal basis and discretion |
 | Q-E05 | How are production, landed weight and fishing effort defined in catch statistics? | 渔获量统计中的“产量”“上岸量”“捕捞努力量”分别怎么定义？ | definition | DICT-STAT-013 | Confirm definition version |
 | Q-E06 | What is the annual production trend for a given sea area and operation type? | 某海域某作业类型的年度产量趋势如何？ | statistic | STAT-YB-2018–STAT-YB-2025 | Confirm sea area and year; the yearbooks publish no production by operation type |
@@ -34,21 +34,21 @@
 | ID | Question (English) | Original (Chinese) | Type | Expected evidence | Notes |
 |---|---|---|---|---|---|
 | Q-M01 | What is the current legal basis and amendment history of the seasonal closure system in the South China Sea? | 南海区伏季休渔制度的现行法律依据与修订沿革是什么？ | policy | POL-LAW-009 | Confirm national/local level |
-| Q-M02 | Which fields should a vessel management record contain for a given vessel type? | 某类渔船的管理档案应包含哪些字段？ | procedure | VMS-DICT-003 | Confirm vessel type and record type |
-| Q-M03 | What are the reporting definitions and process for logbook data? | 捕捞日志的统计口径与上报流程是什么？ | procedure | POL-STD-010 / OPS-FORM-036 / DICT-STAT-013 | Confirm reporting level and deadline |
+| Q-M02 | Which fields should a vessel management record contain for a given vessel type? | 某类渔船的管理档案应包含哪些字段？ | procedure | none registered (deferred) | Vessel/voyage dictionary not registered |
+| Q-M03 | What are the reporting definitions and process for logbook data? | 捕捞日志的统计口径与上报流程是什么？ | procedure | POL-STD-010 / DICT-STAT-013 | Logbook form OPS-FORM-036 is not registered |
 | Q-M04 | What are the official differences between production, landed weight and fishing effort? | 产量、上岸量、捕捞努力量的官方口径差异是什么？ | definition | DICT-STAT-013 | Confirm yearbook version |
 | Q-M05 | What were the production and vessel counts for a given year, sea area and operation type? | 某年度某海域某作业类型的产量与船数统计是多少？ | statistic | STAT-YB-2018–STAT-YB-2025 | Confirm sea area and year; the yearbooks publish no production by operation type |
-| Q-M06 | How are voyage, operating day and port stay defined in vessel/voyage data? | 船位/航次数据中的“航次”“作业日”“停港”如何定义？ | definition | VMS-DICT-003 | Confirm data source and field version |
+| Q-M06 | How are voyage, operating day and port stay defined in vessel/voyage data? | 船位/航次数据中的“航次”“作业日”“停港”如何定义？ | definition | none registered (deferred) | Vessel/voyage dictionary not registered |
 | Q-M07 | Which agencies publish fishery bulletins, how often, and in what format? | 渔场/渔汛预报通报的发布机构、频次与格式是什么？ | fact | none registered | Confirm publisher level and period |
 | Q-M08 | How have historical fishing seasons and the central fishing ground changed for a given area? | 某渔场历史渔汛记录与中心渔场变化如何？ | fact | none registered | Confirm fishing ground and period |
 | Q-M09 | What are the spatial/temporal resolutions and appropriate uses of ocean and fishery products? | 海洋环境/渔情产品的时空分辨率与适用场景是什么？ | definition | none registered | Confirm product version and variable |
 | Q-M10 | What documents must be submitted to apply for a marine fishing permit? | 申请海洋渔业捕捞许可证应当提交哪些资料？ | policy | POL-STD-010 | Confirm operation type and region |
-| Q-M11 | How should source, version and licence be attributed when data are shared or published? | 数据共享/发布时如何标注来源、版本与许可？ | procedure | DICT-META-014 | Confirm publication scenario and licence |
+| Q-M11 | How should source, version and licence be attributed when data are shared or published? | 数据共享/发布时如何标注来源、版本与许可？ | procedure | none registered (deferred) | Metadata and quality rules not registered |
 | Q-M12 | What are the exception-approval and penalty rules in seasonal closure management? | 休渔期管理中的例外审批与处罚依据是什么？ | policy | POL-LAW-009 | Confirm exception type and approval level |
 
-Questions Q-E07, Q-E08, Q-E11, Q-M07, Q-M08 and Q-M09 have no registered source: the environment and fishery-product material was excluded from the register on 2026-11-01, so they serve as abstention tests rather than as answerable questions.
+Q-E07, Q-E11, Q-M07 and Q-M08 have no registered source and form the current abstention tests. Q-E08 and Q-M09 are parked for the web channel, while M02, M06 and M11 cite dictionaries that are not registered and are not scored.
 
-The eleven questions with gold anchors in [configs/eval.yaml](../configs/eval.yaml) form the evaluated set (Q-E01, Q-E02, Q-E03, Q-E04, Q-E09, Q-E10, Q-E12, Q-M01, Q-M03, Q-M10 and Q-M12); the six rows above are the abstention tests. Seven rows are out of reach of the current corpus: Q-E05 and Q-M04 ask for definitions the registered sources do not state explicitly, and Q-E06, Q-M02, Q-M05, Q-M06 and Q-M11 need sources that are not registered.
+The eleven questions with gold anchors in [configs/eval.yaml](../configs/eval.yaml) form the main evaluated set (Q-E01, Q-E02, Q-E03, Q-E04, Q-E09, Q-E10, Q-E12, Q-M01, Q-M03, Q-M10 and Q-M12). Q-E05 and Q-M04 are answered by the CWP reference collection and Q-E06 and Q-M05 by the local statistics channel. Q-M02, Q-M06 and Q-M11 remain unscored until the evaluation revision.
 
 ## Coverage
 
