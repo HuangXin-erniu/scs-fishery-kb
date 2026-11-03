@@ -88,6 +88,9 @@ def web_card_documents(
                 url=str(card["url"]),
                 retrieved_at=str(card["fetched_at"]),
                 kind="web",
+                source_class="reference",
+                trust="standard",
+                review_due="",
             )
             for chunk in chunk_document(document, [page], max_fallback_chars)
         ]
@@ -110,12 +113,24 @@ def web_card_documents(
     return documents, chunks, entries, counts
 
 
+def _note_trust(note: dict[str, Any], registry_meta: dict[str, Any]) -> str:
+    for source in note.get("sources") or []:
+        doc = source.get("doc")
+        if doc and str((registry_meta.get(doc) or {}).get("source_class")) in {
+            "normative",
+            "official_statistics",
+        }:
+            return "authoritative"
+    return "standard"
+
+
 def knowledge_documents(
     knowledge_dir: Path,
     cards_path: Path,
     max_fallback_chars: int,
     *,
     today: Any = None,
+    registry_meta: dict[str, Any] | None = None,
 ) -> tuple[list[Document], list[Chunk], list[dict[str, Any]], dict[str, int]]:
     """Turn approved, fresh knowledge notes into documents and chunks."""
     directory = Path(knowledge_dir)
@@ -126,6 +141,7 @@ def knowledge_documents(
         for card in load_cards(Path(cards_path))["cards"]:
             card_hashes[str(card["id"])] = str(card.get("sha256") or "")
     current = today or datetime.now(UTC).date()
+    meta = registry_meta or {}
     documents: list[Document] = []
     chunks: list[Chunk] = []
     entries: list[dict[str, Any]] = []
@@ -163,6 +179,9 @@ def knowledge_documents(
                     url=str(first.get("url") or ""),
                     retrieved_at=str(note["as_of"]),
                     kind="note",
+                    source_class="reference",
+                    trust=_note_trust(note, meta),
+                    review_due=str(note["review_due"]),
                 )
                 for chunk in chunk_document(document, [page], max_fallback_chars)
             ]
@@ -198,6 +217,11 @@ def ingest(
     register = load_corpus(config_path)
     pipeline = load_pipeline(Path(pipeline_path))
     sources = {source.id: source for source in acquired_sources(register)}
+    registry_meta = {
+        entry["id"]: entry
+        for entry in yaml.safe_load(Path(config_path).read_text(encoding="utf-8"))["sources"]
+        if isinstance(entry, dict) and entry.get("id")
+    }
     root = Path(data_root).expanduser().resolve()
     max_chars = pipeline["chunking"]["max_fallback_chars"]
 
@@ -234,6 +258,16 @@ def ingest(
             file_hash=digest,
         )
         chunks = chunk_document(document, parsed.pages, max_chars)
+        meta = registry_meta.get(source.id, {})
+        source_class = str(meta.get("source_class") or "")
+        trust = (
+            "authoritative" if source_class in {"normative", "official_statistics"} else "standard"
+        )
+        review_due = str((meta.get("currency") or {}).get("review_due") or "")
+        chunks = [
+            replace(chunk, source_class=source_class, trust=trust, review_due=review_due)
+            for chunk in chunks
+        ]
         if not chunks:
             raise IngestError(f"text.empty: no chunks produced for {source.id}")
 
@@ -273,7 +307,7 @@ def ingest(
         else Path(pipeline_path).parent / "knowledge"
     )
     note_documents, note_chunks, note_entries, note_counts = (
-        knowledge_documents(notes_dir, cards_file, max_chars)
+        knowledge_documents(notes_dir, cards_file, max_chars, registry_meta=registry_meta)
         if include_knowledge
         else ([], [], [], {})
     )
