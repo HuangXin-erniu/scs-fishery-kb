@@ -182,6 +182,21 @@ def summarize(results: list[dict[str, Any]], skipped: list[str]) -> dict[str, An
     }
 
 
+def _corpus_abstains(
+    question: str,
+    corpus_hits: list[Any],
+    min_score: float,
+    min_matched: int,
+) -> bool:
+    answer = answer_question(
+        question,
+        corpus_hits,
+        min_score=min_score,
+        min_matched=min_matched,
+    )
+    return answer.abstained
+
+
 def evaluate(
     questions_path: Path,
     anchors_path: Path,
@@ -193,6 +208,9 @@ def evaluate(
     lexicon: list[dict[str, Any]] | None = None,
     searcher: Callable[[str], list[Any]] | None = None,
     gate: Callable[[str], bool] | None = None,
+    require_corpus: bool = False,
+    gate_min_score: float = 0.0,
+    corpus_searcher: Callable[[str], list[Any]] | None = None,
 ) -> dict[str, Any]:
     """Score retrieval at anchor level and check abstinence and citations."""
     rows = {row["id"]: row for row in parse_questions(questions_path)}
@@ -220,6 +238,10 @@ def evaluate(
             anchor for anchor in anchors if any(anchor_matches(hit.chunk, anchor) for hit in hits)
         ]
         if gate is not None and not gate(row["question"]):
+            answer = None
+        elif corpus_searcher is not None and _corpus_abstains(
+            row["question"], corpus_searcher(row["question"]), min_score, min_matched
+        ):
             answer = None
         else:
             answer = answer_question(
@@ -264,6 +286,10 @@ def evaluate(
         query = expand_query(row["question"], lexicon) if lexicon else row["question"]
         hits = searcher(row["question"]) if searcher else index.search(query, top_k=top_k)
         if gate is not None and not gate(row["question"]):
+            answer = None
+        elif corpus_searcher is not None and _corpus_abstains(
+            row["question"], corpus_searcher(row["question"]), min_score, min_matched
+        ):
             answer = None
         else:
             answer = answer_question(

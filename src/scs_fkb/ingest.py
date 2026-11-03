@@ -83,7 +83,12 @@ def web_card_documents(
         )
         page = ParsedPage(number=0, lines=text.splitlines())
         made = [
-            replace(chunk, url=str(card["url"]), retrieved_at=str(card["fetched_at"]))
+            replace(
+                chunk,
+                url=str(card["url"]),
+                retrieved_at=str(card["fetched_at"]),
+                kind="web",
+            )
             for chunk in chunk_document(document, [page], max_fallback_chars)
         ]
         if not made:
@@ -157,6 +162,7 @@ def knowledge_documents(
                     chunk,
                     url=str(first.get("url") or ""),
                     retrieved_at=str(note["as_of"]),
+                    kind="note",
                 )
                 for chunk in chunk_document(document, [page], max_fallback_chars)
             ]
