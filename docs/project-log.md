@@ -2,6 +2,13 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-03 — Q-M10 reworded, Q-E01 synonym added, card baseline adopted
+
+- Q-M10 now asks 申请海洋渔业捕捞许可证应当提交哪些资料？; anchors are unchanged (POL-STD-010 第二十八条, POL-LAW-009 第三十五条).
+- One active lexicon group 起止日期 → 休渔时间 recovered Q-E01.
+- Full eval on the 36-document index: hybrid 11/11, MRR 0.56, abstention 3/4, two false refusals, citation 1.00; BM25 8/11, lexicon 10/11, dense 8/11; reference 2/2, statistics 2/2, jurisdiction 3/3, national 2/2.
+- The 36-document card baseline is adopted; the 28-document row stays as history.
+
 ## 2026-11-03 — Watch report lists review dates
 
 - Added due_report to watch.py: corpus entries whose currency.review_due has arrived and ok cards whose fetched_at plus topic cadence has arrived.

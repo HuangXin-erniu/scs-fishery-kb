@@ -42,7 +42,7 @@
 | Q-M07 | Which agencies publish fishery bulletins, how often, and in what format? | 渔场/渔汛预报通报的发布机构、频次与格式是什么？ | fact | none registered | Confirm publisher level and period |
 | Q-M08 | How have historical fishing seasons and the central fishing ground changed for a given area? | 某渔场历史渔汛记录与中心渔场变化如何？ | fact | none registered | Confirm fishing ground and period |
 | Q-M09 | What are the spatial/temporal resolutions and appropriate uses of ocean and fishery products? | 海洋环境/渔情产品的时空分辨率与适用场景是什么？ | definition | none registered | Confirm product version and variable |
-| Q-M10 | What are the access conditions and regulatory requirements for a given operation type? | 某类作业规范的准入条件与监管要求是什么？ | policy | POL-STD-010 | Confirm operation type and region |
+| Q-M10 | What documents must be submitted to apply for a marine fishing permit? | 申请海洋渔业捕捞许可证应当提交哪些资料？ | policy | POL-STD-010 | Confirm operation type and region |
 | Q-M11 | How should source, version and licence be attributed when data are shared or published? | 数据共享/发布时如何标注来源、版本与许可？ | procedure | DICT-META-014 | Confirm publication scenario and licence |
 | Q-M12 | What are the exception-approval and penalty rules in seasonal closure management? | 休渔期管理中的例外审批与处罚依据是什么？ | policy | POL-LAW-009 | Confirm exception type and approval level |
 
