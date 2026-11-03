@@ -8,6 +8,13 @@ This log records material project changes by date. It does not use release versi
 - Documented the rhythm: weekly watch, monthly refresh, quarterly review 2027-02-02; due items are prompts, never automatic rewrites.
 - Added glossary terms source_class, currency, review_due and web card.
 - Adopted baseline unchanged: 36 documents, 849 chunks, index 5135e00cfa3d, hybrid 11/11.
+## 2026-11-03 — Two-level claim taxonomy and router
+
+- Added configs/claims.yaml: seven claim natures with freshness windows and primary-evidence rules, seven domains with keyword lists.
+- Added src/scs_fkb/claims.py: deterministic classifier with a general fallback; tests cover every nature, domains and unknown input.
+- Documented the taxonomy, trust tiers, primary/supporting/conflict rules and four internalisation triggers in docs/knowledge-policy.md.
+- No index change; the corpus-only baseline stays in force until the router is wired into answering.
+
 ## 2026-11-03 — Layered corpus gate implemented, enlarged index still deferred
 
 - Added a chunk kind (corpus/web/note) and a corpus-evidence gate: cards and notes cannot alone support an answer; `answer.require_corpus_evidence` switches it.

@@ -1,0 +1,61 @@
+# Two-level claim taxonomy: what the question claims (nature) and what it is about (domain).
+# The nature decides admissible primary evidence and freshness; the domain refines source classes.
+schema_version: 1
+natures:
+  definition:
+    window_days: null
+    primary:
+      trust: [authoritative, standard]
+      classes: [normative, standard, reference]
+      kinds: [corpus, note, web]
+    keywords: [是什么, 定义, 含义, 口径, 分类, 指什么, 包括哪些]
+  rule:
+    window_days: 30
+    primary:
+      trust: [authoritative]
+      classes: [normative, standard]
+      kinds: [corpus, note]
+    keywords: [需要, 材料, 流程, 申请, 怎么办, 条件, 手续, 提交, 办理]
+  quantity:
+    window_days: 365
+    primary:
+      trust: [authoritative]
+      classes: [official_statistics, normative]
+      kinds: [corpus, note]
+    keywords: [多少, 产量, 数量, 趋势, 统计, 船数, 价格, 指标]
+  status:
+    window_days: 30
+    primary:
+      trust: [authoritative]
+      classes: [normative, official_statistics]
+      kinds: [corpus, note]
+    keywords: [现行, 当前, 现在, 最新, 今年, 有效期, 是否有效, 目前]
+  warning:
+    window_days: 7
+    primary:
+      trust: [authoritative, standard]
+      classes: [normative, reference]
+      kinds: [note, web]
+    keywords: [预警, 警报, 台风, 风暴潮, 赤潮, 海浪, 灾害, 大雾]
+  identification:
+    window_days: 90
+    primary:
+      trust: [authoritative, standard]
+      classes: [reference, standard]
+      kinds: [note, web, corpus]
+    keywords: [物种, 学名, 保护等级, 属于, 识别, 分布, 分类地位]
+  history:
+    window_days: null
+    primary:
+      trust: [authoritative, standard]
+      classes: [normative, reference]
+      kinds: [corpus, note]
+    keywords: [沿革, 历史, 修订, 以前, 废止, 变迁, 版本]
+domains:
+  policy: [休渔, 许可, 处罚, 条例, 通告, 伏季, 规定, 渔业法]
+  gear: [渔具, 网目, 拖网, 刺网, 围网, 张网, 作业类型, 选择性, 渔具分类]
+  environment: [海温, 叶绿素, 海流, 海色, 卫星, 盐度, 海洋环境, 海面高度]
+  hazard: [台风, 风暴潮, 赤潮, 海浪, 预警, 灾害, 大雾, 寒潮]
+  species: [物种, 学名, 保护, 分布, 鱼, 虾, 蟹, 贝, 头足类]
+  statistics: [产量, 统计, 年鉴, 指标, 价格, 船数, 数据, 经济]
+  port: [渔港, 锚地, 避风, 靠泊, 补给, 码头, 泊位]

@@ -48,3 +48,6 @@ expert before treating a definition as authoritative.
 | review_due | 复查日期 | When an entry or card must be checked again; the watch report lists what is due. |
 | web card | 网络卡片 | A cached allowlisted page with public metadata and private text, indexed beside the corpus. |
 | knowledge note | 知识条目 | Structured facts distilled from cards or corpus documents, pinned to source hashes and carrying an as-of date, a review date and a status. |
+| claim nature | 主张性质 | What a question asserts (definition, rule, quantity, status, warning, identification, history); decides admissible primary evidence and freshness. |
+| claim domain | 知识领域 | What the question is about (policy, gear, environment, hazard, species, statistics, port); refines source classes. |
+| trust tier | 可信度层级 | authoritative, standard or provisional; decides whether a source may be primary. |
