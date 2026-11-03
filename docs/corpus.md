@@ -278,17 +278,19 @@ Shelter anchorages stay uncovered: no national public list was found, only forei
 
 The catalogue is the evidence rather than an inference: it lists the fisheries crew measures and the fishing-permit regulation, so `POL-CREW-055` moved from unknown to in force with the announcement quoted, and `POL-STD-010` carries the same cross-check. It does not list the fishing-vessel inspection rules, which sit with the transport ministry, so that regulation is not registered here.
 
-## 5q. Validity semantics and the 2026-11-03 sweep
+## 5q. Source classes and review dates
 
-Every entry carries a status that means one of three things:
+The register no longer carries an in-force / not-applicable / unknown status. Each entry states what kind of source it is and when it must be checked again:
 
-| Status | Applies when | Examples |
+| Field | Values | Meaning |
 |---|---|---|
-| `in_force` | A normative document whose text carries evidence: a commencement clause, an approval number, a publication date with effect, or a publisher's validity marker (有效) | Fisheries Law, closure notices, penalty rules, hull catalogs, the 2024 survey system, the 2025 e-certificate standards |
-| `not_applicable` | A non-normative document, in one of eight categories: data edition, product documentation edition, candidate not acquired, retired provenance, annual work notice, planning document, product capability note, form instruction | CWP/ASFIS/MUR/OLCI/CMEMS/GFW documents, the three candidates, the retired SC/T series, the 2017 and 2020 work notices, the 2018-2025 port plan, HY-1C/D, the permit-form instruction |
-| `unknown` | A normative document with no evidence available, or a genuinely open question | None: the last open item, the port-list proposal, was removed on 2026-11-03. |
+| `source_class` | `normative` (33), `official_statistics` (10), `standard` (18), `reference` (8) | What the entry is, not whether it is current |
+| `currency.as_of` | date | When the entry was last checked |
+| `currency.basis` | publication / edition / announcement / retrieval | What the check rested on |
+| `currency.review_due` | date | When it must be reviewed; normative 30 days, standard 90 days, official_statistics one annual edition, reference 180 days |
+| `currency.note` | optional | The evidence sentence (commencement clause, approval number, publication date) or a review remark |
 
-The 2026-11-03 sweep closed nineteen of the twenty-one: four normative documents were upgraded with quoted evidence (the 2010 statistics rules' 自发布之日起施行 clause, the 2024 survey system's approval number, the 2025 e-certificate publication date, the Shantou notice's 2026-04-28 date), fifteen non-normative entries moved to `not_applicable`, and two remain `unknown` on purpose. The register now reads 51 `in_force`, 18 `not_applicable` and no `unknown`.
+The 2026-11-03 migration replaced the old statuses without losing evidence: the substantive sentences moved into `currency.note`, the category notes were dropped because `source_class` now carries that information, and every entry keeps a review date. The watch report lists entries whose `review_due` has passed; it never changes an answer by itself.
 
 ## 5r. Climate and hazard: documented unavailability
 

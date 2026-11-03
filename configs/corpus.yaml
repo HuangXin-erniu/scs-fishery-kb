@@ -85,12 +85,13 @@ sources:
     parseable: true
     note: Registered in the main index.
   lifecycle: active
+  source_class: normative
+  currency:
+    as_of: '2026-11-03'
+    basis: publication
+    review_due: '2026-12-03'
+    note: "The 2025 revision took effect on 2026-05-01; it is the legal basis the 2026 closure notices cite."
   watch_note: Static official file; no change feed. Rechecked at the quarterly review.
-  validity:
-    status: in_force
-    as_of: '2026-11-02'
-    note: The 2025 revision took effect on 2026-05-01; it is the legal basis the 2026 closure notices cite.
-
 - id: POL-STD-010
   title: 渔业捕捞许可管理规定（2022年修订）
   title_zh: 渔业捕捞许可管理规定（2022年修订）
@@ -116,12 +117,13 @@ sources:
     parseable: true
     note: Registered in the main index.
   lifecycle: active
+  source_class: normative
+  currency:
+    as_of: '2026-11-03'
+    basis: publication
+    review_due: '2026-12-03'
+    note: "The 2022 revision is the latest order found; no 2026 revision was found, and alignment with the new Fisheries Law is still to watch. Announcement No. 950 (2025-09-24) also lists the fishing-permit regulation among the rules in force."
   watch_note: Static publisher text; no change feed. Rechecked at the quarterly review against the in-force catalogue.
-  validity:
-    status: in_force
-    as_of: '2026-11-02'
-    note: The 2022 revision is the latest order found; no 2026 revision was found, and alignment with the new Fisheries Law is still to watch. Announcement No. 950 (2025-09-24) also lists the fishing-permit regulation among the rules in force.
-
 - id: POL-CLOS-015
   title: 农业农村部关于调整海洋伏季休渔制度的通告
   title_zh: 农业农村部关于调整海洋伏季休渔制度的通告
@@ -147,12 +149,13 @@ sources:
     parseable: true
     note: Registered in the main index.
   lifecycle: active
+  source_class: normative
+  currency:
+    as_of: '2026-11-03'
+    basis: publication
+    review_due: '2026-12-03'
+    note: "The 2026 Hainan and Guangxi closure notices both cite 农业农村部通告〔2023〕1号, so the 2023 adjustment remains the system basis; it replaced the 2021 notice, which is not registered."
   watch_ref: WATCH-MOA-CLOSURE-2023
-  validity:
-    status: in_force
-    as_of: '2026-11-02'
-    note: The 2026 Hainan and Guangxi closure notices both cite 农业农村部通告〔2023〕1号, so the 2023 adjustment remains the system basis; it replaced the 2021 notice, which is not registered.
-
 - id: POL-RULE-018
   title: 中华人民共和国渔业法实施细则
   title_zh: 中华人民共和国渔业法实施细则
@@ -178,12 +181,13 @@ sources:
     parseable: true
     note: Registered in the main index.
   lifecycle: active
+  source_class: normative
+  currency:
+    as_of: '2026-11-03'
+    basis: publication
+    review_due: '2026-12-03'
+    note: "The 2020 second revision is still marked in force; alignment with the 2025 Fisheries Law is still to watch."
   watch_note: Static official file; no change feed. Rechecked at the quarterly review.
-  validity:
-    status: in_force
-    as_of: '2026-11-02'
-    note: The 2020 second revision is still marked in force; alignment with the 2025 Fisheries Law is still to watch.
-
 - id: POL-RULE-019
   title: 中华人民共和国渔业船舶检验条例
   title_zh: 中华人民共和国渔业船舶检验条例
@@ -209,12 +213,13 @@ sources:
     parseable: true
     note: Registered in the main index.
   lifecycle: active
+  source_class: normative
+  currency:
+    as_of: '2026-11-03'
+    basis: publication
+    review_due: '2026-12-03'
+    note: "Source note records 国务院令第383号; adopted 2003-06-11, effective 2003-08-01. 40 articles."
   watch_note: Static official file; no change feed. Rechecked at the quarterly review.
-  validity:
-    status: in_force
-    as_of: '2026-11-02'
-    note: Source note records 国务院令第383号; adopted 2003-06-11, effective 2003-08-01. 40 articles.
-
 - id: POL-RULE-020
   title: 渔业资源增殖保护费征收使用办法
   title_zh: 渔业资源增殖保护费征收使用办法
@@ -240,12 +245,13 @@ sources:
     parseable: true
     note: Registered in the main index.
   lifecycle: active
+  source_class: normative
+  currency:
+    as_of: '2026-11-03'
+    basis: publication
+    review_due: '2026-12-03'
+    note: "Source note records Approved 1988-10-09, issued 1988-10-31 as 农业部、财政部、国家物价局令第1号; revised 2011-01-08; effective 1989-01-01. 18 articles."
   watch_note: Static official file; no change feed. Rechecked at the quarterly review.
-  validity:
-    status: in_force
-    as_of: '2026-11-02'
-    note: Source note records Approved 1988-10-09, issued 1988-10-31 as 农业部、财政部、国家物价局令第1号; revised 2011-01-08; effective 1989-01-01. 18 articles.
-
 - id: POL-GD-021
   title: 广东省渔业管理条例
   title_zh: 广东省渔业管理条例
@@ -271,12 +277,13 @@ sources:
     parseable: true
     note: Registered in the main index.
   lifecycle: active
+  source_class: normative
+  currency:
+    as_of: '2026-11-03'
+    basis: publication
+    review_due: '2026-12-03'
+    note: "Source note records Adopted 2003-07-25; amended 2012-07-26, 2015-12-30 and 2019-09-25; effective 2003-09-01. 47 articles."
   watch_note: Static official file; no change feed. Rechecked at the quarterly review.
-  validity:
-    status: in_force
-    as_of: '2026-11-02'
-    note: Source note records Adopted 2003-07-25; amended 2012-07-26, 2015-12-30 and 2019-09-25; effective 2003-09-01. 47 articles.
-
 - id: POL-GD-022
   title: 广东省渔港和渔业船舶管理条例
   title_zh: 广东省渔港和渔业船舶管理条例
@@ -302,12 +309,13 @@ sources:
     parseable: true
     note: Registered in the main index.
   lifecycle: active
+  source_class: normative
+  currency:
+    as_of: '2026-11-03'
+    basis: publication
+    review_due: '2026-12-03'
+    note: "Source note records Adopted 2011-09-29; amended 2019-01-16 and 2020-09-29; effective 2011-12-01. 44 articles."
   watch_note: Static official file; no change feed. Rechecked at the quarterly review.
-  validity:
-    status: in_force
-    as_of: '2026-11-02'
-    note: Source note records Adopted 2011-09-29; amended 2019-01-16 and 2020-09-29; effective 2011-12-01. 44 articles.
-
 - id: POL-GX-023
   title: 广西壮族自治区实施《中华人民共和国渔业法》办法
   title_zh: 广西壮族自治区实施《中华人民共和国渔业法》办法
@@ -333,12 +341,13 @@ sources:
     parseable: true
     note: Registered in the main index.
   lifecycle: active
+  source_class: normative
+  currency:
+    as_of: '2026-11-03'
+    basis: publication
+    review_due: '2026-12-03'
+    note: "Source note records Adopted 1989-09-16; amended 2004-06-03; revised 2010-03-31; amended again 2016-03-31; effective 2010-05-01. 48 articles."
   watch_note: Static official file; no change feed. Rechecked at the quarterly review.
-  validity:
-    status: in_force
-    as_of: '2026-11-02'
-    note: Source note records Adopted 1989-09-16; amended 2004-06-03; revised 2010-03-31; amended again 2016-03-31; effective 2010-05-01. 48 articles.
-
 - id: POL-GX-024
   title: 广西壮族自治区渔港渔业船舶管理条例
   title_zh: 广西壮族自治区渔港渔业船舶管理条例
@@ -364,12 +373,13 @@ sources:
     parseable: true
     note: Registered in the main index.
   lifecycle: active
+  source_class: normative
+  currency:
+    as_of: '2026-11-03'
+    basis: publication
+    review_due: '2026-12-03'
+    note: "Source note records Adopted 2001-09-28; amended 2004-07-31, 2010-09-29 and 2024-11-28; effective 2002-01-01. 37 articles."
   watch_note: Static official file; no change feed. Rechecked at the quarterly review.
-  validity:
-    status: in_force
-    as_of: '2026-11-02'
-    note: Source note records Adopted 2001-09-28; amended 2004-07-31, 2010-09-29 and 2024-11-28; effective 2002-01-01. 37 articles.
-
 - id: POL-FJ-025
   title: 福建省实施《中华人民共和国渔业法》办法
   title_zh: 福建省实施《中华人民共和国渔业法》办法
@@ -395,12 +405,13 @@ sources:
     parseable: true
     note: Registered in the main index.
   lifecycle: active
+  source_class: normative
+  currency:
+    as_of: '2026-11-03'
+    basis: publication
+    review_due: '2026-12-03'
+    note: "Source note records Adopted 1989-03-10; amended 1993-03-07, 1997-10-25 and 2002-03-28; revised 2007-03-28; amended 2012-03-29, 2016-04-01 and 2019-11-27; effective 2007-05-01. Five chapters, 61 articles."
   watch_note: Static official file; no change feed. Rechecked at the quarterly review.
-  validity:
-    status: in_force
-    as_of: '2026-11-02'
-    note: Source note records Adopted 1989-03-10; amended 1993-03-07, 1997-10-25 and 2002-03-28; revised 2007-03-28; amended 2012-03-29, 2016-04-01 and 2019-11-27; effective 2007-05-01. Five chapters, 61 articles.
-
 - id: POL-FJ-026
   title: 福建省渔港和渔业船舶管理条例
   title_zh: 福建省渔港和渔业船舶管理条例
@@ -426,12 +437,13 @@ sources:
     parseable: true
     note: Registered in the main index.
   lifecycle: active
+  source_class: normative
+  currency:
+    as_of: '2026-11-03'
+    basis: publication
+    review_due: '2026-12-03'
+    note: "Source note records Adopted 2004-06-02; amended 2010-09-30; effective 2004-09-01. Seven chapters, 46 articles. Covers the fishing-port definition, port planning and the fishing-vessel register."
   watch_note: Static official file; no change feed. Rechecked at the quarterly review.
-  validity:
-    status: in_force
-    as_of: '2026-11-02'
-    note: Source note records Adopted 2004-06-02; amended 2010-09-30; effective 2004-09-01. Seven chapters, 46 articles. Covers the fishing-port definition, port planning and the fishing-vessel register.
-
 - id: POL-GEAR-016
   title: 农业部关于实施海洋捕捞准用渔具和过渡渔具最小网目尺寸制度的通告
   title_zh: 农业部关于实施海洋捕捞准用渔具和过渡渔具最小网目尺寸制度的通告
@@ -457,12 +469,13 @@ sources:
     parseable: true
     note: Registered in the main index.
   lifecycle: active
+  source_class: normative
+  currency:
+    as_of: '2026-11-03'
+    basis: publication
+    review_due: '2026-12-03'
+    note: "Source note records Establishes the minimum-mesh system for permitted and transitional marine capture gear, in force from 2014-06-01 across the Huanghai-Bohai, East China and South China Sea areas; repeals the 2003 notice. Annexes 1, 2 a..."
   watch_ref: WATCH-MOA-YYJ-NOTICES
-  validity:
-    status: in_force
-    as_of: '2026-11-02'
-    note: Source note records Establishes the minimum-mesh system for permitted and transitional marine capture gear, in force from 2014-06-01 across the Huanghai-Bohai, East China and South China Sea areas; repeals the 2003 notice. Annexes 1, 2 a...
-
 - id: POL-SPEC-041
   title: 农业农村部关于2026年伏季休渔期间专项捕捞许可和捕捞辅助船配套服务安排的通告
   title_zh: 农业农村部关于2026年伏季休渔期间专项捕捞许可和捕捞辅助船配套服务安排的通告
@@ -488,12 +501,13 @@ sources:
     parseable: true
     note: Registered in the main index.
   lifecycle: active
+  source_class: normative
+  currency:
+    as_of: '2026-11-03'
+    basis: publication
+    review_due: '2026-12-03'
+    note: "Current for the 2026 closure season; it arranges special permits under the 2023 notice."
   watch_note: Static official file; no change feed. Rechecked at the quarterly review.
-  validity:
-    status: in_force
-    as_of: '2026-11-02'
-    note: Current for the 2026 closure season; it arranges special permits under the 2023 notice.
-
 - id: POL-ENF-068
   type: notice
   title: Notice on the 2026 marine seasonal-closure enforcement action
@@ -519,11 +533,13 @@ sources:
     parseable: true
     note: Registered in the main index.
   lifecycle: active
+  source_class: normative
+  currency:
+    as_of: '2026-11-03'
+    basis: publication
+    review_due: '2026-12-03'
+    note: "Current for the 2026 season; the page is the ministry publication of 2026-04-29."
   watch_ref: WATCH-MOA-ENFORCE-2026
-  validity:
-    status: in_force
-    as_of: '2026-11-02'
-    note: Current for the 2026 season; the page is the ministry publication of 2026-04-29.
 - id: STD-HULL-069
   type: standard
   title: Notice on issuing the standard fishing-vessel hull type evaluation method (trial)
@@ -549,11 +565,13 @@ sources:
     parseable: true
     note: Registered in a reference collection.
   lifecycle: active
+  source_class: standard
+  currency:
+    as_of: '2026-11-03'
+    basis: publication
+    review_due: '2027-02-01'
+    note: "No replacement notice was found; the method it promulgates is still the basis the provincial catalogs cite."
   watch_note: Static publisher text; no change feed. Rechecked at the quarterly review against the in-force catalogue.
-  validity:
-    status: in_force
-    as_of: '2026-11-02'
-    note: No replacement notice was found; the method it promulgates is still the basis the provincial catalogs cite.
 - id: STD-HULL-070
   type: standard
   title: Usage notes for the standard hull type evaluation method (trial)
@@ -579,11 +597,13 @@ sources:
     parseable: true
     note: Registered in a reference collection.
   lifecycle: active
+  source_class: standard
+  currency:
+    as_of: '2026-11-03'
+    basis: publication
+    review_due: '2027-02-01'
+    note: "Published with the 2017 method and not replaced."
   watch_note: Static official file; no change feed. Rechecked at the quarterly review.
-  validity:
-    status: in_force
-    as_of: '2026-11-02'
-    note: Published with the 2017 method and not replaced.
 - id: STD-YY-071
   type: standard
   title: Distant-water fishing-vessel standard hull parameter series (2024 edition)
@@ -609,11 +629,13 @@ sources:
     parseable: true
     note: Registered in a reference collection.
   lifecycle: active
+  source_class: standard
+  currency:
+    as_of: '2026-11-03'
+    basis: publication
+    review_due: '2027-02-01'
+    note: "Effective 2024-12-01 and the current edition; it replaces the 2021 edition (农办渔〔2021〕15号), which is not registered. The 2018 edition was published in 农业农村部公报 2018 年第 11 期 (http://www.moa.gov.cn/nybgb/2018/201811/201901/t20190102_6165927.htm) and sits as the named predecessor in the chain, not as a registered source."
   watch_note: Static official file; no change feed. Rechecked at the quarterly review.
-  validity:
-    status: in_force
-    as_of: '2026-11-02'
-    note: Effective 2024-12-01 and the current edition; it replaces the 2021 edition (农办渔〔2021〕15号), which is not registered. The 2018 edition was published in 农业农村部公报 2018 年第 11 期 (http://www.moa.gov.cn/nybgb/2018/201811/201901/t20190102_6165927.htm) and sits as the named predecessor in the chain, not as a registered source.
 - id: POL-OBS-072
   type: regulation
   title: Regulations on the administration of ocean observation and forecasting
@@ -639,11 +661,13 @@ sources:
     parseable: true
     note: Registered in the main index.
   lifecycle: active
+  source_class: normative
+  currency:
+    as_of: '2026-11-03'
+    basis: publication
+    review_due: '2026-12-03'
+    note: "The 2023-07-20 revision is the text published by the national administrative regulations database."
   watch_ref: WATCH-MOJ-OBSERVATION
-  validity:
-    status: in_force
-    as_of: '2026-11-02'
-    note: The 2023-07-20 revision is the text published by the national administrative regulations database.
 - id: STAT-ECO-073
   type: notice
   title: 2025 China marine ecological early-warning monitoring bulletin
@@ -669,11 +693,13 @@ sources:
     parseable: true
     note: Registered in a reference collection.
   lifecycle: active
+  source_class: normative
+  currency:
+    as_of: '2026-11-03'
+    basis: publication
+    review_due: '2026-12-03'
+    note: "Published 2026-06-08 and the latest edition on the official bulletin list."
   watch_note: Static official file; no change feed. Rechecked at the quarterly review.
-  validity:
-    status: in_force
-    as_of: '2026-11-02'
-    note: Published 2026-06-08 and the latest edition on the official bulletin list.
 - id: STAT-DIS-074
   type: notice
   title: 2023 China marine disaster bulletin
@@ -699,11 +725,13 @@ sources:
     parseable: false
     note: Text layer is garbled by the embedded-font mapping; provenance only.
   lifecycle: active
+  source_class: normative
+  currency:
+    as_of: '2026-11-03'
+    basis: publication
+    review_due: '2026-12-03'
+    note: "Latest published edition (2024-04-22); no 2024 bulletin was found on the official list."
   watch_note: Static official file; no change feed. Rechecked at the quarterly review.
-  validity:
-    status: in_force
-    as_of: '2026-11-02'
-    note: Latest published edition (2024-04-22); no 2024 bulletin was found on the official list.
 - id: POL-RES-075
   type: regulation
   title: Regulations on the administration of aquatic organism stock enhancement
@@ -729,11 +757,13 @@ sources:
     parseable: true
     note: Registered in the main index.
   lifecycle: active
+  source_class: normative
+  currency:
+    as_of: '2026-11-03'
+    basis: publication
+    review_due: '2026-12-03'
+    note: "Listed among the ministry rules in force in the 2025-09 catalogue; no repeal found. Announcement No. 950 (2025-09-24) also lists this regulation among the rules in force."
   watch_ref: WATCH-GOV-RES-075
-  validity:
-    status: in_force
-    as_of: '2026-11-02'
-    note: Listed among the ministry rules in force in the 2025-09 catalogue; no repeal found. Announcement No. 950 (2025-09-24) also lists this regulation among the rules in force.
 - id: STD-SPEC-076
   type: notice
   title: National key-protected wildlife list
@@ -759,11 +789,13 @@ sources:
     parseable: false
     note: Image-only PDF with no text layer; provenance only.
   lifecycle: active
+  source_class: normative
+  currency:
+    as_of: '2026-11-03'
+    basis: publication
+    review_due: '2026-12-03'
+    note: "Announced 2021-02-05 and effective on publication; no replacement list found."
   watch_note: Static official file; no change feed. Rechecked at the quarterly review.
-  validity:
-    status: in_force
-    as_of: '2026-11-02'
-    note: Announced 2021-02-05 and effective on publication; no replacement list found.
 - id: POL-PORT-077
   type: regulation
   title: Regulations on traffic safety in fishing port waters
@@ -789,11 +821,13 @@ sources:
     parseable: true
     note: Registered in the main index.
   lifecycle: active
+  source_class: normative
+  currency:
+    as_of: '2026-11-03'
+    basis: publication
+    review_due: '2026-12-03'
+    note: "The 2019-03-02 amendment is the text published in the State Council gazette."
   watch_ref: WATCH-GOV-PORT-077
-  validity:
-    status: in_force
-    as_of: '2026-11-02'
-    note: The 2019-03-02 amendment is the text published in the State Council gazette.
 - id: POL-PEN-078
   type: regulation
   title: Provisions on administrative penalties for fishing port and navigation supervision
@@ -819,11 +853,13 @@ sources:
     parseable: true
     note: Registered in the main index.
   lifecycle: active
+  source_class: normative
+  currency:
+    as_of: '2026-11-03'
+    basis: publication
+    review_due: '2026-12-03'
+    note: "The 2025-07-15 revision is the text published on the ministry rule page. Announcement No. 950 (2025-09-24) also lists this regulation among the rules in force."
   watch_note: Static publisher text; no change feed. Rechecked at the quarterly review against the in-force catalogue.
-  validity:
-    status: in_force
-    as_of: '2026-11-02'
-    note: The 2025-07-15 revision is the text published on the ministry rule page. Announcement No. 950 (2025-09-24) also lists this regulation among the rules in force.
 - id: POL-LIST-079
   type: notice
   title: 'Announcement No. 950: catalogue of rules in force'
@@ -849,11 +885,13 @@ sources:
     parseable: true
     note: Registered in the main index.
   lifecycle: active
+  source_class: normative
+  currency:
+    as_of: '2026-11-03'
+    basis: publication
+    review_due: '2026-12-03'
+    note: "Published 2025-09-24 and the current catalogue of ministry rules in force."
   watch_note: Static publisher text; no change feed. Rechecked at the quarterly review against the in-force catalogue.
-  validity:
-    status: in_force
-    as_of: '2026-11-02'
-    note: Published 2025-09-24 and the current catalogue of ministry rules in force.
 - id: POL-PEN-080
   type: regulation
   title: Provisions on fishery administrative penalties
@@ -879,11 +917,13 @@ sources:
     parseable: true
     note: Registered in the main index.
   lifecycle: active
+  source_class: normative
+  currency:
+    as_of: '2026-11-03'
+    basis: publication
+    review_due: '2026-12-03'
+    note: "The consolidated text carries the 2025-07-15 revision (农业农村部令2025年第3号) on the ministry rule page."
   watch_note: Static publisher text; no change feed. Rechecked at the quarterly review against the in-force catalogue.
-  validity:
-    status: in_force
-    as_of: '2026-11-02'
-    note: The consolidated text carries the 2025-07-15 revision (农业农村部令2025年第3号) on the ministry rule page.
 - id: POL-WATCH-082
   type: operations
   title: Standards for navigation watchkeeping on fishing vessels (trial)
@@ -909,11 +949,13 @@ sources:
     parseable: true
     note: Registered in the main index.
   lifecycle: active
+  source_class: standard
+  currency:
+    as_of: '2026-11-03'
+    basis: publication
+    review_due: '2027-02-01'
+    note: "Announcement No. 950 (2025-09-24) lists 渔业船舶航行值班准则（试行） among the ministry rules in force."
   watch_ref: WATCH-MOA-YYJ-NOTICES
-  validity:
-    status: in_force
-    as_of: '2026-11-02'
-    note: Announcement No. 950 (2025-09-24) lists 渔业船舶航行值班准则（试行） among the ministry rules in force.
 - id: POL-GEAR-033
   title: 海洋捕捞准用渔具最小网目（或网囊）尺寸标准
   title_zh: 海洋捕捞准用渔具最小网目（或网囊）尺寸标准
@@ -939,12 +981,13 @@ sources:
     parseable: true
     note: Registered in the main index.
   lifecycle: active
+  source_class: standard
+  currency:
+    as_of: '2026-11-03'
+    basis: publication
+    review_due: '2027-02-01'
+    note: "Source note records Annex 1 to the 2013 minimum-mesh notice (POL-GEAR-016), in force from 2014-06-01. Table of minimum mesh or codend sizes for permitted marine capture gear, by sea area (Huanghai-Bohai, East China Sea, South China Sea i..."
   watch_note: Static official file; no change feed. Rechecked at the quarterly review.
-  validity:
-    status: in_force
-    as_of: '2026-11-02'
-    note: Source note records Annex 1 to the 2013 minimum-mesh notice (POL-GEAR-016), in force from 2014-06-01. Table of minimum mesh or codend sizes for permitted marine capture gear, by sea area (Huanghai-Bohai, East China Sea, South China Sea i...
-
 - id: POL-GEAR-034
   title: 海洋捕捞过渡渔具最小网目（或网囊）尺寸标准
   title_zh: 海洋捕捞过渡渔具最小网目（或网囊）尺寸标准
@@ -970,12 +1013,13 @@ sources:
     parseable: true
     note: Registered in the main index.
   lifecycle: active
+  source_class: standard
+  currency:
+    as_of: '2026-11-03'
+    basis: publication
+    review_due: '2027-02-01'
+    note: "Source note records Annex 2 to the 2013 minimum-mesh notice (POL-GEAR-016), in force from 2014-06-01. Table of minimum mesh or codend sizes for transitional marine capture gear, by sea area, gear class (trawl, gillnet, purse seine, stow ..."
   watch_note: Static official file; no change feed. Rechecked at the quarterly review.
-  validity:
-    status: in_force
-    as_of: '2026-11-02'
-    note: Source note records Annex 2 to the 2013 minimum-mesh notice (POL-GEAR-016), in force from 2014-06-01. Table of minimum mesh or codend sizes for transitional marine capture gear, by sea area, gear class (trawl, gillnet, purse seine, stow ...
-
 - id: OPS-STD-035
   title: 海洋捕捞信息采集抽样调查规范（SC/T 9460—2025）
   title_zh: 海洋捕捞信息采集抽样调查规范（SC/T 9460—2025）
@@ -1001,12 +1045,13 @@ sources:
     parseable: true
     note: Registered in the main index.
   lifecycle: active
+  source_class: standard
+  currency:
+    as_of: '2026-11-03'
+    basis: publication
+    review_due: '2027-02-01'
+    note: "Source note records Aquaculture-industry standard, effective 2026-05-01. Defines marine capture information, sample vessels and collectors; covers stratified vessel sampling, monthly information survey, data quality control, statistical ..."
   watch_note: Static official file; no change feed. Rechecked at the quarterly review.
-  validity:
-    status: in_force
-    as_of: '2026-11-02'
-    note: Source note records Aquaculture-industry standard, effective 2026-05-01. Defines marine capture information, sample vessels and collectors; covers stratified vessel sampling, monthly information survey, data quality control, statistical ...
-
 - id: OPS-STD-039
   title: 渔具分类、命名及代号（GB/T 5147—2026）
   title_zh: 渔具分类、命名及代号（GB/T 5147—2026）
@@ -1032,12 +1077,13 @@ sources:
     parseable: true
     note: Registered in the main index.
   lifecycle: active
+  source_class: standard
+  currency:
+    as_of: '2026-11-03'
+    basis: publication
+    review_due: '2027-02-01'
+    note: "Source note records National standard for fishing-gear classification, naming and codes, effective 2026-09-01 and replacing GB/T 5147—2003. It is the classification reference cited by SC/T 9460—2025 and the basis for mapping the yearbook..."
   watch_note: Static official file; no change feed. Rechecked at the quarterly review.
-  validity:
-    status: in_force
-    as_of: '2026-11-02'
-    note: Source note records National standard for fishing-gear classification, naming and codes, effective 2026-09-01 and replacing GB/T 5147—2003. It is the classification reference cited by SC/T 9460—2025 and the basis for mapping the yearbook...
-
 - id: STD-ASFIS-044
   title: ASFIS List of Species for Fishery Statistics Purposes (2026.1)
   title_zh: 渔业统计物种名录 ASFIS（2026.1 版）
@@ -1063,11 +1109,11 @@ sources:
     parseable: true
     note: Not routed to a retrieval channel.
   lifecycle: active
-  validity:
-    status: not_applicable
-    as_of: '2026-11-02'
-    note: Product documentation edition - ASFIS 2026.1 species list; not a normative act.
-
+  source_class: reference
+  currency:
+    as_of: '2026-11-03'
+    basis: retrieval
+    review_due: '2027-05-02'
 - id: STD-MUR-045
   title: GHRSST Level 4 MUR Global Foundation Sea Surface Temperature Analysis (v4.1) - product description
   title_zh: MUR 全球基础海表温度分析 v4.1——产品说明
@@ -1093,11 +1139,11 @@ sources:
     parseable: true
     note: Registered in a reference collection.
   lifecycle: active
-  validity:
-    status: not_applicable
-    as_of: '2026-11-02'
-    note: Product documentation edition - MUR SST product description v4.1; not a normative act.
-
+  source_class: reference
+  currency:
+    as_of: '2026-11-03'
+    basis: retrieval
+    review_due: '2027-05-02'
 - id: STD-OLCI-046
   title: Sentinel-3 OLCI Marine User Handbook
   title_zh: Sentinel-3 OLCI 海洋用户手册
@@ -1123,11 +1169,11 @@ sources:
     parseable: true
     note: Registered in a reference collection.
   lifecycle: active
-  validity:
-    status: not_applicable
-    as_of: '2026-11-02'
-    note: Product documentation edition - OLCI marine user handbook; not a normative act.
-
+  source_class: reference
+  currency:
+    as_of: '2026-11-03'
+    basis: retrieval
+    review_due: '2027-05-02'
 - id: DICT-GFW-048
   title: Global Fishing Watch API client - Events API documentation
   title_zh: Global Fishing Watch API 客户端——事件接口文档
@@ -1153,11 +1199,11 @@ sources:
     parseable: true
     note: Registered in a reference collection.
   lifecycle: active
-  validity:
-    status: not_applicable
-    as_of: '2026-11-02'
-    note: Product documentation edition - GFW Events API client documentation; not a normative act.
-
+  source_class: reference
+  currency:
+    as_of: '2026-11-03'
+    basis: retrieval
+    review_due: '2027-05-02'
 - id: STD-CMEMS-049
   title: Copernicus Marine Product User Manual - GLOBAL_MULTIYEAR_PHY_001_030
   title_zh: 哥白尼海洋产品用户手册——GLOBAL_MULTIYEAR_PHY_001_030
@@ -1183,11 +1229,11 @@ sources:
     parseable: true
     note: Registered in a reference collection.
   lifecycle: active
-  validity:
-    status: not_applicable
-    as_of: '2026-11-02'
-    note: Product documentation edition - CMEMS product user manual Issue 1.7; not a normative act.
-
+  source_class: reference
+  currency:
+    as_of: '2026-11-03'
+    basis: retrieval
+    review_due: '2027-05-02'
 - id: POL-STAT-050
   title: 渔业统计工作规定
   title_zh: 渔业统计工作规定
@@ -1213,12 +1259,13 @@ sources:
     parseable: true
     note: Registered in a reference collection.
   lifecycle: active
+  source_class: normative
+  currency:
+    as_of: '2026-11-03'
+    basis: publication
+    review_due: '2026-12-03'
+    note: "The text states 本规定自发布之日起施行 (Article 28)."
   watch_note: Static publisher text; no change feed. Rechecked at the quarterly review against the in-force catalogue.
-  validity:
-    status: in_force
-    as_of: '2026-11-02'
-    note: The text states 本规定自发布之日起施行 (Article 28).
-
 - id: POL-STAT-051
   title: 渔业统计调查制度（2024 年批准）
   title_zh: 渔业统计调查制度（2024 年批准）
@@ -1244,12 +1291,13 @@ sources:
     parseable: true
     note: Registered in a reference collection.
   lifecycle: active
+  source_class: normative
+  currency:
+    as_of: '2026-11-03'
+    basis: publication
+    review_due: '2026-12-03'
+    note: "Approved as 国统制〔2024〕120号; the registered text is the 2024 survey system."
   watch_note: Static publisher text; no change feed. Rechecked at the quarterly review against the in-force catalogue.
-  validity:
-    status: in_force
-    as_of: '2026-11-02'
-    note: Approved as 国统制〔2024〕120号; the registered text is the 2024 survey system.
-
 - id: POL-VMS-053
   title: 远洋渔船船位监测管理办法（2019 年修订）
   title_zh: 远洋渔船船位监测管理办法（2019 年修订）
@@ -1275,12 +1323,13 @@ sources:
     parseable: true
     note: Registered in a reference collection.
   lifecycle: active
+  source_class: normative
+  currency:
+    as_of: '2026-11-03'
+    basis: publication
+    review_due: '2026-12-03'
+    note: "农渔发〔2019〕22号 (2019-08-01); Article 32 states 本办法自2020年1月1日起执行, and the 2014 predecessor is repealed."
   watch_note: Static publisher text; no change feed. Rechecked at the quarterly review against the in-force catalogue.
-  validity:
-    status: in_force
-    as_of: '2026-11-02'
-    note: 农渔发〔2019〕22号 (2019-08-01); Article 32 states 本办法自2020年1月1日起执行, and the 2014 predecessor is repealed.
-
 - id: STD-ECERT-054
   title: 渔业船网工具指标批准书、所有权登记证书和国籍证书电子证照标准
   title_zh: 渔业船网工具指标批准书、所有权登记证书和国籍证书电子证照标准
@@ -1306,12 +1355,13 @@ sources:
     parseable: true
     note: Registered in a reference collection.
   lifecycle: active
+  source_class: standard
+  currency:
+    as_of: '2026-11-03'
+    basis: publication
+    review_due: '2027-02-01'
+    note: "The three certificate standards were published on 2025-01-01 (C 0402—2024, C 0403—2024, C 0374—2024)."
   watch_note: Static publisher text; no change feed. Rechecked at the quarterly review against the in-force catalogue.
-  validity:
-    status: in_force
-    as_of: '2026-11-02'
-    note: The three certificate standards were published on 2025-01-01 (C 0402—2024, C 0403—2024, C 0374—2024).
-
 - id: STD-CWP-043
   title: CWP Handbook of Fishery Statistics - capture statistics concepts
   title_zh: CWP 渔业统计手册——捕捞统计概念（渔获、上岸、捕捞努力量、渔具分类）
@@ -1337,11 +1387,11 @@ sources:
     parseable: true
     note: Registered in a reference collection.
   lifecycle: active
-  validity:
-    status: not_applicable
-    as_of: '2026-11-02'
-    note: Product documentation edition - CWP handbook pages; not a normative act.
-
+  source_class: standard
+  currency:
+    as_of: '2026-11-03'
+    basis: publication
+    review_due: '2027-02-01'
 - id: STAT-CSY-027
   title: 中国统计年鉴 2026（Excel）
   title_zh: 中国统计年鉴 2026（Excel）
@@ -1367,12 +1417,12 @@ sources:
     parseable: true
     note: Source for the statistical extracts.
   lifecycle: active
+  source_class: official_statistics
+  currency:
+    as_of: '2026-11-03'
+    basis: edition
+    review_due: '2027-11-03'
   watch_note: Internal data edition; not a web page to monitor.
-  validity:
-    status: not_applicable
-    as_of: '2026-11-02'
-    note: Data edition - an edition or dictionary is not a normative act; it is valid for its data year, and a later edition supersedes it for current-year data.
-
 - id: DICT-STAT-013
   title: 渔业统计指标解释（2024中国渔业统计年鉴附录3）
   title_zh: 渔业统计指标解释（2024中国渔业统计年鉴附录3）
@@ -1398,12 +1448,12 @@ sources:
     parseable: true
     note: Registered in the main index.
   lifecycle: active
+  source_class: reference
+  currency:
+    as_of: '2026-11-03'
+    basis: retrieval
+    review_due: '2027-05-02'
   watch_note: Static official file; no change feed. Rechecked at the quarterly review.
-  validity:
-    status: not_applicable
-    as_of: '2026-11-02'
-    note: Data edition - an edition or dictionary is not a normative act; it is valid for its data year, and a later edition supersedes it for current-year data.
-
 - id: DICT-STAT-040
   title: 中国统计年鉴2025主要统计指标解释（农业）
   title_zh: 中国统计年鉴2025主要统计指标解释（农业）
@@ -1429,12 +1479,13 @@ sources:
     parseable: true
     note: Registered in the main index.
   lifecycle: active
+  source_class: reference
+  currency:
+    as_of: '2026-11-03'
+    basis: retrieval
+    review_due: '2027-05-02'
+    note: "Source note records National statistical definition - water-product output is the final effective output of capture and culture, covering marine and freshwater fish, crustaceans, shellfish, cephalopods, algae and other products; the data ..."
   watch_note: Static official file; no change feed. Rechecked at the quarterly review.
-  validity:
-    status: in_force
-    as_of: '2026-11-02'
-    note: Source note records National statistical definition - water-product output is the final effective output of capture and culture, covering marine and freshwater fish, crustaceans, shellfish, cephalopods, algae and other products; the data ...
-
 - id: STAT-YB-2018
   type: statistical_yearbook
   title: China Fisheries Statistical Yearbook 2018 (Excel tables)
@@ -1460,12 +1511,12 @@ sources:
     parseable: true
     note: Source for the statistical extracts.
   lifecycle: active
+  source_class: official_statistics
+  currency:
+    as_of: '2026-11-03'
+    basis: edition
+    review_due: '2027-11-03'
   watch_note: Internal data edition; not a web page to monitor.
-  validity:
-    status: not_applicable
-    as_of: '2026-11-02'
-    note: Data edition - an edition or dictionary is not a normative act; it is valid for its data year, and a later edition supersedes it for current-year data.
-
 - id: STAT-YB-2019
   type: statistical_yearbook
   title: China Fisheries Statistical Yearbook 2019 (Excel tables)
@@ -1491,12 +1542,12 @@ sources:
     parseable: true
     note: Source for the statistical extracts.
   lifecycle: active
+  source_class: official_statistics
+  currency:
+    as_of: '2026-11-03'
+    basis: edition
+    review_due: '2027-11-03'
   watch_note: Internal data edition; not a web page to monitor.
-  validity:
-    status: not_applicable
-    as_of: '2026-11-02'
-    note: Data edition - an edition or dictionary is not a normative act; it is valid for its data year, and a later edition supersedes it for current-year data.
-
 - id: STAT-YB-2020
   type: statistical_yearbook
   title: China Fisheries Statistical Yearbook 2020 (Excel tables)
@@ -1522,12 +1573,12 @@ sources:
     parseable: true
     note: Source for the statistical extracts.
   lifecycle: active
+  source_class: official_statistics
+  currency:
+    as_of: '2026-11-03'
+    basis: edition
+    review_due: '2027-11-03'
   watch_note: Internal data edition; not a web page to monitor.
-  validity:
-    status: not_applicable
-    as_of: '2026-11-02'
-    note: Data edition - an edition or dictionary is not a normative act; it is valid for its data year, and a later edition supersedes it for current-year data.
-
 - id: STAT-YB-2021
   type: statistical_yearbook
   title: China Fisheries Statistical Yearbook 2021 (Excel tables)
@@ -1553,12 +1604,12 @@ sources:
     parseable: true
     note: Source for the statistical extracts.
   lifecycle: active
+  source_class: official_statistics
+  currency:
+    as_of: '2026-11-03'
+    basis: edition
+    review_due: '2027-11-03'
   watch_note: Internal data edition; not a web page to monitor.
-  validity:
-    status: not_applicable
-    as_of: '2026-11-02'
-    note: Data edition - an edition or dictionary is not a normative act; it is valid for its data year, and a later edition supersedes it for current-year data.
-
 - id: STAT-YB-2022
   type: statistical_yearbook
   title: China Fisheries Statistical Yearbook 2022 (Excel tables)
@@ -1584,12 +1635,12 @@ sources:
     parseable: true
     note: Source for the statistical extracts.
   lifecycle: active
+  source_class: official_statistics
+  currency:
+    as_of: '2026-11-03'
+    basis: edition
+    review_due: '2027-11-03'
   watch_note: Internal data edition; not a web page to monitor.
-  validity:
-    status: not_applicable
-    as_of: '2026-11-02'
-    note: Data edition - an edition or dictionary is not a normative act; it is valid for its data year, and a later edition supersedes it for current-year data.
-
 - id: STAT-YB-2023
   type: statistical_yearbook
   title: China Fisheries Statistical Yearbook 2023 (Excel tables)
@@ -1615,12 +1666,12 @@ sources:
     parseable: true
     note: Source for the statistical extracts.
   lifecycle: active
+  source_class: official_statistics
+  currency:
+    as_of: '2026-11-03'
+    basis: edition
+    review_due: '2027-11-03'
   watch_note: Internal data edition; not a web page to monitor.
-  validity:
-    status: not_applicable
-    as_of: '2026-11-02'
-    note: Data edition - an edition or dictionary is not a normative act; it is valid for its data year, and a later edition supersedes it for current-year data.
-
 - id: STAT-YB-2024
   type: statistical_yearbook
   title: China Fisheries Statistical Yearbook 2024 (Excel tables)
@@ -1646,12 +1697,12 @@ sources:
     parseable: true
     note: Source for the statistical extracts.
   lifecycle: active
+  source_class: official_statistics
+  currency:
+    as_of: '2026-11-03'
+    basis: edition
+    review_due: '2027-11-03'
   watch_note: Internal data edition; not a web page to monitor.
-  validity:
-    status: not_applicable
-    as_of: '2026-11-02'
-    note: Data edition - an edition or dictionary is not a normative act; it is valid for its data year, and a later edition supersedes it for current-year data.
-
 - id: STAT-YB-2025
   type: statistical_yearbook
   title: China Fisheries Statistical Yearbook 2025 (Excel tables)
@@ -1677,12 +1728,12 @@ sources:
     parseable: true
     note: Source for the statistical extracts.
   lifecycle: active
+  source_class: official_statistics
+  currency:
+    as_of: '2026-11-03'
+    basis: edition
+    review_due: '2027-11-03'
   watch_note: Internal data edition; not a web page to monitor.
-  validity:
-    status: not_applicable
-    as_of: '2026-11-02'
-    note: Data edition - an edition or dictionary is not a normative act; it is valid for its data year, and a later edition supersedes it for current-year data.
-
 - id: STAT-YB-2026
   type: statistical_yearbook
   title: China Fisheries Statistical Yearbook 2026 (scanned PDF)
@@ -1708,12 +1759,12 @@ sources:
     parseable: false
     note: Source for the statistical extracts.
   lifecycle: active
+  source_class: official_statistics
+  currency:
+    as_of: '2026-11-03'
+    basis: edition
+    review_due: '2027-11-03'
   watch_note: Internal data edition; not a web page to monitor.
-  validity:
-    status: not_applicable
-    as_of: '2026-11-02'
-    note: Data edition - an edition or dictionary is not a normative act; it is valid for its data year, and a later edition supersedes it for current-year data.
-
 - id: POL-CREW-055
   type: regulation
   title: Measures for the administration of fishery crew members (2022 revision)
@@ -1739,12 +1790,13 @@ sources:
     parseable: true
     note: Registered in a reference collection.
   lifecycle: active
+  source_class: normative
+  currency:
+    as_of: '2026-11-03'
+    basis: publication
+    review_due: '2026-12-03'
+    note: "Announcement No. 950 (2025-09-24) lists the fisheries crew measures among the ministry rules in force."
   watch_note: Static publisher text; no change feed. Rechecked at the quarterly review against the in-force catalogue.
-  validity:
-    status: in_force
-    as_of: '2026-11-02'
-    note: Announcement No. 950 (2025-09-24) lists the fisheries crew measures among the ministry rules in force.
-
 - id: STD-HY1-056
   type: fishery_product
   title: Ocean colour satellite HY-1C/D - payload capability and product description
@@ -1770,12 +1822,12 @@ sources:
     parseable: true
     note: Registered in a reference collection.
   lifecycle: active
+  source_class: reference
+  currency:
+    as_of: '2026-11-03'
+    basis: retrieval
+    review_due: '2027-05-02'
   watch_note: Static publisher text; no change feed. Rechecked at the quarterly review against the in-force catalogue.
-  validity:
-    status: not_applicable
-    as_of: '2026-11-02'
-    note: Product capability note - HY-1C/D payload description; not a normative act.
-
 - id: POL-HN-058
   type: regulation
   title: Measures of Hainan Province for implementing the Fisheries Law
@@ -1801,12 +1853,13 @@ sources:
     parseable: true
     note: Registered in a reference collection.
   lifecycle: active
+  source_class: normative
+  currency:
+    as_of: '2026-11-03'
+    basis: publication
+    review_due: '2026-12-03'
+    note: "The text states 自2014年1月1日起施行; the portal page also marks the text 有效."
   watch_note: Static publisher text; no change feed. Rechecked at the quarterly review against the in-force catalogue.
-  validity:
-    status: in_force
-    as_of: '2026-11-02'
-    note: The text states 自2014年1月1日起施行; the portal page also marks the text 有效.
-
 - id: POL-HN-059
   type: notice
   title: Hainan 2026 seasonal closure notice
@@ -1832,12 +1885,13 @@ sources:
     parseable: true
     note: Registered in a reference collection.
   lifecycle: active
+  source_class: normative
+  currency:
+    as_of: '2026-11-03'
+    basis: publication
+    review_due: '2026-12-03'
+    note: "Published 2026-04-24 as the 2026 provincial implementation; applies to the 2026 closure season."
   watch_note: Static publisher text; no change feed. Rechecked at the quarterly review against the in-force catalogue.
-  validity:
-    status: in_force
-    as_of: '2026-11-02'
-    note: Published 2026-04-24 as the 2026 provincial implementation; applies to the 2026 closure season.
-
 - id: POL-GX-060
   type: notice
   title: Guangxi 2026 seasonal closure management notice
@@ -1863,12 +1917,13 @@ sources:
     parseable: true
     note: Registered in a reference collection.
   lifecycle: active
+  source_class: normative
+  currency:
+    as_of: '2026-11-03'
+    basis: publication
+    review_due: '2026-12-03'
+    note: "Published 2026-04-22 as the 2026 provincial implementation; applies to the 2026 closure season."
   watch_note: Static publisher text; no change feed. Rechecked at the quarterly review against the in-force catalogue.
-  validity:
-    status: in_force
-    as_of: '2026-11-02'
-    note: Published 2026-04-22 as the 2026 provincial implementation; applies to the 2026 closure season.
-
 - id: POL-GD-061
   type: notice
   title: Shantou 2026 seasonal closure notice (municipal)
@@ -1894,11 +1949,12 @@ sources:
     parseable: true
     note: Registered in a reference collection.
   lifecycle: active
-  validity:
-    status: in_force
-    as_of: '2026-11-02'
-    note: Published 2026-04-28 by the Shantou agriculture bureau; applies to the 2026 closure season.
-
+  source_class: normative
+  currency:
+    as_of: '2026-11-03'
+    basis: publication
+    review_due: '2026-12-03'
+    note: "Published 2026-04-28 by the Shantou agriculture bureau; applies to the 2026 closure season."
 - id: STD-HULL-062
   type: standard
   title: Standard fishing-vessel hull type evaluation method (trial)
@@ -1924,12 +1980,13 @@ sources:
     parseable: true
     note: Registered in a reference collection.
   lifecycle: active
+  source_class: standard
+  currency:
+    as_of: '2026-11-03'
+    basis: publication
+    review_due: '2027-02-01'
+    note: "The 2017 method is not replaced; provincial catalogs still cite 农办渔〔2017〕5号 as their basis."
   watch_note: Static official file; no change feed. Rechecked at the quarterly review.
-  validity:
-    status: in_force
-    as_of: '2026-11-02'
-    note: The 2017 method is not replaced; provincial catalogs still cite 农办渔〔2017〕5号 as their basis.
-
 - id: POL-FJ-063
   type: notice
   title: Notice publishing the sixth and seventh batches of Fujian standard fishing-vessel hull types
@@ -1955,12 +2012,13 @@ sources:
     parseable: true
     note: Registered in a reference collection.
   lifecycle: active
+  source_class: normative
+  currency:
+    as_of: '2026-11-03'
+    basis: publication
+    review_due: '2026-12-03'
+    note: "The notice page marks 有 效 性： 有效 (published 2025-01-17)."
   watch_note: Static publisher text; no change feed. Rechecked at the quarterly review against the in-force catalogue.
-  validity:
-    status: in_force
-    as_of: '2026-11-02'
-    note: The notice page marks 有 效 性： 有效 (published 2025-01-17).
-
 - id: STD-FJ-064
   type: standard
   title: Fujian sixth-batch standard fishing-vessel hull type catalog
@@ -1986,12 +2044,13 @@ sources:
     parseable: true
     note: Registered in a reference collection.
   lifecycle: active
+  source_class: standard
+  currency:
+    as_of: '2026-11-03'
+    basis: publication
+    review_due: '2027-02-01'
+    note: "Attachment published by 闽海渔〔2025〕4号, whose page marks 有效; no successor catalog found."
   watch_note: Static official file; no change feed. Rechecked at the quarterly review.
-  validity:
-    status: in_force
-    as_of: '2026-11-02'
-    note: Attachment published by 闽海渔〔2025〕4号, whose page marks 有效; no successor catalog found.
-
 - id: STD-FJ-065
   type: standard
   title: Fujian seventh-batch standard fishing-vessel hull type catalog
@@ -2017,12 +2076,13 @@ sources:
     parseable: true
     note: Registered in a reference collection.
   lifecycle: active
+  source_class: standard
+  currency:
+    as_of: '2026-11-03'
+    basis: publication
+    review_due: '2027-02-01'
+    note: "Attachment published by 闽海渔〔2025〕4号, whose page marks 有效; no successor catalog found."
   watch_note: Static official file; no change feed. Rechecked at the quarterly review.
-  validity:
-    status: in_force
-    as_of: '2026-11-02'
-    note: Attachment published by 闽海渔〔2025〕4号, whose page marks 有效; no successor catalog found.
-
 - id: STD-FJ-066
   type: standard
   title: Fujian seventh-batch standard hull catalog for the Pingtan pilot zone only
@@ -2048,12 +2108,13 @@ sources:
     parseable: true
     note: Registered in a reference collection.
   lifecycle: active
+  source_class: standard
+  currency:
+    as_of: '2026-11-03'
+    basis: publication
+    review_due: '2027-02-01'
+    note: "Attachment published by 闽海渔〔2025〕4号, whose page marks 有效; no successor catalog found."
   watch_note: Static official file; no change feed. Rechecked at the quarterly review.
-  validity:
-    status: in_force
-    as_of: '2026-11-02'
-    note: Attachment published by 闽海渔〔2025〕4号, whose page marks 有效; no successor catalog found.
-
 - id: STD-GD-064
   type: standard
   title: Guangdong 2020 second-batch marine fishing-vessel standard hull catalog
@@ -2079,12 +2140,13 @@ sources:
     parseable: true
     note: Registered in a reference collection.
   lifecycle: active
+  source_class: standard
+  currency:
+    as_of: '2026-11-03'
+    basis: publication
+    review_due: '2027-02-01'
+    note: "Published with the 2020-07-10 announcement; no later Guangdong batch was found."
   watch_note: Static publisher text; no change feed. Rechecked at the quarterly review against the in-force catalogue.
-  validity:
-    status: in_force
-    as_of: '2026-11-02'
-    note: Published with the 2020-07-10 announcement; no later Guangdong batch was found.
-
 - id: STD-GD-065
   type: standard
   title: Guangdong 2021 marine fishing-vessel standard hull catalog
@@ -2110,12 +2172,13 @@ sources:
     parseable: true
     note: Registered in a reference collection.
   lifecycle: active
+  source_class: standard
+  currency:
+    as_of: '2026-11-03'
+    basis: publication
+    review_due: '2027-02-01'
+    note: "Published with the 2021-03-04 announcement; the latest Guangdong batch found."
   watch_note: Static publisher text; no change feed. Rechecked at the quarterly review against the in-force catalogue.
-  validity:
-    status: in_force
-    as_of: '2026-11-02'
-    note: Published with the 2021-03-04 announcement; the latest Guangdong batch found.
-
 - id: STD-HN-066
   type: standard
   title: Hainan 2019 small fishing-vessel standard hull catalog
@@ -2141,12 +2204,13 @@ sources:
     parseable: true
     note: Registered in a reference collection.
   lifecycle: active
+  source_class: standard
+  currency:
+    as_of: '2026-11-03'
+    basis: publication
+    review_due: '2027-02-01'
+    note: "Published with the 2019-03-28 announcement; no later Hainan catalog was found."
   watch_note: Static publisher text; no change feed. Rechecked at the quarterly review against the in-force catalogue.
-  validity:
-    status: in_force
-    as_of: '2026-11-02'
-    note: Published with the 2019-03-28 announcement; no later Hainan catalog was found.
-
 - id: STD-HN-067
   type: standard
   title: Hainan 2019 large and medium fishing-vessel standard hull catalog
@@ -2172,12 +2236,13 @@ sources:
     parseable: true
     note: Registered in a reference collection.
   lifecycle: active
+  source_class: standard
+  currency:
+    as_of: '2026-11-03'
+    basis: publication
+    review_due: '2027-02-01'
+    note: "Published with the 2019-03-28 announcement; no later Hainan catalog was found."
   watch_note: Static publisher text; no change feed. Rechecked at the quarterly review against the in-force catalogue.
-  validity:
-    status: in_force
-    as_of: '2026-11-02'
-    note: Published with the 2019-03-28 announcement; no later Hainan catalog was found.
-
 gaps:
 - Sixty-nine sources are registered: sixty-nine acquired and no candidates awaiting disposition.
 - The yearbook coverage matrix has no values in the public repository; all values stay local.

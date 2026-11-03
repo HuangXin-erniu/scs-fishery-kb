@@ -715,35 +715,16 @@ def test_source_watch_config() -> None:
         assert entry["status"] in {"unchecked", "ok", "changed", "unbaselined", "unreachable"}
 
 
-def test_validity_blocks() -> None:
+def test_source_class_and_currency() -> None:
     data = load_yaml("configs/corpus.yaml")
-    sources = {source["id"]: source for source in data["sources"]}
-    expected = {
-        "POL-LAW-009",
-        "POL-STD-010",
-        "POL-CLOS-015",
-        "POL-RULE-018",
-        "POL-SPEC-041",
-        "POL-ENF-068",
-        "STD-HULL-062",
-        "STD-HULL-069",
-        "STD-HULL-070",
-        "STD-YY-071",
-        "POL-OBS-072",
-        "STAT-ECO-073",
-        "STAT-DIS-074",
-        "POL-RES-075",
-        "STD-SPEC-076",
-        "POL-PORT-077",
-        "POL-PEN-078",
-        "POL-LIST-079",
-        "POL-PEN-080",
-    }
-    for source_id in expected:
-        block = sources[source_id]["validity"]
-        assert block["status"] in {"in_force", "superseded", "repealed", "unknown"}
-        assert block["as_of"]
-        assert block["note"]
+    classes = {"normative", "official_statistics", "standard", "reference"}
+    bases = {"publication", "edition", "announcement", "retrieval"}
+    for source in data["sources"]:
+        assert "validity" not in source, source["id"]
+        assert source["source_class"] in classes, source["id"]
+        currency = source["currency"]
+        assert currency["basis"] in bases, source["id"]
+        assert currency["review_due"] >= currency["as_of"], source["id"]
 
 
 def test_national_eval_section() -> None:
@@ -782,7 +763,7 @@ def test_environment_layer() -> None:
         source = sources[source_id]
         assert source["level"] == "national"
         assert source["jurisdiction"] == "national"
-        assert source["validity"]["status"] == "in_force"
+        assert source["source_class"] in {"normative", "official_statistics"}
     assert sources["STAT-ECO-073"]["retrieval"]["parseable"] is True
     assert sources["STAT-DIS-074"]["retrieval"]["parseable"] is False
     collections = load_yaml("configs/reference-collections.yaml")["collections"]
@@ -794,9 +775,9 @@ def test_species_layer() -> None:
     data = load_yaml("configs/corpus.yaml")
     sources = {source["id"]: source for source in data["sources"]}
     assert sources["POL-RES-075"]["retrieval"]["parseable"] is True
-    assert sources["POL-RES-075"]["validity"]["status"] == "in_force"
+    assert sources["POL-RES-075"]["source_class"] == "normative"
     assert sources["STD-SPEC-076"]["retrieval"]["parseable"] is False
-    assert sources["STD-SPEC-076"]["validity"]["status"] == "in_force"
+    assert sources["STD-SPEC-076"]["source_class"] == "normative"
     cues = load_yaml("configs/reference-collections.yaml")["collections"]["policy"]["cues"]
     assert {"物种", "保护", "名录", "放流", "增殖", "种质"} <= set(cues)
 
@@ -806,7 +787,7 @@ def test_port_layer() -> None:
     sources = {source["id"]: source for source in data["sources"]}
     for source_id in ("POL-PORT-077",):
         assert sources[source_id]["retrieval"]["parseable"] is True
-        assert sources[source_id]["validity"]["status"] == "in_force"
+        assert sources[source_id]["source_class"] == "normative"
     cues = load_yaml("configs/reference-collections.yaml")["collections"]["policy"]["cues"]
     assert {"渔港", "锚地", "避风", "泊位", "靠泊"} <= set(cues)
 
@@ -851,9 +832,8 @@ def test_enforcement_layer() -> None:
     sources = {source["id"]: source for source in data["sources"]}
     for source_id in ("POL-PEN-078", "POL-LIST-079"):
         assert sources[source_id]["retrieval"]["parseable"] is True
-        assert sources[source_id]["validity"]["status"] == "in_force"
-    crew = sources["POL-CREW-055"]["validity"]
-    assert crew["status"] == "in_force"
+        assert sources[source_id]["source_class"] in {"normative", "standard"}
+    crew = sources["POL-CREW-055"]["currency"]
     assert "No. 950" in crew["note"]
     cues = load_yaml("configs/reference-collections.yaml")["collections"]["policy"]["cues"]
     assert {"处罚", "罚款", "违法", "目录"} <= set(cues)
@@ -863,8 +843,8 @@ def test_penalty_cross_checks() -> None:
     data = load_yaml("configs/corpus.yaml")
     sources = {source["id"]: source for source in data["sources"]}
     for source_id in ("POL-RES-075", "POL-PEN-078"):
-        assert "No. 950" in sources[source_id]["validity"]["note"]
-    assert sources["POL-PEN-080"]["validity"]["status"] == "in_force"
+        assert "No. 950" in sources[source_id]["currency"]["note"]
+    assert sources["POL-PEN-080"]["source_class"] == "normative"
     assert sources["POL-PEN-080"]["retrieval"]["parseable"] is True
 
 
@@ -889,7 +869,7 @@ def test_cleanup_080_state() -> None:
         "DICT-STAT-013",
     }
     for source_id in data_publications:
-        assert registry[source_id]["validity"]["status"] == "not_applicable"
+        assert registry[source_id]["source_class"] in {"official_statistics", "reference"}
 
 
 def test_watch_coverage_is_complete() -> None:
@@ -931,8 +911,8 @@ def test_operations_resource_layer() -> None:
     sources = {source["id"]: source for source in data["sources"]}
     for source_id in ("POL-WATCH-082",):
         assert sources[source_id]["retrieval"]["parseable"] is True
-        assert sources[source_id]["validity"]["status"] == "in_force"
-    assert "No. 950" in sources["POL-WATCH-082"]["validity"]["note"]
+        assert sources[source_id]["source_class"] == "standard"
+    assert "No. 950" in sources["POL-WATCH-082"]["currency"]["note"]
     cues = load_yaml("configs/reference-collections.yaml")["collections"]["policy"]["cues"]
     assert {"值班", "航行", "安全"} <= set(cues)
 
@@ -946,7 +926,7 @@ def test_pipeline_documents_report_the_main_channel() -> None:
         assert registry[doc_id]["retrieval"]["channel"] == "main"
 
 
-def test_provincial_validity_is_closed() -> None:
+def test_provincial_entries_carry_currency() -> None:
     from scs_fkb.registry import load_registry
 
     registry = load_registry("configs/corpus.yaml")
@@ -964,14 +944,9 @@ def test_provincial_validity_is_closed() -> None:
         "STD-HN-067",
     ]
     for source_id in provincial:
-        validity = registry[source_id]["validity"]
-        assert validity["status"] == "in_force"
-        assert validity["note"]
-    assert not [
-        entry
-        for entry in registry.values()
-        if entry["level"] == "provincial" and entry["validity"]["status"] == "unknown"
-    ]
+        entry = registry[source_id]
+        assert entry["source_class"] in {"normative", "standard"}
+        assert entry["currency"]["review_due"] >= entry["currency"]["as_of"]
 
 
 def test_out_of_scope_material_is_removed() -> None:
@@ -1021,34 +996,19 @@ def test_bulletins_removed() -> None:
     assert len(yearbooks) == 10
 
 
-def test_validity_status_semantics() -> None:
+def test_currency_review_dates() -> None:
     from scs_fkb.registry import load_registry
 
     registry = load_registry("configs/corpus.yaml")
-    unknown = {sid for sid, entry in registry.items() if entry["validity"]["status"] == "unknown"}
-    assert unknown == set()
-    categories = (
-        "Data edition",
-        "Product documentation edition",
-        "Candidate not acquired",
-        "Retired provenance",
-        "Annual work notice",
-        "Planning document",
-        "Product capability note",
-        "Form instruction",
-    )
+    assert not [entry for entry in registry.values() if "validity" in entry]
     for source_id, entry in registry.items():
-        validity = entry["validity"]
-        if validity["status"] == "not_applicable":
-            assert validity["note"].startswith(categories), f"{source_id}: {validity['note']}"
-        if validity["status"] == "in_force":
-            assert validity["note"].strip()
+        currency = entry["currency"]
+        assert currency["review_due"] >= currency["as_of"], source_id
 
 
 def test_vms_measure_is_closed_with_its_clause() -> None:
     from scs_fkb.registry import load_registry
 
     registry = load_registry("configs/corpus.yaml")
-    validity = registry["POL-VMS-053"]["validity"]
-    assert validity["status"] == "in_force"
-    assert "Article 32" in validity["note"] or "2020年1月1日" in validity["note"]
+    currency = registry["POL-VMS-053"]["currency"]
+    assert "Article 32" in currency["note"] or "2020年1月1日" in currency["note"]
