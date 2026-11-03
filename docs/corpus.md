@@ -320,6 +320,20 @@ Every active entry was scanned on its title and notes for 养殖, 繁育, 海洋
 
 The rule is enforced by a test: a new active entry whose title contains an out-of-scope term fails unless its id is explicitly allowlisted.
 
+## 5u. Web cards
+
+Five cached cards extend the corpus beyond its normative and statistical core. They are indexed beside it and cited with URL and fetch date.
+
+| Card | Topic | Publisher | Fetched | SHA-256 (short) | What it provides |
+|---|---|---|---|---|---|
+| `WEB-WORMS-LARIMICHTHYS-CROCEA` | species | WoRMS | 2026-11-03 | `0949f07c12fb` | Aphia taxonomy record for 大黄鱼 |
+| `WEB-WORMS-TRICHIURUS-LEPTURUS` | species | WoRMS | 2026-11-03 | `d32d0821a39c` | Aphia taxonomy record for 带鱼 |
+| `WEB-WORMS-DECAPTERUS-MARUADSI` | species | WoRMS | 2026-11-03 | `52d13dc407c0` | Aphia taxonomy record for 蓝圆鲹 |
+| `WEB-WORMS-FENNEROPENAEUS-CHINENSIS` | species | WoRMS | 2026-11-03 | `bd073fad1978` | Aphia taxonomy record for 中国明对虾 |
+| `WEB-FAO-ISSCFG-GEAR` | gear | FAO | 2026-11-03 | `516e1eebaa5e` | ISSCFG fishing-gear categories and definitions |
+
+Cards are fetched only by `scs-fkb web refresh`; the text lives under the private data root and the public register keeps URL, publisher, fetch time, hash and a 300-character excerpt. The layer is deliberately small: it covers what the corpus cannot state (species identity, international gear classes), and the review date is 30 days.
+
 ## 6. Candidate sources
 
 None. The three vessel/voyage and metadata candidates were removed on 2026-11-03 as unacquired and outside the current phase. Papers and reports were removed from the register because they are not accepted as authoritative project sources at this stage.

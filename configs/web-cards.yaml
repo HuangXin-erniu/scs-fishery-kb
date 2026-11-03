@@ -1,4 +1,87 @@
-# Public metadata for cached web cards. Full text stays in the private data root.
-# A card is created by `scs-fkb web refresh` and is readable by answers offline.
 schema_version: 1
-cards: []
+cards:
+- id: WEB-FAO-ISSCFG-GEAR
+  topic: gear
+  title: Definition and classification of fishing gear categories (ISSCFG)
+  publisher: FAO
+  url: https://www.fao.org/4/x2465e/x2465e00.htm
+  fetched_at: '2026-11-03T04:38:22+00:00'
+  sha256: 516e1eebaa5ef9345dd3f7a6220c76ba8a04f042acfb3191f4c9f3bd18859ce3
+  content_type: text/html
+  license: fao-copyright
+  sensitivity: public
+  source_class: reference
+  file: WEB-FAO-ISSCFG-GEAR/text.txt
+  status: ok
+  excerpt: Table of Contents Guidelines for the Routine Collection of Capture Fishery
+    Data Table of Contents Prepared at the FAO/DANIDA Expert Consultation Bangkok,
+    Thailand, 18-30 May 1998 FAO FISHERIES TECHNICAL PAPER 382 DANIDA Food and Agriculture
+    Organization of the United Nations Rome, 1999 ISSN 0429-934
+  error: ''
+- id: WEB-WORMS-DECAPTERUS-MARUADSI
+  topic: species
+  title: Decapterus maruadsi (蓝圆鲹) taxonomic record
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Decapterus%20maruadsi?like=false&marine_only=true
+  fetched_at: '2026-11-03T04:38:22+00:00'
+  sha256: 52d13dc407c0482a929e64d0459943ee29aae81047e44f0f390947ad3d6559c6
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-DECAPTERUS-MARUADSI/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":273278,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=273278","scientificname":"Decapterus
+    maruadsi","authority":"(Temminck & Schlegel, 1843)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":273278,"valid_name":"Decapterus
+    m'
+  error: ''
+- id: WEB-WORMS-FENNEROPENAEUS-CHINENSIS
+  topic: species
+  title: Fenneropenaeus chinensis (中国明对虾) taxonomic record
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Fenneropenaeus%20chinensis?like=false&marine_only=true
+  fetched_at: '2026-11-03T04:38:22+00:00'
+  sha256: bd073fad1978e2c09db83271e394c00178ad398c76cfbf5b03da051337061941
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-FENNEROPENAEUS-CHINENSIS/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":246390,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=246390","scientificname":"Fenneropenaeus
+    chinensis","authority":"(Osbeck, 1765)","status":"superseded combination","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":1809202,"valid_name":"Penae'
+  error: ''
+- id: WEB-WORMS-LARIMICHTHYS-CROCEA
+  topic: species
+  title: Larimichthys crocea (大黄鱼) taxonomic record
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Larimichthys%20crocea?like=false&marine_only=true
+  fetched_at: '2026-11-03T04:38:22+00:00'
+  sha256: 0949f07c12fb917f06ddd9cc6040d349b27907d622cc8d98531d31a2dd5eca25
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-LARIMICHTHYS-CROCEA/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":281271,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=281271","scientificname":"Larimichthys
+    crocea","authority":"(Richardson, 1846)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":281271,"valid_name":"Larimichthys
+    crocea",'
+  error: ''
+- id: WEB-WORMS-TRICHIURUS-LEPTURUS
+  topic: species
+  title: Trichiurus lepturus (带鱼) taxonomic record
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Trichiurus%20lepturus?like=false&marine_only=true
+  fetched_at: '2026-11-03T04:38:22+00:00'
+  sha256: d32d0821a39c832b3d5ec0b000eb4ac31eefd149adbc8f8ac3fd37fbae5dd036
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-TRICHIURUS-LEPTURUS/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":127089,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=127089","scientificname":"Trichiurus
+    lepturus","authority":"Linnaeus, 1758","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":127089,"valid_name":"Trichiurus
+    lepturus","val'
+  error: ''

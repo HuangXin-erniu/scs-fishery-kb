@@ -124,3 +124,16 @@ def test_sources_config_requires_allowlist(tmp_path: Path) -> None:
     path.write_text(yaml.safe_dump({"schema_version": 1, "allowlist": []}), encoding="utf-8")
     with pytest.raises(WebError, match="allowlist"):
         load_web_sources(path)
+
+
+def test_refresh_extracts_json(tmp_path: Path) -> None:
+    card = dict(CARD, url="https://www.noaa.gov/rest/x")
+    cards_path, sources_path = _write(tmp_path, [card])
+
+    def fetcher(url: str) -> tuple[bytes, str]:
+        return b'{"scientificname": "Larimichthys crocea"}', "application/json"
+
+    report = refresh(cards_path, sources_path, tmp_path / "cache", fetcher=fetcher)
+    assert report["ok"] == 1
+    text = (tmp_path / "cache" / "WEB-TEST-001" / "text.txt").read_text(encoding="utf-8")
+    assert "Larimichthys crocea" in text

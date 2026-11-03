@@ -2,6 +2,13 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-03 — Five cards seeded and the index rebaselined
+
+- Extended the refresh extractor to accept JSON and plain text, and added certifi-backed TLS context with a file fallback (never an unverified context).
+- Fetched and cached five allowlisted cards: four WoRMS Aphia records (大黄鱼, 带鱼, 蓝圆鲹, 中国明对虾) and the FAO ISSCFG gear-classification page; fetched 2026-11-03, hashes 0949f07c…, d32d0821…, 52d13dc4…, bd073fad…, 516e1eeb….
+- Rebuilt the index at 33 documents and 795 chunks (index 4c5264cc338c, dense c00adfa568d06e10); every arm is unchanged. Because hybrid remains 9/11, the 33-document measurement is recorded as interim and not adopted; the corpus-only 28-document row stays the baseline.
+- Q-E08 and Q-M09 stay parked: the MUR/OLCI product pages are JavaScript applications.
+
 ## 2026-11-03 — Web cards indexed beside the corpus with URL citations
 
 - Chunk and Citation now carry url and retrieved_at with defaults, so old records still load.
