@@ -2,6 +2,13 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-03 — Product-manual probe and operating rhythm
+
+- OLCI Marine User Handbook PDF is reachable and parses to 88,763 characters; the PO.DAAC MUR page fails at TLS. Neither is carded yet because Q-E08 and Q-M09 need both.
+- Documented the rhythm: weekly watch, monthly refresh, quarterly review 2027-02-02; due items are prompts, never automatic rewrites.
+- Added glossary terms source_class, currency, review_due and web card.
+- Adopted baseline unchanged: 36 documents, 849 chunks, index 5135e00cfa3d, hybrid 11/11.
+
 ## 2026-11-03 — Q-M10 reworded, Q-E01 synonym added, card baseline adopted
 
 - Q-M10 now asks 申请海洋渔业捕捞许可证应当提交哪些资料？; anchors are unchanged (POL-STD-010 第二十八条, POL-LAW-009 第三十五条).

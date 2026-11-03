@@ -95,3 +95,21 @@ Refresh is manual and per topic (`species`, `gear`, `environment`, `hazard`); th
 A card is indexed only when its status is ok and its cached text exists: `ingest` turns it into a synthetic document with the card id, chunks the cached text and attaches the URL and fetch date to every chunk. Its citations render as `[WEB-xxx] https://… (fetched date)`, so a web-backed answer can be checked against the exact page and the day it was read. Failed or cache-less cards are skipped, never indexed as empty evidence.
 
 The seeded cards are four WoRMS taxonomy cards for South China Sea species, one FAO ISSCFG gear-classification card, the State Council warning-signal measures page, the NASA Ocean Biology DAAC page and the EUMETSAT Sentinel-3 page, fetched on 2026-11-03. nasa.gov and eumetsat.int joined the allowlist for their own pages. Species cards are recorded as `reference` and 30-day review; the FAO card is the same. The product cards for MUR and OLCI are not seeded because their pages render through JavaScript; a later batch needs static authoritative targets.
+
+## Operating rhythm
+
+- **Weekly**: run `scs-fkb watch --offline` to list due corpus entries and cards; online runs when a check matters.
+- **Monthly**: run `scs-fkb web refresh` for topics whose cards are due, then rebuild only if the batch is adopted.
+- **Quarterly**: full review on **2027-02-02**; the next cycle's review dates are set from the outcome.
+- A due item is a prompt. Nothing refreshes, rebuilds or changes an answer by itself.
+
+## Product-manual probe (2026-11-03)
+
+Q-E08 and Q-M09 need MUR and OLCI documents to be restored. The probe found one of the pair:
+
+| Target | Result |
+|---|---|
+| EUMETSAT/ESA Sentinel-3 OLCI Marine User Handbook (earth.esa.int PDF) | reachable, 2.1 MB, parses to 88,763 characters |
+| PO.DAAC MUR dataset page (podaac.jpl.nasa.gov) | TLS reset, no response |
+
+Neither is added as a card in this batch: adding OLCI alone would add roughly ninety English chunks without restoring either question. Both questions stay parked until a reachable MUR document exists; the OLCI PDF is the first candidate once that happens, and `esa.int` would join the allowlist then.
