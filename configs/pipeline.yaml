@@ -3,7 +3,6 @@ updated_at: 2026-11-01
 documents:
   - DICT-STAT-013
   - DICT-STAT-040
-  - OPS-FORM-036
   - OPS-STD-035
   - OPS-STD-039
   - POL-CLOS-015
@@ -22,8 +21,6 @@ documents:
   - POL-OBS-072
   - POL-PEN-078
   - POL-PEN-080
-  - POL-PLAN-038
-  - POL-PORT-037
   - POL-PORT-077
   - POL-RES-075
   - POL-RULE-018

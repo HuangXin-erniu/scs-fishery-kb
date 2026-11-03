@@ -33,7 +33,7 @@ def test_corpus_structure() -> None:
         "data_dictionary",
         "plan",
     }
-    assert len(data["sources"]) == 78
+    assert len(data["sources"]) == 69
 
     acquired = []
     candidates = []
@@ -46,8 +46,8 @@ def test_corpus_structure() -> None:
         else:
             candidates.append(source)
 
-    assert len(acquired) == 75
-    assert len(candidates) == 3
+    assert len(acquired) == 69
+    assert len(candidates) == 0
     yearbooks = [source for source in acquired if source["id"].startswith("STAT-YB-")]
     assert len(yearbooks) == 9
     assert [source["year"] for source in yearbooks] == list(range(2018, 2027))
@@ -82,13 +82,9 @@ def test_corpus_structure() -> None:
         "POL-GEAR-033",
         "POL-GEAR-034",
         "OPS-STD-035",
-        "OPS-FORM-036",
-        "POL-PORT-037",
-        "POL-PLAN-038",
         "POL-GEAR-016",
         "OPS-STD-039",
         "POL-SPEC-041",
-        "STD-SC-042",
         "DICT-STAT-013",
         "DICT-STAT-040",
         "STD-ASFIS-044",
@@ -100,10 +96,8 @@ def test_corpus_structure() -> None:
         "STD-HY1-056",
         "POL-STAT-050",
         "POL-STAT-051",
-        "POL-YJ-052",
         "POL-VMS-053",
         "STD-ECERT-054",
-        "POL-YJ-057",
         "POL-HN-058",
         "POL-HN-059",
         "POL-GX-060",
@@ -134,7 +128,6 @@ def test_corpus_structure() -> None:
     }
     for source in documents:
         if source["id"] in {
-            "STD-SC-042",
             "STD-ASFIS-044",
             "STD-CWP-043",
             "STD-MUR-045",
@@ -143,7 +136,6 @@ def test_corpus_structure() -> None:
             "STD-CMEMS-049",
             "POL-STAT-050",
             "POL-STAT-051",
-            "POL-YJ-052",
             "POL-VMS-053",
             "STD-ECERT-054",
         }:
@@ -161,16 +153,6 @@ def test_corpus_structure() -> None:
             "fujian",
             "international",
         }
-
-    series = [source for source in acquired if source["id"] == "STD-SC-042"]
-    assert len(series) == 1
-    assert series[0]["type"] == "standard"
-    assert series[0]["format"] == "pdf"
-    assert series[0]["license"] == "internal"
-    assert series[0]["sensitivity"] == "internal"
-    assert series[0]["location"] == "raw/SC-STD/"
-    assert "17 standards" in series[0]["volume"]
-    assert re.fullmatch(r"[0-9a-f]{64}", series[0]["hash"])
 
     special = [source for source in acquired if source["id"] == "POL-SPEC-041"]
     assert len(special) == 1
@@ -244,12 +226,12 @@ def test_corpus_structure() -> None:
         "statistical_yearbook": 10,
         "law": 1,
         "regulation": 20,
-        "notice": 15,
-        "standard": 18,
-        "operations": 2,
+        "notice": 12,
+        "standard": 17,
+        "operations": 1,
         "fishery_product": 4,
-        "data_dictionary": 7,
-        "plan": 1,
+        "data_dictionary": 4,
+        "plan": 0,
     }
 
 
@@ -419,8 +401,8 @@ def test_pipeline_config() -> None:
     pipeline = load_yaml("configs/pipeline.yaml")
     assert pipeline["schema_version"] == 1
     documents = pipeline["documents"]
-    assert len(documents) == 31
-    assert len(set(documents)) == 31
+    assert len(documents) == 28
+    assert len(set(documents)) == 28
     assert pipeline["chunking"]["max_fallback_chars"] >= 200
 
     corpus = load_yaml("configs/corpus.yaml")
@@ -571,7 +553,6 @@ def test_statistical_governance_documents() -> None:
     expected = {
         "POL-STAT-050": ("regulation", "P1"),
         "POL-STAT-051": ("regulation", "P1"),
-        "POL-YJ-052": ("notice", "P2"),
         "POL-VMS-053": ("regulation", "P2"),
         "STD-ECERT-054": ("standard", "P2"),
     }
@@ -585,7 +566,6 @@ def test_statistical_governance_documents() -> None:
         assert source["location"].startswith(f"raw/{source_id}/")
         assert len(source["hash"]) == 64
     assert "国统制〔2024〕120号" in sources["POL-STAT-051"]["notes"]
-    assert "农办渔〔2018〕30号" in sources["POL-YJ-052"]["volume"]
 
 
 def test_reference_collections_config() -> None:
@@ -604,11 +584,9 @@ def test_reference_collections_config() -> None:
     assert policy_ids == {
         "POL-STAT-050",
         "POL-STAT-051",
-        "POL-YJ-052",
         "POL-VMS-053",
         "STD-ECERT-054",
         "POL-CREW-055",
-        "POL-YJ-057",
         "POL-HN-058",
         "POL-HN-059",
         "POL-GX-060",
@@ -660,9 +638,7 @@ def test_corrected_corpus_hashes() -> None:
     expected = {
         "POL-STAT-050": "1395e5dbd075b405a9de039d213aa2126bb5d452f56f8795c77af22634d2884a",
         "POL-STAT-051": "ee29cca7e24cd18d5f4eb11c6b4219060143cb641f5d64610e8dd67f6980cf97",
-        "POL-YJ-052": "3e013bc8aa0cad097cee5d2597259dcb1dbee067dfc23157ba5f8321af24ecb6",
         "POL-VMS-053": "307a185fc27b3584f0fb39e97f31813ce1ac7d00c9bfc4f7bb9d8e1f731a8d41",
-        "POL-YJ-057": "03a7a6ff3f88590c6e18884cdf10b996667b1acaf01f4d5842c8573aa29507b8",
         "POL-HN-058": "554997f45e7215751bd17a27f9389703eb5735611c43178834763ac499179c0d",
         "POL-HN-059": "f8bb3e3f5ad8cf9be7fe697fd811b069d353fb6e1d2a4a8b3bbe29779065a756",
         "POL-GX-060": "b9028450c6f0a587b35a866b759ca503f6f69415c744b32aa5845cbfe31ea516",
@@ -782,8 +758,8 @@ def test_registry_schema_v2() -> None:
     from scs_fkb.registry import load_registry
 
     registry = load_registry("configs/corpus.yaml")
-    assert len(registry) == 78
-    assert sum(1 for entry in registry.values() if entry["status"] == "acquired") == 75
+    assert len(registry) == 69
+    assert sum(1 for entry in registry.values() if entry["status"] == "acquired") == 69
     for entry in registry.values():
         assert entry["lifecycle"] in {"active", "retired"}
         if entry["lifecycle"] == "retired":
@@ -795,10 +771,6 @@ def test_cleanup_state() -> None:
 
     registry = load_registry("configs/corpus.yaml")
     assert "DICT-GFW-047" not in registry
-    series = registry["STD-SC-042"]
-    assert series["lifecycle"] == "retired"
-    assert series["retirement"]["decision_key"] == "D-SCS-FKB-058"
-    assert series["retrieval"]["channel"] == "none"
     for source_id in ("STD-MUR-045", "STD-OLCI-046", "DICT-GFW-048", "STD-CMEMS-049"):
         assert registry[source_id]["level"] == "international"
 
@@ -814,7 +786,7 @@ def test_environment_layer() -> None:
     assert sources["STAT-ECO-073"]["retrieval"]["parseable"] is True
     assert sources["STAT-DIS-074"]["retrieval"]["parseable"] is False
     collections = load_yaml("configs/reference-collections.yaml")["collections"]
-    assert len(collections["policy"]["documents"]) == 32
+    assert len(collections["policy"]["documents"]) == 30
     assert "海洋灾害" in collections["policy"]["cues"]
 
 
@@ -1054,7 +1026,7 @@ def test_validity_status_semantics() -> None:
 
     registry = load_registry("configs/corpus.yaml")
     unknown = {sid for sid, entry in registry.items() if entry["validity"]["status"] == "unknown"}
-    assert unknown <= {"POL-PORT-037"}
+    assert unknown == set()
     categories = (
         "Data edition",
         "Product documentation edition",
