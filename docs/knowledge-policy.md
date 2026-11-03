@@ -46,7 +46,7 @@ The machine-readable matrix is [configs/claims.yaml](../configs/claims.yaml); th
 
 ## 6. Two-index architecture
 
-The corpus store (28 documents, index `20910f0964df`) and the external store (`$SCS_FKB_DATA_ROOT/external`, cards and notes) are built and embedded separately. Answering always starts from the corpus index: abstention is decided there and nowhere else. Only when the corpus answer is not an abstention does `ask` query the external index and append labelled supporting evidence (`外部知识（辅助，不改变主结论）`). External evidence therefore cannot make an out-of-scope question answerable, and the corpus metrics are unchanged by construction.
+The corpus store (28 documents, index `20910f0964df`) and the external store (`$SCS_FKB_DATA_ROOT/external`, 259 documents and 315 chunks: 119 cards plus 140 notes) are built and embedded separately. Answering always starts from the corpus index: abstention is decided there and nowhere else. Only when the corpus answer is not an abstention does `ask` query the external index and append labelled supporting evidence (`外部知识（辅助，不改变主结论）`). External evidence therefore cannot make an out-of-scope question answerable, and the corpus metrics are unchanged by construction.
 
 Build and refresh:
 
@@ -55,3 +55,7 @@ scs-fkb ingest                      # corpus store
 scs-fkb ingest --external-only --data-root "$SCS_FKB_DATA_ROOT/external"
 scs-fkb embed --data-root "$SCS_FKB_DATA_ROOT/external"
 ```
+
+## 7. Knowledge gaps
+
+Every refusal is written to `$SCS_FKB_DATA_ROOT/gaps.jsonl` with the timestamp, question, refusal reason, claim nature and domain. The file is the intake for the next card/note batch: the quarterly sweep groups it by nature and domain and turns the largest clusters into acquisition targets. Logging never changes or delays an answer; a write failure is ignored.

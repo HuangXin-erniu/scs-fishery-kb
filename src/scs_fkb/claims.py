@@ -1,6 +1,7 @@
 from __future__ import annotations
 
-from datetime import date
+import json
+from datetime import UTC, date, datetime
 from pathlib import Path
 from typing import Any
 
@@ -126,3 +127,24 @@ def select_evidence(
         "supporting": kept[1:4],
         "admissible": kept,
     }
+
+
+def record_gap(
+    path: Path,
+    question: str,
+    reason: str,
+    nature: str,
+    domain: str,
+) -> None:
+    """Append a refused question to the local knowledge-gap file."""
+    target = Path(path)
+    target.parent.mkdir(parents=True, exist_ok=True)
+    row = {
+        "ts": datetime.now(UTC).replace(microsecond=0).isoformat(),
+        "question": question,
+        "reason": reason,
+        "nature": nature,
+        "domain": domain,
+    }
+    with target.open("a", encoding="utf-8") as handle:
+        handle.write(json.dumps(row, ensure_ascii=False) + "\n")
