@@ -25,3 +25,115 @@ notes:
   tags:
   - gear
   - data-collection
+- id: KNO-GEAR-002
+  title: 准用渔具最小网目标准
+  summary: 2013 年通告附件1规定准用渔具的最小网目尺寸。
+  facts:
+  - label: 文件
+    value: 海洋捕捞准用渔具最小网目（或网囊）尺寸相关标准（附件1）
+  - label: 结构
+    value: 按海域、渔具类别与主捕种类列最小网目
+  - label: 示例
+    value: 黄渤海刺网主捕梭子蟹、银鲳、海蜇为110毫米；主捕对虾、鱿鱼、虾蛄等为50毫米
+  sea_area: 全国
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - doc: POL-GEAR-033
+    sha256: db05eefba1ed312e608c791ca44a26301382b5fbcc20a66c6383690138b8397a
+    publisher: 官网
+    fetched_at: '2026-11-03'
+  tags:
+  - gear
+  - mesh
+- id: KNO-GEAR-003
+  title: 过渡渔具最小网目标准
+  summary: 2013 年通告附件2规定过渡渔具的最小网目尺寸。
+  facts:
+  - label: 文件
+    value: 海洋捕捞过渡渔具最小网目（或网囊）尺寸相关标准（附件2）
+  - label: 示例
+    value: 拖网主捕虾类25毫米；刺网主捕梭子蟹、银鲳、海蜇110毫米；张网35毫米
+  sea_area: 全国
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - doc: POL-GEAR-034
+    sha256: 64819ecac9345bedd7af229fc4de7e95c89ab8b2038faa06c05f06a9e91c39f2
+    publisher: 官网
+    fetched_at: '2026-11-03'
+  tags:
+  - gear
+  - mesh
+- id: KNO-GEAR-004
+  title: 渔具分类、命名及代号国家标准
+  summary: GB/T 5147—2026 于 2026 年发布并实施，代替 2003 版。
+  facts:
+  - label: 标准号
+    value: GB/T 5147—2026
+  - label: 发布/实施
+    value: 2026-02-27 发布，2026-09-01 实施
+  - label: 内容
+    value: 渔具分类、命名及代号；代替 GB/T 5147—2003
+  sea_area: 全国
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - doc: OPS-STD-039
+    sha256: 2d9ade00dda4fe0d29e6a1ce4499cb1e67a0f5aca56a96e422bbae9349ebcbee
+    publisher: 官网
+    fetched_at: '2026-11-03'
+  tags:
+  - gear
+  - standard
+- id: KNO-GEAR-005
+  title: 海洋捕捞信息采集抽样调查规范
+  summary: SC/T 9460—2025 规定海洋捕捞信息采集的抽样调查方法。
+  facts:
+  - label: 标准号
+    value: SC/T 9460—2025
+  - label: 发布
+    value: 2025-12-09 发布
+  - label: 内容
+    value: 海洋捕捞信息采集抽样调查规范
+  sea_area: 全国
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - doc: OPS-STD-035
+    sha256: 1608be902fe8bf8c389518f6820dc7ec6121523d7e2b9e6b343e189a76684365
+    publisher: 官网
+    fetched_at: '2026-11-03'
+  tags:
+  - gear
+  - sampling
+  - standard
+- id: KNO-GEAR-006
+  title: 休渔期禁止的作业类型
+  summary: 2023 年休渔通告规定除钓具外的作业类型休渔。
+  facts:
+  - label: 作业类型
+    value: 除钓具外的所有作业类型
+  - label: 辅助船
+    value: 为捕捞渔船配套服务的捕捞辅助船一并休渔
+  sea_area: 全国
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - doc: POL-CLOS-015
+    sha256: 15660ed713803ff440da583e1d5a219ab5e488c2237f3bb33cd30e7115174bdc
+    publisher: 官网
+    fetched_at: '2026-11-03'
+  tags:
+  - closure
+  - gear

@@ -1,3 +1,68 @@
 schema_version: 1
 topic: stats
-notes: []
+notes:
+- id: KNO-STATS-001
+  title: 水产品产量的统计口径
+  summary: 渔业统计年鉴附录解释水产品概念与统计范围。
+  facts:
+  - label: 口径
+    value: 水产品包括养殖与捕捞的最终有效产量
+  - label: 统计年度
+    value: 按制度规定的统计年度与上报单位统计
+  sea_area: 全国
+  as_of: '2026-11-03'
+  review_due: '2027-05-02'
+  status: approved
+  confidence: medium
+  sources:
+  - doc: DICT-STAT-013
+    sha256: 8f67eebf4ffdf4d834d5034ab6cd131486dfa3db4fe564e9e42eea67c4244567
+    publisher: 官网
+    fetched_at: '2026-11-03'
+  tags:
+  - statistics
+  - definition
+- id: KNO-STATS-002
+  title: 渔业统计年鉴的覆盖
+  summary: 现有九版渔业统计年鉴覆盖 2017–2025 数据年。
+  facts:
+  - label: 版本
+    value: 2017–2025 数据年，共9版
+  - label: 2026版
+    value: 166页图像扫描，含7个部分与附录
+  - label: 内容
+    value: 产量、海区、渔具、渔船、渔港与渔业人口等表
+  sea_area: 全国
+  as_of: '2026-11-03'
+  review_due: '2027-05-02'
+  status: approved
+  confidence: high
+  sources:
+  - doc: STAT-YB-2026
+    sha256: ef674e53123265b2f9367ad0c5cbc2544e3d738b5b52c916cc8e3fc4babec3f1
+    publisher: 官网
+    fetched_at: '2026-11-03'
+  tags:
+  - statistics
+  - yearbook
+- id: KNO-STATS-003
+  title: 中国统计年鉴的农业与渔业章
+  summary: 《中国统计年鉴》第12章农业含渔业产量指标。
+  facts:
+  - label: 章节
+    value: 第12章 农业
+  - label: 指标
+    value: 农林牧渔业总产值、水产品产量（捕捞/养殖分列）
+  sea_area: 全国
+  as_of: '2026-11-03'
+  review_due: '2027-05-02'
+  status: approved
+  confidence: medium
+  sources:
+  - doc: STAT-CSY-027
+    sha256: a950d0c55ce0ddb9950326e95bfb5a49dba7bccc4dfafbb7a988c0ab0df63a5a
+    publisher: 官网
+    fetched_at: '2026-11-03'
+  tags:
+  - statistics
+  - yearbook

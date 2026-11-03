@@ -27,3 +27,25 @@ notes:
   tags:
   - environment
   - ocean-colour
+- id: KNO-ENV-002
+  title: NASA 海色数据与服务
+  summary: NASA Ocean Biology DAAC 提供海色、海表温度与盐度数据。
+  facts:
+  - label: 数据
+    value: 海色、海表温度、海表盐度
+  - label: 服务
+    value: 面向国际研究社区，支持海色算法与 MODAPS 处理
+  sea_area: 全球
+  as_of: '2026-11-03'
+  review_due: '2026-12-03'
+  status: approved
+  confidence: medium
+  sources:
+  - card: WEB-NASA-OCEANCOLOR
+    sha256: 2710de58e23afe2b187cdba3baa28a4044ee76c184149df76f233017abe910ba
+    url: https://oceancolor.gsfc.nasa.gov/
+    publisher: NASA
+    fetched_at: '2026-11-03T05:01:14+00:00'
+  tags:
+  - environment
+  - ocean-colour

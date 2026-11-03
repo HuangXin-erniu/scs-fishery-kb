@@ -149,3 +149,25 @@ def test_approve_refuses_stale(tmp_path: Path) -> None:
     _cards(tmp_path, sha="b" * 64)
     with pytest.raises(KnowledgeError, match="cannot approve"):
         approve(directory, "KNO-SPECIES-001", today=date(2026, 11, 3))
+
+
+def test_topic_counts_and_sources() -> None:
+    import yaml as _yaml
+
+    counts = {}
+    for path in sorted(Path("configs/knowledge").glob("*.yaml")):
+        data = _yaml.safe_load(path.read_text(encoding="utf-8"))
+        counts[data["topic"]] = len(data["notes"])
+    assert counts["species"] == 115
+    assert counts["policy"] >= 7
+    assert counts["gear"] >= 6
+    assert counts["environment"] >= 2
+    assert counts["hazard"] >= 4
+    assert counts["stats"] >= 3
+    total = sum(counts.values())
+    assert total >= 130
+    for path in Path("configs/knowledge").glob("*.yaml"):
+        for note in _yaml.safe_load(path.read_text(encoding="utf-8"))["notes"]:
+            assert note["sources"]
+            for source in note["sources"]:
+                assert len(source.get("sha256", "")) == 64
