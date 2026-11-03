@@ -1,0 +1,4 @@
+# Public metadata for cached web cards. Full text stays in the private data root.
+# A card is created by `scs-fkb web refresh` and is readable by answers offline.
+schema_version: 1
+cards: []

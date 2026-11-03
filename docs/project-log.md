@@ -2,6 +2,13 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-03 — Web card layer with an allowlisted refresh command
+
+- Added configs/web-sources.yaml (17 allowlisted domains, four topics, 30-day cadence, TLS/rate/size limits) and configs/web-cards.yaml (public card metadata, empty until the first refresh).
+- Added `scs-fkb web refresh` and `scs-fkb web check`: https-only, exact-host or subdomain matching, verified TLS, 4 MB cap, per-card failure isolation; text goes to the private data root, metadata stays public.
+- Added tests/test_web.py with a fake fetcher; the suite stays offline.
+- Index unchanged at 28 documents / 785 chunks / 20910f0964df.
+
 ## 2026-11-03 — Product documents and ASFIS removed, CWP kept
 
 - Deleted STD-MUR-045, STD-OLCI-046, DICT-GFW-048, STD-CMEMS-049, STD-HY1-056 and STD-ASFIS-044, with their data files and the product reference collection.
