@@ -11,6 +11,7 @@ import yaml
 
 from .chunking import chunk_document
 from .corpus import acquired_sources, load_corpus, resolve_source_file
+from .knowledge import load_knowledge, stale_reasons
 from .models import Chunk, Document
 from .parsers import Page as ParsedPage
 from .parsers import ParseError, parse_source
@@ -104,11 +105,88 @@ def web_card_documents(
     return documents, chunks, entries, counts
 
 
+def knowledge_documents(
+    knowledge_dir: Path,
+    cards_path: Path,
+    max_fallback_chars: int,
+    *,
+    today: Any = None,
+) -> tuple[list[Document], list[Chunk], list[dict[str, Any]], dict[str, int]]:
+    """Turn approved, fresh knowledge notes into documents and chunks."""
+    directory = Path(knowledge_dir)
+    if not directory.is_dir():
+        return [], [], [], {}
+    card_hashes: dict[str, str] = {}
+    if Path(cards_path).is_file():
+        for card in load_cards(Path(cards_path))["cards"]:
+            card_hashes[str(card["id"])] = str(card.get("sha256") or "")
+    current = today or datetime.now(UTC).date()
+    documents: list[Document] = []
+    chunks: list[Chunk] = []
+    entries: list[dict[str, Any]] = []
+    counts: dict[str, int] = {}
+    for path in sorted(directory.glob("*.yaml")):
+        data = load_knowledge(path)
+        for note in data["notes"]:
+            if note["status"] != "approved":
+                continue
+            reasons = stale_reasons(note, card_hashes, current)
+            if reasons:
+                continue
+            text = "\n".join(
+                [str(note["title"]), str(note["summary"])]
+                + [f"{fact['label']}：{fact['value']}" for fact in note["facts"]]
+            )
+            document = Document(
+                doc_id=str(note["id"]),
+                source_id=str(note["id"]),
+                title=str(note["title"]),
+                title_zh=str(note["title"]),
+                publisher="knowledge note",
+                year=None,
+                doc_type="knowledge_note",
+                sensitivity="public",
+                language="zh",
+                page_count=1,
+                file_hash=str((note["sources"][0] or {}).get("sha256") or ""),
+            )
+            page = ParsedPage(number=0, lines=text.splitlines())
+            first = note["sources"][0]
+            made = [
+                replace(
+                    chunk,
+                    url=str(first.get("url") or ""),
+                    retrieved_at=str(note["as_of"]),
+                )
+                for chunk in chunk_document(document, [page], max_fallback_chars)
+            ]
+            if not made:
+                continue
+            documents.append(document)
+            chunks.extend(made)
+            counts[document.doc_id] = len(made)
+            entries.append(
+                {
+                    "id": document.doc_id,
+                    "hash": document.file_hash,
+                    "location": f"knowledge/{path.name}",
+                    "format": "note",
+                    "pages": 1,
+                    "chunks": len(made),
+                    "kind": "knowledge_note",
+                }
+            )
+    return documents, chunks, entries, counts
+
+
 def ingest(
     config_path: Path,
     pipeline_path: Path,
     data_root: Any,
     web_cards_path: Path | None = None,
+    knowledge_dir: Path | None = None,
+    include_web: bool = True,
+    include_knowledge: bool = True,
 ) -> dict[str, Any]:
     """Parse the configured sources, chunk them and write the processed store."""
     register = load_corpus(config_path)
@@ -174,14 +252,30 @@ def ingest(
         if web_cards_path is not None
         else Path(pipeline_path).parent / "web-cards.yaml"
     )
-    web_documents, web_chunks, web_entries, web_counts = web_card_documents(
-        cards_file, root, max_chars
+    web_documents, web_chunks, web_entries, web_counts = (
+        web_card_documents(cards_file, root, max_chars) if include_web else ([], [], [], {})
     )
     documents.extend(web_documents)
     all_chunks.extend(web_chunks)
     counts.update(web_counts)
     for entry in web_entries:
         parsers[entry["id"]] = "web"
+
+    notes_dir = (
+        Path(knowledge_dir)
+        if knowledge_dir is not None
+        else Path(pipeline_path).parent / "knowledge"
+    )
+    note_documents, note_chunks, note_entries, note_counts = (
+        knowledge_documents(notes_dir, cards_file, max_chars)
+        if include_knowledge
+        else ([], [], [], {})
+    )
+    documents.extend(note_documents)
+    all_chunks.extend(note_chunks)
+    counts.update(note_counts)
+    for entry in note_entries:
+        parsers[entry["id"]] = "note"
 
     chunk_digest = hashlib.sha256(
         "".join(f"{chunk.chunk_id}\n{chunk.text}\n" for chunk in all_chunks).encode("utf-8")
@@ -203,7 +297,7 @@ def ingest(
         "chunks": len(all_chunks),
         "counts": counts,
         "pages": page_counts,
-        "sources": source_entries + web_entries,
+        "sources": source_entries + web_entries + note_entries,
         "chunk_digest": chunk_digest,
     }
 

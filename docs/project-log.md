@@ -8,6 +8,13 @@ This log records material project changes by date. It does not use release versi
 - Documented the rhythm: weekly watch, monthly refresh, quarterly review 2027-02-02; due items are prompts, never automatic rewrites.
 - Added glossary terms source_class, currency, review_due and web card.
 - Adopted baseline unchanged: 36 documents, 849 chunks, index 5135e00cfa3d, hybrid 11/11.
+## 2026-11-03 — Knowledge notes wired into ingest, indexing deferred
+
+- Ingest now builds NOTE-* documents from approved notes and skips drafts, stale notes and expired hazard notes; `--no-web` and `--no-knowledge` allow controlled rebuilds.
+- Measured 287 documents with cards and notes: hybrid 9/11, abstention 2/4. Measured 147 documents with cards only: hybrid 11/11, abstention 2/4. Both fail the abstention gate, so neither is adopted.
+- Restored the corpus-only index: 28 documents, 785 chunks, `20910f0964df`, hybrid 11/11, MRR 0.56, abstention 3/4.
+- The knowledge layer stays complete and validated; indexing awaits an abstention-aware gate for external evidence.
+
 ## 2026-11-03 — Remaining knowledge domains filled
 
 - Added nineteen notes: policy 7 (crew, ports, penalties, Hainan and Guangxi 2026 closures, distant-water monitoring, e-certificates), gear 5 (mesh standards, GB/T 5147—2026, SC/T 9460—2025, closure operation types), stats 3, hazard 3 and environment 1.
