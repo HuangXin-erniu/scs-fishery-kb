@@ -2,6 +2,12 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-03 — Retrieval tuning reviewed, baseline kept
+
+- Measured title_boost 0/0.5/1/2, BM25:dense 2:1/1:1/1:2 and three lexicon expansions; none recovered Q-M10, and lexicon changes cost two other questions.
+- Kept title_boost 1.0 and BM25:dense 2:1, the 28-document baseline adopted, and the 33-document card measurement interim.
+- Added a test pinning the reviewed parameters so future changes are deliberate.
+
 ## 2026-11-03 — Five cards seeded and the index rebaselined
 
 - Extended the refresh extractor to accept JSON and plain text, and added certifi-backed TLS context with a file fallback (never an unverified context).

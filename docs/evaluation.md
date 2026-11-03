@@ -150,3 +150,16 @@ A run report should include:
 - [Corpus register](../configs/corpus.yaml)
 - [Data schema](../configs/schema.yaml)
 - [Data policy](data-policy.md)
+
+## Retrieval tuning review (2026-11-03)
+
+Q-M10 stayed the only hybrid miss after the corpus was pruned. The pipeline exposes four levers, and each was measured against the eleven anchored questions:
+
+| Setting | Result |
+|---|---|
+| title_boost 0.0 / 0.5 / 1.0 / 2.0, BM25:dense 2:1, fusion_k 60 | 8 / 9 / 9 / 9 of 11 |
+| BM25:dense 1:1, title_boost 1.0 | 9 of 11 |
+| BM25:dense 1:2, title_boost 1.0 | 8 of 11 |
+| lexicon additions 准入→申请/许可, 监管→监督检查, 作业规范→作业类型/作业方式 | 8 of 11 |
+
+The gold articles (POL-STD-010 第二十八条 and POL-LAW-009 第三十五条) never entered the top five under any tested setting. Q-M10 is a generic question ("某类作业规范的准入条件与监管要求") mapped to a specific application-materials article, so parameter tuning cannot separate that article from the many documents that mention permits. Two conclusions are recorded rather than acted on silently: the parameters stay at title_boost 1.0 and BM25:dense 2:1, and the twenty-eight-document baseline remains the adopted one, with the thirty-three-document card measurement kept as interim. A future fix, if wanted, is a more specific question or a scope-aware retrieval feature, not a weight sweep.
