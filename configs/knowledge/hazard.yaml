@@ -27,3 +27,69 @@ notes:
   tags:
   - hazard
   - warning
+- id: KNO-HAZARD-002
+  title: 预警信号的组成与种类
+  summary: 预警信号由名称、图标、标准与防御指南组成，覆盖14类灾害。
+  facts:
+  - label: 组成
+    value: 名称、图标、标准、防御指南
+  - label: 种类
+    value: 台风、暴雨、暴雪、寒潮、大风、沙尘暴、高温、干旱、雷电、冰雹、霜冻、大雾、霾、道路结冰
+  sea_area: 全国
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-GOV-CMA-WARNING-2007
+    sha256: 8280090b25aabf87d5b10482616f5228b47dc386fca8b58f4a2525599ba5e4ba
+    url: https://www.gov.cn/zhengce/2007-06/12/content_5720083.htm
+    publisher: 中国政府网
+    fetched_at: '2026-11-03T05:01:14+00:00'
+  tags:
+  - hazard
+  - warning
+- id: KNO-HAZARD-003
+  title: 预警信号的四级划分
+  summary: 预警信号按危害程度分为四级。
+  facts:
+  - label: 级别
+    value: Ⅳ级（一般）、Ⅲ级（较重）、Ⅱ级（严重）、Ⅰ级（特别严重）
+  - label: 确定方式
+    value: 按灾害种类特征与预警能力确定具体级别
+  sea_area: 全国
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-GOV-CMA-WARNING-2007
+    sha256: 8280090b25aabf87d5b10482616f5228b47dc386fca8b58f4a2525599ba5e4ba
+    url: https://www.gov.cn/zhengce/2007-06/12/content_5720083.htm
+    publisher: 中国政府网
+    fetched_at: '2026-11-03T05:01:14+00:00'
+  tags:
+  - hazard
+  - warning
+- id: KNO-HAZARD-004
+  title: 预警信号的发布与传播
+  summary: 预警信号由气象台站发布，公共场所负有传播义务。
+  facts:
+  - label: 发布主体
+    value: 各级气象主管机构所属气象台站
+  - label: 传播义务
+    value: 港口、车站等人口密集公共场所管理单位应设置或利用设施传播
+  sea_area: 全国
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-GOV-CMA-WARNING-2007
+    sha256: 8280090b25aabf87d5b10482616f5228b47dc386fca8b58f4a2525599ba5e4ba
+    url: https://www.gov.cn/zhengce/2007-06/12/content_5720083.htm
+    publisher: 中国政府网
+    fetched_at: '2026-11-03T05:01:14+00:00'
+  tags:
+  - hazard
+  - warning

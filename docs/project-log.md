@@ -8,6 +8,12 @@ This log records material project changes by date. It does not use release versi
 - Documented the rhythm: weekly watch, monthly refresh, quarterly review 2027-02-02; due items are prompts, never automatic rewrites.
 - Added glossary terms source_class, currency, review_due and web card.
 - Adopted baseline unchanged: 36 documents, 849 chunks, index 5135e00cfa3d, hybrid 11/11.
+## 2026-11-03 — Remaining knowledge domains filled
+
+- Added nineteen notes: policy 7 (crew, ports, penalties, Hainan and Guangxi 2026 closures, distant-water monitoring, e-certificates), gear 5 (mesh standards, GB/T 5147—2026, SC/T 9460—2025, closure operation types), stats 3, hazard 3 and environment 1.
+- Knowledge base now holds 140 notes across six topics, every one with a SHA-256-pinned source and a review date.
+- 0 stale, 0 due; no index change, adopted baseline stays 36 documents / 849 chunks.
+
 ## 2026-11-03 — Species knowledge scaled to 115 notes
 
 - Added configs/species-seed.yaml (116 species) and src/scs_fkb/knowledge_build.py; each seed becomes a WoRMS card and a note built from the returned record.

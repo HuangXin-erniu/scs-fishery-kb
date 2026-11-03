@@ -69,3 +69,17 @@ The seed list [species-seed.yaml](../configs/species-seed.yaml) names 116 South 
 | Species with a note | 115 |
 
 Protection status and distribution are deliberately not asserted: the WoRMS record does not carry them, so every note says the field is unverified. A failed card produces no note.
+
+## 5. Topic coverage (2026-11-03)
+
+| Topic | Notes | Source base |
+|---|---|---|
+| species | 115 | WoRMS cards |
+| policy | 10 | corpus documents (closures, permits, crew, ports, penalties, VMS, e-certificates) |
+| gear | 6 | mesh standards, GB/T 5147—2026, SC/T 9460—2025, FAO guide, closure operation types |
+| environment | 2 | EUMETSAT Sentinel-3, NASA Ocean Biology DAAC |
+| hazard | 4 | gov.cn warning-signal measures |
+| stats | 3 | output definition, fishery yearbook, statistical yearbook |
+| **total** | **140** | |
+
+Every note pins at least one source with a SHA-256. Facts that the source does not state — protection status, prices, exact values — are left out, and a card that fails to fetch produces no note.
