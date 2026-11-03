@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import hashlib
 import json
-from dataclasses import asdict
+from dataclasses import asdict, replace
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
@@ -11,9 +11,11 @@ import yaml
 
 from .chunking import chunk_document
 from .corpus import acquired_sources, load_corpus, resolve_source_file
-from .models import Document
+from .models import Chunk, Document
+from .parsers import Page as ParsedPage
 from .parsers import ParseError, parse_source
 from .store import chunk_records, processed_dir, write_json, write_jsonl
+from .web import load_cards
 
 
 class IngestError(RuntimeError):
@@ -41,7 +43,73 @@ def load_pipeline(path: Path) -> dict[str, Any]:
     return data
 
 
-def ingest(config_path: Path, pipeline_path: Path, data_root: Any) -> dict[str, Any]:
+def web_card_documents(
+    cards_path: Path,
+    data_root: Path,
+    max_fallback_chars: int,
+) -> tuple[list[Document], list[Chunk], list[dict[str, Any]], dict[str, int]]:
+    """Turn cached ok cards into documents and chunks; skip unusable cards."""
+    cards_file = Path(cards_path)
+    if not cards_file.is_file():
+        return [], [], [], {}
+    cards = load_cards(cards_file)["cards"]
+    cache = Path(data_root) / "web"
+    documents: list[Document] = []
+    chunks: list[Chunk] = []
+    entries: list[dict[str, Any]] = []
+    counts: dict[str, int] = {}
+    for card in cards:
+        if card.get("status") != "ok" or not card.get("file"):
+            continue
+        text_path = cache / str(card["file"])
+        if not text_path.is_file():
+            continue
+        text = text_path.read_text(encoding="utf-8").strip()
+        if not text:
+            continue
+        document = Document(
+            doc_id=str(card["id"]),
+            source_id=str(card["id"]),
+            title=str(card["title"]),
+            title_zh=str(card["title"]),
+            publisher=str(card["publisher"]),
+            year=None,
+            doc_type="web_card",
+            sensitivity=str(card["sensitivity"]),
+            language="zh",
+            page_count=1,
+            file_hash=str(card["sha256"]),
+        )
+        page = ParsedPage(number=0, lines=text.splitlines())
+        made = [
+            replace(chunk, url=str(card["url"]), retrieved_at=str(card["fetched_at"]))
+            for chunk in chunk_document(document, [page], max_fallback_chars)
+        ]
+        if not made:
+            continue
+        documents.append(document)
+        chunks.extend(made)
+        counts[document.doc_id] = len(made)
+        entries.append(
+            {
+                "id": document.doc_id,
+                "hash": document.file_hash,
+                "location": f"web/{card['file']}",
+                "format": "web",
+                "pages": 1,
+                "chunks": len(made),
+                "kind": "web_card",
+            }
+        )
+    return documents, chunks, entries, counts
+
+
+def ingest(
+    config_path: Path,
+    pipeline_path: Path,
+    data_root: Any,
+    web_cards_path: Path | None = None,
+) -> dict[str, Any]:
     """Parse the configured sources, chunk them and write the processed store."""
     register = load_corpus(config_path)
     pipeline = load_pipeline(Path(pipeline_path))
@@ -101,6 +169,20 @@ def ingest(config_path: Path, pipeline_path: Path, data_root: Any) -> dict[str, 
             }
         )
 
+    cards_file = (
+        Path(web_cards_path)
+        if web_cards_path is not None
+        else Path(pipeline_path).parent / "web-cards.yaml"
+    )
+    web_documents, web_chunks, web_entries, web_counts = web_card_documents(
+        cards_file, root, max_chars
+    )
+    documents.extend(web_documents)
+    all_chunks.extend(web_chunks)
+    counts.update(web_counts)
+    for entry in web_entries:
+        parsers[entry["id"]] = "web"
+
     chunk_digest = hashlib.sha256(
         "".join(f"{chunk.chunk_id}\n{chunk.text}\n" for chunk in all_chunks).encode("utf-8")
     ).hexdigest()
@@ -121,7 +203,7 @@ def ingest(config_path: Path, pipeline_path: Path, data_root: Any) -> dict[str, 
         "chunks": len(all_chunks),
         "counts": counts,
         "pages": page_counts,
-        "sources": source_entries,
+        "sources": source_entries + web_entries,
         "chunk_digest": chunk_digest,
     }
 
