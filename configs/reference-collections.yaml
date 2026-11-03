@@ -3,42 +3,6 @@
 schema_version: 1
 updated_at: '2026-11-02'
 collections:
-  product:
-    description: >-
-      English product documentation for the environment and vessel-tracking data behind the forecasting work.
-      Questions reach these documents through the Chinese-to-English terminology bridge.
-    concepts: [sea surface temperature, ghRSST, chlorophyll, ocean colour, resolution, anomaly, remote sensing, coverage cycle, revisit, swath, product]
-    documents:
-      - id: STD-MUR-045
-        title: GHRSST Level 4 MUR Global Foundation Sea Surface Temperature Analysis (v4.1) - product description
-        file: raw/STD-MUR-045/mur-v4.1-product-page.html
-        sha256: 22232edcac451598e82761a63150d81577493ba5cb3bde12e89fe0b4cae3fe12
-        license: cc-by-4.0
-        language: en
-      - id: STD-OLCI-046
-        title: Sentinel-3 OLCI Marine User Handbook
-        file: raw/STD-OLCI-046/sentinel-3-olci-marine-user-handbook.pdf
-        sha256: 4d076cff30d35a079e8719f9205b7e54d305eb68a6ca311b122001bc24a254c6
-        license: public
-        language: en
-      - id: DICT-GFW-048
-        title: Global Fishing Watch API client - Events API documentation
-        file: raw/DICT-GFW-048/gfw-events-api-documentation.html
-        sha256: 02cf947bde28cec931ce50a7d1134d9a1bb514b708077fe806f5788fd4c9782c
-        license: apache-2.0
-        language: en
-      - id: STD-CMEMS-049
-        title: Copernicus Marine Product User Manual - GLOBAL_MULTIYEAR_PHY_001_030
-        file: raw/STD-CMEMS-049/cmems-glo-pum-001-030.pdf
-        sha256: d52e962890fa131f8eecfd2f6b958919ddbdcb46e5076f0f845f5657d0a82f07
-        license: public
-        language: en
-      - id: STD-HY1-056
-        title: 海洋水色卫星（HY-1C/D）产品能力说明
-        file: raw/STD-HY1-056/hy-1cd-ocean-colour-satellite.html
-        sha256: 8e876496069141af2c728c69b71d8b85654f4537775492562ad6e76c4d64addf
-        license: public
-        language: zh
   policy:
     description: >-
       Chinese governance documents on statistics, monitoring, certificates, crew and seasonal-closure

@@ -50,12 +50,14 @@ reference:
   - id: Q-M04
     collection: cwp
     docs: [STD-CWP-043-catch, STD-CWP-043-effort]
+# Product questions parked until the web card layer lands (phase three). They were
+# answered by the MUR/OLCI/CMEMS/HY-1C/D documents before those were removed.
+web:
   - id: Q-E08
-    collection: product
-    docs: [STD-MUR-045, STD-OLCI-046]
+    topic: ocean-colour
   - id: Q-M09
-    collection: product
-    docs: [STD-MUR-045, STD-OLCI-046, STD-CMEMS-049, STD-HY1-056]
+    topic: sst-and-ocean-colour-products
+
 # Statistical questions answered through the local yearbook channel rather than
 # the public index. The channel is scored separately from the main metrics.
 statistics:
