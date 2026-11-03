@@ -7,6 +7,7 @@ from datetime import date
 from pathlib import Path
 
 from .answer import answer_question, augment_with_external
+from .claims import classify, load_claims, record_gap
 from .compare import run_comparison
 from .config import (
     DEFAULT_ANCHORS,
@@ -208,6 +209,24 @@ def _ask(args: argparse.Namespace) -> int:
             abstained=True,
             reason="weak_evidence",
         )
+    if answer.abstained:
+        try:
+            claims_path = Path(args.pipeline).parent / "claims.yaml"
+            claim = (
+                classify(args.question, load_claims(claims_path))
+                if claims_path.is_file()
+                else {"nature": "general", "domain": "general"}
+            )
+            record_gap(
+                _root(args.data_root) / "gaps.jsonl",
+                args.question,
+                answer.reason,
+                str(claim.get("nature")),
+                str(claim.get("domain")),
+            )
+        except (OSError, ValueError):
+            pass
+
     if not answer.abstained:
         external_root = _root(args.data_root) / "external"
         try:

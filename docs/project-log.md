@@ -8,6 +8,13 @@ This log records material project changes by date. It does not use release versi
 - Documented the rhythm: weekly watch, monthly refresh, quarterly review 2027-02-02; due items are prompts, never automatic rewrites.
 - Added glossary terms source_class, currency, review_due and web card.
 - Adopted baseline unchanged: 36 documents, 849 chunks, index 5135e00cfa3d, hybrid 11/11.
+## 2026-11-03 — Cards join the external index; refusals become gaps
+
+- Linked the card cache into the external root and rebuilt it: 259 documents / 315 chunks (119 cards + 140 notes), external index `0c6d3901106c`, dense `0d3640622f4fbf90`.
+- Added record_gap and wired it into ask: every refusal appends timestamp, question, reason, nature and domain to `$SCS_FKB_DATA_ROOT/gaps.jsonl`; write failures never affect the answer.
+- Verified: a corpus question still answers with labelled external support; an out-of-scope question abstains and records the gap.
+- Corpus baseline unchanged: 20910f0964df, hybrid 11/11, abstention 3/4.
+
 ## 2026-11-03 — Two-index architecture: corpus decides, external supplements
 
 - Ingest gained --external-only: it skips corpus documents and writes cards/notes to a separate data root. The external store holds 140 notes (the card cache lives beside the corpus root).
