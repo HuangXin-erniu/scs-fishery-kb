@@ -1463,9 +1463,9 @@ sources:
   lifecycle: active
   watch_note: Static publisher text; no change feed. Rechecked at the quarterly review against the in-force catalogue.
   validity:
-    status: unknown
+    status: in_force
     as_of: '2026-11-02'
-    note: The registered 2019 text carries no commencement or validity clause; the revision date is in the title only.
+    note: 农渔发〔2019〕22号 (2019-08-01); Article 32 states 本办法自2020年1月1日起执行, and the 2014 predecessor is repealed.
 
 - id: STD-ECERT-054
   title: 渔业船网工具指标批准书、所有权登记证书和国籍证书电子证照标准

@@ -1054,7 +1054,7 @@ def test_validity_status_semantics() -> None:
 
     registry = load_registry("configs/corpus.yaml")
     unknown = {sid for sid, entry in registry.items() if entry["validity"]["status"] == "unknown"}
-    assert unknown <= {"POL-PORT-037", "POL-VMS-053"}
+    assert unknown <= {"POL-PORT-037"}
     categories = (
         "Data edition",
         "Product documentation edition",
@@ -1071,3 +1071,12 @@ def test_validity_status_semantics() -> None:
             assert validity["note"].startswith(categories), f"{source_id}: {validity['note']}"
         if validity["status"] == "in_force":
             assert validity["note"].strip()
+
+
+def test_vms_measure_is_closed_with_its_clause() -> None:
+    from scs_fkb.registry import load_registry
+
+    registry = load_registry("configs/corpus.yaml")
+    validity = registry["POL-VMS-053"]["validity"]
+    assert validity["status"] == "in_force"
+    assert "Article 32" in validity["note"] or "2020年1月1日" in validity["note"]

@@ -2,6 +2,11 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-03 — Vessel-monitoring measure closed
+
+- `POL-VMS-053` moved to in_force: 农渔发〔2019〕22号 (2019-08-01), Article 32 states 本办法自2020年1月1日起执行, and the 2014 predecessor is repealed. The earlier sweep missed the clause because it searched for 施行 rather than 执行.
+- Unknown set is now exactly `POL-PORT-037`; status counts 51 in_force, 26 not_applicable, 1 unknown. Counts and eval unchanged.
+
 ## 2026-11-03 — Twenty-one unknown entries resolved by category
 
 - Four normative documents upgraded with quoted evidence: POL-STAT-050 (本规定自发布之日起施行), POL-STAT-051 (国统制〔2024〕120号), STD-ECERT-054 (three certificate standards published 2025-01-01, now registered from the notice page with the PDFs noted) and POL-GD-061 (published 2026-04-28, 2026 season).
