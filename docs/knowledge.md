@@ -83,3 +83,7 @@ Protection status and distribution are deliberately not asserted: the WoRMS reco
 | **total** | **140** | |
 
 Every note pins at least one source with a SHA-256. Facts that the source does not state — protection status, prices, exact values — are left out, and a card that fails to fetch produces no note.
+
+## 6. Index status (2026-11-03)
+
+The layer is complete and validated but **not yet indexed**. Two rebuilds were measured: with cards and notes the index reached 287 documents and hybrid fell to 9/11 with abstention 2/4; with cards only it reached 147 documents and hybrid held at 11/11 but abstention fell to 2/4. Broad external evidence without an abstention-aware gate removes correct refusals, so the corpus-only twenty-eight-document baseline stays in force and the notes wait for that gate.

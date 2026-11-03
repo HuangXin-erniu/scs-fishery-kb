@@ -98,7 +98,14 @@ def _print_json(value: dict) -> None:
 
 
 def _ingest(args: argparse.Namespace) -> int:
-    summary = ingest(Path(args.config), Path(args.pipeline), _root(args.data_root))
+    summary = ingest(
+        Path(args.config),
+        Path(args.pipeline),
+        _root(args.data_root),
+        knowledge_dir=Path(args.knowledge_dir) if args.knowledge_dir else None,
+        include_web=not args.no_web,
+        include_knowledge=not args.no_knowledge,
+    )
     if args.json:
         _print_json(summary)
     else:
@@ -451,6 +458,9 @@ def build_parser() -> argparse.ArgumentParser:
     ingest_parser.add_argument("--config", default=str(DEFAULT_CONFIG))
     ingest_parser.add_argument("--pipeline", default=str(DEFAULT_PIPELINE))
     ingest_parser.add_argument("--data-root", default=None)
+    ingest_parser.add_argument("--knowledge-dir", default=None)
+    ingest_parser.add_argument("--no-web", action="store_true")
+    ingest_parser.add_argument("--no-knowledge", action="store_true")
     ingest_parser.add_argument("--json", action="store_true")
     ingest_parser.set_defaults(func=_ingest)
 
