@@ -1,0 +1,29 @@
+schema_version: 1
+topic: environment
+notes:
+- id: KNO-ENV-001
+  title: Sentinel-3 海洋观测能力
+  summary: EUMETSAT Sentinel-3 任务页：双星轨道与海洋变量。
+  facts:
+  - label: 任务
+    value: 监测海洋、陆地、冰盖与大气
+  - label: 轨道
+    value: Sentinel-3A/3B 双星，815 km 太阳同步近极轨
+  - label: 海洋变量
+    value: 海色、海表温度、海面高度
+  - label: 连续性
+    value: 3C/3D 计划延续至 2030 年代
+  sea_area: 全球
+  as_of: '2026-11-03'
+  review_due: '2026-12-03'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-EUMETSAT-SENTINEL3
+    sha256: 0a1e77b0543320f52d29cc60d372872ebd595adabbbbb29cf7cb58f4ec97d906
+    url: https://www.eumetsat.int/sentinel-3
+    publisher: EUMETSAT
+    fetched_at: '2026-11-03T05:01:14+00:00'
+  tags:
+  - environment
+  - ocean-colour

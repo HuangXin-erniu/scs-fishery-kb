@@ -43,3 +43,4 @@ expert before treating a definition as authoritative.
 - [Data policy](data-policy.md)
 - [Style guide](style-guide.md)
 - [Corpus register](../configs/corpus.yaml)
+| knowledge note | 知识条目 | Structured facts distilled from cards or corpus documents, pinned to source hashes and carrying an as-of date, a review date and a status. |

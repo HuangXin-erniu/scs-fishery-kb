@@ -2,6 +2,13 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-03 — Knowledge-note layer with a ten-note pilot
+
+- Added configs/knowledge/<topic>.yaml and src/scs_fkb/knowledge.py: schema validation, card-hash binding, hazard expiry, due reporting and draft-to-approved flow.
+- Added `scs-fkb knowledge list/check/approve`; check --write marks changed or expired notes stale and never approves them.
+- Seeded ten notes: four WoRMS species, three policy notes from POL-CLOS-015, POL-STD-010 article 28 and POL-SPEC-041, one FAO gear note, one EUMETSAT environment note and one warning-signal hazard note.
+- No index change; the adopted baseline stays 36 documents / 849 chunks / 5135e00cfa3d.
+
 ## 2026-11-03 — Q-M10 reworded, Q-E01 synonym added, card baseline adopted
 
 - Q-M10 now asks 申请海洋渔业捕捞许可证应当提交哪些资料？; anchors are unchanged (POL-STD-010 第二十八条, POL-LAW-009 第三十五条).

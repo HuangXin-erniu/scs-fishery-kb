@@ -1,0 +1,27 @@
+schema_version: 1
+topic: gear
+notes:
+- id: KNO-GEAR-001
+  title: FAO 捕捞数据常规采集指南
+  summary: FAO 技术文件 382，用于捕捞数据采集的通用方法。
+  facts:
+  - label: 文件
+    value: 'FAO Fisheries Technical Paper 382: Guidelines for the Routine Collection
+      of Capture Fishery Data (1999)'
+  - label: 范围
+    value: 捕捞数据常规采集，含渔获、努力量与样本设计
+  - label: 来源会议
+    value: FAO/DANIDA 专家磋商，曼谷，1998-05
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-FAO-ISSCFG-GEAR
+    sha256: 516e1eebaa5ef9345dd3f7a6220c76ba8a04f042acfb3191f4c9f3bd18859ce3
+    url: https://www.fao.org/4/x2465e/x2465e00.htm
+    publisher: FAO
+    fetched_at: '2026-11-03T05:02:09+00:00'
+  tags:
+  - gear
+  - data-collection

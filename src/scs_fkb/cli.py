@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import json
 import sys
+from datetime import date
 from pathlib import Path
 
 from .answer import answer_question
@@ -23,6 +24,9 @@ from .embed import DEFAULT_MODEL, FastEmbedEncoder
 from .evaluate import title_tokens, write_report
 from .ingest import IngestError, ingest, load_pipeline
 from .jurisdiction import question_jurisdiction
+from .knowledge import KnowledgeError, list_notes
+from .knowledge import approve as approve_note
+from .knowledge import check as check_knowledge
 from .lexicon import load_lexicon
 from .models import Answer
 from .parsers import ParseError, UnsupportedFormatError
@@ -316,6 +320,39 @@ def _watch(args: argparse.Namespace) -> int:
     return 0
 
 
+def _knowledge_list(args: argparse.Namespace) -> int:
+    notes = list_notes(Path(args.dir))
+    if args.json:
+        _print_json({"notes": notes})
+        return 0
+    for note in notes:
+        print(f"{note['id']:20} {note['topic']:12} {note['status']:9} {note['title'][:40]}")
+    return 0
+
+
+def _knowledge_check(args: argparse.Namespace) -> int:
+    today = date.fromisoformat(args.today) if args.today else None
+    report = check_knowledge(Path(args.dir), Path(args.cards), today=today, write=args.write)
+    if args.json:
+        _print_json(report)
+        return 0
+    for row in report["notes"]:
+        mark = "due" if row["due"] else "   "
+        reasons = "; ".join(row["reasons"])
+        print(f"{row['id']:20} {row['status']:9} {mark} {reasons}".rstrip())
+    print(f"summary {{'stale': {report['stale']}, 'due': {report['due']}}}")
+    return 0
+
+
+def _knowledge_approve(args: argparse.Namespace) -> int:
+    result = approve_note(Path(args.dir), args.note_id)
+    if args.json:
+        _print_json(result)
+    else:
+        print(f"{result['id']} -> {result['status']}")
+    return 0
+
+
 def _web_refresh(args: argparse.Namespace) -> int:
     sources = load_web_sources(Path(args.sources))
     cards = load_cards(Path(args.cards))
@@ -477,6 +514,25 @@ def build_parser() -> argparse.ArgumentParser:
     watch_parser.add_argument("--json", action="store_true")
     watch_parser.set_defaults(func=_watch)
 
+    knowledge_parser = subparsers.add_parser("knowledge", help="manage structured knowledge notes")
+    knowledge_sub = knowledge_parser.add_subparsers(dest="knowledge_command", required=True)
+    list_parser = knowledge_sub.add_parser("list", help="list notes")
+    list_parser.add_argument("--dir", default=str(REPO_ROOT / "configs" / "knowledge"))
+    list_parser.add_argument("--json", action="store_true")
+    list_parser.set_defaults(func=_knowledge_list)
+    check_parser = knowledge_sub.add_parser("check", help="validate notes and mark stale/expired")
+    check_parser.add_argument("--dir", default=str(REPO_ROOT / "configs" / "knowledge"))
+    check_parser.add_argument("--cards", default=str(REPO_ROOT / "configs" / "web-cards.yaml"))
+    check_parser.add_argument("--today", default=None)
+    check_parser.add_argument("--write", action="store_true")
+    check_parser.add_argument("--json", action="store_true")
+    check_parser.set_defaults(func=_knowledge_check)
+    approve_parser = knowledge_sub.add_parser("approve", help="approve a draft note")
+    approve_parser.add_argument("note_id")
+    approve_parser.add_argument("--dir", default=str(REPO_ROOT / "configs" / "knowledge"))
+    approve_parser.add_argument("--json", action="store_true")
+    approve_parser.set_defaults(func=_knowledge_approve)
+
     web_parser = subparsers.add_parser("web", help="manage cached web cards")
     web_subparsers = web_parser.add_subparsers(dest="web_command", required=True)
     refresh_parser = web_subparsers.add_parser(
@@ -516,6 +572,7 @@ def main(argv: list[str] | None = None) -> int:
         StoreError,
         WatchError,
         WebError,
+        KnowledgeError,
         ValueError,
         FileNotFoundError,
     ) as exc:
