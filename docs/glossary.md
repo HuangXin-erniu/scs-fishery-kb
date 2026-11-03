@@ -43,3 +43,7 @@ expert before treating a definition as authoritative.
 - [Data policy](data-policy.md)
 - [Style guide](style-guide.md)
 - [Corpus register](../configs/corpus.yaml)
+| source_class | 来源类别 | normative, official_statistics, standard or reference; describes the kind of source, not whether it is current. |
+| currency | 时效 | as_of, basis, review_due and an optional evidence note. |
+| review_due | 复查日期 | When an entry or card must be checked again; the watch report lists what is due. |
+| web card | 网络卡片 | A cached allowlisted page with public metadata and private text, indexed beside the corpus. |
