@@ -8,6 +8,13 @@ This log records material project changes by date. It does not use release versi
 - Documented the rhythm: weekly watch, monthly refresh, quarterly review 2027-02-02; due items are prompts, never automatic rewrites.
 - Added glossary terms source_class, currency, review_due and web card.
 - Adopted baseline unchanged: 36 documents, 849 chunks, index 5135e00cfa3d, hybrid 11/11.
+## 2026-11-03 — Layered corpus gate implemented, enlarged index still deferred
+
+- Added a chunk kind (corpus/web/note) and a corpus-evidence gate: cards and notes cannot alone support an answer; `answer.require_corpus_evidence` switches it.
+- Measured the 287-document index: BM25 abstention recovered to 3/4, but hybrid stayed at 2/4 with recall 9/11. The gate does not yet make the enlarged index safe.
+- Restored the corpus-only index (28 documents, 785 chunks, 20910f0964df): hybrid 11/11, abstention 3/4.
+- Gate code and tests remain for the next design attempt; cards and notes stay unindexed.
+
 ## 2026-11-03 — Knowledge notes wired into ingest, indexing deferred
 
 - Ingest now builds NOTE-* documents from approved notes and skips drafts, stale notes and expired hazard notes; `--no-web` and `--no-knowledge` allow controlled rebuilds.

@@ -43,6 +43,7 @@ def run_comparison(
     title_boost = float(retrieval.get("title_boost", 0.0))
     min_score = float(answer.get("min_score", 0.0))
     min_matched = int(answer.get("min_matched", 3))
+    require_corpus = bool(answer.get("require_corpus_evidence", False))
 
     dense_index = DenseIndex.load(index_path(data_root, model, version))
     encoder = FastEmbedEncoder(model, cache_dir=str(embeddings_dir(data_root) / "models"))
@@ -62,11 +63,33 @@ def run_comparison(
         )
 
     titles = title_tokens(manifest["documents"])
+    corpus_chunks = [chunk for chunk in chunks if getattr(chunk, "kind", "corpus") == "corpus"]
     arms = {
         "bm25": retriever("bm25", False),
         "bm25_lexicon": retriever("bm25", True),
         "dense": retriever("dense", False),
         "hybrid": retriever("hybrid", True),
+    }
+
+    def corpus_retriever(mode: str, use_lexicon: bool) -> Retriever:
+        return Retriever(
+            corpus_chunks,
+            titles=titles,
+            title_boost=title_boost,
+            lexicon=lexicon if use_lexicon else None,
+            mode=mode,
+            dense=dense_index if mode != "bm25" else None,
+            encoder=encoder if mode != "bm25" else None,
+            fusion_k=int(retrieval.get("fusion_k", 60)),
+            bm25_weight=float(retrieval.get("bm25_weight", 1.0)),
+            dense_weight=float(retrieval.get("dense_weight", 1.0)),
+        )
+
+    corpus_arms = {
+        "bm25": corpus_retriever("bm25", False),
+        "bm25_lexicon": corpus_retriever("bm25", True),
+        "dense": corpus_retriever("dense", False),
+        "hybrid": corpus_retriever("hybrid", True),
     }
     report: dict[str, Any] = {"index_version": version, "model": model, "arms": {}}
     for name, arm in arms.items():
@@ -87,6 +110,11 @@ def run_comparison(
                 top_k=5,
                 title_boost=title_boost,
                 lexicon=lexicon if name == "bm25_lexicon" else [],
+                corpus_searcher=(
+                    (lambda question, arm=corpus_arms[name]: arm.search(question))
+                    if require_corpus
+                    else None
+                ),
             )
         else:
             result = evaluate(

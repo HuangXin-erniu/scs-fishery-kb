@@ -189,6 +189,8 @@ def answer_question(
     min_score: float = 0.0,
     min_matched: int = 3,
     extra_hits: list[SearchHit] | None = None,
+    require_corpus: bool = False,
+    gate_min_score: float = 0.0,
 ) -> Answer:
     """Answer from retrieved hits, abstaining when the best evidence is weak.
 
@@ -211,6 +213,17 @@ def answer_question(
             text="证据不足：索引语料中没有找到可支持回答的内容。",
             abstained=True,
             reason="no_evidence",
+        )
+
+    if (
+        require_corpus
+        and lead is None
+        and not any(hit.chunk.kind == "corpus" and hit.score >= gate_min_score for hit in usable)
+    ):
+        return Answer(
+            text="证据不足：外部知识不能单独支撑回答。",
+            abstained=True,
+            reason="no_corpus_evidence",
         )
 
     best = usable[0]

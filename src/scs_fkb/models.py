@@ -49,6 +49,7 @@ class Chunk:
     sensitivity: str
     url: str = ""
     retrieved_at: str = ""
+    kind: str = "corpus"
 
 
 @dataclass(frozen=True)

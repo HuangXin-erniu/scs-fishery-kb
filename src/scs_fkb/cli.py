@@ -165,6 +165,11 @@ def _ask(args: argparse.Namespace) -> int:
         reference_lookup(args.question, top_k=8, root=_root(args.data_root), collection="policy")
     )
     min_score, min_matched, _ = _pipeline_options(args.pipeline)
+    require_corpus = bool(
+        (load_pipeline(Path(args.pipeline)).get("answer") or {}).get(
+            "require_corpus_evidence", False
+        )
+    )
     if retriever.mode == "bm25":
         answer = answer_question(
             args.question,
@@ -172,6 +177,7 @@ def _ask(args: argparse.Namespace) -> int:
             min_score=min_score,
             min_matched=min_matched,
             extra_hits=policy_references,
+            require_corpus=require_corpus,
         )
     elif retriever.gate_ok(args.question, min_score, min_matched):
         answer = answer_question(
@@ -180,6 +186,7 @@ def _ask(args: argparse.Namespace) -> int:
             min_score=0.0,
             min_matched=0,
             extra_hits=policy_references,
+            require_corpus=require_corpus,
         )
     elif policy_references and question_jurisdiction(args.question):
         answer = answer_question(
