@@ -8,6 +8,12 @@ This log records material project changes by date. It does not use release versi
 - Documented the rhythm: weekly watch, monthly refresh, quarterly review 2027-02-02; due items are prompts, never automatic rewrites.
 - Added glossary terms source_class, currency, review_due and web card.
 - Adopted baseline unchanged: 36 documents, 849 chunks, index 5135e00cfa3d, hybrid 11/11.
+## 2026-11-03 — Online watch: 22 ok, 4 changed queued
+
+- Ran the first online watch after the card layer: 22 entries ok, 4 changed (WATCH-GD-NOTICES, WATCH-GX-NYNCT-NOTICES, WATCH-GX-HYJ-NOTICES, WATCH-MOJ-OBSERVATION).
+- Changed is a review prompt, not an update; the four pages are queued, baselines unchanged, no corpus entry modified.
+- Quarterly review reminder set for 2027-02-02; gap file has one entry.
+
 ## 2026-11-03 — Placeholder URLs cleaned, gap report added, review rehearsed
 
 - Removed the three example.invalid URLs from policy notes; document sources now carry no URL rather than a fake one.
