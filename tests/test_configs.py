@@ -963,7 +963,7 @@ def test_vms_measure_is_closed_with_its_clause() -> None:
 
 def test_web_cards_registry() -> None:
     cards = load_yaml("configs/web-cards.yaml")["cards"]
-    expected = {
+    original = {
         "WEB-WORMS-LARIMICHTHYS-CROCEA",
         "WEB-WORMS-TRICHIURUS-LEPTURUS",
         "WEB-WORMS-DECAPTERUS-MARUADSI",
@@ -973,13 +973,17 @@ def test_web_cards_registry() -> None:
         "WEB-NASA-OCEANCOLOR",
         "WEB-EUMETSAT-SENTINEL3",
     }
-    assert {card["id"] for card in cards} == expected
+    ids = {card["id"] for card in cards}
+    assert original <= ids
+    assert len(cards) >= 100
     for card in cards:
         assert card["url"].startswith("https://")
         assert card["source_class"] == "reference"
-        assert card["status"] == "ok"
-        assert len(card["sha256"]) == 64
-        assert card["excerpt"]
+        if card["status"] == "ok":
+            assert len(card["sha256"]) == 64
+            assert card["excerpt"]
+        else:
+            assert card["status"] == "failed"
 
 
 def test_retrieval_parameters_are_the_reviewed_set() -> None:

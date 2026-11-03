@@ -8,6 +8,13 @@ This log records material project changes by date. It does not use release versi
 - Documented the rhythm: weekly watch, monthly refresh, quarterly review 2027-02-02; due items are prompts, never automatic rewrites.
 - Added glossary terms source_class, currency, review_due and web card.
 - Adopted baseline unchanged: 36 documents, 849 chunks, index 5135e00cfa3d, hybrid 11/11.
+## 2026-11-03 — Species knowledge scaled to 115 notes
+
+- Added configs/species-seed.yaml (116 species) and src/scs_fkb/knowledge_build.py; each seed becomes a WoRMS card and a note built from the returned record.
+- Fetched 115 of 116 cards; Prionace glauca failed with a TLS reset and produced no note. Species notes now total 115 (4 pilot + 111).
+- Facts cover scientific name, authority, classification, marine flags and AphiaID; distribution and protection status remain explicitly unverified.
+- No index change; adopted baseline stays 36 documents / 849 chunks.
+
 ## 2026-11-03 — Knowledge-note layer with a ten-note pilot
 
 - Added configs/knowledge/<topic>.yaml and src/scs_fkb/knowledge.py: schema validation, card-hash binding, hazard expiry, due reporting and draft-to-approved flow.

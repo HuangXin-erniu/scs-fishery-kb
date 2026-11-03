@@ -121,3 +121,3333 @@ notes:
   tags:
   - species
   - taxonomy
+- id: KNO-SPECIES-005
+  title: 小黄鱼 Larimichthys polyactis
+  summary: Larimichthys polyactis 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Larimichthys polyactis
+  - label: 命名人
+    value: (Bleeker, 1877)
+  - label: 分类
+    value: Chordata > Teleostei > Eupercaria incertae sedis1 > Sciaenidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=0 淡水=0
+  - label: WoRMS ID
+    value: '281273'
+  sea_area: 南海
+  species:
+  - Larimichthys polyactis
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-LARIMICHTHYS-POLYACTIS
+    sha256: 40dfdd45c302df3bdc27d04d5ab861976680d3c1c89a7224f9bcebcf9c16783f
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Larimichthys%20polyactis?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-006
+  title: 日本带鱼 Trichiurus japonicus
+  summary: Trichiurus japonicus 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Trichiurus japonicus
+  - label: 命名人
+    value: Temminck & Schlegel, 1844
+  - label: 分类
+    value: Chordata > Teleostei > Scombriformes > Trichiuridae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=1 淡水=0
+  - label: WoRMS ID
+    value: '305414'
+  sea_area: 南海
+  species:
+  - Trichiurus japonicus
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-TRICHIURUS-JAPONICUS
+    sha256: 4110f1f6b5edc2df71dd5da22f4ce0499860ec84f85698e1ad09c4bab81276e4
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Trichiurus%20japonicus?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-007
+  title: 大甲鲹 Decapterus macrosoma
+  summary: Decapterus macrosoma 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Decapterus macrosoma
+  - label: 命名人
+    value: Bleeker, 1851
+  - label: 分类
+    value: Chordata > Teleostei > Carangiformes > Carangidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=0 淡水=0
+  - label: WoRMS ID
+    value: '218426'
+  sea_area: 南海
+  species:
+  - Decapterus macrosoma
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-DECAPTERUS-MACROSOMA
+    sha256: aeca4db94b822d617021efe57e18e597a1476af0023a54c43db84a1470c6ec84
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Decapterus%20macrosoma?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-008
+  title: 日本鲭 Scomber japonicus
+  summary: Scomber japonicus 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Scomber japonicus
+  - label: 命名人
+    value: Houttuyn, 1782
+  - label: 分类
+    value: Chordata > Teleostei > Scombriformes > Scombridae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=0 淡水=0
+  - label: WoRMS ID
+    value: '127022'
+  sea_area: 南海
+  species:
+  - Scomber japonicus
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-SCOMBER-JAPONICUS
+    sha256: 3866b46f67eae993c868858a1aab2ebda3ee7940fe6677f263d13d7e4ba90c1d
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Scomber%20japonicus?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-009
+  title: 康氏马鲛 Scomberomorus commerson
+  summary: Scomberomorus commerson 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Scomberomorus commerson
+  - label: 命名人
+    value: (Lacepède, 1800)
+  - label: 分类
+    value: Chordata > Teleostei > Scombriformes > Scombridae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=0 淡水=0
+  - label: WoRMS ID
+    value: '127024'
+  sea_area: 南海
+  species:
+  - Scomberomorus commerson
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-SCOMBEROMORUS-COMMERSON
+    sha256: d28b874dfb18e451cc7a83542693f8ee42d7a792bd66951df70e3bfcba9bd176
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Scomberomorus%20commerson?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-010
+  title: 蓝点马鲛 Scomberomorus niphonius
+  summary: Scomberomorus niphonius 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Scomberomorus niphonius
+  - label: 命名人
+    value: (Cuvier, 1832)
+  - label: 分类
+    value: Chordata > Teleostei > Scombriformes > Scombridae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=0 淡水=0
+  - label: WoRMS ID
+    value: '273817'
+  sea_area: 南海
+  species:
+  - Scomberomorus niphonius
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-SCOMBEROMORUS-NIPHONIUS
+    sha256: 19518801a872599fd22ea3baea79ff90ec2a8352cf5ce807eddec5c9ca699598
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Scomberomorus%20niphonius?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-011
+  title: 黄鳍金枪鱼 Thunnus albacares
+  summary: Thunnus albacares 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Thunnus albacares
+  - label: 命名人
+    value: (Bonnaterre, 1788)
+  - label: 分类
+    value: Chordata > Teleostei > Scombriformes > Scombridae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=1 淡水=0
+  - label: WoRMS ID
+    value: '127027'
+  sea_area: 南海
+  species:
+  - Thunnus albacares
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-THUNNUS-ALBACARES
+    sha256: eddba7fcb303bb528c1503e697d5fa946c33941108470207b6f0e3cd9de5c80d
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Thunnus%20albacares?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-012
+  title: 青干金枪鱼 Thunnus tonggol
+  summary: Thunnus tonggol 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Thunnus tonggol
+  - label: 命名人
+    value: (Bleeker, 1851)
+  - label: 分类
+    value: Chordata > Teleostei > Scombriformes > Scombridae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=0 淡水=0
+  - label: WoRMS ID
+    value: '219722'
+  sea_area: 南海
+  species:
+  - Thunnus tonggol
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-THUNNUS-TONGGOL
+    sha256: 28bab2def5adf2729fd272e58324b42628ee8579b9616711fdb8281c231c4963
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Thunnus%20tonggol?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-013
+  title: 鲣 Katsuwonus pelamis
+  summary: Katsuwonus pelamis 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Katsuwonus pelamis
+  - label: 命名人
+    value: (Linnaeus, 1758)
+  - label: 分类
+    value: Chordata > Teleostei > Scombriformes > Scombridae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=0 淡水=0
+  - label: WoRMS ID
+    value: '127018'
+  sea_area: 南海
+  species:
+  - Katsuwonus pelamis
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-KATSUWONUS-PELAMIS
+    sha256: fa1032e484d9f37bfba779759003ab20d531054ad51063a78f013fa92de71241
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Katsuwonus%20pelamis?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-014
+  title: 扁舵鲣 Auxis thazard
+  summary: Auxis thazard 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Auxis thazard
+  - label: 命名人
+    value: (Lacepède, 1800)
+  - label: 分类
+    value: Chordata > Teleostei > Scombriformes > Scombridae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=0 淡水=0
+  - label: WoRMS ID
+    value: '127016'
+  sea_area: 南海
+  species:
+  - Auxis thazard
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-AUXIS-THAZARD
+    sha256: 28797f1dfb372be5ffa333e977838c505358908a0700ffa3a12ffd5678dd91da
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Auxis%20thazard?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-015
+  title: 巴鲣 Euthynnus affinis
+  summary: Euthynnus affinis 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Euthynnus affinis
+  - label: 命名人
+    value: (Cantor, 1849)
+  - label: 分类
+    value: Chordata > Teleostei > Scombriformes > Scombridae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=0 淡水=0
+  - label: WoRMS ID
+    value: '219708'
+  sea_area: 南海
+  species:
+  - Euthynnus affinis
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-EUTHYNNUS-AFFINIS
+    sha256: 6887e4553aefc6e83b2b78d8c006820ca149c766cf41272731be32b79e9e1288
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Euthynnus%20affinis?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-016
+  title: 羽鳃鲐 Rastrelliger kanagurta
+  summary: Rastrelliger kanagurta 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Rastrelliger kanagurta
+  - label: 命名人
+    value: (Cuvier, 1816)
+  - label: 分类
+    value: Chordata > Teleostei > Scombriformes > Scombridae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=0 淡水=0
+  - label: WoRMS ID
+    value: '127020'
+  sea_area: 南海
+  species:
+  - Rastrelliger kanagurta
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-RASTRELLIGER-KANAGURTA
+    sha256: b044ed75c3cbf533f4781d163f1d2ffb3cf7d82de19fc16afd3ff5b05d18aaeb
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Rastrelliger%20kanagurta?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-017
+  title: 金线鱼 Nemipterus virgatus
+  summary: Nemipterus virgatus 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Nemipterus virgatus
+  - label: 命名人
+    value: (Houttuyn, 1782)
+  - label: 分类
+    value: Chordata > Teleostei > Spariformes > Nemipteridae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=0 淡水=0
+  - label: WoRMS ID
+    value: '278133'
+  sea_area: 南海
+  species:
+  - Nemipterus virgatus
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-NEMIPTERUS-VIRGATUS
+    sha256: d1143d6841b386b0ce00a0143292a28d42ec25caa78d4aca8d5903518c583303
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Nemipterus%20virgatus?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-018
+  title: 日本金线鱼 Nemipterus japonicus
+  summary: Nemipterus japonicus 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Nemipterus japonicus
+  - label: 命名人
+    value: (Bloch, 1791)
+  - label: 分类
+    value: Chordata > Teleostei > Spariformes > Nemipteridae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=0 淡水=0
+  - label: WoRMS ID
+    value: '218515'
+  sea_area: 南海
+  species:
+  - Nemipterus japonicus
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-NEMIPTERUS-JAPONICUS
+    sha256: b277810ea9d98800df99b619446b746407440d14fc023c7c5c3e4c7f184db8b8
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Nemipterus%20japonicus?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-019
+  title: 大眼鲷 Priacanthus macracanthus
+  summary: Priacanthus macracanthus 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Priacanthus macracanthus
+  - label: 命名人
+    value: Cuvier, 1829
+  - label: 分类
+    value: Chordata > Teleostei > Priacanthiformes > Priacanthidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=0 淡水=0
+  - label: WoRMS ID
+    value: '273765'
+  sea_area: 南海
+  species:
+  - Priacanthus macracanthus
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-PRIACANTHUS-MACRACANTHUS
+    sha256: d8ad4a4dfe5e610f56c22e7ce6030a22092b2255692302c3f2723239b9638eec
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Priacanthus%20macracanthus?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-020
+  title: 刺鲳 Psenopsis anomala
+  summary: Psenopsis anomala 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Psenopsis anomala
+  - label: 命名人
+    value: (Temminck & Schlegel, 1844)
+  - label: 分类
+    value: Chordata > Teleostei > Scombriformes > Centrolophidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=0 淡水=0
+  - label: WoRMS ID
+    value: '277902'
+  sea_area: 南海
+  species:
+  - Psenopsis anomala
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-PSENOPSIS-ANOMALA
+    sha256: 05f9360be27b15464c956adf5fcc1ca2c7eb2cfa30e1ab40eb2039abd49e85a1
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Psenopsis%20anomala?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-021
+  title: 银鲳 Pampus argenteus
+  summary: Pampus argenteus 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Pampus argenteus
+  - label: 命名人
+    value: (Euphrasen, 1788)
+  - label: 分类
+    value: Chordata > Teleostei > Scombriformes > Stromateidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=0 淡水=0
+  - label: WoRMS ID
+    value: '127075'
+  sea_area: 南海
+  species:
+  - Pampus argenteus
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-PAMPUS-ARGENTEUS
+    sha256: 23de8aeaa2cfec9cac05030b1aa21d19d20d8c8cd888528d201f3ee64e85e9db
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Pampus%20argenteus?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-022
+  title: 中国鲳 Pampus chinensis
+  summary: Pampus chinensis 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Pampus chinensis
+  - label: 命名人
+    value: (Euphrasen, 1788)
+  - label: 分类
+    value: Chordata > Teleostei > Scombriformes > Stromateidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=1 淡水=0
+  - label: WoRMS ID
+    value: '273993'
+  sea_area: 南海
+  species:
+  - Pampus chinensis
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-PAMPUS-CHINENSIS
+    sha256: caa9c45ca691837bddc1c91c0316c9fb60106dc9f9752f8d9b07cd36b8bef8ab
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Pampus%20chinensis?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-023
+  title: 红鳍笛鲷 Lutjanus erythropterus
+  summary: Lutjanus erythropterus 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Lutjanus erythropterus
+  - label: 命名人
+    value: Bloch, 1790
+  - label: 分类
+    value: Chordata > Teleostei > Eupercaria incertae sedis1 > Lutjanidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=0 淡水=0
+  - label: WoRMS ID
+    value: '276534'
+  sea_area: 南海
+  species:
+  - Lutjanus erythropterus
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-LUTJANUS-ERYTHROPTERUS
+    sha256: b26448abb65a6a6124a8d6d5e3aa9f9eb6e1ebe437bf143b44679b6ac9277266
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Lutjanus%20erythropterus?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-024
+  title: 马拉巴笛鲷 Lutjanus malabaricus
+  summary: Lutjanus malabaricus 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Lutjanus malabaricus
+  - label: 命名人
+    value: (Bloch & Schneider, 1801)
+  - label: 分类
+    value: Chordata > Teleostei > Eupercaria incertae sedis1 > Lutjanidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=1 淡水=0
+  - label: WoRMS ID
+    value: '218481'
+  sea_area: 南海
+  species:
+  - Lutjanus malabaricus
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-LUTJANUS-MALABARICUS
+    sha256: 454d93b64fe8490c52796c8ebfb24ddded4e641cbf4693846e51251395a92c77
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Lutjanus%20malabaricus?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-025
+  title: 千年笛鲷 Lutjanus sebae
+  summary: Lutjanus sebae 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Lutjanus sebae
+  - label: 命名人
+    value: (Cuvier, 1816)
+  - label: 分类
+    value: Chordata > Teleostei > Eupercaria incertae sedis1 > Lutjanidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=1 淡水=0
+  - label: WoRMS ID
+    value: '218499'
+  sea_area: 南海
+  species:
+  - Lutjanus sebae
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-LUTJANUS-SEBAE
+    sha256: a2389ee5dd32c5937ffe0e774c9850781cbe89db5c07bf1fc305e562318859a7
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Lutjanus%20sebae?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-026
+  title: 棕点石斑鱼 Epinephelus coioides
+  summary: Epinephelus coioides 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Epinephelus coioides
+  - label: 命名人
+    value: (Hamilton, 1822)
+  - label: 分类
+    value: Chordata > Teleostei > Perciformes > Epinephelidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=1 淡水=0
+  - label: WoRMS ID
+    value: '218200'
+  sea_area: 南海
+  species:
+  - Epinephelus coioides
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-EPINEPHELUS-COIOIDES
+    sha256: 634985b1ed01a75d06948a5af162fccbf93bf53f779ccd88d70e827fd49fd581
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Epinephelus%20coioides?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-027
+  title: 玛拉巴石斑鱼 Epinephelus malabaricus
+  summary: Epinephelus malabaricus 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Epinephelus malabaricus
+  - label: 命名人
+    value: (Bloch & Schneider, 1801)
+  - label: 分类
+    value: Chordata > Teleostei > Perciformes > Epinephelidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=1 淡水=0
+  - label: WoRMS ID
+    value: '218206'
+  sea_area: 南海
+  species:
+  - Epinephelus malabaricus
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-EPINEPHELUS-MALABARICUS
+    sha256: 631b4e85be33cc0057b92cdc21d6ed70d9d08ed43292088e2ed7c58ec70506e1
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Epinephelus%20malabaricus?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-028
+  title: 宝石石斑鱼 Epinephelus areolatus
+  summary: Epinephelus areolatus 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Epinephelus areolatus
+  - label: 命名人
+    value: (Forsskål, 1775)
+  - label: 分类
+    value: Chordata > Teleostei > Perciformes > Epinephelidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=0 淡水=0
+  - label: WoRMS ID
+    value: '218204'
+  sea_area: 南海
+  species:
+  - Epinephelus areolatus
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-EPINEPHELUS-AREOLATUS
+    sha256: dd9007467d7bbe4da3e62209cadec409e4baa02c5054b4078c8f81c889616186
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Epinephelus%20areolatus?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-029
+  title: 豹纹鳃棘鲈 Plectropomus leopardus
+  summary: Plectropomus leopardus 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Plectropomus leopardus
+  - label: 命名人
+    value: (Lacepède, 1802)
+  - label: 分类
+    value: Chordata > Teleostei > Perciformes > Epinephelidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=0 淡水=0
+  - label: WoRMS ID
+    value: '218261'
+  sea_area: 南海
+  species:
+  - Plectropomus leopardus
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-PLECTROPOMUS-LEOPARDUS
+    sha256: f9a66673efedcb68d065345f1c21000e7ab810ebddf20f789bd0d3b2cf110ca1
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Plectropomus%20leopardus?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-030
+  title: 真鲷 Pagrus major
+  summary: Pagrus major 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Pagrus major
+  - label: 命名人
+    value: (Temminck & Schlegel, 1843)
+  - label: 分类
+    value: Chordata > Teleostei > Spariformes > Sparidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=0 淡水=0
+  - label: WoRMS ID
+    value: '273976'
+  sea_area: 南海
+  species:
+  - Pagrus major
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-PAGRUS-MAJOR
+    sha256: eb10c5fa9bfa966ec1b9aff6bae9c7eff0d169f846811bc80b6d90eb33dfb62b
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Pagrus%20major?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-031
+  title: 黑棘鲷 Acanthopagrus schlegelii
+  summary: Acanthopagrus schlegelii 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Acanthopagrus schlegelii
+  - label: 命名人
+    value: (Bleeker, 1854)
+  - label: 分类
+    value: Chordata > Teleostei > Spariformes > Sparidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=1 淡水=0
+  - label: WoRMS ID
+    value: '293534'
+  sea_area: 南海
+  species:
+  - Acanthopagrus schlegelii
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-ACANTHOPAGRUS-SCHLEGELII
+    sha256: 047f6b512b5d2d2e94de2397aa31be214c0ed76897428f843e485b72fc5606f5
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Acanthopagrus%20schlegelii?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-032
+  title: 平鲷 Rhabdosargus sarba
+  summary: Rhabdosargus sarba 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Rhabdosargus sarba
+  - label: 命名人
+    value: (Forsskål, 1775)
+  - label: 分类
+    value: Chordata > Teleostei > Spariformes > Sparidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=1 淡水=0
+  - label: WoRMS ID
+    value: '218621'
+  sea_area: 南海
+  species:
+  - Rhabdosargus sarba
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-RHABDOSARGUS-SARBA
+    sha256: f968f48d9771918a3f15f7a6f843ed10995b14efdd189d2eb8485f4f6a44c2f0
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Rhabdosargus%20sarba?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-033
+  title: 鲻 Mugil cephalus
+  summary: Mugil cephalus 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Mugil cephalus
+  - label: 命名人
+    value: Linnaeus, 1758
+  - label: 分类
+    value: Chordata > Teleostei > Mugiliformes > Mugilidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=1 淡水=1
+  - label: WoRMS ID
+    value: '126983'
+  sea_area: 南海
+  species:
+  - Mugil cephalus
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-MUGIL-CEPHALUS
+    sha256: 145cab4c154250433c02b2f8c0e95abe3b8af79be26ad7b14c8ba941199dcb60
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Mugil%20cephalus?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-034
+  title: 梭鱼 Planiliza haematocheila
+  summary: Planiliza haematocheila 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Planiliza haematocheila
+  - label: 命名人
+    value: (Temminck & Schlegel, 1845)
+  - label: 分类
+    value: Chordata > Teleostei > Mugiliformes > Mugilidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=1 淡水=1
+  - label: WoRMS ID
+    value: '1043603'
+  sea_area: 南海
+  species:
+  - Planiliza haematocheila
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-PLANILIZA-HAEMATOCHEILA
+    sha256: 7f6773f17bdc8d5824024278a9df8b76159fd1f2db8758eb0ebc1674c4c2386a
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Planiliza%20haematocheila?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-035
+  title: 日本花鲈 Lateolabrax maculatus
+  summary: Lateolabrax maculatus 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Lateolabrax maculatus
+  - label: 命名人
+    value: (McClelland, 1843)
+  - label: 分类
+    value: Chordata > Teleostei > Pempheriformes > Lateolabracidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=1 淡水=1
+  - label: WoRMS ID
+    value: '314734'
+  sea_area: 南海
+  species:
+  - Lateolabrax maculatus
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-LATEOLABRAX-MACULATUS
+    sha256: 0d5dca2c875bb38b26b631cef4d5438a10913a5acd61aebbc030443406e5dd47
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Lateolabrax%20maculatus?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-036
+  title: 白姑鱼 Johnius belangerii
+  summary: Johnius belangerii 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Johnius belangerii
+  - label: 命名人
+    value: (Cuvier, 1830)
+  - label: 分类
+    value: Chordata > Teleostei > Eupercaria incertae sedis1 > Sciaenidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=1 淡水=0
+  - label: WoRMS ID
+    value: '276099'
+  sea_area: 南海
+  species:
+  - Johnius belangerii
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-JOHNIUS-BELANGERII
+    sha256: cb394a8f4b1660f7b7fd2222d21bb81d228b3db3b739122367e442196d587baf
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Johnius%20belangerii?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-037
+  title: 黄姑鱼 Nibea albiflora
+  summary: Nibea albiflora 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Nibea albiflora
+  - label: 命名人
+    value: (Richardson, 1846)
+  - label: 分类
+    value: Chordata > Teleostei > Eupercaria incertae sedis1 > Sciaenidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=0 淡水=0
+  - label: WoRMS ID
+    value: '281747'
+  sea_area: 南海
+  species:
+  - Nibea albiflora
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-NIBEA-ALBIFLORA
+    sha256: 2709e5d2eb60892152e5bfb735dcb07cab693b464d51befb93ef24c3d135223b
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Nibea%20albiflora?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-038
+  title: 棘头梅童鱼 Collichthys lucidus
+  summary: Collichthys lucidus 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Collichthys lucidus
+  - label: 命名人
+    value: (Richardson, 1844)
+  - label: 分类
+    value: Chordata > Teleostei > Eupercaria incertae sedis1 > Sciaenidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=0 淡水=0
+  - label: WoRMS ID
+    value: '280361'
+  sea_area: 南海
+  species:
+  - Collichthys lucidus
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-COLLICHTHYS-LUCIDUS
+    sha256: e7a59c167c70d6cb63e668e8e7d39da105f2ae9476e1b36b1b8a828d6d030ba9
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Collichthys%20lucidus?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-039
+  title: 龙头鱼 Harpadon nehereus
+  summary: Harpadon nehereus 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Harpadon nehereus
+  - label: 命名人
+    value: (Hamilton, 1822)
+  - label: 分类
+    value: Chordata > Teleostei > Aulopiformes > Harpadontidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=1 淡水=0
+  - label: WoRMS ID
+    value: '217661'
+  sea_area: 南海
+  species:
+  - Harpadon nehereus
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-HARPADON-NEHEREUS
+    sha256: 838349167ccc3e2fd05f61969b61b341d118a3d20795fcce9b95854c9bc3f55d
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Harpadon%20nehereus?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-040
+  title: 多齿蛇鲻 Saurida tumbil
+  summary: Saurida tumbil 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Saurida tumbil
+  - label: 命名人
+    value: (Bloch, 1795)
+  - label: 分类
+    value: Chordata > Teleostei > Aulopiformes > Harpadontidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=0 淡水=0
+  - label: WoRMS ID
+    value: '217663'
+  sea_area: 南海
+  species:
+  - Saurida tumbil
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-SAURIDA-TUMBIL
+    sha256: 3be483a305a1f8936fe5411eb3a0c2e4027567a28097ee466197b2611da93f26
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Saurida%20tumbil?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-041
+  title: 花斑蛇鲻 Saurida undosquamis
+  summary: Saurida undosquamis 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Saurida undosquamis
+  - label: 命名人
+    value: (Richardson, 1848)
+  - label: 分类
+    value: Chordata > Teleostei > Aulopiformes > Harpadontidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=0 淡水=0
+  - label: WoRMS ID
+    value: '126371'
+  sea_area: 南海
+  species:
+  - Saurida undosquamis
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-SAURIDA-UNDOSQUAMIS
+    sha256: 96b6628c00c063bc3410bf6bbad595fb1f7349e6f3cd28410a412b64c7c593c6
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Saurida%20undosquamis?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-042
+  title: 海鳗 Muraenesox cinereus
+  summary: Muraenesox cinereus 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Muraenesox cinereus
+  - label: 命名人
+    value: (Forsskål, 1775)
+  - label: 分类
+    value: Chordata > Teleostei > Anguilliformes > Muraenesocidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=1 淡水=1
+  - label: WoRMS ID
+    value: '126296'
+  sea_area: 南海
+  species:
+  - Muraenesox cinereus
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-MURAENESOX-CINEREUS
+    sha256: 5e4228b0ab9c86e356fb4ac071c1d3c7f28b62c50fd22e512af02f445d054f6e
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Muraenesox%20cinereus?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-043
+  title: 星鳗 Conger myriaster
+  summary: Conger myriaster 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Conger myriaster
+  - label: 命名人
+    value: (Brevoort, 1856)
+  - label: 分类
+    value: Chordata > Teleostei > Anguilliformes > Congridae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=0 淡水=0
+  - label: WoRMS ID
+    value: '271745'
+  sea_area: 南海
+  species:
+  - Conger myriaster
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-CONGER-MYRIASTER
+    sha256: ad3688567702d32eb560e89cc7c36d77aba6368e2f5c851d3335ca0312a74ef1
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Conger%20myriaster?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-044
+  title: 宝刀鱼 Chirocentrus dorab
+  summary: Chirocentrus dorab 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Chirocentrus dorab
+  - label: 命名人
+    value: (Forsskål, 1775)
+  - label: 分类
+    value: Chordata > Teleostei > Clupeiformes > Chirocentridae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=1 淡水=0
+  - label: WoRMS ID
+    value: '212257'
+  sea_area: 南海
+  species:
+  - Chirocentrus dorab
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-CHIROCENTRUS-DORAB
+    sha256: 0a2b9876cf72b3c0e267446a06fd212fe846eace17365daf4b0427becd4948b0
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Chirocentrus%20dorab?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-045
+  title: 黄鲫 Setipinna taty
+  summary: Setipinna taty 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Setipinna taty
+  - label: 命名人
+    value: (Valenciennes, 1848)
+  - label: 分类
+    value: Chordata > Teleostei > Clupeiformes > Engraulidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=1 淡水=0
+  - label: WoRMS ID
+    value: '282768'
+  sea_area: 南海
+  species:
+  - Setipinna taty
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-SETIPINNA-TATY
+    sha256: 6dc51eba2c67407b963327a8bae1cebbd9cfcd1824578cf14d82a0da1f902a2b
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Setipinna%20taty?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-046
+  title: 凤鲚 Coilia mystus
+  summary: Coilia mystus 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Coilia mystus
+  - label: 命名人
+    value: (Linnaeus, 1758)
+  - label: 分类
+    value: Chordata > Teleostei > Clupeiformes > Engraulidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=1 淡水=1
+  - label: WoRMS ID
+    value: '279082'
+  sea_area: 南海
+  species:
+  - Coilia mystus
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-COILIA-MYSTUS
+    sha256: 28a4217865169f139521a206e50337a1a8350ae3a8043663179f5b325a561f2c
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Coilia%20mystus?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-047
+  title: 印度侧带小公鱼 Stolephorus indicus
+  summary: Stolephorus indicus 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Stolephorus indicus
+  - label: 命名人
+    value: (van Hasselt, 1823)
+  - label: 分类
+    value: Chordata > Teleostei > Clupeiformes > Engraulidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=1 淡水=0
+  - label: WoRMS ID
+    value: '212280'
+  sea_area: 南海
+  species:
+  - Stolephorus indicus
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-STOLEPHORUS-INDICUS
+    sha256: 372c6625a154a00f3979318416866948ec2873c3a64a230beed838ba2c32e812
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Stolephorus%20indicus?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-048
+  title: 异叶侧带小公鱼 Encrasicholina heteroloba
+  summary: Encrasicholina heteroloba 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Encrasicholina heteroloba
+  - label: 命名人
+    value: (Rüppell, 1837)
+  - label: 分类
+    value: Chordata > Teleostei > Clupeiformes > Engraulidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=0 淡水=0
+  - label: WoRMS ID
+    value: '219980'
+  sea_area: 南海
+  species:
+  - Encrasicholina heteroloba
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-ENCRASICHOLINA-HETEROLOBA
+    sha256: e3aeacb20001bce450904711b3f3374c6da680f9eabd49a0ff7a6084d42820ed
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Encrasicholina%20heteroloba?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-049
+  title: 黄泽小沙丁鱼 Sardinella lemuru
+  summary: Sardinella lemuru 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Sardinella lemuru
+  - label: 命名人
+    value: Bleeker, 1853
+  - label: 分类
+    value: Chordata > Teleostei > Clupeiformes > Dorosomatidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=0 淡水=0
+  - label: WoRMS ID
+    value: '272273'
+  sea_area: 南海
+  species:
+  - Sardinella lemuru
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-SARDINELLA-LEMURU
+    sha256: 4eb25744f82e912abab9d1fa9cb96ba2b7b7e0d94b85406c3dfa28732790735c
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Sardinella%20lemuru?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-050
+  title: 裘氏小沙丁鱼 Sardinella jussieu
+  summary: Sardinella jussieu 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Sardinella jussieu
+  - label: 命名人
+    value: (Valenciennes, 1847)
+  - label: 分类
+    value: Chordata > Teleostei > Clupeiformes > Dorosomatidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=0 淡水=0
+  - label: WoRMS ID
+    value: '400064'
+  sea_area: 南海
+  species:
+  - Sardinella jussieu
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-SARDINELLA-JUSSIEU
+    sha256: d75b0e23f7b61c0c6115cea02aa3f5a9df1b64e00c63f89ac39d42423bf496f8
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Sardinella%20jussieu?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-051
+  title: 花点鲥 Hilsa kelee
+  summary: Hilsa kelee 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Hilsa kelee
+  - label: 命名人
+    value: (Cuvier, 1829)
+  - label: 分类
+    value: Chordata > Teleostei > Clupeiformes > Dorosomatidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=1 淡水=1
+  - label: WoRMS ID
+    value: '212278'
+  sea_area: 南海
+  species:
+  - Hilsa kelee
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-HILSA-KELEE
+    sha256: ce5b4c56dd2e87c54c011b56e9c8bb4cb7621de5bcc0d1de6f6dab925412d30d
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Hilsa%20kelee?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-052
+  title: 云鲥 Tenualosa ilisha
+  summary: Tenualosa ilisha 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Tenualosa ilisha
+  - label: 命名人
+    value: (Hamilton, 1822)
+  - label: 分类
+    value: Chordata > Teleostei > Clupeiformes > Dorosomatidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=1 淡水=1
+  - label: WoRMS ID
+    value: '278568'
+  sea_area: 南海
+  species:
+  - Tenualosa ilisha
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-TENUALOSA-ILISHA
+    sha256: ecf4b4d64239fb2d4039b81baea1bfc3c4d94746ac3a6f16d1454d0b0b61abcb
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Tenualosa%20ilisha?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-053
+  title: 四指马鲅 Eleutheronema tetradactylum
+  summary: Eleutheronema tetradactylum 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Eleutheronema tetradactylum
+  - label: 命名人
+    value: (Shaw, 1804)
+  - label: 分类
+    value: Chordata > Teleostei > Polynemiformes > Polynemidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=1 淡水=1
+  - label: WoRMS ID
+    value: '280639'
+  sea_area: 南海
+  species:
+  - Eleutheronema tetradactylum
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-ELEUTHERONEMA-TETRADACTYLUM
+    sha256: aef332af9eab7b5c9e9b0cbdabf718e2261f1f3d36012c7a963d51f63058d3d9
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Eleutheronema%20tetradactylum?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-054
+  title: 六指马鲅 Polydactylus sextarius
+  summary: Polydactylus sextarius 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Polydactylus sextarius
+  - label: 命名人
+    value: (Bloch & Schneider, 1801)
+  - label: 分类
+    value: Chordata > Teleostei > Polynemiformes > Polynemidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=1 淡水=0
+  - label: WoRMS ID
+    value: '218912'
+  sea_area: 南海
+  species:
+  - Polydactylus sextarius
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-POLYDACTYLUS-SEXTARIUS
+    sha256: 1c2c97feac1ad498511ec3a80eca6115bdd0d2e3eeb69db538b5353612c13741
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Polydactylus%20sextarius?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-055
+  title: 尖吻鲈 Lates calcarifer
+  summary: Lates calcarifer 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Lates calcarifer
+  - label: 命名人
+    value: (Bloch, 1790)
+  - label: 分类
+    value: Chordata > Teleostei > Sphyraeniformes > Latidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=1 淡水=1
+  - label: WoRMS ID
+    value: '278957'
+  sea_area: 南海
+  species:
+  - Lates calcarifer
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-LATES-CALCARIFER
+    sha256: ae98d8ff1af8605329676a16cec7736742decba47cf16a301a905e2c090fdd80
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Lates%20calcarifer?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-056
+  title: 遮目鱼 Chanos chanos
+  summary: Chanos chanos 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Chanos chanos
+  - label: 命名人
+    value: (Fabricius, 1775)
+  - label: 分类
+    value: Chordata > Teleostei > Gonorynchiformes > Chanidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=1 淡水=1
+  - label: WoRMS ID
+    value: '217625'
+  sea_area: 南海
+  species:
+  - Chanos chanos
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-CHANOS-CHANOS
+    sha256: 77e2aba9afc0eaaf31642aecf1edc75f7d5adda8163c96c4a69bcc87636c7e00
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Chanos%20chanos?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-057
+  title: 点篮子鱼 Siganus guttatus
+  summary: Siganus guttatus 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Siganus guttatus
+  - label: 命名人
+    value: (Bloch, 1787)
+  - label: 分类
+    value: Chordata > Teleostei > Eupercaria incertae sedis1 > Siganidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=1 淡水=0
+  - label: WoRMS ID
+    value: '273913'
+  sea_area: 南海
+  species:
+  - Siganus guttatus
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-SIGANUS-GUTTATUS
+    sha256: 849c28fe21a242ce3afef0a284bc7d628124261af50590356f95cf9aea63c67b
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Siganus%20guttatus?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-058
+  title: 沟篮子鱼 Siganus canaliculatus
+  summary: Siganus canaliculatus 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Siganus canaliculatus
+  - label: 命名人
+    value: (Park, 1797)
+  - label: 分类
+    value: Chordata > Teleostei > Eupercaria incertae sedis1 > Siganidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=1 淡水=0
+  - label: WoRMS ID
+    value: '219687'
+  sea_area: 南海
+  species:
+  - Siganus canaliculatus
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-SIGANUS-CANALICULATUS
+    sha256: 1a639303918895a9624e04460ad6127b0d1307d68cd401486322b62498efe5a3
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Siganus%20canaliculatus?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-059
+  title: 金钱鱼 Scatophagus argus
+  summary: Scatophagus argus 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Scatophagus argus
+  - label: 命名人
+    value: (Linnaeus, 1766)
+  - label: 分类
+    value: Chordata > Teleostei > Priacanthiformes > Scatophagidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=1 淡水=1
+  - label: WoRMS ID
+    value: '276970'
+  sea_area: 南海
+  species:
+  - Scatophagus argus
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-SCATOPHAGUS-ARGUS
+    sha256: 4e00162e34cd24f2822133a4d3d5548e02cb7148c2b9be1aea02a4d00a6bf998
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Scatophagus%20argus?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-060
+  title: 星斑裸颊鲷 Lethrinus nebulosus
+  summary: Lethrinus nebulosus 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Lethrinus nebulosus
+  - label: 命名人
+    value: (Forsskål, 1775)
+  - label: 分类
+    value: Chordata > Teleostei > Spariformes > Lethrinidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=1 淡水=0
+  - label: WoRMS ID
+    value: '212081'
+  sea_area: 南海
+  species:
+  - Lethrinus nebulosus
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-LETHRINUS-NEBULOSUS
+    sha256: 7a2c91d6c58ea8108733957e31fda3d08302d27e3874b83b9ddaad3172f9e933
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Lethrinus%20nebulosus?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-061
+  title: 黄梅鲷 Caesio cuning
+  summary: Caesio cuning 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Caesio cuning
+  - label: 命名人
+    value: (Bloch, 1791)
+  - label: 分类
+    value: Chordata > Teleostei > Eupercaria incertae sedis1 > Caesionidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=0 淡水=0
+  - label: WoRMS ID
+    value: '278536'
+  sea_area: 南海
+  species:
+  - Caesio cuning
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-CAESIO-CUNING
+    sha256: fb7f6bbbb150ef1e7f4a66e7c4941582c4180557a7c33650bc6d6a699bffae76
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Caesio%20cuning?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-062
+  title: 蒂尔梅鲷 Pterocaesio tile
+  summary: Pterocaesio tile 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Pterocaesio tile
+  - label: 命名人
+    value: (Cuvier, 1830)
+  - label: 分类
+    value: Chordata > Teleostei > Eupercaria incertae sedis1 > Caesionidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=0 淡水=0
+  - label: WoRMS ID
+    value: '213656'
+  sea_area: 南海
+  species:
+  - Pterocaesio tile
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-PTEROCAESIO-TILE
+    sha256: 5350fcef0725ffade76940ba2f003a5b31b50792ff87c502b15f376ab35a4539
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Pterocaesio%20tile?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-063
+  title: 东方狐鲣 Sarda orientalis
+  summary: Sarda orientalis 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Sarda orientalis
+  - label: 命名人
+    value: (Temminck & Schlegel, 1844)
+  - label: 分类
+    value: Chordata > Teleostei > Scombriformes > Scombridae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=0 淡水=0
+  - label: WoRMS ID
+    value: '219713'
+  sea_area: 南海
+  species:
+  - Sarda orientalis
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-SARDA-ORIENTALIS
+    sha256: 5025065c339221127e9743f4d84a8580f709d423115f57c541e5481c69cce223
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Sarda%20orientalis?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-064
+  title: 双带鲹 Elagatis bipinnulata
+  summary: Elagatis bipinnulata 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Elagatis bipinnulata
+  - label: 命名人
+    value: (Quoy & Gaimard, 1825)
+  - label: 分类
+    value: Chordata > Teleostei > Carangiformes > Carangidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=0 淡水=0
+  - label: WoRMS ID
+    value: '126809'
+  sea_area: 南海
+  species:
+  - Elagatis bipinnulata
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-ELAGATIS-BIPINNULATA
+    sha256: 316d48bb96c6d2b84146e1886167f1c09984557f8faf75464853b8f8f215be59
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Elagatis%20bipinnulata?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-065
+  title: 杜氏鰤 Seriola dumerili
+  summary: Seriola dumerili 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Seriola dumerili
+  - label: 命名人
+    value: (Risso, 1810)
+  - label: 分类
+    value: Chordata > Teleostei > Carangiformes > Carangidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=0 淡水=0
+  - label: WoRMS ID
+    value: '126816'
+  sea_area: 南海
+  species:
+  - Seriola dumerili
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-SERIOLA-DUMERILI
+    sha256: 66095803090deeb8d92ae7002b639f10e58622ecebbbb8a08323429b892b53a5
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Seriola%20dumerili?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-066
+  title: 鲯鳅 Coryphaena hippurus
+  summary: Coryphaena hippurus 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Coryphaena hippurus
+  - label: 命名人
+    value: Linnaeus, 1758
+  - label: 分类
+    value: Chordata > Teleostei > Carangiformes > Coryphaenidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=1 淡水=0
+  - label: WoRMS ID
+    value: '126846'
+  sea_area: 南海
+  species:
+  - Coryphaena hippurus
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-CORYPHAENA-HIPPURUS
+    sha256: 2b29ad874a7d22907c57a2588bcaac49e2967ddeb40d64064196a0caee809b6a
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Coryphaena%20hippurus?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-067
+  title: 剑鱼 Xiphias gladius
+  summary: Xiphias gladius 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Xiphias gladius
+  - label: 命名人
+    value: Linnaeus, 1758
+  - label: 分类
+    value: Chordata > Teleostei > Carangiformes > Xiphiidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=0 淡水=0
+  - label: WoRMS ID
+    value: '127094'
+  sea_area: 南海
+  species:
+  - Xiphias gladius
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-XIPHIAS-GLADIUS
+    sha256: 4aaab75032655d49ccd99238dbb7765497cc16785d3c6ea43e903e944e9fbf38
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Xiphias%20gladius?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-068
+  title: 印度枪鱼 Makaira mazara
+  summary: Makaira mazara 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Makaira mazara
+  - label: 命名人
+    value: (Jordan & Snyder, 1901)
+  - label: 分类
+    value: Chordata > Teleostei > Carangiformes > Istiophoridae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=0 淡水=0
+  - label: WoRMS ID
+    value: '219729'
+  sea_area: 南海
+  species:
+  - Makaira mazara
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-MAKAIRA-MAZARA
+    sha256: 485aad91edd730e542e01afbf8a9f63a13633c1ac8141316c78e958a48eaa1ce
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Makaira%20mazara?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-069
+  title: 立翅旗鱼 Istiompax indica
+  summary: Istiompax indica 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Istiompax indica
+  - label: 命名人
+    value: (Cuvier, 1832)
+  - label: 分类
+    value: Chordata > Teleostei > Carangiformes > Istiophoridae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=0 淡水=0
+  - label: WoRMS ID
+    value: '712905'
+  sea_area: 南海
+  species:
+  - Istiompax indica
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-ISTIOMPAX-INDICA
+    sha256: c58ee432f387330ca70a6ceaa2488120af6286fbae0976f04e2d903c3a292eb3
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Istiompax%20indica?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-070
+  title: 条纹枪鱼 Tetrapturus audax
+  summary: Tetrapturus audax 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Tetrapturus audax
+  - label: 命名人
+    value: (Philippi, 1887)
+  - label: 分类
+    value: Chordata > Teleostei > Carangiformes > Istiophoridae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=0 淡水=0
+  - label: WoRMS ID
+    value: '219733'
+  sea_area: 南海
+  species:
+  - Tetrapturus audax
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-TETRAPTURUS-AUDAX
+    sha256: 302eb7023d30c80a2f4f877f08005aeea52001697d84e635e078d804f00479f5
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Tetrapturus%20audax?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-071
+  title: 乌鲂 Brama brama
+  summary: Brama brama 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Brama brama
+  - label: 命名人
+    value: (Bonnaterre, 1788)
+  - label: 分类
+    value: Chordata > Teleostei > Scombriformes > Bramidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=0 淡水=0
+  - label: WoRMS ID
+    value: '126783'
+  sea_area: 南海
+  species:
+  - Brama brama
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-BRAMA-BRAMA
+    sha256: 06a1da3b3174e4c38a80b8fc7e517d7b842203963227d667cd321f2a60d6e93c
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Brama%20brama?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-072
+  title: 施氏高鳍鲂 Taractichthys steindachneri
+  summary: Taractichthys steindachneri 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Taractichthys steindachneri
+  - label: 命名人
+    value: (Döderlein, 1883)
+  - label: 分类
+    value: Chordata > Teleostei > Scombriformes > Bramidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=0 淡水=0
+  - label: WoRMS ID
+    value: '221420'
+  sea_area: 南海
+  species:
+  - Taractichthys steindachneri
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-TARACTICHTHYS-STEINDACHNERI
+    sha256: 252ff0898fb87b75628644872d92d6d9274aa252249a13d257419942585f2bc7
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Taractichthys%20steindachneri?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-073
+  title: 斑海鲶 Arius maculatus
+  summary: Arius maculatus 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Arius maculatus
+  - label: 命名人
+    value: (Thunberg, 1792)
+  - label: 分类
+    value: Chordata > Teleostei > Siluriformes > Ariidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=1 淡水=1
+  - label: WoRMS ID
+    value: '275578'
+  sea_area: 南海
+  species:
+  - Arius maculatus
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-ARIUS-MACULATUS
+    sha256: befb03ed0fc552771f417593ab2c34962860a2d041658e98947bc013b7a7b240
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Arius%20maculatus?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-074
+  title: 大海鲶 Arius thalassinus
+  summary: Arius thalassinus 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Arius thalassinus
+  - label: 命名人
+    value: (Rüppell, 1837)
+  - label: 分类
+    value: Chordata > Teleostei > Siluriformes > Ariidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=1 淡水=1
+  - label: WoRMS ID
+    value: '214568'
+  sea_area: 南海
+  species:
+  - Arius thalassinus
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-ARIUS-THALASSINUS
+    sha256: 49f69e1d415c91a6a0532646746c0e2039cdbb350ea9707a86d4ab0af3b4eda2
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Arius%20thalassinus?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-075
+  title: 线纹鳗鲶 Plotosus lineatus
+  summary: Plotosus lineatus 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Plotosus lineatus
+  - label: 命名人
+    value: (Thunberg, 1787)
+  - label: 分类
+    value: Chordata > Teleostei > Siluriformes > Plotosidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=1 淡水=0
+  - label: WoRMS ID
+    value: '217659'
+  sea_area: 南海
+  species:
+  - Plotosus lineatus
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-PLOTOSUS-LINEATUS
+    sha256: 19a7377d7bb3347b53694b0f25ba044a4cdf31cc7a36d84029f8f6e133b51123
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Plotosus%20lineatus?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-076
+  title: 尖嘴魟 Dasyatis zugei
+  summary: Dasyatis zugei 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Dasyatis zugei
+  - label: 命名人
+    value: (Müller & Henle, 1841)
+  - label: 分类
+    value: Chordata > Elasmobranchii > Myliobatiformes > Dasyatidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=1 淡水=0
+  - label: WoRMS ID
+    value: '271454'
+  sea_area: 南海
+  species:
+  - Dasyatis zugei
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-DASYATIS-ZUGEI
+    sha256: 9c8b63fb886d2e5df97a60abb36a7616c22ffdffcd2ba0a3ebae6827d0c51013
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Dasyatis%20zugei?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-077
+  title: 花点魟 Himantura uarnak
+  summary: Himantura uarnak 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Himantura uarnak
+  - label: 命名人
+    value: (Gmelin, 1789)
+  - label: 分类
+    value: Chordata > Elasmobranchii > Myliobatiformes > Dasyatidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=1 淡水=0
+  - label: WoRMS ID
+    value: '105854'
+  sea_area: 南海
+  species:
+  - Himantura uarnak
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-HIMANTURA-UARNAK
+    sha256: 2d9c2d10f537913e3c8aab7eab44612c8afcd27dd4f9b9b5b5a524af40ed7839
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Himantura%20uarnak?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-078
+  title: 及达尖犁头鳐 Rhynchobatus djiddensis
+  summary: Rhynchobatus djiddensis 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Rhynchobatus djiddensis
+  - label: 命名人
+    value: (Forsskål, 1775)
+  - label: 分类
+    value: Chordata > Elasmobranchii > Rhinopristiformes > Rhinidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=1 淡水=0
+  - label: WoRMS ID
+    value: '217378'
+  sea_area: 南海
+  species:
+  - Rhynchobatus djiddensis
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-RHYNCHOBATUS-DJIDDENSIS
+    sha256: 90dcf5429c9c76685e75b86c9518fc6e15601a1ce4cb566e38ed8f2bd4b17e93
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Rhynchobatus%20djiddensis?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-079
+  title: 许氏犁头鳐 Rhinobatos schlegelii
+  summary: Rhinobatos schlegelii 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Rhinobatos schlegelii
+  - label: 命名人
+    value: Müller & Henle, 1841
+  - label: 分类
+    value: Chordata > Elasmobranchii > Rhinopristiformes > Rhinobatidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=0 淡水=0
+  - label: WoRMS ID
+    value: '213640'
+  sea_area: 南海
+  species:
+  - Rhinobatos schlegelii
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-RHINOBATOS-SCHLEGELII
+    sha256: 0ab6d96132aa343f4be3193fb8fe5bcd9462247c2bc3c7f0fc8bd0e0af4a5ba8
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Rhinobatos%20schlegelii?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-080
+  title: 灰星鲨 Mustelus griseus
+  summary: Mustelus griseus 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Mustelus griseus
+  - label: 命名人
+    value: Pietschmann, 1908
+  - label: 分类
+    value: Chordata > Elasmobranchii > Carcharhiniformes > Triakidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=0 淡水=0
+  - label: WoRMS ID
+    value: '271384'
+  sea_area: 南海
+  species:
+  - Mustelus griseus
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-MUSTELUS-GRISEUS
+    sha256: 5bc699ebebf68cfd47cc69eea92c0620ad6bf4b8bb9528946c564b5e300938c8
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Mustelus%20griseus?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-081
+  title: 黑边鳍真鲨 Carcharhinus limbatus
+  summary: Carcharhinus limbatus 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Carcharhinus limbatus
+  - label: 命名人
+    value: (Valenciennes, 1839)
+  - label: 分类
+    value: Chordata > Elasmobranchii > Carcharhiniformes > Carcharhinidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=1 淡水=0
+  - label: WoRMS ID
+    value: '105793'
+  sea_area: 南海
+  species:
+  - Carcharhinus limbatus
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-CARCHARHINUS-LIMBATUS
+    sha256: 585911f80f962f12e88c9d782d588f40bd546e8bb07f35a80f52092ff5416bb4
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Carcharhinus%20limbatus?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-082
+  title: 路氏双髻鲨 Sphyrna lewini
+  summary: Sphyrna lewini 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Sphyrna lewini
+  - label: 命名人
+    value: (Griffith & Smith, 1834)
+  - label: 分类
+    value: Chordata > Elasmobranchii > Carcharhiniformes > Sphyrnidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=1 淡水=0
+  - label: WoRMS ID
+    value: '105816'
+  sea_area: 南海
+  species:
+  - Sphyrna lewini
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-SPHYRNA-LEWINI
+    sha256: 9cfde088f3df12dbadd3c6e78e6f2d98ca99902a09b8ce8b49da40410ec527a7
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Sphyrna%20lewini?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-083
+  title: 浅海长尾鲨 Alopias pelagicus
+  summary: Alopias pelagicus 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Alopias pelagicus
+  - label: 命名人
+    value: Nakamura, 1935
+  - label: 分类
+    value: Chordata > Elasmobranchii > Lamniformes > Alopiidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=0 淡水=0
+  - label: WoRMS ID
+    value: '220019'
+  sea_area: 南海
+  species:
+  - Alopias pelagicus
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-ALOPIAS-PELAGICUS
+    sha256: 59dc81b2537c4c8ea2efa06d6ad06cac2fbdf22578747b86714744c4fe2a876c
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Alopias%20pelagicus?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-084
+  title: 尖吻鲭鲨 Isurus oxyrinchus
+  summary: Isurus oxyrinchus 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Isurus oxyrinchus
+  - label: 命名人
+    value: Rafinesque, 1810
+  - label: 分类
+    value: Chordata > Elasmobranchii > Lamniformes > Lamnidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=0 淡水=0
+  - label: WoRMS ID
+    value: '105839'
+  sea_area: 南海
+  species:
+  - Isurus oxyrinchus
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-ISURUS-OXYRINCHUS
+    sha256: 85f87796ef117c34b3a3a11c096918da322623b1391a5c523da49db6993e5dfe
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Isurus%20oxyrinchus?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-085
+  title: 鼬鲨 Galeocerdo cuvier
+  summary: Galeocerdo cuvier 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Galeocerdo cuvier
+  - label: 命名人
+    value: (Péron & Lesueur, 1822)
+  - label: 分类
+    value: Chordata > Elasmobranchii > Carcharhiniformes > Galeocerdonidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=1 淡水=0
+  - label: WoRMS ID
+    value: '105799'
+  sea_area: 南海
+  species:
+  - Galeocerdo cuvier
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-GALEOCERDO-CUVIER
+    sha256: 1f522a961f6224b712ef80df882d2cc3e00898320c06bd3cfa7ff75a1ca72c6a
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Galeocerdo%20cuvier?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-086
+  title: 灰三齿鲨 Triaenodon obesus
+  summary: Triaenodon obesus 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Triaenodon obesus
+  - label: 命名人
+    value: (Rüppell, 1837)
+  - label: 分类
+    value: Chordata > Elasmobranchii > Carcharhiniformes > Carcharhinidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=0 淡水=0
+  - label: WoRMS ID
+    value: '214557'
+  sea_area: 南海
+  species:
+  - Triaenodon obesus
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-TRIAENODON-OBESUS
+    sha256: 6ec2b8f3d3c66d2e427f85bbbfaf9e99e911dfd71208918a756805b8781d376c
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Triaenodon%20obesus?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-087
+  title: 波纹唇鱼 Cheilinus undulatus
+  summary: Cheilinus undulatus 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Cheilinus undulatus
+  - label: 命名人
+    value: Rüppell, 1835
+  - label: 分类
+    value: Chordata > Teleostei > Labriformes > Labridae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=0 淡水=0
+  - label: WoRMS ID
+    value: '218945'
+  sea_area: 南海
+  species:
+  - Cheilinus undulatus
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-CHEILINUS-UNDULATUS
+    sha256: 301efe102d1323f0f2a8f0c69960244d44f3acb369e6353f75b10787374f60f3
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Cheilinus%20undulatus?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-088
+  title: 驼峰大鹦嘴鱼 Bolbometopon muricatum
+  summary: Bolbometopon muricatum 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Bolbometopon muricatum
+  - label: 命名人
+    value: (Valenciennes, 1840)
+  - label: 分类
+    value: Chordata > Teleostei > Labriformes > Labridae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=0 淡水=0
+  - label: WoRMS ID
+    value: '219074'
+  sea_area: 南海
+  species:
+  - Bolbometopon muricatum
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-BOLBOMETOPON-MURICATUM
+    sha256: 30f12e544d3a63294b26241d1176318fb942ad52aea917d214ca6bd00bfc995a
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Bolbometopon%20muricatum?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-089
+  title: 蓝颊鹦嘴鱼 Scarus ghobban
+  summary: Scarus ghobban 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Scarus ghobban
+  - label: 命名人
+    value: Forsskål, 1775
+  - label: 分类
+    value: Chordata > Teleostei > Labriformes > Labridae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=1 淡水=0
+  - label: WoRMS ID
+    value: '219127'
+  sea_area: 南海
+  species:
+  - Scarus ghobban
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-SCARUS-GHOBBAN
+    sha256: 7afe4cac3d0c0b91074201389f919a22a1cbd4a8f58a58a54b7d298820e52a9a
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Scarus%20ghobban?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-090
+  title: 库达海马 Hippocampus kuda
+  summary: Hippocampus kuda 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Hippocampus kuda
+  - label: 命名人
+    value: Bleeker, 1852
+  - label: 分类
+    value: Chordata > Teleostei > Syngnathiformes > Syngnathidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=1 淡水=0
+  - label: WoRMS ID
+    value: '212237'
+  sea_area: 南海
+  species:
+  - Hippocampus kuda
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-HIPPOCAMPUS-KUDA
+    sha256: f00dd32274e02ffc8e9eb02eabba1de332d168801c71ab09075ccd56d1e3d72e
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Hippocampus%20kuda?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-091
+  title: 三斑海马 Hippocampus trimaculatus
+  summary: Hippocampus trimaculatus 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Hippocampus trimaculatus
+  - label: 命名人
+    value: Leach, 1814
+  - label: 分类
+    value: Chordata > Teleostei > Syngnathiformes > Syngnathidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=0 淡水=0
+  - label: WoRMS ID
+    value: '212232'
+  sea_area: 南海
+  species:
+  - Hippocampus trimaculatus
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-HIPPOCAMPUS-TRIMACULATUS
+    sha256: 70293befa6a74295ebfa408796ba8df6152053abe809c9809fe6a4175649e08a
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Hippocampus%20trimaculatus?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-092
+  title: 黄唇鱼 Bahaba taipingensis
+  summary: Bahaba taipingensis 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Bahaba taipingensis
+  - label: 命名人
+    value: (Herre, 1932)
+  - label: 分类
+    value: Chordata > Teleostei > Eupercaria incertae sedis1 > Sciaenidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=1 淡水=0
+  - label: WoRMS ID
+    value: '279858'
+  sea_area: 南海
+  species:
+  - Bahaba taipingensis
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-BAHABA-TAIPINGENSIS
+    sha256: 6dcbae4554799c5c16e14bdb7744853dcc79df5893d1f55d4d58838e7175bdf5
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Bahaba%20taipingensis?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-093
+  title: 日本鳗鲡 Anguilla japonica
+  summary: Anguilla japonica 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Anguilla japonica
+  - label: 命名人
+    value: Temminck & Schlegel, 1846
+  - label: 分类
+    value: Chordata > Teleostei > Anguilliformes > Anguillidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=1 淡水=1
+  - label: WoRMS ID
+    value: '271705'
+  sea_area: 南海
+  species:
+  - Anguilla japonica
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-ANGUILLA-JAPONICA
+    sha256: d5b019c8af410dac65ce408166194712dd4237e892256cf7c5593b35ee9dee56
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Anguilla%20japonica?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-094
+  title: 中国鲎 Tachypleus tridentatus
+  summary: Tachypleus tridentatus 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Tachypleus tridentatus
+  - label: 命名人
+    value: (Leach, 1819)
+  - label: 分类
+    value: Arthropoda > Merostomata > Xiphosurida > Limulidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=None 淡水=None
+  - label: WoRMS ID
+    value: '238270'
+  sea_area: 南海
+  species:
+  - Tachypleus tridentatus
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-TACHYPLEUS-TRIDENTATUS
+    sha256: 0d79ba304affbbf6d24d9cc57450da657c9725d60f4dc51672d4e9b46c80850b
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Tachypleus%20tridentatus?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-095
+  title: 锯缘青蟹 Scylla serrata
+  summary: Scylla serrata 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Scylla serrata
+  - label: 命名人
+    value: (Forskål, 1775)
+  - label: 分类
+    value: Arthropoda > Malacostraca > Decapoda > Portunidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=1 淡水=1
+  - label: WoRMS ID
+    value: '208814'
+  sea_area: 南海
+  species:
+  - Scylla serrata
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-SCYLLA-SERRATA
+    sha256: b2c9e78d4dbfa1dc4bcab29925bf298c6f718eddbaff6af367206444cfa36cec
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Scylla%20serrata?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-096
+  title: 三疣梭子蟹 Portunus trituberculatus
+  summary: Portunus trituberculatus 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Portunus trituberculatus
+  - label: 命名人
+    value: (Miers, 1876)
+  - label: 分类
+    value: Arthropoda > Malacostraca > Decapoda > Portunidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=0 淡水=0
+  - label: WoRMS ID
+    value: '1061762'
+  sea_area: 南海
+  species:
+  - Portunus trituberculatus
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-PORTUNUS-TRITUBERCULATUS
+    sha256: 189bb2c82198ce6084e4447a153688a6fb1eaa92d86bfe646e19294a43fac28e
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Portunus%20trituberculatus?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-097
+  title: 远海梭子蟹 Portunus pelagicus
+  summary: Portunus pelagicus 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Portunus pelagicus
+  - label: 命名人
+    value: (Linnaeus, 1758)
+  - label: 分类
+    value: Arthropoda > Malacostraca > Decapoda > Portunidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=0 淡水=0
+  - label: WoRMS ID
+    value: '1061754'
+  sea_area: 南海
+  species:
+  - Portunus pelagicus
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-PORTUNUS-PELAGICUS
+    sha256: 30274426206156c1cf0ba95a026f81fb142c0337fac264318d12b9ff4a03eaf8
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Portunus%20pelagicus?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-098
+  title: 锈斑蟳 Charybdis feriata
+  summary: Charybdis feriata 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Charybdis feriata
+  - label: 命名人
+    value: (Linnaeus, 1758)
+  - label: 分类
+    value: Arthropoda > Malacostraca > Decapoda > Portunidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=0 淡水=0
+  - label: WoRMS ID
+    value: '1671022'
+  sea_area: 南海
+  species:
+  - Charybdis feriata
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-CHARYBDIS-FERIATA
+    sha256: 16fad0b7ff6f15c3b7d31ad77e50018271d29c5ff96802d8c03f4b58dd652bc4
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Charybdis%20feriata?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-099
+  title: 斑节对虾 Penaeus monodon
+  summary: Penaeus monodon 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Penaeus monodon
+  - label: 命名人
+    value: Fabricius, 1798
+  - label: 分类
+    value: Arthropoda > Malacostraca > Decapoda > Penaeidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=1 淡水=0
+  - label: WoRMS ID
+    value: '210378'
+  sea_area: 南海
+  species:
+  - Penaeus monodon
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-PENAEUS-MONODON
+    sha256: 0ac38788163b372359db81c4334dc16ba87eeffb53553aa5aa2a6be7e4f326a7
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Penaeus%20monodon?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-100
+  title: 刀额新对虾 Metapenaeus ensis
+  summary: Metapenaeus ensis 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Metapenaeus ensis
+  - label: 命名人
+    value: (De Haan, 1844)
+  - label: 分类
+    value: Arthropoda > Malacostraca > Decapoda > Penaeidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=1 淡水=0
+  - label: WoRMS ID
+    value: '210392'
+  sea_area: 南海
+  species:
+  - Metapenaeus ensis
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-METAPENAEUS-ENSIS
+    sha256: a6c9aef4c337396d3b54d78d22c23ba94243a71753323a2b26ef9a2043132200
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Metapenaeus%20ensis?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-101
+  title: 近缘新对虾 Metapenaeus affinis
+  summary: Metapenaeus affinis 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Metapenaeus affinis
+  - label: 命名人
+    value: (H. Milne Edwards, 1837)
+  - label: 分类
+    value: Arthropoda > Malacostraca > Decapoda > Penaeidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=1 淡水=0
+  - label: WoRMS ID
+    value: '210397'
+  sea_area: 南海
+  species:
+  - Metapenaeus affinis
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-METAPENAEUS-AFFINIS
+    sha256: 164b25eadbc39e944bb7e0a69d6e360a1b69000d34d53668b3b1578df0386798
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Metapenaeus%20affinis?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-102
+  title: 哈氏仿对虾 Parapenaeopsis hardwickii
+  summary: Parapenaeopsis hardwickii 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Parapenaeopsis hardwickii
+  - label: 命名人
+    value: (Miers, 1878)
+  - label: 分类
+    value: Arthropoda > Malacostraca > Decapoda > Penaeidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=1 淡水=0
+  - label: WoRMS ID
+    value: '210407'
+  sea_area: 南海
+  species:
+  - Parapenaeopsis hardwickii
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-PARAPENAEOPSIS-HARDWICKII
+    sha256: be5f7015f84132d00b978519c4b7347360755c6d465fc5e9181cf7ab4b544a8f
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Parapenaeopsis%20hardwickii?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-103
+  title: 中华管鞭虾 Solenocera crassicornis
+  summary: Solenocera crassicornis 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Solenocera crassicornis
+  - label: 命名人
+    value: (H. Milne Edwards, 1837)
+  - label: 分类
+    value: Arthropoda > Malacostraca > Decapoda > Solenoceridae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=0 淡水=0
+  - label: WoRMS ID
+    value: '107119'
+  sea_area: 南海
+  species:
+  - Solenocera crassicornis
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-SOLENOCERA-CRASSICORNIS
+    sha256: 2e2beedf56af45a645dca873ed68998d4744c869a85ca0377eb56edc6fc89654
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Solenocera%20crassicornis?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-104
+  title: 金乌贼 Sepia esculenta
+  summary: Sepia esculenta 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Sepia esculenta
+  - label: 命名人
+    value: Hoyle, 1885
+  - label: 分类
+    value: Mollusca > Cephalopoda > Sepiida > Sepiidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=0 淡水=0
+  - label: WoRMS ID
+    value: '342131'
+  sea_area: 南海
+  species:
+  - Sepia esculenta
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-SEPIA-ESCULENTA
+    sha256: f3e89dc53fcc93c8c42656f9c15b3460d8583d29b47579a750039a33dfc4de41
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Sepia%20esculenta?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-105
+  title: 曼氏无针乌贼 Sepiella maindroni
+  summary: Sepiella maindroni 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Sepiella maindroni
+  - label: 命名人
+    value: Rochebrune, 1884
+  - label: 分类
+    value: Mollusca > Cephalopoda > Sepiida > Sepiidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=0 淡水=0
+  - label: WoRMS ID
+    value: '439182'
+  sea_area: 南海
+  species:
+  - Sepiella maindroni
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-SEPIELLA-MAINDRONI
+    sha256: 6edcb31dd01f07fd5f7b90c75152093f129cfc3292b7754ca1514735a05bf8aa
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Sepiella%20maindroni?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-106
+  title: 剑尖枪乌贼 Uroteuthis edulis
+  summary: Uroteuthis edulis 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Uroteuthis edulis
+  - label: 命名人
+    value: (Hoyle, 1885)
+  - label: 分类
+    value: Mollusca > Cephalopoda > Myopsida > Loliginidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=0 淡水=0
+  - label: WoRMS ID
+    value: '342409'
+  sea_area: 南海
+  species:
+  - Uroteuthis edulis
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-UROTEUTHIS-EDULIS
+    sha256: eaddd86ffaebe53f0b4d083c35ba0677781381edbdc960d0a3b092389bdab718
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Uroteuthis%20edulis?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-107
+  title: 鸢乌贼 Sthenoteuthis oualaniensis
+  summary: Sthenoteuthis oualaniensis 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Sthenoteuthis oualaniensis
+  - label: 命名人
+    value: (Lesson, 1830)
+  - label: 分类
+    value: Mollusca > Cephalopoda > Oegopsida > Ommastrephidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=None 淡水=0
+  - label: WoRMS ID
+    value: '342066'
+  sea_area: 南海
+  species:
+  - Sthenoteuthis oualaniensis
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-STHENOTEUTHIS-OUALANIENSIS
+    sha256: b9e25175cea73ada9c4224e07e154a5227f71ee0e30af5b80d5ed2b09eb12986
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Sthenoteuthis%20oualaniensis?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-108
+  title: 真蛸 Octopus vulgaris
+  summary: Octopus vulgaris 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Octopus vulgaris
+  - label: 命名人
+    value: Cuvier, 1797
+  - label: 分类
+    value: Mollusca > Cephalopoda > Octopoda > Octopodidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=None 淡水=0
+  - label: WoRMS ID
+    value: '140605'
+  sea_area: 南海
+  species:
+  - Octopus vulgaris
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-OCTOPUS-VULGARIS
+    sha256: 9f08ef8fd8dd3650f9107369fdb09fea67bce03b1b0c8ebde51818b425aeef3a
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Octopus%20vulgaris?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-109
+  title: 短蛸 Amphioctopus fangsiao
+  summary: Amphioctopus fangsiao 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Amphioctopus fangsiao
+  - label: 命名人
+    value: (A. d'Orbigny, 1841)
+  - label: 分类
+    value: Mollusca > Cephalopoda > Octopoda > Octopodidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=0 淡水=0
+  - label: WoRMS ID
+    value: '534733'
+  sea_area: 南海
+  species:
+  - Amphioctopus fangsiao
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-AMPHIOCTOPUS-FANGSIAO
+    sha256: 401b676063f6060953401f1f021e5b21de641f602ff21aba189204fc90c6cf64
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Amphioctopus%20fangsiao?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-110
+  title: 大砗磲 Tridacna gigas
+  summary: Tridacna gigas 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Tridacna gigas
+  - label: 命名人
+    value: (Linnaeus, 1758)
+  - label: 分类
+    value: Mollusca > Bivalvia > Cardiida > Cardiidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=0 淡水=0
+  - label: WoRMS ID
+    value: '207670'
+  sea_area: 南海
+  species:
+  - Tridacna gigas
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-TRIDACNA-GIGAS
+    sha256: 25520d009b215a8ce1ef977fb89f79b56d2145f9b59ae13a82f3a504ee47f7e4
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Tridacna%20gigas?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-111
+  title: 合浦珠母贝 Pinctada fucata
+  summary: Pinctada fucata 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Pinctada fucata
+  - label: 命名人
+    value: (A. A. Gould, 1850)
+  - label: 分类
+    value: Mollusca > Bivalvia > Ostreida > Margaritidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=0 淡水=0
+  - label: WoRMS ID
+    value: '397170'
+  sea_area: 南海
+  species:
+  - Pinctada fucata
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-PINCTADA-FUCATA
+    sha256: c842eb724716474d8200cf1fce3a065e12df1e05b2e8844ebaf72869008de417
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Pinctada%20fucata?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-112
+  title: 长牡蛎 Crassostrea gigas
+  summary: Crassostrea gigas 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Crassostrea gigas
+  - label: 命名人
+    value: (Thunberg, 1793)
+  - label: 分类
+    value: Mollusca > Bivalvia > Ostreida > Ostreidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=None 淡水=0
+  - label: WoRMS ID
+    value: '140656'
+  sea_area: 南海
+  species:
+  - Crassostrea gigas
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-CRASSOSTREA-GIGAS
+    sha256: 8fdcc992b4dc334d7fae129df269e951b9813759c5a9157d9b0e10734391a416
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Crassostrea%20gigas?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-113
+  title: 文蛤 Meretrix meretrix
+  summary: Meretrix meretrix 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Meretrix meretrix
+  - label: 命名人
+    value: (Linnaeus, 1758)
+  - label: 分类
+    value: Mollusca > Bivalvia > Venerida > Veneridae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=None 淡水=None
+  - label: WoRMS ID
+    value: '224891'
+  sea_area: 南海
+  species:
+  - Meretrix meretrix
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-MERETRIX-MERETRIX
+    sha256: 2f80e8da01f27d7d4a469cfa1b44ab335e89154b04a94c5db3c2b135ea2c5106
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Meretrix%20meretrix?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-114
+  title: 菲律宾蛤仔 Ruditapes philippinarum
+  summary: Ruditapes philippinarum 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Ruditapes philippinarum
+  - label: 命名人
+    value: (A. Adams & Reeve, 1850)
+  - label: 分类
+    value: Mollusca > Bivalvia > Venerida > Veneridae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=None 淡水=0
+  - label: WoRMS ID
+    value: '231750'
+  sea_area: 南海
+  species:
+  - Ruditapes philippinarum
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-RUDITAPES-PHILIPPINARUM
+    sha256: 83e6f8d70f6a1cda199ade10d3ef34d50be7bfbc998d2a77fa2335deceb5faed
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Ruditapes%20philippinarum?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy
+- id: KNO-SPECIES-115
+  title: 魁蚶 Scapharca broughtonii
+  summary: Scapharca broughtonii 在 WoRMS 的分类记录；分布与保护等级尚未核实，仅提供分类事实。
+  facts:
+  - label: 学名
+    value: Scapharca broughtonii
+  - label: 命名人
+    value: (Schrenck, 1867)
+  - label: 分类
+    value: Mollusca > Bivalvia > Arcida > Arcidae
+  - label: 海洋/淡水
+    value: 海洋=1 半咸水=None 淡水=None
+  - label: WoRMS ID
+    value: '591364'
+  sea_area: 南海
+  species:
+  - Scapharca broughtonii
+  as_of: '2026-11-03'
+  review_due: '2027-02-01'
+  status: approved
+  confidence: high
+  sources:
+  - card: WEB-WORMS-SCAPHARCA-BROUGHTONII
+    sha256: 2224e2359053349727f371db540cecfea92c3450f4bb9ec71269d774c7a1de48
+    url: https://www.marinespecies.org/rest/AphiaRecordsByName/Scapharca%20broughtonii?like=false&marine_only=true
+    publisher: WoRMS
+    fetched_at: '2026-11-03T05:56:55+00:00'
+  tags:
+  - species
+  - taxonomy

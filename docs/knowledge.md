@@ -55,3 +55,17 @@ Rules:
 | KNO-GEAR-001 | gear | FAO 捕捞数据采集指南 | FAO card |
 | KNO-ENV-001 | environment | Sentinel-3 轨道与海洋变量 | EUMETSAT card |
 | KNO-HAZARD-001 | hazard | 预警信号分级、种类、发布主体 | gov.cn 预警办法 |
+
+## 4. Species scale batch (2026-11-03)
+
+The seed list [species-seed.yaml](../configs/species-seed.yaml) names 116 South China Sea species across commercial fish, crustaceans, cephalopods, shellfish and protected megafauna. Each name becomes a WoRMS card with a deterministic id (`WEB-WORMS-<NAME>`), and the builder in `knowledge_build.py` turns the returned record into a note with scientific name, authority, classification, marine flags and AphiaID.
+
+| Result | Count |
+|---|---|
+| Seed species | 116 |
+| Cards fetched ok | 115 |
+| Cards failed | 1 (`Prionace glauca`, TLS reset) |
+| Notes after the batch | **115** (4 pilot + 111 new) |
+| Species with a note | 115 |
+
+Protection status and distribution are deliberately not asserted: the WoRMS record does not carry them, so every note says the field is unverified. A failed card produces no note.

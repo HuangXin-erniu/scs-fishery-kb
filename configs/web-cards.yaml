@@ -71,12 +71,402 @@ cards:
   publisher: NASA
   url: https://oceancolor.gsfc.nasa.gov/
   error: ''
+- id: WEB-WORMS-ACANTHOPAGRUS-SCHLEGELII
+  topic: species
+  title: 黑棘鲷 Acanthopagrus schlegelii
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Acanthopagrus%20schlegelii?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: 047f6b512b5d2d2e94de2397aa31be214c0ed76897428f843e485b72fc5606f5
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-ACANTHOPAGRUS-SCHLEGELII/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":293534,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=293534","scientificname":"Acanthopagrus
+    schlegelii","authority":"(Bleeker, 1854)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":293534,"valid_name":"Acanthopagrus
+    schle'
+  error: ''
+- id: WEB-WORMS-ALOPIAS-PELAGICUS
+  topic: species
+  title: 浅海长尾鲨 Alopias pelagicus
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Alopias%20pelagicus?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: 59dc81b2537c4c8ea2efa06d6ad06cac2fbdf22578747b86714744c4fe2a876c
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-ALOPIAS-PELAGICUS/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":220019,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=220019","scientificname":"Alopias
+    pelagicus","authority":"Nakamura, 1935","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":220019,"valid_name":"Alopias
+    pelagicus","valid_a'
+  error: ''
+- id: WEB-WORMS-AMPHIOCTOPUS-FANGSIAO
+  topic: species
+  title: 短蛸 Amphioctopus fangsiao
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Amphioctopus%20fangsiao?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: 401b676063f6060953401f1f021e5b21de641f602ff21aba189204fc90c6cf64
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-AMPHIOCTOPUS-FANGSIAO/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":534733,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=534733","scientificname":"Amphioctopus
+    fangsiao","authority":"(A. d''Orbigny, 1841)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":534733,"valid_name":"Amphioctopus
+    fang'
+  error: ''
+- id: WEB-WORMS-ANGUILLA-JAPONICA
+  topic: species
+  title: 日本鳗鲡 Anguilla japonica
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Anguilla%20japonica?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: d5b019c8af410dac65ce408166194712dd4237e892256cf7c5593b35ee9dee56
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-ANGUILLA-JAPONICA/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":271705,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=271705","scientificname":"Anguilla
+    japonica","authority":"Temminck & Schlegel, 1846","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":271705,"valid_name":"Anguilla
+    japonic'
+  error: ''
+- id: WEB-WORMS-ARIUS-MACULATUS
+  topic: species
+  title: 斑海鲶 Arius maculatus
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Arius%20maculatus?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: befb03ed0fc552771f417593ab2c34962860a2d041658e98947bc013b7a7b240
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-ARIUS-MACULATUS/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":275578,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=275578","scientificname":"Arius
+    maculatus","authority":"(Thunberg, 1792)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":275578,"valid_name":"Arius
+    maculatus","valid_aut'
+  error: ''
+- id: WEB-WORMS-ARIUS-THALASSINUS
+  topic: species
+  title: 大海鲶 Arius thalassinus
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Arius%20thalassinus?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: 49f69e1d415c91a6a0532646746c0e2039cdbb350ea9707a86d4ab0af3b4eda2
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-ARIUS-THALASSINUS/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":214568,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=214568","scientificname":"Arius
+    thalassinus","authority":"(R\u00fcppell, 1837)","status":"unaccepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":281745,"valid_name":"Netuma
+    thalassina",'
+  error: ''
+- id: WEB-WORMS-AUXIS-THAZARD
+  topic: species
+  title: 扁舵鲣 Auxis thazard
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Auxis%20thazard?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: 28797f1dfb372be5ffa333e977838c505358908a0700ffa3a12ffd5678dd91da
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-AUXIS-THAZARD/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":127016,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=127016","scientificname":"Auxis
+    thazard","authority":"(Lacep\u00e8de, 1800)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":127016,"valid_name":"Auxis
+    thazard","valid_au'
+  error: ''
+- id: WEB-WORMS-BAHABA-TAIPINGENSIS
+  topic: species
+  title: 黄唇鱼 Bahaba taipingensis
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Bahaba%20taipingensis?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: 6dcbae4554799c5c16e14bdb7744853dcc79df5893d1f55d4d58838e7175bdf5
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-BAHABA-TAIPINGENSIS/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":279858,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=279858","scientificname":"Bahaba
+    taipingensis","authority":"(Herre, 1932)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":279858,"valid_name":"Bahaba
+    taipingensis","vali'
+  error: ''
+- id: WEB-WORMS-BOLBOMETOPON-MURICATUM
+  topic: species
+  title: 驼峰大鹦嘴鱼 Bolbometopon muricatum
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Bolbometopon%20muricatum?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: 30f12e544d3a63294b26241d1176318fb942ad52aea917d214ca6bd00bfc995a
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-BOLBOMETOPON-MURICATUM/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":219074,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=219074","scientificname":"Bolbometopon
+    muricatum","authority":"(Valenciennes, 1840)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":219074,"valid_name":"Bolbometopon
+    mur'
+  error: ''
+- id: WEB-WORMS-BRAMA-BRAMA
+  topic: species
+  title: 乌鲂 Brama brama
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Brama%20brama?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: 06a1da3b3174e4c38a80b8fc7e517d7b842203963227d667cd321f2a60d6e93c
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-BRAMA-BRAMA/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":126783,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=126783","scientificname":"Brama
+    brama","authority":"(Bonnaterre, 1788)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":126783,"valid_name":"Brama
+    brama","valid_authority'
+  error: ''
+- id: WEB-WORMS-CAESIO-CUNING
+  topic: species
+  title: 黄梅鲷 Caesio cuning
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Caesio%20cuning?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: fb7f6bbbb150ef1e7f4a66e7c4941582c4180557a7c33650bc6d6a699bffae76
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-CAESIO-CUNING/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":278536,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=278536","scientificname":"Caesio
+    cuning","authority":"(Bloch, 1791)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":278536,"valid_name":"Caesio
+    cuning","valid_authority"'
+  error: ''
+- id: WEB-WORMS-CARCHARHINUS-LIMBATUS
+  topic: species
+  title: 黑边鳍真鲨 Carcharhinus limbatus
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Carcharhinus%20limbatus?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: 585911f80f962f12e88c9d782d588f40bd546e8bb07f35a80f52092ff5416bb4
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-CARCHARHINUS-LIMBATUS/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":105793,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=105793","scientificname":"Carcharhinus
+    limbatus","authority":"(Valenciennes, 1839)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":105793,"valid_name":"Carcharhinus
+    limb'
+  error: ''
+- id: WEB-WORMS-CHANOS-CHANOS
+  topic: species
+  title: 遮目鱼 Chanos chanos
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Chanos%20chanos?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: 77e2aba9afc0eaaf31642aecf1edc75f7d5adda8163c96c4a69bcc87636c7e00
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-CHANOS-CHANOS/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":217625,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=217625","scientificname":"Chanos
+    chanos","authority":"(Fabricius, 1775)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":217625,"valid_name":"Chanos
+    chanos","valid_author'
+  error: ''
+- id: WEB-WORMS-CHARYBDIS-FERIATA
+  topic: species
+  title: 锈斑蟳 Charybdis feriata
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Charybdis%20feriata?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: 16fad0b7ff6f15c3b7d31ad77e50018271d29c5ff96802d8c03f4b58dd652bc4
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-CHARYBDIS-FERIATA/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":1671022,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=1671022","scientificname":"Charybdis
+    feriata","authority":"(Linnaeus, 1758)","status":"superseded combination","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":208822,"valid_name":"Charybdis'
+  error: ''
+- id: WEB-WORMS-CHEILINUS-UNDULATUS
+  topic: species
+  title: 波纹唇鱼 Cheilinus undulatus
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Cheilinus%20undulatus?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: 301efe102d1323f0f2a8f0c69960244d44f3acb369e6353f75b10787374f60f3
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-CHEILINUS-UNDULATUS/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":218945,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=218945","scientificname":"Cheilinus
+    undulatus","authority":"R\u00fcppell, 1835","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":218945,"valid_name":"Cheilinus
+    undulatus",'
+  error: ''
+- id: WEB-WORMS-CHIROCENTRUS-DORAB
+  topic: species
+  title: 宝刀鱼 Chirocentrus dorab
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Chirocentrus%20dorab?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: 0a2b9876cf72b3c0e267446a06fd212fe846eace17365daf4b0427becd4948b0
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-CHIROCENTRUS-DORAB/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":212257,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=212257","scientificname":"Chirocentrus
+    dorab","authority":"(Forssk\u00e5l, 1775)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":212257,"valid_name":"Chirocentrus
+    dorab"'
+  error: ''
+- id: WEB-WORMS-COILIA-MYSTUS
+  topic: species
+  title: 凤鲚 Coilia mystus
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Coilia%20mystus?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: 28a4217865169f139521a206e50337a1a8350ae3a8043663179f5b325a561f2c
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-COILIA-MYSTUS/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":279082,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=279082","scientificname":"Coilia
+    mystus","authority":"(Linnaeus, 1758)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":279082,"valid_name":"Coilia
+    mystus","valid_authori'
+  error: ''
+- id: WEB-WORMS-COLLICHTHYS-LUCIDUS
+  topic: species
+  title: 棘头梅童鱼 Collichthys lucidus
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Collichthys%20lucidus?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: e7a59c167c70d6cb63e668e8e7d39da105f2ae9476e1b36b1b8a828d6d030ba9
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-COLLICHTHYS-LUCIDUS/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":280361,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=280361","scientificname":"Collichthys
+    lucidus","authority":"(Richardson, 1844)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":280361,"valid_name":"Collichthys
+    lucidus",'
+  error: ''
+- id: WEB-WORMS-CONGER-MYRIASTER
+  topic: species
+  title: 星鳗 Conger myriaster
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Conger%20myriaster?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: ad3688567702d32eb560e89cc7c36d77aba6368e2f5c851d3335ca0312a74ef1
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-CONGER-MYRIASTER/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":271745,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=271745","scientificname":"Conger
+    myriaster","authority":"(Brevoort, 1856)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":271745,"valid_name":"Conger
+    myriaster","valid_a'
+  error: ''
+- id: WEB-WORMS-CORYPHAENA-HIPPURUS
+  topic: species
+  title: 鲯鳅 Coryphaena hippurus
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Coryphaena%20hippurus?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: 2b29ad874a7d22907c57a2588bcaac49e2967ddeb40d64064196a0caee809b6a
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-CORYPHAENA-HIPPURUS/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":126846,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=126846","scientificname":"Coryphaena
+    hippurus","authority":"Linnaeus, 1758","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":126846,"valid_name":"Coryphaena
+    hippurus","val'
+  error: ''
+- id: WEB-WORMS-CRASSOSTREA-GIGAS
+  topic: species
+  title: 长牡蛎 Crassostrea gigas
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Crassostrea%20gigas?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: 8fdcc992b4dc334d7fae129df269e951b9813759c5a9157d9b0e10734391a416
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-CRASSOSTREA-GIGAS/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":140656,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=140656","scientificname":"Crassostrea
+    gigas","authority":"(Thunberg, 1793)","status":"superseded combination","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":836033,"valid_name":"Magallana
+    g'
+  error: ''
+- id: WEB-WORMS-DASYATIS-ZUGEI
+  topic: species
+  title: 尖嘴魟 Dasyatis zugei
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Dasyatis%20zugei?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: 9c8b63fb886d2e5df97a60abb36a7616c22ffdffcd2ba0a3ebae6827d0c51013
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-DASYATIS-ZUGEI/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":271454,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=271454","scientificname":"Dasyatis
+    zugei","authority":"(M\u00fcller & Henle, 1841)","status":"unaccepted","unacceptreason":"Superseded
+    new combination","taxonRankID":220,"rank":"Species","valid_AphiaID":1013687,"val'
+  error: ''
+- id: WEB-WORMS-DECAPTERUS-MACROSOMA
+  topic: species
+  title: 大甲鲹 Decapterus macrosoma
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Decapterus%20macrosoma?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: aeca4db94b822d617021efe57e18e597a1476af0023a54c43db84a1470c6ec84
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-DECAPTERUS-MACROSOMA/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":218426,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=218426","scientificname":"Decapterus
+    macrosoma","authority":"Bleeker, 1851","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":218426,"valid_name":"Decapterus
+    macrosoma","va'
+  error: ''
 - id: WEB-WORMS-DECAPTERUS-MARUADSI
   topic: species
   title: Decapterus maruadsi (蓝圆鲹) taxonomic record
   publisher: WoRMS
   url: https://www.marinespecies.org/rest/AphiaRecordsByName/Decapterus%20maruadsi?like=false&marine_only=true
-  fetched_at: '2026-11-03T05:01:14+00:00'
+  fetched_at: '2026-11-03T05:56:55+00:00'
   sha256: 52d13dc407c0482a929e64d0459943ee29aae81047e44f0f390947ad3d6559c6
   content_type: application/json
   license: cc-by-4.0
@@ -88,12 +478,129 @@ cards:
     maruadsi","authority":"(Temminck & Schlegel, 1843)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":273278,"valid_name":"Decapterus
     m'
   error: ''
+- id: WEB-WORMS-ELAGATIS-BIPINNULATA
+  topic: species
+  title: 双带鲹 Elagatis bipinnulata
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Elagatis%20bipinnulata?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: 316d48bb96c6d2b84146e1886167f1c09984557f8faf75464853b8f8f215be59
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-ELAGATIS-BIPINNULATA/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":126809,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=126809","scientificname":"Elagatis
+    bipinnulata","authority":"(Quoy & Gaimard, 1825)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":126809,"valid_name":"Elagatis
+    bipinnu'
+  error: ''
+- id: WEB-WORMS-ELEUTHERONEMA-TETRADACTYLUM
+  topic: species
+  title: 四指马鲅 Eleutheronema tetradactylum
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Eleutheronema%20tetradactylum?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: aef332af9eab7b5c9e9b0cbdabf718e2261f1f3d36012c7a963d51f63058d3d9
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-ELEUTHERONEMA-TETRADACTYLUM/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":280639,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=280639","scientificname":"Eleutheronema
+    tetradactylum","authority":"(Shaw, 1804)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":280639,"valid_name":"Eleutheronema
+    tetra'
+  error: ''
+- id: WEB-WORMS-ENCRASICHOLINA-HETEROLOBA
+  topic: species
+  title: 异叶侧带小公鱼 Encrasicholina heteroloba
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Encrasicholina%20heteroloba?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: e3aeacb20001bce450904711b3f3374c6da680f9eabd49a0ff7a6084d42820ed
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-ENCRASICHOLINA-HETEROLOBA/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":219980,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=219980","scientificname":"Encrasicholina
+    heteroloba","authority":"(R\u00fcppell, 1837)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":219980,"valid_name":"Encrasicholin'
+  error: ''
+- id: WEB-WORMS-EPINEPHELUS-AREOLATUS
+  topic: species
+  title: 宝石石斑鱼 Epinephelus areolatus
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Epinephelus%20areolatus?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: dd9007467d7bbe4da3e62209cadec409e4baa02c5054b4078c8f81c889616186
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-EPINEPHELUS-AREOLATUS/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":218204,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=218204","scientificname":"Epinephelus
+    areolatus","authority":"(Forssk\u00e5l, 1775)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":218204,"valid_name":"Epinephelus
+    areo'
+  error: ''
+- id: WEB-WORMS-EPINEPHELUS-COIOIDES
+  topic: species
+  title: 棕点石斑鱼 Epinephelus coioides
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Epinephelus%20coioides?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: 634985b1ed01a75d06948a5af162fccbf93bf53f779ccd88d70e827fd49fd581
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-EPINEPHELUS-COIOIDES/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":218200,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=218200","scientificname":"Epinephelus
+    coioides","authority":"(Hamilton, 1822)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":218200,"valid_name":"Epinephelus
+    coioides",'
+  error: ''
+- id: WEB-WORMS-EPINEPHELUS-MALABARICUS
+  topic: species
+  title: 玛拉巴石斑鱼 Epinephelus malabaricus
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Epinephelus%20malabaricus?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: 631b4e85be33cc0057b92cdc21d6ed70d9d08ed43292088e2ed7c58ec70506e1
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-EPINEPHELUS-MALABARICUS/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":218206,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=218206","scientificname":"Epinephelus
+    malabaricus","authority":"(Bloch & Schneider, 1801)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":218206,"valid_name":"Epinephelu'
+  error: ''
+- id: WEB-WORMS-EUTHYNNUS-AFFINIS
+  topic: species
+  title: 巴鲣 Euthynnus affinis
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Euthynnus%20affinis?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: 6887e4553aefc6e83b2b78d8c006820ca149c766cf41272731be32b79e9e1288
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-EUTHYNNUS-AFFINIS/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":219708,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=219708","scientificname":"Euthynnus
+    affinis","authority":"(Cantor, 1849)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":219708,"valid_name":"Euthynnus
+    affinis","valid_a'
+  error: ''
 - id: WEB-WORMS-FENNEROPENAEUS-CHINENSIS
   topic: species
   title: Fenneropenaeus chinensis (中国明对虾) taxonomic record
   publisher: WoRMS
   url: https://www.marinespecies.org/rest/AphiaRecordsByName/Fenneropenaeus%20chinensis?like=false&marine_only=true
-  fetched_at: '2026-11-03T05:01:14+00:00'
+  fetched_at: '2026-11-03T05:56:55+00:00'
   sha256: bd073fad1978e2c09db83271e394c00178ad398c76cfbf5b03da051337061941
   content_type: application/json
   license: cc-by-4.0
@@ -104,12 +611,182 @@ cards:
   excerpt: '[{"AphiaID":246390,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=246390","scientificname":"Fenneropenaeus
     chinensis","authority":"(Osbeck, 1765)","status":"superseded combination","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":1809202,"valid_name":"Penae'
   error: ''
+- id: WEB-WORMS-GALEOCERDO-CUVIER
+  topic: species
+  title: 鼬鲨 Galeocerdo cuvier
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Galeocerdo%20cuvier?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: 1f522a961f6224b712ef80df882d2cc3e00898320c06bd3cfa7ff75a1ca72c6a
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-GALEOCERDO-CUVIER/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":105799,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=105799","scientificname":"Galeocerdo
+    cuvier","authority":"(P\u00e9ron & Lesueur, 1822)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":105799,"valid_name":"Galeocerdo
+    cu'
+  error: ''
+- id: WEB-WORMS-HARPADON-NEHEREUS
+  topic: species
+  title: 龙头鱼 Harpadon nehereus
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Harpadon%20nehereus?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: 838349167ccc3e2fd05f61969b61b341d118a3d20795fcce9b95854c9bc3f55d
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-HARPADON-NEHEREUS/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":217661,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=217661","scientificname":"Harpadon
+    nehereus","authority":"(Hamilton, 1822)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":217661,"valid_name":"Harpadon
+    nehereus","valid'
+  error: ''
+- id: WEB-WORMS-HILSA-KELEE
+  topic: species
+  title: 花点鲥 Hilsa kelee
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Hilsa%20kelee?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: ce5b4c56dd2e87c54c011b56e9c8bb4cb7621de5bcc0d1de6f6dab925412d30d
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-HILSA-KELEE/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":212278,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=212278","scientificname":"Hilsa
+    kelee","authority":"(Cuvier, 1829)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":212278,"valid_name":"Hilsa
+    kelee","valid_authority":"('
+  error: ''
+- id: WEB-WORMS-HIMANTURA-UARNAK
+  topic: species
+  title: 花点魟 Himantura uarnak
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Himantura%20uarnak?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: 2d9c2d10f537913e3c8aab7eab44612c8afcd27dd4f9b9b5b5a524af40ed7839
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-HIMANTURA-UARNAK/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":105854,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=105854","scientificname":"Himantura
+    uarnak","authority":"(Gmelin, 1789)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":105854,"valid_name":"Himantura
+    uarnak","valid_aut'
+  error: ''
+- id: WEB-WORMS-HIPPOCAMPUS-KUDA
+  topic: species
+  title: 库达海马 Hippocampus kuda
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Hippocampus%20kuda?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: f00dd32274e02ffc8e9eb02eabba1de332d168801c71ab09075ccd56d1e3d72e
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-HIPPOCAMPUS-KUDA/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":212237,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=212237","scientificname":"Hippocampus
+    kuda","authority":"Bleeker, 1852","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":212237,"valid_name":"Hippocampus
+    kuda","valid_auth'
+  error: ''
+- id: WEB-WORMS-HIPPOCAMPUS-TRIMACULATUS
+  topic: species
+  title: 三斑海马 Hippocampus trimaculatus
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Hippocampus%20trimaculatus?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: 70293befa6a74295ebfa408796ba8df6152053abe809c9809fe6a4175649e08a
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-HIPPOCAMPUS-TRIMACULATUS/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":212232,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=212232","scientificname":"Hippocampus
+    trimaculatus","authority":"Leach, 1814","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":212232,"valid_name":"Hippocampus
+    trimaculatu'
+  error: ''
+- id: WEB-WORMS-ISTIOMPAX-INDICA
+  topic: species
+  title: 立翅旗鱼 Istiompax indica
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Istiompax%20indica?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: c58ee432f387330ca70a6ceaa2488120af6286fbae0976f04e2d903c3a292eb3
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-ISTIOMPAX-INDICA/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":712905,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=712905","scientificname":"Istiompax
+    indica","authority":"(Cuvier, 1832)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":712905,"valid_name":"Istiompax
+    indica","valid_aut'
+  error: ''
+- id: WEB-WORMS-ISURUS-OXYRINCHUS
+  topic: species
+  title: 尖吻鲭鲨 Isurus oxyrinchus
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Isurus%20oxyrinchus?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: 85f87796ef117c34b3a3a11c096918da322623b1391a5c523da49db6993e5dfe
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-ISURUS-OXYRINCHUS/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":105839,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=105839","scientificname":"Isurus
+    oxyrinchus","authority":"Rafinesque, 1810","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":105839,"valid_name":"Isurus
+    oxyrinchus","valid'
+  error: ''
+- id: WEB-WORMS-JOHNIUS-BELANGERII
+  topic: species
+  title: 白姑鱼 Johnius belangerii
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Johnius%20belangerii?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: cb394a8f4b1660f7b7fd2222d21bb81d228b3db3b739122367e442196d587baf
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-JOHNIUS-BELANGERII/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":276099,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=276099","scientificname":"Johnius
+    belangerii","authority":"(Cuvier, 1830)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":276099,"valid_name":"Johnius
+    belangerii","valid'
+  error: ''
+- id: WEB-WORMS-KATSUWONUS-PELAMIS
+  topic: species
+  title: 鲣 Katsuwonus pelamis
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Katsuwonus%20pelamis?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: fa1032e484d9f37bfba779759003ab20d531054ad51063a78f013fa92de71241
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-KATSUWONUS-PELAMIS/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":127018,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=127018","scientificname":"Katsuwonus
+    pelamis","authority":"(Linnaeus, 1758)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":127018,"valid_name":"Katsuwonus
+    pelamis","val'
+  error: ''
 - id: WEB-WORMS-LARIMICHTHYS-CROCEA
   topic: species
   title: Larimichthys crocea (大黄鱼) taxonomic record
   publisher: WoRMS
   url: https://www.marinespecies.org/rest/AphiaRecordsByName/Larimichthys%20crocea?like=false&marine_only=true
-  fetched_at: '2026-11-03T05:01:14+00:00'
+  fetched_at: '2026-11-03T05:56:55+00:00'
   sha256: 0949f07c12fb917f06ddd9cc6040d349b27907d622cc8d98531d31a2dd5eca25
   content_type: application/json
   license: cc-by-4.0
@@ -121,12 +798,1178 @@ cards:
     crocea","authority":"(Richardson, 1846)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":281271,"valid_name":"Larimichthys
     crocea",'
   error: ''
+- id: WEB-WORMS-LARIMICHTHYS-POLYACTIS
+  topic: species
+  title: 小黄鱼 Larimichthys polyactis
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Larimichthys%20polyactis?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: 40dfdd45c302df3bdc27d04d5ab861976680d3c1c89a7224f9bcebcf9c16783f
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-LARIMICHTHYS-POLYACTIS/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":281273,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=281273","scientificname":"Larimichthys
+    polyactis","authority":"(Bleeker, 1877)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":281273,"valid_name":"Larimichthys
+    polyacti'
+  error: ''
+- id: WEB-WORMS-LATEOLABRAX-MACULATUS
+  topic: species
+  title: 日本花鲈 Lateolabrax maculatus
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Lateolabrax%20maculatus?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: 0d5dca2c875bb38b26b631cef4d5438a10913a5acd61aebbc030443406e5dd47
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-LATEOLABRAX-MACULATUS/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":314734,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=314734","scientificname":"Lateolabrax
+    maculatus","authority":"(McClelland, 1843)","status":"junior homonym","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":1860501,"valid_name":"Lateolabrax '
+  error: ''
+- id: WEB-WORMS-LATES-CALCARIFER
+  topic: species
+  title: 尖吻鲈 Lates calcarifer
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Lates%20calcarifer?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: ae98d8ff1af8605329676a16cec7736742decba47cf16a301a905e2c090fdd80
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-LATES-CALCARIFER/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":278957,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=278957","scientificname":"Lates
+    calcarifer","authority":"(Bloch, 1790)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":278957,"valid_name":"Lates
+    calcarifer","valid_auth'
+  error: ''
+- id: WEB-WORMS-LETHRINUS-NEBULOSUS
+  topic: species
+  title: 星斑裸颊鲷 Lethrinus nebulosus
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Lethrinus%20nebulosus?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: 7a2c91d6c58ea8108733957e31fda3d08302d27e3874b83b9ddaad3172f9e933
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-LETHRINUS-NEBULOSUS/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":212081,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=212081","scientificname":"Lethrinus
+    nebulosus","authority":"(Forssk\u00e5l, 1775)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":212081,"valid_name":"Lethrinus
+    nebulosu'
+  error: ''
+- id: WEB-WORMS-LUTJANUS-ERYTHROPTERUS
+  topic: species
+  title: 红鳍笛鲷 Lutjanus erythropterus
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Lutjanus%20erythropterus?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: b26448abb65a6a6124a8d6d5e3aa9f9eb6e1ebe437bf143b44679b6ac9277266
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-LUTJANUS-ERYTHROPTERUS/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":276534,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=276534","scientificname":"Lutjanus
+    erythropterus","authority":"Bloch, 1790","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":276534,"valid_name":"Lutjanus
+    erythropterus","'
+  error: ''
+- id: WEB-WORMS-LUTJANUS-MALABARICUS
+  topic: species
+  title: 马拉巴笛鲷 Lutjanus malabaricus
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Lutjanus%20malabaricus?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: 454d93b64fe8490c52796c8ebfb24ddded4e641cbf4693846e51251395a92c77
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-LUTJANUS-MALABARICUS/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":218481,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=218481","scientificname":"Lutjanus
+    malabaricus","authority":"(Bloch & Schneider, 1801)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":218481,"valid_name":"Lutjanus
+    mala'
+  error: ''
+- id: WEB-WORMS-LUTJANUS-SEBAE
+  topic: species
+  title: 千年笛鲷 Lutjanus sebae
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Lutjanus%20sebae?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: a2389ee5dd32c5937ffe0e774c9850781cbe89db5c07bf1fc305e562318859a7
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-LUTJANUS-SEBAE/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":218499,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=218499","scientificname":"Lutjanus
+    sebae","authority":"(Cuvier, 1816)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":218499,"valid_name":"Lutjanus
+    sebae","valid_authori'
+  error: ''
+- id: WEB-WORMS-MAKAIRA-MAZARA
+  topic: species
+  title: 印度枪鱼 Makaira mazara
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Makaira%20mazara?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: 485aad91edd730e542e01afbf8a9f63a13633c1ac8141316c78e958a48eaa1ce
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-MAKAIRA-MAZARA/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":219729,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=219729","scientificname":"Makaira
+    mazara","authority":"(Jordan & Snyder, 1901)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":219729,"valid_name":"Makaira
+    mazara","vali'
+  error: ''
+- id: WEB-WORMS-MERETRIX-MERETRIX
+  topic: species
+  title: 文蛤 Meretrix meretrix
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Meretrix%20meretrix?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: 2f80e8da01f27d7d4a469cfa1b44ab335e89154b04a94c5db3c2b135ea2c5106
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-MERETRIX-MERETRIX/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":224891,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=224891","scientificname":"Meretrix
+    meretrix","authority":"(Linnaeus, 1758)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":224891,"valid_name":"Meretrix
+    meretrix","valid'
+  error: ''
+- id: WEB-WORMS-METAPENAEUS-AFFINIS
+  topic: species
+  title: 近缘新对虾 Metapenaeus affinis
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Metapenaeus%20affinis?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: 164b25eadbc39e944bb7e0a69d6e360a1b69000d34d53668b3b1578df0386798
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-METAPENAEUS-AFFINIS/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":210397,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=210397","scientificname":"Metapenaeus
+    affinis","authority":"(H. Milne Edwards, 1837)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":210397,"valid_name":"Metapenaeus
+    aff'
+  error: ''
+- id: WEB-WORMS-METAPENAEUS-ENSIS
+  topic: species
+  title: 刀额新对虾 Metapenaeus ensis
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Metapenaeus%20ensis?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: a6c9aef4c337396d3b54d78d22c23ba94243a71753323a2b26ef9a2043132200
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-METAPENAEUS-ENSIS/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":210392,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=210392","scientificname":"Metapenaeus
+    ensis","authority":"(De Haan, 1844)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":210392,"valid_name":"Metapenaeus
+    ensis","valid_'
+  error: ''
+- id: WEB-WORMS-MUGIL-CEPHALUS
+  topic: species
+  title: 鲻 Mugil cephalus
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Mugil%20cephalus?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: 145cab4c154250433c02b2f8c0e95abe3b8af79be26ad7b14c8ba941199dcb60
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-MUGIL-CEPHALUS/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":126983,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=126983","scientificname":"Mugil
+    cephalus","authority":"Linnaeus, 1758","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":126983,"valid_name":"Mugil
+    cephalus","valid_authori'
+  error: ''
+- id: WEB-WORMS-MURAENESOX-CINEREUS
+  topic: species
+  title: 海鳗 Muraenesox cinereus
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Muraenesox%20cinereus?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: 5e4228b0ab9c86e356fb4ac071c1d3c7f28b62c50fd22e512af02f445d054f6e
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-MURAENESOX-CINEREUS/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":126296,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=126296","scientificname":"Muraenesox
+    cinereus","authority":"(Forssk\u00e5l, 1775)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":126296,"valid_name":"Muraenesox
+    cinereu'
+  error: ''
+- id: WEB-WORMS-MUSTELUS-GRISEUS
+  topic: species
+  title: 灰星鲨 Mustelus griseus
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Mustelus%20griseus?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: 5bc699ebebf68cfd47cc69eea92c0620ad6bf4b8bb9528946c564b5e300938c8
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-MUSTELUS-GRISEUS/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":271384,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=271384","scientificname":"Mustelus
+    griseus","authority":"Pietschmann, 1908","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":271384,"valid_name":"Mustelus
+    griseus","valid_'
+  error: ''
+- id: WEB-WORMS-NEMIPTERUS-JAPONICUS
+  topic: species
+  title: 日本金线鱼 Nemipterus japonicus
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Nemipterus%20japonicus?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: b277810ea9d98800df99b619446b746407440d14fc023c7c5c3e4c7f184db8b8
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-NEMIPTERUS-JAPONICUS/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":218515,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=218515","scientificname":"Nemipterus
+    japonicus","authority":"(Bloch, 1791)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":218515,"valid_name":"Nemipterus
+    japonicus","va'
+  error: ''
+- id: WEB-WORMS-NEMIPTERUS-VIRGATUS
+  topic: species
+  title: 金线鱼 Nemipterus virgatus
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Nemipterus%20virgatus?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: d1143d6841b386b0ce00a0143292a28d42ec25caa78d4aca8d5903518c583303
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-NEMIPTERUS-VIRGATUS/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":278133,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=278133","scientificname":"Nemipterus
+    virgatus","authority":"(Houttuyn, 1782)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":278133,"valid_name":"Nemipterus
+    virgatus","v'
+  error: ''
+- id: WEB-WORMS-NIBEA-ALBIFLORA
+  topic: species
+  title: 黄姑鱼 Nibea albiflora
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Nibea%20albiflora?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: 2709e5d2eb60892152e5bfb735dcb07cab693b464d51befb93ef24c3d135223b
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-NIBEA-ALBIFLORA/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":281747,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=281747","scientificname":"Nibea
+    albiflora","authority":"(Richardson, 1846)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":281747,"valid_name":"Nibea
+    albiflora","valid_a'
+  error: ''
+- id: WEB-WORMS-OCTOPUS-VULGARIS
+  topic: species
+  title: 真蛸 Octopus vulgaris
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Octopus%20vulgaris?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: 9f08ef8fd8dd3650f9107369fdb09fea67bce03b1b0c8ebde51818b425aeef3a
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-OCTOPUS-VULGARIS/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":140605,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=140605","scientificname":"Octopus
+    vulgaris","authority":"Cuvier, 1797","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":140605,"valid_name":"Octopus
+    vulgaris","valid_autho'
+  error: ''
+- id: WEB-WORMS-PAGRUS-MAJOR
+  topic: species
+  title: 真鲷 Pagrus major
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Pagrus%20major?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: eb10c5fa9bfa966ec1b9aff6bae9c7eff0d169f846811bc80b6d90eb33dfb62b
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-PAGRUS-MAJOR/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":273976,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=273976","scientificname":"Pagrus
+    major","authority":"(Temminck & Schlegel, 1843)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":273976,"valid_name":"Pagrus
+    major","vali'
+  error: ''
+- id: WEB-WORMS-PAMPUS-ARGENTEUS
+  topic: species
+  title: 银鲳 Pampus argenteus
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Pampus%20argenteus?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: 23de8aeaa2cfec9cac05030b1aa21d19d20d8c8cd888528d201f3ee64e85e9db
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-PAMPUS-ARGENTEUS/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":127075,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=127075","scientificname":"Pampus
+    argenteus","authority":"(Euphrasen, 1788)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":127075,"valid_name":"Pampus
+    argenteus","valid_'
+  error: ''
+- id: WEB-WORMS-PAMPUS-CHINENSIS
+  topic: species
+  title: 中国鲳 Pampus chinensis
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Pampus%20chinensis?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: caa9c45ca691837bddc1c91c0316c9fb60106dc9f9752f8d9b07cd36b8bef8ab
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-PAMPUS-CHINENSIS/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":273993,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=273993","scientificname":"Pampus
+    chinensis","authority":"(Euphrasen, 1788)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":273993,"valid_name":"Pampus
+    chinensis","valid_'
+  error: ''
+- id: WEB-WORMS-PARAPENAEOPSIS-HARDWICKII
+  topic: species
+  title: 哈氏仿对虾 Parapenaeopsis hardwickii
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Parapenaeopsis%20hardwickii?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: be5f7015f84132d00b978519c4b7347360755c6d465fc5e9181cf7ab4b544a8f
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-PARAPENAEOPSIS-HARDWICKII/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":210407,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=210407","scientificname":"Parapenaeopsis
+    hardwickii","authority":"(Miers, 1878)","status":"superseded combination","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":585389,"valid_name":"Miersp'
+  error: ''
+- id: WEB-WORMS-PENAEUS-MONODON
+  topic: species
+  title: 斑节对虾 Penaeus monodon
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Penaeus%20monodon?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: 0ac38788163b372359db81c4334dc16ba87eeffb53553aa5aa2a6be7e4f326a7
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-PENAEUS-MONODON/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":210378,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=210378","scientificname":"Penaeus
+    monodon","authority":"Fabricius, 1798","status":"superseded combination","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":1809193,"valid_name":"Penaeus
+    (Pena'
+  error: ''
+- id: WEB-WORMS-PINCTADA-FUCATA
+  topic: species
+  title: 合浦珠母贝 Pinctada fucata
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Pinctada%20fucata?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: c842eb724716474d8200cf1fce3a065e12df1e05b2e8844ebaf72869008de417
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-PINCTADA-FUCATA/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":397170,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=397170","scientificname":"Pinctada
+    fucata","authority":"(A. A. Gould, 1850)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":397170,"valid_name":"Pinctada
+    fucata","valid_'
+  error: ''
+- id: WEB-WORMS-PLANILIZA-HAEMATOCHEILA
+  topic: species
+  title: 梭鱼 Planiliza haematocheila
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Planiliza%20haematocheila?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: 7f6773f17bdc8d5824024278a9df8b76159fd1f2db8758eb0ebc1674c4c2386a
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-PLANILIZA-HAEMATOCHEILA/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":1043603,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=1043603","scientificname":"Planiliza
+    haematocheila","authority":"(Temminck & Schlegel, 1845)","status":"unaccepted","unacceptreason":"misspelling:
+    specific epithet","taxonRankID":220,"rank":"Species","valid_AphiaID'
+  error: ''
+- id: WEB-WORMS-PLECTROPOMUS-LEOPARDUS
+  topic: species
+  title: 豹纹鳃棘鲈 Plectropomus leopardus
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Plectropomus%20leopardus?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: f9a66673efedcb68d065345f1c21000e7ab810ebddf20f789bd0d3b2cf110ca1
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-PLECTROPOMUS-LEOPARDUS/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":218261,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=218261","scientificname":"Plectropomus
+    leopardus","authority":"(Lacep\u00e8de, 1802)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":218261,"valid_name":"Plectropomus
+    le'
+  error: ''
+- id: WEB-WORMS-PLOTOSUS-LINEATUS
+  topic: species
+  title: 线纹鳗鲶 Plotosus lineatus
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Plotosus%20lineatus?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: 19a7377d7bb3347b53694b0f25ba044a4cdf31cc7a36d84029f8f6e133b51123
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-PLOTOSUS-LINEATUS/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":217659,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=217659","scientificname":"Plotosus
+    lineatus","authority":"(Thunberg, 1787)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":217659,"valid_name":"Plotosus
+    lineatus","valid'
+  error: ''
+- id: WEB-WORMS-POLYDACTYLUS-SEXTARIUS
+  topic: species
+  title: 六指马鲅 Polydactylus sextarius
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Polydactylus%20sextarius?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: 1c2c97feac1ad498511ec3a80eca6115bdd0d2e3eeb69db538b5353612c13741
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-POLYDACTYLUS-SEXTARIUS/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":218912,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=218912","scientificname":"Polydactylus
+    sextarius","authority":"(Bloch & Schneider, 1801)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":218912,"valid_name":"Polydactylu'
+  error: ''
+- id: WEB-WORMS-PORTUNUS-PELAGICUS
+  topic: species
+  title: 远海梭子蟹 Portunus pelagicus
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Portunus%20pelagicus?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: 30274426206156c1cf0ba95a026f81fb142c0337fac264318d12b9ff4a03eaf8
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-PORTUNUS-PELAGICUS/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":1061754,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=1061754","scientificname":"Portunus
+    pelagicus","authority":"(Linnaeus, 1758)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":1061754,"valid_name":"Portunus
+    pelagicus","'
+  error: ''
+- id: WEB-WORMS-PORTUNUS-TRITUBERCULATUS
+  topic: species
+  title: 三疣梭子蟹 Portunus trituberculatus
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Portunus%20trituberculatus?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: 189bb2c82198ce6084e4447a153688a6fb1eaa92d86bfe646e19294a43fac28e
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-PORTUNUS-TRITUBERCULATUS/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":1061762,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=1061762","scientificname":"Portunus
+    trituberculatus","authority":"(Miers, 1876)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":1061762,"valid_name":"Portunus
+    trituberc'
+  error: ''
+- id: WEB-WORMS-PRIACANTHUS-MACRACANTHUS
+  topic: species
+  title: 大眼鲷 Priacanthus macracanthus
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Priacanthus%20macracanthus?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: d8ad4a4dfe5e610f56c22e7ce6030a22092b2255692302c3f2723239b9638eec
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-PRIACANTHUS-MACRACANTHUS/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":273765,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=273765","scientificname":"Priacanthus
+    macracanthus","authority":"Cuvier, 1829","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":273765,"valid_name":"Priacanthus
+    macracanth'
+  error: ''
+- id: WEB-WORMS-PRIONACE-GLAUCA
+  topic: species
+  title: 大青鲨 Prionace glauca
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Prionace%20glauca?like=false&marine_only=true
+  fetched_at: ''
+  sha256: ''
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: ''
+  status: failed
+  excerpt: ''
+  error: '<urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation
+    of protocol (_ssl.c:1032)>'
+- id: WEB-WORMS-PSENOPSIS-ANOMALA
+  topic: species
+  title: 刺鲳 Psenopsis anomala
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Psenopsis%20anomala?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: 05f9360be27b15464c956adf5fcc1ca2c7eb2cfa30e1ab40eb2039abd49e85a1
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-PSENOPSIS-ANOMALA/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":277902,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=277902","scientificname":"Psenopsis
+    anomala","authority":"(Temminck & Schlegel, 1844)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":277902,"valid_name":"Psenopsis
+    anom'
+  error: ''
+- id: WEB-WORMS-PTEROCAESIO-TILE
+  topic: species
+  title: 蒂尔梅鲷 Pterocaesio tile
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Pterocaesio%20tile?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: 5350fcef0725ffade76940ba2f003a5b31b50792ff87c502b15f376ab35a4539
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-PTEROCAESIO-TILE/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":213656,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=213656","scientificname":"Pterocaesio
+    tile","authority":"(Cuvier, 1830)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":213656,"valid_name":"Pterocaesio
+    tile","valid_aut'
+  error: ''
+- id: WEB-WORMS-RASTRELLIGER-KANAGURTA
+  topic: species
+  title: 羽鳃鲐 Rastrelliger kanagurta
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Rastrelliger%20kanagurta?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: b044ed75c3cbf533f4781d163f1d2ffb3cf7d82de19fc16afd3ff5b05d18aaeb
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-RASTRELLIGER-KANAGURTA/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":127020,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=127020","scientificname":"Rastrelliger
+    kanagurta","authority":"(Cuvier, 1816)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":127020,"valid_name":"Rastrelliger
+    kanagurta'
+  error: ''
+- id: WEB-WORMS-RHABDOSARGUS-SARBA
+  topic: species
+  title: 平鲷 Rhabdosargus sarba
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Rhabdosargus%20sarba?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: f968f48d9771918a3f15f7a6f843ed10995b14efdd189d2eb8485f4f6a44c2f0
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-RHABDOSARGUS-SARBA/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":218621,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=218621","scientificname":"Rhabdosargus
+    sarba","authority":"(Forssk\u00e5l, 1775)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":218621,"valid_name":"Rhabdosargus
+    sarba"'
+  error: ''
+- id: WEB-WORMS-RHINOBATOS-SCHLEGELII
+  topic: species
+  title: 许氏犁头鳐 Rhinobatos schlegelii
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Rhinobatos%20schlegelii?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: 0ab6d96132aa343f4be3193fb8fe5bcd9462247c2bc3c7f0fc8bd0e0af4a5ba8
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-RHINOBATOS-SCHLEGELII/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":213640,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=213640","scientificname":"Rhinobatos
+    schlegelii","authority":"M\u00fcller & Henle, 1841","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":213640,"valid_name":"Rhinobatos
+    s'
+  error: ''
+- id: WEB-WORMS-RHYNCHOBATUS-DJIDDENSIS
+  topic: species
+  title: 及达尖犁头鳐 Rhynchobatus djiddensis
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Rhynchobatus%20djiddensis?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: 90dcf5429c9c76685e75b86c9518fc6e15601a1ce4cb566e38ed8f2bd4b17e93
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-RHYNCHOBATUS-DJIDDENSIS/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":217378,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=217378","scientificname":"Rhynchobatus
+    djiddensis","authority":"(Forssk\u00e5l, 1775)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":217378,"valid_name":"Rhynchobatus
+    d'
+  error: ''
+- id: WEB-WORMS-RUDITAPES-PHILIPPINARUM
+  topic: species
+  title: 菲律宾蛤仔 Ruditapes philippinarum
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Ruditapes%20philippinarum?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: 83e6f8d70f6a1cda199ade10d3ef34d50be7bfbc998d2a77fa2335deceb5faed
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-RUDITAPES-PHILIPPINARUM/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":231750,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=231750","scientificname":"Ruditapes
+    philippinarum","authority":"(A. Adams & Reeve, 1850)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":231750,"valid_name":"Ruditapes
+    p'
+  error: ''
+- id: WEB-WORMS-SARDA-ORIENTALIS
+  topic: species
+  title: 东方狐鲣 Sarda orientalis
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Sarda%20orientalis?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: 5025065c339221127e9743f4d84a8580f709d423115f57c541e5481c69cce223
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-SARDA-ORIENTALIS/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":219713,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=219713","scientificname":"Sarda
+    orientalis","authority":"(Temminck & Schlegel, 1844)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":219713,"valid_name":"Sarda
+    orientali'
+  error: ''
+- id: WEB-WORMS-SARDINELLA-JUSSIEU
+  topic: species
+  title: 裘氏小沙丁鱼 Sardinella jussieu
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Sardinella%20jussieu?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: d75b0e23f7b61c0c6115cea02aa3f5a9df1b64e00c63f89ac39d42423bf496f8
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-SARDINELLA-JUSSIEU/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":400064,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=400064","scientificname":"Sardinella
+    jussieu","authority":"(Valenciennes, 1847)","status":"misspelling - incorrect
+    subsequent spelling","unacceptreason":"of the specific epithet","taxonRankID":220,"rank":"Species","'
+  error: ''
+- id: WEB-WORMS-SARDINELLA-LEMURU
+  topic: species
+  title: 黄泽小沙丁鱼 Sardinella lemuru
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Sardinella%20lemuru?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: 4eb25744f82e912abab9d1fa9cb96ba2b7b7e0d94b85406c3dfa28732790735c
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-SARDINELLA-LEMURU/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":272273,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=272273","scientificname":"Sardinella
+    lemuru","authority":"Bleeker, 1853","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":272273,"valid_name":"Sardinella
+    lemuru","valid_au'
+  error: ''
+- id: WEB-WORMS-SAURIDA-TUMBIL
+  topic: species
+  title: 多齿蛇鲻 Saurida tumbil
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Saurida%20tumbil?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: 3be483a305a1f8936fe5411eb3a0c2e4027567a28097ee466197b2611da93f26
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-SAURIDA-TUMBIL/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":217663,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=217663","scientificname":"Saurida
+    tumbil","authority":"(Bloch, 1795)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":217663,"valid_name":"Saurida
+    tumbil","valid_authorit'
+  error: ''
+- id: WEB-WORMS-SAURIDA-UNDOSQUAMIS
+  topic: species
+  title: 花斑蛇鲻 Saurida undosquamis
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Saurida%20undosquamis?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: 96b6628c00c063bc3410bf6bbad595fb1f7349e6f3cd28410a412b64c7c593c6
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-SAURIDA-UNDOSQUAMIS/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":126371,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=126371","scientificname":"Saurida
+    undosquamis","authority":"(Richardson, 1848)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":126371,"valid_name":"Saurida
+    undosquamis",'
+  error: ''
+- id: WEB-WORMS-SCAPHARCA-BROUGHTONII
+  topic: species
+  title: 魁蚶 Scapharca broughtonii
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Scapharca%20broughtonii?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: 2224e2359053349727f371db540cecfea92c3450f4bb9ec71269d774c7a1de48
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-SCAPHARCA-BROUGHTONII/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":591364,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=591364","scientificname":"Scapharca
+    broughtonii","authority":"(Schrenck, 1867)","status":"unaccepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":504357,"valid_name":"Anadara
+    broughtonii'
+  error: ''
+- id: WEB-WORMS-SCARUS-GHOBBAN
+  topic: species
+  title: 蓝颊鹦嘴鱼 Scarus ghobban
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Scarus%20ghobban?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: 7afe4cac3d0c0b91074201389f919a22a1cbd4a8f58a58a54b7d298820e52a9a
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-SCARUS-GHOBBAN/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":219127,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=219127","scientificname":"Scarus
+    ghobban","authority":"Forssk\u00e5l, 1775","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":219127,"valid_name":"Scarus
+    ghobban","valid_au'
+  error: ''
+- id: WEB-WORMS-SCATOPHAGUS-ARGUS
+  topic: species
+  title: 金钱鱼 Scatophagus argus
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Scatophagus%20argus?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: 4e00162e34cd24f2822133a4d3d5548e02cb7148c2b9be1aea02a4d00a6bf998
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-SCATOPHAGUS-ARGUS/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":276970,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=276970","scientificname":"Scatophagus
+    argus","authority":"(Linnaeus, 1766)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":276970,"valid_name":"Scatophagus
+    argus","valid'
+  error: ''
+- id: WEB-WORMS-SCOMBER-JAPONICUS
+  topic: species
+  title: 日本鲭 Scomber japonicus
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Scomber%20japonicus?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: 3866b46f67eae993c868858a1aab2ebda3ee7940fe6677f263d13d7e4ba90c1d
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-SCOMBER-JAPONICUS/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":127022,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=127022","scientificname":"Scomber
+    japonicus","authority":"Houttuyn, 1782","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":127022,"valid_name":"Scomber
+    japonicus","valid_a'
+  error: ''
+- id: WEB-WORMS-SCOMBEROMORUS-COMMERSON
+  topic: species
+  title: 康氏马鲛 Scomberomorus commerson
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Scomberomorus%20commerson?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: d28b874dfb18e451cc7a83542693f8ee42d7a792bd66951df70e3bfcba9bd176
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-SCOMBEROMORUS-COMMERSON/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":127024,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=127024","scientificname":"Scomberomorus
+    commerson","authority":"(Lacep\u00e8de, 1800)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":127024,"valid_name":"Scomberomorus '
+  error: ''
+- id: WEB-WORMS-SCOMBEROMORUS-NIPHONIUS
+  topic: species
+  title: 蓝点马鲛 Scomberomorus niphonius
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Scomberomorus%20niphonius?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: 19518801a872599fd22ea3baea79ff90ec2a8352cf5ce807eddec5c9ca699598
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-SCOMBEROMORUS-NIPHONIUS/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":273817,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=273817","scientificname":"Scomberomorus
+    niphonius","authority":"(Cuvier, 1832)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":273817,"valid_name":"Scomberomorus
+    niphoni'
+  error: ''
+- id: WEB-WORMS-SCYLLA-SERRATA
+  topic: species
+  title: 锯缘青蟹 Scylla serrata
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Scylla%20serrata?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: b2c9e78d4dbfa1dc4bcab29925bf298c6f718eddbaff6af367206444cfa36cec
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-SCYLLA-SERRATA/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":208814,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=208814","scientificname":"Scylla
+    serrata","authority":"(Forsk\u00e5l, 1775)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":208814,"valid_name":"Scylla
+    serrata","valid_a'
+  error: ''
+- id: WEB-WORMS-SEPIA-ESCULENTA
+  topic: species
+  title: 金乌贼 Sepia esculenta
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Sepia%20esculenta?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: f3e89dc53fcc93c8c42656f9c15b3460d8583d29b47579a750039a33dfc4de41
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-SEPIA-ESCULENTA/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":342131,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=342131","scientificname":"Sepia
+    esculenta","authority":"Hoyle, 1885","status":"superseded combination","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":1666974,"valid_name":"Acanthosepion
+    esc'
+  error: ''
+- id: WEB-WORMS-SEPIELLA-MAINDRONI
+  topic: species
+  title: 曼氏无针乌贼 Sepiella maindroni
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Sepiella%20maindroni?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: 6edcb31dd01f07fd5f7b90c75152093f129cfc3292b7754ca1514735a05bf8aa
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-SEPIELLA-MAINDRONI/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":439182,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=439182","scientificname":"Sepiella
+    maindroni","authority":"Rochebrune, 1884","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":439182,"valid_name":"Sepiella
+    maindroni","val'
+  error: ''
+- id: WEB-WORMS-SERIOLA-DUMERILI
+  topic: species
+  title: 杜氏鰤 Seriola dumerili
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Seriola%20dumerili?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: 66095803090deeb8d92ae7002b639f10e58622ecebbbb8a08323429b892b53a5
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-SERIOLA-DUMERILI/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":126816,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=126816","scientificname":"Seriola
+    dumerili","authority":"(Risso, 1810)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":126816,"valid_name":"Seriola
+    dumerili","valid_auth'
+  error: ''
+- id: WEB-WORMS-SETIPINNA-TATY
+  topic: species
+  title: 黄鲫 Setipinna taty
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Setipinna%20taty?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: 6dc51eba2c67407b963327a8bae1cebbd9cfcd1824578cf14d82a0da1f902a2b
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-SETIPINNA-TATY/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":282768,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=282768","scientificname":"Setipinna
+    taty","authority":"(Valenciennes, 1848)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":282768,"valid_name":"Setipinna
+    taty","valid_a'
+  error: ''
+- id: WEB-WORMS-SIGANUS-CANALICULATUS
+  topic: species
+  title: 沟篮子鱼 Siganus canaliculatus
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Siganus%20canaliculatus?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: 1a639303918895a9624e04460ad6127b0d1307d68cd401486322b62498efe5a3
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-SIGANUS-CANALICULATUS/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":219687,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=219687","scientificname":"Siganus
+    canaliculatus","authority":"(Park, 1797)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":219687,"valid_name":"Siganus
+    canaliculatus","v'
+  error: ''
+- id: WEB-WORMS-SIGANUS-GUTTATUS
+  topic: species
+  title: 点篮子鱼 Siganus guttatus
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Siganus%20guttatus?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: 849c28fe21a242ce3afef0a284bc7d628124261af50590356f95cf9aea63c67b
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-SIGANUS-GUTTATUS/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":273913,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=273913","scientificname":"Siganus
+    guttatus","authority":"(Bloch, 1787)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":273913,"valid_name":"Siganus
+    guttatus","valid_auth'
+  error: ''
+- id: WEB-WORMS-SOLENOCERA-CRASSICORNIS
+  topic: species
+  title: 中华管鞭虾 Solenocera crassicornis
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Solenocera%20crassicornis?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: 2e2beedf56af45a645dca873ed68998d4744c869a85ca0377eb56edc6fc89654
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-SOLENOCERA-CRASSICORNIS/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":107119,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=107119","scientificname":"Solenocera
+    crassicornis","authority":"(H. Milne Edwards, 1837)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":107119,"valid_name":"Solenocera '
+  error: ''
+- id: WEB-WORMS-SPHYRNA-LEWINI
+  topic: species
+  title: 路氏双髻鲨 Sphyrna lewini
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Sphyrna%20lewini?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: 9cfde088f3df12dbadd3c6e78e6f2d98ca99902a09b8ce8b49da40410ec527a7
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-SPHYRNA-LEWINI/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":105816,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=105816","scientificname":"Sphyrna
+    lewini","authority":"(Griffith & Smith, 1834)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":105816,"valid_name":"Sphyrna
+    lewini","val'
+  error: ''
+- id: WEB-WORMS-STHENOTEUTHIS-OUALANIENSIS
+  topic: species
+  title: 鸢乌贼 Sthenoteuthis oualaniensis
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Sthenoteuthis%20oualaniensis?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: b9e25175cea73ada9c4224e07e154a5227f71ee0e30af5b80d5ed2b09eb12986
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-STHENOTEUTHIS-OUALANIENSIS/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":342066,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=342066","scientificname":"Sthenoteuthis
+    oualaniensis","authority":"(Lesson, 1830)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":342066,"valid_name":"Sthenoteuthis
+    oual'
+  error: ''
+- id: WEB-WORMS-STOLEPHORUS-INDICUS
+  topic: species
+  title: 印度侧带小公鱼 Stolephorus indicus
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Stolephorus%20indicus?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: 372c6625a154a00f3979318416866948ec2873c3a64a230beed838ba2c32e812
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-STOLEPHORUS-INDICUS/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":212280,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=212280","scientificname":"Stolephorus
+    indicus","authority":"(van Hasselt, 1823)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":212280,"valid_name":"Stolephorus
+    indicus"'
+  error: ''
+- id: WEB-WORMS-TACHYPLEUS-TRIDENTATUS
+  topic: species
+  title: 中国鲎 Tachypleus tridentatus
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Tachypleus%20tridentatus?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: 0d79ba304affbbf6d24d9cc57450da657c9725d60f4dc51672d4e9b46c80850b
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-TACHYPLEUS-TRIDENTATUS/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":238270,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=238270","scientificname":"Tachypleus
+    tridentatus","authority":"(Leach, 1819)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":238270,"valid_name":"Tachypleus
+    tridentatus"'
+  error: ''
+- id: WEB-WORMS-TARACTICHTHYS-STEINDACHNERI
+  topic: species
+  title: 施氏高鳍鲂 Taractichthys steindachneri
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Taractichthys%20steindachneri?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: 252ff0898fb87b75628644872d92d6d9274aa252249a13d257419942585f2bc7
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-TARACTICHTHYS-STEINDACHNERI/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":221420,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=221420","scientificname":"Taractichthys
+    steindachneri","authority":"(D\u00f6derlein, 1883)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":221420,"valid_name":"Taractich'
+  error: ''
+- id: WEB-WORMS-TENUALOSA-ILISHA
+  topic: species
+  title: 云鲥 Tenualosa ilisha
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Tenualosa%20ilisha?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: ecf4b4d64239fb2d4039b81baea1bfc3c4d94746ac3a6f16d1454d0b0b61abcb
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-TENUALOSA-ILISHA/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":278568,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=278568","scientificname":"Tenualosa
+    ilisha","authority":"(Hamilton, 1822)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":278568,"valid_name":"Tenualosa
+    ilisha","valid_a'
+  error: ''
+- id: WEB-WORMS-TETRAPTURUS-AUDAX
+  topic: species
+  title: 条纹枪鱼 Tetrapturus audax
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Tetrapturus%20audax?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: 302eb7023d30c80a2f4f877f08005aeea52001697d84e635e078d804f00479f5
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-TETRAPTURUS-AUDAX/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":219733,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=219733","scientificname":"Tetrapturus
+    audax","authority":"(Philippi, 1887)","status":"unaccepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":712907,"valid_name":"Kajikia
+    audax","valid_a'
+  error: ''
+- id: WEB-WORMS-THUNNUS-ALBACARES
+  topic: species
+  title: 黄鳍金枪鱼 Thunnus albacares
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Thunnus%20albacares?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: eddba7fcb303bb528c1503e697d5fa946c33941108470207b6f0e3cd9de5c80d
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-THUNNUS-ALBACARES/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":127027,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=127027","scientificname":"Thunnus
+    albacares","authority":"(Bonnaterre, 1788)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":127027,"valid_name":"Thunnus
+    albacares","val'
+  error: ''
+- id: WEB-WORMS-THUNNUS-TONGGOL
+  topic: species
+  title: 青干金枪鱼 Thunnus tonggol
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Thunnus%20tonggol?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: 28bab2def5adf2729fd272e58324b42628ee8579b9616711fdb8281c231c4963
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-THUNNUS-TONGGOL/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":219722,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=219722","scientificname":"Thunnus
+    tonggol","authority":"(Bleeker, 1851)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":219722,"valid_name":"Thunnus
+    tonggol","valid_auth'
+  error: ''
+- id: WEB-WORMS-TRIAENODON-OBESUS
+  topic: species
+  title: 灰三齿鲨 Triaenodon obesus
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Triaenodon%20obesus?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: 6ec2b8f3d3c66d2e427f85bbbfaf9e99e911dfd71208918a756805b8781d376c
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-TRIAENODON-OBESUS/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":214557,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=214557","scientificname":"Triaenodon
+    obesus","authority":"(R\u00fcppell, 1837)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":214557,"valid_name":"Triaenodon
+    obesus","v'
+  error: ''
+- id: WEB-WORMS-TRICHIURUS-JAPONICUS
+  topic: species
+  title: 日本带鱼 Trichiurus japonicus
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Trichiurus%20japonicus?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: 4110f1f6b5edc2df71dd5da22f4ce0499860ec84f85698e1ad09c4bab81276e4
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-TRICHIURUS-JAPONICUS/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":305414,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=305414","scientificname":"Trichiurus
+    japonicus","authority":"Temminck & Schlegel, 1844","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":305414,"valid_name":"Trichiurus
+    ja'
+  error: ''
 - id: WEB-WORMS-TRICHIURUS-LEPTURUS
   topic: species
   title: Trichiurus lepturus (带鱼) taxonomic record
   publisher: WoRMS
   url: https://www.marinespecies.org/rest/AphiaRecordsByName/Trichiurus%20lepturus?like=false&marine_only=true
-  fetched_at: '2026-11-03T05:01:14+00:00'
+  fetched_at: '2026-11-03T05:56:55+00:00'
   sha256: d32d0821a39c832b3d5ec0b000eb4ac31eefd149adbc8f8ac3fd37fbae5dd036
   content_type: application/json
   license: cc-by-4.0
@@ -137,4 +1980,55 @@ cards:
   excerpt: '[{"AphiaID":127089,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=127089","scientificname":"Trichiurus
     lepturus","authority":"Linnaeus, 1758","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":127089,"valid_name":"Trichiurus
     lepturus","val'
+  error: ''
+- id: WEB-WORMS-TRIDACNA-GIGAS
+  topic: species
+  title: 大砗磲 Tridacna gigas
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Tridacna%20gigas?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: 25520d009b215a8ce1ef977fb89f79b56d2145f9b59ae13a82f3a504ee47f7e4
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-TRIDACNA-GIGAS/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":207670,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=207670","scientificname":"Tridacna
+    gigas","authority":"(Linnaeus, 1758)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":207670,"valid_name":"Tridacna
+    gigas","valid_autho'
+  error: ''
+- id: WEB-WORMS-UROTEUTHIS-EDULIS
+  topic: species
+  title: 剑尖枪乌贼 Uroteuthis edulis
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Uroteuthis%20edulis?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: eaddd86ffaebe53f0b4d083c35ba0677781381edbdc960d0a3b092389bdab718
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-UROTEUTHIS-EDULIS/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":342409,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=342409","scientificname":"Uroteuthis
+    edulis","authority":"(Hoyle, 1885)","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":342409,"valid_name":"Uroteuthis
+    edulis","valid_au'
+  error: ''
+- id: WEB-WORMS-XIPHIAS-GLADIUS
+  topic: species
+  title: 剑鱼 Xiphias gladius
+  publisher: WoRMS
+  url: https://www.marinespecies.org/rest/AphiaRecordsByName/Xiphias%20gladius?like=false&marine_only=true
+  fetched_at: '2026-11-03T05:56:55+00:00'
+  sha256: 4aaab75032655d49ccd99238dbb7765497cc16785d3c6ea43e903e944e9fbf38
+  content_type: application/json
+  license: cc-by-4.0
+  sensitivity: public
+  source_class: reference
+  file: WEB-WORMS-XIPHIAS-GLADIUS/text.txt
+  status: ok
+  excerpt: '[{"AphiaID":127094,"url":"https:\/\/www.marinespecies.org\/aphia.php?p=taxdetails&id=127094","scientificname":"Xiphias
+    gladius","authority":"Linnaeus, 1758","status":"accepted","unacceptreason":null,"taxonRankID":220,"rank":"Species","valid_AphiaID":127094,"valid_name":"Xiphias
+    gladius","valid_autho'
   error: ''
