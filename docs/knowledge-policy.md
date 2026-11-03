@@ -58,4 +58,10 @@ scs-fkb embed --data-root "$SCS_FKB_DATA_ROOT/external"
 
 ## 7. Knowledge gaps
 
-Every refusal is written to `$SCS_FKB_DATA_ROOT/gaps.jsonl` with the timestamp, question, refusal reason, claim nature and domain. The file is the intake for the next card/note batch: the quarterly sweep groups it by nature and domain and turns the largest clusters into acquisition targets. Logging never changes or delays an answer; a write failure is ignored.
+Every refusal is written to `$SCS_FKB_DATA_ROOT/gaps.jsonl` with the timestamp, question, refusal reason, claim nature and domain. `scs-fkb knowledge gaps` groups the file by nature, domain and reason and prints the most recent questions; the largest clusters become the next acquisition targets. Logging never changes or delays an answer; a write failure is ignored.
+
+## 8. Quarterly review
+
+The real sweep is scheduled for **2027-02-02**. The procedure is: `knowledge check --write` (marks changed or expired notes stale), `watch --offline` (lists due register entries and cards), review every `draft` and `stale` note, update `review_due`, and record the outcome in the project log.
+
+A preview run on 2026-11-03 reported **0 stale, 0 due** notes and **26 ok** watch entries; nothing is due before December 2026, so the preview is recorded as a rehearsal, not as the scheduled sweep.

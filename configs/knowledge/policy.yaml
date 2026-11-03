@@ -21,7 +21,6 @@ notes:
   sources:
   - doc: POL-CLOS-015
     sha256: 15660ed713803ff440da583e1d5a219ab5e488c2237f3bb33cd30e7115174bdc
-    url: https://example.invalid/POL-CLOS-015
     publisher: 官网
     fetched_at: '2026-11-03'
   tags:
@@ -43,7 +42,6 @@ notes:
   sources:
   - doc: POL-STD-010
     sha256: 35e2069db4de910494c1e6e07c435c4aca91c846e912acba2d6178776b981910
-    url: https://example.invalid/POL-STD-010
     publisher: 官网
     fetched_at: '2026-11-03'
   tags:
@@ -65,7 +63,6 @@ notes:
   sources:
   - doc: POL-SPEC-041
     sha256: b383ea35974fe85acea89f95c7c8c263a7cea382aefdc10f04733efb7118c647
-    url: https://example.invalid/POL-SPEC-041
     publisher: 官网
     fetched_at: '2026-11-03'
   tags:

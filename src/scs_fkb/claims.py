@@ -148,3 +148,33 @@ def record_gap(
     }
     with target.open("a", encoding="utf-8") as handle:
         handle.write(json.dumps(row, ensure_ascii=False) + "\n")
+
+
+def summarize_gaps(path: Path) -> dict[str, object]:
+    """Aggregate the gap file by nature, domain and reason."""
+    target = Path(path)
+    rows: list[dict[str, object]] = []
+    if target.is_file():
+        for line in target.read_text(encoding="utf-8").splitlines():
+            line = line.strip()
+            if not line:
+                continue
+            try:
+                rows.append(json.loads(line))
+            except json.JSONDecodeError:
+                continue
+
+    def count(field: str) -> dict[str, int]:
+        totals: dict[str, int] = {}
+        for row in rows:
+            key = str(row.get(field) or "unknown")
+            totals[key] = totals.get(key, 0) + 1
+        return dict(sorted(totals.items(), key=lambda item: item[1], reverse=True))
+
+    return {
+        "total": len(rows),
+        "by_nature": count("nature"),
+        "by_domain": count("domain"),
+        "by_reason": count("reason"),
+        "recent": [row.get("question") for row in rows[-10:]],
+    }

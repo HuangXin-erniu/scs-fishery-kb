@@ -8,6 +8,13 @@ This log records material project changes by date. It does not use release versi
 - Documented the rhythm: weekly watch, monthly refresh, quarterly review 2027-02-02; due items are prompts, never automatic rewrites.
 - Added glossary terms source_class, currency, review_due and web card.
 - Adopted baseline unchanged: 36 documents, 849 chunks, index 5135e00cfa3d, hybrid 11/11.
+## 2026-11-03 — Placeholder URLs cleaned, gap report added, review rehearsed
+
+- Removed the three example.invalid URLs from policy notes; document sources now carry no URL rather than a fake one.
+- Added `scs-fkb knowledge gaps`, grouping gaps.jsonl by nature, domain and reason; current file has one definition/general/weak_evidence entry.
+- Rehearsed the quarterly procedure (knowledge check, watch --offline): 0 stale, 0 due, 26 watch entries ok. The real sweep remains 2027-02-02.
+- No corpus or index change; baseline stays 20910f0964df.
+
 ## 2026-11-03 — Cards join the external index; refusals become gaps
 
 - Linked the card cache into the external root and rebuilt it: 259 documents / 315 chunks (119 cards + 140 notes), external index `0c6d3901106c`, dense `0d3640622f4fbf90`.
