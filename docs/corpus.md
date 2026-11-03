@@ -292,9 +292,9 @@ Every entry carries a status that means one of three things:
 |---|---|---|
 | `in_force` | A normative document whose text carries evidence: a commencement clause, an approval number, a publication date with effect, or a publisher's validity marker (有效) | Fisheries Law, closure notices, penalty rules, hull catalogs, the 2024 survey system, the 2025 e-certificate standards |
 | `not_applicable` | A non-normative document, in one of eight categories: data edition, product documentation edition, candidate not acquired, retired provenance, annual work notice, planning document, product capability note, form instruction | CWP/ASFIS/MUR/OLCI/CMEMS/GFW documents, the three candidates, the retired SC/T series, the 2017 and 2020 work notices, the 2018-2025 port plan, HY-1C/D, the permit-form instruction |
-| `unknown` | A normative document with no evidence available, or a genuinely open question | `POL-PORT-037` (proposed recognition, no final announcement found) and `POL-VMS-053` (the registered text carries no commencement clause) |
+| `unknown` | A normative document with no evidence available, or a genuinely open question | `POL-PORT-037` (proposed recognition, no final announcement found). `POL-VMS-053` was closed on 2026-11-03: its Article 32 states 本办法自2020年1月1日起执行, which an earlier sweep missed because it searched for 施行 rather than 执行. |
 
-The 2026-11-03 sweep closed nineteen of the twenty-one: four normative documents were upgraded with quoted evidence (the 2010 statistics rules' 自发布之日起施行 clause, the 2024 survey system's approval number, the 2025 e-certificate publication date, the Shantou notice's 2026-04-28 date), fifteen non-normative entries moved to `not_applicable`, and two remain `unknown` on purpose. The register now reads 50 `in_force`, 26 `not_applicable` and 2 `unknown`.
+The 2026-11-03 sweep closed nineteen of the twenty-one: four normative documents were upgraded with quoted evidence (the 2010 statistics rules' 自发布之日起施行 clause, the 2024 survey system's approval number, the 2025 e-certificate publication date, the Shantou notice's 2026-04-28 date), fifteen non-normative entries moved to `not_applicable`, and two remain `unknown` on purpose. The register now reads 51 `in_force`, 26 `not_applicable` and 1 `unknown`.
 
 ## 5r. Climate and hazard: documented unavailability
 
