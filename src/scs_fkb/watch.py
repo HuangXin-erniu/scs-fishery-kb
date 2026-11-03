@@ -7,13 +7,14 @@ import ssl
 import urllib.error
 import urllib.request
 from collections.abc import Callable
-from datetime import UTC, datetime
+from datetime import UTC, date, datetime, timedelta
 from pathlib import Path
 from typing import Any
 
 import yaml
 
 from .config import REPO_ROOT
+from .registry import load_registry
 
 DEFAULT_WATCH = REPO_ROOT / "configs" / "source-watch.yaml"
 DEFAULT_TIMEOUT = 15.0
@@ -191,3 +192,53 @@ def run_watch(
 def write_report(report: dict[str, Any], path: Path) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
+def due_report(
+    registry_path: Path,
+    cards_path: Path,
+    sources_path: Path,
+    *,
+    today: date | None = None,
+) -> dict[str, list[dict[str, str]]]:
+    """List corpus entries and web cards whose review date has arrived."""
+    current = today or date.today()
+    registry = load_registry(registry_path)
+    corpus: list[dict[str, str]] = []
+    for source_id, entry in registry.items():
+        due = (entry.get("currency") or {}).get("review_due")
+        if not due:
+            continue
+        try:
+            when = date.fromisoformat(str(due))
+        except ValueError:
+            continue
+        if when <= current:
+            corpus.append({"id": source_id, "review_due": when.isoformat()})
+    cards: list[dict[str, str]] = []
+    if Path(cards_path).is_file() and Path(sources_path).is_file():
+        card_data = yaml.safe_load(Path(cards_path).read_text(encoding="utf-8")) or {}
+        source_data = yaml.safe_load(Path(sources_path).read_text(encoding="utf-8")) or {}
+        topics = source_data.get("topics") or {}
+        cadence = {
+            name: int(topic["cadence_days"])
+            for name, topic in topics.items()
+            if isinstance(topic, dict) and topic.get("cadence_days")
+        }
+        for card in card_data.get("cards") or []:
+            if card.get("status") != "ok" or not card.get("fetched_at"):
+                continue
+            days = cadence.get(str(card.get("topic")))
+            if days is None:
+                continue
+            try:
+                fetched = date.fromisoformat(str(card["fetched_at"])[:10])
+            except ValueError:
+                continue
+            when = fetched + timedelta(days=days)
+            if when <= current:
+                cards.append({"id": card["id"], "review_due": when.isoformat()})
+    return {
+        "corpus": sorted(corpus, key=lambda row: row["id"]),
+        "cards": sorted(cards, key=lambda row: row["id"]),
+    }

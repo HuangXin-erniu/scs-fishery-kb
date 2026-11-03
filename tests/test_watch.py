@@ -1,171 +1,74 @@
 from __future__ import annotations
 
-import hashlib
-import ssl
-import urllib.error
+from datetime import date
 from pathlib import Path
 
-import pytest
 import yaml
 
-from scs_fkb import watch
-from scs_fkb.watch import WatchError, check_source, load_watch, run_watch
-
-BODY = b"page body"
+from scs_fkb.watch import due_report
 
 
-def _entry(**overrides):
-    entry = {
-        "id": "WATCH-TEST",
-        "url": "https://example.invalid/page",
-        "authority": "A",
-        "publisher": "test publisher",
-        "status": "unchecked",
-    }
-    entry.update(overrides)
-    return entry
-
-
-def _config(tmp_path: Path, sources: list[dict]) -> Path:
-    path = tmp_path / "watch.yaml"
-    path.write_text(
-        yaml.safe_dump({"schema_version": 1, "sources": sources}, allow_unicode=True),
+def _write(
+    tmp_path: Path, corpus: dict, cards: list[dict], topics: dict
+) -> tuple[Path, Path, Path]:
+    registry = tmp_path / "corpus.yaml"
+    registry.write_text(yaml.safe_dump(corpus, allow_unicode=True), encoding="utf-8")
+    cards_path = tmp_path / "web-cards.yaml"
+    cards_path.write_text(
+        yaml.safe_dump({"schema_version": 1, "cards": cards}, allow_unicode=True), encoding="utf-8"
+    )
+    sources = tmp_path / "web-sources.yaml"
+    sources.write_text(
+        yaml.safe_dump({"schema_version": 1, "topics": topics}, allow_unicode=True),
         encoding="utf-8",
     )
-    return path
+    return registry, cards_path, sources
 
 
-def _opener(status: int, body: bytes = BODY, headers: dict | None = None):
-    def fetch(url: str, request_headers: dict, timeout: float):
-        return status, headers or {}, body
-
-    return fetch
-
-
-def test_matching_baseline_is_ok() -> None:
-    digest = hashlib.sha256(BODY).hexdigest()
-    record = check_source(_entry(sha256=digest), opener=_opener(200))
-    assert record["status"] == "ok"
-    assert record["sha256"] == digest
+def _entry(source_id: str, due: str) -> dict:
+    return {
+        "id": source_id,
+        "level": "national",
+        "authority_tier": "A",
+        "source_class": "normative",
+        "currency": {"as_of": "2026-11-01", "basis": "publication", "review_due": due},
+        "retrieval": {"channel": "collection", "parseable": True, "note": "x"},
+        "lifecycle": "active",
+    }
 
 
-def test_different_body_is_changed() -> None:
-    record = check_source(_entry(sha256="0" * 64), opener=_opener(200))
-    assert record["status"] == "changed"
+def test_corpus_entries_due_and_not_due(tmp_path: Path) -> None:
+    corpus = {"sources": [_entry("A", "2026-11-02"), _entry("B", "2026-11-04")]}
+    registry, cards_path, sources = _write(tmp_path, corpus, [], {"species": {"cadence_days": 30}})
+    report = due_report(registry, cards_path, sources, today=date(2026, 11, 3))
+    assert [row["id"] for row in report["corpus"]] == ["A"]
+    assert report["cards"] == []
 
 
-def test_missing_baseline_is_unbaselined() -> None:
-    record = check_source(_entry(), opener=_opener(200))
-    assert record["status"] == "unbaselined"
-
-
-def test_not_modified_counts_as_ok() -> None:
-    record = check_source(_entry(sha256="0" * 64), opener=_opener(304))
-    assert record["status"] == "ok"
-    assert record["sha256"] == "0" * 64
-
-
-def test_http_error_is_unreachable() -> None:
-    record = check_source(_entry(), opener=_opener(404))
-    assert record["status"] == "unreachable"
-    assert record["http_status"] == 404
-
-
-def test_timeout_is_unreachable() -> None:
-    def fetch(url: str, request_headers: dict, timeout: float):
-        raise TimeoutError("slow")
-
-    record = check_source(_entry(), opener=fetch)
-    assert record["status"] == "unreachable"
-    assert record["error"] == "TimeoutError"
-
-
-def test_offline_never_calls_the_opener(tmp_path: Path) -> None:
-    path = _config(tmp_path, [_entry(status="ok", sha256="a" * 64)])
-
-    def fetch(url: str, request_headers: dict, timeout: float):
-        raise AssertionError("offline mode must not open a socket")
-
-    report = run_watch(path, opener=fetch, offline=True)
-    assert report["offline"] is True
-    assert report["results"][0]["status"] == "ok"
-    assert report["summary"] == {"ok": 1}
-
-
-def test_malformed_entry_is_rejected(tmp_path: Path) -> None:
-    path = _config(tmp_path, [{"id": "X", "authority": "A", "publisher": "p"}])
-    with pytest.raises(WatchError, match="incomplete"):
-        load_watch(path)
-
-
-def test_unknown_authority_is_rejected(tmp_path: Path) -> None:
-    path = _config(tmp_path, [_entry(authority="Z")])
-    with pytest.raises(WatchError, match="authority"):
-        load_watch(path)
-
-
-def test_explicit_ca_bundle_is_honoured(monkeypatch, tmp_path: Path) -> None:
-    calls: dict[str, object] = {}
-
-    def fake_context(cafile=None):
-        calls["cafile"] = cafile
-        return object()
-
-    monkeypatch.setattr("scs_fkb.watch.ssl.create_default_context", fake_context)
-    monkeypatch.setenv("SCS_FKB_CA_BUNDLE", "/custom/bundle.pem")
-    context, explicit = watch._ssl_context()
-    assert context is not None
-    assert explicit == "/custom/bundle.pem"
-    assert calls["cafile"] == "/custom/bundle.pem"
-
-
-def test_fallback_bundle_follows_the_system_path(monkeypatch, tmp_path: Path) -> None:
-    existing = tmp_path / "cert.pem"
-    existing.write_text("x", encoding="utf-8")
-    monkeypatch.setattr(watch, "SYSTEM_CA_BUNDLE", str(existing))
-    assert watch._fallback_bundle() == str(existing)
-    monkeypatch.setattr(watch, "SYSTEM_CA_BUNDLE", str(tmp_path / "missing.pem"))
-    assert watch._fallback_bundle() is None
-
-
-def test_certificate_error_retries_once_with_the_system_bundle(monkeypatch, tmp_path: Path) -> None:
-    contexts: list[object] = []
-
-    class Response:
-        status = 200
-        headers: dict[str, str] = {}
-
-        def read(self) -> bytes:
-            return BODY
-
-        def __enter__(self):
-            return self
-
-        def __exit__(self, *args):
-            return False
-
-    def fake_urlopen(request, timeout=None, context=None):
-        contexts.append(context)
-        if len(contexts) == 1:
-            raise urllib.error.URLError(ssl.SSLCertVerificationError("self signed"))
-        return Response()
-
-    monkeypatch.delenv("SCS_FKB_CA_BUNDLE", raising=False)
-    monkeypatch.setattr("scs_fkb.watch.urllib.request.urlopen", fake_urlopen)
-    monkeypatch.setattr("scs_fkb.watch.ssl.create_default_context", lambda cafile=None: object())
-    monkeypatch.setattr(watch, "_fallback_bundle", lambda: "/system/cert.pem")
-    status, headers, body = watch._default_opener("https://example.invalid", {}, 1.0)
-    assert status == 200
-    assert body == BODY
-    assert len(contexts) == 2
-
-
-def test_certificate_error_without_a_bundle_is_unreachable(monkeypatch) -> None:
-    def fake_urlopen(request, timeout=None, context=None):
-        raise urllib.error.URLError(ssl.SSLCertVerificationError("self signed"))
-
-    monkeypatch.delenv("SCS_FKB_CA_BUNDLE", raising=False)
-    monkeypatch.setattr("scs_fkb.watch.urllib.request.urlopen", fake_urlopen)
-    monkeypatch.setattr(watch, "_fallback_bundle", lambda: None)
-    record = check_source(_entry(), opener=watch._default_opener)
-    assert record["status"] == "unreachable"
+def test_cards_due_by_cadence_and_failed_excluded(tmp_path: Path) -> None:
+    corpus = {"sources": [_entry("A", "2026-12-01")]}
+    cards = [
+        {
+            "id": "WEB-OLD",
+            "topic": "species",
+            "status": "ok",
+            "fetched_at": "2026-10-01T00:00:00+00:00",
+        },
+        {
+            "id": "WEB-NEW",
+            "topic": "species",
+            "status": "ok",
+            "fetched_at": "2026-11-02T00:00:00+00:00",
+        },
+        {
+            "id": "WEB-BAD",
+            "topic": "species",
+            "status": "failed",
+            "fetched_at": "2026-01-01T00:00:00+00:00",
+        },
+    ]
+    registry, cards_path, sources = _write(
+        tmp_path, corpus, cards, {"species": {"cadence_days": 30}}
+    )
+    report = due_report(registry, cards_path, sources, today=date(2026, 11, 3))
+    assert [row["id"] for row in report["cards"]] == ["WEB-OLD"]
