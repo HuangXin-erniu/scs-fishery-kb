@@ -977,3 +977,11 @@ def test_web_cards_registry() -> None:
         assert card["status"] == "ok"
         assert len(card["sha256"]) == 64
         assert card["excerpt"]
+
+
+def test_retrieval_parameters_are_the_reviewed_set() -> None:
+    retrieval = load_yaml("configs/pipeline.yaml")["retrieval"]
+    assert retrieval["title_boost"] == 1.0
+    assert retrieval["bm25_weight"] == 2.0
+    assert retrieval["dense_weight"] == 1.0
+    assert retrieval["fusion_k"] == 60
