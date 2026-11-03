@@ -87,9 +87,9 @@ sources:
     note: Not routed to a retrieval channel.
   lifecycle: active
   validity:
-    status: unknown
+    status: not_applicable
     as_of: '2026-11-02'
-    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+    note: Candidate not acquired; there is no validity to verify.
 
 - id: VMS-SAMPLE-004
   title: Desensitised voyage sample description (candidate)
@@ -118,9 +118,9 @@ sources:
     note: Not routed to a retrieval channel.
   lifecycle: active
   validity:
-    status: unknown
+    status: not_applicable
     as_of: '2026-11-02'
-    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+    note: Candidate not acquired; there is no validity to verify.
 
 - id: POL-LAW-009
   title: 中华人民共和国渔业法（2025年修订）
@@ -1096,9 +1096,9 @@ sources:
   lifecycle: active
   watch_note: Static official file; no change feed. Rechecked at the quarterly review.
   validity:
-    status: unknown
+    status: not_applicable
     as_of: '2026-11-02'
-    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+    note: Form instruction - layout and completion notes for the permit form; not a normative act.
 
 - id: OPS-STD-039
   title: 渔具分类、命名及代号（GB/T 5147—2026）
@@ -1160,7 +1160,7 @@ sources:
   validity:
     status: unknown
     as_of: '2026-11-02'
-    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+    note: Proposed recognition list (拟认定); the final recognition announcement was not found.
 
 - id: POL-PLAN-038
   title: 全国沿海渔港建设规划（2018—2025年）
@@ -1189,9 +1189,9 @@ sources:
   lifecycle: active
   watch_note: Static official file; no change feed. Rechecked at the quarterly review.
   validity:
-    status: unknown
+    status: not_applicable
     as_of: '2026-11-02'
-    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+    note: Planning document - horizon 2018-2025 ended; superseded in practice by later port policy, not registered here.
 
 - id: STD-ASFIS-044
   title: ASFIS List of Species for Fishery Statistics Purposes (2026.1)
@@ -1219,9 +1219,9 @@ sources:
     note: Not routed to a retrieval channel.
   lifecycle: active
   validity:
-    status: unknown
+    status: not_applicable
     as_of: '2026-11-02'
-    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+    note: Product documentation edition - ASFIS 2026.1 species list; not a normative act.
 
 - id: STD-MUR-045
   title: GHRSST Level 4 MUR Global Foundation Sea Surface Temperature Analysis (v4.1) - product description
@@ -1249,9 +1249,9 @@ sources:
     note: Registered in a reference collection.
   lifecycle: active
   validity:
-    status: unknown
+    status: not_applicable
     as_of: '2026-11-02'
-    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+    note: Product documentation edition - MUR SST product description v4.1; not a normative act.
 
 - id: STD-OLCI-046
   title: Sentinel-3 OLCI Marine User Handbook
@@ -1279,9 +1279,9 @@ sources:
     note: Registered in a reference collection.
   lifecycle: active
   validity:
-    status: unknown
+    status: not_applicable
     as_of: '2026-11-02'
-    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+    note: Product documentation edition - OLCI marine user handbook; not a normative act.
 
 - id: DICT-GFW-048
   title: Global Fishing Watch API client - Events API documentation
@@ -1309,9 +1309,9 @@ sources:
     note: Registered in a reference collection.
   lifecycle: active
   validity:
-    status: unknown
+    status: not_applicable
     as_of: '2026-11-02'
-    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+    note: Product documentation edition - GFW Events API client documentation; not a normative act.
 
 - id: STD-CMEMS-049
   title: Copernicus Marine Product User Manual - GLOBAL_MULTIYEAR_PHY_001_030
@@ -1339,9 +1339,9 @@ sources:
     note: Registered in a reference collection.
   lifecycle: active
   validity:
-    status: unknown
+    status: not_applicable
     as_of: '2026-11-02'
-    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+    note: Product documentation edition - CMEMS product user manual Issue 1.7; not a normative act.
 
 - id: POL-STAT-050
   title: 渔业统计工作规定
@@ -1370,9 +1370,9 @@ sources:
   lifecycle: active
   watch_note: Static publisher text; no change feed. Rechecked at the quarterly review against the in-force catalogue.
   validity:
-    status: unknown
+    status: in_force
     as_of: '2026-11-02'
-    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+    note: The text states 本规定自发布之日起施行 (Article 28).
 
 - id: POL-STAT-051
   title: 渔业统计调查制度（2024 年批准）
@@ -1401,9 +1401,9 @@ sources:
   lifecycle: active
   watch_note: Static publisher text; no change feed. Rechecked at the quarterly review against the in-force catalogue.
   validity:
-    status: unknown
+    status: in_force
     as_of: '2026-11-02'
-    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+    note: Approved as 国统制〔2024〕120号; the registered text is the 2024 survey system.
 
 - id: POL-YJ-052
   title: 2017 年度渔情监测统计工作情况的通报
@@ -1432,9 +1432,9 @@ sources:
   lifecycle: active
   watch_note: Static publisher text; no change feed. Rechecked at the quarterly review against the in-force catalogue.
   validity:
-    status: unknown
+    status: not_applicable
     as_of: '2026-11-02'
-    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+    note: Annual work notice - historical record of 2017 work, not a standing rule.
 
 - id: POL-VMS-053
   title: 远洋渔船船位监测管理办法（2019 年修订）
@@ -1465,7 +1465,7 @@ sources:
   validity:
     status: unknown
     as_of: '2026-11-02'
-    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+    note: The registered 2019 text carries no commencement or validity clause; the revision date is in the title only.
 
 - id: STD-ECERT-054
   title: 渔业船网工具指标批准书、所有权登记证书和国籍证书电子证照标准
@@ -1474,17 +1474,17 @@ sources:
   year: 2025
   type: standard
   jurisdiction: national
-  format: html+pdf
-  location: raw/STD-ECERT-054/
+  format: html
+  location: raw/STD-ECERT-054/e-certificate-notice-2025.html
   license: public
   sensitivity: public
   status: acquired
   priority: P2
   volume: 1 HTML notice and 3 PDF standards; 61 pages total (19 + 20 + 22); C 0402—2024, C 0403—2024 and C 0374—2024
   update_freq: irregular
-  hash: 20e88e80806ee9c28034934863fade7a3a20d3a40495bfbdef06f689d659b71e
+  hash: cf18933006697482865f4563499dea02ca4054b1d56c38dede0bce2f2f5df26b
   acquisition: 'Fetched 2026-11-02 from https://www.moa.gov.cn/nybgb/2025/202504/202504/t20250414_6473120.htm and its three PDF attachments (P020250414364144659756.pdf 773,210 bytes; P020250414364145111024.pdf 848,453 bytes; P020250414364145506713.pdf 955,461 bytes; total 2,630,218 bytes). The hash is sha256 over the concatenated per-file sha256 hex values in filename order; per-file hashes: cf189330… (notice), a0436e98…, 51d70fcc…, 8ca70496… .'
-  notes: 'Current 2025 standards for the electronic certificates of fishing-vessel quota approval, ownership registration and nationality. They define certificate metadata and field mappings, which supports the metadata side of Q-M11 and part of the vessel-record questions, but they are certificate schemas rather than data-sharing licence rules.'
+  notes: "Current 2025 standards for the electronic certificates of fishing-vessel quota approval, ownership registration and nationality. The registered file is the notice page; the three PDF standards C 0402-2024, C 0403-2024 and C 0374-2024 sit in the same directory and are published 2025-01-01. They define certificate metadata and field mappings, supporting the metadata side of Q-M11."
   level: national
   authority_tier: A
   retrieval:
@@ -1494,9 +1494,9 @@ sources:
   lifecycle: active
   watch_note: Static publisher text; no change feed. Rechecked at the quarterly review against the in-force catalogue.
   validity:
-    status: unknown
+    status: in_force
     as_of: '2026-11-02'
-    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+    note: The three certificate standards were published on 2025-01-01 (C 0402—2024, C 0403—2024, C 0374—2024).
 
 - id: STD-CWP-043
   title: CWP Handbook of Fishery Statistics - capture statistics concepts
@@ -1524,9 +1524,9 @@ sources:
     note: Registered in a reference collection.
   lifecycle: active
   validity:
-    status: unknown
+    status: not_applicable
     as_of: '2026-11-02'
-    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+    note: Product documentation edition - CWP handbook pages; not a normative act.
 
 - id: STD-SC-042
   title: SC/T aquatic-industry standards relevant to the corpus (current set)
@@ -1558,9 +1558,9 @@ sources:
     reason: Image-only series with no text layer and no retrieval channel; kept as provenance, not citable.
     decision_key: D-SCS-FKB-058
   validity:
-    status: unknown
+    status: not_applicable
     as_of: '2026-11-02'
-    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+    note: Retired provenance - image-only series with no retrieval channel; validity is moot.
 
 - id: STAT-CSY-027
   title: 中国统计年鉴 2026（Excel）
@@ -1591,7 +1591,7 @@ sources:
   validity:
     status: not_applicable
     as_of: '2026-11-02'
-    note: An edition or dictionary is not a normative act; it is valid for its data year, so in-force and repealed do not apply. A later edition supersedes it for current-year data.
+    note: Data edition - an edition or dictionary is not a normative act; it is valid for its data year, and a later edition supersedes it for current-year data.
 
 - id: DICT-STAT-013
   title: 渔业统计指标解释（2024中国渔业统计年鉴附录3）
@@ -1622,7 +1622,7 @@ sources:
   validity:
     status: not_applicable
     as_of: '2026-11-02'
-    note: An edition or dictionary is not a normative act; it is valid for its data year, so in-force and repealed do not apply. A later edition supersedes it for current-year data.
+    note: Data edition - an edition or dictionary is not a normative act; it is valid for its data year, and a later edition supersedes it for current-year data.
 
 - id: DICT-STAT-040
   title: 中国统计年鉴2025主要统计指标解释（农业）
@@ -1682,9 +1682,9 @@ sources:
     note: Not routed to a retrieval channel.
   lifecycle: active
   validity:
-    status: unknown
+    status: not_applicable
     as_of: '2026-11-02'
-    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+    note: Candidate not acquired; there is no validity to verify.
 
 - id: STAT-YB-2018
   type: statistical_yearbook
@@ -1715,7 +1715,7 @@ sources:
   validity:
     status: not_applicable
     as_of: '2026-11-02'
-    note: An edition or dictionary is not a normative act; it is valid for its data year, so in-force and repealed do not apply. A later edition supersedes it for current-year data.
+    note: Data edition - an edition or dictionary is not a normative act; it is valid for its data year, and a later edition supersedes it for current-year data.
 
 - id: STAT-YB-2019
   type: statistical_yearbook
@@ -1746,7 +1746,7 @@ sources:
   validity:
     status: not_applicable
     as_of: '2026-11-02'
-    note: An edition or dictionary is not a normative act; it is valid for its data year, so in-force and repealed do not apply. A later edition supersedes it for current-year data.
+    note: Data edition - an edition or dictionary is not a normative act; it is valid for its data year, and a later edition supersedes it for current-year data.
 
 - id: STAT-YB-2020
   type: statistical_yearbook
@@ -1777,7 +1777,7 @@ sources:
   validity:
     status: not_applicable
     as_of: '2026-11-02'
-    note: An edition or dictionary is not a normative act; it is valid for its data year, so in-force and repealed do not apply. A later edition supersedes it for current-year data.
+    note: Data edition - an edition or dictionary is not a normative act; it is valid for its data year, and a later edition supersedes it for current-year data.
 
 - id: STAT-YB-2021
   type: statistical_yearbook
@@ -1808,7 +1808,7 @@ sources:
   validity:
     status: not_applicable
     as_of: '2026-11-02'
-    note: An edition or dictionary is not a normative act; it is valid for its data year, so in-force and repealed do not apply. A later edition supersedes it for current-year data.
+    note: Data edition - an edition or dictionary is not a normative act; it is valid for its data year, and a later edition supersedes it for current-year data.
 
 - id: STAT-YB-2022
   type: statistical_yearbook
@@ -1839,7 +1839,7 @@ sources:
   validity:
     status: not_applicable
     as_of: '2026-11-02'
-    note: An edition or dictionary is not a normative act; it is valid for its data year, so in-force and repealed do not apply. A later edition supersedes it for current-year data.
+    note: Data edition - an edition or dictionary is not a normative act; it is valid for its data year, and a later edition supersedes it for current-year data.
 
 - id: STAT-YB-2023
   type: statistical_yearbook
@@ -1870,7 +1870,7 @@ sources:
   validity:
     status: not_applicable
     as_of: '2026-11-02'
-    note: An edition or dictionary is not a normative act; it is valid for its data year, so in-force and repealed do not apply. A later edition supersedes it for current-year data.
+    note: Data edition - an edition or dictionary is not a normative act; it is valid for its data year, and a later edition supersedes it for current-year data.
 
 - id: STAT-YB-2024
   type: statistical_yearbook
@@ -1901,7 +1901,7 @@ sources:
   validity:
     status: not_applicable
     as_of: '2026-11-02'
-    note: An edition or dictionary is not a normative act; it is valid for its data year, so in-force and repealed do not apply. A later edition supersedes it for current-year data.
+    note: Data edition - an edition or dictionary is not a normative act; it is valid for its data year, and a later edition supersedes it for current-year data.
 
 - id: STAT-YB-2025
   type: statistical_yearbook
@@ -1932,7 +1932,7 @@ sources:
   validity:
     status: not_applicable
     as_of: '2026-11-02'
-    note: An edition or dictionary is not a normative act; it is valid for its data year, so in-force and repealed do not apply. A later edition supersedes it for current-year data.
+    note: Data edition - an edition or dictionary is not a normative act; it is valid for its data year, and a later edition supersedes it for current-year data.
 
 - id: STAT-YB-2026
   type: statistical_yearbook
@@ -1963,7 +1963,7 @@ sources:
   validity:
     status: not_applicable
     as_of: '2026-11-02'
-    note: An edition or dictionary is not a normative act; it is valid for its data year, so in-force and repealed do not apply. A later edition supersedes it for current-year data.
+    note: Data edition - an edition or dictionary is not a normative act; it is valid for its data year, and a later edition supersedes it for current-year data.
 
 - id: POL-CREW-055
   type: regulation
@@ -2023,9 +2023,9 @@ sources:
   lifecycle: active
   watch_note: Static publisher text; no change feed. Rechecked at the quarterly review against the in-force catalogue.
   validity:
-    status: unknown
+    status: not_applicable
     as_of: '2026-11-02'
-    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+    note: Product capability note - HY-1C/D payload description; not a normative act.
 
 - id: POL-YJ-057
   type: notice
@@ -2054,9 +2054,9 @@ sources:
   lifecycle: active
   watch_note: Static official file; no change feed. Rechecked at the quarterly review.
   validity:
-    status: unknown
+    status: not_applicable
     as_of: '2026-11-02'
-    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+    note: Annual work notice - historical record of 2020 work, not a standing rule.
 
 - id: POL-HN-058
   type: regulation
@@ -2177,9 +2177,9 @@ sources:
     note: Registered in a reference collection.
   lifecycle: active
   validity:
-    status: unknown
+    status: in_force
     as_of: '2026-11-02'
-    note: Status not separately verified during the schema migration; the source note records the publisher and date.
+    note: Published 2026-04-28 by the Shantou agriculture bureau; applies to the 2026 closure season.
 
 - id: STD-HULL-062
   type: standard

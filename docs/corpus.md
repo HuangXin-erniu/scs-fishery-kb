@@ -284,21 +284,17 @@ Shelter anchorages stay uncovered: no national public list was found, only forei
 
 The catalogue is the evidence rather than an inference: it lists the fisheries crew measures and the fishing-permit regulation, so `POL-CREW-055` moved from unknown to in force with the announcement quoted, and `POL-STD-010` carries the same cross-check. It does not list the fishing-vessel inspection rules, which sit with the transport ministry, so that regulation is not registered here.
 
-## 5q. National validity sweep
+## 5q. Validity semantics and the 2026-11-03 sweep
 
-The in-force catalogue proves only the entries it names. Eleven data publications now carry `not_applicable` instead of `unknown`, because an edition or a dictionary is not a normative act: `STAT-CSY-027`, `STAT-YB-2018` to `STAT-YB-2026` and `DICT-STAT-013`.
+Every entry carries a status that means one of three things:
 
-All eleven provincial entries now carry evidence-based `in_force` status: the Hainan regulation quotes its own commencement clause, the Fujian notice page marks 有效性: 有效, the Hainan and Guangxi notices are the 2026 season implementations, the Fujian catalogs are that notice's attachments, and the Guangdong and Hainan catalogs are the latest batches found with no successor.
+| Status | Applies when | Examples |
+|---|---|---|
+| `in_force` | A normative document whose text carries evidence: a commencement clause, an approval number, a publication date with effect, or a publisher's validity marker (有效) | Fisheries Law, closure notices, penalty rules, hull catalogs, the 2024 survey system, the 2025 e-certificate standards |
+| `not_applicable` | A non-normative document, in one of eight categories: data edition, product documentation edition, candidate not acquired, retired provenance, annual work notice, planning document, product capability note, form instruction | CWP/ASFIS/MUR/OLCI/CMEMS/GFW documents, the three candidates, the retired SC/T series, the 2017 and 2020 work notices, the 2018-2025 port plan, HY-1C/D, the permit-form instruction |
+| `unknown` | A normative document with no evidence available, or a genuinely open question | `POL-PORT-037` (proposed recognition, no final announcement found) and `POL-VMS-053` (the registered text carries no commencement clause) |
 
-Fourteen national entries still carry `unknown`, grouped here so the gap is visible and bounded rather than silent:
-
-| Group | Count | Entries | Why they stay unknown |
-|---|---|---|---|
-| Notices, plans and operations not listed by the catalogue | 10 | `OPS-FORM-036`, `POL-PORT-037`, `POL-PLAN-038`, `POL-STAT-050`, `POL-STAT-051`, `POL-YJ-052`, `POL-VMS-053`, `STD-ECERT-054`, `POL-YJ-057`, `STD-HY1-056` | The catalogue covers ministry rules, not notices or plans; no publisher statement of currency was found |
-| Candidates not acquired | 3 | `VMS-DICT-003`, `VMS-SAMPLE-004`, `DICT-META-014` | Never acquired, so no status to verify |
-| Retired series | 1 | `STD-SC-042` | Retired as unparseable provenance; validity is moot |
-
-No status was upgraded without a citation. The two entries the catalogue does name, `POL-RES-075` and `POL-PEN-078`, carry that cross-check in their validity notes.
+The 2026-11-03 sweep closed nineteen of the twenty-one: four normative documents were upgraded with quoted evidence (the 2010 statistics rules' 自发布之日起施行 clause, the 2024 survey system's approval number, the 2025 e-certificate publication date, the Shantou notice's 2026-04-28 date), fifteen non-normative entries moved to `not_applicable`, and two remain `unknown` on purpose. The register now reads 50 `in_force`, 26 `not_applicable` and 2 `unknown`.
 
 ## 5r. Climate and hazard: documented unavailability
 

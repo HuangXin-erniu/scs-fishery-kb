@@ -1047,3 +1047,27 @@ def test_bulletins_removed() -> None:
         assert source_id not in pipeline
     yearbooks = [s for s in registry.values() if s["type"] == "statistical_yearbook"]
     assert len(yearbooks) == 10
+
+
+def test_validity_status_semantics() -> None:
+    from scs_fkb.registry import load_registry
+
+    registry = load_registry("configs/corpus.yaml")
+    unknown = {sid for sid, entry in registry.items() if entry["validity"]["status"] == "unknown"}
+    assert unknown <= {"POL-PORT-037", "POL-VMS-053"}
+    categories = (
+        "Data edition",
+        "Product documentation edition",
+        "Candidate not acquired",
+        "Retired provenance",
+        "Annual work notice",
+        "Planning document",
+        "Product capability note",
+        "Form instruction",
+    )
+    for source_id, entry in registry.items():
+        validity = entry["validity"]
+        if validity["status"] == "not_applicable":
+            assert validity["note"].startswith(categories), f"{source_id}: {validity['note']}"
+        if validity["status"] == "in_force":
+            assert validity["note"].strip()
