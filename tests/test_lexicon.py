@@ -56,5 +56,5 @@ def test_rejects_malformed_group(tmp_path: Path) -> None:
 
 def test_repository_lexicon_loads() -> None:
     groups = load_lexicon()
-    assert [group["term"] for group in groups] == ["例外"]
+    assert [group["term"] for group in groups] == ["例外", "起止日期"]
     assert expand_query("休渔期管理中的例外审批", groups).endswith("专项 特许")

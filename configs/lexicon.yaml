@@ -7,6 +7,9 @@ groups:
   - term: 例外
     variants: [专项, 特许]
     note: Q-M12 asks about 例外 while the rules speak of 专项（特许）许可; this group lifted Q-M12 into the top five and left recall, false refusals and abstention otherwise unchanged (9/11, 2, 5/6).
+  - term: 起止日期
+    variants: [休渔时间]
+    note: Q-E01 asks for 起止日期 while the closure notice says 休渔时间; this group recovered Q-E01 at rank two and left every other question unchanged (10/11 before the Q-M10 wording fix).
 rejected:
   - term: 休渔
     variants: [禁渔, 禁渔期, 休渔期]

@@ -481,7 +481,7 @@ def test_lexicon_config() -> None:
     data = load_yaml("configs/lexicon.yaml")
     assert data["schema_version"] == 1
     active = data["groups"]
-    assert [group["term"] for group in active] == ["例外"]
+    assert [group["term"] for group in active] == ["例外", "起止日期"]
     assert active[0]["variants"] == ["专项", "特许"]
     rejected = data["rejected"]
     assert [group["term"] for group in rejected] == ["休渔", "捕捞日志", "准入", "网目"]
@@ -988,3 +988,16 @@ def test_retrieval_parameters_are_the_reviewed_set() -> None:
     assert retrieval["bm25_weight"] == 2.0
     assert retrieval["dense_weight"] == 1.0
     assert retrieval["fusion_k"] == 60
+
+
+def test_eval_question_refinement_keeps_the_anchor() -> None:
+    questions = Path("docs/questions.md").read_text(encoding="utf-8")
+    assert "申请海洋渔业捕捞许可证应当提交哪些资料？" in questions
+    anchors = load_yaml("configs/eval.yaml")["anchors"]["Q-M10"]
+    assert anchors[0]["doc"] == "POL-STD-010"
+    assert anchors[0]["section"] == "第二十八条"
+
+
+def test_closure_date_synonym_is_active() -> None:
+    groups = load_yaml("configs/lexicon.yaml")["groups"]
+    assert any(group["term"] == "起止日期" and "休渔时间" in group["variants"] for group in groups)
