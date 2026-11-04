@@ -11,6 +11,7 @@ import yaml
 from .answer import CITATION_RE, answer_question, validate_citations
 from .bm25 import BM25Index
 from .claims import select_evidence
+from .coverage import coverage_report
 from .lexicon import expand_query
 from .reference import lookup as reference_lookup
 from .stats import StatsError
@@ -99,6 +100,7 @@ def load_anchors(path: Path) -> dict[str, Any]:
         "jurisdiction": jurisdiction,
         "national": national,
         "gold": data.get("gold") or {},
+        "checks": data.get("checks") or {},
     }
 
 
@@ -509,6 +511,7 @@ def evaluate(
             **summarize_national(national_results),
         },
         "results": results,
+        "coverage": coverage_report(config.get("gold") or {}, config.get("checks") or {}, results),
         "reference": reference_results,
         "statistics": statistics_results,
         "jurisdiction": jurisdiction_results,

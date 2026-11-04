@@ -22,6 +22,7 @@ from .config import (
     sensitivity_ceiling,
 )
 from .corpus import CorpusError
+from .coverage import coverage_report
 from .dense import DenseError, DenseIndex, embeddings_dir, index_path
 from .embed import DEFAULT_MODEL, FastEmbedEncoder
 from .evaluate import load_anchors, title_tokens, write_report
@@ -489,8 +490,14 @@ def _eval(args: argparse.Namespace) -> int:
         Path(args.lexicon),
         answer_fn=answer_fn,
     )
+    anchor_config = load_anchors(Path(args.anchors))
+    report["coverage"] = coverage_report(
+        anchor_config.get("gold") or {},
+        anchor_config.get("checks") or {},
+        report.get("details", []),
+    )
     if client is not None:
-        gold = load_anchors(Path(args.anchors)).get("gold") or {}
+        gold = anchor_config.get("gold") or {}
         scored = []
         for row in report.get("details", []):
             if row["kind"] != "answerable":
@@ -585,6 +592,12 @@ def _eval(args: argparse.Namespace) -> int:
             f"mrr {summary['mrr']:.2f} "
             f"abstain {summary['abstained_tests']}/{summary['abstention_tests']} "
             f"false {summary['false_refusals']} cite {summary['citation_resolution']:.2f}{latency}"
+        )
+    coverage = (report.get("coverage") or {}).get("summary") or {}
+    if coverage:
+        print(
+            f"coverage {coverage.get('covered', 0)}/{coverage.get('points', 0)} "
+            f"({coverage.get('rate', 0.0):.2f})"
         )
     reference = report.get("reference_summary") or {}
     if reference:

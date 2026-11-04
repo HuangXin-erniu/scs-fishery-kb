@@ -2,6 +2,13 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-04 — Deterministic gold-point coverage baseline
+
+- Added eval-only `checks` for all 38 gold points across the 19 anchors and a `coverage` block in `eval`/`eval --llm`; every point is checked against cited answer sentences and missing terms are reported.
+- Baseline: extractive 10/38 (0.26), LLM 15/38 (0.39). The gap is secondary items already present in the index, not missing sources.
+- Clause-level indexing was measured and deferred: hybrid top-5 recall fell to 16/19 and abstention to 6/8; the baseline index `20910f0964df` was restored.
+- Next: use the missing-point list to drive slot retrieval and claim gating (P08-RAG-129).
+
 ## 2026-11-04 — Completeness pass: human review override added, prompt variants rejected
 
 - Added `--review` and `--review-template` to `scs-fkb eval --llm`: the reviewer can override correctness/completeness/faithfulness per question, and the report marks those rows as human.

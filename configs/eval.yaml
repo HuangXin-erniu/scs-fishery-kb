@@ -297,3 +297,65 @@ gold:
   Q-M18:
     abstain: true
     reason: "yearbook port table missing for data years 2018-2019; the system must refuse."
+
+# Deterministic gold-point checks. Evaluation only: a point counts as covered
+# when a cited answer sentence contains every term (mode: all) or any term
+# (mode: any). These checks never enter the product answer path.
+checks:
+  Q-E01:
+    - {point: 0, terms: ["5月1日", "8月16日", "北纬26度30分"], mode: all}
+    - {point: 1, terms: ["钓具", "作业类型"], mode: all}
+  Q-E02:
+    - {point: 0, terms: ["桁杆拖虾", "笼壶", "刺网", "灯光围"], mode: all}
+    - {point: 1, terms: ["专项", "许可证"], mode: all}
+  Q-E03:
+    - {point: 0, terms: ["渔捞日志", "记载"], mode: all}
+    - {point: 1, terms: ["船长", "真实性"], mode: all}
+  Q-E04:
+    - {point: 0, terms: ["警告", "责令改正"], mode: all}
+    - {point: 1, terms: ["1000元", "1万元"], mode: all}
+  Q-E09:
+    - {point: 0, terms: ["换发", "渔业捕捞许可证"], mode: all}
+    - {point: 1, terms: ["3个月", "原证"], mode: all}
+  Q-E10:
+    - {point: 0, terms: ["2014年6月1日", "黄渤海", "东海", "南海"], mode: all}
+    - {point: 1, terms: ["附件", "更严格"], mode: all}
+  Q-E12:
+    - {point: 0, terms: ["禁渔区", "没收", "20万元"], mode: all}
+    - {point: 1, terms: ["200万元", "吊销", "航行"], mode: all}
+  Q-E13:
+    - {point: 0, terms: ["检验证书", "国籍证书", "未变更"], mode: all}
+    - {point: 1, terms: ["渔捞日志", "增殖保护费"], mode: all}
+  Q-E14:
+    - {point: 0, terms: ["船网工具", "控制指标", "淘汰"], mode: all}
+    - {point: 1, terms: ["不得相互转换", "购置", "跨海区"], mode: all}
+  Q-E15:
+    - {point: 0, terms: ["渔港管理章程", "避碰规则", "报告"], mode: all}
+    - {point: 1, terms: ["未报告", "警告", "罚款", "扣留"], mode: all}
+  Q-M01:
+    - {point: 0, terms: ["第四十四条", "禁渔区", "禁渔期"], mode: all}
+    - {point: 1, terms: ["2023年", "2021年"], mode: all}
+  Q-M03:
+    - {point: 0, terms: ["每月", "农业农村部", "渔捞日志"], mode: all}
+    - {point: 1, terms: ["警告", "责令改正", "1000元"], mode: all}
+  Q-M10:
+    - {point: 0, terms: ["申请书", "户口簿", "检验证书", "国籍证书"], mode: all}
+    - {point: 1, terms: ["船网工具指标", "批准书"], mode: all}
+  Q-M12:
+    - {point: 0, terms: ["第二十六条", "作业事由"], mode: all}
+    - {point: 1, terms: ["第七十八条", "没收", "吊销"], mode: all}
+  Q-M13:
+    - {point: 0, terms: ["换发", "3个月", "污损"], mode: all}
+    - {point: 1, terms: ["重新申请", "作业类型变更"], mode: all}
+  Q-M14:
+    - {point: 0, terms: ["刺网", "围网", "拖网", "张网", "钓具"], mode: all}
+    - {point: 1, terms: ["命名", "代号"], mode: all}
+  Q-M15:
+    - {point: 0, terms: ["抽样总体", "船籍港", "分层"], mode: all}
+    - {point: 1, terms: ["2828.1", "样本量"], mode: all}
+  Q-M16:
+    - {point: 0, terms: ["1%至3%", "前3年"], mode: all}
+    - {point: 1, terms: ["3%至5%", "省级"], mode: all}
+  Q-M17:
+    - {point: 0, terms: ["初次检验", "营运检验", "临时检验"], mode: all}
+    - {point: 1, terms: ["投入营运前", "周期", "证书失效"], mode: all}
