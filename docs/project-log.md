@@ -2,6 +2,13 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-04 — Completeness pass: human review override added, prompt variants rejected
+
+- Added `--review` and `--review-template` to `scs-fkb eval --llm`: the reviewer can override correctness/completeness/faithfulness per question, and the report marks those rows as human.
+- Tested three completeness levers: a multi-part prompt (v4), a stricter item-by-item prompt (v5), and top-document evidence expansion. Completeness fell from 0.66 to 0.61, 0.56 and 0.37, so all three were rejected and the v3 baseline was restored.
+- Root cause is evidence coverage: several gold points (for example Q-E02's four special-permit gear types, Q-M01's legal basis, Q-M15's sampling strata) are not in the retrieved context. The next step is evidence-level retrieval, not more prompt wording.
+- Human review template: `runs/P08-RAG-123/review-template.yaml`; no corpus or index change.
+
 ## 2026-11-04 — LLM answer layer fixes Q-E07 and Q-E12
 
 - Added a public-only LLM client for the OpenCode Go OpenAI-compatible endpoint (`deepseek-v4.1-flash`, low reasoning effort) with an explicit `--llm` flag, TLS verification, retries and a stable `x-opencode-session`.

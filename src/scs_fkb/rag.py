@@ -171,10 +171,10 @@ def generate_answer(
         },
         {
             "role": "user",
-            "content": f"Question:\n{question}\n\nEvidence:\n{context}",
+            "content": f"Question (answer every part):\n{question}\n\nEvidence:\n{context}",
         },
     ]
-    value = _cached_call(cache, key, client, messages, max_tokens=2400)
+    value = _cached_call(cache, key, client, messages, max_tokens=4000)
     abstained = value.get("abstained")
     if not isinstance(abstained, bool):
         raise LLMError("answer reply has no boolean abstained field")
@@ -263,24 +263,32 @@ def llm_answer_fn(client: LLMClient, cache: LLMCache | None = None):
                 abstained=True,
                 reason="no_public_evidence",
             )
-        judged = judge_evidence(question, usable, client, cache)
-        if not judged["answerable"]:
-            return Answer(
-                text="证据不足：检索到的证据不足以支持回答。",
-                abstained=True,
-                reason=f"llm_judge:{judged['reason']}",
-            )
-        generated = generate_answer(question, usable, client, cache)
-        if generated.abstained and generated.reason.startswith(
-            ("llm_citation_invalid", "llm_no_citation", "llm_abstain")
-        ):
+        try:
+            judged = judge_evidence(question, usable, client, cache)
+            if not judged["answerable"]:
+                return Answer(
+                    text="证据不足：检索到的证据不足以支持回答。",
+                    abstained=True,
+                    reason=f"llm_judge:{judged['reason']}",
+                )
+            generated = generate_answer(question, usable, client, cache)
+            if generated.abstained and generated.reason.startswith(
+                ("llm_citation_invalid", "llm_no_citation", "llm_abstain")
+            ):
+                return answer_question(
+                    question,
+                    usable,
+                    min_score=0.0,
+                    min_matched=0,
+                )
+            return generated
+        except LLMError:
             return answer_question(
                 question,
                 usable,
                 min_score=0.0,
                 min_matched=0,
             )
-        return generated
 
     return answer
 
