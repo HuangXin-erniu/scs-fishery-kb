@@ -5,7 +5,8 @@
 > 目标值是最低门槛，不是对外承诺；未达标指标要通过误差分析解释，不得改指标掩盖。
 
 - Status: protocol defined; the current question set was reviewed by the project owner in three batches (2026-11-04).
-- Reviewed instrument (2026-11-04, 33 questions: 19 anchors, 8 abstention, 2 reference, 2 statistics, 2 deferred): hybrid **19/19** with MRR 0.68, abstention 7/8, one false refusal, answer rate 18/19, citation resolution 1.00, citation coverage 0.99, extractive faithfulness 1.00 and P95 20 ms; BM25 17/19 (MRR 0.64), BM25 plus lexicon 19/19 (0.69) and dense 15/19 (0.55). Reference 2/2, statistics 2/2, jurisdiction 3/3 and national 2/2. Q-E07 remains the one answered abstention test. Human correctness and completeness are not yet scored; only the gold points are reviewed.
+- Reviewed instrument (2026-11-04, 33 questions: 19 anchors, 8 abstention, 2 reference, 2 statistics, 2 deferred): hybrid **19/19** with MRR 0.68, abstention 7/8, one false refusal, answer rate 18/19, citation resolution 1.00, citation coverage 0.99, extractive faithfulness 1.00 and P95 20 ms; BM25 17/19 (MRR 0.64), BM25 plus lexicon 19/19 (0.69) and dense 15/19 (0.55). Reference 2/2, statistics 2/2, jurisdiction 3/3 and national 2/2. Q-E07 remains the one answered abstention test under the deterministic gate.
+- LLM-assisted run (2026-11-04, `deepseek-v4.1-flash`, low reasoning effort, prompt `rag-v3`): hybrid **19/19** anchors, **8/8** abstention, **0 false refusals**, answer rate 19/19, citation resolution 1.00; model judge correctness **0.76**, completeness **0.66**, faithfulness **0.94**. Q-E07 now abstains because the evidence only lists other fishing grounds; Q-E12 answers from `POL-LAW-009` §第七十八条. These scores are model-assisted, not human review.
 - Baseline (2026-11-03, adopted; 28 public documents, 785 chunks, index `20910f0964df`, dense `58ded7342e4c66fe`): BM25 8/11, BM25 plus lexicon 10/11, dense-only 8/11 and hybrid **11/11** with MRR 0.56, abstention 3/4, two false refusals and 100% citation resolution; hybrid P95 19 ms; reference 2/2, statistics 2/2, jurisdiction 3/3 and national 2/2. Cards and notes are not in this index: they live in a separate external store (259 documents, 315 chunks, index `0c6d3901106c`) and are consulted only after a non-abstained corpus answer.
 - Claim-matrix experiment (2026-11-03, 287 documents with cards and notes, index `0137968fd40c`): chunks now carry source class, trust tier and review date, and hits are filtered by claim nature before answering (definition/rule/quantity/status/warning/identification/history). BM25 and lexicon abstention stayed at 3/4, but hybrid remained 9/11 with abstention 2/4; the filter cannot separate the out-of-scope question because the enlarged dense candidate pool already changes corpus ranking. Not adopted.
 - Layered-gate experiment (2026-11-03, 287 documents with cards and notes, index `0137968fd40c`): a corpus-only gate was added (a chunk kind plus a corpus-evidence check, pass-through from `answer.require_corpus_evidence`) and measured. It restored BM25 abstention to 3/4 but hybrid still fell to 2/4 and recall to 9/11, so the flag did not make the enlarged index safe. The gate code stays (it is exercised by tests) but the enlarged index is not adopted; the corpus-only row below remains the baseline.
@@ -23,6 +24,9 @@
 | BM25 + lexicon | 19/19 | 0.69 | 7/8 | 1 | — |
 | Dense (bge-small-zh) | 15/19 | 0.55 | 7/8 | 2 | 20 ms |
 | **Hybrid (adopted)** | **19/19** | **0.68** | **7/8** | **1** | **20 ms** |
+| Hybrid + LLM (`--llm`) | 19/19 | 0.68 | **8/8** | **0** | 22 ms |
+
+The LLM row also scores answer correctness 0.76, completeness 0.66 and faithfulness 0.94 with the model judge; these are model-assisted scores, not human review.
 
 Adopted configuration (2026-11-04): the reviewed set has 33 questions — 19 anchors, 8 abstention tests, 2 CWP reference questions, 2 statistics questions and 2 deferred web questions. The corpus store decides answerability; the external store is a separate index and never participates in corpus abstention.
 
@@ -88,7 +92,7 @@ The public draft is [questions.md](questions.md).
 
 - Retrieval latency, end-to-end latency, index build time and memory peak.
 
-The instrument scores anchors, not answers: a question counts as retrieved when a top-5 chunk matches one of its gold anchors in `configs/eval.yaml` (document plus section prefix, or document plus page). Answer correctness, faithfulness and completeness still need reviewed gold answers and per-answer scoring; the current run scores deterministic faithfulness (answer sentences must come from cited chunks) and citation coverage. The adopted arm retrieves all nineteen anchors. The remaining error is at the answer gate: Q-E12 is refused although its anchor is retrieved (top hit `POL-LAW-009` §第七十八条), while Q-E07 is answered although no registered source covers historical fishing seasons. Those two cases are the first error-analysis targets.
+The instrument scores anchors, not answers: a question counts as retrieved when a top-5 chunk matches one of its gold anchors in `configs/eval.yaml` (document plus section prefix, or document plus page). Answer correctness, faithfulness and completeness still need reviewed gold answers and per-answer scoring; the deterministic run scores extractive faithfulness (answer sentences must come from cited chunks) and citation coverage, while the `--llm` run uses the model judge for correctness, completeness and faithfulness. Under the deterministic gate Q-E12 is refused although its anchor is retrieved, and Q-E07 is answered although no registered source covers historical fishing seasons; under `--llm` both are corrected (Q-E12 answers, Q-E07 abstains).
 
 ## 4. Protocol
 
