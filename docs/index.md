@@ -8,9 +8,9 @@
 | [项目范围](../PROJECT.zh-CN.md) | 目标、范围、非目标与数据政策（中文） |
 | [Architecture](architecture.md) | Layers, components, data flow, data contracts and runtime |
 | [Project plan](plan.md) | Work packages, milestones, roles, quality gates and risks |
-| [Evaluation](evaluation.md) | Question set, metrics, protocol, targets and reporting |
+| [Evaluation](evaluation.md) | Dev/test protocol, metrics, targets and split baselines |
 | [Corpus inventory](corpus.md) | Registered sources, licences, sensitivity and coverage |
-| [Evaluation questions](questions.md) | Draft question set for retrieval and answer evaluation |
+| [Evaluation questions](questions.md) | 48-question set (33 dev + 15 test) across four personas |
 | [Data policy](data-policy.md) | What is published, what stays local, and how sensitivity is handled |
 | [Project log](project-log.md) | Dated record of material project changes |
 | [Corpus register](../configs/corpus.yaml) | Machine-readable source register |

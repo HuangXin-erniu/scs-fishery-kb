@@ -8,6 +8,7 @@ import pytest
 from scs_fkb.evaluate import (
     _answer_quality,
     anchor_matches,
+    group_summary,
     load_anchors,
     parse_questions,
     summarize,
@@ -66,6 +67,46 @@ def test_load_anchors(tmp_path: Path) -> None:
     assert config["abstention"] == ["Q-E07"]
 
 
+def test_parse_questions_accepts_persona_ids(tmp_path: Path) -> None:
+    path = tmp_path / "questions.md"
+    path.write_text(TABLE.replace("| Q-E01 |", "| Q-C01 |"), encoding="utf-8")
+    assert [row["id"] for row in parse_questions(path)] == ["Q-C01", "Q-E07"]
+
+
+def test_load_anchors_reads_meta(tmp_path: Path) -> None:
+    path = tmp_path / "eval.yaml"
+    path.write_text(
+        ANCHORS
+        + "meta:\n"
+        + "  Q-E01: {persona: captain, split: dev}\n"
+        + "  Q-E07: {persona: captain, split: dev}\n"
+        + "  Q-E10: {persona: extension, split: test}\n",
+        encoding="utf-8",
+    )
+    config = load_anchors(path)
+    assert config["meta"]["Q-E10"] == {"persona": "extension", "split": "test"}
+
+
+def test_load_anchors_rejects_bad_persona(tmp_path: Path) -> None:
+    path = tmp_path / "eval.yaml"
+    path.write_text(
+        ANCHORS + "meta:\n  Q-E01: {persona: skipper, split: dev}\n",
+        encoding="utf-8",
+    )
+    with pytest.raises(ValueError, match="persona"):
+        load_anchors(path)
+
+
+def test_load_anchors_rejects_bad_split(tmp_path: Path) -> None:
+    path = tmp_path / "eval.yaml"
+    path.write_text(
+        ANCHORS + "meta:\n  Q-E01: {persona: captain, split: validation}\n",
+        encoding="utf-8",
+    )
+    with pytest.raises(ValueError, match="split"):
+        load_anchors(path)
+
+
 def test_load_anchors_rejects_empty_entries(tmp_path: Path) -> None:
     path = tmp_path / "eval.yaml"
     path.write_text("schema_version: 1\nanchors:\n  Q-E01: []\n", encoding="utf-8")
@@ -112,6 +153,43 @@ def test_summarize_counts() -> None:
     assert summary["answer_rate"] == 0.6667
     assert summary["citation_coverage"] == 0.0
     assert summary["faithfulness"] == 0.0
+
+
+def test_group_summary_splits_and_personas() -> None:
+    results = [
+        {
+            "kind": "answerable",
+            "hit": True,
+            "abstained": False,
+            "citation_valid": True,
+            "split": "dev",
+            "persona": "captain",
+        },
+        {
+            "kind": "abstention",
+            "hit": None,
+            "abstained": True,
+            "citation_valid": True,
+            "split": "test",
+            "persona": "owner",
+        },
+        {
+            "kind": "answerable",
+            "hit": False,
+            "abstained": True,
+            "citation_valid": True,
+            "split": "test",
+            "persona": "owner",
+        },
+    ]
+    by_split = group_summary(results, "split", ("dev", "test"))
+    assert by_split["dev"]["answerable_questions"] == 1
+    assert by_split["test"]["answerable_questions"] == 1
+    assert by_split["test"]["abstention_tests"] == 1
+    by_persona = group_summary(results, "persona", ("captain", "owner"))
+    assert by_persona["captain"]["answerable_questions"] == 1
+    assert by_persona["owner"]["answerable_questions"] == 1
+    assert by_persona["owner"]["abstention_tests"] == 1
 
 
 def test_answer_quality_supported_and_unsupported() -> None:

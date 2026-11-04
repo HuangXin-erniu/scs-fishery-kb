@@ -8,6 +8,7 @@
 - Reviewed instrument (2026-11-04, 33 questions: 19 anchors, 8 abstention, 2 reference, 2 statistics, 2 deferred): hybrid **19/19** with MRR 0.68, abstention 7/8, one false refusal, answer rate 18/19, citation resolution 1.00, citation coverage 0.99, extractive faithfulness 1.00 and P95 20 ms; BM25 17/19 (MRR 0.64), BM25 plus lexicon 19/19 (0.69) and dense 15/19 (0.55). Reference 2/2, statistics 2/2, jurisdiction 3/3 and national 2/2. Q-E07 remains the one answered abstention test under the deterministic gate.
 - LLM-assisted run (2026-11-04, `deepseek-v4.1-flash`, low reasoning effort, prompt `rag-v3`): hybrid **19/19** anchors, **8/8** abstention, **0 false refusals**, answer rate 19/19, citation resolution 1.00; model judge correctness **0.76**, completeness **0.66**, faithfulness **0.94**. Q-E07 now abstains because the evidence only lists other fishing grounds; Q-E12 answers from `POL-LAW-009` §第七十八条. These scores are model-assisted, not human review. Prompt-only completeness attempts (v4/v5) and top-document evidence expansion were measured and rejected: completeness fell to 0.61, 0.56 and 0.37, so the v3 baseline is retained. The remaining gap is evidence coverage, not prompt wording.
 - Deterministic gold-point coverage (2026-11-04, 38 points across 19 anchors, eval-only `checks`): extractive **10/38 (0.26)**, LLM **15/38 (0.39)**. The missing points are concentrated in secondary items: Q-E02 four special-permit types, Q-E12 penalty ranges, Q-M01 article 44, Q-M12 article 26/78, Q-M17 inspection types. This is a diagnostic baseline, not a target; the checks never enter the product path.
+- Held-out split (2026-11-04, P09-EVAL-130, 48 questions: 33 dev + 15 test): the test split has 12 anchors and 3 abstention across captain, owner, enforcement and extension. Extractive: dev 19/19, abstention 7/8, MRR 0.6816, coverage 10/38; test 12/12, abstention 1/3, MRR 0.8542, coverage 2/22. LLM: dev 19/19, 8/8, correctness/completeness/faithfulness 0.7605/0.6605/0.9421, coverage 15/38; test 12/12, 3/3, 0.7125/0.7083/0.8958, coverage 10/22. Hybrid MRR is 0.6816; the 0.6886 figure belongs to the BM25-plus-lexicon arm. Test is report-only and is not used for tuning.
 - Clause-index experiment (2026-11-04): split long sections at item markers and kept parent chunks. Hybrid top-5 anchor recall fell from 19/19 to 16/19 and abstention from 7/8 to 6/8 because clause chunks changed BM25 ranking and external notes outranked corpus items. Index restored to `20910f0964df`; clause indexing is deferred until retrieval scoring/depth is changed with it.
 - Baseline (2026-11-03, adopted; 28 public documents, 785 chunks, index `20910f0964df`, dense `58ded7342e4c66fe`): BM25 8/11, BM25 plus lexicon 10/11, dense-only 8/11 and hybrid **11/11** with MRR 0.56, abstention 3/4, two false refusals and 100% citation resolution; hybrid P95 19 ms; reference 2/2, statistics 2/2, jurisdiction 3/3 and national 2/2. Cards and notes are not in this index: they live in a separate external store (259 documents, 315 chunks, index `0c6d3901106c`) and are consulted only after a non-abstained corpus answer.
 - Claim-matrix experiment (2026-11-03, 287 documents with cards and notes, index `0137968fd40c`): chunks now carry source class, trust tier and review date, and hits are filtered by claim nature before answering (definition/rule/quantity/status/warning/identification/history). BM25 and lexicon abstention stayed at 3/4, but hybrid remained 9/11 with abstention 2/4; the filter cannot separate the out-of-scope question because the enlarged dense candidate pool already changes corpus ranking. Not adopted.
@@ -34,12 +35,23 @@ Human review override: `scs-fkb eval --llm --review-template <path>` writes a pe
 
 Extractive faithfulness applies only to the deterministic extractive answers; it is not a quality metric for generated answers, which are scored by the model judge.
 
-Adopted configuration (2026-11-04): the reviewed set has 33 questions — 19 anchors, 8 abstention tests, 2 CWP reference questions, 2 statistics questions and 2 deferred web questions. The corpus store decides answerability; the external store is a separate index and never participates in corpus abstention.
+Adopted configuration (2026-11-04, updated by P09-EVAL-130): the reviewed set has 48 questions — 31 anchors, 11 abstention tests, 2 CWP reference questions, 2 statistics questions and 2 deferred web questions, split into 33 dev and 15 test. The corpus store decides answerability; the external store is a separate index and never participates in corpus abstention.
+
+### Split baseline (2026-11-04)
+
+| Split | Arm | Anchors | Abstention | MRR | Gold coverage |
+|---|---|---:|---:|---:|---:|
+| dev | hybrid | 19/19 | 7/8 | 0.6816 | 10/38 |
+| dev | hybrid + LLM | 19/19 | 8/8 | 0.6816 | 15/38 |
+| test | hybrid | 12/12 | 1/3 | 0.8542 | 2/22 |
+| test | hybrid + LLM | 12/12 | 3/3 | 0.8542 | 10/22 |
+
+LLM judge: dev correctness/completeness/faithfulness **0.7605/0.6605/0.9421**; test **0.7125/0.7083/0.8958**. The test split is a baseline, not a gate: it is not used for tuning, and a test-driven change must first become a dev question. The 0.6886 MRR sometimes quoted for the dev set is the BM25-plus-lexicon arm; hybrid is 0.6816.
 
 - Statistics channel (2026-11-01): the two statistical questions are scored separately. Q-E06 runs 南海区海洋捕捞产量历年趋势 and expects the sea-area production series; Q-M05 runs 2019年南海区拖网渔船数量 and expects vessel counts. Both return rows with edition and table citations (2/2). The channel also states the two gaps: production has no operation-type dimension and vessel counts have no sea-area dimension.
 - Reference collections (2026-11-03): two questions are scored outside the main index. Q-E05 and Q-M04 use the CWP definition collection and both return the expected passage (2/2). Q-E08 and Q-M09 were answered by the product documents, which were removed on 2026-11-03; they are parked in the `web` queue and will be restored when the cached card layer lands. The interim reference rate is therefore 100% over two questions, not comparable with the earlier 4/4 over four.
 - Policy collection (2026-11-02): the crew-management rule `POL-CREW-055` joined the policy collection and answers the minimum-manning question; the channel still requires one of its cues before it fires, so an unrelated question does not reach these documents.
-- Abstention denominator: the reviewed set has eight out-of-scope tests (Q-E07, Q-E11, Q-M02, Q-M06, Q-M07, Q-M08, Q-M11, Q-M18); seven abstain and Q-E07 is still the known answered test.
+- Abstention denominator: the reviewed set has eleven out-of-scope tests (Q-E07, Q-E11, Q-M02, Q-M06, Q-M07, Q-M08, Q-M11, Q-M18, Q-C04, Q-O04, Q-T03); under the extractive gate seven of the eight dev tests abstain and Q-E07 is the known answered dev test, while the test split abstains 1/3; under `--llm` both splits abstain 8/8 and 3/3.
 - Answer assembly (2026-11-02): when a question asks for a period and not for an implementation date, the extractive answer searches every retrieved hit for a sentence carrying a date range and, if found, cites it first. Q-E01 now leads with the South China Sea clause from [POL-CLOS-015 §三、休渔时间] instead of the implementation date in §四; the retrieval, reference, statistics and abstention metrics are unchanged.
 - National section (2026-11-02): two questions exercise the national-first ordering. J4 2026年海洋伏季休渔执法行动由哪些部门开展、重点任务是什么？ expects `POL-ENF-068` and J5 远洋渔船标准化船型参数系列表（2024年版）有哪些船型和参数？ expects `STD-YY-071`. The section reports 2/2 separately; like the jurisdiction questions it is same-set calibration, not a held-out split.
 - Jurisdiction section (2026-11-02): three province questions are scored separately from the main arms: J1 海南省2026年伏季休渔的时间和海域是什么？ expecting `POL-HN-059`, J2 广西2026年海洋伏季休渔的时间与要求是什么？ expecting `POL-GX-060`, and J3 汕头市2026年海洋伏季休渔有哪些管理要求？ expecting `POL-GD-061`. The section exercises the province-first re-ranking and the answer lead, reports 3/3, and is same-set calibration rather than a held-out split.
@@ -57,7 +69,7 @@ Human review is authoritative for answer correctness. Automated metrics are supp
 
 ## 2. Question set
 
-The reviewed set contains 33 questions: 15 for vessel operators and captains, 18 for fisheries administration. It contains 19 anchor questions, 8 abstention tests, 2 CWP reference questions, 2 statistics questions and 2 deferred web questions (Q-E08, Q-M09). Gold answer points are in `configs/eval.yaml`; the project owner approved the question decisions and gold points in three batches on 2026-11-04.
+The reviewed set contains 48 questions across four personas (captain/crew, owner/operator, enforcement and extension): 33 dev and 15 test. It contains 31 anchor questions, 11 abstention tests, 2 CWP reference questions, 2 statistics questions and 2 deferred web questions (Q-E08, Q-M09). Gold answer points and the `meta` persona/split mapping are in `configs/eval.yaml`; the project owner approved the 33-question dev set on 2026-11-04, and P09-EVAL-130 added the 15-question test split with the same evidence discipline. Test is report-only; a test finding must first become a new dev question before it can drive a product change.
 
 Before use:
 
@@ -102,7 +114,7 @@ The instrument scores anchors, not answers: a question counts as retrieved when 
 
 ## 4. Protocol
 
-1. **Split the set:** development, test and held-out subsets. The held-out subset is not used for tuning.
+1. **Split the set:** dev 33 (existing) and test 15 (P09-EVAL-130). Test is report-only and is not used for tuning; a test-driven change must first be added as a dev question.
 2. **Establish baselines:** BM25-only, dense-only and hybrid retrieval.
 3. **Run the pipeline:** record the question, retrieved chunks, answer, citations, abstention and latency.
 4. **Review:** a domain expert marks correctness and faithfulness; disagreements are recorded.

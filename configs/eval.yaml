@@ -54,6 +54,34 @@ anchors:
     - {doc: POL-RULE-020, section: "第五条"}
   Q-M17:
     - {doc: POL-RULE-019, section: "第四条"}
+  Q-C01:
+    - {doc: POL-WATCH-082, section: "第三条"}
+  Q-C02:
+    - {doc: POL-WATCH-082, section: "第十五条"}
+  Q-C03:
+    - {doc: POL-PEN-078, section: "第九条"}
+  Q-O01:
+    - {doc: POL-STD-010, section: "第三十五条"}
+    - {doc: POL-STD-010, section: "第三十六条"}
+  Q-O02:
+    - {doc: POL-STD-010, section: "第十六条"}
+  Q-O03:
+    - {doc: POL-RULE-019, section: "第四条"}
+    - {doc: POL-RULE-019, section: "第十三条"}
+    - {doc: POL-RULE-019, section: "第十九条"}
+  Q-F01:
+    - {doc: POL-PEN-080, section: "第二条"}
+    - {doc: POL-PEN-080, section: "第五条"}
+  Q-F02:
+    - {doc: POL-PEN-078, section: "第十条"}
+  Q-F03:
+    - {doc: POL-ENF-068, section: "一、重点任务"}
+  Q-F04:
+    - {doc: POL-RULE-018, section: "第十七条"}
+  Q-T01:
+    - {doc: OPS-STD-039}
+  Q-T02:
+    - {doc: OPS-STD-035}
 abstention:
   - Q-E07
   - Q-E11
@@ -63,6 +91,9 @@ abstention:
   - Q-M08
   - Q-M11
   - Q-M18
+  - Q-C04
+  - Q-O04
+  - Q-T03
 # Definition and product questions answered through reference collections rather than the main
 # ranked index. Each entry declares its collection.
 reference:
@@ -298,6 +329,91 @@ gold:
     abstain: true
     reason: "yearbook port table missing for data years 2018-2019; the system must refuse."
 
+  Q-C01:
+    points:
+      - "船长应当保证：所有值班人员必须由持有相应适任证书的职务船员担任；非值班人员不得随意进入驾驶室。"
+      - "值班人员上岗前必须经过充分休息，航行期间不得饮酒；不得安排正在值班的人员从事与值班无关的事项。"
+    evidence:
+      - {doc: POL-WATCH-082, section: "第三条"}
+  Q-C02:
+    points:
+      - "交接班必须交清船位、拖网与放网时间、航向、拖向、拖速、流速、风速、流压差，以及助航、助渔仪器的使用情况。"
+      - "还应交清主副船或围网船及周围船舶动态、岛屿航标障碍物、天气海况、航标识别、下一班危险、船长布置事项和航行计划变化。"
+    evidence:
+      - {doc: POL-WATCH-082, section: "第十五条"}
+  Q-C03:
+    points:
+      - "船舶进出渔港应按规定办理签证；在渔港内应服从渔政渔港监督管理机关对水域交通安全秩序的管理；停泊期间应留足值班人员。"
+      - "违反的，对船长予以警告，可处50元以上500元以下罚款；情节严重的扣留职务船员证书3至6个月；特别严重的吊销船长证书。"
+    evidence:
+      - {doc: POL-PEN-078, section: "第九条"}
+  Q-C04:
+    abstain: true
+    reason: "no registered source states the 2026 fuel-subsidy standard; POL-GEAR-016 only mentions a possible deduction, not the standard."
+  Q-O01:
+    points:
+      - "海洋渔业捕捞许可证和内陆渔业捕捞许可证的使用期限为5年；其他种类最长不超过3年。"
+      - "使用期届满的，应在届满前3个月内向原发证机关申请换发；换发时收回原证并注销。"
+    evidence:
+      - {doc: POL-STD-010, section: "第三十五条"}
+      - {doc: POL-STD-010, section: "第三十六条"}
+  Q-O02:
+    points:
+      - "制造、更新改造、进口渔船的船网工具指标批准书有效期为18个月，购置渔船为6个月。"
+      - "因特殊原因无法按期办理的，可在届满前3个月内申请延展18个月；远洋特殊渔区可再延展18个月；逾期注销并收回指标。"
+    evidence:
+      - {doc: POL-STD-010, section: "第十六条"}
+  Q-O03:
+    points:
+      - "国家实行强制检验，分为初次检验、营运检验和临时检验；初次检验在投入营运前实施，适用于制造、改造、进口的渔业船舶。"
+      - "营运检验是营运中的常规检验；临时检验适用于检验证书失效无法及时回船籍港、被责令检验等特定情形。"
+    evidence:
+      - {doc: POL-RULE-019, section: "第四条"}
+      - {doc: POL-RULE-019, section: "第六条"}
+      - {doc: POL-RULE-019, section: "第十三条"}
+      - {doc: POL-RULE-019, section: "第十九条"}
+  Q-O04:
+    abstain: true
+    reason: "no registered source covers the loan process or interest rate; the local regulations only require mortgage registration."
+  Q-F01:
+    points:
+      - "渔业行政处罚种类包括罚款，没收渔获物、违法所得、渔具，暂扣、吊销捕捞许可证等渔业证照，以及法律法规规定的其他处罚。"
+      - "罚款计罚单位：拖网、流刺网、钓钩等用船作业按单艘船；围网按一个作业单位；定置作业用船按单艘、不用船按一个作业单位；炸鱼毒鱼电鱼等用船按单艘、不用船按人；赶海、潜水按人。"
+    evidence:
+      - {doc: POL-PEN-080, section: "第二条"}
+      - {doc: POL-PEN-080, section: "第五条"}
+  Q-F02:
+    points:
+      - "未经批准在渔港内装卸易燃易爆有毒危险货物、新建改建扩建设施或从事碍航捕捞养殖的，责令停止作业，对船长或直接责任人予以警告，并可处500元以上1000元以下罚款。"
+    evidence:
+      - {doc: POL-PEN-078, section: "第十条"}
+  Q-F03:
+    points:
+      - "船籍港休渔：以县为单位建立应休渔渔船、重点监管渔船台账，督促所有应休渔渔船按时返回船籍港集中休渔；长期异地渔船必须在船籍港地休渔。"
+      - "专项捕捞监管：落实2026年专项捕捞许可通告，从严查处无证作业、超时限作业、违规转载渔获物、擅自改变作业类型；专项捕捞船须配齐救生消防设备、船员持证。"
+    evidence:
+      - {doc: POL-ENF-068, section: "一、重点任务"}
+  Q-F04:
+    points:
+      - "不得发放捕捞许可证的情形包括：使用破坏渔业资源、明令禁止的渔具或捕捞方法；未按规定办理制造、更新改造、购置或进口捕捞渔船的批准手续；未领取渔业船舶证书、航行签证簿、职务船员证书、船舶户口簿、渔民证等证件。"
+    evidence:
+      - {doc: POL-RULE-018, section: "第十七条"}
+  Q-T01:
+    points:
+      - "渔具分类名称按“式+型+类”书写；代号按“类·型·式”书写，型和式不限定时可省略。"
+      - "类的代号如C刺网、W围网、T拖网；示例20·dp·C为定置单片刺网，01·yn·W为双船有囊围网。"
+    evidence:
+      - {doc: OPS-STD-039}
+  Q-T02:
+    points:
+      - "以调查区域内所有海洋捕捞渔船为抽样总体，按船籍港省/市/县、渔具类、主机功率四档分层。"
+      - "按GB/T 2828.1—2012一次抽样方案确定每层样本量，每层不少于3艘；样本船按GB/T 10111—2008抽选，不再提供信息时及时更换。"
+    evidence:
+      - {doc: OPS-STD-035}
+  Q-T03:
+    abstain: true
+    reason: "no registered source publishes the total resource-protection fee; POL-RULE-020 gives rates, not a total."
+
 # Deterministic gold-point checks. Evaluation only: a point counts as covered
 # when a cited answer sentence contains every term (mode: all) or any term
 # (mode: any). These checks never enter the product answer path.
@@ -359,3 +475,89 @@ checks:
   Q-M17:
     - {point: 0, terms: ["初次检验", "营运检验", "临时检验"], mode: all}
     - {point: 1, terms: ["投入营运前", "周期", "证书失效"], mode: all}
+  Q-C01:
+    - {point: 0, terms: ["适任证书", "职务船员"], mode: all}
+    - {point: 1, terms: ["充分休息", "饮酒"], mode: all}
+  Q-C02:
+    - {point: 0, terms: ["船位", "拖向", "航向"], mode: all}
+    - {point: 1, terms: ["天气", "海况", "航标"], mode: all}
+  Q-C03:
+    - {point: 0, terms: ["签证", "值班人员"], mode: all}
+    - {point: 1, terms: ["50元", "500元"], mode: all}
+  Q-O01:
+    - {point: 0, terms: ["5年", "3年"], mode: all}
+    - {point: 1, terms: ["3个月", "原证"], mode: all}
+  Q-O02:
+    - {point: 0, terms: ["18个月", "6个月"], mode: all}
+    - {point: 1, terms: ["延展", "注销"], mode: all}
+  Q-O03:
+    - {point: 0, terms: ["初次检验", "营运检验", "临时检验"], mode: all}
+    - {point: 1, terms: ["投入营运前", "证书失效"], mode: all}
+  Q-F01:
+    - {point: 0, terms: ["罚款", "没收", "吊销"], mode: all}
+    - {point: 1, terms: ["单艘船", "作业单位", "按人"], mode: all}
+  Q-F02:
+    - {point: 0, terms: ["500元", "1000元", "警告"], mode: all}
+  Q-F03:
+    - {point: 0, terms: ["船籍港", "台账", "集中休渔"], mode: all}
+    - {point: 1, terms: ["专项捕捞", "无证作业", "超时限"], mode: all}
+  Q-F04:
+    - {point: 0, terms: ["禁止", "渔具", "批准手续", "证书"], mode: all}
+  Q-T01:
+    - {point: 0, terms: ["式", "型", "类"], mode: all}
+    - {point: 1, terms: ["20·dp·C", "01·yn·W"], mode: all}
+  Q-T02:
+    - {point: 0, terms: ["抽样总体", "船籍港", "分层"], mode: all}
+    - {point: 1, terms: ["2828.1", "3艘"], mode: all}
+
+# Persona and split metadata. Personas are for reporting only; the product path
+# never reads this mapping. Test questions are report-only and are not used to tune.
+meta:
+  Q-E01: {persona: captain, split: dev}
+  Q-E02: {persona: captain, split: dev}
+  Q-E03: {persona: captain, split: dev}
+  Q-E04: {persona: captain, split: dev}
+  Q-E05: {persona: extension, split: dev}
+  Q-E06: {persona: extension, split: dev}
+  Q-E07: {persona: captain, split: dev}
+  Q-E08: {persona: captain, split: dev}
+  Q-E09: {persona: captain, split: dev}
+  Q-E10: {persona: captain, split: dev}
+  Q-E11: {persona: captain, split: dev}
+  Q-E12: {persona: captain, split: dev}
+  Q-E13: {persona: captain, split: dev}
+  Q-E14: {persona: captain, split: dev}
+  Q-E15: {persona: captain, split: dev}
+  Q-M01: {persona: enforcement, split: dev}
+  Q-M02: {persona: enforcement, split: dev}
+  Q-M03: {persona: enforcement, split: dev}
+  Q-M04: {persona: extension, split: dev}
+  Q-M05: {persona: extension, split: dev}
+  Q-M06: {persona: enforcement, split: dev}
+  Q-M07: {persona: enforcement, split: dev}
+  Q-M08: {persona: enforcement, split: dev}
+  Q-M09: {persona: enforcement, split: dev}
+  Q-M10: {persona: enforcement, split: dev}
+  Q-M11: {persona: enforcement, split: dev}
+  Q-M12: {persona: enforcement, split: dev}
+  Q-M13: {persona: enforcement, split: dev}
+  Q-M14: {persona: extension, split: dev}
+  Q-M15: {persona: extension, split: dev}
+  Q-M16: {persona: enforcement, split: dev}
+  Q-M17: {persona: enforcement, split: dev}
+  Q-M18: {persona: enforcement, split: dev}
+  Q-C01: {persona: captain, split: test}
+  Q-C02: {persona: captain, split: test}
+  Q-C03: {persona: captain, split: test}
+  Q-C04: {persona: captain, split: test}
+  Q-O01: {persona: owner, split: test}
+  Q-O02: {persona: owner, split: test}
+  Q-O03: {persona: owner, split: test}
+  Q-O04: {persona: owner, split: test}
+  Q-F01: {persona: enforcement, split: test}
+  Q-F02: {persona: enforcement, split: test}
+  Q-F03: {persona: enforcement, split: test}
+  Q-F04: {persona: enforcement, split: test}
+  Q-T01: {persona: extension, split: test}
+  Q-T02: {persona: extension, split: test}
+  Q-T03: {persona: extension, split: test}

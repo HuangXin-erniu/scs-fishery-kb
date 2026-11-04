@@ -32,7 +32,7 @@ from .corpus import CorpusError
 from .coverage import coverage_report
 from .dense import DenseError, DenseIndex, embeddings_dir, index_path
 from .embed import DEFAULT_MODEL, FastEmbedEncoder
-from .evaluate import load_anchors, title_tokens, write_report
+from .evaluate import load_anchors, summarize, title_tokens, write_report
 from .ingest import IngestError, ingest, load_pipeline
 from .jurisdiction import question_jurisdiction
 from .knowledge import KnowledgeError, list_notes
@@ -559,11 +559,27 @@ def _eval(args: argparse.Namespace) -> int:
         answer_fn=answer_fn,
     )
     anchor_config = load_anchors(Path(args.anchors))
-    report["coverage"] = coverage_report(
-        anchor_config.get("gold") or {},
-        anchor_config.get("checks") or {},
-        report.get("details", []),
-    )
+    details = report.get("details", [])
+    report["summary_split"] = {
+        split: summarize([row for row in details if row.get("split") == split], [])
+        for split in ("dev", "test")
+    }
+    report["summary_persona"] = {
+        persona: summarize([row for row in details if row.get("persona") == persona], [])
+        for persona in ("captain", "owner", "enforcement", "extension")
+    }
+    gold = anchor_config.get("gold") or {}
+    checks = anchor_config.get("checks") or {}
+    coverage = coverage_report(gold, checks, details)
+    coverage["by_split"] = {}
+    for split in ("dev", "test"):
+        ids = {row["id"] for row in details if row.get("split") == split}
+        coverage["by_split"][split] = coverage_report(
+            {qid: value for qid, value in gold.items() if qid in ids},
+            {qid: value for qid, value in checks.items() if qid in ids},
+            [row for row in details if row["id"] in ids],
+        )
+    report["coverage"] = coverage
     if client is not None:
         gold = anchor_config.get("gold") or {}
         scored = []
@@ -593,7 +609,15 @@ def _eval(args: argparse.Namespace) -> int:
                     )
                 except LLMError as exc:
                     score = {"error": str(exc)}
-            scored.append({"id": row["id"], "source": "model", **score})
+            scored.append(
+                {
+                    "id": row["id"],
+                    "split": row.get("split"),
+                    "persona": row.get("persona"),
+                    "source": "model",
+                    **score,
+                }
+            )
         review_meta: dict = {}
         if args.review:
             review = yaml.safe_load(Path(args.review).read_text(encoding="utf-8")) or {}
@@ -616,12 +640,20 @@ def _eval(args: argparse.Namespace) -> int:
             name: round(sum(item[name] for item in numeric) / len(numeric), 4) if numeric else 0.0
             for name in ("correctness", "completeness", "faithfulness")
         }
+        averages_by_split: dict[str, dict[str, float]] = {}
+        for split in ("dev", "test"):
+            rows = [item for item in numeric if item.get("split") == split]
+            averages_by_split[split] = {
+                name: round(sum(item[name] for item in rows) / len(rows), 4) if rows else 0.0
+                for name in ("correctness", "completeness", "faithfulness")
+            }
         report["llm"] = {
             "model": client.config.model,
             "reasoning_effort": client.config.reasoning_effort,
             "prompt_version": SCORE_PROMPT_VERSION,
             "questions": scored,
             "averages": averages,
+            "averages_by_split": averages_by_split,
             **review_meta,
         }
         if args.review_template:
@@ -661,12 +693,31 @@ def _eval(args: argparse.Namespace) -> int:
             f"abstain {summary['abstained_tests']}/{summary['abstention_tests']} "
             f"false {summary['false_refusals']} cite {summary['citation_resolution']:.2f}{latency}"
         )
-    coverage = (report.get("coverage") or {}).get("summary") or {}
-    if coverage:
+    for split in ("dev", "test"):
+        summary = (report.get("summary_split") or {}).get(split) or {}
+        if not summary:
+            continue
         print(
-            f"coverage {coverage.get('covered', 0)}/{coverage.get('points', 0)} "
-            f"({coverage.get('rate', 0.0):.2f})"
+            f"{split:5} recall {summary['recall_hits']}/{summary['answerable_questions']} "
+            f"mrr {summary['mrr']:.2f} "
+            f"abstain {summary['abstained_tests']}/{summary['abstention_tests']} "
+            f"false {summary['false_refusals']}"
         )
+    coverage_summary = (report.get("coverage") or {}).get("summary") or {}
+    if coverage_summary:
+        print(
+            f"coverage {coverage_summary.get('covered', 0)}/"
+            f"{coverage_summary.get('points', 0)} "
+            f"({coverage_summary.get('rate', 0.0):.2f})"
+        )
+    for split in ("dev", "test"):
+        sub = ((report.get("coverage") or {}).get("by_split") or {}).get(split) or {}
+        summary = sub.get("summary") or {}
+        if summary:
+            print(
+                f"coverage {split:5} {summary.get('covered', 0)}/{summary.get('points', 0)} "
+                f"({summary.get('rate', 0.0):.2f})"
+            )
     reference = report.get("reference_summary") or {}
     if reference:
         print(
@@ -700,6 +751,12 @@ def _eval(args: argparse.Namespace) -> int:
             f"completeness {averages['completeness']:.2f} "
             f"faithfulness {averages['faithfulness']:.2f}"
         )
+        for split, split_averages in (llm.get("averages_by_split") or {}).items():
+            print(
+                f"llm judge {split:5} correctness {split_averages['correctness']:.2f} "
+                f"completeness {split_averages['completeness']:.2f} "
+                f"faithfulness {split_averages['faithfulness']:.2f}"
+            )
     return 0
 
 

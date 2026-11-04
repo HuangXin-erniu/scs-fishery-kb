@@ -2,6 +2,15 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-04 — Four-persona held-out evaluation split
+
+- Added 15 test questions (12 anchors, 3 abstention) across captain/crew, owner/operator, enforcement and extension: Q-C01..Q-C04, Q-O01..Q-O04, Q-F01..Q-F04 and Q-T01..Q-T03. The existing 33 questions stay unchanged as dev.
+- Added `meta` to `configs/eval.yaml` (persona/split for all 48 questions) and split/persona reporting in `eval`: `summary_split`, `summary_persona`, `coverage.by_split` and `llm.averages_by_split`.
+- Evidence audit: the 12 anchors point at indexed sections (POL-WATCH-082, POL-PEN-078, POL-STD-010, POL-RULE-019, POL-PEN-080, POL-ENF-068, POL-RULE-018, OPS-STD-039, OPS-STD-035); the 3 abstention questions have no supporting source. 22 new gold points each carry a deterministic check.
+- Baseline: extractive dev 19/19 anchors, 7/8 abstention, MRR 0.6816, coverage 10/38; test 12/12, 1/3, MRR 0.8542, coverage 2/22. LLM dev 19/19, 8/8, 0.7605/0.6605/0.9421, coverage 15/38; test 12/12, 3/3, 0.7125/0.7083/0.8958, coverage 10/22. Test is report-only and is not used for tuning.
+- No change to the corpus, index, retrieval or answer path; no new sources.
+
+
 ## 2026-11-04 — Source currency gate and candidate admission queue
 
 - Source schema moves to v3: `currency.cadence` is required and bounds `review_due - as_of` (monthly 60 days, quarterly 150, semiannual 240, annual/edition 400, weekly 21, daily 3, irregular 180, static 550). The 63 registered sources were migrated by class — normative monthly, standard quarterly, official_statistics annual, reference semiannual — with hashes, dates, locations and statuses unchanged.
