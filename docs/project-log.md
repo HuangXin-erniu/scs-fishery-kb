@@ -2,6 +2,14 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-04 — LLM answer layer fixes Q-E07 and Q-E12
+
+- Added a public-only LLM client for the OpenCode Go OpenAI-compatible endpoint (`deepseek-v4.1-flash`, low reasoning effort) with an explicit `--llm` flag, TLS verification, retries and a stable `x-opencode-session`.
+- Added an evidence judge and answer generator: Q-E07 now abstains because the evidence only lists other fishing grounds; Q-E12 answers from `POL-LAW-009` §第七十八条 with a valid citation.
+- The deterministic extractive path remains the default and the fallback when the LLM is unconfigured, errors, or returns an invalid citation.
+- Model-assisted scoring against the reviewed gold points: correctness 0.76, completeness 0.66, faithfulness 0.94; hybrid 19/19 anchors, 8/8 abstention, 0 false refusals. These are model-assisted, not human review.
+- No corpus, card, note or index change; the key stays in the untracked `.env`.
+
 ## 2026-11-04 — Evaluation v1 reviewed; per-question answer metrics added
 
 - The project owner reviewed the question set in three batches; the set now has 33 questions: 19 anchors, 8 abstention tests, 2 CWP reference questions, 2 statistics questions and 2 deferred web questions.

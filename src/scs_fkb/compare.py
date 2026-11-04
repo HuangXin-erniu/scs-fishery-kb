@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import time
+from collections.abc import Callable
 from pathlib import Path
 from typing import Any
 
@@ -34,6 +35,7 @@ def run_comparison(
     pipeline_path: Path,
     lexicon_path: Path,
     model: str = DEFAULT_MODEL,
+    answer_fn: Callable[[str, list[Any]], Any] | None = None,
 ) -> dict[str, Any]:
     chunks, manifest = load_chunks(data_root)
     pipeline = load_pipeline(pipeline_path)
@@ -132,6 +134,7 @@ def run_comparison(
                 lexicon=[],
                 searcher=searcher,
                 gate=lambda question, arm=arm: arm.gate_ok(question, min_score, min_matched),
+                answer_fn=answer_fn if name == "hybrid" else None,
             )
             result["summary"]["p95_latency_ms"] = _p95(latencies)
         report["arms"][name] = result["summary"]

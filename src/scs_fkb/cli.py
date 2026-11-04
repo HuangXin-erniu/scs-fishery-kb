@@ -22,15 +22,17 @@ from .config import (
 from .corpus import CorpusError
 from .dense import DenseError, DenseIndex, embeddings_dir, index_path
 from .embed import DEFAULT_MODEL, FastEmbedEncoder
-from .evaluate import title_tokens, write_report
+from .evaluate import load_anchors, title_tokens, write_report
 from .ingest import IngestError, ingest, load_pipeline
 from .jurisdiction import question_jurisdiction
 from .knowledge import KnowledgeError, list_notes
 from .knowledge import approve as approve_note
 from .knowledge import check as check_knowledge
 from .lexicon import load_lexicon
+from .llm import LLMClient, LLMConfig, LLMError
 from .models import Answer
 from .parsers import ParseError, UnsupportedFormatError
+from .rag import SCORE_PROMPT_VERSION, LLMCache, llm_answer_fn, score_answer
 from .reference import ReferenceError, diverse_hits
 from .reference import lookup as reference_lookup
 from .reference import lookup_term as reference_lookup_term
@@ -179,7 +181,18 @@ def _ask(args: argparse.Namespace) -> int:
             "require_corpus_evidence", False
         )
     )
-    if retriever.mode == "bm25":
+    answer = None
+    llm_error = ""
+    if args.llm:
+        try:
+            client = LLMClient(LLMConfig.from_env())
+            cache = LLMCache(_root(args.data_root) / "llm-cache")
+            answer = llm_answer_fn(client, cache)(args.question, hits)
+        except LLMError as exc:
+            llm_error = str(exc)
+    if answer is not None:
+        pass
+    elif retriever.mode == "bm25":
         answer = answer_question(
             args.question,
             hits,
@@ -253,6 +266,7 @@ def _ask(args: argparse.Namespace) -> int:
                 "index_version": manifest.get("index_version"),
                 "hits": [hit.to_dict() for hit in hits],
                 "result": answer.to_dict(),
+                "llm": {"enabled": bool(args.llm), "error": llm_error},
                 "reference": [hit.to_dict() for hit in references],
                 "product_reference": [hit.to_dict() for hit in product_references],
                 "policy_reference": [hit.to_dict() for hit in policy_references],
@@ -260,6 +274,8 @@ def _ask(args: argparse.Namespace) -> int:
             }
         )
         return 0
+    if args.llm and llm_error:
+        print(f"llm unavailable, extractive fallback: {llm_error}", file=sys.stderr)
     if answer.abstained:
         print(f"ABSTAIN ({answer.reason}): {answer.text}")
     else:
@@ -456,13 +472,67 @@ def _web_check(args: argparse.Namespace) -> int:
 
 
 def _eval(args: argparse.Namespace) -> int:
+    answer_fn = None
+    client = None
+    cache = None
+    if args.llm:
+        client = LLMClient(LLMConfig.from_env())
+        cache = LLMCache(_root(args.data_root) / "llm-cache")
+        answer_fn = llm_answer_fn(client, cache)
     report = run_comparison(
         _root(args.data_root),
         Path(args.questions),
         Path(args.anchors),
         Path(args.pipeline),
         Path(args.lexicon),
+        answer_fn=answer_fn,
     )
+    if client is not None:
+        gold = load_anchors(Path(args.anchors)).get("gold") or {}
+        scored = []
+        for row in report.get("details", []):
+            if row["kind"] != "answerable":
+                continue
+            points = (gold.get(row["id"]) or {}).get("points") or []
+            if not points:
+                continue
+            if row["abstained"]:
+                score = {
+                    "correctness": 0.0,
+                    "completeness": 0.0,
+                    "faithfulness": 0.0,
+                    "reason": "abstained",
+                }
+            else:
+                evidence = "\n".join(item.get("snippet", "") for item in row["answer"]["citations"])
+                try:
+                    score = score_answer(
+                        row["question"],
+                        points,
+                        row["answer"]["answer"],
+                        evidence,
+                        client,
+                        cache,
+                    )
+                except LLMError as exc:
+                    score = {"error": str(exc)}
+            scored.append({"id": row["id"], **score})
+        numeric = [item for item in scored if "error" not in item]
+        averages = {
+            name: round(sum(item[name] for item in numeric) / len(numeric), 4) if numeric else 0.0
+            for name in ("correctness", "completeness", "faithfulness")
+        }
+        report["llm"] = {
+            "model": client.config.model,
+            "reasoning_effort": client.config.reasoning_effort,
+            "prompt_version": SCORE_PROMPT_VERSION,
+            "questions": scored,
+            "averages": averages,
+        }
+        hybrid = report["arms"].get("hybrid")
+        if hybrid:
+            hybrid["answer_mode"] = "llm"
+            hybrid["extractive_faithfulness"] = hybrid.pop("faithfulness", 0.0)
     if args.out:
         write_report(report, Path(args.out))
     if args.json:
@@ -503,6 +573,14 @@ def _eval(args: argparse.Namespace) -> int:
             f"statistics {statistics.get('statistics_hits', 0)}/"
             f"{statistics.get('statistics_questions', 0)}{note}"
         )
+    llm = report.get("llm")
+    if llm:
+        averages = llm["averages"]
+        print(
+            f"llm judge {llm['model']} correctness {averages['correctness']:.2f} "
+            f"completeness {averages['completeness']:.2f} "
+            f"faithfulness {averages['faithfulness']:.2f}"
+        )
     return 0
 
 
@@ -540,6 +618,7 @@ def build_parser() -> argparse.ArgumentParser:
     ask_parser.add_argument("--lexicon", default=str(DEFAULT_LEXICON))
     ask_parser.add_argument("--sensitivity", default=sensitivity_ceiling())
     ask_parser.add_argument("--data-root", default=None)
+    ask_parser.add_argument("--llm", action="store_true", help="use the configured LLM")
     ask_parser.add_argument("--json", action="store_true")
     ask_parser.set_defaults(func=_ask)
 
@@ -573,6 +652,7 @@ def build_parser() -> argparse.ArgumentParser:
     eval_parser.add_argument("--pipeline", default=str(DEFAULT_PIPELINE))
     eval_parser.add_argument("--data-root", default=None)
     eval_parser.add_argument("--out", default=None)
+    eval_parser.add_argument("--llm", action="store_true", help="use the configured LLM")
     eval_parser.add_argument("--json", action="store_true")
     eval_parser.set_defaults(func=_eval)
 
@@ -646,6 +726,7 @@ def main(argv: list[str] | None = None) -> int:
         WatchError,
         WebError,
         KnowledgeError,
+        LLMError,
         ValueError,
         FileNotFoundError,
     ) as exc:

@@ -98,6 +98,7 @@ def load_anchors(path: Path) -> dict[str, Any]:
         "statistics": statistics,
         "jurisdiction": jurisdiction,
         "national": national,
+        "gold": data.get("gold") or {},
     }
 
 
@@ -254,6 +255,7 @@ def evaluate(
     gate_min_score: float = 0.0,
     corpus_searcher: Callable[[str], list[Any]] | None = None,
     claims_config: dict[str, Any] | None = None,
+    answer_fn: Callable[[str, list[Any]], Any] | None = None,
 ) -> dict[str, Any]:
     """Score retrieval at anchor level and check abstinence and citations."""
     rows = {row["id"]: row for row in parse_questions(questions_path)}
@@ -281,7 +283,9 @@ def evaluate(
             anchor for anchor in anchors if any(anchor_matches(hit.chunk, anchor) for hit in hits)
         ]
         evidence = select_evidence(row["question"], hits, claims_config) if claims_config else None
-        if gate is not None and not gate(row["question"]):
+        if answer_fn is not None:
+            answer = answer_fn(row["question"], hits)
+        elif gate is not None and not gate(row["question"]):
             answer = None
         elif evidence is not None and evidence["primary"] is None:
             answer = None
@@ -341,7 +345,9 @@ def evaluate(
         query = expand_query(row["question"], lexicon) if lexicon else row["question"]
         hits = searcher(row["question"]) if searcher else index.search(query, top_k=top_k)
         evidence = select_evidence(row["question"], hits, claims_config) if claims_config else None
-        if gate is not None and not gate(row["question"]):
+        if answer_fn is not None:
+            answer = answer_fn(row["question"], hits)
+        elif gate is not None and not gate(row["question"]):
             answer = None
         elif evidence is not None and evidence["primary"] is None:
             answer = None
