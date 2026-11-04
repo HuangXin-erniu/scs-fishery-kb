@@ -258,8 +258,8 @@ def test_statistics_schema() -> None:
 
 def test_questions_count() -> None:
     text = (ROOT / "docs/questions.md").read_text(encoding="utf-8")
-    assert text.count("| Q-E") == 12
-    assert text.count("| Q-M") == 12
+    assert text.count("| Q-E") == 15
+    assert text.count("| Q-M") == 18
     assert "OPS-STAT-001" not in text
     for removed in ("OPS-LOG-002", "ENV-SST-005", "ENV-CHL-006", "FCS-BULL-007", "FCS-REC-008"):
         assert removed not in text
@@ -402,8 +402,8 @@ def test_pipeline_config() -> None:
 def test_eval_config() -> None:
     config = load_yaml("configs/eval.yaml")
     assert config["schema_version"] == 1
-    assert len(config["anchors"]) == 11
-    assert len(config["abstention"]) == 4
+    assert len(config["anchors"]) == 19
+    assert len(config["abstention"]) == 8
     corpus = {source["id"] for source in load_yaml("configs/corpus.yaml")["sources"]}
     for question_id, entries in config["anchors"].items():
         assert question_id.startswith("Q-")
@@ -474,7 +474,7 @@ def test_eval_reference_section() -> None:
     assert [item["id"] for item in reference] == ["Q-E05", "Q-M04"]
     assert [item.get("collection") for item in reference] == ["cwp", "cwp"]
     assert reference[0]["docs"] == ["STD-CWP-043-catch", "STD-CWP-043-effort"]
-    assert [item["id"] for item in config["web"]] == ["Q-E08", "Q-M09"]
+    assert config["web"] == []
 
 
 def test_lexicon_config() -> None:
@@ -1005,3 +1005,18 @@ def test_eval_question_refinement_keeps_the_anchor() -> None:
 def test_closure_date_synonym_is_active() -> None:
     groups = load_yaml("configs/lexicon.yaml")["groups"]
     assert any(group["term"] == "起止日期" and "休渔时间" in group["variants"] for group in groups)
+
+
+def test_eval_gold_covers_scored_questions() -> None:
+    config = load_yaml("configs/eval.yaml")
+    gold = config["gold"]
+    scored = set(config["anchors"]) | set(config["abstention"])
+    scored |= {item["id"] for item in config["reference"]}
+    scored |= {item["id"] for item in config["statistics"]}
+    assert scored <= set(gold)
+    for question_id, entry in gold.items():
+        assert question_id.startswith("Q-")
+        if entry.get("abstain") or entry.get("deferred"):
+            continue
+        assert entry.get("points"), question_id
+        assert entry.get("evidence"), question_id

@@ -2,6 +2,14 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-04 — Evaluation v1 reviewed; per-question answer metrics added
+
+- The project owner reviewed the question set in three batches; the set now has 33 questions: 19 anchors, 8 abstention tests, 2 CWP reference questions, 2 statistics questions and 2 deferred web questions.
+- Added gold answer points and evidence anchors to `configs/eval.yaml`; rewrote Q-E03, Q-E06, Q-E09, Q-E10, Q-E12 and Q-M03, and moved M02/M06/M11 to abstention tests where no dictionary exists.
+- The eval report now carries per-question answer text, citations, refusal reason and deterministic citation-coverage/faithfulness scores. Hybrid baseline: 19/19 anchors, MRR 0.68, abstention 7/8, one false refusal, answer rate 18/19, citation resolution 1.00, citation coverage 0.99, faithfulness 1.00, P95 20 ms.
+- RAGAS is deferred until an LLM API key is configured; human correctness and completeness are not yet scored.
+- No corpus, card, note or index change.
+
 ## 2026-11-03 — Hybrid retrieve fixed; public docs aligned to the adopted baseline
 
 - Fixed `scs-fkb retrieve` under the adopted hybrid mode: `_retrieve` now passes the data root to the retriever, matching `ask`; added a CLI regression test.
