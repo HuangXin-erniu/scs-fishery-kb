@@ -402,8 +402,8 @@ def test_pipeline_config() -> None:
 def test_eval_config() -> None:
     config = load_yaml("configs/eval.yaml")
     assert config["schema_version"] == 1
-    assert len(config["anchors"]) == 19
-    assert len(config["abstention"]) == 8
+    assert len(config["anchors"]) == 31
+    assert len(config["abstention"]) == 11
     corpus = {source["id"] for source in load_yaml("configs/corpus.yaml")["sources"]}
     for question_id, entries in config["anchors"].items():
         assert question_id.startswith("Q-")
@@ -411,6 +411,57 @@ def test_eval_config() -> None:
         for entry in entries:
             assert entry["doc"] in corpus
     assert set(config["abstention"]).isdisjoint(config["anchors"])
+
+
+def test_eval_split_and_persona() -> None:
+    config = load_yaml("configs/eval.yaml")
+    meta = config["meta"]
+    assert len(meta) == 48
+    scored = set(config["anchors"]) | set(config["abstention"])
+    assert scored <= set(meta)
+    split = {question_id: item["split"] for question_id, item in meta.items()}
+    assert sum(1 for value in split.values() if value == "dev") == 33
+    assert sum(1 for value in split.values() if value == "test") == 15
+    test_ids = {question_id for question_id, value in split.items() if value == "test"}
+    assert test_ids == {
+        "Q-C01",
+        "Q-C02",
+        "Q-C03",
+        "Q-C04",
+        "Q-O01",
+        "Q-O02",
+        "Q-O03",
+        "Q-O04",
+        "Q-F01",
+        "Q-F02",
+        "Q-F03",
+        "Q-F04",
+        "Q-T01",
+        "Q-T02",
+        "Q-T03",
+    }
+    assert (
+        test_ids & {question_id for question_id, value in split.items() if value == "dev"} == set()
+    )
+    personas = {question_id: item["persona"] for question_id, item in meta.items()}
+    assert {personas[question_id] for question_id in test_ids} == {
+        "captain",
+        "owner",
+        "enforcement",
+        "extension",
+    }
+    assert sum(1 for question_id in test_ids if personas[question_id] == "captain") == 4
+    assert sum(1 for question_id in test_ids if personas[question_id] == "owner") == 4
+    assert sum(1 for question_id in test_ids if personas[question_id] == "enforcement") == 4
+    assert sum(1 for question_id in test_ids if personas[question_id] == "extension") == 3
+    assert {
+        question_id for question_id in config["anchors"] if question_id in test_ids
+    } == test_ids - {"Q-C04", "Q-O04", "Q-T03"}
+    assert {question_id for question_id in config["abstention"] if question_id in test_ids} == {
+        "Q-C04",
+        "Q-O04",
+        "Q-T03",
+    }
 
 
 def test_international_references() -> None:

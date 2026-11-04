@@ -19,8 +19,10 @@ from .stats import query as stats_query
 from .store import load_chunks
 from .text import tokenize
 
-QUESTION_ID_RE = re.compile(r"Q-[EM]\d{2}")
+QUESTION_ID_RE = re.compile(r"Q-[A-Z]\d{2}")
 DEFINITION_IDS = {"Q-E05", "Q-M04"}
+PERSONAS = frozenset({"captain", "owner", "enforcement", "extension"})
+SPLITS = frozenset({"dev", "test"})
 
 
 def parse_questions(path: Path) -> list[dict[str, Any]]:
@@ -92,6 +94,18 @@ def load_anchors(path: Path) -> dict[str, Any]:
             raise ValueError(f"malformed jurisdiction entry in {path}: {item}")
         if not item.get("docs"):
             raise ValueError(f"jurisdiction entry has no docs in {path}: {item}")
+    meta = data.get("meta") or {}
+    if not isinstance(meta, dict):
+        raise ValueError(f"meta must be a mapping in {path}")
+    for question_id, item in meta.items():
+        if not QUESTION_ID_RE.fullmatch(str(question_id)):
+            raise ValueError(f"invalid question id in meta: {question_id}")
+        if not isinstance(item, dict):
+            raise ValueError(f"meta entry is not a mapping: {question_id}")
+        if item.get("persona") not in PERSONAS:
+            raise ValueError(f"{question_id}: persona {item.get('persona')!r} is invalid")
+        if item.get("split") not in SPLITS:
+            raise ValueError(f"{question_id}: split {item.get('split')!r} is invalid")
     return {
         "anchors": anchors,
         "abstention": [str(item) for item in abstention],
@@ -101,6 +115,7 @@ def load_anchors(path: Path) -> dict[str, Any]:
         "national": national,
         "gold": data.get("gold") or {},
         "checks": data.get("checks") or {},
+        "meta": meta,
     }
 
 
@@ -227,6 +242,15 @@ def summarize(results: list[dict[str, Any]], skipped: list[str]) -> dict[str, An
     }
 
 
+def group_summary(
+    results: list[dict[str, Any]], key: str, groups: tuple[str, ...] | list[str]
+) -> dict[str, dict[str, Any]]:
+    """Summarise a result subset per split or persona without changing the flat summary."""
+    return {
+        group: summarize([row for row in results if row.get(key) == group], []) for group in groups
+    }
+
+
 def _corpus_abstains(
     question: str,
     corpus_hits: list[Any],
@@ -262,6 +286,11 @@ def evaluate(
     """Score retrieval at anchor level and check abstinence and citations."""
     rows = {row["id"]: row for row in parse_questions(questions_path)}
     config = load_anchors(anchors_path)
+    meta = config.get("meta") or {}
+    scored_ids = set(config["anchors"]) | set(config["abstention"])
+    missing_meta = sorted(question_id for question_id in scored_ids if question_id not in meta)
+    if missing_meta:
+        raise ValueError(f"missing meta for scored questions: {', '.join(missing_meta)}")
     chunks, manifest = load_chunks(data_root)
     index = BM25Index(
         chunks,
@@ -495,6 +524,25 @@ def evaluate(
     ]
     skipped_ids = [item["id"] for item in skipped]
 
+    for row in results:
+        entry = meta[row["id"]]
+        row["persona"] = entry["persona"]
+        row["split"] = entry["split"]
+
+    split_summary = group_summary(results, "split", tuple(sorted(SPLITS)))
+    persona_summary = group_summary(results, "persona", tuple(sorted(PERSONAS)))
+    gold = config.get("gold") or {}
+    checks = config.get("checks") or {}
+    coverage = coverage_report(gold, checks, results)
+    coverage["by_split"] = {}
+    for split in sorted(SPLITS):
+        ids = {row["id"] for row in results if row["split"] == split}
+        coverage["by_split"][split] = coverage_report(
+            {question_id: value for question_id, value in gold.items() if question_id in ids},
+            {question_id: value for question_id, value in checks.items() if question_id in ids},
+            [row for row in results if row["id"] in ids],
+        )
+
     return {
         "schema_version": 1,
         "index_version": manifest.get("index_version"),
@@ -510,8 +558,10 @@ def evaluate(
             **summarize_jurisdiction(jurisdiction_results),
             **summarize_national(national_results),
         },
+        "summary_split": split_summary,
+        "summary_persona": persona_summary,
         "results": results,
-        "coverage": coverage_report(config.get("gold") or {}, config.get("checks") or {}, results),
+        "coverage": coverage,
         "reference": reference_results,
         "statistics": statistics_results,
         "jurisdiction": jurisdiction_results,
