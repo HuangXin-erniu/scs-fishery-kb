@@ -1,9 +1,10 @@
 # Corpus Inventory
 
-- Status: corpus and web layers registered and indexed for this phase. 63 sources (63 acquired, 0 candidates) and 140 knowledge notes with 119 fetched cards; 28 public documents are indexed (785 chunks, index `20910f0964df`) and cards/notes live in a separate external store. The local core CSV has 3,126 rows and stays outside the public tree.
+- Status: corpus and web layers registered and indexed for this phase. 63 sources (63 acquired, 0 open candidates), schema v3 currency, and 140 knowledge notes with 119 fetched cards; 28 public documents are indexed (785 chunks, index `20910f0964df`) and cards/notes live in a separate external store. The local core CSV has 3,126 rows and stays outside the public tree.
 - Register: [configs/corpus.yaml](../configs/corpus.yaml)
+- Candidate register: [configs/candidates.yaml](../configs/candidates.yaml)
 - Indicator schema: [configs/statistics.yaml](../configs/statistics.yaml)
-- Date: 2026-11-03
+- Date: 2026-11-04
 
 ## 1. Purpose and scope
 
@@ -21,7 +22,7 @@ It does **not** include raw environmental grids, reanalysis data, forecast raste
 
 ## 2a. Registry fields
 
-Every entry carries schema v2 fields: `level` (national, provincial, municipal or international), `authority_tier` (A publisher page, B gazette or compilation, C municipal), `source_class` (normative, official_statistics, standard or reference), `currency` (as-of date, basis and review date), `retrieval` (channel and whether the text is parseable) and `lifecycle` (active or retired). The field table and the admission, retirement and deletion rules are in [data-model.md](data-model.md); `src/scs_fkb/registry.py` enforces them in CI.
+Every entry carries schema v3 fields: `level` (national, provincial, municipal or international), `authority_tier` (A publisher page, B gazette or compilation, C municipal), `source_class` (normative, official_statistics, standard or reference), `license` and `sensitivity` (checked against the schema allowlist), `currency` (as-of date, basis, review date and review `cadence`), `retrieval` (channel and whether the text is parseable) and `lifecycle` (active or retired). Candidates are separate: a proposed page lives in `configs/candidates.yaml` with an `open`/`accepted`/`rejected`/`expired` status and is never ingested or cited before acceptance. The field table and the admission, retirement and deletion rules are in [data-model.md](data-model.md); `src/scs_fkb/registry.py` and `src/scs_fkb/candidates.py` enforce them, and `scs-fkb sources check` gates CI.
 
 ## 3. Types
 

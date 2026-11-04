@@ -34,7 +34,7 @@ Tier C never substitutes for a missing provincial or national document. When the
 
 A newer version supersedes an older one but never deletes it: the register keeps the older entry with its date and the newer entry records what it replaces. Answers cite the version actually used. A page marked 已修改 is not registered as current, which is why the Hainan 2008 page stayed out while the in-force 2013 revision entered.
 
-## 6. The watch workflow
+## 6. The watch and candidate workflow
 
 [configs/source-watch.yaml](../configs/source-watch.yaml) lists a curated set of authoritative pages with a tier, a publisher and an expected cadence. The national closure notice, the 2026 enforcement notice, the 2017 hull evaluation notice and the 2024 parameter-series page are seeded with recorded hashes, so their next change reports as changed. `scs-fkb watch` reads them, compares the body hash and the caching headers against the recorded baseline and writes a local report; `--offline` replays the recorded statuses without opening a socket.
 
@@ -44,13 +44,31 @@ The coverage rule is enforced in code: every active acquired national or provinc
 
 The checker is read-only by design. It never downloads a document into the register, never edits `configs/corpus.yaml` and never changes a collection. A change in the report is a prompt: the operator reviews the page, and if it is worth registering, the normal flow applies — decision, contract, download, hash, register, test.
 
+### 6.1 Candidate admission
+
+A change report does not become a source by itself. `scs-fkb watch --propose` turns every `changed` or `unbaselined` entry into a proposal carrying `watch_ref`, `first_seen` and an `expires_at` 180 days out. The proposal is written to the watch report only; both `configs/corpus.yaml` and `configs/candidates.yaml` stay byte-identical.
+
+The proposal is reviewed as a **candidate** in [configs/candidates.yaml](../configs/candidates.yaml):
+
+| Field | Rule |
+|---|---|
+| `id` | `CAND-YYYY-NNN`, unique |
+| `url` | `http://` or `https://`, unique after trailing-slash normalisation |
+| `reason` | `changed`, `gap`, `new` or `supersede` |
+| `status` | `open`, `accepted`, `rejected` or `expired` |
+| `accepted` | must name the registered `source_id` |
+| `rejected` | must carry a `note` explaining why |
+| `expires_at` | defaults to `first_seen + 180 days`; open past it is reported expired |
+
+An open candidate is reported as due after 90 days. `scs-fkb sources check` fails when an active source is past `review_due` plus a 30-day grace, when a candidate is malformed or expired, or when an accepted candidate names a source that is not in the register. `scs-fkb sources candidates` lists the queue. Nothing is ingested automatically: acceptance still requires the decision, the download, the hash and the register entry, and only then does the source become citable.
+
 ## 7. Why the answer path is not allowed to fetch
 
 Answers must be reproducible from a fixed index, citable to a specific document version and checkable against the recorded hash. A live fetch would break all three, and it would also bypass the licence check. External retrieval therefore belongs to discovery, verification and monitoring, not to answering.
 
 ## 8. The register schema
 
-Fields, enums and lifecycle rules are defined in [data-model.md](data-model.md). In short: level separates the national basis from provincial, municipal and international material; authority tier records whether the page is the publisher's own; source_class records what kind of source it is; currency records when it was last checked and when it must be checked again; retrieval records whether the text is actually reachable; lifecycle separates active from retired. Nothing is assumed current: the review date is the contract.
+Fields, enums and lifecycle rules are defined in [data-model.md](data-model.md). In short: level separates the national basis from provincial, municipal and international material; authority tier records whether the page is the publisher's own; source_class records what kind of source it is; currency records when it was last checked, when it must be checked again, and the cadence that bounds that date; licence and sensitivity are checked against the schema allowlist; retrieval records whether the text is actually reachable; lifecycle separates active from retired. Nothing is assumed current: the review date is the contract, and `sources check` enforces it.
 
 ## 9. National currency table
 
@@ -72,7 +90,7 @@ Fields, enums and lifecycle rules are defined in [data-model.md](data-model.md).
 | `POL-LIST-079` | current | 2026-11-02 | The next annual catalogue of rules in force |
 | `POL-PEN-080` | in force | 2026-11-02 | A new revision of the general penalty rules |
 
-The watch report now also lists entries and cards whose review date has arrived: `currency.review_due` for register entries and `fetched_at` plus the topic cadence for cards. The next quarterly review is **2027-02-02**. A watch entry that reports `changed` is a prompt to review the page, not an automatic update: the operator checks the page, decides whether the register needs a new entry or a currency update, and records the decision.
+The watch report now also lists entries and cards whose review date has arrived: `currency.review_due` for register entries and `fetched_at` plus the topic cadence for cards. The next quarterly review is **2027-02-02**. A watch entry that reports `changed` is a prompt to review the page, not an automatic update: the operator checks the page, decides whether the register needs a new entry or a currency update, and records the decision. `scs-fkb sources check` adds the hard gate: it fails when an active source is more than 30 days past `review_due`, when a candidate is malformed or expired, or when an accepted candidate points at a missing source. It runs in `make check` and in CI; `--today` makes the result reproducible.
 
 ## 10. References
 
@@ -98,10 +116,10 @@ The seeded cards are four WoRMS taxonomy cards for South China Sea species, one 
 
 ## Operating rhythm
 
-- **Weekly**: run `scs-fkb watch --offline` to list due corpus entries and cards; online runs when a check matters.
-- **Monthly**: run `scs-fkb web refresh` for topics whose cards are due, then rebuild only if the batch is adopted.
-- **Quarterly**: full review on **2027-02-02**; the next cycle's review dates are set from the outcome.
-- A due item is a prompt. Nothing refreshes, rebuilds or changes an answer by itself.
+- **Weekly**: run `scs-fkb watch --offline` to list due corpus entries and cards; online runs when a check matters. If the report shows `changed` or `unbaselined`, run `watch --propose` and review the candidate queue; nothing is registered automatically.
+- **Monthly**: run `scs-fkb sources check` and `sources candidates`, refresh cards whose topic is due, and rebuild only if the batch is adopted.
+- **Quarterly**: full review on **2027-02-02**; update `as_of`, `review_due` and `cadence` from the outcome, and resolve every open candidate.
+- A due item is a prompt. Nothing refreshes, rebuilds or changes an answer by itself; a candidate is not evidence until it is accepted, downloaded, hashed and registered.
 
 ## Product-manual probe (2026-11-03)
 

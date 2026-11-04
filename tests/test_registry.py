@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from datetime import date
 from pathlib import Path
 
 import pytest
@@ -7,6 +8,7 @@ import yaml
 
 from scs_fkb.registry import (
     RegistryError,
+    check_currency,
     load_registry,
     select,
     validate_watch_coverage,
@@ -25,9 +27,12 @@ def _entry(**overrides):
             "as_of": "2026-11-03",
             "basis": "publication",
             "review_due": "2026-12-03",
+            "cadence": "monthly",
         },
         "retrieval": {"channel": "collection", "parseable": True, "note": "registered"},
         "lifecycle": "active",
+        "license": "public",
+        "sensitivity": "public",
     }
     entry.update(overrides)
     return entry
@@ -132,10 +137,93 @@ def test_select_filters_by_level_and_channel() -> None:
 def test_reference_class_is_accepted(tmp_path: Path) -> None:
     entry = _entry(
         source_class="reference",
-        currency={"as_of": "2026-11-03", "basis": "retrieval", "review_due": "2027-05-02"},
+        currency={
+            "as_of": "2026-11-03",
+            "basis": "retrieval",
+            "review_due": "2027-05-02",
+            "cadence": "semiannual",
+        },
     )
     registry = load_registry(_write(tmp_path, [entry]))
     assert registry["POL-TEST-001"]["source_class"] == "reference"
+
+
+def test_missing_cadence_is_rejected(tmp_path: Path) -> None:
+    entry = _entry()
+    del entry["currency"]["cadence"]
+    with pytest.raises(RegistryError, match="currency.cadence"):
+        load_registry(_write(tmp_path, [entry]))
+
+
+def test_unknown_cadence_is_rejected(tmp_path: Path) -> None:
+    entry = _entry(currency={**_entry()["currency"], "cadence": "sometimes"})
+    with pytest.raises(RegistryError, match="currency.cadence"):
+        load_registry(_write(tmp_path, [entry]))
+
+
+def test_review_due_beyond_cadence_cap_is_rejected(tmp_path: Path) -> None:
+    entry = _entry(
+        currency={
+            "as_of": "2026-11-03",
+            "basis": "publication",
+            "review_due": "2027-01-03",
+            "cadence": "monthly",
+        }
+    )
+    with pytest.raises(RegistryError, match="beyond the 60-day cap"):
+        load_registry(_write(tmp_path, [entry]))
+
+
+def test_review_due_at_cadence_cap_is_accepted(tmp_path: Path) -> None:
+    entry = _entry(
+        currency={
+            "as_of": "2026-11-03",
+            "basis": "publication",
+            "review_due": "2027-01-02",
+            "cadence": "monthly",
+        }
+    )
+    assert (
+        load_registry(_write(tmp_path, [entry]))["POL-TEST-001"]["currency"]["cadence"] == "monthly"
+    )
+
+
+def test_tier_c_requires_municipal(tmp_path: Path) -> None:
+    with pytest.raises(RegistryError, match="authority_tier C requires level municipal"):
+        load_registry(_write(tmp_path, [_entry(authority_tier="C")]))
+
+
+def test_municipal_source_cannot_be_tier_a(tmp_path: Path) -> None:
+    with pytest.raises(RegistryError, match="cannot be municipal"):
+        load_registry(_write(tmp_path, [_entry(level="municipal")]))
+
+
+def test_unknown_license_is_rejected(tmp_path: Path) -> None:
+    with pytest.raises(RegistryError, match="license"):
+        load_registry(_write(tmp_path, [_entry(license="all-rights-reserved")]))
+
+
+def test_unknown_sensitivity_is_rejected(tmp_path: Path) -> None:
+    with pytest.raises(RegistryError, match="sensitivity"):
+        load_registry(_write(tmp_path, [_entry(sensitivity="secret")]))
+
+
+def test_check_currency_grace_boundary() -> None:
+    registry = {"A": _entry()}
+    assert check_currency(registry, today=date(2027, 1, 2), grace_days=30)["overdue"] == []
+    late = check_currency(registry, today=date(2027, 1, 3), grace_days=30)
+    assert [row["id"] for row in late["overdue"]] == ["A"]
+    assert late["overdue"][0]["days_overdue"] == 31
+
+
+def test_check_currency_skips_retired_sources() -> None:
+    registry = {
+        "A": _entry(
+            lifecycle="retired",
+            retirement={"date": "2026-11-01", "reason": "superseded", "decision_key": "D-TEST"},
+        )
+    }
+    assert check_currency(registry, today=date(2027, 1, 3))["overdue"] == []
 
 
 def _watched(**overrides):

@@ -90,6 +90,7 @@ sources:
     as_of: '2026-11-03'
     basis: publication
     review_due: '2026-12-03'
+    cadence: monthly
     note: "The 2025 revision took effect on 2026-05-01; it is the legal basis the 2026 closure notices cite."
   watch_note: Static official file; no change feed. Rechecked at the quarterly review.
 - id: POL-STD-010
@@ -122,6 +123,7 @@ sources:
     as_of: '2026-11-03'
     basis: publication
     review_due: '2026-12-03'
+    cadence: monthly
     note: "The 2022 revision is the latest order found; no 2026 revision was found, and alignment with the new Fisheries Law is still to watch. Announcement No. 950 (2025-09-24) also lists the fishing-permit regulation among the rules in force."
   watch_note: Static publisher text; no change feed. Rechecked at the quarterly review against the in-force catalogue.
 - id: POL-CLOS-015
@@ -154,6 +156,7 @@ sources:
     as_of: '2026-11-03'
     basis: publication
     review_due: '2026-12-03'
+    cadence: monthly
     note: "The 2026 Hainan and Guangxi closure notices both cite 农业农村部通告〔2023〕1号, so the 2023 adjustment remains the system basis; it replaced the 2021 notice, which is not registered."
   watch_ref: WATCH-MOA-CLOSURE-2023
 - id: POL-RULE-018
@@ -186,6 +189,7 @@ sources:
     as_of: '2026-11-03'
     basis: publication
     review_due: '2026-12-03'
+    cadence: monthly
     note: "The 2020 second revision is still marked in force; alignment with the 2025 Fisheries Law is still to watch."
   watch_note: Static official file; no change feed. Rechecked at the quarterly review.
 - id: POL-RULE-019
@@ -218,6 +222,7 @@ sources:
     as_of: '2026-11-03'
     basis: publication
     review_due: '2026-12-03'
+    cadence: monthly
     note: "Source note records 国务院令第383号; adopted 2003-06-11, effective 2003-08-01. 40 articles."
   watch_note: Static official file; no change feed. Rechecked at the quarterly review.
 - id: POL-RULE-020
@@ -250,6 +255,7 @@ sources:
     as_of: '2026-11-03'
     basis: publication
     review_due: '2026-12-03'
+    cadence: monthly
     note: "Source note records Approved 1988-10-09, issued 1988-10-31 as 农业部、财政部、国家物价局令第1号; revised 2011-01-08; effective 1989-01-01. 18 articles."
   watch_note: Static official file; no change feed. Rechecked at the quarterly review.
 - id: POL-GD-021
@@ -282,6 +288,7 @@ sources:
     as_of: '2026-11-03'
     basis: publication
     review_due: '2026-12-03'
+    cadence: monthly
     note: "Source note records Adopted 2003-07-25; amended 2012-07-26, 2015-12-30 and 2019-09-25; effective 2003-09-01. 47 articles."
   watch_note: Static official file; no change feed. Rechecked at the quarterly review.
 - id: POL-GD-022
@@ -314,6 +321,7 @@ sources:
     as_of: '2026-11-03'
     basis: publication
     review_due: '2026-12-03'
+    cadence: monthly
     note: "Source note records Adopted 2011-09-29; amended 2019-01-16 and 2020-09-29; effective 2011-12-01. 44 articles."
   watch_note: Static official file; no change feed. Rechecked at the quarterly review.
 - id: POL-GX-023
@@ -346,6 +354,7 @@ sources:
     as_of: '2026-11-03'
     basis: publication
     review_due: '2026-12-03'
+    cadence: monthly
     note: "Source note records Adopted 1989-09-16; amended 2004-06-03; revised 2010-03-31; amended again 2016-03-31; effective 2010-05-01. 48 articles."
   watch_note: Static official file; no change feed. Rechecked at the quarterly review.
 - id: POL-GX-024
@@ -378,6 +387,7 @@ sources:
     as_of: '2026-11-03'
     basis: publication
     review_due: '2026-12-03'
+    cadence: monthly
     note: "Source note records Adopted 2001-09-28; amended 2004-07-31, 2010-09-29 and 2024-11-28; effective 2002-01-01. 37 articles."
   watch_note: Static official file; no change feed. Rechecked at the quarterly review.
 - id: POL-FJ-025
@@ -410,6 +420,7 @@ sources:
     as_of: '2026-11-03'
     basis: publication
     review_due: '2026-12-03'
+    cadence: monthly
     note: "Source note records Adopted 1989-03-10; amended 1993-03-07, 1997-10-25 and 2002-03-28; revised 2007-03-28; amended 2012-03-29, 2016-04-01 and 2019-11-27; effective 2007-05-01. Five chapters, 61 articles."
   watch_note: Static official file; no change feed. Rechecked at the quarterly review.
 - id: POL-FJ-026
@@ -442,6 +453,7 @@ sources:
     as_of: '2026-11-03'
     basis: publication
     review_due: '2026-12-03'
+    cadence: monthly
     note: "Source note records Adopted 2004-06-02; amended 2010-09-30; effective 2004-09-01. Seven chapters, 46 articles. Covers the fishing-port definition, port planning and the fishing-vessel register."
   watch_note: Static official file; no change feed. Rechecked at the quarterly review.
 - id: POL-GEAR-016
@@ -474,6 +486,7 @@ sources:
     as_of: '2026-11-03'
     basis: publication
     review_due: '2026-12-03'
+    cadence: monthly
     note: "Source note records Establishes the minimum-mesh system for permitted and transitional marine capture gear, in force from 2014-06-01 across the Huanghai-Bohai, East China and South China Sea areas; repeals the 2003 notice. Annexes 1, 2 a..."
   watch_ref: WATCH-MOA-YYJ-NOTICES
 - id: POL-SPEC-041
@@ -506,6 +519,7 @@ sources:
     as_of: '2026-11-03'
     basis: publication
     review_due: '2026-12-03'
+    cadence: monthly
     note: "Current for the 2026 closure season; it arranges special permits under the 2023 notice."
   watch_note: Static official file; no change feed. Rechecked at the quarterly review.
 - id: POL-ENF-068
@@ -538,6 +552,7 @@ sources:
     as_of: '2026-11-03'
     basis: publication
     review_due: '2026-12-03'
+    cadence: monthly
     note: "Current for the 2026 season; the page is the ministry publication of 2026-04-29."
   watch_ref: WATCH-MOA-ENFORCE-2026
 - id: STD-HULL-069
@@ -570,6 +585,7 @@ sources:
     as_of: '2026-11-03'
     basis: publication
     review_due: '2027-02-01'
+    cadence: quarterly
     note: "No replacement notice was found; the method it promulgates is still the basis the provincial catalogs cite."
   watch_note: Static publisher text; no change feed. Rechecked at the quarterly review against the in-force catalogue.
 - id: STD-HULL-070
@@ -602,6 +618,7 @@ sources:
     as_of: '2026-11-03'
     basis: publication
     review_due: '2027-02-01'
+    cadence: quarterly
     note: "Published with the 2017 method and not replaced."
   watch_note: Static official file; no change feed. Rechecked at the quarterly review.
 - id: STD-YY-071
@@ -634,6 +651,7 @@ sources:
     as_of: '2026-11-03'
     basis: publication
     review_due: '2027-02-01'
+    cadence: quarterly
     note: "Effective 2024-12-01 and the current edition; it replaces the 2021 edition (农办渔〔2021〕15号), which is not registered. The 2018 edition was published in 农业农村部公报 2018 年第 11 期 (http://www.moa.gov.cn/nybgb/2018/201811/201901/t20190102_6165927.htm) and sits as the named predecessor in the chain, not as a registered source."
   watch_note: Static official file; no change feed. Rechecked at the quarterly review.
 - id: POL-OBS-072
@@ -666,6 +684,7 @@ sources:
     as_of: '2026-11-03'
     basis: publication
     review_due: '2026-12-03'
+    cadence: monthly
     note: "The 2023-07-20 revision is the text published by the national administrative regulations database."
   watch_ref: WATCH-MOJ-OBSERVATION
 - id: STAT-ECO-073
@@ -698,6 +717,7 @@ sources:
     as_of: '2026-11-03'
     basis: publication
     review_due: '2026-12-03'
+    cadence: monthly
     note: "Published 2026-06-08 and the latest edition on the official bulletin list."
   watch_note: Static official file; no change feed. Rechecked at the quarterly review.
 - id: STAT-DIS-074
@@ -730,6 +750,7 @@ sources:
     as_of: '2026-11-03'
     basis: publication
     review_due: '2026-12-03'
+    cadence: monthly
     note: "Latest published edition (2024-04-22); no 2024 bulletin was found on the official list."
   watch_note: Static official file; no change feed. Rechecked at the quarterly review.
 - id: POL-RES-075
@@ -762,6 +783,7 @@ sources:
     as_of: '2026-11-03'
     basis: publication
     review_due: '2026-12-03'
+    cadence: monthly
     note: "Listed among the ministry rules in force in the 2025-09 catalogue; no repeal found. Announcement No. 950 (2025-09-24) also lists this regulation among the rules in force."
   watch_ref: WATCH-GOV-RES-075
 - id: STD-SPEC-076
@@ -794,6 +816,7 @@ sources:
     as_of: '2026-11-03'
     basis: publication
     review_due: '2026-12-03'
+    cadence: monthly
     note: "Announced 2021-02-05 and effective on publication; no replacement list found."
   watch_note: Static official file; no change feed. Rechecked at the quarterly review.
 - id: POL-PORT-077
@@ -826,6 +849,7 @@ sources:
     as_of: '2026-11-03'
     basis: publication
     review_due: '2026-12-03'
+    cadence: monthly
     note: "The 2019-03-02 amendment is the text published in the State Council gazette."
   watch_ref: WATCH-GOV-PORT-077
 - id: POL-PEN-078
@@ -858,6 +882,7 @@ sources:
     as_of: '2026-11-03'
     basis: publication
     review_due: '2026-12-03'
+    cadence: monthly
     note: "The 2025-07-15 revision is the text published on the ministry rule page. Announcement No. 950 (2025-09-24) also lists this regulation among the rules in force."
   watch_note: Static publisher text; no change feed. Rechecked at the quarterly review against the in-force catalogue.
 - id: POL-LIST-079
@@ -890,6 +915,7 @@ sources:
     as_of: '2026-11-03'
     basis: publication
     review_due: '2026-12-03'
+    cadence: monthly
     note: "Published 2025-09-24 and the current catalogue of ministry rules in force."
   watch_note: Static publisher text; no change feed. Rechecked at the quarterly review against the in-force catalogue.
 - id: POL-PEN-080
@@ -922,6 +948,7 @@ sources:
     as_of: '2026-11-03'
     basis: publication
     review_due: '2026-12-03'
+    cadence: monthly
     note: "The consolidated text carries the 2025-07-15 revision (农业农村部令2025年第3号) on the ministry rule page."
   watch_note: Static publisher text; no change feed. Rechecked at the quarterly review against the in-force catalogue.
 - id: POL-WATCH-082
@@ -954,6 +981,7 @@ sources:
     as_of: '2026-11-03'
     basis: publication
     review_due: '2027-02-01'
+    cadence: quarterly
     note: "Announcement No. 950 (2025-09-24) lists 渔业船舶航行值班准则（试行） among the ministry rules in force."
   watch_ref: WATCH-MOA-YYJ-NOTICES
 - id: POL-GEAR-033
@@ -986,6 +1014,7 @@ sources:
     as_of: '2026-11-03'
     basis: publication
     review_due: '2027-02-01'
+    cadence: quarterly
     note: "Source note records Annex 1 to the 2013 minimum-mesh notice (POL-GEAR-016), in force from 2014-06-01. Table of minimum mesh or codend sizes for permitted marine capture gear, by sea area (Huanghai-Bohai, East China Sea, South China Sea i..."
   watch_note: Static official file; no change feed. Rechecked at the quarterly review.
 - id: POL-GEAR-034
@@ -1018,6 +1047,7 @@ sources:
     as_of: '2026-11-03'
     basis: publication
     review_due: '2027-02-01'
+    cadence: quarterly
     note: "Source note records Annex 2 to the 2013 minimum-mesh notice (POL-GEAR-016), in force from 2014-06-01. Table of minimum mesh or codend sizes for transitional marine capture gear, by sea area, gear class (trawl, gillnet, purse seine, stow ..."
   watch_note: Static official file; no change feed. Rechecked at the quarterly review.
 - id: OPS-STD-035
@@ -1050,6 +1080,7 @@ sources:
     as_of: '2026-11-03'
     basis: publication
     review_due: '2027-02-01'
+    cadence: quarterly
     note: "Source note records Aquaculture-industry standard, effective 2026-05-01. Defines marine capture information, sample vessels and collectors; covers stratified vessel sampling, monthly information survey, data quality control, statistical ..."
   watch_note: Static official file; no change feed. Rechecked at the quarterly review.
 - id: OPS-STD-039
@@ -1082,6 +1113,7 @@ sources:
     as_of: '2026-11-03'
     basis: publication
     review_due: '2027-02-01'
+    cadence: quarterly
     note: "Source note records National standard for fishing-gear classification, naming and codes, effective 2026-09-01 and replacing GB/T 5147—2003. It is the classification reference cited by SC/T 9460—2025 and the basis for mapping the yearbook..."
   watch_note: Static official file; no change feed. Rechecked at the quarterly review.
 - id: POL-STAT-050
@@ -1114,6 +1146,7 @@ sources:
     as_of: '2026-11-03'
     basis: publication
     review_due: '2026-12-03'
+    cadence: monthly
     note: "The text states 本规定自发布之日起施行 (Article 28)."
   watch_note: Static publisher text; no change feed. Rechecked at the quarterly review against the in-force catalogue.
 - id: POL-STAT-051
@@ -1146,6 +1179,7 @@ sources:
     as_of: '2026-11-03'
     basis: publication
     review_due: '2026-12-03'
+    cadence: monthly
     note: "Approved as 国统制〔2024〕120号; the registered text is the 2024 survey system."
   watch_note: Static publisher text; no change feed. Rechecked at the quarterly review against the in-force catalogue.
 - id: POL-VMS-053
@@ -1178,6 +1212,7 @@ sources:
     as_of: '2026-11-03'
     basis: publication
     review_due: '2026-12-03'
+    cadence: monthly
     note: "农渔发〔2019〕22号 (2019-08-01); Article 32 states 本办法自2020年1月1日起执行, and the 2014 predecessor is repealed."
   watch_note: Static publisher text; no change feed. Rechecked at the quarterly review against the in-force catalogue.
 - id: STD-ECERT-054
@@ -1210,6 +1245,7 @@ sources:
     as_of: '2026-11-03'
     basis: publication
     review_due: '2027-02-01'
+    cadence: quarterly
     note: "The three certificate standards were published on 2025-01-01 (C 0402—2024, C 0403—2024, C 0374—2024)."
   watch_note: Static publisher text; no change feed. Rechecked at the quarterly review against the in-force catalogue.
 - id: STD-CWP-043
@@ -1242,6 +1278,7 @@ sources:
     as_of: '2026-11-03'
     basis: publication
     review_due: '2027-02-01'
+    cadence: quarterly
 - id: STAT-CSY-027
   title: 中国统计年鉴 2026（Excel）
   title_zh: 中国统计年鉴 2026（Excel）
@@ -1272,6 +1309,7 @@ sources:
     as_of: '2026-11-03'
     basis: edition
     review_due: '2027-11-03'
+    cadence: annual
   watch_note: Internal data edition; not a web page to monitor.
 - id: DICT-STAT-013
   title: 渔业统计指标解释（2024中国渔业统计年鉴附录3）
@@ -1303,6 +1341,7 @@ sources:
     as_of: '2026-11-03'
     basis: retrieval
     review_due: '2027-05-02'
+    cadence: semiannual
   watch_note: Static official file; no change feed. Rechecked at the quarterly review.
 - id: DICT-STAT-040
   title: 中国统计年鉴2025主要统计指标解释（农业）
@@ -1334,6 +1373,7 @@ sources:
     as_of: '2026-11-03'
     basis: retrieval
     review_due: '2027-05-02'
+    cadence: semiannual
     note: "Source note records National statistical definition - water-product output is the final effective output of capture and culture, covering marine and freshwater fish, crustaceans, shellfish, cephalopods, algae and other products; the data ..."
   watch_note: Static official file; no change feed. Rechecked at the quarterly review.
 - id: STAT-YB-2018
@@ -1366,6 +1406,7 @@ sources:
     as_of: '2026-11-03'
     basis: edition
     review_due: '2027-11-03'
+    cadence: annual
   watch_note: Internal data edition; not a web page to monitor.
 - id: STAT-YB-2019
   type: statistical_yearbook
@@ -1397,6 +1438,7 @@ sources:
     as_of: '2026-11-03'
     basis: edition
     review_due: '2027-11-03'
+    cadence: annual
   watch_note: Internal data edition; not a web page to monitor.
 - id: STAT-YB-2020
   type: statistical_yearbook
@@ -1428,6 +1470,7 @@ sources:
     as_of: '2026-11-03'
     basis: edition
     review_due: '2027-11-03'
+    cadence: annual
   watch_note: Internal data edition; not a web page to monitor.
 - id: STAT-YB-2021
   type: statistical_yearbook
@@ -1459,6 +1502,7 @@ sources:
     as_of: '2026-11-03'
     basis: edition
     review_due: '2027-11-03'
+    cadence: annual
   watch_note: Internal data edition; not a web page to monitor.
 - id: STAT-YB-2022
   type: statistical_yearbook
@@ -1490,6 +1534,7 @@ sources:
     as_of: '2026-11-03'
     basis: edition
     review_due: '2027-11-03'
+    cadence: annual
   watch_note: Internal data edition; not a web page to monitor.
 - id: STAT-YB-2023
   type: statistical_yearbook
@@ -1521,6 +1566,7 @@ sources:
     as_of: '2026-11-03'
     basis: edition
     review_due: '2027-11-03'
+    cadence: annual
   watch_note: Internal data edition; not a web page to monitor.
 - id: STAT-YB-2024
   type: statistical_yearbook
@@ -1552,6 +1598,7 @@ sources:
     as_of: '2026-11-03'
     basis: edition
     review_due: '2027-11-03'
+    cadence: annual
   watch_note: Internal data edition; not a web page to monitor.
 - id: STAT-YB-2025
   type: statistical_yearbook
@@ -1583,6 +1630,7 @@ sources:
     as_of: '2026-11-03'
     basis: edition
     review_due: '2027-11-03'
+    cadence: annual
   watch_note: Internal data edition; not a web page to monitor.
 - id: STAT-YB-2026
   type: statistical_yearbook
@@ -1614,6 +1662,7 @@ sources:
     as_of: '2026-11-03'
     basis: edition
     review_due: '2027-11-03'
+    cadence: annual
   watch_note: Internal data edition; not a web page to monitor.
 - id: POL-CREW-055
   type: regulation
@@ -1645,6 +1694,7 @@ sources:
     as_of: '2026-11-03'
     basis: publication
     review_due: '2026-12-03'
+    cadence: monthly
     note: "Announcement No. 950 (2025-09-24) lists the fisheries crew measures among the ministry rules in force."
   watch_note: Static publisher text; no change feed. Rechecked at the quarterly review against the in-force catalogue.
 - id: POL-HN-058
@@ -1677,6 +1727,7 @@ sources:
     as_of: '2026-11-03'
     basis: publication
     review_due: '2026-12-03'
+    cadence: monthly
     note: "The text states 自2014年1月1日起施行; the portal page also marks the text 有效."
   watch_note: Static publisher text; no change feed. Rechecked at the quarterly review against the in-force catalogue.
 - id: POL-HN-059
@@ -1709,6 +1760,7 @@ sources:
     as_of: '2026-11-03'
     basis: publication
     review_due: '2026-12-03'
+    cadence: monthly
     note: "Published 2026-04-24 as the 2026 provincial implementation; applies to the 2026 closure season."
   watch_note: Static publisher text; no change feed. Rechecked at the quarterly review against the in-force catalogue.
 - id: POL-GX-060
@@ -1741,6 +1793,7 @@ sources:
     as_of: '2026-11-03'
     basis: publication
     review_due: '2026-12-03'
+    cadence: monthly
     note: "Published 2026-04-22 as the 2026 provincial implementation; applies to the 2026 closure season."
   watch_note: Static publisher text; no change feed. Rechecked at the quarterly review against the in-force catalogue.
 - id: POL-GD-061
@@ -1773,6 +1826,7 @@ sources:
     as_of: '2026-11-03'
     basis: publication
     review_due: '2026-12-03'
+    cadence: monthly
     note: "Published 2026-04-28 by the Shantou agriculture bureau; applies to the 2026 closure season."
 - id: STD-HULL-062
   type: standard
@@ -1804,6 +1858,7 @@ sources:
     as_of: '2026-11-03'
     basis: publication
     review_due: '2027-02-01'
+    cadence: quarterly
     note: "The 2017 method is not replaced; provincial catalogs still cite 农办渔〔2017〕5号 as their basis."
   watch_note: Static official file; no change feed. Rechecked at the quarterly review.
 - id: POL-FJ-063
@@ -1836,6 +1891,7 @@ sources:
     as_of: '2026-11-03'
     basis: publication
     review_due: '2026-12-03'
+    cadence: monthly
     note: "The notice page marks 有 效 性： 有效 (published 2025-01-17)."
   watch_note: Static publisher text; no change feed. Rechecked at the quarterly review against the in-force catalogue.
 - id: STD-FJ-064
@@ -1868,6 +1924,7 @@ sources:
     as_of: '2026-11-03'
     basis: publication
     review_due: '2027-02-01'
+    cadence: quarterly
     note: "Attachment published by 闽海渔〔2025〕4号, whose page marks 有效; no successor catalog found."
   watch_note: Static official file; no change feed. Rechecked at the quarterly review.
 - id: STD-FJ-065
@@ -1900,6 +1957,7 @@ sources:
     as_of: '2026-11-03'
     basis: publication
     review_due: '2027-02-01'
+    cadence: quarterly
     note: "Attachment published by 闽海渔〔2025〕4号, whose page marks 有效; no successor catalog found."
   watch_note: Static official file; no change feed. Rechecked at the quarterly review.
 - id: STD-FJ-066
@@ -1932,6 +1990,7 @@ sources:
     as_of: '2026-11-03'
     basis: publication
     review_due: '2027-02-01'
+    cadence: quarterly
     note: "Attachment published by 闽海渔〔2025〕4号, whose page marks 有效; no successor catalog found."
   watch_note: Static official file; no change feed. Rechecked at the quarterly review.
 - id: STD-GD-064
@@ -1964,6 +2023,7 @@ sources:
     as_of: '2026-11-03'
     basis: publication
     review_due: '2027-02-01'
+    cadence: quarterly
     note: "Published with the 2020-07-10 announcement; no later Guangdong batch was found."
   watch_note: Static publisher text; no change feed. Rechecked at the quarterly review against the in-force catalogue.
 - id: STD-GD-065
@@ -1996,6 +2056,7 @@ sources:
     as_of: '2026-11-03'
     basis: publication
     review_due: '2027-02-01'
+    cadence: quarterly
     note: "Published with the 2021-03-04 announcement; the latest Guangdong batch found."
   watch_note: Static publisher text; no change feed. Rechecked at the quarterly review against the in-force catalogue.
 - id: STD-HN-066
@@ -2028,6 +2089,7 @@ sources:
     as_of: '2026-11-03'
     basis: publication
     review_due: '2027-02-01'
+    cadence: quarterly
     note: "Published with the 2019-03-28 announcement; no later Hainan catalog was found."
   watch_note: Static publisher text; no change feed. Rechecked at the quarterly review against the in-force catalogue.
 - id: STD-HN-067
@@ -2060,6 +2122,7 @@ sources:
     as_of: '2026-11-03'
     basis: publication
     review_due: '2027-02-01'
+    cadence: quarterly
     note: "Published with the 2019-03-28 announcement; no later Hainan catalog was found."
   watch_note: Static publisher text; no change feed. Rechecked at the quarterly review against the in-force catalogue.
 gaps:

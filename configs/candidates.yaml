@@ -1,0 +1,7 @@
+# Candidate register. A candidate is a proposal, not a source: nothing here is
+# ingested, indexed or citable until it is accepted and registered in corpus.yaml.
+# The lifecycle and the no-auto-ingest rule are defined in docs/sources.md.
+
+schema_version: 1
+updated_at: '2026-11-04'
+candidates: []

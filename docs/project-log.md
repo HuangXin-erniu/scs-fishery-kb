@@ -2,6 +2,14 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-04 — Source currency gate and candidate admission queue
+
+- Source schema moves to v3: `currency.cadence` is required and bounds `review_due - as_of` (monthly 60 days, quarterly 150, semiannual 240, annual/edition 400, weekly 21, daily 3, irregular 180, static 550). The 63 registered sources were migrated by class — normative monthly, standard quarterly, official_statistics annual, reference semiannual — with hashes, dates, locations and statuses unchanged.
+- `license` and `sensitivity` are now checked against the allowlist in `configs/schema.yaml`; tier and level must agree (C municipal only, A/B never municipal). `cc-by-nc-sa-3.0-igo` is an accepted public licence.
+- Added `configs/candidates.yaml` and `src/scs_fkb/candidates.py`: a candidate is a proposal with `open`/`accepted`/`rejected`/`expired` status, a 90-day due mark, a 180-day expiry, a required `source_id` on acceptance, a required note on rejection and duplicate-URL rejection. Nothing is ingested automatically.
+- `scs-fkb watch --propose` emits proposals to the watch report and leaves both config files byte-identical. `scs-fkb sources check --today YYYY-MM-DD [--grace-days 30]` fails on overdue sources, malformed/expired candidates or an accepted candidate whose source is missing; it runs in `make check` and CI.
+- Verification: 104 focused tests pass; `sources check --today 2026-11-04` reports 63 sources, 0 overdue; `--today 2027-01-15` reports 33 overdue and exits 1. No corpus, index, card or note change.
+
 ## 2026-11-04 — Deterministic gold-point coverage baseline
 
 - Added eval-only `checks` for all 38 gold points across the 19 anchors and a `coverage` block in `eval`/`eval --llm`; every point is checked against cited answer sentences and missing terms are reported.
