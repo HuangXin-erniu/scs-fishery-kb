@@ -6,6 +6,8 @@ import sys
 from datetime import date
 from pathlib import Path
 
+import yaml
+
 from .answer import answer_question, augment_with_external
 from .claims import classify, load_claims, record_gap, summarize_gaps
 from .compare import run_comparison
@@ -516,7 +518,24 @@ def _eval(args: argparse.Namespace) -> int:
                     )
                 except LLMError as exc:
                     score = {"error": str(exc)}
-            scored.append({"id": row["id"], **score})
+            scored.append({"id": row["id"], "source": "model", **score})
+        review_meta: dict = {}
+        if args.review:
+            review = yaml.safe_load(Path(args.review).read_text(encoding="utf-8")) or {}
+            overrides = review.get("questions") or {}
+            for item in scored:
+                override = overrides.get(item["id"]) or {}
+                for name in ("correctness", "completeness", "faithfulness"):
+                    if name in override:
+                        item[name] = round(min(1.0, max(0.0, float(override[name]))), 4)
+                if override:
+                    item["source"] = "human"
+                if override.get("note"):
+                    item["note"] = str(override["note"])
+            review_meta = {
+                "reviewed_by": str(review.get("reviewed_by") or ""),
+                "reviewed_at": str(review.get("reviewed_at") or ""),
+            }
         numeric = [item for item in scored if "error" not in item]
         averages = {
             name: round(sum(item[name] for item in numeric) / len(numeric), 4) if numeric else 0.0
@@ -528,7 +547,26 @@ def _eval(args: argparse.Namespace) -> int:
             "prompt_version": SCORE_PROMPT_VERSION,
             "questions": scored,
             "averages": averages,
+            **review_meta,
         }
+        if args.review_template:
+            template = {
+                "reviewed_by": "",
+                "reviewed_at": str(date.today()),
+                "questions": {
+                    item["id"]: {
+                        "correctness": item.get("correctness", 0.0),
+                        "completeness": item.get("completeness", 0.0),
+                        "faithfulness": item.get("faithfulness", 0.0),
+                        "note": "",
+                    }
+                    for item in scored
+                },
+            }
+            Path(args.review_template).write_text(
+                yaml.safe_dump(template, allow_unicode=True, sort_keys=False),
+                encoding="utf-8",
+            )
         hybrid = report["arms"].get("hybrid")
         if hybrid:
             hybrid["answer_mode"] = "llm"
@@ -653,6 +691,8 @@ def build_parser() -> argparse.ArgumentParser:
     eval_parser.add_argument("--data-root", default=None)
     eval_parser.add_argument("--out", default=None)
     eval_parser.add_argument("--llm", action="store_true", help="use the configured LLM")
+    eval_parser.add_argument("--review", default=None, help="human score override YAML")
+    eval_parser.add_argument("--review-template", default=None, help="write a review template")
     eval_parser.add_argument("--json", action="store_true")
     eval_parser.set_defaults(func=_eval)
 
