@@ -658,12 +658,19 @@ def test_source_class_and_currency() -> None:
     data = load_yaml("configs/corpus.yaml")
     classes = {"normative", "official_statistics", "standard", "reference"}
     bases = {"publication", "edition", "announcement", "retrieval"}
+    cadence_by_class = {
+        "normative": "monthly",
+        "standard": "quarterly",
+        "official_statistics": "annual",
+        "reference": "semiannual",
+    }
     for source in data["sources"]:
         assert "validity" not in source, source["id"]
         assert source["source_class"] in classes, source["id"]
         currency = source["currency"]
         assert currency["basis"] in bases, source["id"]
         assert currency["review_due"] >= currency["as_of"], source["id"]
+        assert currency["cadence"] == cadence_by_class[source["source_class"]], source["id"]
 
 
 def test_national_eval_section() -> None:
@@ -674,16 +681,33 @@ def test_national_eval_section() -> None:
     assert entries[1]["docs"] == ["STD-YY-071"]
 
 
-def test_registry_schema_v2() -> None:
-    from scs_fkb.registry import load_registry
+def test_registry_schema_v3() -> None:
+    from scs_fkb.registry import CADENCES, load_registry
 
     registry = load_registry("configs/corpus.yaml")
     assert len(registry) == 63
     assert sum(1 for entry in registry.values() if entry["status"] == "acquired") == 63
     for entry in registry.values():
         assert entry["lifecycle"] in {"active", "retired"}
+        assert entry["currency"]["cadence"] in CADENCES
         if entry["lifecycle"] == "retired":
             assert entry["retirement"]["decision_key"]
+
+
+def test_schema_source_allowlists_match_registry() -> None:
+    from scs_fkb.registry import CADENCE_CAPS, CADENCES, LICENSES, SENSITIVITIES
+
+    source_schema = load_yaml("configs/schema.yaml")["source"]
+    assert set(source_schema["licenses"]) == LICENSES
+    assert set(source_schema["sensitivities"]) == SENSITIVITIES
+    assert set(source_schema["cadences"]) == CADENCES
+    assert source_schema["cadence_caps_days"] == CADENCE_CAPS
+
+
+def test_candidate_register_is_valid() -> None:
+    from scs_fkb.candidates import load_candidates
+
+    assert load_candidates("configs/candidates.yaml") == []
 
 
 def test_cleanup_state() -> None:

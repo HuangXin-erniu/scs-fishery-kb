@@ -13,13 +13,48 @@ LEVELS = frozenset({"national", "provincial", "municipal", "international"})
 TIERS = frozenset({"A", "B", "C"})
 SOURCE_CLASSES = frozenset({"normative", "official_statistics", "standard", "reference"})
 BASES = frozenset({"publication", "edition", "announcement", "retrieval"})
+CADENCES = frozenset(
+    {
+        "daily",
+        "weekly",
+        "monthly",
+        "quarterly",
+        "semiannual",
+        "annual",
+        "edition",
+        "irregular",
+        "static",
+    }
+)
+CADENCE_CAPS = {
+    "daily": 3,
+    "weekly": 21,
+    "monthly": 60,
+    "quarterly": 150,
+    "semiannual": 240,
+    "annual": 400,
+    "edition": 400,
+    "irregular": 180,
+    "static": 550,
+}
+LICENSES = frozenset({"public", "internal", "cc-by-nc-sa-3.0-igo"})
+SENSITIVITIES = frozenset({"public", "internal", "restricted"})
 CHANNELS = frozenset({"main", "collection", "statistics", "watch", "none"})
 LIFECYCLES = frozenset({"active", "retired"})
-REQUIRED = ("level", "authority_tier", "source_class", "currency", "retrieval", "lifecycle")
+REQUIRED = (
+    "level",
+    "authority_tier",
+    "source_class",
+    "currency",
+    "retrieval",
+    "lifecycle",
+    "license",
+    "sensitivity",
+)
 
 
 class RegistryError(RuntimeError):
-    """Raised when a registry entry does not satisfy schema v2."""
+    """Raised when a registry entry does not satisfy schema v3."""
 
 
 def load_registry(path: Path | str = DEFAULT_CONFIG) -> dict[str, dict[str, Any]]:
@@ -63,6 +98,16 @@ def validate_entry(entry: dict[str, Any]) -> list[str]:
     tier = entry.get("authority_tier")
     if tier is not None and tier not in TIERS:
         errors.append(f"{source_id}: authority_tier {tier!r} not in {sorted(TIERS)}")
+    if tier == "C" and level != "municipal":
+        errors.append(f"{source_id}: authority_tier C requires level municipal, not {level!r}")
+    if tier in ("A", "B") and level == "municipal":
+        errors.append(f"{source_id}: authority_tier {tier} cannot be municipal")
+    license_value = entry.get("license")
+    if license_value is not None and license_value not in LICENSES:
+        errors.append(f"{source_id}: license {license_value!r} not in {sorted(LICENSES)}")
+    sensitivity = entry.get("sensitivity")
+    if sensitivity is not None and sensitivity not in SENSITIVITIES:
+        errors.append(f"{source_id}: sensitivity {sensitivity!r} not in {sorted(SENSITIVITIES)}")
     if "validity" in entry:
         errors.append(f"{source_id}: validity is retired; use source_class and currency")
     source_class = entry.get("source_class")
@@ -103,8 +148,19 @@ def _validate_currency(source_id: str, currency: Any) -> list[str]:
     basis = currency.get("basis")
     if basis not in BASES:
         errors.append(f"{source_id}: currency.basis {basis!r} not in {sorted(BASES)}")
+    cadence = currency.get("cadence")
+    if cadence not in CADENCES:
+        errors.append(f"{source_id}: currency.cadence {cadence!r} not in {sorted(CADENCES)}")
     if "as_of" in dates and "review_due" in dates and dates["review_due"] < dates["as_of"]:
         errors.append(f"{source_id}: currency.review_due is before as_of")
+    elif cadence in CADENCE_CAPS and "as_of" in dates and "review_due" in dates:
+        span = (dates["review_due"] - dates["as_of"]).days
+        cap = CADENCE_CAPS[cadence]
+        if span > cap:
+            errors.append(
+                f"{source_id}: review_due is {span} days after as_of, "
+                f"beyond the {cap}-day cap for cadence {cadence}"
+            )
     note = currency.get("note")
     if note is not None and not str(note).strip():
         errors.append(f"{source_id}: currency.note is empty")
@@ -125,6 +181,39 @@ def _validate_retrieval(source_id: str, retrieval: Any) -> list[str]:
     if not retrieval.get("note"):
         errors.append(f"{source_id}: retrieval.note is empty")
     return errors
+
+
+def check_currency(
+    registry: dict[str, dict[str, Any]],
+    *,
+    today: date | None = None,
+    grace_days: int = 30,
+) -> dict[str, Any]:
+    """Report active sources whose review date is older than the grace window."""
+    current = today or date.today()
+    if grace_days < 0:
+        raise RegistryError("grace_days must not be negative")
+    overdue: list[dict[str, Any]] = []
+    errors: list[str] = []
+    for source_id, entry in sorted(registry.items()):
+        if entry.get("lifecycle") != "active":
+            continue
+        due_value = (entry.get("currency") or {}).get("review_due")
+        try:
+            due = date.fromisoformat(str(due_value))
+        except ValueError:
+            errors.append(f"{source_id}: review_due is not an ISO date")
+            continue
+        days = (current - due).days
+        if days > grace_days:
+            overdue.append({"id": source_id, "review_due": due.isoformat(), "days_overdue": days})
+    return {
+        "today": current.isoformat(),
+        "grace_days": grace_days,
+        "sources": len(registry),
+        "overdue": overdue,
+        "errors": errors,
+    }
 
 
 def select(

@@ -1,6 +1,6 @@
 # Data Model
 
-> **中文摘要**：本文件定义语料登记 schema v2。每条来源必须声明层级（国家/省/市/国际）、权威等级（A/B/C）、来源类别（规范/官方统计/标准/参考）、时效（核验日期、依据、复查日期）、可检索性（通道、可解析）和生命周期（在用/退役）。不再判断"是否现行"；复查日期到期由 watch 提醒，网络卡片另有 30 天周期。退役保留哈希与文件，删除只用于无许可或非官方来源。
+> **中文摘要**：本文件定义语料登记 schema v3。每条来源必须声明层级（国家/省/市/国际）、权威等级（A/B/C）、来源类别（规范/官方统计/标准/参考）、时效（核验日期、依据、复查日期、复查节奏）、许可与敏感级别、可检索性（通道、可解析）和生命周期（在用/退役）。复查日期受节奏上限约束，超期由 `sources check` 在 CI 中拦截；候选登记独立于正式来源，未准入前不得入库、索引或引用。退役保留哈希与文件，删除只用于无许可或非官方来源。
 
 ## 1. Fields
 
@@ -32,14 +32,31 @@ currency:
   as_of: '2026-11-03'
   basis: publication | edition | announcement | retrieval
   review_due: '2026-12-03'
+  cadence: monthly
   note: optional evidence sentence or review remark
 ```
 
 - `source_class` says what kind of source it is, not whether it is current. `normative` covers laws, regulations and notices; `official_statistics` covers yearbook editions and statistical series; `standard` covers technical standards and operational norms; `reference` covers definitions, product documentation and other reference material.
-- `currency.as_of` is the date the entry was last checked; `basis` names what that check rested on; `review_due` is when it must be checked again.
-- Default review periods: normative 30 days, standard 90 days, official_statistics one annual edition, reference 180 days; web cards 30 days.
+- `currency.as_of` is the date the entry was last checked; `basis` names what that check rested on; `review_due` is when it must be checked again; `cadence` is the review rhythm that justifies that due date.
+- Default review periods and v3 caps:
+
+  | cadence | default interval | maximum `review_due - as_of` |
+  |---|---|---:|
+  | daily | 1 day | 3 |
+  | weekly | 7 days | 21 |
+  | monthly | 30 days | 60 |
+  | quarterly | 90 days | 150 |
+  | semiannual | 180 days | 240 |
+  | annual / edition | 365 days | 400 |
+  | irregular | event-driven | 180 |
+  | static | no change feed | 550 |
+
+- The 63 registered sources use the class mapping: normative `monthly`, standard `quarterly`, `official_statistics` `annual`, reference `semiannual`. The mapping is fixed in `configs/corpus.yaml` and tested in `tests/test_configs.py`.
+- A `review_due` beyond the cap is a schema error, not a warning. `scs-fkb sources check --today YYYY-MM-DD` fails when an active source is more than 30 days past `review_due`; the CI job runs it with the real date. A due source is still cited, but the answer must say the source has reached its review date.
 - `currency.note` carries the evidence sentence where one exists (an effective date, an approval number, a publication date) or a short review remark. It is optional, not a status field.
 - There is no in-force / not-applicable / unknown state. An entry that cannot be checked keeps its existing dates, and the watch report lists it as due.
+- `license` must be in the allowlist published in `configs/schema.yaml` (`public`, `internal`, `cc-by-nc-sa-3.0-igo`); `sensitivity` must be `public`, `internal` or `restricted`. Unknown values are rejected at registration, so an unlicensed page cannot silently enter the corpus.
+- `authority_tier` and `level` must agree: tier `C` is municipal only, and tiers `A`/`B` are never municipal. A municipal page cannot stand in for a missing provincial or national document.
 
 ## 3. Retrieval
 
@@ -59,12 +76,14 @@ retrieval:
 - `retired` sources keep their id, hash and local file, leave every retrieval channel, and carry a `retirement` block with date, reason and decision key. Retirement is for replaced, unparseable or orphaned material; it is not deletion.
 - Hard deletion is reserved for sources with no licence and no official provenance. It removes the register entry, the collection entry and the local file, and records the decision that authorised it.
 
-## 5. Admission, supersession and the main index
+## 5. Admission, candidates, supersession and the main index
 
-- Admission: a publisher's own page or an official gazette attachment, a document number or publication date, a licence, and a verified hash.
+- **Candidate first.** A page that `watch` reports as changed, a gap found by evaluation, or a newly discovered document enters [configs/candidates.yaml](../configs/candidates.yaml) before it enters the corpus. A candidate carries `id`, `title`, `url`, `publisher`, `proposed_tier`, `proposed_class`, `reason` (`changed`/`gap`/`new`/`supersede`), `watch_ref`, `first_seen`, `expires_at`, `status` (`open`/`accepted`/`rejected`/`expired`), `decision_key`, `source_id` and a `note`. An accepted candidate must name the registered `source_id`; a rejected one must say why; a duplicate URL is rejected.
+- A candidate is **not** a source. It is never ingested, indexed or cited, and `watch --propose` only writes a report; it never edits the register. Open candidates are reported after 90 days and treated as expired after `expires_at` (180 days by default).
+- Admission: a publisher's own page or an official gazette attachment, a document number or publication date, a licence, a verified hash, and an accepted candidate entry.
 - Supersession: a newer text supersedes but never deletes; the older entry stays with its date, the newer entry records what it replaces.
 - Main index: only `level: national` (or `international`) sources with parseable text and a public or open licence may enter `configs/pipeline.yaml`. Provincial and municipal sources stay in the reference layer.
 
 ## 6. Validation
 
-`src/scs_fkb/registry.py` loads the register and enforces the enums, the required mappings, the retirement block and unique ids. CI runs it against the real register, so a malformed entry fails the build rather than reaching an answer.
+`src/scs_fkb/registry.py` loads the register and enforces schema v3: the enums, `currency.cadence` and its cap, licence and sensitivity allowlists, tier/level consistency, the retirement block and unique ids. `src/scs_fkb/candidates.py` enforces the candidate lifecycle and duplicate URLs. `scs-fkb sources check` combines both with the review-date gate; CI runs it against the real register, so a malformed, unlicensed or overdue entry fails the build rather than reaching an answer. Tests inject a fixed `--today`, so the gate is deterministic.

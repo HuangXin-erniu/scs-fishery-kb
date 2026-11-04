@@ -31,9 +31,16 @@ def _entry(source_id: str, due: str) -> dict:
         "level": "national",
         "authority_tier": "A",
         "source_class": "normative",
-        "currency": {"as_of": "2026-11-01", "basis": "publication", "review_due": due},
+        "currency": {
+            "as_of": "2026-11-01",
+            "basis": "publication",
+            "review_due": due,
+            "cadence": "monthly",
+        },
         "retrieval": {"channel": "collection", "parseable": True, "note": "x"},
         "lifecycle": "active",
+        "license": "public",
+        "sensitivity": "public",
     }
 
 

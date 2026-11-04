@@ -1,5 +1,20 @@
 schema_version: 1
 
+source:
+  licenses: [public, internal, cc-by-nc-sa-3.0-igo]
+  sensitivities: [public, internal, restricted]
+  cadences: [daily, weekly, monthly, quarterly, semiannual, annual, edition, irregular, static]
+  cadence_caps_days:
+    daily: 3
+    weekly: 21
+    monthly: 60
+    quarterly: 150
+    semiannual: 240
+    annual: 400
+    edition: 400
+    irregular: 180
+    static: 550
+
 document:
   fields:
     - doc_id

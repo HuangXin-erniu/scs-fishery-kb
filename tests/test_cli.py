@@ -1,5 +1,9 @@
 from __future__ import annotations
 
+from pathlib import Path
+
+import yaml
+
 from scs_fkb import cli
 
 
@@ -23,3 +27,195 @@ def test_retrieve_passes_the_data_root(monkeypatch, tmp_path):
 
     assert code == 0
     assert seen["root"] == tmp_path
+
+
+def _write_corpus(tmp_path: Path, *, cadence: str | None = "monthly") -> Path:
+    currency = {
+        "as_of": "2026-11-03",
+        "basis": "publication",
+        "review_due": "2026-12-03",
+    }
+    if cadence is not None:
+        currency["cadence"] = cadence
+    path = tmp_path / "corpus.yaml"
+    path.write_text(
+        yaml.safe_dump(
+            {
+                "schema_version": 1,
+                "sources": [
+                    {
+                        "id": "POL-TEST-001",
+                        "title": "test",
+                        "level": "national",
+                        "authority_tier": "A",
+                        "source_class": "normative",
+                        "license": "public",
+                        "sensitivity": "public",
+                        "status": "acquired",
+                        "currency": currency,
+                        "retrieval": {
+                            "channel": "collection",
+                            "parseable": True,
+                            "note": "test",
+                        },
+                        "lifecycle": "active",
+                    }
+                ],
+            },
+            allow_unicode=True,
+        ),
+        encoding="utf-8",
+    )
+    return path
+
+
+def _write_candidates(tmp_path: Path, items: list[dict] | None = None) -> Path:
+    path = tmp_path / "candidates.yaml"
+    path.write_text(
+        yaml.safe_dump({"schema_version": 1, "candidates": items or []}, allow_unicode=True),
+        encoding="utf-8",
+    )
+    return path
+
+
+def _write_watch(tmp_path: Path) -> Path:
+    path = tmp_path / "watch.yaml"
+    path.write_text(
+        yaml.safe_dump(
+            {
+                "schema_version": 1,
+                "defaults": {"timeout_seconds": 1, "user_agent": "test"},
+                "sources": [
+                    {
+                        "id": "WATCH-TEST-1",
+                        "url": "https://example.org/a",
+                        "authority": "A",
+                        "publisher": "Test publisher",
+                        "status": "changed",
+                        "sha256": "a" * 64,
+                    }
+                ],
+            },
+            allow_unicode=True,
+        ),
+        encoding="utf-8",
+    )
+    return path
+
+
+def test_sources_check_exit_codes(tmp_path: Path, capsys) -> None:
+    corpus = _write_corpus(tmp_path)
+    candidates = _write_candidates(tmp_path)
+    code = cli.main(
+        [
+            "sources",
+            "check",
+            "--config",
+            str(corpus),
+            "--candidates",
+            str(candidates),
+            "--today",
+            "2026-11-04",
+        ]
+    )
+    assert code == 0
+    code = cli.main(
+        [
+            "sources",
+            "check",
+            "--config",
+            str(corpus),
+            "--candidates",
+            str(candidates),
+            "--today",
+            "2027-01-15",
+        ]
+    )
+    assert code == 1
+    assert "overdue" in capsys.readouterr().out
+
+
+def test_sources_check_rejects_missing_cadence(tmp_path: Path, capsys) -> None:
+    corpus = _write_corpus(tmp_path, cadence=None)
+    candidates = _write_candidates(tmp_path)
+    code = cli.main(
+        [
+            "sources",
+            "check",
+            "--config",
+            str(corpus),
+            "--candidates",
+            str(candidates),
+            "--today",
+            "2026-11-04",
+        ]
+    )
+    assert code == 2
+    assert "currency.cadence" in capsys.readouterr().err
+
+
+def test_sources_check_fails_on_expired_candidate(tmp_path: Path, capsys) -> None:
+    corpus = _write_corpus(tmp_path)
+    candidates = _write_candidates(
+        tmp_path,
+        [
+            {
+                "id": "CAND-2026-001",
+                "title": "Stale proposal",
+                "url": "https://example.org/stale",
+                "publisher": "Test publisher",
+                "proposed_tier": "A",
+                "proposed_class": "normative",
+                "reason": "new",
+                "watch_ref": None,
+                "first_seen": "2026-04-01",
+                "expires_at": "2026-10-01",
+                "status": "open",
+                "decision_key": None,
+                "source_id": None,
+                "note": "",
+            }
+        ],
+    )
+    code = cli.main(
+        [
+            "sources",
+            "check",
+            "--config",
+            str(corpus),
+            "--candidates",
+            str(candidates),
+            "--today",
+            "2026-11-04",
+        ]
+    )
+    assert code == 1
+    assert "expired" in capsys.readouterr().out
+
+
+def test_watch_propose_does_not_write_configs(tmp_path: Path, capsys) -> None:
+    watch = _write_watch(tmp_path)
+    candidates = _write_candidates(tmp_path)
+    corpus = Path("configs/corpus.yaml")
+    before_watch = watch.read_bytes()
+    before_candidates = candidates.read_bytes()
+    before_corpus = corpus.read_bytes()
+    code = cli.main(
+        [
+            "watch",
+            "--offline",
+            "--propose",
+            "--config",
+            str(watch),
+            "--candidates",
+            str(candidates),
+            "--today",
+            "2026-11-04",
+            "--json",
+        ]
+    )
+    assert code == 0
+    assert watch.read_bytes() == before_watch
+    assert candidates.read_bytes() == before_candidates
+    assert corpus.read_bytes() == before_corpus
+    assert "CAND-2026-001" in capsys.readouterr().out

@@ -103,6 +103,8 @@ def check_source(
     headers = {"User-Agent": user_agent}
     record: dict[str, Any] = {
         "id": str(entry["id"]),
+        "title": str(entry.get("title") or f"{entry.get('publisher', '')} {entry['id']}".strip()),
+        "publisher": entry.get("publisher"),
         "ca_bundle": _ACTIVE_CA_BUNDLE,
         "url": str(entry["url"]),
         "authority": entry.get("authority"),
@@ -161,6 +163,10 @@ def run_watch(
             results.append(
                 {
                     "id": str(entry["id"]),
+                    "title": str(
+                        entry.get("title") or f"{entry.get('publisher', '')} {entry['id']}".strip()
+                    ),
+                    "publisher": entry.get("publisher"),
                     "url": str(entry["url"]),
                     "authority": entry.get("authority"),
                     "status": recorded if recorded in STATUSES else "unbaselined",

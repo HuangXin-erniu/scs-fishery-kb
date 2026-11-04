@@ -9,6 +9,13 @@ from pathlib import Path
 import yaml
 
 from .answer import answer_question, augment_with_external
+from .candidates import (
+    DEFAULT_CANDIDATES,
+    CandidateError,
+    check_candidates,
+    load_candidates,
+    propose_from_watch,
+)
 from .claims import classify, load_claims, record_gap, summarize_gaps
 from .compare import run_comparison
 from .config import (
@@ -39,6 +46,7 @@ from .rag import SCORE_PROMPT_VERSION, LLMCache, llm_answer_fn, score_answer
 from .reference import ReferenceError, diverse_hits
 from .reference import lookup as reference_lookup
 from .reference import lookup_term as reference_lookup_term
+from .registry import RegistryError, check_currency, load_registry
 from .retrieve import Retriever
 from .stats import StatsError
 from .stats import query as stats_query
@@ -367,12 +375,17 @@ def _stats(args: argparse.Namespace) -> int:
 
 
 def _watch(args: argparse.Namespace) -> int:
+    today = date.fromisoformat(args.today) if args.today else None
     report = run_watch(Path(args.config), offline=args.offline)
     report["due"] = due_report(
         DEFAULT_CONFIG,
         REPO_ROOT / "configs" / "web-cards.yaml",
         REPO_ROOT / "configs" / "web-sources.yaml",
+        today=today,
     )
+    if args.propose:
+        existing = load_candidates(Path(args.candidates)) if Path(args.candidates).is_file() else []
+        report["proposals"] = propose_from_watch(report, existing, today=today)
     if args.report:
         write_watch_report(report, Path(args.report))
     if args.json:
@@ -389,6 +402,61 @@ def _watch(args: argparse.Namespace) -> int:
         print(f"due corpus {row['id']:24} {row['review_due']}")
     for row in report["due"]["cards"]:
         print(f"due card   {row['id']:24} {row['review_due']}")
+    for proposal in report.get("proposals", []):
+        print(f"proposal   {proposal['id']:24} {proposal['watch_ref']} {proposal['reason']}")
+    return 0
+
+
+def _sources_check(args: argparse.Namespace) -> int:
+    today = date.fromisoformat(args.today) if args.today else date.today()
+    registry = load_registry(Path(args.config))
+    currency = check_currency(registry, today=today, grace_days=args.grace_days)
+    candidates = check_candidates(Path(args.candidates), today=today, registry_ids=set(registry))
+    report = {"currency": currency, "candidates": candidates}
+    failed = bool(
+        currency["overdue"] or currency["errors"] or candidates["expired"] or candidates["errors"]
+    )
+    if args.json:
+        _print_json(report)
+        return 1 if failed else 0
+    print(
+        f"sources {currency['sources']} today {currency['today']} "
+        f"grace {currency['grace_days']}d overdue {len(currency['overdue'])}"
+    )
+    for row in currency["overdue"]:
+        print(f"overdue    {row['id']:28} {row['review_due']} ({row['days_overdue']}d)")
+    for error in currency["errors"]:
+        print(f"error      {error}")
+    print(
+        f"candidates {candidates['total']} "
+        f"open {candidates['counts'].get('open', 0)} "
+        f"due {len(candidates['due'])} expired {len(candidates['expired'])}"
+    )
+    for row in candidates["due"]:
+        print(f"due        {row['id']:28} open {row['days_open']}d")
+    for row in candidates["expired"]:
+        print(f"expired    {row['id']:28} {row['expires_at']} ({row['days_past']}d)")
+    for error in candidates["errors"]:
+        print(f"error      {error}")
+    return 1 if failed else 0
+
+
+def _sources_candidates(args: argparse.Namespace) -> int:
+    today = date.fromisoformat(args.today) if args.today else date.today()
+    items = load_candidates(Path(args.candidates))
+    report = check_candidates(Path(args.candidates), today=today)
+    if args.json:
+        _print_json({"candidates": items, "check": report})
+        return 0
+    for item in items:
+        print(
+            f"{item['id']:16} {item['status']:9} {item['reason']:8} "
+            f"{item.get('watch_ref') or '-':24} {item['url']}"
+        )
+    print(
+        f"summary total {report['total']} open {report['counts'].get('open', 0)} "
+        f"due {len(report['due'])} expired {len(report['expired'])}"
+    )
     return 0
 
 
@@ -713,8 +781,26 @@ def build_parser() -> argparse.ArgumentParser:
     watch_parser.add_argument("--config", default=str(DEFAULT_WATCH))
     watch_parser.add_argument("--offline", action="store_true")
     watch_parser.add_argument("--report", default=None)
+    watch_parser.add_argument("--propose", action="store_true", help="emit candidate proposals")
+    watch_parser.add_argument("--candidates", default=str(DEFAULT_CANDIDATES))
+    watch_parser.add_argument("--today", default=None)
     watch_parser.add_argument("--json", action="store_true")
     watch_parser.set_defaults(func=_watch)
+
+    sources_parser = subparsers.add_parser("sources", help="check source currency and candidates")
+    sources_sub = sources_parser.add_subparsers(dest="sources_command", required=True)
+    sources_check_parser = sources_sub.add_parser("check", help="enforce review dates")
+    sources_check_parser.add_argument("--config", default=str(DEFAULT_CONFIG))
+    sources_check_parser.add_argument("--candidates", default=str(DEFAULT_CANDIDATES))
+    sources_check_parser.add_argument("--today", default=None)
+    sources_check_parser.add_argument("--grace-days", type=int, default=30)
+    sources_check_parser.add_argument("--json", action="store_true")
+    sources_check_parser.set_defaults(func=_sources_check)
+    sources_candidates_parser = sources_sub.add_parser("candidates", help="list candidates")
+    sources_candidates_parser.add_argument("--candidates", default=str(DEFAULT_CANDIDATES))
+    sources_candidates_parser.add_argument("--today", default=None)
+    sources_candidates_parser.add_argument("--json", action="store_true")
+    sources_candidates_parser.set_defaults(func=_sources_candidates)
 
     knowledge_parser = subparsers.add_parser("knowledge", help="manage structured knowledge notes")
     knowledge_sub = knowledge_parser.add_subparsers(dest="knowledge_command", required=True)
@@ -773,6 +859,8 @@ def main(argv: list[str] | None = None) -> int:
         ParseError,
         UnsupportedFormatError,
         ReferenceError,
+        RegistryError,
+        CandidateError,
         DenseError,
         StatsError,
         StoreError,
