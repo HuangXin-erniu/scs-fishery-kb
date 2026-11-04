@@ -1,0 +1,330 @@
+schema_version: 1
+updated_at: '2026-11-04'
+topic: gear
+facts:
+- id: FACT-GEAR-001
+  kind: atomic
+  topic: gear
+  question_class: time_range
+  subject: 最小网目尺寸制度
+  predicate: 实施时间和海区
+  value: 2014年6月1日起，黄渤海、东海、南海全面实施
+  unit: null
+  qualifiers: {}
+  jurisdiction: national
+  effective:
+    from: '2014-06-01'
+    to: null
+  evidence: 自2014年6月1日起
+  source:
+    doc: POL-GEAR-016
+    sha256: 94fa54b1133ec4c9e87b7c29d1ce212747bef8b4762282d5fffce659a6fc2794
+    section: 一、实行时间和范围
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2026-12-03'
+  supersedes: null
+- id: FACT-GEAR-002
+  kind: atomic
+  topic: gear
+  question_class: definition
+  subject: 渔具分类
+  predicate: 类代号与书写顺序
+  value: C刺网、W围网、T拖网、Zh张网、D钓具、Di地拉网、Ch抄网、Y掩罩、P耙刺、F敷网、X陷阱、L笼壶；名称式+型+类，代号类·型·式
+  unit: null
+  qualifiers: {}
+  jurisdiction: national
+  effective:
+    from: '2026-09-01'
+    to: null
+  evidence: 渔具分类代号按以下方式书写
+  source:
+    doc: OPS-STD-039
+    sha256: 2d9ade00dda4fe0d29e6a1ce4499cb1e67a0f5aca56a96e422bbae9349ebcbee
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2027-02-01'
+  supersedes: null
+- id: FACT-GEAR-003
+  kind: atomic
+  topic: gear
+  question_class: procedure
+  subject: 海洋捕捞抽样调查
+  predicate: 分层与样本量
+  value: 按船籍港、渔具类、主机功率四档分层；每层不少于3艘
+  unit: null
+  qualifiers: {}
+  jurisdiction: national
+  effective:
+    from: '2026-05-01'
+    to: null
+  evidence: 每层不应少于
+  source:
+    doc: OPS-STD-035
+    sha256: 1608be902fe8bf8c389518f6820dc7ec6121523d7e2b9e6b343e189a76684365
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2027-02-01'
+  supersedes: null
+- id: FACT-GEAR-004
+  kind: provision
+  topic: gear
+  question_class: procedure
+  subject: 农业部关于实施海洋捕捞准用渔具和过渡渔具最小网目尺寸制度的通告
+  predicate: 二、主要内容
+  value: 二、主要内容 （一）根据现有科研基础和捕捞生产实际，海洋捕捞渔具最小网目尺寸制度分为准用渔具和过渡渔具两大类。准用渔具是国家允许使用的海洋捕捞渔具，过渡渔具将根据保护海洋渔业资源的需要，今后分别转为准用或禁用渔具，并予以公告。
+    （二）主捕种类为颚针鱼、青鳞鱼、梅童鱼、凤尾鱼、多鳞鱚、少鳞鱚、银鱼、小公鱼等鱼种的刺网作业，由各省（自治区、直辖市）渔业行政主管部门根据此次确定的最小网目尺寸标准实行特许作业，限定具体作业时间、作业区域。拖网主捕种类为鳀鱼，张网主
+  unit: null
+  qualifiers: {}
+  jurisdiction: national
+  effective:
+    from: null
+    to: null
+  evidence: 二、主要内容 （一）根据现有科研基础和捕捞生产实际，海洋捕捞渔具最小网目尺寸制度分为准用渔具和过渡渔具两大类。准用渔具是国家允许使用的海洋捕捞渔具，过渡渔具将根据保护海洋渔业资源的需要，今后分别转为准用或禁用渔具，并予以公告。
+    （二）主捕种类为颚针鱼、青鳞鱼、梅童鱼、凤尾鱼、多鳞鱚、少鳞鱚、银鱼、小公鱼等鱼种的刺网作业，由各省（自治区、直辖市）渔业行政主管部门根据此次确定的最小网目尺寸标准实行特许作业，限定具体作业时间、作业区域。拖网主捕种类为鳀鱼，张网主捕种类为毛虾和鳗苗，围网主捕种类为青鳞鱼、前鳞骨鯔、斑鰶、金色小沙丁鱼、小公鱼等特定鱼种的，由各省（自治区、直辖市）渔业行政主管部门根据捕捞
+  source:
+    doc: POL-GEAR-016
+    sha256: 94fa54b1133ec4c9e87b7c29d1ce212747bef8b4762282d5fffce659a6fc2794
+    section: 二、主要内容
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2026-12-03'
+  supersedes: null
+- id: FACT-GEAR-005
+  kind: provision
+  topic: gear
+  question_class: procedure
+  subject: 农业部关于实施海洋捕捞准用渔具和过渡渔具最小网目尺寸制度的通告
+  predicate: 三、测量办法
+  value: 三、测量办法 根据GB/T 6964—2010规定，采用扁平楔形网目内径测量仪进行测量。网目长度测量时，网目应沿有结网的纵向或无结网的长轴方向充分拉直，每次逐目测量相邻5目的网目内径，取其最小值为该网片的网目内径。三重刺网在测量时，要测量最里层网的最小网目尺寸；双重刺网要测量两层网中网眼更小的网的最小网目尺寸。各省（自治区、直辖市）渔业行政主管部门可结合本地实际，在上述规定基础上制定出简便易行的测量办法
+  unit: null
+  qualifiers: {}
+  jurisdiction: national
+  effective:
+    from: null
+    to: null
+  evidence: 三、测量办法 根据GB/T 6964—2010规定，采用扁平楔形网目内径测量仪进行测量。网目长度测量时，网目应沿有结网的纵向或无结网的长轴方向充分拉直，每次逐目测量相邻5目的网目内径，取其最小值为该网片的网目内径。三重刺网在测量时，要测量最里层网的最小网目尺寸；双重刺网要测量两层网中网眼更小的网的最小网目尺寸。各省（自治区、直辖市）渔业行政主管部门可结合本地实际，在上述规定基础上制定出简便易行的测量办法
+  source:
+    doc: POL-GEAR-016
+    sha256: 94fa54b1133ec4c9e87b7c29d1ce212747bef8b4762282d5fffce659a6fc2794
+    section: 三、测量办法
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2026-12-03'
+  supersedes: null
+- id: FACT-GEAR-006
+  kind: provision
+  topic: gear
+  question_class: scope
+  subject: 海洋捕捞准用渔具最小网目（或网囊）尺寸标准
+  predicate: 附件1 海洋捕捞准用渔具最小网目（或网囊）尺寸相
+  value: 附件1 海洋捕捞准用渔具最小网目（或网囊）尺寸相关标准 海域 渔具分类名称 主捕种类 最小网目（或网囊）尺寸（毫米） 备注 渔具类别 渔具名称 黄渤海
+    刺网类 定置单片刺网、漂流单片刺网 梭子蟹、银鲳、海蜇 110 鳓鱼、马鲛、鳕鱼 90 对虾、鱿鱼、虾蛄、小黄鱼、梭鱼、斑鰶 50 颚针鱼 45 该类刺网由地方特许作业
+    青鳞鱼 35 梅童鱼 30 漂流无下纲刺网 鳓鱼、马鲛、鳕鱼 90 围网类 单船无囊围网、双船无囊围网 不限 35 主捕青鳞鱼、前鳞骨鯔、
+  unit: null
+  qualifiers: {}
+  jurisdiction: national
+  effective:
+    from: null
+    to: null
+  evidence: 附件1 海洋捕捞准用渔具最小网目（或网囊）尺寸相关标准 海域 渔具分类名称 主捕种类 最小网目（或网囊）尺寸（毫米） 备注 渔具类别 渔具名称
+    黄渤海 刺网类 定置单片刺网、漂流单片刺网 梭子蟹、银鲳、海蜇 110 鳓鱼、马鲛、鳕鱼 90 对虾、鱿鱼、虾蛄、小黄鱼、梭鱼、斑鰶 50 颚针鱼 45 该类刺网由地方特许作业
+    青鳞鱼 35 梅童鱼 30 漂流无下纲刺网 鳓鱼、马鲛、鳕鱼 90 围网类 单船无囊围网、双船无囊围网 不限 35 主捕青鳞鱼、前鳞骨鯔、斑鰶、金色小沙丁鱼、小公鱼的围网由地方特许作业
+    杂渔具 船敷箕状敷网 不限 35 东海 刺网类 定置单片刺网、漂流单片刺网 梭子蟹、银鲳、海
+  source:
+    doc: POL-GEAR-033
+    sha256: db05eefba1ed312e608c791ca44a26301382b5fbcc20a66c6383690138b8397a
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2027-02-01'
+  supersedes: null
+- id: FACT-GEAR-007
+  kind: provision
+  topic: gear
+  question_class: scope
+  subject: 海洋捕捞过渡渔具最小网目（或网囊）尺寸标准
+  predicate: 附件2 海洋捕捞过渡渔具最小网目（或网囊）尺寸相
+  value: 附件2 海洋捕捞过渡渔具最小网目（或网囊）尺寸相关标准 海域 渔具分类名称 主捕种类 最小网目（或网囊）尺寸（毫米） 备注 渔具类别 渔具名称 黄渤海
+    拖网类 单船桁杆拖网、单船框架拖网 虾类 25 刺网类 漂流双重刺网 定置三重刺网 漂流三重刺网 梭子蟹、银鲳、海蜇 110 鳓鱼、马鲛、鳕鱼 90 对虾、鱿鱼、虾蛄、小黄鱼、梭鱼、斑鰶
+    50 张网类 双桩有翼单囊张网、双桩竖杆张网、樯张竖杆张网、多锚单片张网、单桩框架张网、多桩竖杆张网、双锚竖杆张网 不限
+  unit: null
+  qualifiers: {}
+  jurisdiction: national
+  effective:
+    from: null
+    to: null
+  evidence: 附件2 海洋捕捞过渡渔具最小网目（或网囊）尺寸相关标准 海域 渔具分类名称 主捕种类 最小网目（或网囊）尺寸（毫米） 备注 渔具类别 渔具名称
+    黄渤海 拖网类 单船桁杆拖网、单船框架拖网 虾类 25 刺网类 漂流双重刺网 定置三重刺网 漂流三重刺网 梭子蟹、银鲳、海蜇 110 鳓鱼、马鲛、鳕鱼 90
+    对虾、鱿鱼、虾蛄、小黄鱼、梭鱼、斑鰶 50 张网类 双桩有翼单囊张网、双桩竖杆张网、樯张竖杆张网、多锚单片张网、单桩框架张网、多桩竖杆张网、双锚竖杆张网 不限
+    35 主捕毛虾、鳗苗的张网由地方特许作业 陷阱类 导陷建网陷阱 不限 35 笼壶类 定置串联倒须笼 不限 25 黄海 拖网类 单船有翼单囊
+  source:
+    doc: POL-GEAR-034
+    sha256: 64819ecac9345bedd7af229fc4de7e95c89ab8b2038faa06c05f06a9e91c39f2
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2027-02-01'
+  supersedes: null
+- id: FACT-GEAR-008
+  kind: provision
+  topic: gear
+  question_class: procedure
+  subject: 海洋捕捞过渡渔具最小网目（或网囊）尺寸标准
+  predicate: 双桩有翼单囊张网、双桩竖杆张网、樯张竖杆张网、双
+  value: 双桩有翼单囊张网、双桩竖杆张网、樯张竖杆张网、双锚张纲张网、单桩桁杆张网、多桩竖杆张网、双锚竖杆张网、双锚单片张网、樯张张纲张网、樯张有翼单囊张网、双锚有翼单囊张网
+    不限 35 主捕毛虾、鳗苗的张网由地方特许作业 陷阱类 导陷建网陷阱 不限 35 笼壶类 定置串联倒须笼 不限 25 PAGE PAGE 1
+  unit: null
+  qualifiers: {}
+  jurisdiction: national
+  effective:
+    from: null
+    to: null
+  evidence: 双桩有翼单囊张网、双桩竖杆张网、樯张竖杆张网、双锚张纲张网、单桩桁杆张网、多桩竖杆张网、双锚竖杆张网、双锚单片张网、樯张张纲张网、樯张有翼单囊张网、双锚有翼单囊张网
+    不限 35 主捕毛虾、鳗苗的张网由地方特许作业 陷阱类 导陷建网陷阱 不限 35 笼壶类 定置串联倒须笼 不限 25 PAGE PAGE 1
+  source:
+    doc: POL-GEAR-034
+    sha256: 64819ecac9345bedd7af229fc4de7e95c89ab8b2038faa06c05f06a9e91c39f2
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2027-02-01'
+  supersedes: null
+- id: FACT-GEAR-009
+  kind: provision
+  topic: gear
+  question_class: time_range
+  subject: 渔具分类、命名及代号（GB/T 5147—2026）
+  predicate: ICS65.150 CCS B 56 中 华 人
+  value: ICS65.150 CCS B 56 中 华 人 民 共 和 国 国 家 标 准 GB/T 5147—2026 代替 GB/T5147—2003
+    渔具分类 、命名及代号 C las sif ica tion,nomenc lat ureandc odeo ffi shi ngg ear - 2026
+    - 0227 发布 - 2026 - 0901 实施 国家市场监督管理总局 发 布 国家标准化管理委员会
+  unit: null
+  qualifiers: {}
+  jurisdiction: national
+  effective:
+    from: null
+    to: null
+  evidence: ICS65.150 CCS B 56 中 华 人 民 共 和 国 国 家 标 准 GB/T 5147—2026 代替 GB/T5147—2003
+    渔具分类 、命名及代号 C las sif ica tion,nomenc lat ureandc odeo ffi shi ngg ear - 2026
+    - 0227 发布 - 2026 - 0901 实施 国家市场监督管理总局 发 布 国家标准化管理委员会
+  source:
+    doc: OPS-STD-039
+    sha256: 2d9ade00dda4fe0d29e6a1ce4499cb1e67a0f5aca56a96e422bbae9349ebcbee
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2027-02-01'
+  supersedes: null
+- id: FACT-GEAR-010
+  kind: provision
+  topic: gear
+  question_class: procedure
+  subject: 渔具分类、命名及代号（GB/T 5147—2026）
+  predicate: GB/T 5147—2026 前 言 本文件按照
+  value: 'GB/T 5147—2026 前 言 本文件按照 GB/T1. 1—2020《标准化工作导则 第 1 部分:标准化文件的结构和起草规则》的规定
+    起草。 本文件代替 GB/T5147—2003《渔具分类、命名及代号》,与 GB/T5147—2003 相比,除结构调整和 编辑性改动外,主要技术变化如下:
+    a) 更改了渔具分类的原则(见第 4 章, 2003 年版的第 2 章); b) 更改了渔具分类的命名及代号(见第 5 章, 2003 年版的第 3 章);'
+  unit: null
+  qualifiers: {}
+  jurisdiction: national
+  effective:
+    from: null
+    to: null
+  evidence: 'GB/T 5147—2026 前 言 本文件按照 GB/T1. 1—2020《标准化工作导则 第 1 部分:标准化文件的结构和起草规则》的规定
+    起草。 本文件代替 GB/T5147—2003《渔具分类、命名及代号》,与 GB/T5147—2003 相比,除结构调整和 编辑性改动外,主要技术变化如下:
+    a) 更改了渔具分类的原则(见第 4 章, 2003 年版的第 2 章); b) 更改了渔具分类的命名及代号(见第 5 章, 2003 年版的第 3 章);
+    c) 更改了渔具的分 类 名 称、代 号 的 书 写 顺 序 和 渔 具 的 类、型、式 名 称 及 代 号 汇 总 表 (见 第 6 章,'
+  source:
+    doc: OPS-STD-039
+    sha256: 2d9ade00dda4fe0d29e6a1ce4499cb1e67a0f5aca56a96e422bbae9349ebcbee
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2027-02-01'
+  supersedes: null
+- id: FACT-GEAR-011
+  kind: provision
+  topic: gear
+  question_class: scope
+  subject: 渔具分类、命名及代号（GB/T 5147—2026）
+  predicate: GB/T 5147—2026 渔具分类、命名及代
+  value: GB/T 5147—2026 渔具分类、命名及代号 1 范围 本文件确立了渔具分类的方法和原则,界定了渔具的命名及 代 号,确 立 了 渔 具 分
+    类 名 称、代 号 的 书 写顺序。 本文件适用于渔业生产、管理、科研及教学等领域。 2 规范性引用文件 下列文件中的内容通过文中的规范性引用而构成本文件必
+    不 可 少 的 条 款。其 中,注 日 期 的 引 用 文 件,仅该日期对应的版本适用于本文件;不注日期的引用文件,其最新版本(包 括 所 有 的 修 改
+  unit: null
+  qualifiers: {}
+  jurisdiction: national
+  effective:
+    from: null
+    to: null
+  evidence: GB/T 5147—2026 渔具分类、命名及代号 1 范围 本文件确立了渔具分类的方法和原则,界定了渔具的命名及 代 号,确 立 了 渔
+    具 分 类 名 称、代 号 的 书 写顺序。 本文件适用于渔业生产、管理、科研及教学等领域。 2 规范性引用文件 下列文件中的内容通过文中的规范性引用而构成本文件必
+    不 可 少 的 条 款。其 中,注 日 期 的 引 用 文 件,仅该日期对应的版本适用于本文件;不注日期的引用文件,其最新版本(包 括 所 有 的 修 改
+    单)适 用 于 本文件。 SC/T4001 渔具基本术语 3 术语与定义 SC/T4001 界定的以及下列术语和定义适用于本文件。 3.
+  source:
+    doc: OPS-STD-039
+    sha256: 2d9ade00dda4fe0d29e6a1ce4499cb1e67a0f5aca56a96e422bbae9349ebcbee
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2027-02-01'
+  supersedes: null
+- id: FACT-GEAR-012
+  kind: provision
+  topic: gear
+  question_class: materials
+  subject: 渔具分类、命名及代号（GB/T 5147—2026）
+  predicate: GB/T 5147—2026 5 渔具分类的命名
+  value: GB/T 5147—2026 5 渔具分类的命名及代号 5. 1 类的名称及代号 “类”的名称和代号见表 1。 表 1 “类”的名称与代号 类的名称
+    代号 类的名称 代号 类的名称 代号 类的名称 代号 刺网 C 地拉网 Di 抄网 Ch 钓具 D 围网 W 张网 Zh 掩罩 Y 耙刺 P 拖网 T 敷网
+    F 陷阱 X 笼壶 L 5. 2 型的名称、代号及结构说明 “型”的代号以各“型”名称词汉字的汉语拼音小写字母组成。“型”的名称、代号及结构说明见表 2
+  unit: null
+  qualifiers: {}
+  jurisdiction: national
+  effective:
+    from: null
+    to: null
+  evidence: GB/T 5147—2026 5 渔具分类的命名及代号 5. 1 类的名称及代号 “类”的名称和代号见表 1。 表 1 “类”的名称与代号
+    类的名称 代号 类的名称 代号 类的名称 代号 类的名称 代号 刺网 C 地拉网 Di 抄网 Ch 钓具 D 围网 W 张网 Zh 掩罩 Y 耙刺 P 拖网
+    T 敷网 F 陷阱 X 笼壶 L 5. 2 型的名称、代号及结构说明 “型”的代号以各“型”名称词汉字的汉语拼音小写字母组成。“型”的名称、代号及结构说明见表
+    2。 表 2 “型”的名称、代号及结构说明 名称 代号 结构说明 柄钩 bg 由柄和钩构成 箔筌 bq 由箔帘(栅)等非网片材料和取鱼部构成
+  source:
+    doc: OPS-STD-039
+    sha256: 2d9ade00dda4fe0d29e6a1ce4499cb1e67a0f5aca56a96e422bbae9349ebcbee
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2027-02-01'
+  supersedes: null
+- id: FACT-GEAR-013
+  kind: provision
+  topic: gear
+  question_class: procedure
+  subject: 渔具分类、命名及代号（GB/T 5147—2026）
+  predicate: 多囊 dun 由网身和若干网囊构成 兜状 d z
+  value: 多囊 dun 由网身和若干网囊构成 兜状 d zh 由撑架和兜形网囊构成 滚钩 gg 由干线和若干支线连结锐钩构成 桁杆 hg 由桁杆或桁架和网身、网囊(兜)构成
+    混合 hh 具有两种“型”以上性质的渔具 建网 jw 由网墙、网圈和取鱼部等构成 箭铦 x j 由绳索连接箭形尖刺构成 箕状 zh j 由网衣组成簸箕状的网具
+    框格 kg 由被细绳分隔成若干框格的网衣和上、下纲构成 2
+  unit: null
+  qualifiers: {}
+  jurisdiction: national
+  effective:
+    from: null
+    to: null
+  evidence: 多囊 dun 由网身和若干网囊构成 兜状 d zh 由撑架和兜形网囊构成 滚钩 gg 由干线和若干支线连结锐钩构成 桁杆 hg 由桁杆或桁架和网身、网囊(兜)构成
+    混合 hh 具有两种“型”以上性质的渔具 建网 jw 由网墙、网圈和取鱼部等构成 箭铦 x j 由绳索连接箭形尖刺构成 箕状 zh j 由网衣组成簸箕状的网具
+    框格 kg 由被细绳分隔成若干框格的网衣和上、下纲构成 2
+  source:
+    doc: OPS-STD-039
+    sha256: 2d9ade00dda4fe0d29e6a1ce4499cb1e67a0f5aca56a96e422bbae9349ebcbee
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2027-02-01'
+  supersedes: null

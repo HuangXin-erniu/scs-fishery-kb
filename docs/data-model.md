@@ -87,3 +87,37 @@ retrieval:
 ## 6. Validation
 
 `src/scs_fkb/registry.py` loads the register and enforces schema v3: the enums, `currency.cadence` and its cap, licence and sensitivity allowlists, tier/level consistency, the retirement block and unique ids. `src/scs_fkb/candidates.py` enforces the candidate lifecycle and duplicate URLs. `scs-fkb sources check` combines both with the review-date gate; CI runs it against the real register, so a malformed, unlicensed or overdue entry fails the build rather than reaching an answer. Tests inject a fixed `--today`, so the gate is deterministic.
+
+## 7. Fact, term and FAQ records
+
+The internalised layer is separate from the source register and the corpus index. It is built from indexed documents, verified against their chunks and stored under `configs/facts/`, `configs/terms.yaml` and `configs/faq.yaml`.
+
+### Fact
+
+| Field | Type | Meaning |
+|---|---|---|
+| `id` | string | `FACT-<TOPIC>-<NNN>` |
+| `kind` | enum | `atomic` (precise value) or `provision` (tagged article/section) |
+| `topic` | enum | `policy`, `gear`, `stats`, `environment`, `hazard`, `species` |
+| `question_class` | enum | `time_range`, `scope`, `operation_type`, `materials`, `procedure`, `penalty`, `inspection`, `quantity`, `definition`, `status` |
+| `subject`, `predicate` | string | what the fact is about and which question facet it answers |
+| `value`, `unit`, `qualifiers` | string / mapping | the answer value, unit and jurisdiction/area qualifiers |
+| `effective` | mapping | `from`, `to`; null means unbounded |
+| `evidence` | string | verbatim substring of the cited chunk |
+| `source` | mapping | `doc`, optional `section`, `sha256` of the registered file |
+| `status` | enum | `draft`, `approved`, `stale`, `superseded` |
+| `confidence` | enum | `high`, `medium`, `low` |
+| `as_of`, `review_due` | date | verification and next review dates |
+| `supersedes` | string / null | prior fact replaced by this one |
+
+An `approved` fact must have an A/B public source, a matching hash and verbatim evidence. Two approved facts with the same `question_class`, `subject`, `predicate` and `jurisdiction` may not overlap in effective time with different values unless one `supersedes` the other.
+
+### Term and FAQ
+
+- Term: `id` (`TERM-NNN`), `standard`, `variants`, `region`, `source` (`corpus`/`glossary`/`lexicon` with doc or note), `status`. The standard term must appear in the indexed corpus; variants are retrieval hints, not citations.
+- FAQ: `id` (`FAQ-<PERSONA>-<NNN>`), `question`, `persona`, `claims` (fact ids), `source`, `status`. Every claim must resolve to an approved fact; no eval, gold or real-user text is used.
+
+### Counts and validation
+
+- 80 facts (20 atomic + 60 provision), 24 terms, 12 FAQs; rebuilt external store 375 documents / 431 chunks, index `f3eb84266cfa`; corpus unchanged at 28 documents / 785 chunks / `20910f0964df`.
+- `scs-fkb facts check --data-root "$SCS_FKB_DATA_ROOT"` verifies evidence, hashes, effective dates, conflicts and expiry; `terms check` verifies standards and sources; `faq check` verifies claims. All three exit non-zero on errors.

@@ -2,6 +2,15 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-04 — Verified fact layer, terminology and FAQ
+
+- Added `configs/facts/{policy,gear,stats}.yaml`: 80 approved facts (20 atomic + 60 provision; 64 policy, 13 gear, 3 stats). Every fact carries a verbatim evidence quote, source document/section and register hash; atomic facts add precise values and effective dates.
+- Added `configs/terms.yaml` (24 terms from colloquial variants to standard wording) and `configs/faq.yaml` (12 public FAQs across the four personas). FAQ claims resolve to approved facts; no eval, gold or real-user question is used.
+- Added `facts.py`, `terms.py` and `faq.py` plus `facts check`, `terms check` and `faq check`. `facts check --data-root` verifies evidence, hashes, effective dates, conflicts and expiry; the 80 facts pass with 0 errors and 0 conflicts.
+- Rebuilt the external store with facts/terms/FAQs: **375 documents, 431 chunks, index `f3eb84266cfa`** (119 cards, 140 notes, 80 facts, 24 terms, 12 FAQs). The corpus store is unchanged at 28 documents, 785 chunks and `20910f0964df`; the answer path is unchanged.
+- Tests: 333 passed, 2 skipped.
+
+
 ## 2026-11-04 — Four-persona held-out evaluation split
 
 - Added 15 test questions (12 anchors, 3 abstention) across captain/crew, owner/operator, enforcement and extension: Q-C01..Q-C04, Q-O01..Q-O04, Q-F01..Q-F04 and Q-T01..Q-T03. The existing 33 questions stay unchanged as dev.

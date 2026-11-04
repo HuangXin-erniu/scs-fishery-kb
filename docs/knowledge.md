@@ -86,4 +86,73 @@ Every note pins at least one source with a SHA-256. Facts that the source does n
 
 ## 6. Index status (2026-11-03)
 
-The layer is complete and validated, and it is indexed **as a separate external store** (259 documents, 315 chunks: 119 cards and 140 notes, index `0c6d3901106c`), not in the corpus index. Two rebuilds of the single index were measured: with cards and notes the index reached 287 documents and hybrid fell to 9/11 with abstention 2/4; with cards only it reached 147 documents and hybrid held at 11/11 but abstention fell to 2/4. Broad external evidence without an abstention-aware gate removes correct refusals, so the corpus-only twenty-eight-document baseline stays in force. A layered gate (corpus evidence required before cards or notes can support an answer) was implemented and measured: BM25 abstention recovered to 3/4 but hybrid stayed at 2/4 with recall 9/11, so the notes still wait. A claim-matrix filter (nature, trust, kind, freshness) was wired in and measured: BM25 abstention stayed at 3/4 but hybrid remained 9/11 with abstention 2/4, because the enlarged dense pool changes corpus ranking itself; the fix is structural: the corpus store and the external store are now separate, and the external store (cards and notes) is only consulted after a non-abstained corpus answer, and refusals are logged to `gaps.jsonl`, summarised by `scs-fkb knowledge gaps` (see knowledge-policy.md §6 to §8). The corpus index stays at 28 documents, 785 chunks and `20910f0964df`; the external store never decides abstention.
+The layer is complete and validated, and it is indexed **as a separate external store** (259 documents, 315 chunks: 119 cards and 140 notes, index `0c6d3901106c`), not in the corpus index. This section records the note-only build; the current store after P09-KB-131 is in section 7.4. Two rebuilds of the single index were measured: with cards and notes the index reached 287 documents and hybrid fell to 9/11 with abstention 2/4; with cards only it reached 147 documents and hybrid held at 11/11 but abstention fell to 2/4. Broad external evidence without an abstention-aware gate removes correct refusals, so the corpus-only twenty-eight-document baseline stays in force. A layered gate (corpus evidence required before cards or notes can support an answer) was implemented and measured: BM25 abstention recovered to 3/4 but hybrid stayed at 2/4 with recall 9/11, so the notes still wait. A claim-matrix filter (nature, trust, kind, freshness) was wired in and measured: BM25 abstention stayed at 3/4 but hybrid remained 9/11 with abstention 2/4, because the enlarged dense pool changes corpus ranking itself; the fix is structural: the corpus store and the external store are now separate, and the external store (cards and notes) is only consulted after a non-abstained corpus answer, and refusals are logged to `gaps.jsonl`, summarised by `scs-fkb knowledge gaps` (see knowledge-policy.md §6 to §8). The corpus index stays at 28 documents, 785 chunks and `20910f0964df`; the external store never decides abstention.
+
+## 7. Fact, term and FAQ layer (2026-11-04)
+
+The note layer is descriptive; P09-KB-131 adds a verified fact layer and two support layers. All three live outside the corpus index and are indexed only in the external store.
+
+### 7.1 Facts
+
+```yaml
+- id: FACT-POLICY-001
+  kind: atomic            # atomic | provision
+  topic: policy
+  question_class: time_range
+  subject: 南海区伏季休渔
+  predicate: 休渔时间
+  value: 5月1日12时至8月16日12时（北纬26度30分至北纬12度）
+  unit: null
+  qualifiers: {area: 北纬26度30分至北纬12度}
+  jurisdiction: national
+  effective: {from: '2023-04-15', to: null}
+  evidence: 北纬26度30分至北纬12度的东海和南海海域为5月1日12时至8月16日12时
+  source: {doc: POL-CLOS-015, section: 三、休渔时间, sha256: ...}
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2026-12-03'
+  supersedes: null
+```
+
+The layer has **80 approved facts**: 20 atomic facts with precise values/units/effective dates and 60 provision facts that tag an article or section with a `question_class`, `subject` and `predicate`. Distribution: 64 policy, 13 gear, 3 stats. Every fact carries a verbatim `evidence` quote and a `source` with the register hash.
+
+`scs-fkb facts check --data-root "$SCS_FKB_DATA_ROOT"` verifies that the evidence is a substring of a chunk with the same document and section, that the source hash equals the register, that approved facts use an A/B public source, that effective dates do not invert, and that facts with the same subject/predicate/jurisdiction do not overlap with different values. A `supersedes` chain resolves an intentional replacement. The check exits non-zero on any error, conflict or expired fact; facts approaching `review_due` are reported as due.
+
+### 7.2 Terms
+
+```yaml
+- id: TERM-001
+  standard: 渔业捕捞许可证
+  variants: [捕捞证, 捕鱼证, 牌照]
+  region: [national]
+  source: {kind: corpus, doc: POL-STD-010, section: 第二条, note: 法定捕捞许可证书}
+  status: approved
+```
+
+**24 terms** map colloquial wording to the standard term. `scs-fkb terms check --data-root ...` requires the standard term to appear in the indexed corpus and the corpus source to resolve. Terms are retrieval and answer-wording aids; they never replace a citation.
+
+### 7.3 FAQ
+
+```yaml
+- id: FAQ-CAPTAIN-001
+  question: 休渔期是什么时候？
+  persona: captain
+  claims: [FACT-POLICY-001]
+  source: {kind: public, note: corpus facts; no eval or real-user question}
+  status: approved
+```
+
+**12 public FAQs** cover the four personas. Every claim resolves to an approved fact; approved FAQs cannot claim a draft fact. No eval question, gold answer or real-user question is used.
+
+### 7.4 Build
+
+```bash
+scs-fkb facts check --data-root "$SCS_FKB_DATA_ROOT"
+scs-fkb terms check --data-root "$SCS_FKB_DATA_ROOT"
+scs-fkb faq check
+scs-fkb ingest --external-only --data-root "$SCS_FKB_DATA_ROOT/external"
+scs-fkb embed --data-root "$SCS_FKB_DATA_ROOT/external"
+```
+
+The rebuilt external store has **375 documents and 431 chunks** (119 cards, 140 notes, 80 facts, 24 terms, 12 FAQs), index `f3eb84266cfa`; the corpus store is unchanged at 28 documents, 785 chunks and `20910f0964df`.

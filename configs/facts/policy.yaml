@@ -1,0 +1,1556 @@
+schema_version: 1
+updated_at: '2026-11-04'
+topic: policy
+facts:
+- id: FACT-POLICY-001
+  kind: atomic
+  topic: policy
+  question_class: time_range
+  subject: 南海区伏季休渔
+  predicate: 休渔时间
+  value: 5月1日12时至8月16日12时（北纬26度30分至北纬12度）
+  unit: null
+  qualifiers: {}
+  jurisdiction: national
+  effective:
+    from: '2023-04-15'
+    to: null
+  evidence: 北纬26度30分至北纬12度的东海和南海海域为5月1日12时至8月16日12时
+  source:
+    doc: POL-CLOS-015
+    sha256: 15660ed713803ff440da583e1d5a219ab5e488c2237f3bb33cd30e7115174bdc
+    section: 三、休渔时间
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2026-12-03'
+  supersedes: null
+- id: FACT-POLICY-002
+  kind: atomic
+  topic: policy
+  question_class: scope
+  subject: 南海区伏季休渔
+  predicate: 休渔作业类型
+  value: 除钓具外的所有作业类型，以及为捕捞渔船配套服务的捕捞辅助船
+  unit: null
+  qualifiers: {}
+  jurisdiction: national
+  effective:
+    from: '2023-04-15'
+    to: null
+  evidence: 除钓具外的所有作业类型，以及为捕捞渔船配套服务的捕捞辅助船
+  source:
+    doc: POL-CLOS-015
+    sha256: 15660ed713803ff440da583e1d5a219ab5e488c2237f3bb33cd30e7115174bdc
+    section: 二、休渔作业类型
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2026-12-03'
+  supersedes: null
+- id: FACT-POLICY-003
+  kind: atomic
+  topic: policy
+  question_class: operation_type
+  subject: 2026年伏季休渔专项捕捞
+  predicate: 可申请专项捕捞的作业类型
+  value: 桁杆拖虾、笼壶类、刺网、灯光围（敷）网4种作业类型可申请专项捕捞
+  unit: null
+  qualifiers: {}
+  jurisdiction: national
+  effective:
+    from: '2026-05-01'
+    to: null
+  evidence: 作业类型(方式)为桁杆拖虾、笼壶类、刺网或者灯光围(敷)网
+  source:
+    doc: POL-SPEC-041
+    sha256: b383ea35974fe85acea89f95c7c8c263a7cea382aefdc10f04733efb7118c647
+    section: 二、按作业类型
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2026-12-03'
+  supersedes: null
+- id: FACT-POLICY-004
+  kind: atomic
+  topic: policy
+  question_class: time_range
+  subject: 渔业捕捞许可证
+  predicate: 使用期限
+  value: 海洋和内陆渔业捕捞许可证5年；其他种类最长3年
+  unit: null
+  qualifiers: {}
+  jurisdiction: national
+  effective:
+    from: '2022-01-07'
+    to: null
+  evidence: 海洋渔业捕捞许可证和内陆渔业捕捞许可证的使用期限为5年
+  source:
+    doc: POL-STD-010
+    sha256: 35e2069db4de910494c1e6e07c435c4aca91c846e912acba2d6178776b981910
+    section: 第三十五条
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2026-12-03'
+  supersedes: null
+- id: FACT-POLICY-005
+  kind: atomic
+  topic: policy
+  question_class: procedure
+  subject: 渔业捕捞许可证
+  predicate: 期满换发
+  value: 使用期届满前3个月内向原发证机关申请换发；换发时收回原证并注销
+  unit: null
+  qualifiers: {}
+  jurisdiction: national
+  effective:
+    from: '2022-01-07'
+    to: null
+  evidence: 使用期届满前3个月内，向原发证机关申请换发捕捞许可证
+  source:
+    doc: POL-STD-010
+    sha256: 35e2069db4de910494c1e6e07c435c4aca91c846e912acba2d6178776b981910
+    section: 第三十六条
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2026-12-03'
+  supersedes: null
+- id: FACT-POLICY-006
+  kind: atomic
+  topic: policy
+  question_class: time_range
+  subject: 船网工具指标批准书
+  predicate: 有效期
+  value: 制造、更新改造、进口渔船18个月；购置渔船6个月；可延展18个月
+  unit: null
+  qualifiers: {}
+  jurisdiction: national
+  effective:
+    from: '2022-01-07'
+    to: null
+  evidence: 制造、更新改造、进口渔船的渔业船网工具指标批准书的有效期为18个月
+  source:
+    doc: POL-STD-010
+    sha256: 35e2069db4de910494c1e6e07c435c4aca91c846e912acba2d6178776b981910
+    section: 第十六条
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2026-12-03'
+  supersedes: null
+- id: FACT-POLICY-007
+  kind: atomic
+  topic: policy
+  question_class: procedure
+  subject: 渔捞日志
+  predicate: 记载内容
+  value: 捕捞作业、进港卸载渔获物、水上收购或转运渔获物等情况
+  unit: null
+  qualifiers: {}
+  jurisdiction: national
+  effective:
+    from: '2022-01-07'
+    to: null
+  evidence: 渔捞日志应当记载渔船捕捞作业、进港卸载渔获物、水上收购或转运渔获物等情况
+  source:
+    doc: POL-STD-010
+    sha256: 35e2069db4de910494c1e6e07c435c4aca91c846e912acba2d6178776b981910
+    section: 第五十条
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2026-12-03'
+  supersedes: null
+- id: FACT-POLICY-008
+  kind: atomic
+  topic: policy
+  question_class: penalty
+  subject: 渔捞日志
+  predicate: 违规处罚
+  value: 警告、责令改正；逾期不改正处1000元以上1万元以下罚款
+  unit: null
+  qualifiers: {}
+  jurisdiction: national
+  effective:
+    from: '2022-01-07'
+    to: null
+  evidence: 逾期不改正的，可以处1000元以上1万元以下罚款
+  source:
+    doc: POL-STD-010
+    sha256: 35e2069db4de910494c1e6e07c435c4aca91c846e912acba2d6178776b981910
+    section: 第五十三条
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2026-12-03'
+  supersedes: null
+- id: FACT-POLICY-009
+  kind: atomic
+  topic: policy
+  question_class: materials
+  subject: 渔业捕捞许可证
+  predicate: 申请材料
+  value: 申请书、户口簿或营业执照、检验证书、国籍证书、所有权登记证书、渔具和捕捞方法说明；海洋许可另需组织意见、指标批准书或原证
+  unit: null
+  qualifiers: {}
+  jurisdiction: national
+  effective:
+    from: '2022-01-07'
+    to: null
+  evidence: （一）渔业捕捞许可证申请书； （二）船舶所有人户口簿或者营业执照； （三）渔业船舶检验证书、渔业船舶国籍证书和所有权登记证书
+  source:
+    doc: POL-STD-010
+    sha256: 35e2069db4de910494c1e6e07c435c4aca91c846e912acba2d6178776b981910
+    section: 第二十八条
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2026-12-03'
+  supersedes: null
+- id: FACT-POLICY-010
+  kind: atomic
+  topic: policy
+  question_class: procedure
+  subject: 渔业捕捞许可证
+  predicate: 年审条件
+  value: 检验证书和国籍证书有效；所有人、主尺度、主机功率、总吨位未变更；作业类型、场所、时限、渔具数量一致；日志、资源费、处罚履行
+  unit: null
+  qualifiers: {}
+  jurisdiction: national
+  effective:
+    from: '2022-01-07'
+    to: null
+  evidence: 同时符合下列条件的，为年审合格
+  source:
+    doc: POL-STD-010
+    sha256: 35e2069db4de910494c1e6e07c435c4aca91c846e912acba2d6178776b981910
+    section: 第四十一条
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2026-12-03'
+  supersedes: null
+- id: FACT-POLICY-011
+  kind: atomic
+  topic: policy
+  question_class: penalty
+  subject: 渔业法
+  predicate: 违反禁渔区禁渔期处罚
+  value: 没收渔获物、违法所得和渔具，处20万元以下罚款；情节严重处20万元以上200万元以下罚款，吊销捕捞许可证，可以没收船舶
+  unit: null
+  qualifiers: {}
+  jurisdiction: national
+  effective:
+    from: '2026-05-01'
+    to: null
+  evidence: 违反禁渔区、禁渔期的规定从事捕捞活动
+  source:
+    doc: POL-LAW-009
+    sha256: cdeaaf75a9992bc98642fbe6c004f790506549a4afaf223e3bf2b7b5eb365fa4
+    section: 第七十八条
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2026-12-03'
+  supersedes: null
+- id: FACT-POLICY-012
+  kind: atomic
+  topic: policy
+  question_class: penalty
+  subject: 渔业行政处罚
+  predicate: 无证捕捞罚款
+  value: 海洋水域10万元以下；内陆水域5万元以下
+  unit: null
+  qualifiers: {}
+  jurisdiction: national
+  effective:
+    from: null
+    to: null
+  evidence: 在海洋水域，处以十万元以下罚款
+  source:
+    doc: POL-PEN-080
+    sha256: 57027911e2ce6b23d6e84aee6269f19623b19f927cdb31fcbad606e032756e81
+    section: 第八条
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2026-12-03'
+  supersedes: null
+- id: FACT-POLICY-013
+  kind: atomic
+  topic: policy
+  question_class: procedure
+  subject: 渔港
+  predicate: 进出港报告
+  value: 遵守渔港管理章程和国际海上避碰规则，向渔政渔港监督管理机关报告，接受安全检查
+  unit: null
+  qualifiers: {}
+  jurisdiction: national
+  effective:
+    from: '1989-08-01'
+    to: null
+  evidence: 船舶进出渔港必须遵守渔港管理章程以及国际海上避碰规则
+  source:
+    doc: POL-PORT-077
+    sha256: 1ff9570272738ada371f4e412c3b47ef13eaf94c68481a31640421fda6fc1fd2
+    section: 第六条
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2026-12-03'
+  supersedes: null
+- id: FACT-POLICY-014
+  kind: atomic
+  topic: policy
+  question_class: penalty
+  subject: 渔港
+  predicate: 未报告处罚
+  value: 责令改正，可以并处警告、罚款；情节严重的扣留或者吊销船长职务证书
+  unit: null
+  qualifiers: {}
+  jurisdiction: national
+  effective:
+    from: '1989-08-01'
+    to: null
+  evidence: 船舶进出渔港依照规定应当向渔政渔港监督管理机关报告而未报告的
+  source:
+    doc: POL-PORT-077
+    sha256: 1ff9570272738ada371f4e412c3b47ef13eaf94c68481a31640421fda6fc1fd2
+    section: 第二十条
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2026-12-03'
+  supersedes: null
+- id: FACT-POLICY-015
+  kind: atomic
+  topic: policy
+  question_class: inspection
+  subject: 渔业船舶检验
+  predicate: 检验种类
+  value: 强制检验分为初次检验、营运检验和临时检验
+  unit: null
+  qualifiers: {}
+  jurisdiction: national
+  effective:
+    from: '2003-08-01'
+    to: null
+  evidence: 强制检验分为初次检验、营运检验和临时检验
+  source:
+    doc: POL-RULE-019
+    sha256: 413acf724b599a83bc61480168bc5b3452fad0ad0bcff65cb94e17b05ce69165
+    section: 第四条
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2026-12-03'
+  supersedes: null
+- id: FACT-POLICY-016
+  kind: atomic
+  topic: policy
+  question_class: quantity
+  subject: 渔业资源增殖保护费
+  predicate: 征收幅度
+  value: 海洋渔业按前3年平均年总产值1%至3%；专项品种3%至5%
+  unit: percent
+  qualifiers: {}
+  jurisdiction: national
+  effective:
+    from: null
+    to: null
+  evidence: 海洋渔业资源费年征收金额
+  source:
+    doc: POL-RULE-020
+    sha256: abedb250e0982b34bd66b0d00bccdfdc92c750d5f04d2f2919db858dfe4e8302
+    section: 第五条
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2026-12-03'
+  supersedes: null
+- id: FACT-POLICY-017
+  kind: atomic
+  topic: policy
+  question_class: quantity
+  subject: 船网工具指标
+  predicate: 制造更新改造规则
+  value: 本省指标内通过淘汰旧船解决；船数和功率不得超过被淘汰渔船；大中型与小型不得转换；大中型不得跨海区买卖
+  unit: null
+  qualifiers: {}
+  jurisdiction: national
+  effective:
+    from: '2022-01-07'
+    to: null
+  evidence: 制造、更新改造国内海洋捕捞渔船的
+  source:
+    doc: POL-STD-010
+    sha256: 35e2069db4de910494c1e6e07c435c4aca91c846e912acba2d6178776b981910
+    section: 第十四条
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2026-12-03'
+  supersedes: null
+- id: FACT-POLICY-018
+  kind: provision
+  topic: policy
+  question_class: procedure
+  subject: 渔业捕捞许可管理规定（2022年修订）
+  predicate: 第二条
+  value: 第二条 中华人民共和国的公民、法人和其他组织从事渔业捕捞活动，以及外国人、外国渔业船舶在中华人民共和国领域及管辖的其他水域从事渔业捕捞活动，应当遵守本规定。
+    中华人民共和国缔结的条约、协定另有规定的，按条约、协定执行
+  unit: null
+  qualifiers: {}
+  jurisdiction: national
+  effective:
+    from: null
+    to: null
+  evidence: 第二条 中华人民共和国的公民、法人和其他组织从事渔业捕捞活动，以及外国人、外国渔业船舶在中华人民共和国领域及管辖的其他水域从事渔业捕捞活动，应当遵守本规定。
+    中华人民共和国缔结的条约、协定另有规定的，按条约、协定执行
+  source:
+    doc: POL-STD-010
+    sha256: 35e2069db4de910494c1e6e07c435c4aca91c846e912acba2d6178776b981910
+    section: 第二条
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2026-12-03'
+  supersedes: null
+- id: FACT-POLICY-019
+  kind: provision
+  topic: policy
+  question_class: quantity
+  subject: 渔业捕捞许可管理规定（2022年修订）
+  predicate: 第三条
+  value: 第三条 国家对捕捞业实行船网工具控制指标管理，实行捕捞许可证制度和捕捞限额制度。 国家根据渔业资源变化与环境状况，确定船网工具控制指标，控制捕捞能力总量和渔业捕捞许可证数量。渔业捕捞许可证的批准发放，应当遵循公开、公平、公正原则，数量不得超过船网工具控制指标范围
+  unit: null
+  qualifiers: {}
+  jurisdiction: national
+  effective:
+    from: null
+    to: null
+  evidence: 第三条 国家对捕捞业实行船网工具控制指标管理，实行捕捞许可证制度和捕捞限额制度。 国家根据渔业资源变化与环境状况，确定船网工具控制指标，控制捕捞能力总量和渔业捕捞许可证数量。渔业捕捞许可证的批准发放，应当遵循公开、公平、公正原则，数量不得超过船网工具控制指标范围
+  source:
+    doc: POL-STD-010
+    sha256: 35e2069db4de910494c1e6e07c435c4aca91c846e912acba2d6178776b981910
+    section: 第三条
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2026-12-03'
+  supersedes: null
+- id: FACT-POLICY-020
+  kind: provision
+  topic: policy
+  question_class: quantity
+  subject: 渔业捕捞许可管理规定（2022年修订）
+  predicate: 第四条
+  value: 第四条 渔业捕捞许可证、船网工具指标等证书文件的审批实行签发人负责制，相关证书文件经签发人签字并加盖公章后方为有效。 签发人对其审批签发证书文件的真实性及合法性负责
+  unit: null
+  qualifiers: {}
+  jurisdiction: national
+  effective:
+    from: null
+    to: null
+  evidence: 第四条 渔业捕捞许可证、船网工具指标等证书文件的审批实行签发人负责制，相关证书文件经签发人签字并加盖公章后方为有效。 签发人对其审批签发证书文件的真实性及合法性负责
+  source:
+    doc: POL-STD-010
+    sha256: 35e2069db4de910494c1e6e07c435c4aca91c846e912acba2d6178776b981910
+    section: 第四条
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2026-12-03'
+  supersedes: null
+- id: FACT-POLICY-021
+  kind: provision
+  topic: policy
+  question_class: time_range
+  subject: 渔业捕捞许可管理规定（2022年修订）
+  predicate: 第五条
+  value: 第五条 农业农村部主管全国渔业捕捞许可管理和捕捞能力总量控制工作。 县级以上地方人民政府渔业主管部门及其所属的渔政监督管理机构负责本行政区域内的渔业捕捞许可管理和捕捞能力总量控制的组织、实施工作
+  unit: null
+  qualifiers: {}
+  jurisdiction: national
+  effective:
+    from: null
+    to: null
+  evidence: 第五条 农业农村部主管全国渔业捕捞许可管理和捕捞能力总量控制工作。 县级以上地方人民政府渔业主管部门及其所属的渔政监督管理机构负责本行政区域内的渔业捕捞许可管理和捕捞能力总量控制的组织、实施工作
+  source:
+    doc: POL-STD-010
+    sha256: 35e2069db4de910494c1e6e07c435c4aca91c846e912acba2d6178776b981910
+    section: 第五条
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2026-12-03'
+  supersedes: null
+- id: FACT-POLICY-022
+  kind: provision
+  topic: policy
+  question_class: materials
+  subject: 渔业捕捞许可管理规定（2022年修订）
+  predicate: 第六条
+  value: 第六条 县级以上人民政府渔业主管部门应当在其办公场所和网上办理平台，公布船网工具指标、渔业捕捞许可证审批的条件、程序、期限以及需要提交的全部材料目录和申请书示范文本等事项。
+    县级以上人民政府渔业主管部门应当按照本规定自受理船网工具指标或渔业捕捞许可证申请之日起20个工作日内审查完毕或者作出是否批准的决定。不予受理申请或者不予批准的，应当书面通知申请人并说明理由
+  unit: null
+  qualifiers: {}
+  jurisdiction: national
+  effective:
+    from: null
+    to: null
+  evidence: 第六条 县级以上人民政府渔业主管部门应当在其办公场所和网上办理平台，公布船网工具指标、渔业捕捞许可证审批的条件、程序、期限以及需要提交的全部材料目录和申请书示范文本等事项。
+    县级以上人民政府渔业主管部门应当按照本规定自受理船网工具指标或渔业捕捞许可证申请之日起20个工作日内审查完毕或者作出是否批准的决定。不予受理申请或者不予批准的，应当书面通知申请人并说明理由
+  source:
+    doc: POL-STD-010
+    sha256: 35e2069db4de910494c1e6e07c435c4aca91c846e912acba2d6178776b981910
+    section: 第六条
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2026-12-03'
+  supersedes: null
+- id: FACT-POLICY-023
+  kind: provision
+  topic: policy
+  question_class: materials
+  subject: 渔业捕捞许可管理规定（2022年修订）
+  predicate: 第七条
+  value: 第七条 县级以上人民政府渔业主管部门应当加强渔船和捕捞许可管理信息系统建设，建立健全渔船动态管理数据库。海洋渔船船网工具指标和捕捞许可证的申请、审核审批及制发证书文件等应当通过全国统一的渔船动态管理系统进行。
+    申请人应当提供的户口簿、营业执照、渔业船舶检验证书、渔业船舶登记证等法定证照、权属证明在全国渔船动态管理系统或者部门间核查能够查询到有效信息的，可以不再提供纸质材料
+  unit: null
+  qualifiers: {}
+  jurisdiction: national
+  effective:
+    from: null
+    to: null
+  evidence: 第七条 县级以上人民政府渔业主管部门应当加强渔船和捕捞许可管理信息系统建设，建立健全渔船动态管理数据库。海洋渔船船网工具指标和捕捞许可证的申请、审核审批及制发证书文件等应当通过全国统一的渔船动态管理系统进行。
+    申请人应当提供的户口簿、营业执照、渔业船舶检验证书、渔业船舶登记证等法定证照、权属证明在全国渔船动态管理系统或者部门间核查能够查询到有效信息的，可以不再提供纸质材料
+  source:
+    doc: POL-STD-010
+    sha256: 35e2069db4de910494c1e6e07c435c4aca91c846e912acba2d6178776b981910
+    section: 第七条
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2026-12-03'
+  supersedes: null
+- id: FACT-POLICY-024
+  kind: provision
+  topic: policy
+  question_class: procedure
+  subject: 渔业捕捞许可管理规定（2022年修订）
+  predicate: 第八条
+  value: 第八条 海洋渔船按船长分为以下三类： （一）海洋大型渔船：船长大于或者等于24米； （二）海洋中型渔船：船长大于或者等于12米且小于24米； （三）海洋小型渔船：船长小于12米。
+    内陆渔船的分类标准由各省、自治区、直辖市人民政府渔业主管部门制定
+  unit: null
+  qualifiers: {}
+  jurisdiction: national
+  effective:
+    from: null
+    to: null
+  evidence: 第八条 海洋渔船按船长分为以下三类： （一）海洋大型渔船：船长大于或者等于24米； （二）海洋中型渔船：船长大于或者等于12米且小于24米；
+    （三）海洋小型渔船：船长小于12米。 内陆渔船的分类标准由各省、自治区、直辖市人民政府渔业主管部门制定
+  source:
+    doc: POL-STD-010
+    sha256: 35e2069db4de910494c1e6e07c435c4aca91c846e912acba2d6178776b981910
+    section: 第八条
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2026-12-03'
+  supersedes: null
+- id: FACT-POLICY-025
+  kind: provision
+  topic: policy
+  question_class: quantity
+  subject: 渔业捕捞许可管理规定（2022年修订）
+  predicate: 第九条
+  value: 第九条 国内海洋大中型捕捞渔船的船网工具控制指标由农业农村部确定并报国务院批准后，向有关省、自治区、直辖市下达。国内海洋小型捕捞渔船的船网工具控制指标由省、自治区、直辖市人民政府依据其渔业资源与环境承载能力、资源利用状况、渔民传统作业情况等确定，报农业农村部批准后下达。
+    县级以上地方人民政府渔业主管部门应当控制本行政区域内海洋捕捞渔船的数量、功率，不得超过国家或省、自治区、直辖市人民政府下达的船网工具控制指标，具体办法由省、自治区、直辖市人民政府规定。
+    内
+  unit: null
+  qualifiers: {}
+  jurisdiction: national
+  effective:
+    from: null
+    to: null
+  evidence: 第九条 国内海洋大中型捕捞渔船的船网工具控制指标由农业农村部确定并报国务院批准后，向有关省、自治区、直辖市下达。国内海洋小型捕捞渔船的船网工具控制指标由省、自治区、直辖市人民政府依据其渔业资源与环境承载能力、资源利用状况、渔民传统作业情况等确定，报农业农村部批准后下达。
+    县级以上地方人民政府渔业主管部门应当控制本行政区域内海洋捕捞渔船的数量、功率，不得超过国家或省、自治区、直辖市人民政府下达的船网工具控制指标，具体办法由省、自治区、直辖市人民政府规定。
+    内陆水域捕捞业的船网工具控制指标和管理，按照省、自治区、直辖市人民政府的规定执行
+  source:
+    doc: POL-STD-010
+    sha256: 35e2069db4de910494c1e6e07c435c4aca91c846e912acba2d6178776b981910
+    section: 第九条
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2026-12-03'
+  supersedes: null
+- id: FACT-POLICY-026
+  kind: provision
+  topic: policy
+  question_class: quantity
+  subject: 渔业捕捞许可管理规定（2022年修订）
+  predicate: 第十条
+  value: 第十条 制造、更新改造、购置、进口海洋捕捞渔船，应当经有审批权的人民政府渔业主管部门在国家或者省、自治区、直辖市下达的船网工具控制指标内批准，并取得渔业船网工具指标批准书
+  unit: null
+  qualifiers: {}
+  jurisdiction: national
+  effective:
+    from: null
+    to: null
+  evidence: 第十条 制造、更新改造、购置、进口海洋捕捞渔船，应当经有审批权的人民政府渔业主管部门在国家或者省、自治区、直辖市下达的船网工具控制指标内批准，并取得渔业船网工具指标批准书
+  source:
+    doc: POL-STD-010
+    sha256: 35e2069db4de910494c1e6e07c435c4aca91c846e912acba2d6178776b981910
+    section: 第十条
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2026-12-03'
+  supersedes: null
+- id: FACT-POLICY-027
+  kind: provision
+  topic: policy
+  question_class: materials
+  subject: 渔业捕捞许可管理规定（2022年修订）
+  predicate: 第十一条
+  value: 第十一条 申请海洋捕捞渔船船网工具指标，应当向户籍所在地、法人或非法人组织登记地县级以上人民政府渔业主管部门提出，提交渔业船网工具指标申请书、申请人户口簿或者营业执照，以及申请人所属渔业组织出具的意见，并按以下情况提供资料：
+    （一）制造海洋捕捞渔船的，提供经确认符合船机桨匹配要求的渔船建造设计图纸。 国内海洋捕捞渔船淘汰后申请制造渔船的，还应当提供渔船拆解所在地县级以上地方人民政府渔业主管部门出具的渔业船舶拆解、销毁或处理证明和现场监督管理的影像资料，以及
+  unit: null
+  qualifiers: {}
+  jurisdiction: national
+  effective:
+    from: null
+    to: null
+  evidence: 第十一条 申请海洋捕捞渔船船网工具指标，应当向户籍所在地、法人或非法人组织登记地县级以上人民政府渔业主管部门提出，提交渔业船网工具指标申请书、申请人户口簿或者营业执照，以及申请人所属渔业组织出具的意见，并按以下情况提供资料：
+    （一）制造海洋捕捞渔船的，提供经确认符合船机桨匹配要求的渔船建造设计图纸。 国内海洋捕捞渔船淘汰后申请制造渔船的，还应当提供渔船拆解所在地县级以上地方人民政府渔业主管部门出具的渔业船舶拆解、销毁或处理证明和现场监督管理的影像资料，以及原发证机关出具的渔业船舶证书注销证明。
+    国内海洋捕捞渔船因海损事故造成渔船灭失后申请制造渔船的，还应当提供船籍港登记机关出具的灭失证明和原发
+  source:
+    doc: POL-STD-010
+    sha256: 35e2069db4de910494c1e6e07c435c4aca91c846e912acba2d6178776b981910
+    section: 第十一条
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2026-12-03'
+  supersedes: null
+- id: FACT-POLICY-028
+  kind: provision
+  topic: policy
+  question_class: scope
+  subject: 中华人民共和国渔业法（2025年修订）
+  predicate: 第七条
+  value: 第七条 国家对渔业的监督管理，实行统一领导、分级管理。 海洋渔业，除国务院划定由国务院渔业渔政主管部门监督管理的海域和特定渔业资源渔场外，由毗邻海域的省、自治区、直辖市人民政府渔业渔政主管部门监督管理。
+    江河、湖泊、水库等水域的渔业，按照行政区划由有关县级以上地方人民政府渔业渔政主管部门监督管理；跨行政区域的，由有关县级以上地方人民政府协商制定管理办法，或者由上一级人民政府渔业渔政主管部门监督管理。
+    渔业执法工作由县级以上人民政府渔业渔政主管部门或者县级以
+  unit: null
+  qualifiers: {}
+  jurisdiction: national
+  effective:
+    from: null
+    to: null
+  evidence: 第七条 国家对渔业的监督管理，实行统一领导、分级管理。 海洋渔业，除国务院划定由国务院渔业渔政主管部门监督管理的海域和特定渔业资源渔场外，由毗邻海域的省、自治区、直辖市人民政府渔业渔政主管部门监督管理。
+    江河、湖泊、水库等水域的渔业，按照行政区划由有关县级以上地方人民政府渔业渔政主管部门监督管理；跨行政区域的，由有关县级以上地方人民政府协商制定管理办法，或者由上一级人民政府渔业渔政主管部门监督管理。
+    渔业执法工作由县级以上人民政府渔业渔政主管部门或者县级以上人民政府明确的执法机构（以下统称渔业执法机构）承担
+  source:
+    doc: POL-LAW-009
+    sha256: cdeaaf75a9992bc98642fbe6c004f790506549a4afaf223e3bf2b7b5eb365fa4
+    section: 第七条
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2026-12-03'
+  supersedes: null
+- id: FACT-POLICY-029
+  kind: provision
+  topic: policy
+  question_class: procedure
+  subject: 中华人民共和国渔业法（2025年修订）
+  predicate: 第十一条
+  value: 第十一条 渔业生产者依法自愿成立行业协会，为其成员提供生产、营销、信息、技术、培训、咨询等方面的服务，发挥协调和自律作用，维护成员和行业的合法权益。
+    国家鼓励发展渔业互助保险等多种形式的渔业保险，增强渔业生产的抗风险能力
+  unit: null
+  qualifiers: {}
+  jurisdiction: national
+  effective:
+    from: null
+    to: null
+  evidence: 第十一条 渔业生产者依法自愿成立行业协会，为其成员提供生产、营销、信息、技术、培训、咨询等方面的服务，发挥协调和自律作用，维护成员和行业的合法权益。
+    国家鼓励发展渔业互助保险等多种形式的渔业保险，增强渔业生产的抗风险能力
+  source:
+    doc: POL-LAW-009
+    sha256: cdeaaf75a9992bc98642fbe6c004f790506549a4afaf223e3bf2b7b5eb365fa4
+    section: 第十一条
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2026-12-03'
+  supersedes: null
+- id: FACT-POLICY-030
+  kind: provision
+  topic: policy
+  question_class: materials
+  subject: 中华人民共和国渔业法（2025年修订）
+  predicate: 第十三条
+  value: 第十三条 外国人、外国籍渔业船舶进入中华人民共和国管辖水域，从事渔业生产或者渔业资源调查活动，应当经国务院有关主管部门批准，并遵守本法和中华人民共和国其他有关法律、法规的规定；中华人民共和国缔结或者参加的条约、协定有规定的，按照条约、协定办理。
+    国务院渔业渔政主管部门对外行使渔政渔港监督管理权
+  unit: null
+  qualifiers: {}
+  jurisdiction: national
+  effective:
+    from: null
+    to: null
+  evidence: 第十三条 外国人、外国籍渔业船舶进入中华人民共和国管辖水域，从事渔业生产或者渔业资源调查活动，应当经国务院有关主管部门批准，并遵守本法和中华人民共和国其他有关法律、法规的规定；中华人民共和国缔结或者参加的条约、协定有规定的，按照条约、协定办理。
+    国务院渔业渔政主管部门对外行使渔政渔港监督管理权
+  source:
+    doc: POL-LAW-009
+    sha256: cdeaaf75a9992bc98642fbe6c004f790506549a4afaf223e3bf2b7b5eb365fa4
+    section: 第十三条
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2026-12-03'
+  supersedes: null
+- id: FACT-POLICY-031
+  kind: provision
+  topic: policy
+  question_class: procedure
+  subject: 中华人民共和国渔业法（2025年修订）
+  predicate: 第二十二条
+  value: 第二十二条 国家鼓励和支持水产优良品种的选育、培育和推广。 水产新品种应当经全国水产品种审定委员会审定，由国务院渔业渔政主管部门公告后推广。水产新品种审定办法由国务院渔业渔政主管部门制定。
+    从事水产苗种生产活动，应当取得县级以上地方人民政府渔业渔政主管部门核发的水产苗种生产许可证。但是，渔业生产者自育、自用水产苗种的除外
+  unit: null
+  qualifiers: {}
+  jurisdiction: national
+  effective:
+    from: null
+    to: null
+  evidence: 第二十二条 国家鼓励和支持水产优良品种的选育、培育和推广。 水产新品种应当经全国水产品种审定委员会审定，由国务院渔业渔政主管部门公告后推广。水产新品种审定办法由国务院渔业渔政主管部门制定。
+    从事水产苗种生产活动，应当取得县级以上地方人民政府渔业渔政主管部门核发的水产苗种生产许可证。但是，渔业生产者自育、自用水产苗种的除外
+  source:
+    doc: POL-LAW-009
+    sha256: cdeaaf75a9992bc98642fbe6c004f790506549a4afaf223e3bf2b7b5eb365fa4
+    section: 第二十二条
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2026-12-03'
+  supersedes: null
+- id: FACT-POLICY-032
+  kind: provision
+  topic: policy
+  question_class: time_range
+  subject: 中华人民共和国渔业法（2025年修订）
+  predicate: 第二十四条
+  value: 第二十四条 水产苗种的进口、出口，应当依照有关进出境动植物检疫的法律、行政法规的规定实施检疫，防止病害传入境内和传出境外，加强生态安全风险防控。
+    引进转基因水产苗种，应当按照国务院有关规定进行安全性评价
+  unit: null
+  qualifiers: {}
+  jurisdiction: national
+  effective:
+    from: null
+    to: null
+  evidence: 第二十四条 水产苗种的进口、出口，应当依照有关进出境动植物检疫的法律、行政法规的规定实施检疫，防止病害传入境内和传出境外，加强生态安全风险防控。
+    引进转基因水产苗种，应当按照国务院有关规定进行安全性评价
+  source:
+    doc: POL-LAW-009
+    sha256: cdeaaf75a9992bc98642fbe6c004f790506549a4afaf223e3bf2b7b5eb365fa4
+    section: 第二十四条
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2026-12-03'
+  supersedes: null
+- id: FACT-POLICY-033
+  kind: provision
+  topic: policy
+  question_class: inspection
+  subject: 中华人民共和国渔业法（2025年修订）
+  predicate: 第三十条
+  value: 第三十条 国家根据捕捞量低于渔业资源增长量的原则，确定渔业资源的总可捕捞量，实行捕捞限额制度。国务院渔业渔政主管部门依法组织渔业资源的调查和评估，为实行捕捞限额制度提供科学依据。
+    中华人民共和国内海、领海、专属经济区和其他管辖海域的捕捞限额总量由国务院渔业渔政主管部门确定，报国务院批准后逐级分解下达；国家确定的重要江河、湖泊的捕捞限额总量由有关省、自治区、直辖市人民政府确定或者协商确定，逐级分解下达，并向国务院渔业渔政主管部门报告。捕捞限额总量的分配应当体
+  unit: null
+  qualifiers: {}
+  jurisdiction: national
+  effective:
+    from: null
+    to: null
+  evidence: 第三十条 国家根据捕捞量低于渔业资源增长量的原则，确定渔业资源的总可捕捞量，实行捕捞限额制度。国务院渔业渔政主管部门依法组织渔业资源的调查和评估，为实行捕捞限额制度提供科学依据。
+    中华人民共和国内海、领海、专属经济区和其他管辖海域的捕捞限额总量由国务院渔业渔政主管部门确定，报国务院批准后逐级分解下达；国家确定的重要江河、湖泊的捕捞限额总量由有关省、自治区、直辖市人民政府确定或者协商确定，逐级分解下达，并向国务院渔业渔政主管部门报告。捕捞限额总量的分配应当体现公平、公正的原则，分配办法和分配结果应当向社会公开，并接受监督。
+    省级以上人民政府渔业渔政主管部门应当加强对捕捞限额制度实施情况的监督检查
+  source:
+    doc: POL-LAW-009
+    sha256: cdeaaf75a9992bc98642fbe6c004f790506549a4afaf223e3bf2b7b5eb365fa4
+    section: 第三十条
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2026-12-03'
+  supersedes: null
+- id: FACT-POLICY-034
+  kind: provision
+  topic: policy
+  question_class: materials
+  subject: 中华人民共和国渔业法（2025年修订）
+  predicate: 第三十一条
+  value: 第三十一条 国家根据捕捞能力与渔业资源可捕捞量相适应的原则，确定渔业船网工具控制指标。 县级以上人民政府渔业渔政主管部门在渔业船网工具控制指标范围内，按照规定的权限分级分类批准渔业船网工具指标。
+    对应当取得渔业船网工具指标的渔业船舶，单位和个人取得渔业船网工具指标后方可制造、改造并申请检验、登记。 禁止为应当取得而未取得渔业船网工具指标的单位和个人制造、改造渔业船舶，或者不按照渔业船网工具指标核定的内容制造、改造渔业船舶。
+    渔业船网工具指标可以按照国家有关
+  unit: null
+  qualifiers: {}
+  jurisdiction: national
+  effective:
+    from: null
+    to: null
+  evidence: 第三十一条 国家根据捕捞能力与渔业资源可捕捞量相适应的原则，确定渔业船网工具控制指标。 县级以上人民政府渔业渔政主管部门在渔业船网工具控制指标范围内，按照规定的权限分级分类批准渔业船网工具指标。
+    对应当取得渔业船网工具指标的渔业船舶，单位和个人取得渔业船网工具指标后方可制造、改造并申请检验、登记。 禁止为应当取得而未取得渔业船网工具指标的单位和个人制造、改造渔业船舶，或者不按照渔业船网工具指标核定的内容制造、改造渔业船舶。
+    渔业船网工具指标可以按照国家有关规定随船转让
+  source:
+    doc: POL-LAW-009
+    sha256: cdeaaf75a9992bc98642fbe6c004f790506549a4afaf223e3bf2b7b5eb365fa4
+    section: 第三十一条
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2026-12-03'
+  supersedes: null
+- id: FACT-POLICY-035
+  kind: provision
+  topic: policy
+  question_class: materials
+  subject: 中华人民共和国渔业法（2025年修订）
+  predicate: 第三十二条
+  value: 第三十二条 国家对捕捞业实行捕捞许可证制度。捕捞许可证由县级以上人民政府渔业渔政主管部门批准发放。 到国务院渔业渔政主管部门规定的渔业资源渔场从事捕捞作业的，应当取得省级以上人民政府渔业渔政主管部门批准发放的捕捞许可证。
+    到公海从事捕捞作业的，应当取得国务院渔业渔政主管部门批准发放的捕捞许可证，遵守中华人民共和国缔结或者参加的有关条约、协定。 到他国管辖海域从事捕捞作业的，应当经国务院渔业渔政主管部门批准，遵守中华人民共和国缔结或者参加的有关条约、协定以及
+  unit: null
+  qualifiers: {}
+  jurisdiction: national
+  effective:
+    from: null
+    to: null
+  evidence: 第三十二条 国家对捕捞业实行捕捞许可证制度。捕捞许可证由县级以上人民政府渔业渔政主管部门批准发放。 到国务院渔业渔政主管部门规定的渔业资源渔场从事捕捞作业的，应当取得省级以上人民政府渔业渔政主管部门批准发放的捕捞许可证。
+    到公海从事捕捞作业的，应当取得国务院渔业渔政主管部门批准发放的捕捞许可证，遵守中华人民共和国缔结或者参加的有关条约、协定。 到他国管辖海域从事捕捞作业的，应当经国务院渔业渔政主管部门批准，遵守中华人民共和国缔结或者参加的有关条约、协定以及有关国家的法律。
+    捕捞许可证不得买卖、出租、出借或者以其他形式转让，不得涂改、伪造、变造。 个人通过娱乐性垂钓或者手工采集的方式零星获得水产
+  source:
+    doc: POL-LAW-009
+    sha256: cdeaaf75a9992bc98642fbe6c004f790506549a4afaf223e3bf2b7b5eb365fa4
+    section: 第三十二条
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2026-12-03'
+  supersedes: null
+- id: FACT-POLICY-036
+  kind: provision
+  topic: policy
+  question_class: inspection
+  subject: 中华人民共和国渔业法（2025年修订）
+  predicate: 第三十三条
+  value: 第三十三条 取得捕捞许可证，应当具备下列条件： （一）有渔业船舶所有权登记证书、国籍证书和检验证书，不使用船舶从事捕捞作业的除外； （二）渔具、捕捞方法符合有关规定；
+    （三）国务院渔业渔政主管部门规定的其他条件。 县级以上地方人民政府渔业渔政主管部门批准发放的捕捞许可证，应当与上级人民政府渔业渔政主管部门下达的捕捞限额指标相适应
+  unit: null
+  qualifiers: {}
+  jurisdiction: national
+  effective:
+    from: null
+    to: null
+  evidence: 第三十三条 取得捕捞许可证，应当具备下列条件： （一）有渔业船舶所有权登记证书、国籍证书和检验证书，不使用船舶从事捕捞作业的除外； （二）渔具、捕捞方法符合有关规定；
+    （三）国务院渔业渔政主管部门规定的其他条件。 县级以上地方人民政府渔业渔政主管部门批准发放的捕捞许可证，应当与上级人民政府渔业渔政主管部门下达的捕捞限额指标相适应
+  source:
+    doc: POL-LAW-009
+    sha256: cdeaaf75a9992bc98642fbe6c004f790506549a4afaf223e3bf2b7b5eb365fa4
+    section: 第三十三条
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2026-12-03'
+  supersedes: null
+- id: FACT-POLICY-037
+  kind: provision
+  topic: policy
+  question_class: scope
+  subject: 中华人民共和国渔业法（2025年修订）
+  predicate: 第三十四条
+  value: 第三十四条 从事捕捞作业的单位和个人，应当按照捕捞许可证规定的作业类型、场所、时限、渔具数量和捕捞限额等进行作业。 海洋大中型渔业船舶应当如实填写作业日志，记载捕捞作业、转载、购销等信息，并至少保存二年。
+    辅助捕捞作业的船舶，不得从事捕捞作业；携带渔具航行、停泊的，应当进行捆扎、覆盖
+  unit: null
+  qualifiers: {}
+  jurisdiction: national
+  effective:
+    from: null
+    to: null
+  evidence: 第三十四条 从事捕捞作业的单位和个人，应当按照捕捞许可证规定的作业类型、场所、时限、渔具数量和捕捞限额等进行作业。 海洋大中型渔业船舶应当如实填写作业日志，记载捕捞作业、转载、购销等信息，并至少保存二年。
+    辅助捕捞作业的船舶，不得从事捕捞作业；携带渔具航行、停泊的，应当进行捆扎、覆盖
+  source:
+    doc: POL-LAW-009
+    sha256: cdeaaf75a9992bc98642fbe6c004f790506549a4afaf223e3bf2b7b5eb365fa4
+    section: 第三十四条
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2026-12-03'
+  supersedes: null
+- id: FACT-POLICY-038
+  kind: provision
+  topic: policy
+  question_class: penalty
+  subject: 渔业行政处罚规定
+  predicate: 第一条
+  value: 第一条 为严格执行渔业法律法规，规范渔业行政处罚，保障渔业生产者的合法权益，根据《中华人民共和国渔业法》（以下简称《渔业法》）《中华人民共和国渔业法实施细则》（以下简称《实施细则》）和《中华人民共和国行政处罚法》等法律法规，制定本规定
+  unit: null
+  qualifiers: {}
+  jurisdiction: national
+  effective:
+    from: null
+    to: null
+  evidence: 第一条 为严格执行渔业法律法规，规范渔业行政处罚，保障渔业生产者的合法权益，根据《中华人民共和国渔业法》（以下简称《渔业法》）《中华人民共和国渔业法实施细则》（以下简称《实施细则》）和《中华人民共和国行政处罚法》等法律法规，制定本规定
+  source:
+    doc: POL-PEN-080
+    sha256: 57027911e2ce6b23d6e84aee6269f19623b19f927cdb31fcbad606e032756e81
+    section: 第一条
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2026-12-03'
+  supersedes: null
+- id: FACT-POLICY-039
+  kind: provision
+  topic: policy
+  question_class: penalty
+  subject: 渔业行政处罚规定
+  predicate: 第二条
+  value: 第二条 对渔业违法的行政处罚有以下种类： （一）罚款； （二）没收渔获物、违法所得、渔具； （三）暂扣、吊销捕捞许可证等渔业证照； （四）法律、法规规定的其他处罚
+  unit: null
+  qualifiers: {}
+  jurisdiction: national
+  effective:
+    from: null
+    to: null
+  evidence: 第二条 对渔业违法的行政处罚有以下种类： （一）罚款； （二）没收渔获物、违法所得、渔具； （三）暂扣、吊销捕捞许可证等渔业证照； （四）法律、法规规定的其他处罚
+  source:
+    doc: POL-PEN-080
+    sha256: 57027911e2ce6b23d6e84aee6269f19623b19f927cdb31fcbad606e032756e81
+    section: 第二条
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2026-12-03'
+  supersedes: null
+- id: FACT-POLICY-040
+  kind: provision
+  topic: policy
+  question_class: penalty
+  subject: 渔业行政处罚规定
+  predicate: 第三条
+  value: 第三条 渔业违法行为轻微并及时改正，没有造成危害后果的，不予处罚。初次实施渔业违法行为且危害后果轻微并及时改正的，可以不予处罚。当事人有证据足以证明没有主观过错的，不予行政处罚。对当事人的违法行为依法不予行政处罚的，应当对当事人进行教育。有下列行为之一的，应当从轻或者减轻处罚：
+    （一）主动消除或减轻渔业违法行为后果； （二）受他人胁迫或者诱骗实施渔业违法行为的； （三）主动供述渔业执法部门尚未掌握的违法行为的； （四）配合渔业执法部门查处渔业违法行为有立功
+  unit: null
+  qualifiers: {}
+  jurisdiction: national
+  effective:
+    from: null
+    to: null
+  evidence: 第三条 渔业违法行为轻微并及时改正，没有造成危害后果的，不予处罚。初次实施渔业违法行为且危害后果轻微并及时改正的，可以不予处罚。当事人有证据足以证明没有主观过错的，不予行政处罚。对当事人的违法行为依法不予行政处罚的，应当对当事人进行教育。有下列行为之一的，应当从轻或者减轻处罚：
+    （一）主动消除或减轻渔业违法行为后果； （二）受他人胁迫或者诱骗实施渔业违法行为的； （三）主动供述渔业执法部门尚未掌握的违法行为的； （四）配合渔业执法部门查处渔业违法行为有立功表现的；
+    （五）依法应当从轻、减轻的其他渔业违法行为
+  source:
+    doc: POL-PEN-080
+    sha256: 57027911e2ce6b23d6e84aee6269f19623b19f927cdb31fcbad606e032756e81
+    section: 第三条
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2026-12-03'
+  supersedes: null
+- id: FACT-POLICY-041
+  kind: provision
+  topic: policy
+  question_class: penalty
+  subject: 渔业行政处罚规定
+  predicate: 第四条
+  value: 第四条 有下列行为之一的，从重处罚： （一）一年内渔业违法三次以上的； （二）对渔业资源破坏程度较重的； （三）渔业违法影响较大的； （四）同一个违法行为违反两项以上规定的；
+    （五）逃避、抗拒检查的
+  unit: null
+  qualifiers: {}
+  jurisdiction: national
+  effective:
+    from: null
+    to: null
+  evidence: 第四条 有下列行为之一的，从重处罚： （一）一年内渔业违法三次以上的； （二）对渔业资源破坏程度较重的； （三）渔业违法影响较大的； （四）同一个违法行为违反两项以上规定的；
+    （五）逃避、抗拒检查的
+  source:
+    doc: POL-PEN-080
+    sha256: 57027911e2ce6b23d6e84aee6269f19623b19f927cdb31fcbad606e032756e81
+    section: 第四条
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2026-12-03'
+  supersedes: null
+- id: FACT-POLICY-042
+  kind: provision
+  topic: policy
+  question_class: penalty
+  subject: 渔业行政处罚规定
+  predicate: 第五条
+  value: 第五条 本规定中需要处以罚款的计罚单位如下： （一）拖网、流刺网、钓钩等用船作业的，以单艘船计罚； （二）围网作业，以一个作业单位计罚； （三）定置作业，用船作业的以单艘船计罚，不用船作业的以一个作业单位计罚；
+    （四）炸鱼、毒鱼、非法电力捕鱼和使用鱼鹰捕鱼的，用船作业的以单艘船计罚，不用船作业的以人计罚； （五）从事赶海、潜水等不用船作业的，以人计罚
+  unit: null
+  qualifiers: {}
+  jurisdiction: national
+  effective:
+    from: null
+    to: null
+  evidence: 第五条 本规定中需要处以罚款的计罚单位如下： （一）拖网、流刺网、钓钩等用船作业的，以单艘船计罚； （二）围网作业，以一个作业单位计罚； （三）定置作业，用船作业的以单艘船计罚，不用船作业的以一个作业单位计罚；
+    （四）炸鱼、毒鱼、非法电力捕鱼和使用鱼鹰捕鱼的，用船作业的以单艘船计罚，不用船作业的以人计罚； （五）从事赶海、潜水等不用船作业的，以人计罚
+  source:
+    doc: POL-PEN-080
+    sha256: 57027911e2ce6b23d6e84aee6269f19623b19f927cdb31fcbad606e032756e81
+    section: 第五条
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2026-12-03'
+  supersedes: null
+- id: FACT-POLICY-043
+  kind: provision
+  topic: policy
+  question_class: penalty
+  subject: 渔业行政处罚规定
+  predicate: 第六条
+  value: 第六条 依照《渔业法》第三十八条和《实施细则》第二十九条规定，有下列行为之一的，没收渔获物和违法所得，处以罚款；情节严重的，没收渔具、吊销捕捞许可证；情节特别严重的，可以没收渔船。罚款按以下标准执行：
+    （一）使用炸鱼、毒鱼、电鱼等破坏渔业资源方法进行捕捞的，违反关于禁渔区、禁渔期的规定进行捕捞的，或者使用禁用的渔具、捕捞方法和小于最小网目尺寸的网具进行捕捞或者渔获物中幼鱼超过规定比例的，在内陆水域，处以三万元以下罚款；在海洋水域，处以五万元以下罚款。
+    （二
+  unit: null
+  qualifiers: {}
+  jurisdiction: national
+  effective:
+    from: null
+    to: null
+  evidence: 第六条 依照《渔业法》第三十八条和《实施细则》第二十九条规定，有下列行为之一的，没收渔获物和违法所得，处以罚款；情节严重的，没收渔具、吊销捕捞许可证；情节特别严重的，可以没收渔船。罚款按以下标准执行：
+    （一）使用炸鱼、毒鱼、电鱼等破坏渔业资源方法进行捕捞的，违反关于禁渔区、禁渔期的规定进行捕捞的，或者使用禁用的渔具、捕捞方法和小于最小网目尺寸的网具进行捕捞或者渔获物中幼鱼超过规定比例的，在内陆水域，处以三万元以下罚款；在海洋水域，处以五万元以下罚款。
+    （二）敲䑩作业的，处以一千元至五万元罚款。 （三）擅自捕捞国家规定禁止捕捞的珍贵、濒危水生动物，按《中华人民共和国野生动物保护法》和《中华人民共
+  source:
+    doc: POL-PEN-080
+    sha256: 57027911e2ce6b23d6e84aee6269f19623b19f927cdb31fcbad606e032756e81
+    section: 第六条
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2026-12-03'
+  supersedes: null
+- id: FACT-POLICY-044
+  kind: provision
+  topic: policy
+  question_class: penalty
+  subject: 渔业行政处罚规定
+  predicate: 第九条
+  value: 第九条 按照《渔业法》第四十二条规定，对有捕捞许可证的渔船违反许可证关于作业类型、场所、时限和渔具数量的规定进行捕捞的，没收渔获物和违法所得，可以并处罚款；情节严重的，并可以没收渔具，吊销捕捞许可证。罚款按以下标准执行：
+    （一）在内陆水域，处以二万元以下罚款。 （二）在海洋水域，处以五万元以下罚款
+  unit: null
+  qualifiers: {}
+  jurisdiction: national
+  effective:
+    from: null
+    to: null
+  evidence: 第九条 按照《渔业法》第四十二条规定，对有捕捞许可证的渔船违反许可证关于作业类型、场所、时限和渔具数量的规定进行捕捞的，没收渔获物和违法所得，可以并处罚款；情节严重的，并可以没收渔具，吊销捕捞许可证。罚款按以下标准执行：
+    （一）在内陆水域，处以二万元以下罚款。 （二）在海洋水域，处以五万元以下罚款
+  source:
+    doc: POL-PEN-080
+    sha256: 57027911e2ce6b23d6e84aee6269f19623b19f927cdb31fcbad606e032756e81
+    section: 第九条
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2026-12-03'
+  supersedes: null
+- id: FACT-POLICY-045
+  kind: provision
+  topic: policy
+  question_class: penalty
+  subject: 渔业行政处罚规定
+  predicate: 第十条
+  value: 第十条 按照《渔业法》第四十三条规定，对涂改、买卖、出租或以其他形式非法转让捕捞许可证的，没收违法所得，吊销捕捞许可证，可以并处罚款。罚款按以下标准执行：
+    （一）买卖、出租或以其他形式非法转让捕捞许可证的，对违法双方各处一万元以下罚款。 （二）涂改捕捞许可证的，处一万元以下罚款
+  unit: null
+  qualifiers: {}
+  jurisdiction: national
+  effective:
+    from: null
+    to: null
+  evidence: 第十条 按照《渔业法》第四十三条规定，对涂改、买卖、出租或以其他形式非法转让捕捞许可证的，没收违法所得，吊销捕捞许可证，可以并处罚款。罚款按以下标准执行：
+    （一）买卖、出租或以其他形式非法转让捕捞许可证的，对违法双方各处一万元以下罚款。 （二）涂改捕捞许可证的，处一万元以下罚款
+  source:
+    doc: POL-PEN-080
+    sha256: 57027911e2ce6b23d6e84aee6269f19623b19f927cdb31fcbad606e032756e81
+    section: 第十条
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2026-12-03'
+  supersedes: null
+- id: FACT-POLICY-046
+  kind: provision
+  topic: policy
+  question_class: penalty
+  subject: 渔业行政处罚规定
+  predicate: 第十一条
+  value: 第十一条 按照《中华人民共和国水污染防治法》第九十四条、《中华人民共和国海洋环境保护法》第九十条规定，造成渔业污染事故的，按以下规定处以罚款： （一）对造成一般或者较大污染事故，按照直接损失的百分之二十计算罚款。
+    （二）对造成重大或者特大污染事故的，按照直接损失的百分之三十计算罚款
+  unit: null
+  qualifiers: {}
+  jurisdiction: national
+  effective:
+    from: null
+    to: null
+  evidence: 第十一条 按照《中华人民共和国水污染防治法》第九十四条、《中华人民共和国海洋环境保护法》第九十条规定，造成渔业污染事故的，按以下规定处以罚款：
+    （一）对造成一般或者较大污染事故，按照直接损失的百分之二十计算罚款。 （二）对造成重大或者特大污染事故的，按照直接损失的百分之三十计算罚款
+  source:
+    doc: POL-PEN-080
+    sha256: 57027911e2ce6b23d6e84aee6269f19623b19f927cdb31fcbad606e032756e81
+    section: 第十一条
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2026-12-03'
+  supersedes: null
+- id: FACT-POLICY-047
+  kind: provision
+  topic: policy
+  question_class: penalty
+  subject: 渔业行政处罚规定
+  predicate: 第十三条
+  value: 第十三条 违反《渔业法》第三十一条和《实施细则》第二十四条、第二十五条规定，擅自捕捞有重要经济价值的水生动物苗种、怀卵亲体的，没收其苗种或怀卵亲体及违法所得，并可处以三万元以下罚款
+  unit: null
+  qualifiers: {}
+  jurisdiction: national
+  effective:
+    from: null
+    to: null
+  evidence: 第十三条 违反《渔业法》第三十一条和《实施细则》第二十四条、第二十五条规定，擅自捕捞有重要经济价值的水生动物苗种、怀卵亲体的，没收其苗种或怀卵亲体及违法所得，并可处以三万元以下罚款
+  source:
+    doc: POL-PEN-080
+    sha256: 57027911e2ce6b23d6e84aee6269f19623b19f927cdb31fcbad606e032756e81
+    section: 第十三条
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2026-12-03'
+  supersedes: null
+- id: FACT-POLICY-048
+  kind: provision
+  topic: policy
+  question_class: penalty
+  subject: 中华人民共和国渔业港航监督行政处罚规定
+  predicate: 第一条
+  value: 第一条 为加强渔业船舶安全监督管理，规范渔业港航法规行政处罚，保障渔业港航法规的执行和渔业生产者的合法权益，根据《中华人民共和国海上交通安全法》、《中华人民共和国海洋环境保护法》、《中华人民共和国渔港水域交通安全管理条例》和《中华人民共和国内河交通安全管理条例》等有关法律、法规，制定本规定
+  unit: null
+  qualifiers: {}
+  jurisdiction: national
+  effective:
+    from: null
+    to: null
+  evidence: 第一条 为加强渔业船舶安全监督管理，规范渔业港航法规行政处罚，保障渔业港航法规的执行和渔业生产者的合法权益，根据《中华人民共和国海上交通安全法》、《中华人民共和国海洋环境保护法》、《中华人民共和国渔港水域交通安全管理条例》和《中华人民共和国内河交通安全管理条例》等有关法律、法规，制定本规定
+  source:
+    doc: POL-PEN-078
+    sha256: 42884cb595529b9f687a4442ff5a8bf8f5706c5764cbb7df57859e29923bc428
+    section: 第一条
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2026-12-03'
+  supersedes: null
+- id: FACT-POLICY-049
+  kind: provision
+  topic: policy
+  question_class: penalty
+  subject: 中华人民共和国渔业港航监督行政处罚规定
+  predicate: 第四条
+  value: 第四条 渔政渔港监督管理机关对违反渔业港航法律、法规的行政处罚分为： （一）警告； （二）罚款； （三）扣留或吊销船舶证书或船员证书； （四）法律、法规规定的其他行政处罚
+  unit: null
+  qualifiers: {}
+  jurisdiction: national
+  effective:
+    from: null
+    to: null
+  evidence: 第四条 渔政渔港监督管理机关对违反渔业港航法律、法规的行政处罚分为： （一）警告； （二）罚款； （三）扣留或吊销船舶证书或船员证书； （四）法律、法规规定的其他行政处罚
+  source:
+    doc: POL-PEN-078
+    sha256: 42884cb595529b9f687a4442ff5a8bf8f5706c5764cbb7df57859e29923bc428
+    section: 第四条
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2026-12-03'
+  supersedes: null
+- id: FACT-POLICY-050
+  kind: provision
+  topic: policy
+  question_class: penalty
+  subject: 中华人民共和国渔业港航监督行政处罚规定
+  predicate: 第六条
+  value: 第六条 有下列行为之一的，可从轻、减轻处罚： （一）主动消除或减轻渔业港航违法行为后果； （二）配合渔政渔港监督管理机关查处渔业港航违法行为； （三）依法可以从轻、减轻的其他渔业港航违法行为
+  unit: null
+  qualifiers: {}
+  jurisdiction: national
+  effective:
+    from: null
+    to: null
+  evidence: 第六条 有下列行为之一的，可从轻、减轻处罚： （一）主动消除或减轻渔业港航违法行为后果； （二）配合渔政渔港监督管理机关查处渔业港航违法行为；
+    （三）依法可以从轻、减轻的其他渔业港航违法行为
+  source:
+    doc: POL-PEN-078
+    sha256: 42884cb595529b9f687a4442ff5a8bf8f5706c5764cbb7df57859e29923bc428
+    section: 第六条
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2026-12-03'
+  supersedes: null
+- id: FACT-POLICY-051
+  kind: provision
+  topic: policy
+  question_class: penalty
+  subject: 中华人民共和国渔业港航监督行政处罚规定
+  predicate: 第七条
+  value: 第七条 有下列行为之一的，可从重处罚： （一）违法情节严重，影响较大； （二）多次违法或违法行为造成重大损失; （三）损失虽然不大，但事后既不向渔政渔港监督管理机关报告，又不采取措施，放任损失扩大；
+    （四）逃避、抗拒渔政渔港监督管理机关检查和管理； （五）依法可以从重处罚的其他渔业港航违法行为
+  unit: null
+  qualifiers: {}
+  jurisdiction: national
+  effective:
+    from: null
+    to: null
+  evidence: 第七条 有下列行为之一的，可从重处罚： （一）违法情节严重，影响较大； （二）多次违法或违法行为造成重大损失; （三）损失虽然不大，但事后既不向渔政渔港监督管理机关报告，又不采取措施，放任损失扩大；
+    （四）逃避、抗拒渔政渔港监督管理机关检查和管理； （五）依法可以从重处罚的其他渔业港航违法行为
+  source:
+    doc: POL-PEN-078
+    sha256: 42884cb595529b9f687a4442ff5a8bf8f5706c5764cbb7df57859e29923bc428
+    section: 第七条
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2026-12-03'
+  supersedes: null
+- id: FACT-POLICY-052
+  kind: provision
+  topic: policy
+  question_class: procedure
+  subject: 中华人民共和国渔业港航监督行政处罚规定
+  predicate: 第八条
+  value: 第八条 渔政渔港监督管理机关管辖本辖区发生的案件和上级渔政渔港监督管理机关指定管辖的渔业港航违法案件。 渔业港航违法行为有下列情况的，适用“谁查获谁处理”的原则：
+    （一）违法行为发生在共管区、叠区； （二）违法行为发生在管辖权不明或有争议的区域； （三）违法行为地与查获地不一致。 法律、法规或规章另有规定的，按规定管辖
+  unit: null
+  qualifiers: {}
+  jurisdiction: national
+  effective:
+    from: null
+    to: null
+  evidence: 第八条 渔政渔港监督管理机关管辖本辖区发生的案件和上级渔政渔港监督管理机关指定管辖的渔业港航违法案件。 渔业港航违法行为有下列情况的，适用“谁查获谁处理”的原则：
+    （一）违法行为发生在共管区、叠区； （二）违法行为发生在管辖权不明或有争议的区域； （三）违法行为地与查获地不一致。 法律、法规或规章另有规定的，按规定管辖
+  source:
+    doc: POL-PEN-078
+    sha256: 42884cb595529b9f687a4442ff5a8bf8f5706c5764cbb7df57859e29923bc428
+    section: 第八条
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2026-12-03'
+  supersedes: null
+- id: FACT-POLICY-053
+  kind: provision
+  topic: policy
+  question_class: penalty
+  subject: 中华人民共和国渔业港航监督行政处罚规定
+  predicate: 第九条
+  value: 第九条 有下列行为之一的，对船长予以警告，并可处50元以上500元以下罚款；情节严重的，扣留其职务船员证书3至6个月；情节特别严重的，吊销船长证书：
+    （一）船舶进出渔港应当按照有关规定到渔政渔港监督管理机关办理签证而未办理签证的； （二）在渔港内不服从渔政渔港监督管理机关对渔港水域交通安全秩序管理的； （三）在渔港内停泊期间，未留足值班人员的
+  unit: null
+  qualifiers: {}
+  jurisdiction: national
+  effective:
+    from: null
+    to: null
+  evidence: 第九条 有下列行为之一的，对船长予以警告，并可处50元以上500元以下罚款；情节严重的，扣留其职务船员证书3至6个月；情节特别严重的，吊销船长证书：
+    （一）船舶进出渔港应当按照有关规定到渔政渔港监督管理机关办理签证而未办理签证的； （二）在渔港内不服从渔政渔港监督管理机关对渔港水域交通安全秩序管理的； （三）在渔港内停泊期间，未留足值班人员的
+  source:
+    doc: POL-PEN-078
+    sha256: 42884cb595529b9f687a4442ff5a8bf8f5706c5764cbb7df57859e29923bc428
+    section: 第九条
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2026-12-03'
+  supersedes: null
+- id: FACT-POLICY-054
+  kind: provision
+  topic: policy
+  question_class: penalty
+  subject: 中华人民共和国渔业港航监督行政处罚规定
+  predicate: 第十一条
+  value: 第十一条 停泊或进行装卸作业时，有下列行为之一的，应责令船舶所有者或经营者支付消除污染所需的费用，并可处500元以上10000元以下罚款： （一）造成腐蚀、有毒或放射性等有害物质散落或溢漏，污染渔港或渔港水域的；
+    （二）排放油类或油性混合物造成渔港或渔港水域污染的
+  unit: null
+  qualifiers: {}
+  jurisdiction: national
+  effective:
+    from: null
+    to: null
+  evidence: 第十一条 停泊或进行装卸作业时，有下列行为之一的，应责令船舶所有者或经营者支付消除污染所需的费用，并可处500元以上10000元以下罚款：
+    （一）造成腐蚀、有毒或放射性等有害物质散落或溢漏，污染渔港或渔港水域的； （二）排放油类或油性混合物造成渔港或渔港水域污染的
+  source:
+    doc: POL-PEN-078
+    sha256: 42884cb595529b9f687a4442ff5a8bf8f5706c5764cbb7df57859e29923bc428
+    section: 第十一条
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2026-12-03'
+  supersedes: null
+- id: FACT-POLICY-055
+  kind: provision
+  topic: policy
+  question_class: penalty
+  subject: 中华人民共和国渔业港航监督行政处罚规定
+  predicate: 第十二条
+  value: 第十二条 有下列行为之一的，对船长予以警告，情节严重的，并处100元以上1000元以下罚款： （一）未经批准，擅自使用化学消油剂； （二）未按规定持有防止海洋环境污染的证书与文书，或不如实记录涉及污染物排放及操作
+  unit: null
+  qualifiers: {}
+  jurisdiction: national
+  effective:
+    from: null
+    to: null
+  evidence: 第十二条 有下列行为之一的，对船长予以警告，情节严重的，并处100元以上1000元以下罚款： （一）未经批准，擅自使用化学消油剂； （二）未按规定持有防止海洋环境污染的证书与文书，或不如实记录涉及污染物排放及操作
+  source:
+    doc: POL-PEN-078
+    sha256: 42884cb595529b9f687a4442ff5a8bf8f5706c5764cbb7df57859e29923bc428
+    section: 第十二条
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2026-12-03'
+  supersedes: null
+- id: FACT-POLICY-056
+  kind: provision
+  topic: policy
+  question_class: penalty
+  subject: 中华人民共和国渔业港航监督行政处罚规定
+  predicate: 第十三条
+  value: 第十三条 未经渔政渔港监督管理机关批准，有下列行为之一者，应责令当事责任人限期清除、纠正，并予以警告；情节严重的，处100元以上1000元以下罚款：
+    （一）在渔港内进行明火作业； （二）在渔港内燃放烟花爆竹
+  unit: null
+  qualifiers: {}
+  jurisdiction: national
+  effective:
+    from: null
+    to: null
+  evidence: 第十三条 未经渔政渔港监督管理机关批准，有下列行为之一者，应责令当事责任人限期清除、纠正，并予以警告；情节严重的，处100元以上1000元以下罚款：
+    （一）在渔港内进行明火作业； （二）在渔港内燃放烟花爆竹
+  source:
+    doc: POL-PEN-078
+    sha256: 42884cb595529b9f687a4442ff5a8bf8f5706c5764cbb7df57859e29923bc428
+    section: 第十三条
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2026-12-03'
+  supersedes: null
+- id: FACT-POLICY-057
+  kind: provision
+  topic: policy
+  question_class: penalty
+  subject: 中华人民共和国渔业港航监督行政处罚规定
+  predicate: 第十四条
+  value: 第十四条 向渔港港池内倾倒污染物、船舶垃圾及其他有害物质，应责令当事责任人立即清除，并予以警告。情节严重的，400总吨(含400总吨)以下船舶，处5000元以上50000元以下罚款；400总吨以上船舶处50000元以上100000元以下罚款
+  unit: null
+  qualifiers: {}
+  jurisdiction: national
+  effective:
+    from: null
+    to: null
+  evidence: 第十四条 向渔港港池内倾倒污染物、船舶垃圾及其他有害物质，应责令当事责任人立即清除，并予以警告。情节严重的，400总吨(含400总吨)以下船舶，处5000元以上50000元以下罚款；400总吨以上船舶处50000元以上100000元以下罚款
+  source:
+    doc: POL-PEN-078
+    sha256: 42884cb595529b9f687a4442ff5a8bf8f5706c5764cbb7df57859e29923bc428
+    section: 第十四条
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2026-12-03'
+  supersedes: null
+- id: FACT-POLICY-058
+  kind: provision
+  topic: policy
+  question_class: scope
+  subject: 中华人民共和国渔业法实施细则
+  predicate: 第三条
+  value: 第三条 国家对渔业的监督管理，实行统一领导、分级管理。 国务院划定的“机动渔船底拖网禁渔区线”外侧，属于中华人民共和国管辖海域的渔业，由国务院渔业行政主管部门及其所属的海区渔政管理机构监督管理；“机动渔船底拖网禁渔区线”内侧海域的渔业，除国家另有规定者外，由毗邻海域的省、自治区、直辖市人民政府渔业行政主管部门监督管理。
+    内陆水域渔业，按照行政区划由当地县级以上地方人民政府渔业行政主管部门监督管理；跨行政区域的内陆水域渔业，由有关县级以上地方人民政府协商制定
+  unit: null
+  qualifiers: {}
+  jurisdiction: national
+  effective:
+    from: null
+    to: null
+  evidence: 第三条 国家对渔业的监督管理，实行统一领导、分级管理。 国务院划定的“机动渔船底拖网禁渔区线”外侧，属于中华人民共和国管辖海域的渔业，由国务院渔业行政主管部门及其所属的海区渔政管理机构监督管理；“机动渔船底拖网禁渔区线”内侧海域的渔业，除国家另有规定者外，由毗邻海域的省、自治区、直辖市人民政府渔业行政主管部门监督管理。
+    内陆水域渔业，按照行政区划由当地县级以上地方人民政府渔业行政主管部门监督管理；跨行政区域的内陆水域渔业，由有关县级以上地方人民政府协商制定管理办法，或者由上一级人民政府渔业行政主管部门及其所属的渔政监督管理机构监督管理；跨省、自治区、直辖市的大型江河的渔业，可以由国务院渔业行政
+  source:
+    doc: POL-RULE-018
+    sha256: 90d7e013d92361ec219a59b51ef255c70a08d5654f9a0351fd633c865028bf77
+    section: 第三条
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2026-12-03'
+  supersedes: null
+- id: FACT-POLICY-059
+  kind: provision
+  topic: policy
+  question_class: scope
+  subject: 中华人民共和国渔业法实施细则
+  predicate: 第四条
+  value: 第四条 “机动渔船底拖网禁渔区线”内侧海域的渔业，由有关省、自治区、直辖市人民政府渔业行政主管部门协商划定监督管理范围；划定监督管理范围有困难的，可划叠区或者共管区管理，必要时由国务院渔业行政主管部门决定
+  unit: null
+  qualifiers: {}
+  jurisdiction: national
+  effective:
+    from: null
+    to: null
+  evidence: 第四条 “机动渔船底拖网禁渔区线”内侧海域的渔业，由有关省、自治区、直辖市人民政府渔业行政主管部门协商划定监督管理范围；划定监督管理范围有困难的，可划叠区或者共管区管理，必要时由国务院渔业行政主管部门决定
+  source:
+    doc: POL-RULE-018
+    sha256: 90d7e013d92361ec219a59b51ef255c70a08d5654f9a0351fd633c865028bf77
+    section: 第四条
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2026-12-03'
+  supersedes: null
+- id: FACT-POLICY-060
+  kind: provision
+  topic: policy
+  question_class: procedure
+  subject: 中华人民共和国渔业法实施细则
+  predicate: 第五条
+  value: 第五条 渔场和渔汛生产，应当以渔业资源可捕量为依据，按照有利于保护、增殖和合理利用渔业资源，优先安排邻近地区、兼顾其他地区的原则，统筹安排。 舟山渔场冬季带鱼汛，浙江渔场大黄鱼汛，闽东、闽中渔场大黄鱼汛，吕泗渔场大黄鱼、小黄鱼、鲳鱼汛，渤海渔场秋季对虾汛等主要渔场、渔汛和跨海区管理线的捕捞作业，由国务院渔业行政主管部门或其授权单位安排
+  unit: null
+  qualifiers: {}
+  jurisdiction: national
+  effective:
+    from: null
+    to: null
+  evidence: 第五条 渔场和渔汛生产，应当以渔业资源可捕量为依据，按照有利于保护、增殖和合理利用渔业资源，优先安排邻近地区、兼顾其他地区的原则，统筹安排。
+    舟山渔场冬季带鱼汛，浙江渔场大黄鱼汛，闽东、闽中渔场大黄鱼汛，吕泗渔场大黄鱼、小黄鱼、鲳鱼汛，渤海渔场秋季对虾汛等主要渔场、渔汛和跨海区管理线的捕捞作业，由国务院渔业行政主管部门或其授权单位安排
+  source:
+    doc: POL-RULE-018
+    sha256: 90d7e013d92361ec219a59b51ef255c70a08d5654f9a0351fd633c865028bf77
+    section: 第五条
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2026-12-03'
+  supersedes: null
+- id: FACT-POLICY-061
+  kind: provision
+  topic: policy
+  question_class: procedure
+  subject: 中华人民共和国渔业法实施细则
+  predicate: 第六条
+  value: 第六条 国务院渔业行政主管部门的渔政渔港监督管理机构，代表国家行使渔政渔港监督管理权。 国务院渔业行政主管部门在黄渤海、东海、南海三个海区设渔政监督管理机构；在重要渔港、边境水域和跨省、自治区、直辖市的大型江河，根据需要设渔政渔港监督管理机构
+  unit: null
+  qualifiers: {}
+  jurisdiction: national
+  effective:
+    from: null
+    to: null
+  evidence: 第六条 国务院渔业行政主管部门的渔政渔港监督管理机构，代表国家行使渔政渔港监督管理权。 国务院渔业行政主管部门在黄渤海、东海、南海三个海区设渔政监督管理机构；在重要渔港、边境水域和跨省、自治区、直辖市的大型江河，根据需要设渔政渔港监督管理机构
+  source:
+    doc: POL-RULE-018
+    sha256: 90d7e013d92361ec219a59b51ef255c70a08d5654f9a0351fd633c865028bf77
+    section: 第六条
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2026-12-03'
+  supersedes: null
+- id: FACT-POLICY-062
+  kind: provision
+  topic: policy
+  question_class: inspection
+  subject: 中华人民共和国渔业法实施细则
+  predicate: 第七条
+  value: 第七条 渔政检查人员有权对各种渔业及渔业船舶的证件、渔船、渔具、渔获物和捕捞方法，进行检查。 渔政检查人员经国务院渔业行政主管部门或者省级人民政府渔业行政主管部门考核，合格者方可执行公务
+  unit: null
+  qualifiers: {}
+  jurisdiction: national
+  effective:
+    from: null
+    to: null
+  evidence: 第七条 渔政检查人员有权对各种渔业及渔业船舶的证件、渔船、渔具、渔获物和捕捞方法，进行检查。 渔政检查人员经国务院渔业行政主管部门或者省级人民政府渔业行政主管部门考核，合格者方可执行公务
+  source:
+    doc: POL-RULE-018
+    sha256: 90d7e013d92361ec219a59b51ef255c70a08d5654f9a0351fd633c865028bf77
+    section: 第七条
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2026-12-03'
+  supersedes: null
+- id: FACT-POLICY-063
+  kind: provision
+  topic: policy
+  question_class: scope
+  subject: 中华人民共和国渔业法实施细则
+  predicate: 第十四条
+  value: 第十四条 近海渔场与外海渔场的划分： (一)渤海、黄海为近海渔场。 (二)下列四个基点之间连线内侧海域为东海近海渔场；四个基点之间连线外侧海域为东海外海渔场。四个基点是：
+    1.北纬33度，东经125度； 2.北纬29度，东经125度； 3.北纬28度，东经124度30分； 4.北纬27度，东经123度。 (三)下列两条等深线之内侧海域为南海近海渔场；两条等深线之外侧海域为南海外海渔场。两条等深线是：
+    1.东经112度以东之80米等深线； 2.东经112度以
+  unit: null
+  qualifiers: {}
+  jurisdiction: national
+  effective:
+    from: null
+    to: null
+  evidence: 第十四条 近海渔场与外海渔场的划分： (一)渤海、黄海为近海渔场。 (二)下列四个基点之间连线内侧海域为东海近海渔场；四个基点之间连线外侧海域为东海外海渔场。四个基点是：
+    1.北纬33度，东经125度； 2.北纬29度，东经125度； 3.北纬28度，东经124度30分； 4.北纬27度，东经123度。 (三)下列两条等深线之内侧海域为南海近海渔场；两条等深线之外侧海域为南海外海渔场。两条等深线是：
+    1.东经112度以东之80米等深线； 2.东经112度以西之100米等深线
+  source:
+    doc: POL-RULE-018
+    sha256: 90d7e013d92361ec219a59b51ef255c70a08d5654f9a0351fd633c865028bf77
+    section: 第十四条
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2026-12-03'
+  supersedes: null
+- id: FACT-POLICY-064
+  kind: provision
+  topic: policy
+  question_class: materials
+  subject: 中华人民共和国渔业法实施细则
+  predicate: 第十五条
+  value: 第十五条 国家对捕捞业，实行捕捞许可制度。 从事外海、远洋捕捞业的，由经营者提出申请，经省、自治区、直辖市人民政府渔业行政主管部门审核后，报国务院渔业行政主管部门批准。从事外海生产的渔船，必须按照批准的海域和渔期作业，不得擅自进入近海捕捞。
+    近海大型拖网、围网作业的捕捞许可证，由国务院渔业行政主管部门批准发放；近海其他作业的捕捞许可证，由省、自治区、直辖市人民政府渔业行政主管部门按照国家下达的船网工具控制指标批准发放。
+    内陆水域的捕捞许可证，由县级以上地方
+  unit: null
+  qualifiers: {}
+  jurisdiction: national
+  effective:
+    from: null
+    to: null
+  evidence: 第十五条 国家对捕捞业，实行捕捞许可制度。 从事外海、远洋捕捞业的，由经营者提出申请，经省、自治区、直辖市人民政府渔业行政主管部门审核后，报国务院渔业行政主管部门批准。从事外海生产的渔船，必须按照批准的海域和渔期作业，不得擅自进入近海捕捞。
+    近海大型拖网、围网作业的捕捞许可证，由国务院渔业行政主管部门批准发放；近海其他作业的捕捞许可证，由省、自治区、直辖市人民政府渔业行政主管部门按照国家下达的船网工具控制指标批准发放。
+    内陆水域的捕捞许可证，由县级以上地方人民政府渔业行政主管部门批准发放。 捕捞许可证的格式，由国务院渔业行政主管部门制定
+  source:
+    doc: POL-RULE-018
+    sha256: 90d7e013d92361ec219a59b51ef255c70a08d5654f9a0351fd633c865028bf77
+    section: 第十五条
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2026-12-03'
+  supersedes: null

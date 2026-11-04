@@ -15,6 +15,46 @@ source:
     irregular: 180
     static: 550
 
+
+fact:
+  fields:
+    - id
+    - kind
+    - topic
+    - question_class
+    - subject
+    - predicate
+    - value
+    - unit
+    - qualifiers
+    - jurisdiction
+    - effective
+    - evidence
+    - source
+    - status
+    - confidence
+    - as_of
+    - review_due
+    - supersedes
+
+term:
+  fields:
+    - id
+    - standard
+    - variants
+    - region
+    - source
+    - status
+
+faq:
+  fields:
+    - id
+    - question
+    - persona
+    - claims
+    - source
+    - status
+
 document:
   fields:
     - doc_id
