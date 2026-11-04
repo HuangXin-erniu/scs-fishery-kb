@@ -33,6 +33,8 @@ from .coverage import coverage_report
 from .dense import DenseError, DenseIndex, embeddings_dir, index_path
 from .embed import DEFAULT_MODEL, FastEmbedEncoder
 from .evaluate import load_anchors, summarize, title_tokens, write_report
+from .facts import DEFAULT_FACTS_DIR, FactError, check_facts
+from .faq import DEFAULT_FAQ, FaqError, check_faqs
 from .ingest import IngestError, ingest, load_pipeline
 from .jurisdiction import question_jurisdiction
 from .knowledge import KnowledgeError, list_notes
@@ -51,6 +53,7 @@ from .retrieve import Retriever
 from .stats import StatsError
 from .stats import query as stats_query
 from .store import StoreError, load_chunks
+from .terms import DEFAULT_TERMS, TermError, check_terms
 from .watch import DEFAULT_WATCH, WatchError, due_report, run_watch
 from .watch import write_report as write_watch_report
 from .web import WebError, is_allowed, load_cards, load_web_sources, refresh
@@ -460,6 +463,60 @@ def _sources_candidates(args: argparse.Namespace) -> int:
     return 0
 
 
+def _facts_check(args: argparse.Namespace) -> int:
+    today = date.fromisoformat(args.today) if args.today else date.today()
+    report = check_facts(
+        Path(args.dir),
+        data_root=_root(args.data_root),
+        registry_path=Path(args.config),
+        today=today,
+    )
+    failed = bool(report["errors"] or report["conflicts"] or report["expired"])
+    if args.json:
+        _print_json(report)
+        return 1 if failed else 0
+    print(
+        f"facts {report['facts']} approved {report['approved']} "
+        f"errors {len(report['errors'])} conflicts {len(report['conflicts'])} "
+        f"expired {len(report['expired'])}"
+    )
+    for error in report["errors"]:
+        print(f"error      {error}")
+    for conflict in report["conflicts"]:
+        print(f"conflict   {conflict}")
+    for row in report["expired"]:
+        print(f"expired    {row['id']} {row['review_due']}")
+    return 1 if failed else 0
+
+
+def _terms_check(args: argparse.Namespace) -> int:
+    report = check_terms(
+        Path(args.path),
+        data_root=_root(args.data_root),
+        registry_path=Path(args.config),
+    )
+    failed = bool(report["errors"])
+    if args.json:
+        _print_json(report)
+        return 1 if failed else 0
+    print(f"terms {report['terms']} approved {report['approved']} errors {len(report['errors'])}")
+    for error in report["errors"]:
+        print(f"error      {error}")
+    return 1 if failed else 0
+
+
+def _faq_check(args: argparse.Namespace) -> int:
+    report = check_faqs(Path(args.path), facts_dir=Path(args.facts_dir))
+    failed = bool(report["errors"])
+    if args.json:
+        _print_json(report)
+        return 1 if failed else 0
+    print(f"faqs {report['faqs']} approved {report['approved']} errors {len(report['errors'])}")
+    for error in report["errors"]:
+        print(f"error      {error}")
+    return 1 if failed else 0
+
+
 def _knowledge_list(args: argparse.Namespace) -> int:
     notes = list_notes(Path(args.dir))
     if args.json:
@@ -859,6 +916,33 @@ def build_parser() -> argparse.ArgumentParser:
     sources_candidates_parser.add_argument("--json", action="store_true")
     sources_candidates_parser.set_defaults(func=_sources_candidates)
 
+    facts_parser = subparsers.add_parser("facts", help="manage the structured fact layer")
+    facts_sub = facts_parser.add_subparsers(dest="facts_command", required=True)
+    facts_check_parser = facts_sub.add_parser("check", help="validate facts and evidence")
+    facts_check_parser.add_argument("--dir", default=str(DEFAULT_FACTS_DIR))
+    facts_check_parser.add_argument("--data-root", default=None)
+    facts_check_parser.add_argument("--config", default=str(DEFAULT_CONFIG))
+    facts_check_parser.add_argument("--today", default=None)
+    facts_check_parser.add_argument("--json", action="store_true")
+    facts_check_parser.set_defaults(func=_facts_check)
+
+    terms_parser = subparsers.add_parser("terms", help="manage the terminology map")
+    terms_sub = terms_parser.add_subparsers(dest="terms_command", required=True)
+    terms_check_parser = terms_sub.add_parser("check", help="validate terms")
+    terms_check_parser.add_argument("--path", default=str(DEFAULT_TERMS))
+    terms_check_parser.add_argument("--data-root", default=None)
+    terms_check_parser.add_argument("--config", default=str(DEFAULT_CONFIG))
+    terms_check_parser.add_argument("--json", action="store_true")
+    terms_check_parser.set_defaults(func=_terms_check)
+
+    faq_parser = subparsers.add_parser("faq", help="manage the public FAQ layer")
+    faq_sub = faq_parser.add_subparsers(dest="faq_command", required=True)
+    faq_check_parser = faq_sub.add_parser("check", help="validate FAQ claims")
+    faq_check_parser.add_argument("--path", default=str(DEFAULT_FAQ))
+    faq_check_parser.add_argument("--facts-dir", default=str(DEFAULT_FACTS_DIR))
+    faq_check_parser.add_argument("--json", action="store_true")
+    faq_check_parser.set_defaults(func=_faq_check)
+
     knowledge_parser = subparsers.add_parser("knowledge", help="manage structured knowledge notes")
     knowledge_sub = knowledge_parser.add_subparsers(dest="knowledge_command", required=True)
     list_parser = knowledge_sub.add_parser("list", help="list notes")
@@ -918,6 +1002,9 @@ def main(argv: list[str] | None = None) -> int:
         ReferenceError,
         RegistryError,
         CandidateError,
+        FactError,
+        TermError,
+        FaqError,
         DenseError,
         StatsError,
         StoreError,

@@ -219,3 +219,33 @@ def test_watch_propose_does_not_write_configs(tmp_path: Path, capsys) -> None:
     assert candidates.read_bytes() == before_candidates
     assert corpus.read_bytes() == before_corpus
     assert "CAND-2026-001" in capsys.readouterr().out
+
+
+def test_facts_check_reports_zero_and_failure(monkeypatch, capsys) -> None:
+    clean = {
+        "facts": 80,
+        "approved": 80,
+        "draft": 0,
+        "errors": [],
+        "conflicts": [],
+        "expired": [],
+        "due": [],
+        "today": "2026-11-04",
+    }
+    monkeypatch.setattr(cli, "check_facts", lambda *args, **kwargs: clean)
+    assert cli.main(["facts", "check", "--data-root", "/tmp"]) == 0
+    bad = {**clean, "errors": ["FACT-POLICY-001: evidence is wrong"]}
+    monkeypatch.setattr(cli, "check_facts", lambda *args, **kwargs: bad)
+    assert cli.main(["facts", "check", "--data-root", "/tmp"]) == 1
+    assert "FACT-POLICY-001" in capsys.readouterr().out
+
+
+def test_terms_and_faq_checks_return_zero(monkeypatch) -> None:
+    monkeypatch.setattr(
+        cli, "check_terms", lambda *args, **kwargs: {"terms": 24, "approved": 24, "errors": []}
+    )
+    monkeypatch.setattr(
+        cli, "check_faqs", lambda *args, **kwargs: {"faqs": 12, "approved": 12, "errors": []}
+    )
+    assert cli.main(["terms", "check", "--data-root", "/tmp"]) == 0
+    assert cli.main(["faq", "check"]) == 0

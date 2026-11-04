@@ -60,12 +60,16 @@ src/scs_fkb/bm25.py     character-bigram BM25 with a sensitivity filter
 src/scs_fkb/answer.py   extractive evidence pack, citation validation and abstention
 src/scs_fkb/evaluate.py document-level retrieval, abstention and citation metrics
 src/scs_fkb/store.py    processed documents, chunks and manifest
+src/scs_fkb/facts.py    fact schema, evidence/conflict checks, external fact documents
+src/scs_fkb/terms.py    terminology map, source checks and external term documents
+src/scs_fkb/faq.py      public FAQ claims, validation and external FAQ documents
 src/scs_fkb/cli.py      ingest, retrieve, ask and eval
 configs/pipeline.yaml   documents, chunking, retrieval and answer parameters
 local data root         raw and processed data (outside the repository)
 tests/                  configuration, parser, pipeline and public-tree tests
 ```
 
+The internalised layer is separate from the corpus index. `facts.py` validates 80 facts against the indexed chunks (verbatim evidence, register hash, effective dates and conflicts); `terms.py` validates 24 terminology entries; `faq.py` checks that every FAQ claim resolves to an approved fact. `ingest --external-only` turns the approved records into external documents; the corpus store and its index stay unchanged. The checks run through `facts check`, `terms check` and `faq check`, and none of these records is read by the corpus answer path yet.
 Each module exposes a small callable surface rather than a framework. Shared code is extracted only when a second module needs it. M1 is deterministic: it makes no model call, builds no embedding and needs no network access. Citations carry a page anchor for the paginated OFD and PDF sources and an article or section anchor for the HTML, DOCX and DOC sources. The ranker is BM25 over character bigrams with an optional title boost, which multiplies a chunk score by 1 + title_boost × the share of query tokens present in the document title. The evaluation compares the top five chunks against gold anchors in `configs/eval.yaml`: a document plus a section prefix, or a document plus a page. Retrieval runs in one of three modes: `bm25`, `dense` or `hybrid`. Hybrid fuses the BM25 and dense rankings with weighted reciprocal-rank fusion (BM25 weight 2.0, dense weight 1.0) and keeps the lexical gate as the only abstention signal, so RRF scores are never compared with BM25 scores. Statistical questions pass through a third, local-only channel: `stats.py` reads the copied indicator table, parses years, region, sea area, gear and indicator cues from the question, filters rows and returns the published values with their edition, table name and basis. The channel never enters the main index or the gate, and it names the two dimensions the yearbooks do not publish rather than substituting one for the other. Definition questions also pass through a reference channel: the terminology bridge in `configs/glossary-bridge.yaml` maps a Chinese term to English concepts, and `reference.py` queries the three CWP pages with those concepts only, returning passages that carry their own citations while the main ranking and its gate stay untouched.
 
 ## 5. Data flow
@@ -76,6 +80,8 @@ Each module exposes a small callable surface rather than a framework. Shared cod
   → parsing and OCR
   → structure-aware chunking and table/indicator extraction
   → <data_root>/processed (documents, chunks, metadata)
+  → facts / terms / FAQ (external layer, verified against chunks)
+  → <data_root>/external (cards, notes, facts, terms, FAQs)
   → local embeddings + BM25 index
   → query rewriting
   → hybrid retrieval

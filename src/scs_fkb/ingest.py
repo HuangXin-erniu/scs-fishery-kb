@@ -11,11 +11,14 @@ import yaml
 
 from .chunking import chunk_document
 from .corpus import acquired_sources, load_corpus, resolve_source_file
+from .facts import fact_documents
+from .faq import faq_documents
 from .knowledge import load_knowledge, stale_reasons
 from .models import Chunk, Document
 from .parsers import Page as ParsedPage
 from .parsers import ParseError, parse_source
 from .store import chunk_records, processed_dir, write_json, write_jsonl
+from .terms import term_documents
 from .web import load_cards
 
 
@@ -213,6 +216,10 @@ def ingest(
     include_web: bool = True,
     include_knowledge: bool = True,
     external_only: bool = False,
+    facts_dir: Path | None = None,
+    terms_path: Path | None = None,
+    faq_path: Path | None = None,
+    include_internalised: bool = True,
 ) -> dict[str, Any]:
     """Parse the configured sources, chunk them and write the processed store."""
     register = load_corpus(config_path)
@@ -317,6 +324,35 @@ def ingest(
     counts.update(note_counts)
     for entry in note_entries:
         parsers[entry["id"]] = "note"
+
+    if external_only and include_knowledge and include_internalised:
+        facts_path = (
+            Path(facts_dir) if facts_dir is not None else Path(pipeline_path).parent / "facts"
+        )
+        terms_file = (
+            Path(terms_path)
+            if terms_path is not None
+            else Path(pipeline_path).parent / "terms.yaml"
+        )
+        faq_file = (
+            Path(faq_path) if faq_path is not None else Path(pipeline_path).parent / "faq.yaml"
+        )
+        fact_docs, fact_chunks, fact_entries, fact_counts = fact_documents(
+            facts_path, data_root=root, registry_path=config_path
+        )
+        term_docs, term_chunks, term_entries, term_counts = term_documents(terms_file)
+        faq_docs, faq_chunks, faq_entries, faq_counts = faq_documents(faq_file)
+        for docs, chunks_, entries_, counts_, kind in (
+            (fact_docs, fact_chunks, fact_entries, fact_counts, "fact"),
+            (term_docs, term_chunks, term_entries, term_counts, "term"),
+            (faq_docs, faq_chunks, faq_entries, faq_counts, "faq"),
+        ):
+            documents.extend(docs)
+            all_chunks.extend(chunks_)
+            counts.update(counts_)
+            for entry in entries_:
+                parsers[entry["id"]] = kind
+            source_entries.extend(entries_)
 
     chunk_digest = hashlib.sha256(
         "".join(f"{chunk.chunk_id}\n{chunk.text}\n" for chunk in all_chunks).encode("utf-8")

@@ -1,0 +1,311 @@
+schema_version: 1
+updated_at: '2026-11-04'
+terms:
+- id: TERM-001
+  standard: 渔业捕捞许可证
+  variants:
+  - 捕捞证
+  - 捕鱼证
+  - 牌照
+  region:
+  - national
+  source:
+    kind: corpus
+    doc: POL-STD-010
+    section: 第二条
+    note: 法定捕捞许可证书
+  status: approved
+- id: TERM-002
+  standard: 伏季休渔
+  variants:
+  - 休渔期
+  - 休渔季节
+  region:
+  - national
+  source:
+    kind: corpus
+    doc: POL-CLOS-015
+    section: 三、休渔时间
+    note: 南海区伏季休渔的规范说法
+  status: approved
+- id: TERM-003
+  standard: 船长
+  variants:
+  - 船老大
+  - 老大
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业船舶船长，区别于船舶所有人
+  status: approved
+- id: TERM-004
+  standard: 主机功率
+  variants:
+  - 马力
+  - 功率
+  region:
+  - national
+  source:
+    kind: corpus
+    doc: POL-STD-010
+    section: 第八条
+    note: 渔船主机额定功率
+  status: approved
+- id: TERM-005
+  standard: 最小网目尺寸
+  variants:
+  - 网眼
+  - 网目
+  - 网眼尺寸
+  region:
+  - national
+  source:
+    kind: corpus
+    doc: POL-GEAR-016
+    section: 一、实行时间和范围
+    note: 渔具网目允许的最小尺寸
+  status: approved
+- id: TERM-006
+  standard: 专项（特许）渔业捕捞许可证
+  variants:
+  - 专项证
+  - 特许证
+  - 专项捕捞证
+  region:
+  - national
+  source:
+    kind: corpus
+    doc: POL-STD-010
+    section: 第二十六条
+    note: 专项捕捞使用的许可证
+  status: approved
+- id: TERM-007
+  standard: 年审
+  variants:
+  - 年检
+  - 年度审验
+  region:
+  - national
+  source:
+    kind: corpus
+    doc: POL-STD-010
+    section: 第四十一条
+    note: 捕捞许可证年度审验
+  status: approved
+- id: TERM-008
+  standard: 换发
+  variants:
+  - 换证
+  region:
+  - national
+  source:
+    kind: corpus
+    doc: POL-STD-010
+    section: 第三十六条
+    note: 许可证到期或事项变更后的换证
+  status: approved
+- id: TERM-009
+  standard: 船网工具指标
+  variants:
+  - 船网指标
+  - 指标
+  region:
+  - national
+  source:
+    kind: corpus
+    doc: POL-STD-010
+    section: 第九条
+    note: 渔船船数和功率控制指标
+  status: approved
+- id: TERM-010
+  standard: 没收
+  variants:
+  - 罚没
+  - 收缴
+  region:
+  - national
+  source:
+    kind: corpus
+    doc: POL-LAW-009
+    section: 第七十八条
+    note: 没收渔获物、违法所得和渔具
+  status: approved
+- id: TERM-011
+  standard: 罚款
+  variants:
+  - 处罚款
+  - 罚款金额
+  region:
+  - national
+  source:
+    kind: corpus
+    doc: POL-LAW-009
+    section: 第七十八条
+    note: 行政处罚中的罚款
+  status: approved
+- id: TERM-012
+  standard: 渔港
+  variants:
+  - 港口
+  - 码头
+  region:
+  - national
+  source:
+    kind: corpus
+    doc: POL-PORT-077
+    section: 第四条
+    note: 主要为渔业生产服务的港口
+  status: approved
+- id: TERM-013
+  standard: 进出港报告
+  variants:
+  - 进出港签证
+  - 签证
+  - 报告
+  region:
+  - national
+  source:
+    kind: corpus
+    doc: POL-PORT-077
+    section: 第六条
+    note: 船舶进出渔港向渔政渔港监督管理机关报告
+  status: approved
+- id: TERM-014
+  standard: 渔业船舶检验
+  variants:
+  - 船检
+  - 检验
+  region:
+  - national
+  source:
+    kind: corpus
+    doc: POL-RULE-019
+    section: 第四条
+    note: 渔业船舶强制检验
+  status: approved
+- id: TERM-015
+  standard: 职务船员
+  variants:
+  - 持证船员
+  - 职务证书船员
+  region:
+  - national
+  source:
+    kind: corpus
+    doc: POL-PEN-078
+    section: 第二十二条
+    note: 持有职务船员证书的船员
+  status: approved
+- id: TERM-016
+  standard: 普通船员
+  variants:
+  - 小工
+  - 普通水手
+  region:
+  - national
+  source:
+    kind: corpus
+    doc: POL-PEN-078
+    section: 第二十二条
+    note: 未取得职务证书的船员
+  status: approved
+- id: TERM-017
+  standard: 渔业资源增殖保护费
+  variants:
+  - 资源费
+  - 增殖费
+  - 保护费
+  region:
+  - national
+  source:
+    kind: corpus
+    doc: POL-RULE-020
+    section: 第五条
+    note: 渔业资源增殖保护费
+  status: approved
+- id: TERM-018
+  standard: 开渔
+  variants:
+  - 开捕
+  - 开海
+  region:
+  - national
+  source:
+    kind: corpus
+    doc: POL-ENF-068
+    section: 二、工作要点
+    note: 伏季休渔结束、允许捕捞
+  status: approved
+- id: TERM-019
+  standard: 渔具
+  variants:
+  - 网具
+  - 渔捞工具
+  region:
+  - national
+  source:
+    kind: corpus
+    doc: OPS-STD-039
+    note: 直接捕捞水生经济动物的工具
+  status: approved
+- id: TERM-020
+  standard: 拖网
+  variants:
+  - 拖网船
+  - 拖网作业
+  region:
+  - national
+  source:
+    kind: corpus
+    doc: OPS-STD-039
+    note: 拖曳方式作业的渔具
+  status: approved
+- id: TERM-021
+  standard: 围网
+  variants:
+  - 围网船
+  - 围网作业
+  region:
+  - national
+  source:
+    kind: corpus
+    doc: OPS-STD-039
+    note: 包围方式作业的渔具
+  status: approved
+- id: TERM-022
+  standard: 刺网
+  variants:
+  - 流刺网
+  - 刺网作业
+  region:
+  - national
+  source:
+    kind: corpus
+    doc: OPS-STD-039
+    note: 刺挂方式作业的渔具
+  status: approved
+- id: TERM-023
+  standard: 笼壶
+  variants:
+  - 蟹笼
+  - 笼壶类
+  region:
+  - national
+  source:
+    kind: corpus
+    doc: OPS-STD-039
+    note: 笼壶类渔具
+  status: approved
+- id: TERM-024
+  standard: 捕捞产量
+  variants:
+  - 捕捞量
+  - 产量
+  region:
+  - national
+  source:
+    kind: corpus
+    doc: DICT-STAT-013
+    note: 捕捞活动获得的产量
+  status: approved

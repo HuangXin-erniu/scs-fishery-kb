@@ -1,0 +1,70 @@
+schema_version: 1
+updated_at: '2026-11-04'
+topic: stats
+facts:
+- id: FACT-STATS-001
+  kind: provision
+  topic: stats
+  question_class: definition
+  subject: 海洋捕捞产量
+  predicate: 按海区分类
+  value: 海洋捕捞产量按捕捞海域分为渤海、黄海、东海和南海区
+  unit: null
+  qualifiers: {}
+  jurisdiction: national
+  effective:
+    from: null
+    to: null
+  evidence: 按捕捞海域分为渤海、 黄海、 东海和南海区产量
+  source:
+    doc: DICT-STAT-013
+    sha256: 8f67eebf4ffdf4d834d5034ab6cd131486dfa3db4fe564e9e42eea67c4244567
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2027-05-02'
+  supersedes: null
+- id: FACT-STATS-002
+  kind: provision
+  topic: stats
+  question_class: quantity
+  subject: 机动渔业船舶
+  predicate: 分类口径
+  value: 机动渔业船舶指依靠本船主机动力推进的渔业船舶，分为渔业生产船和渔业辅助船；捕捞船按主机功率、船长和作业方式分类
+  unit: null
+  qualifiers: {}
+  jurisdiction: national
+  effective:
+    from: null
+    to: null
+  evidence: 机动渔业船舶指依靠本船主机动力来推进的渔业船舶
+  source:
+    doc: DICT-STAT-013
+    sha256: 8f67eebf4ffdf4d834d5034ab6cd131486dfa3db4fe564e9e42eea67c4244567
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2027-05-02'
+  supersedes: null
+- id: FACT-STATS-003
+  kind: provision
+  topic: stats
+  question_class: status
+  subject: 国内海洋捕捞渔船转远洋
+  predicate: 统计归属
+  value: 国内海洋捕捞渔业船舶转为远洋渔业船舶的当年，纳入远洋渔业船舶统计，不再计入国内渔船统计
+  unit: null
+  qualifiers: {}
+  jurisdiction: national
+  effective:
+    from: null
+    to: null
+  evidence: 国内海洋捕捞渔业船舶转为远洋渔业船舶的当年
+  source:
+    doc: DICT-STAT-013
+    sha256: 8f67eebf4ffdf4d834d5034ab6cd131486dfa3db4fe564e9e42eea67c4244567
+  status: approved
+  confidence: high
+  as_of: '2026-11-04'
+  review_due: '2027-05-02'
+  supersedes: null
