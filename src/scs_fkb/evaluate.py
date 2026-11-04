@@ -8,7 +8,7 @@ from typing import Any
 
 import yaml
 
-from .answer import answer_question, validate_citations
+from .answer import CITATION_RE, answer_question, validate_citations
 from .bm25 import BM25Index
 from .claims import select_evidence
 from .lexicon import expand_query
@@ -160,6 +160,41 @@ def summarize_statistics(rows: list[dict[str, Any]]) -> dict[str, Any]:
     }
 
 
+def _answer_quality(answer: Any, hits: list[Any]) -> dict[str, Any] | None:
+    """Score extractive faithfulness and citation coverage for one answer."""
+    if answer is None or answer.abstained:
+        return None
+    lines = [line.strip() for line in answer.text.splitlines() if line.strip()]
+    cited = [line for line in lines if CITATION_RE.search(line)]
+    coverage = len(cited) / len(lines) if lines else 0.0
+    faithful = True
+    for line in cited:
+        body = " ".join(CITATION_RE.sub("", line).split())
+        matched = False
+        for doc_id, page, section in CITATION_RE.findall(line):
+            for hit in hits:
+                chunk = hit.chunk
+                if chunk.doc_id != doc_id:
+                    continue
+                if page and chunk.page != int(page):
+                    continue
+                if section and not chunk.section.startswith(section):
+                    continue
+                if body and body in " ".join(chunk.text.split()):
+                    matched = True
+                    break
+            if matched:
+                break
+        if not matched:
+            faithful = False
+            break
+    return {
+        "citation_coverage": round(coverage, 4),
+        "faithful": faithful,
+        "sentences": len(lines),
+    }
+
+
 def summarize(results: list[dict[str, Any]], skipped: list[str]) -> dict[str, Any]:
     answerable = [row for row in results if row["kind"] == "answerable"]
     abstention = [row for row in results if row["kind"] == "abstention"]
@@ -168,6 +203,9 @@ def summarize(results: list[dict[str, Any]], skipped: list[str]) -> dict[str, An
     refused = sum(1 for row in abstention if row["abstained"])
     resolved = sum(1 for row in answered if row["citation_valid"])
     reciprocal = sum(1.0 / row["rank"] for row in answerable if row.get("rank"))
+    quality = [row["quality"] for row in answered if row.get("quality")]
+    coverage = sum(item["citation_coverage"] for item in quality) / len(quality) if quality else 0.0
+    faithfulness = sum(1 for item in quality if item["faithful"]) / len(quality) if quality else 0.0
     return {
         "answerable_questions": len(answerable),
         "abstention_tests": len(abstention),
@@ -179,7 +217,10 @@ def summarize(results: list[dict[str, Any]], skipped: list[str]) -> dict[str, An
         "abstention_rate": round(refused / len(abstention), 4) if abstention else 0.0,
         "false_refusals": len(answerable) - len(answered),
         "answered": len(answered),
+        "answer_rate": round(len(answered) / len(answerable), 4) if answerable else 0.0,
         "citation_resolution": round(resolved / len(answered), 4) if answered else 0.0,
+        "citation_coverage": round(coverage, 4),
+        "faithfulness": round(faithfulness, 4),
     }
 
 
@@ -286,6 +327,8 @@ def evaluate(
                 "abstained": True if answer is None else answer.abstained,
                 "reason": "gate_failed" if answer is None else answer.reason,
                 "citation_valid": citation_valid,
+                "answer": None if answer is None else answer.to_dict(),
+                "quality": _answer_quality(answer, hits),
             }
         )
 
@@ -340,6 +383,8 @@ def evaluate(
                 "abstained": True if answer is None else answer.abstained,
                 "reason": "gate_failed" if answer is None else answer.reason,
                 "citation_valid": True,
+                "answer": None if answer is None else answer.to_dict(),
+                "quality": _answer_quality(answer, hits),
             }
         )
 

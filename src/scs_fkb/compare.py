@@ -135,6 +135,8 @@ def run_comparison(
             )
             result["summary"]["p95_latency_ms"] = _p95(latencies)
         report["arms"][name] = result["summary"]
+        if name == "hybrid":
+            report["details"] = result["results"]
         if name == "bm25":
             report["reference"] = result["reference"]
             report["reference_summary"] = {

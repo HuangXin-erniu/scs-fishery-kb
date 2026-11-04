@@ -1,5 +1,5 @@
 schema_version: 1
-updated_at: 2026-11-01
+updated_at: 2026-11-04
 # Gold anchors for the anchor-level evaluation. A question counts as retrieved
 # when a top-5 chunk matches any of its anchors: the document must agree, and
 # the section (prefix match) or the page must agree when an anchor names one.
@@ -7,23 +7,30 @@ anchors:
   Q-E01:
     - {doc: POL-CLOS-015, section: "三、休渔时间"}
     - {doc: POL-CLOS-015, section: "一、休渔海域"}
+    - {doc: POL-CLOS-015, section: "二、休渔作业类型"}
   Q-E02:
     - {doc: POL-STD-010, section: "第二十六条"}
     - {doc: POL-SPEC-041, section: "二、按作业类型"}
   Q-E03:
     - {doc: POL-STD-010, section: "第五十条"}
+    - {doc: POL-STD-010, section: "第五十二条"}
     - {doc: POL-LAW-009, section: "第三十四条"}
   Q-E04:
     - {doc: POL-LAW-009, section: "第七十四条"}
     - {doc: POL-STD-010, section: "第五十三条"}
   Q-E09:
-    - {doc: POL-STD-010, section: "第二十八条"}
-    - {doc: POL-LAW-009, section: "第三十五条"}
+    - {doc: POL-STD-010, section: "第三十六条"}
   Q-E10:
-    - {doc: POL-GEAR-033}
-    - {doc: POL-GEAR-034}
+    - {doc: POL-GEAR-016, section: "一、实行时间和范围"}
   Q-E12:
     - {doc: POL-LAW-009, section: "第七十八条"}
+  Q-E13:
+    - {doc: POL-STD-010, section: "第四十一条"}
+  Q-E14:
+    - {doc: POL-STD-010, section: "第十四条"}
+  Q-E15:
+    - {doc: POL-PORT-077, section: "第六条"}
+    - {doc: POL-PORT-077, section: "第二十条"}
   Q-M01:
     - {doc: POL-LAW-009, section: "第四十四条"}
     - {doc: POL-CLOS-015, section: "四、实施时间"}
@@ -36,11 +43,26 @@ anchors:
   Q-M12:
     - {doc: POL-STD-010, section: "第二十六条"}
     - {doc: POL-LAW-009, section: "第七十八条"}
+  Q-M13:
+    - {doc: POL-STD-010, section: "第三十六条"}
+    - {doc: POL-STD-010, section: "第三十七条"}
+  Q-M14:
+    - {doc: OPS-STD-039}
+  Q-M15:
+    - {doc: OPS-STD-035}
+  Q-M16:
+    - {doc: POL-RULE-020, section: "第五条"}
+  Q-M17:
+    - {doc: POL-RULE-019, section: "第四条"}
 abstention:
   - Q-E07
   - Q-E11
+  - Q-M02
+  - Q-M06
   - Q-M07
   - Q-M08
+  - Q-M11
+  - Q-M18
 # Definition and product questions answered through reference collections rather than the main
 # ranked index. Each entry declares its collection.
 reference:
@@ -50,13 +72,8 @@ reference:
   - id: Q-M04
     collection: cwp
     docs: [STD-CWP-043-catch, STD-CWP-043-effort]
-# Product questions parked until the web card layer lands (phase three). They were
-# answered by the MUR/OLCI/CMEMS/HY-1C/D documents before those were removed.
-web:
-  - id: Q-E08
-    topic: ocean-colour
-  - id: Q-M09
-    topic: sst-and-ocean-colour-products
+# Product questions are deferred to the web channel; none is scored in v1.
+web: []
 
 # Statistical questions answered through the local yearbook channel rather than
 # the public index. The channel is scored separately from the main metrics.
@@ -90,3 +107,193 @@ national:
   - id: J5
     query: 远洋渔船标准化船型参数系列表（2024年版）有哪些船型和参数？
     docs: [STD-YY-071]
+
+# Owner-reviewed gold answer points. Batch 1 (Q-E01 to Q-E08) was approved by the
+# project owner on 2026-11-04. The points are paraphrases, not verbatim source text.
+gold:
+  Q-E01:
+    points:
+      - "南海区休渔时间为5月1日12时至8月16日12时（北纬26度30分至12度的东海和南海海域）。"
+      - "休渔作业类型为除钓具外的所有作业类型，以及为捕捞渔船配套服务的捕捞辅助船。"
+    evidence:
+      - {doc: POL-CLOS-015, section: "三、休渔时间"}
+      - {doc: POL-CLOS-015, section: "二、休渔作业类型"}
+  Q-E02:
+    points:
+      - "钓具不纳入休渔；桁杆拖虾、笼壶类、刺网和灯光围（敷）网4种作业类型可申请虾蟹类、中上层鱼类等专项捕捞许可。"
+      - "专项捕捞需取得专项（特许）渔业捕捞许可证。"
+    evidence:
+      - {doc: POL-CLOS-015, section: "三、休渔时间"}
+      - {doc: POL-SPEC-041, section: "二、按作业类型"}
+      - {doc: POL-STD-010, section: "第二十六条"}
+  Q-E03:
+    points:
+      - "海洋大中型渔船从事捕捞活动应当填写渔捞日志，记载捕捞作业、进港卸载渔获物、水上收购或转运渔获物等情况。"
+      - "船长对渔捞日志记录内容的真实性、正确性负责。"
+    evidence:
+      - {doc: POL-STD-010, section: "第五十条"}
+      - {doc: POL-STD-010, section: "第五十二条"}
+  Q-E04:
+    points:
+      - "未按规定提交渔捞日志或者填写不真实、不规范的，给予警告、责令改正。"
+      - "逾期不改正的，可以处1000元以上1万元以下罚款。"
+    evidence:
+      - {doc: POL-STD-010, section: "第五十三条"}
+  Q-E05:
+    points:
+      - "CWP口径：catch为捕捞活动捕获的水生生物总活重；landings为实际卸岸的渔获重量。"
+      - "fishing effort为特定渔具在渔场一定时间内的投入量，例如作业持续时间或航次。"
+    evidence:
+      - {doc: STD-CWP-043-catch}
+      - {doc: STD-CWP-043-effort}
+    note: "International reference only; the Chinese official definition covers production."
+  Q-E06:
+    points:
+      - "返回南海区海洋捕捞产量2017至2025年按海区的年度序列，并带年鉴版次与表名引用。"
+      - "年鉴不发布按作业类型的产量，回答必须说明该维度缺失。"
+    evidence:
+      - {doc: STAT-YB-2018}
+      - {doc: STAT-YB-2025}
+    channel: statistics
+  Q-E07:
+    abstain: true
+    reason: "no registered source covers historical fishing seasons; the system must refuse."
+  Q-E08:
+    deferred: true
+    reason: "parked for the web channel; not scored in v1."
+  Q-E09:
+    points:
+      - "许可证有效期内，作业场所、作业方式变更的，应当申请换发渔业捕捞许可证。"
+      - "有效期届满前3个月内向原发证机关申请换发；换发时收回原证并注销。"
+    evidence:
+      - {doc: POL-STD-010, section: "第三十六条"}
+  Q-E10:
+    points:
+      - "自2014年6月1日起，黄渤海、东海、南海三个海区全面实施海洋捕捞准用渔具和过渡渔具最小网目尺寸制度。"
+      - "具体最小网目尺寸标准见通告附件1和附件2；省级主管部门可制定更严格标准。"
+    evidence:
+      - {doc: POL-GEAR-016, section: "一、实行时间和范围"}
+      - {doc: POL-GEAR-016, section: "二、主要内容"}
+  Q-E11:
+    abstain: true
+    reason: "no registered source covers fishery-bulletin interpretation; the system must refuse."
+  Q-E12:
+    points:
+      - "违反禁渔区、禁渔期规定从事捕捞的，没收渔获物、违法所得和渔具，并处20万元以下罚款。"
+      - "情节严重的，并处20万元以上200万元以下罚款，吊销捕捞许可证，可以没收船舶；违规航行、停泊的处20万元以下罚款。"
+    evidence:
+      - {doc: POL-LAW-009, section: "第七十八条"}
+  Q-E13:
+    points:
+      - "年审需持有效渔业船舶检验证书和国籍证书，船舶所有人、主尺度、主机功率、总吨位未变更。"
+      - "作业类型、场所、时限、渔具数量与许可内容一致，按规定填写提交渔捞日志、缴纳渔业资源增殖保护费并履行处罚决定。"
+    evidence:
+      - {doc: POL-STD-010, section: "第四十一条"}
+  Q-E14:
+    points:
+      - "制造、更新改造国内海洋捕捞渔船，应在本省船网工具控制指标内通过淘汰旧船解决，船数和功率数不得超过被淘汰渔船。"
+      - "大中型与小型指标不得相互转换；购置指标随船转移；大中型不得跨海区买卖；转远洋经批准可保留指标（重大改造导致主尺度、功率、作业类型变更的除外）。"
+    evidence:
+      - {doc: POL-STD-010, section: "第十四条"}
+  Q-E15:
+    points:
+      - "船舶进出渔港必须遵守渔港管理章程和国际海上避碰规则，并按规定向渔政渔港监督管理机关报告，接受安全检查。"
+      - "未报告的，责令改正，可以并处警告、罚款；情节严重的，扣留或者吊销船长职务证书。"
+    evidence:
+      - {doc: POL-PORT-077, section: "第六条"}
+      - {doc: POL-PORT-077, section: "第二十条"}
+  Q-M01:
+    points:
+      - "现行法律依据是渔业法（2025年修订，2026年5月1日施行）第四十四条：省级以上渔业渔政主管部门设立并公布禁渔区、禁渔期。"
+      - "南海区具体休渔安排由农业农村部2023年通告调整（5月1日12时至8月16日12时），并取代2021年通告；2026年另有专项捕捞许可通告。"
+    evidence:
+      - {doc: POL-LAW-009, section: "第四十四条"}
+      - {doc: POL-CLOS-015, section: "四、实施时间"}
+  Q-M02:
+    abstain: true
+    reason: "no registered vessel-management dictionary; the system must refuse."
+  Q-M03:
+    points:
+      - "公海捕捞作业渔船应当每月向农业农村部或其指定机构提交渔捞日志。"
+      - "未按规定提交或填写不真实、不规范的，给予警告、责令改正；逾期不改正的处1000元以上1万元以下罚款。"
+    evidence:
+      - {doc: POL-STD-010, section: "第五十一条"}
+      - {doc: POL-STD-010, section: "第五十三条"}
+  Q-M04:
+    points:
+      - "CWP区分catch（捕获总活重）、landings（实际卸岸重量）和fishing effort（渔具在渔场一定时间内的投入量）。"
+      - "中国官方统计只对产量作出定义，上岸量和捕捞努力量没有同等的官方口径。"
+    evidence:
+      - {doc: STD-CWP-043-catch}
+      - {doc: STD-CWP-043-effort}
+    note: "Reference collection; the Chinese official definition covers production only."
+  Q-M05:
+    points:
+      - "返回2019年南海区拖网渔船数量，并带年鉴版次和表名引用。"
+      - "产量与船数不能按作业类型同时给出：年鉴不发布按作业类型的捕捞产量。"
+    evidence:
+      - {doc: STAT-YB-2020}
+    channel: statistics
+  Q-M06:
+    abstain: true
+    reason: "no registered vessel/voyage dictionary; the system must refuse."
+  Q-M07:
+    abstain: true
+    reason: "no registered fishery-bulletin source; the system must refuse."
+  Q-M08:
+    abstain: true
+    reason: "no registered historical fishing-ground record; the system must refuse."
+  Q-M09:
+    deferred: true
+    reason: "parked for the web channel; not scored in v1."
+  Q-M10:
+    points:
+      - "申请海洋渔业捕捞许可证应提交申请书、所有人户口簿或营业执照、渔业船舶检验证书、国籍证书和所有权登记证书，以及渔具和捕捞方法符合准用目录与技术标准的说明。"
+      - "海洋渔业许可另需渔业组织意见、船网工具指标批准书（首次或重新申请）或原捕捞许可证（换发）。"
+    evidence:
+      - {doc: POL-STD-010, section: "第二十八条"}
+  Q-M11:
+    abstain: true
+    reason: "no registered metadata/attribution rule; the system must refuse."
+  Q-M12:
+    points:
+      - "专项（特许）捕捞需按第二十六条申请专项许可证；休渔期作业还需提供作业事由和计划。"
+      - "违反禁渔区、禁渔期规定的，按第七十八条没收渔获物、违法所得和渔具并处罚款，情节严重的吊销许可证。"
+    evidence:
+      - {doc: POL-STD-010, section: "第二十六条"}
+      - {doc: POL-LAW-009, section: "第七十八条"}
+  Q-M13:
+    points:
+      - "换发情形：行政区划调整导致船名或船籍港变更，作业场所或作业方式变更，所有人姓名/名称/地址变更（所有权转移除外），证件污损；期满前3个月内申请。"
+      - "重新申请情形：作业类型变更，主机、主尺度或总吨位变更，购置导致所有人变更，转远洋作业。"
+    evidence:
+      - {doc: POL-STD-010, section: "第三十六条"}
+      - {doc: POL-STD-010, section: "第三十七条"}
+  Q-M14:
+    points:
+      - "渔具按类、型、式分类；类的代号为C刺网、W围网、T拖网、Zh张网、D钓具、Di地拉网、Ch抄网、Y掩罩、P耙刺、F敷网、X陷阱、L笼壶。"
+      - "名称按式+型+类书写，代号按类·型·式书写，例如20·dp·C为定置单片刺网。"
+    evidence:
+      - {doc: OPS-STD-039}
+  Q-M15:
+    points:
+      - "以调查区域内所有海洋捕捞渔船为抽样总体，按船籍港省/市/县、渔具类、主机功率四档分层。"
+      - "按GB/T 2828.1—2012一次抽样方案确定每层样本量，样本量可按实际情况调整。"
+    evidence:
+      - {doc: OPS-STD-035}
+  Q-M16:
+    points:
+      - "海洋渔业资源费年征收金额按渔船前3年采捕水产品平均年总产值的1%至3%确定。"
+      - "专项采捕经济价值较高品种的，按该品种前3年平均年总产值的3%至5%确定；具体标准由省级或海区在幅度内制定。"
+    evidence:
+      - {doc: POL-RULE-020, section: "第五条"}
+  Q-M17:
+    points:
+      - "国家对渔业船舶实行强制检验，分为初次检验、营运检验和临时检验。"
+      - "初次检验在投入营运前实施；营运检验按周期实施；临时检验适用于证书失效、被责令检验等特定情形。"
+    evidence:
+      - {doc: POL-RULE-019, section: "第四条"}
+      - {doc: POL-RULE-019, section: "第十九条"}
+  Q-M18:
+    abstain: true
+    reason: "yearbook port table missing for data years 2018-2019; the system must refuse."

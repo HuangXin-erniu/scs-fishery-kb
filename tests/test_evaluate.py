@@ -1,10 +1,12 @@
 from __future__ import annotations
 
 from pathlib import Path
+from types import SimpleNamespace
 
 import pytest
 
 from scs_fkb.evaluate import (
+    _answer_quality,
     anchor_matches,
     load_anchors,
     parse_questions,
@@ -12,7 +14,7 @@ from scs_fkb.evaluate import (
     summarize_jurisdiction,
     summarize_national,
 )
-from scs_fkb.models import Chunk
+from scs_fkb.models import Answer, Chunk
 
 TABLE = """# Questions
 
@@ -107,6 +109,21 @@ def test_summarize_counts() -> None:
     assert summary["false_refusals"] == 1
     assert summary["skipped_questions"] == 1
     assert summary["citation_resolution"] == 1.0
+    assert summary["answer_rate"] == 0.6667
+    assert summary["citation_coverage"] == 0.0
+    assert summary["faithfulness"] == 0.0
+
+
+def test_answer_quality_supported_and_unsupported() -> None:
+    hit = SimpleNamespace(chunk=_chunk())
+    supported = Answer(text="text [POL-LAW-009 §第四十四条]", citations=[])
+    assert _answer_quality(supported, [hit]) == {
+        "citation_coverage": 1.0,
+        "faithful": True,
+        "sentences": 1,
+    }
+    unsupported = Answer(text="not in the chunk [POL-LAW-009 §第四十四条]", citations=[])
+    assert _answer_quality(unsupported, [hit])["faithful"] is False
 
 
 def test_load_anchors_rejects_malformed_reference(tmp_path: Path) -> None:

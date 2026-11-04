@@ -4,7 +4,8 @@
 > 评测以人工复核为准；报告必须记录 commit、索引版本、模型与问题集版本，保证可复现。
 > 目标值是最低门槛，不是对外承诺；未达标指标要通过误差分析解释，不得改指标掩盖。
 
-- Status: protocol defined; the question set is a draft and has not been reviewed by domain experts.
+- Status: protocol defined; the current question set was reviewed by the project owner in three batches (2026-11-04).
+- Reviewed instrument (2026-11-04, 33 questions: 19 anchors, 8 abstention, 2 reference, 2 statistics, 2 deferred): hybrid **19/19** with MRR 0.68, abstention 7/8, one false refusal, answer rate 18/19, citation resolution 1.00, citation coverage 0.99, extractive faithfulness 1.00 and P95 20 ms; BM25 17/19 (MRR 0.64), BM25 plus lexicon 19/19 (0.69) and dense 15/19 (0.55). Reference 2/2, statistics 2/2, jurisdiction 3/3 and national 2/2. Q-E07 remains the one answered abstention test. Human correctness and completeness are not yet scored; only the gold points are reviewed.
 - Baseline (2026-11-03, adopted; 28 public documents, 785 chunks, index `20910f0964df`, dense `58ded7342e4c66fe`): BM25 8/11, BM25 plus lexicon 10/11, dense-only 8/11 and hybrid **11/11** with MRR 0.56, abstention 3/4, two false refusals and 100% citation resolution; hybrid P95 19 ms; reference 2/2, statistics 2/2, jurisdiction 3/3 and national 2/2. Cards and notes are not in this index: they live in a separate external store (259 documents, 315 chunks, index `0c6d3901106c`) and are consulted only after a non-abstained corpus answer.
 - Claim-matrix experiment (2026-11-03, 287 documents with cards and notes, index `0137968fd40c`): chunks now carry source class, trust tier and review date, and hits are filtered by claim nature before answering (definition/rule/quantity/status/warning/identification/history). BM25 and lexicon abstention stayed at 3/4, but hybrid remained 9/11 with abstention 2/4; the filter cannot separate the out-of-scope question because the enlarged dense candidate pool already changes corpus ranking. Not adopted.
 - Layered-gate experiment (2026-11-03, 287 documents with cards and notes, index `0137968fd40c`): a corpus-only gate was added (a chunk kind plus a corpus-evidence check, pass-through from `answer.require_corpus_evidence`) and measured. It restored BM25 abstention to 3/4 but hybrid still fell to 2/4 and recall to 9/11, so the flag did not make the enlarged index safe. The gate code stays (it is exercised by tests) but the enlarged index is not adopted; the corpus-only row below remains the baseline.
@@ -18,17 +19,17 @@
 
 | Arm | Recall@5 | MRR | Abstention | False refusals | P95 |
 |---|---|---|---|---|---|
-| BM25 | 8/11 | 0.42 | 3/4 | 3 | — |
-| BM25 + lexicon | 10/11 | 0.50 | 3/4 | 2 | — |
-| Dense (bge-small-zh) | 8/11 | 0.39 | 3/4 | 3 | 18 ms |
-| **Hybrid (adopted)** | **11/11** | **0.56** | **3/4** | **2** | **19 ms** |
+| BM25 | 17/19 | 0.64 | 7/8 | 2 | — |
+| BM25 + lexicon | 19/19 | 0.69 | 7/8 | 1 | — |
+| Dense (bge-small-zh) | 15/19 | 0.55 | 7/8 | 2 | 20 ms |
+| **Hybrid (adopted)** | **19/19** | **0.68** | **7/8** | **1** | **20 ms** |
 
-Adopted configuration (2026-11-03): the corpus store above decides answerability; the external store is a separate index and never participates in corpus abstention. Q-E08 and Q-M09 remain parked, so the web channel is not scored.
+Adopted configuration (2026-11-04): the reviewed set has 33 questions — 19 anchors, 8 abstention tests, 2 CWP reference questions, 2 statistics questions and 2 deferred web questions. The corpus store decides answerability; the external store is a separate index and never participates in corpus abstention.
 
 - Statistics channel (2026-11-01): the two statistical questions are scored separately. Q-E06 runs 南海区海洋捕捞产量历年趋势 and expects the sea-area production series; Q-M05 runs 2019年南海区拖网渔船数量 and expects vessel counts. Both return rows with edition and table citations (2/2). The channel also states the two gaps: production has no operation-type dimension and vessel counts have no sea-area dimension.
 - Reference collections (2026-11-03): two questions are scored outside the main index. Q-E05 and Q-M04 use the CWP definition collection and both return the expected passage (2/2). Q-E08 and Q-M09 were answered by the product documents, which were removed on 2026-11-03; they are parked in the `web` queue and will be restored when the cached card layer lands. The interim reference rate is therefore 100% over two questions, not comparable with the earlier 4/4 over four.
 - Policy collection (2026-11-02): the crew-management rule `POL-CREW-055` joined the policy collection and answers the minimum-manning question; the channel still requires one of its cues before it fires, so an unrelated question does not reach these documents.
-- Abstention denominator: Q-E08 and Q-M09 moved from the abstention list to the product collection, so four out-of-scope tests remain (Q-E07, Q-E11, Q-M07, Q-M08) and three abstain; Q-E07 is still the known answered test. The percentage is therefore not comparable with earlier 5/6 figures.
+- Abstention denominator: the reviewed set has eight out-of-scope tests (Q-E07, Q-E11, Q-M02, Q-M06, Q-M07, Q-M08, Q-M11, Q-M18); seven abstain and Q-E07 is still the known answered test.
 - Answer assembly (2026-11-02): when a question asks for a period and not for an implementation date, the extractive answer searches every retrieved hit for a sentence carrying a date range and, if found, cites it first. Q-E01 now leads with the South China Sea clause from [POL-CLOS-015 §三、休渔时间] instead of the implementation date in §四; the retrieval, reference, statistics and abstention metrics are unchanged.
 - National section (2026-11-02): two questions exercise the national-first ordering. J4 2026年海洋伏季休渔执法行动由哪些部门开展、重点任务是什么？ expects `POL-ENF-068` and J5 远洋渔船标准化船型参数系列表（2024年版）有哪些船型和参数？ expects `STD-YY-071`. The section reports 2/2 separately; like the jurisdiction questions it is same-set calibration, not a held-out split.
 - Jurisdiction section (2026-11-02): three province questions are scored separately from the main arms: J1 海南省2026年伏季休渔的时间和海域是什么？ expecting `POL-HN-059`, J2 广西2026年海洋伏季休渔的时间与要求是什么？ expecting `POL-GX-060`, and J3 汕头市2026年海洋伏季休渔有哪些管理要求？ expecting `POL-GD-061`. The section exercises the province-first re-ranking and the answer lead, reports 3/3, and is same-set calibration rather than a held-out split.
@@ -46,7 +47,7 @@ Human review is authoritative for answer correctness. Automated metrics are supp
 
 ## 2. Question set
 
-The draft set contains 24 questions: 12 for vessel operators and captains, 12 for fisheries administration. It covers policy, procedure, definition, statistic, fact and standard questions. The current instrument scores eleven anchor questions and four abstention tests; Q-M02, Q-M06 and Q-M11 cite dictionaries that are not registered and are not scored, and Q-E08/Q-M09 are parked for the web channel.
+The reviewed set contains 33 questions: 15 for vessel operators and captains, 18 for fisheries administration. It contains 19 anchor questions, 8 abstention tests, 2 CWP reference questions, 2 statistics questions and 2 deferred web questions (Q-E08, Q-M09). Gold answer points are in `configs/eval.yaml`; the project owner approved the question decisions and gold points in three batches on 2026-11-04.
 
 Before use:
 
@@ -87,7 +88,7 @@ The public draft is [questions.md](questions.md).
 
 - Retrieval latency, end-to-end latency, index build time and memory peak.
 
-The instrument scores anchors, not answers: a question counts as retrieved when a top-5 chunk matches one of its gold anchors in `configs/eval.yaml` (document plus section prefix, or document plus page). Answer correctness, faithfulness and completeness still need reviewed gold answers. The adopted arm retrieves all eleven anchors. The remaining error is at the answer gate: Q-E09 and Q-E12 are refused although their anchors are retrieved (Q-E12's top hit is `POL-LAW-009` §第七十八条), while Q-E07 is answered although no registered source covers historical fishing seasons. Those three cases are the first error-analysis targets for the reviewed evaluation set.
+The instrument scores anchors, not answers: a question counts as retrieved when a top-5 chunk matches one of its gold anchors in `configs/eval.yaml` (document plus section prefix, or document plus page). Answer correctness, faithfulness and completeness still need reviewed gold answers and per-answer scoring; the current run scores deterministic faithfulness (answer sentences must come from cited chunks) and citation coverage. The adopted arm retrieves all nineteen anchors. The remaining error is at the answer gate: Q-E12 is refused although its anchor is retrieved (top hit `POL-LAW-009` §第七十八条), while Q-E07 is answered although no registered source covers historical fishing seasons. Those two cases are the first error-analysis targets.
 
 ## 4. Protocol
 
