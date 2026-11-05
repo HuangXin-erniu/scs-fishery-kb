@@ -1,8 +1,14 @@
 from __future__ import annotations
 
+import unicodedata
 from typing import Any
 
 from .answer import CITATION_RE, SENTENCE_RE
+
+
+def _norm(value: str) -> str:
+    """Fold width and whitespace so full-width digits and split labels compare."""
+    return "".join(unicodedata.normalize("NFKC", str(value)).split())
 
 
 def _sentences(text: str) -> list[str]:
@@ -13,13 +19,40 @@ def _citation_only(text: str) -> bool:
     return bool(CITATION_RE.search(text)) and not CITATION_RE.sub("", text).strip()
 
 
+def _cited_groups(answer_text: str) -> dict[tuple[str, int, str], list[str]]:
+    groups: dict[tuple[str, int, str], list[str]] = {}
+    sentences = _sentences(answer_text)
+    for index, sentence in enumerate(sentences):
+        combined = sentence
+        look = index + 1
+        while look < len(sentences) and _citation_only(sentences[look]):
+            combined = f"{combined} {sentences[look]}"
+            look += 1
+        for doc_id, page, section in CITATION_RE.findall(combined):
+            key = (doc_id, int(page) if page else 0, section)
+            groups.setdefault(key, []).append(combined)
+    return groups
+
+
 def point_status(answer_text: str, checks: dict[str, Any]) -> tuple[bool, list[str]]:
-    """A point is covered only by a sentence that has the terms and a citation."""
-    terms = [str(term) for term in checks.get("terms") or []]
+    """A point is covered by cited text carrying every check term.
+
+    mode=all: every term in one cited sentence;
+    mode=any: at least one term in one cited sentence;
+    mode=section: every term in cited sentences from the same doc/page/section.
+    """
+    terms = [_norm(term) for term in checks.get("terms") or []]
     mode = str(checks.get("mode") or "all")
     if not terms:
         return False, []
-    missing = [term for term in terms if term not in answer_text]
+    answer_norm = _norm(answer_text)
+    missing = [term for term in terms if term not in answer_norm]
+    if mode == "section":
+        for group in _cited_groups(answer_text).values():
+            joined = _norm(" ".join(group))
+            if all(term in joined for term in terms):
+                return True, []
+        return False, missing
     sentences = _sentences(answer_text)
     for index, sentence in enumerate(sentences):
         combined = sentence
@@ -29,7 +62,7 @@ def point_status(answer_text: str, checks: dict[str, Any]) -> tuple[bool, list[s
             look += 1
         if not CITATION_RE.search(combined):
             continue
-        present = [term in combined for term in terms]
+        present = [term in _norm(combined) for term in terms]
         if (mode == "any" and any(present)) or (mode != "any" and all(present)):
             return True, []
     return False, missing

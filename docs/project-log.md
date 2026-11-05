@@ -730,3 +730,9 @@ This log records material project changes by date. It does not use release versi
 - [Project plan](plan.md)
 - [Evaluation](evaluation.md)
 - [README](../README.md)
+
+## 2026-11-05 — Coverage-check calibration
+
+- Added `mode: section` to the deterministic coverage check: every term must occur in cited sentences sharing one source section; `all` and `any` are unchanged.
+- Audited all 60 gold points. 17 use `section`; 7 check-term sets were replaced with source-exact wording; 3 full-width/space cases are handled by NFKC/whitespace folding; 5 anchor gaps are documented and left for a separate decision.
+- No question, gold point, point count (60), anchor count (31), abstention count (11) or split membership changed. Private audit: `runs/P09-EVAL-134/audit.md`.

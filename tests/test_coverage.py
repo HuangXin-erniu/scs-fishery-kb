@@ -82,3 +82,45 @@ def test_checks_cover_all_anchor_points() -> None:
         checks = config["checks"][question_id]
         assert [item["point"] for item in checks] == list(range(len(points)))
         assert all(item.get("terms") for item in checks)
+
+
+def test_section_mode_accepts_terms_across_sentences_same_section() -> None:
+    answer = (
+        "第一句给出条件甲 [POL-STD-010 §第四十一条]。\n第二句给出条件乙 [POL-STD-010 §第四十一条]。"
+    )
+    covered, missing = point_status(
+        answer,
+        {"terms": ["条件甲", "条件乙"], "mode": "section"},
+    )
+    assert covered
+    assert missing == []
+
+
+def test_section_mode_rejects_terms_from_different_sections() -> None:
+    answer = (
+        "第一句给出条件甲 [POL-STD-010 §第四十一条]。\n第二句给出条件乙 [POL-STD-010 §第四十二条]。"
+    )
+    covered, _ = point_status(
+        answer,
+        {"terms": ["条件甲", "条件乙"], "mode": "section"},
+    )
+    assert not covered
+
+
+def test_section_mode_reports_missing_term() -> None:
+    answer = "只给出条件甲。 [POL-STD-010 §第四十一条]"
+    covered, missing = point_status(
+        answer,
+        {"terms": ["条件甲", "条件乙"], "mode": "section"},
+    )
+    assert not covered
+    assert missing == ["条件乙"]
+
+
+def test_nfkc_and_space_folding() -> None:
+    answer = "每层不应少于 ３ 艘 [SC-T-9460 §5]。 "
+    covered, _ = point_status(
+        answer,
+        {"terms": ["3艘"], "mode": "all"},
+    )
+    assert covered
