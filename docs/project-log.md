@@ -2,6 +2,13 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-05 — Atomic fact spot-check
+
+- Reviewed the 20 atomic facts (17 policy, 3 gear) against their cited sections. Values that summarised more than their short quote were either narrowed or given a longer verbatim quote; `FACT-POLICY-003` now carries the special-permit area/port qualifiers, and `FACT-GEAR-002` is limited to class names/codes while `FACT-GEAR-011` carries the name/code writing order.
+- `facts check --today 2026-11-05`: 80 facts, 80 approved, 0 errors, 0 conflicts, 0 expired. External store rebuilt to 375 documents / 431 chunks, index `3259a7694499`; corpus remains 28 documents / 785 chunks / `20910f0964df`.
+- Per-fact review table: `runs/P09-KB-132/atomic-review.md` (private). No corpus, index, retrieval or answer-path change.
+
+
 ## 2026-11-04 — Verified fact layer, terminology and FAQ
 
 - Added `configs/facts/{policy,gear,stats}.yaml`: 80 approved facts (20 atomic + 60 provision; 64 policy, 13 gear, 3 stats). Every fact carries a verbatim evidence quote, source document/section and register hash; atomic facts add precise values and effective dates.
