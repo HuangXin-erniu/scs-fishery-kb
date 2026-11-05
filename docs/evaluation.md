@@ -192,3 +192,19 @@ Q-M10 stayed the only hybrid miss after the corpus was pruned. The pipeline expo
 | lexicon additions 准入→申请/许可, 监管→监督检查, 作业规范→作业类型/作业方式 | 8 of 11 |
 
 The gold articles (POL-STD-010 第二十八条 and POL-LAW-009 第三十五条) never entered the top five under any tested setting at the time of this review. Q-M10 was then a generic question ("某类作业规范的准入条件与监管要求") mapped to a specific application-materials article, so parameter tuning could not separate that article from the many documents that mention permits. This review is kept as history: the final fix was the Q-M10 rewrite, and the adopted baseline now retrieves 11/11. The parameters stay at title_boost 1.0 and BM25:dense 2:1, and the 28-document corpus index remains the adopted one; cards and notes live in the separate external store.
+
+## Coverage-check modes and calibration (2026-11-05)
+
+The deterministic coverage check supports three modes:
+
+| Mode | Rule |
+|---|---|
+| `all` | every check term occurs in one cited sentence (default) |
+| `any` | at least one check term occurs in one cited sentence |
+| `section` | every check term occurs somewhere in the cited sentences that share one `doc`/`page`/`section` |
+
+`section` does not weaken `all`: `all` remains the default and still requires one sentence. `section` is for gold points whose source section legitimately states the point across several clauses (for example annual-review conditions, penalty tiers or certificate-renewal steps). It still requires every term and a citation for every contributing sentence.
+
+The 60-point audit reviewed the check terms against the anchor text and set `section` for 17 points. Seven check-term sets were replaced with source-exact wording (`原证`→`原渔业捕捞许可证`, `未变更`→`未发生变更`, `2021年`→`2021`, `按人`→`以人计罚`, `20万元`→`二十万元`, `200万元`→`二百万元`, `2828.1`→`2828`). Three formatting cases (full-width `２８２８`, `３ 艘` and the spaced `01·yn· W`) are handled by NFKC and whitespace folding rather than term changes.
+
+Five points remain **anchor gaps** because their terms are not in the cited anchor text: Q-E10 p1 (`更严格`), Q-M03 p1 (warning/fine), Q-M12 p0 (`作业事由`), Q-M17 p1 and Q-O03 p1 (pre-operation timing / certificate expiry). They are listed in the private audit and left unchanged; adding the missing sections is a separate anchor decision. No question, gold point, point count, split or test membership changed. The private audit is `runs/P09-EVAL-134/audit.md`.
