@@ -410,6 +410,34 @@ The local extraction has **3,126 rows**: 3,037 for 2017–2024 (capture 1,665, v
 
 The 2025 block was checked against China Statistical Yearbook 2026 table 12-15: twelve compared cells match exactly, and the national yearbook's marine capture column equals marine capture plus distant-water output in the fisheries yearbook.
 
+## 9a. V2 snapshots and parallel build
+
+The P10 ingestion path does not touch the live v1 store. It copies every acquired
+source into a content-addressed snapshot tree under the local data root:
+
+```text
+$SCS_FKB_DATA_ROOT/v2/snapshots/<source_id>/<source_hash>/
+$SCS_FKB_DATA_ROOT/v2/snapshots.json
+$SCS_FKB_DATA_ROOT/v2/processed/{documents,parents,chunks}.jsonl
+$SCS_FKB_DATA_ROOT/v2/processed/manifest.json
+```
+
+- Single-file sources are SHA-256-verified against the register before copying.
+- Directory sources (yearbook editions) get a per-file manifest and a tree hash;
+  their register hash is an edition manifest, so they are marked
+  `verified: false` rather than falsely claiming a tree-hash match.
+- The build is incremental: a document whose source hash, loader plan, governance
+  metadata or chunking config is unchanged is skipped. A changed document is
+  rebuilt; a document removed from the pipeline is removed from the v2 store; a
+  parse failure is quarantined with a reason.
+- The v2 store contains 28 documents, 745 parent chunks and 785 child chunks for
+  the configured main index, with 0 lost page/section anchors against v1.
+- Snapshots, parents, chunks and the manifest stay outside the public repository.
+
+The build command is `PYTHONPATH=src python3 scripts/build_v2.py`; it writes a
+private report under the run root. Optional Docling/trafilatura adapters live in
+`requirements-rag.txt` and are not required by CI.
+
 ## 10. Licence and sensitivity policy
 
 | Case | Action |

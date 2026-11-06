@@ -111,6 +111,28 @@ retrieval:
 - `main` is the frozen legal-and-technical index; `collection` is a reference collection; `statistics` is the extract pipeline; `watch` is monitored but not ingested; `web` is a curated web card; `local` is a restricted or internal-only channel; `none` means registered for provenance only.
 - `parseable: false` marks image-only or otherwise unreachable text. Such a source may stay registered as provenance but must not be cited as if its text were searchable.
 
+## 3a. Chunk v2
+
+The v2 ingestion path adds optional fields to `Chunk` with defaults, so v1 JSONL
+and existing tests still load. The child chunk remains the retrieval unit; the
+parent is stored separately and used only for context expansion.
+
+| Field | Meaning |
+|---|---|
+| `parent_id` | Parent section chunk id; empty for a parent and for v1 chunks |
+| `chunk_type` | `text`, `parent`, `table`, `web`, `fact`, `playbook`, `faq` or `term` |
+| `section_path` | Human-readable page/section path, e.g. `p.3 / 第二十六条` |
+| `version_id` | `source_id` + the first 12 characters of the source hash |
+| `snapshot_hash` | SHA-256 of the snapshotted file, or the tree hash for a directory |
+| `authority_tier`, `level`, `source_class`, `license` | Source governance carried onto the chunk |
+| `jurisdiction`, `effective_from`, `effective_to` | Applicability and legal-effect window |
+| `trust` | `authoritative`, `standard` or `provisional` derived from tier/class |
+
+Parents group children by `(doc_id, page, section)`. A parent id is stable for
+the same document/page/section, so a rebuild does not renumber citations.
+`src/scs_fkb/ingest_v2/chunking.py` builds the hierarchy; `src/scs_fkb/ingest.py`
+and the v1 default path are unchanged.
+
 ## 4. Lifecycle
 
 - `active` sources participate in their channel.

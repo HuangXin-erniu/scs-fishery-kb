@@ -45,12 +45,19 @@ merged.
 | Phase | Scope | Exit condition |
 |---|---|---|
 | P10-GOV-136 | Source schema v4, provenance/effective/quality, RAG standard, ADRs, migration audit, technology spike | 63 sources load under v4; checks green |
-| P10-ING-137 | Docling/trafilatura adapters, hierarchical chunking, snapshots and incremental manifest | 28 main + 23 reference + 10 statistics rebuild with anchors |
+| P10-ING-137 | Docling/trafilatura adapters, hierarchical chunking, snapshots and incremental manifest | 28 main documents rebuild with 0 lost anchors; 63 sources snapshotted; reference/statistics channels unchanged |
 | P10-IDX-138 | LanceDB, BGE embedding/reranker, hybrid retrieval, router and filters | 48-question regression not below baseline; latency/RSS targets |
 | P10-WEB-139 | SearXNG, allowlist, WebEvidence, TTL, trigger policy and promotion | 20 freshness questions; 0 non-allowlisted; no auto-ingest |
 | P10-KB-140 | 15 playbooks, 150 terms, 200 facts, extraction/review, weekly loop | Validators green; weekly report reproducible |
 | P10-ANS-141 | Answer composer/validator, FastAPI `/v1`, Web UI and feedback | 20 scenarios; citation resolution 100%; localhost service |
 | P10-EVAL-142 | 120-question set, RAGAS-compatible metrics, regression gate, docs sync | Acceptance thresholds met; release gate clean |
+
+P10-ING-137 is implemented as a parallel store: 63 sources are snapshotted,
+the 28 configured main documents build into 745 parent and 785 child chunks with
+0 lost page/section anchors, a second run skips all 28, and a changed source
+rebuilds only itself. The live v1 store, index and answer path are unchanged;
+the 23 reference documents and 10 statistics sources keep their existing channels
+until the index task wires them into the new store.
 
 The architecture decisions are [0005](adr/0005-two-plane-evidence.md),
 [0006](adr/0006-llamaindex-lancedb-bge.md),

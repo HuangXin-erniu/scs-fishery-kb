@@ -1,0 +1,5 @@
+# Optional ingestion adapters for the P10 refactor.
+# CI installs requirements-dev.txt only; these stay optional so the public
+# checks do not download large models or require a GPU.
+docling>=2.0,<3
+trafilatura>=2.0,<3
