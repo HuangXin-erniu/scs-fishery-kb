@@ -121,11 +121,11 @@ The seeded cards are four WoRMS taxonomy cards for South China Sea species, one 
 
 ## Controlled web evidence
 
-The ephemeral channel is not a web card. A `WebEvidence` record is created at query time and cached with a TTL; it carries `url`, `publisher`, `domain`, `fetched_at`, `content_hash`, `authority_tier`, `snippet`, `search_query`, `rank` and `ttl_days`. It is never written to `corpus.yaml` or the canonical index.
+The ephemeral channel is not a web card. A `SearXNG` JSON endpoint is used when configured; otherwise the DuckDuckGo client in `requirements-rag.txt` is the fallback. Neither is required by CI. A `WebEvidence` record is created at query time and cached with a TTL; it carries `url`, `publisher`, `domain`, `fetched_at`, `content_hash`, `authority_tier`, `snippet`, `search_query`, `rank` and `ttl_days`. It is never written to `corpus.yaml` or the canonical index.
 
 - **Trigger:** explicit user request, a freshness cue (`最新`, `今年`, `现在`, `台风`, `预警`), an in-scope canonical abstention, or canonical evidence older than the freshness window for the claim nature.
-- **Allowlist:** only hosts in [configs/web-sources.yaml](../configs/web-sources.yaml); https only; non-allowlisted results are dropped and logged.
-- **TTL:** warning/status 7 days, rule 30 days, statistics/history 365 days. Expired evidence is not answered from.
+- **Allowlist:** only hosts in [configs/web-sources.yaml](../configs/web-sources.yaml); https only; non-allowlisted results are dropped and logged. Specific central and provincial domains carry tier A/B; the generic `gov.cn` fallback is tier C and is labelled `地方政府网站（层级待核）`, so a municipal page cannot be promoted to national authority by host alone.
+- **TTL:** warning/status 7 days, rule 30 days, definition/identification 90 days, statistics/history 365 days. Expired evidence is not answered from.
 - **Citation:** `[WEB:domain:hash8] URL (抓取于 YYYY-MM-DD)`; the UI adds `网络检索 · 未入知识库`.
 - **Promotion:** `web promote <evidence-id>` opens a candidate. The normal admission flow (licence, authority, hash, review) is still required. No automatic ingest.
 
