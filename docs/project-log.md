@@ -822,3 +822,9 @@ This log records material project changes by date. It does not use release versi
 - Rebuilt the v1 external store after the knowledge review: 487 documents / 543 chunks (119 cards, 140 notes, 100 approved facts, 116 approved terms, 12 FAQs), chunk index `0b1ecdf229fe`, dense index `6bdf2aad95935994`. Before the rebuild it was 375 documents / 431 chunks / `3259a7694499`.
 - Verified external retrieval: `渔业港航行政处罚种类` returns `FACT-POLICY-049` (the promoted fourth-article penalty-types provision); `渔业捕捞许可证` returns `FACT-POLICY-004` and `TERM-001`.
 - The corpus store is unchanged at 28 documents / 785 chunks / `20910f0964df`. No code, config, corpus or answer path changed; no tag or release.
+
+## 2026-11-06 — Evaluation docs synced after review
+
+- Re-ran the 120-question evaluation after the 20 provision promotions and external rebuild: overall correctness 0.8026, dev 0.8945, test 0.6189 (up from 0.5820), citation 1.0000, context recall 0.9750, abstention 0.9000. Gate still passes.
+- Updated `docs/evaluation.md` and `docs/plan.md`; the 0.5820 figure remains as history in the change notes, not as the current result.
+- No code, config, eval set, facts, terms, playbooks or data changed.
