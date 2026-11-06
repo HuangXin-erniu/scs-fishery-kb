@@ -810,3 +810,9 @@ This log records material project changes by date. It does not use release versi
 - Added `docs/web-search.md` with reproducible local setup, settings, JSON check and the `SEARXNG_URL` smoke command.
 - Combined-provider smoke: 20 queries, 15 with allowlisted evidence, 37 evidence records, 84 non-allowlisted drops, 1 explicit PDF timeout, provider label `searxng+ddgs`. The fallback recovered long queries that SearXNG returned empty.
 - No corpus, answer, index, facts, terms or playbook changes; no tag or release.
+
+## 2026-11-06 — Reranker calibration: default remains off
+
+- Calibrated the BGE reranker on 31 reviewed anchors: no-rerank 31/31, MRR 0.9301; pure rerank 29/31, MRR 0.8495, P95 2,714 ms; short6 rerank 31/31, MRR 0.9140, P95 2,976 ms; top-1/top-2 preservation 30/31.
+- No arm meets 31/31 anchors, MRR at least no-rerank, and P95 <= 500 ms together. The default stays off; `--rerank` remains an optional offline flag.
+- Added `docs/reranker.md` with the table, decision, reproduction command and limitations. No retrieval, index, corpus, facts, terms, playbooks or eval code changed.
