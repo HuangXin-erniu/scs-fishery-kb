@@ -678,14 +678,15 @@ terms:
   region:
   - national
   source:
-    kind: glossary
-    note: 渔业领域术语候选；按规范说法与语料复核
-  status: draft
+    kind: corpus
+    doc: INT-MSY-095
+    note: 来源报道称近海渔业资源“最大可持续产量”保持在1000万吨以上。
+  status: approved
   review:
-    decision: keep_draft
+    decision: promote
     reviewer: agent-review
     reviewed_at: '2026-11-06'
-    note: 规范说法未出现在已登记语料中；作为术语候选保留，待补充来源后再审
+    note: 来源报道称近海渔业资源“最大可持续产量”保持在1000万吨以上。
 - id: TERM-060
   standard: 捕捞强度
   variants:
@@ -1224,20 +1225,21 @@ terms:
     note: 渔业领域术语候选；按规范说法与语料复核
   status: approved
 - id: TERM-107
-  standard: 渔获物交易
+  standard: 渔获物上市交易
   variants:
-  - 渔获交易
+  - 渔获物交易
   region:
   - national
   source:
-    kind: glossary
-    note: 渔业领域术语候选；按规范说法与语料复核
-  status: draft
+    kind: corpus
+    doc: POL-MARKET-093
+    note: 来源通知使用“禁止非法渔获物上市交易”；“渔获物交易”作为简称保留。
+  status: approved
   review:
-    decision: keep_draft
+    decision: promote
     reviewer: agent-review
     reviewed_at: '2026-11-06'
-    note: 规范说法未出现在已登记语料中；作为术语候选保留，待补充来源后再审
+    note: 来源通知使用“禁止非法渔获物上市交易”；“渔获物交易”作为简称保留。
 - id: TERM-108
   standard: 渔港管理章程
   variants:
@@ -1423,14 +1425,15 @@ terms:
   region:
   - national
   source:
-    kind: glossary
-    note: 渔业领域术语候选；按规范说法与语料复核
-  status: draft
+    kind: corpus
+    doc: POL-SUB-094
+    note: 来源将海洋渔业资源养护补贴分为“海洋伏季休渔补贴”和负责任捕捞补贴。
+  status: approved
   review:
-    decision: keep_draft
+    decision: promote
     reviewer: agent-review
     reviewed_at: '2026-11-06'
-    note: 规范说法未出现在已登记语料中；作为术语候选保留，待补充来源后再审
+    note: 来源将海洋渔业资源养护补贴分为“海洋伏季休渔补贴”和负责任捕捞补贴。
 - id: TERM-125
   standard: 转产转业
   variants:
@@ -1606,14 +1609,15 @@ terms:
   region:
   - national
   source:
-    kind: glossary
-    note: 渔业领域术语候选；按规范说法与语料复核
-  status: draft
+    kind: corpus
+    doc: INT-SUS-092
+    note: 来源联合国报告使用“数据共享”描述信息共享合作。
+  status: approved
   review:
-    decision: keep_draft
+    decision: promote
     reviewer: agent-review
     reviewed_at: '2026-11-06'
-    note: 规范说法未出现在已登记语料中；作为术语候选保留，待补充来源后再审
+    note: 来源联合国报告使用“数据共享”描述信息共享合作。
 - id: TERM-140
   standard: 数据质量
   variants:
@@ -1685,21 +1689,23 @@ terms:
     reviewed_at: '2026-11-06'
     note: 规范说法未出现在已登记语料中；作为术语候选保留，待补充来源后再审
 - id: TERM-145
-  standard: 海表温度
+  standard: 海温
   variants:
+  - 海表温度
   - SST
-  - 海温
   region:
   - national
   source:
-    kind: glossary
-    note: 渔业领域术语候选；按规范说法与语料复核
-  status: draft
+    kind: corpus
+    doc: POL-OBS-072
+    note: 来源第三十八条使用“海温”；“海表温度”和“SST”作为变体保留。
+    section: 第三十八条
+  status: approved
   review:
-    decision: keep_draft
+    decision: promote
     reviewer: agent-review
     reviewed_at: '2026-11-06'
-    note: 规范说法未出现在已登记语料中；作为术语候选保留，待补充来源后再审
+    note: 来源第三十八条使用“海温”；“海表温度”和“SST”作为变体保留。
 - id: TERM-146
   standard: 叶绿素a浓度
   variants:

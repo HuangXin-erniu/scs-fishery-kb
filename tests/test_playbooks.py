@@ -149,5 +149,5 @@ def test_live_knowledge_counts() -> None:
     by_id = {fact["id"]: fact for fact in facts}
     assert all(by_id[fid]["status"] == "approved" for fid in promoted)
     draft_terms = [term for term in terms if term["status"] == "draft"]
-    assert len(draft_terms) == 22
+    assert len(draft_terms) == 17
     assert all(term["review"]["decision"] == "keep_draft" for term in draft_terms)

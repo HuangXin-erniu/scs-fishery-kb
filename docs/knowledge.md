@@ -158,7 +158,7 @@ The layer has **200 facts**: 100 approved and 100 draft provision facts. The app
   status: approved
 ```
 
-**150 terms** map colloquial wording to the standard term (128 approved, 22 draft). `scs-fkb terms check --data-root ...` requires an approved standard term to appear in the indexed corpus and the corpus source to resolve. The 34 draft terms were reviewed on 2026-11-06; 12 were promoted across two source batches, so 22 remain draft because their standard forms still do not occur in the registered corpus. Terms are retrieval and answer-wording aids; they never replace a citation.
+**150 terms** map colloquial wording to the standard term (133 approved, 17 draft). `scs-fkb terms check --data-root ...` requires an approved standard term to appear in the indexed corpus and the corpus source to resolve. The 34 draft terms were reviewed on 2026-11-06; 17 were promoted across three source batches, so 17 remain draft because their standard forms still do not occur in the registered corpus. Terms are retrieval and answer-wording aids; they never replace a citation.
 
 ### 7.3 FAQ
 
@@ -183,4 +183,4 @@ scs-fkb ingest --external-only --data-root "$SCS_FKB_DATA_ROOT/external"
 scs-fkb embed --data-root "$SCS_FKB_DATA_ROOT/external"
 ```
 
-The rebuilt external store now has **499 documents and 555 chunks** (119 cards, 140 notes, 100 approved facts, 128 approved terms, 12 FAQs), chunk index `7c58c522ab5c` and dense index `05da8d22eab284cc`. The pre-review store was 375 documents / 431 chunks / `3259a7694499`; the corpus store is now 38 documents, 920 chunks and `0a8d928f2ad2`.
+The rebuilt external store now has **504 documents and 560 chunks** (119 cards, 140 notes, 100 approved facts, 133 approved terms, 12 FAQs), chunk index `c03a133b9f2e` and dense index `e06fd4f9fccc5205`. The pre-review store was 375 documents / 431 chunks / `3259a7694499`; the corpus store is now 41 documents, 971 chunks and `43491719734d`.

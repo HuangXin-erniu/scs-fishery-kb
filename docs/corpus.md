@@ -1,6 +1,6 @@
 # Corpus Inventory
 
-- Status: corpus and web layers registered and indexed for this phase. 73 sources (73 acquired, 0 open candidates), schema v4 currency, and 140 knowledge notes with 119 fetched cards; 38 public documents are indexed (920 chunks, index `0a8d928f2ad2`) and cards/notes live in a separate external store. The local core CSV has 3,126 rows and stays outside the public tree.
+- Status: corpus and web layers registered and indexed for this phase. 76 sources (76 acquired, 0 open candidates), schema v4 currency, and 140 knowledge notes with 119 fetched cards; 41 public documents are indexed (971 chunks, index `43491719734d`) and cards/notes live in a separate external store. The local core CSV has 3,126 rows and stays outside the public tree.
 - Register: [configs/corpus.yaml](../configs/corpus.yaml)
 - Candidate register: [configs/candidates.yaml](../configs/candidates.yaml)
 - Indicator schema: [configs/statistics.yaml](../configs/statistics.yaml)
@@ -430,7 +430,7 @@ $SCS_FKB_DATA_ROOT/v2/processed/manifest.json
   metadata or chunking config is unchanged is skipped. A changed document is
   rebuilt; a document removed from the pipeline is removed from the v2 store; a
   parse failure is quarantined with a reason.
-- The v2 store contains 38 documents, 870 parent chunks and 920 child chunks for
+- The v2 store contains 41 documents, 900 parent chunks and 971 child chunks for
   the configured main index, with 0 lost page/section anchors against v1.
 - Snapshots, parents, chunks and the manifest stay outside the public repository.
 
