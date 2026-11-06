@@ -2,10 +2,10 @@
 
 > **中文摘要**：本文件把项目范围拆成 WP0–WP6 工作包、M0–M4 阶段、角色、质量门与风险。
 > 里程碑是工作阶段，不是版本；项目不创建 tag 或 GitHub Release。
-> 当前处于 M3（评测与服务原型）：63 个来源已登记、0 个开放候选；source schema v4 的权威/时效/许可/等级门禁与候选队列已接入 CI；28 份公开文档已索引（785 块）；混合检索 19/19、拒答 7/8；48 题评测（33 dev + 15 test）与 38 点覆盖基线见 evaluation.md。
+> 当前处于 M3（评测与服务原型）：70 个来源已登记、0 个开放候选；source schema v4 的权威/时效/许可/等级门禁与候选队列已接入 CI；35 份公开文档已索引（905 块）；混合检索 19/19、拒答 8/11；48 题评测（33 dev + 15 test）与 38 点覆盖基线见 evaluation.md。
 > P10 重构于 2026-11-06 启动：双平面证据、LlamaIndex + LanceDB + BGE、受控网络检索、流程/术语内化与 120 题验收；第一阶段 P10-GOV-136 已建立治理基线。M1/M2 已完成，WP6 在 P10 中实现。
 
-- Status: active plan; WP1 is closed with 63 registered sources and no open candidates; WP2 indexes 28 public documents (785 chunks, index `20910f0964df`); WP3 and WP4 are implemented as an extractive prototype with an LLM answer layer; WP5 evaluation runs a reviewed 48-question set (33 dev + 15 test) and a deterministic 38-point coverage harness; WP6 is implemented in the P10 service task. The P10 refactor is tracked in section 3a.
+- Status: active plan; WP1 is closed with 70 registered sources and no open candidates; WP2 indexes 35 public documents (905 chunks, index `4d94e7c7f27c`); WP3 and WP4 are implemented as an extractive prototype with an LLM answer layer; WP5 evaluation runs a reviewed 48-question set (33 dev + 15 test) and a deterministic 38-point coverage harness; WP6 is implemented in the P10 service task. The P10 refactor is tracked in section 3a.
 - No versioned releases are published. Milestones describe work stages, not release numbers.
 - Architecture: [architecture.md](architecture.md); evaluation: [evaluation.md](evaluation.md); scope: [../PROJECT.md](../PROJECT.md).
 
@@ -31,7 +31,7 @@ Detailed scope and non-goals are in [../PROJECT.md](../PROJECT.md). The architec
 | WP5 | Evaluation | Reviewed question set; baselines; error analysis; evaluation report | Metrics and limitations reported |
 | WP6 | Service and interface | CLI/HTTP query surface; `/v1` interface contract (`docs/interface.md`, `configs/interface.yaml`) | Contract reviewed; no data integration implemented |
 
-WP0 is complete. WP1 is closed with 63 registered sources and no candidates: 1 law, 20 regulations, 12 notices, 17 standards, 10 statistical yearbooks (nine fishery yearbook editions for data years 2017–2025 and the China Statistical Yearbook 2026), 2 data dictionaries and 1 operations reference. The 3,126-row core CSV is built locally and has passed source-hash and spot-value checks. Three coverage gaps remain documented: no port infrastructure table for data years 2018–2019, no marine vessel-length table for 2024, and a sampled data year 2025. The 2026-11-01 sufficiency review accepted the draft question set (ten answerable, six partial and eight abstention tests at that time); the instrument now holds 48 questions (33 dev + 15 test), 31 anchor questions and 11 abstention tests. WP2 indexes the 28 public documents into 785 chunks with section and page anchors; the index holds no internal source. Anchor-level Recall@5 is 19/19 with MRR 0.68, abstention 7/8 (one false refusal), citation resolution 1.00 and P95 19 ms; the extractive prototype makes no generative model call. The CWP reference collection answers Q-E05 and Q-M04 (2/2); Q-E08 and Q-M09 remain parked. P06 exposes the yearbook indicator table locally via `scs-fkb stats` (2/2). The register uses source schema v4 (`level`, `authority_tier`, `source_class`, `provenance`, `effective`, `quality`, `currency.cadence`, `license`, `sensitivity`, `lifecycle`, `retrieval`), enforced by `src/scs_fkb/registry.py`; 63 v3 entries are normalised to v4 without changing ids or hashes. A curated watch list runs read-only; changed pages become candidates in `configs/candidates.yaml` and are never ingested automatically. `src/scs_fkb/candidates.py` validates the queue, and `scs-fkb sources check` makes the review date, licence and tier a CI gate. WP3 and WP4 are implemented; WP5 evaluation is in progress on the 48-question set; WP6 is implemented in the P10 service task.
+WP0 is complete. WP1 is closed with 70 registered sources and no open candidates: 1 law, 22 regulations, 15 notices, 17 standards, 10 statistical yearbooks (nine fishery yearbook editions for data years 2017–2025 and the China Statistical Yearbook 2026), 3 data dictionaries, 1 operations reference and 1 emergency plan. The 3,126-row core CSV is built locally and has passed source-hash and spot-value checks. Three coverage gaps remain documented: no port infrastructure table for data years 2018–2019, no marine vessel-length table for 2024, and a sampled data year 2025. The 2026-11-01 sufficiency review accepted the draft question set (ten answerable, six partial and eight abstention tests at that time); the instrument now holds 48 questions (33 dev + 15 test), 31 anchor questions and 11 abstention tests. WP2 indexes the 35 public documents into 905 chunks with section and page anchors; the index holds no internal source. Anchor-level Recall@5 is 19/19 with MRR 0.68, abstention 8/11 (one false refusal), citation resolution 1.00 and P95 19 ms; the extractive prototype makes no generative model call. The CWP reference collection answers Q-E05 and Q-M04 (2/2); Q-E08 and Q-M09 remain parked. P06 exposes the yearbook indicator table locally via `scs-fkb stats` (2/2). The register uses source schema v4 (`level`, `authority_tier`, `source_class`, `provenance`, `effective`, `quality`, `currency.cadence`, `license`, `sensitivity`, `lifecycle`, `retrieval`), enforced by `src/scs_fkb/registry.py`; 70 v4 entries are loaded; the original 63 v3 entries were normalised to v4 without changing ids or hashes. A curated watch list runs read-only; changed pages become candidates in `configs/candidates.yaml` and are never ingested automatically. `src/scs_fkb/candidates.py` validates the queue, and `scs-fkb sources check` makes the review date, licence and tier a CI gate. WP3 and WP4 are implemented; WP5 evaluation is in progress on the 48-question set; WP6 is implemented in the P10 service task.
 
 ### SCS-FKB refactor programme (2026-11-06)
 
@@ -55,6 +55,7 @@ merged.
 | P10-WEB-147 | SearXNG local provider with DuckDuckGo fallback | 15/20 queries with evidence; 1 explicit failure |
 | P10-IDX-148 | Reranker calibration on 31 reviewed anchors | Default off; no arm meets anchor+MRR+latency |
 | P10-IDX-149 | Rebuild external fact/term store after review | 487 docs / 543 chunks; fact and term retrievable |
+| P10-TERM-151 | Seven official term sources with A/B admission | 70 sources / 35 docs / 905 chunks; 123 approved terms |
 
 P10-ING-138 (re-post of the originally scoped ingestion task) is implemented as
 a parallel store: 63 sources are snapshotted, the 28 configured main documents
@@ -108,6 +109,14 @@ and 543 chunks (100 approved facts, 116 approved terms, 119 cards, 140 notes and
 12 FAQs), chunk index `0b1ecdf229fe` and dense index `6bdf2aad95935994`. A fact
 query and a term query both return external records. The corpus store remains 28
 documents / 785 chunks / `20910f0964df`.
+
+P10-TERM-151 admitted seven official term sources through the candidate queue and
+a staging A/B gate. The corpus is now 70 sources / 35 documents / 905 chunks
+(index `4d94e7c7f27c`); v2 is 905 chunks (index `c25ddffea992`); v1 anchors remain
+31/31, dev 19/19, test 12/12 and abstention 8/11; v2 dev correctness stays
+0.8945 and citation 1.0000. Terms are 123 approved / 27 draft; the external store
+is 494 documents / 550 chunks (index `9405a2f93585`). `POL-CODE-084` uses the
+narrow 1100 notice after the 1562 page caused an out-of-scope loan answer.
 
 The architecture decisions are [0005](adr/0005-two-plane-evidence.md),
 [0006](adr/0006-llamaindex-lancedb-bge.md),

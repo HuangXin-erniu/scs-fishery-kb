@@ -365,22 +365,24 @@ terms:
     note: 渔业领域术语候选；按规范说法与语料复核
   status: approved
 - id: TERM-030
-  standard: 渔业船员适任证书
+  standard: 渔业职务船员证书
   variants:
-  - 适任证书
-  - 职务证书
+  - 渔业船员适任证书
+  - 职务船员证书
   - 船员证书
   region:
   - national
   source:
-    kind: glossary
-    note: 渔业领域术语候选；按规范说法与语料复核
-  status: draft
+    kind: corpus
+    doc: POL-CREW-083
+    note: 来源第五条区分海洋/内陆渔业职务船员证书；原“渔业船员适任证书”作为变体保留。
+    section: 第五条
+  status: approved
   review:
-    decision: keep_draft
+    decision: promote
     reviewer: agent-review
     reviewed_at: '2026-11-06'
-    note: 规范说法未出现在已登记语料中；作为术语候选保留，待补充来源后再审
+    note: 来源第五条区分海洋/内陆渔业职务船员证书；原“渔业船员适任证书”作为变体保留。
 - id: TERM-031
   standard: 渔捞日志
   variants:
@@ -954,14 +956,16 @@ terms:
   region:
   - national
   source:
-    kind: glossary
-    note: 渔业领域术语候选；按规范说法与语料复核
-  status: draft
+    kind: corpus
+    doc: POL-CODE-084
+    note: 来源明确渔船编码为唯一、终身不变的船舶识别代码，并给出16位编码规则。
+    section: 二、证书证件修订主要内容
+  status: approved
   review:
-    decision: keep_draft
+    decision: promote
     reviewer: agent-review
     reviewed_at: '2026-11-06'
-    note: 规范说法未出现在已登记语料中；作为术语候选保留，待补充来源后再审
+    note: 来源明确渔船编码为唯一、终身不变的船舶识别代码，并给出16位编码规则。
 - id: TERM-085
   standard: 船舶识别号
   variants:
@@ -969,14 +973,16 @@ terms:
   region:
   - national
   source:
-    kind: glossary
-    note: 渔业领域术语候选；按规范说法与语料复核
-  status: draft
+    kind: corpus
+    doc: POL-ID-085
+    note: 来源第二条定义船舶识别号为永久识别船舶的唯一编码。
+    section: 第二条
+  status: approved
   review:
-    decision: keep_draft
+    decision: promote
     reviewer: agent-review
     reviewed_at: '2026-11-06'
-    note: 规范说法未出现在已登记语料中；作为术语候选保留，待补充来源后再审
+    note: 来源第二条定义船舶识别号为永久识别船舶的唯一编码。
 - id: TERM-086
   standard: 总吨位
   variants:
@@ -1063,20 +1069,23 @@ terms:
     note: 渔业领域术语候选；按规范说法与语料复核
   status: approved
 - id: TERM-094
-  standard: 三无船
+  standard: 涉渔“三无”船舶
   variants:
-  - 三无渔船
+  - 三无船
+  - 三无船舶
   region:
   - national
   source:
-    kind: glossary
-    note: 渔业领域术语候选；按规范说法与语料复核
-  status: draft
+    kind: corpus
+    doc: POL-SANWU-086
+    note: 来源在全国执法通报中使用“涉渔‘三无’船舶”；这是官方用法来源，不是法定定义。
+    section: 五、
+  status: approved
   review:
-    decision: keep_draft
+    decision: promote
     reviewer: agent-review
     reviewed_at: '2026-11-06'
-    note: 规范说法未出现在已登记语料中；作为术语候选保留，待补充来源后再审
+    note: 来源在全国执法通报中使用“涉渔‘三无’船舶”；这是官方用法来源，不是法定定义。
 - id: TERM-095
   standard: 涉渔
   variants:
@@ -1383,20 +1392,23 @@ terms:
     reviewed_at: '2026-11-06'
     note: 规范说法未出现在已登记语料中；作为术语候选保留，待补充来源后再审
 - id: TERM-123
-  standard: 油价补贴
+  standard: 渔业成品油价格补助
   variants:
+  - 油价补贴
   - 燃油补贴
   region:
   - national
   source:
-    kind: glossary
-    note: 渔业领域术语候选；按规范说法与语料复核
-  status: draft
+    kind: corpus
+    doc: POL-FUEL-087
+    note: 来源第三条定义补助资金的对象和用途；“油价补贴”作为口语变体保留。
+    section: 第三条
+  status: approved
   review:
-    decision: keep_draft
+    decision: promote
     reviewer: agent-review
     reviewed_at: '2026-11-06'
-    note: 规范说法未出现在已登记语料中；作为术语候选保留，待补充来源后再审
+    note: 来源第三条定义补助资金的对象和用途；“油价补贴”作为口语变体保留。
 - id: TERM-124
   standard: 休渔补贴
   variants:
@@ -1468,20 +1480,23 @@ terms:
     note: 渔业领域术语候选；按规范说法与语料复核
   status: approved
 - id: TERM-130
-  standard: 统计口径
+  standard: 调查对象
   variants:
-  - 统计标准
+  - 统计对象
+  - 统计口径
   region:
   - national
   source:
-    kind: glossary
-    note: 渔业领域术语候选；按规范说法与语料复核
-  status: draft
+    kind: corpus
+    doc: POL-STAT-088
+    note: 来源第二节使用“调查对象和统计范围”；“统计范围”已由 TERM-131 覆盖，本条目采用“调查对象”，旧“统计口径”保留为变体。
+    section: 二、调查对象和统计范围
+  status: approved
   review:
-    decision: keep_draft
+    decision: promote
     reviewer: agent-review
     reviewed_at: '2026-11-06'
-    note: 规范说法未出现在已登记语料中；作为术语候选保留，待补充来源后再审
+    note: 来源第二节使用“调查对象和统计范围”；“统计范围”已由 TERM-131 覆盖，本条目采用“调查对象”，旧“统计口径”保留为变体。
 - id: TERM-131
   standard: 统计范围
   variants:
@@ -1740,11 +1755,12 @@ terms:
   region:
   - national
   source:
-    kind: glossary
-    note: 渔业领域术语候选；按规范说法与语料复核
-  status: draft
+    kind: corpus
+    doc: POL-RED-089
+    note: 来源通知标题和正文使用“赤潮”；该页为通知页，不是预案全文。
+  status: approved
   review:
-    decision: keep_draft
+    decision: promote
     reviewer: agent-review
     reviewed_at: '2026-11-06'
-    note: 规范说法未出现在已登记语料中；作为术语候选保留，待补充来源后再审
+    note: 来源通知标题和正文使用“赤潮”；该页为通知页，不是预案全文。

@@ -828,3 +828,12 @@ This log records material project changes by date. It does not use release versi
 - Re-ran the 120-question evaluation after the 20 provision promotions and external rebuild: overall correctness 0.8026, dev 0.8945, test 0.6189 (up from 0.5820), citation 1.0000, context recall 0.9750, abstention 0.9000. Gate still passes.
 - Updated `docs/evaluation.md` and `docs/plan.md`; the 0.5820 figure remains as history in the change notes, not as the current result.
 - No code, config, eval set, facts, terms, playbooks or data changed.
+
+## 2026-11-06 — Seven official term sources admitted through A/B
+
+- Register is now **70 sources** (63 + 7), 0 open candidates, with `POL-CREW-083`, `POL-CODE-084`, `POL-ID-085`, `POL-SANWU-086`, `POL-FUEL-087`, `POL-STAT-088` and `POL-RED-089`.
+- Captured and SHA-256 hashed seven public A-level pages. The initial `POL-CODE-084` 1562 notice was replaced by the narrower 1100 coding notice after staging showed the 1562 page made an out-of-scope loan question answerable.
+- Staging A/B passed: v1 31/31 anchors, dev 19/19, test 12/12, abstention 8/11; v2 dev correctness 0.8945, citation 1.0000, recall 0.9667, abstention 0.9000. Main v1 is 35 docs / 905 chunks / `4d94e7c7f27c`; v2 index `c25ddffea992`.
+- Promoted seven terms: 渔业职务船员证书, 渔船编码, 船舶识别号, 涉渔“三无”船舶, 渔业成品油价格补助, 调查对象 and 赤潮. `统计范围` was already `TERM-131`, so `TERM-130` uses `调查对象` from the same official section. Terms are **123 approved / 27 draft**.
+- Rebuilt the external store: **494 documents / 550 chunks**, chunk index `9405a2f93585`, dense `f1e02a628271a87b`; all seven new terms retrieve in top 5. Added `docs/term-sources.md`.
+- No tag or release; raw HTML stays under the local data root.

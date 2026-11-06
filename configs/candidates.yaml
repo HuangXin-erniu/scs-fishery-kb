@@ -1,7 +1,87 @@
-# Candidate register. A candidate is a proposal, not a source: nothing here is
-# ingested, indexed or citable until it is accepted and registered in corpus.yaml.
-# The lifecycle and the no-auto-ingest rule are defined in docs/sources.md.
-
 schema_version: 1
-updated_at: '2026-11-04'
-candidates: []
+updated_at: '2026-11-06'
+candidates:
+- id: CAND-2026-001
+  title: 中华人民共和国渔业船员管理办法
+  url: https://www.gov.cn/zhengce/2022-01/07/content_5721358.htm
+  publisher: 农业农村部
+  proposed_tier: A
+  proposed_class: normative
+  reason: gap
+  first_seen: '2026-11-06'
+  expires_at: '2027-05-05'
+  status: accepted
+  source_id: POL-CREW-083
+  note: 'A/B staging passed: v1 31/31, v2 dev correctness 0.8945, 7 term forms exact.'
+- id: CAND-2026-002
+  title: 中华人民共和国农业部公告第1100号
+  url: https://www.moa.gov.cn/govpublic/YYJ/201006/t20100606_1538517.htm
+  publisher: 农业部
+  proposed_tier: A
+  proposed_class: normative
+  reason: gap
+  first_seen: '2026-11-06'
+  expires_at: '2027-05-05'
+  status: accepted
+  source_id: POL-CODE-084
+  note: 'A/B staging passed: v1 31/31, v2 dev correctness 0.8945, 7 term forms exact.'
+- id: CAND-2026-003
+  title: 中华人民共和国船舶识别号管理规定
+  url: https://www.gov.cn/gongbao/content/2011/content_1786420.htm
+  publisher: 交通运输部
+  proposed_tier: A
+  proposed_class: normative
+  reason: gap
+  first_seen: '2026-11-06'
+  expires_at: '2027-05-05'
+  status: accepted
+  source_id: POL-ID-085
+  note: 'A/B staging passed: v1 31/31, v2 dev correctness 0.8945, 7 term forms exact.'
+- id: CAND-2026-004
+  title: 农业农村部关于印发“中国渔政亮剑2024”执法典型案例的通知
+  url: https://www.moa.gov.cn:10443/govpublic/YYJ/202505/t20250506_6473730.htm
+  publisher: 农业农村部
+  proposed_tier: A
+  proposed_class: reference
+  reason: gap
+  first_seen: '2026-11-06'
+  expires_at: '2027-05-05'
+  status: accepted
+  source_id: POL-SANWU-086
+  note: 'A/B staging passed: v1 31/31, v2 dev correctness 0.8945, 7 term forms exact.'
+- id: CAND-2026-005
+  title: 财政部 农业部关于印发《渔业成品油价格补助专项资金管理暂行办法》的通知
+  url: https://www.gov.cn/gongbao/content/2010/content_1629134.htm
+  publisher: 财政部、农业部
+  proposed_tier: A
+  proposed_class: normative
+  reason: gap
+  first_seen: '2026-11-06'
+  expires_at: '2027-05-05'
+  status: accepted
+  source_id: POL-FUEL-087
+  note: 'A/B staging passed: v1 31/31, v2 dev correctness 0.8945, 7 term forms exact.'
+- id: CAND-2026-006
+  title: 渔业统计调查制度
+  url: https://www.stats.gov.cn/fw/bmdcxmsp/bmzd/202407/t20240719_1955798.html
+  publisher: 国家统计局
+  proposed_tier: A
+  proposed_class: official_statistics
+  reason: gap
+  first_seen: '2026-11-06'
+  expires_at: '2027-05-05'
+  status: accepted
+  source_id: POL-STAT-088
+  note: 'A/B staging passed: v1 31/31, v2 dev correctness 0.8945, 7 term forms exact.'
+- id: CAND-2026-007
+  title: 自然资源部办公厅关于印发《赤潮灾害应急预案》的通知
+  url: https://www.gov.cn/zhengce/zhengceku/2021-08/07/content_5630005.htm
+  publisher: 自然资源部办公厅
+  proposed_tier: A
+  proposed_class: normative
+  reason: gap
+  first_seen: '2026-11-06'
+  expires_at: '2027-05-05'
+  status: accepted
+  source_id: POL-RED-089
+  note: 'A/B staging passed: v1 31/31, v2 dev correctness 0.8945, 7 term forms exact.'
