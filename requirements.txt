@@ -1,7 +1,7 @@
 # Current phase: data preparation and corpus discovery.
-PyYAML>=6.0
-openpyxl>=3.1
-xlrd>=2.0
+PyYAML>=6.0.3
+openpyxl>=3.1.5
+xlrd>=2.0.2
 
 # Deferred pipeline dependencies; install only when that phase starts.
 # pymupdf>=1.24
@@ -18,4 +18,4 @@ xlrd>=2.0
 
 # Dense retrieval arm (local ONNX, ~300 MB with onnxruntime).
 # CI installs requirements-dev.txt only, so this stays optional.
-fastembed>=0.9
+fastembed>=0.9.1
