@@ -65,3 +65,30 @@ After the term approvals, the separate external store was rebuilt:
 - The seven candidates were accepted only after the staging gate; all seven now have `source_id`.
 - `POL-SANWU-086` and `POL-RED-089` are official usage sources, not statutory definitions; their notes say so.
 - The AI-assisted review remains subject to owner spot-check; no tag or release was created.
+
+## 6. Batch 2 — 2026-11-06
+
+| Source | Term | Official page | Published | SHA-256 (short) | Evidence |
+|---|---|---|---|---|---|
+| `POL-SANWU-086` (existing) | 非法捕捞水产品罪 | [亮剑2024典型案例](https://www.moa.gov.cn:10443/govpublic/YYJ/202505/t20250506_6473730.htm) | 2025-05-06 | `98709dce539f` | 六、江西鹰潭案 |
+| `POL-CODE-084` (existing) | 型宽 | [农业部公告第1100号](https://www.moa.gov.cn/govpublic/YYJ/201006/t20100606_1538517.htm) | 2008-10-31 | `9e4aa06c9817` | 二、证书证件修订主要内容 |
+| `POL-CONS-090` | 过度捕捞 | [海洋渔业资源衰退报道](https://www.moa.gov.cn/ztzl/ymksn/rmrbbd/202412/t20241205_6467503.htm) | 2024-12-05 | `d943c9d0b054` | 正文 |
+| `POL-MIN-091` | 最小可捕规格 | [农业部通告〔2018〕3号](https://www.moa.gov.cn/govpublic/YYJ/201802/t20180213_6136943.htm) | 2018-02-12 | `af9068fe40c7` | 一、15种重要经济鱼类最小可捕规格 |
+| `INT-SUS-092` | 兼捕 | [中国积极行动促进可持续渔业发展](https://www.un.org/oceancapacity/sites/www.un.org.oceancapacity/files/china.pdf) | undated | `3e67a3ce5fe9` | 一（二） |
+
+- `TERM-048` was already supported by `POL-SANWU-086`; `TERM-088` changes standard from `船宽` to the official `型宽` and keeps `船宽` as a variant.
+- `POL-CONS-090` and `POL-MIN-091` were initially captured as the 2006 action outline and the 64-page gazette PDF. Staging showed those broad pages answered the out-of-scope loan and voyage-definition questions, so the narrow 2024 news page and the standalone 2018 notice were substituted; both contain the exact terms and no loan/mortgage text.
+- Batch 2 result: **128 approved / 22 draft**.
+
+### Batch 2 A/B
+
+| Arm | Before | After |
+|---|---|---|
+| v1 docs/chunks/index | 35 / 905 / `4d94e7c7f27c` | 38 / 920 / `0a8d928f2ad2` |
+| v1 anchors / abstention | 31/31 / 8/11 | 31/31 / 8/11 |
+| v2 chunks/index | 905 / `c25ddffea992` | 920 / `659a7a8c507e` |
+| v2 dev / test / overall | 0.8945 / 0.6319 / 0.8069 | 0.8945 / 0.6327 / 0.8072 |
+| v2 citation / recall / abstention | 1.0000 / 0.9667 / 0.9000 | 1.0000 / 0.9667 / 0.9000 |
+| External store | 494 / 550 / `9405a2f93585` | 499 / 555 / `7c58c522ab5c` |
+
+All five new terms retrieve in the external top 5.

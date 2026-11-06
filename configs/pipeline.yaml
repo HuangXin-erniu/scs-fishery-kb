@@ -3,10 +3,12 @@ updated_at: 2026-11-01
 documents:
   - DICT-STAT-013
   - DICT-STAT-040
+  - INT-SUS-092
   - OPS-STD-035
   - OPS-STD-039
   - POL-CLOS-015
   - POL-CODE-084
+  - POL-CONS-090
   - POL-CREW-083
   - POL-ENF-068
   - POL-FJ-025
@@ -22,6 +24,7 @@ documents:
   - POL-ID-085
   - POL-LAW-009
   - POL-LIST-079
+  - POL-MIN-091
   - POL-OBS-072
   - POL-PEN-078
   - POL-PEN-080

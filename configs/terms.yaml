@@ -561,14 +561,16 @@ terms:
   region:
   - national
   source:
-    kind: glossary
-    note: 渔业领域术语候选；按规范说法与语料复核
-  status: draft
+    kind: corpus
+    doc: POL-SANWU-086
+    note: 来源全国执法通报第六案使用“非法捕捞水产品罪”。
+    section: 六、
+  status: approved
   review:
-    decision: keep_draft
+    decision: promote
     reviewer: agent-review
     reviewed_at: '2026-11-06'
-    note: 规范说法未出现在已登记语料中；作为术语候选保留，待补充来源后再审
+    note: 来源全国执法通报第六案使用“非法捕捞水产品罪”。
 - id: TERM-049
   standard: 渔业法
   variants:
@@ -701,14 +703,15 @@ terms:
   region:
   - national
   source:
-    kind: glossary
-    note: 渔业领域术语候选；按规范说法与语料复核
-  status: draft
+    kind: corpus
+    doc: POL-CONS-090
+    note: 来源《中国水生生物资源养护行动纲要》使用“过度捕捞造成渔业资源严重衰退”。
+  status: approved
   review:
-    decision: keep_draft
+    decision: promote
     reviewer: agent-review
     reviewed_at: '2026-11-06'
-    note: 规范说法未出现在已登记语料中；作为术语候选保留，待补充来源后再审
+    note: 来源《中国水生生物资源养护行动纲要》使用“过度捕捞造成渔业资源严重衰退”。
 - id: TERM-062
   standard: 兼捕
   variants:
@@ -716,14 +719,15 @@ terms:
   region:
   - national
   source:
-    kind: glossary
-    note: 渔业领域术语候选；按规范说法与语料复核
-  status: draft
+    kind: corpus
+    doc: INT-SUS-092
+    note: 来源联合国报告第一节（二）使用“兼捕物种保护和管理”；“混捕”作为变体保留。
+  status: approved
   review:
-    decision: keep_draft
+    decision: promote
     reviewer: agent-review
     reviewed_at: '2026-11-06'
-    note: 规范说法未出现在已登记语料中；作为术语候选保留，待补充来源后再审
+    note: 来源联合国报告第一节（二）使用“兼捕物种保护和管理”；“混捕”作为变体保留。
 - id: TERM-063
   standard: 副渔获
   variants:
@@ -756,14 +760,15 @@ terms:
   region:
   - national
   source:
-    kind: glossary
-    note: 渔业领域术语候选；按规范说法与语料复核
-  status: draft
+    kind: corpus
+    doc: POL-MIN-091
+    note: 来源通告标题和表格使用“最小可捕规格”，并定义未达标幼鱼。
+  status: approved
   review:
-    decision: keep_draft
+    decision: promote
     reviewer: agent-review
     reviewed_at: '2026-11-06'
-    note: 规范说法未出现在已登记语料中；作为术语候选保留，待补充来源后再审
+    note: 来源通告标题和表格使用“最小可捕规格”，并定义未达标幼鱼。
 - id: TERM-066
   standard: 渔具分类
   variants:
@@ -1004,20 +1009,22 @@ terms:
     note: 渔业领域术语候选；按规范说法与语料复核
   status: approved
 - id: TERM-088
-  standard: 船宽
+  standard: 型宽
   variants:
-  - 型宽
+  - 船宽
   region:
   - national
   source:
-    kind: glossary
-    note: 渔业领域术语候选；按规范说法与语料复核
-  status: draft
+    kind: corpus
+    doc: POL-CODE-084
+    note: 来源证书格式使用“型宽”；“船宽”作为通俗变体保留。
+    section: 二、证书证件修订主要内容
+  status: approved
   review:
-    decision: keep_draft
+    decision: promote
     reviewer: agent-review
     reviewed_at: '2026-11-06'
-    note: 规范说法未出现在已登记语料中；作为术语候选保留，待补充来源后再审
+    note: 来源证书格式使用“型宽”；“船宽”作为通俗变体保留。
 - id: TERM-089
   standard: 渔业船舶
   variants:

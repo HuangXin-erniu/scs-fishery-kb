@@ -85,3 +85,39 @@ candidates:
   status: accepted
   source_id: POL-RED-089
   note: 'A/B staging passed: v1 31/31, v2 dev correctness 0.8945, 7 term forms exact.'
+- id: CAND-2026-008
+  title: 我国海洋渔业资源衰退速度大幅减慢 水产品总产量连续34年居世界第一
+  url: https://www.moa.gov.cn/ztzl/ymksn/rmrbbd/202412/t20241205_6467503.htm
+  publisher: 农业农村部
+  proposed_tier: A
+  proposed_class: reference
+  reason: gap
+  first_seen: '2026-11-06'
+  expires_at: '2027-05-05'
+  status: accepted
+  source_id: POL-CONS-090
+  note: 'Batch-2 staging A/B passed: v1 31/31, v2 dev 0.8945, five term forms exact.'
+- id: CAND-2026-009
+  title: 农业部关于实施带鱼等15种重要经济鱼类最小可捕标准及幼鱼比例管理规定的通告
+  url: https://www.moa.gov.cn/govpublic/YYJ/201802/t20180213_6136943.htm
+  publisher: 农业部
+  proposed_tier: A
+  proposed_class: normative
+  reason: gap
+  first_seen: '2026-11-06'
+  expires_at: '2027-05-05'
+  status: accepted
+  source_id: POL-MIN-091
+  note: 'Batch-2 staging A/B passed: v1 31/31, v2 dev 0.8945, five term forms exact.'
+- id: CAND-2026-010
+  title: 中国积极行动促进可持续渔业发展
+  url: https://www.un.org/oceancapacity/sites/www.un.org.oceancapacity/files/china.pdf
+  publisher: 联合国
+  proposed_tier: A
+  proposed_class: reference
+  reason: gap
+  first_seen: '2026-11-06'
+  expires_at: '2027-05-05'
+  status: accepted
+  source_id: INT-SUS-092
+  note: 'Batch-2 staging A/B passed: v1 31/31, v2 dev 0.8945, five term forms exact.'
