@@ -54,6 +54,7 @@ merged.
 | P10-REV-146 | Review 120 draft facts, 34 draft terms and 15 playbooks | 20 promoted; 34 terms kept draft; playbooks corrected |
 | P10-WEB-147 | SearXNG local provider with DuckDuckGo fallback | 15/20 queries with evidence; 1 explicit failure |
 | P10-IDX-148 | Reranker calibration on 31 reviewed anchors | Default off; no arm meets anchor+MRR+latency |
+| P10-IDX-149 | Rebuild external fact/term store after review | 487 docs / 543 chunks; fact and term retrievable |
 
 P10-ING-138 (re-post of the originally scoped ingestion task) is implemented as
 a parallel store: 63 sources are snapshotted, the 28 configured main documents
@@ -100,6 +101,12 @@ were promoted (facts now 100 approved / 100 draft), 34 terms stayed draft becaus
 none occurs in the registered corpus, and six playbook statements were corrected.
 The review is an AI-assisted first pass recorded in
 [review-2026-11-06.md](review-2026-11-06.md); owner spot-check remains.
+
+P10-IDX-149 rebuilt the separate external store after the review: 487 documents
+and 543 chunks (100 approved facts, 116 approved terms, 119 cards, 140 notes and
+12 FAQs), chunk index `0b1ecdf229fe` and dense index `6bdf2aad95935994`. A fact
+query and a term query both return external records. The corpus store remains 28
+documents / 785 chunks / `20910f0964df`.
 
 The architecture decisions are [0005](adr/0005-two-plane-evidence.md),
 [0006](adr/0006-llamaindex-lancedb-bge.md),
