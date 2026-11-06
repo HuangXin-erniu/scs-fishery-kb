@@ -749,11 +749,11 @@ This log records material project changes by date. It does not use release versi
 - Cancelled the paused B1 task and kept its branch and worktree at `0841f56` as reference only. The approved plan does not merge B1.
 - Adopted source schema v4: A/B/C/D authority tiers, `non_official` level, `licensed` licence with an authorisation note, and explicit `provenance`, `effective`, `quality`, `supersedes`/`superseded_by` and `license_note` records. The loader derives v4 defaults for legacy entries without changing ids or hashes; `scripts/migrate_v4.py` writes the derivation audit.
 - Adopted the [RAG standard](rag-standard.md) and ADRs [0005](adr/0005-two-plane-evidence.md), [0006](adr/0006-llamaindex-lancedb-bge.md), [0007](adr/0007-controlled-web-evidence.md) and [0008](adr/0008-playbooks-and-terms.md): canonical evidence stays versioned and reproducible, live web evidence is ephemeral, labelled and never auto-ingested, and playbooks/terms carry the internalisation layer.
-- Recorded the P10-GOV-136 → P10-EVAL-142 sequence in [plan.md](plan.md). The next task is P10-ING-137: Docling/trafilatura adapters, hierarchical chunking and incremental snapshots.
+- Recorded the P10-GOV-136 → P10-EVAL-142 sequence in [plan.md](plan.md). The next task is P10-ING-138 (originally scoped as P10-ING-137): Docling/trafilatura adapters, hierarchical chunking and incremental snapshots.
 
 ## 2026-11-06 — Ingestion v2 snapshots and hierarchical chunks
 
 - Added a parallel `src/scs_fkb/ingest_v2/` path: content-addressed snapshots for all 63 acquired sources (2,211 files, 142 MB), loader adapters with legacy fallbacks, parent/child chunks, and an incremental v2 manifest under the local data root.
 - The 28 configured main documents build into 745 parent and 785 child chunks with 0 lost page/section anchors against the v1 store. A second build skips all 28; a changed source rebuilds only itself; a removed document is dropped; a parse failure is quarantined.
 - Registered HTML/PDF/DOCX keep the legacy parsers so anchors are preserved; Docling and trafilatura are optional fallbacks listed in `requirements-rag.txt` and are not required by CI. The v1 store, index, answer path and evaluation set are unchanged.
-- Private report: `runs/P10-ING-137/build.md`.
+- Private report: `runs/P10-ING-138/build.md`.

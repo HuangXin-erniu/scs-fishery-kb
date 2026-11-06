@@ -41,7 +41,7 @@ def _report(result: Any, data_root: Path, pipeline_docs: list[str]) -> str:
     lost = sorted(v1 - v2)
     extra = sorted(v2 - v1)
     lines = [
-        "# P10-ING-137 build report",
+        "# P10-ING-138 build report",
         "",
         f"- Data root: `{data_root.as_posix()}`",
         f"- Documents: {result.documents}",
@@ -135,7 +135,7 @@ def main(argv: list[str] | None = None) -> int:
         if args.report:
             report_path = Path(args.report)
         else:
-            report_path = Path(args.run_root).expanduser() / "P10-ING-137" / "build.md"
+            report_path = Path(args.run_root).expanduser() / "P10-ING-138" / "build.md"
         report_path.parent.mkdir(parents=True, exist_ok=True)
         pipeline = yaml.safe_load(Path(args.pipeline).read_text(encoding="utf-8"))
         report_path.write_text(
