@@ -92,3 +92,31 @@ After the term approvals, the separate external store was rebuilt:
 | External store | 494 / 550 / `9405a2f93585` | 499 / 555 / `7c58c522ab5c` |
 
 All five new terms retrieve in the external top 5.
+
+## 7. Batch 3 — 2026-11-06
+
+| Source | Term | Official page | Published | SHA-256 (short) | Evidence |
+|---|---|---|---|---|---|
+| `INT-SUS-092` (existing) | 数据共享 | [UN sustainable fisheries report](https://www.un.org/oceancapacity/sites/www.un.org.oceancapacity/files/china.pdf) | undated | `3e67a3ce5fe9` | 正文 |
+| `POL-OBS-072` (existing) | 海温 | registered source record | existing | `existing` | 第三十八条 |
+| `POL-MARKET-093` | 渔获物上市交易 | [长江流域禁捕通知](https://www.gov.cn/zhengce/content/2020-07/08/content_5525124.htm) | 2020-07-08 | `99692398d8e4` | 禁止非法渔获物上市交易 |
+| `INT-MSY-095` | 最大可持续产量 | [拓展渔业增收增效空间](http://www.jl.gov.cn/szfzt/jlssxsxnyxdh/zcyt/202411/t20241127_3324852.html) | 2024-11-27 | `7d7c3025626d` | 近海资源最大可持续产量 |
+| `POL-SUB-094` | 休渔补贴 | [广东省渔业资源养护补贴政策实施方案](http://www.gd.gov.cn/attachment/0/601/601690/4832105.pdf) | 2025 | `86fb60a97f00` | 海洋伏季休渔补贴 |
+
+- `TERM-145` changes standard from `海表温度` to the source's operational `海温`, keeping `海表温度` and `SST` as variants.
+- `TERM-107` uses the official `渔获物上市交易` and keeps `渔获物交易` as a variant.
+- `POL-MARKET-093` is a national State Council notice; `INT-MSY-095` is a national policy report reprinted by Jilin; `POL-SUB-094` is a provincial policy PDF.
+- Batch 3 result: **133 approved / 17 draft**.
+
+### Batch 3 A/B
+
+| Arm | Before | After |
+|---|---|---|
+| v1 docs/chunks/index | 38 / 920 / `0a8d928f2ad2` | 41 / 971 / `43491719734d` |
+| v1 anchors / abstention | 31/31 / 8/11 | 31/31 / 8/11 |
+| v2 chunks/index | 920 / `659a7a8c507e` | 971 / `7d372c2b5f47` |
+| v2 dev / test / overall | 0.8945 / 0.6327 / 0.8072 | 0.8945 / 0.6310 / 0.8066 |
+| v2 citation / recall / abstention | 1.0000 / 0.9667 / 0.9000 | 1.0000 / 0.9667 / 0.9000 |
+| External store | 499 / 555 / `7c58c522ab5c` | 504 / 560 / `c03a133b9f2e` |
+
+All five new terms retrieve in the external top 5. The small v2 test/overall movement is report-only and within the agreed gate.

@@ -851,3 +851,11 @@ This log records material project changes by date. It does not use release versi
 - Staging/main gate: v1 31/31, dev 19/19, test 12/12, abstention 8/11; v2 dev 0.8945, test 0.6327, overall 0.8072, citation 1.0000, recall 0.9667, abstention 0.9000.
 - Corpus is 73 sources / 38 documents / **920 chunks** (v1 `0a8d928f2ad2`, v2 `659a7a8c507e`); external store is 499 documents / 555 chunks (`7c58c522ab5c`, dense `05da8d22eab284cc`). All five new terms retrieve in top 5.
 - 414 tests pass; private gate 0 hits; no tag or release.
+
+## 2026-11-06 — Batch 3: market, MSY and subsidy terms
+
+- Added `POL-MARKET-093` (State Council Yangtze ban notice, 渔获物上市交易), `INT-MSY-095` (national policy report, 最大可持续产量) and `POL-SUB-094` (Guangdong 2025 subsidy policy, 休渔补贴). Approved two existing-source terms: `数据共享` from INT-SUS-092 and `海温` from POL-OBS-072.
+- Terms are **133 approved / 17 draft**. `TERM-145` now uses the source's operational `海温`; `海表温度` and `SST` remain variants.
+- Staging/main gate: v1 31/31, dev 19/19, test 12/12, abstention 8/11; v2 dev 0.8945, test 0.6310, overall 0.8066, citation 1.0000, recall 0.9667, abstention 0.9000. The small test/overall movement is within the agreed gate.
+- Corpus is 76 sources / 41 documents / **971 chunks** (v1 `43491719734d`, v2 `7d372c2b5f47`); external store is 504 documents / 560 chunks (`c03a133b9f2e`, dense `e06fd4f9fccc5205`). All five new terms retrieve in top 5.
+- 414 tests pass; private gate 0 hits; no tag or release.

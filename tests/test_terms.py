@@ -134,7 +134,7 @@ def test_real_term_map_has_150_terms() -> None:
     root = Path(__file__).resolve().parents[1]
     terms = load_terms(root / "configs" / "terms.yaml")
     assert len(terms) == 150
-    assert sum(1 for term in terms if term["status"] == "approved") == 128
-    assert sum(1 for term in terms if term["status"] == "draft") == 22
+    assert sum(1 for term in terms if term["status"] == "approved") == 133
+    assert sum(1 for term in terms if term["status"] == "draft") == 17
     assert all(term["variants"] for term in terms)
     assert all(term["source"].get("doc") or term["source"].get("note") for term in terms)

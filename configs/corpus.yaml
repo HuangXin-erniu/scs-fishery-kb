@@ -2545,8 +2545,132 @@ sources:
     mime: application/pdf
     snapshot_path: raw/INT-SUS-092/china-sustainable-fisheries.pdf
 
+- id: POL-MARKET-093
+  title: 国务院办公厅关于切实做好长江流域禁捕有关工作的通知
+  title_zh: 国务院办公厅关于切实做好长江流域禁捕有关工作的通知
+  publisher: 国务院办公厅
+  year: 2020
+  type: notice
+  jurisdiction: national
+  format: html
+  location: raw/POL-MARKET-093/yangtze-ban-2020.html
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P2
+  volume: 1 HTML page; State Council notice with three action plans
+  update_freq: static
+  hash: 99692398d8e42d30ada72344f452b6739d8ba85c6c94e927291fbde696879ba7
+  acquisition: Captured 2026-11-06 from https://www.gov.cn/zhengce/content/2020-07/08/content_5525124.htm
+  notes: 'Term evidence: the notice prohibits 非法渔获物上市交易; 渔获物上市交易 is the official wording and 渔获物交易 is kept as a colloquial variant.'
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: main
+    parseable: true
+    note: Registered in the main index for terminology evidence.
+  lifecycle: active
+  source_class: normative
+  currency:
+    as_of: '2026-11-06'
+    basis: publication
+    review_due: '2026-12-06'
+    cadence: monthly
+    note: 2020 State Council notice; static.
+  watch_note: Static State Council notice; no change feed. Rechecked at the quarterly review.
+  provenance:
+    url: https://www.gov.cn/zhengce/content/2020-07/08/content_5525124.htm
+    document_no: 国办发明电〔2020〕21号
+    published_at: '2020-07-08'
+    retrieved_at: '2026-11-06'
+    sha256: 99692398d8e42d30ada72344f452b6739d8ba85c6c94e927291fbde696879ba7
+    bytes: 75344
+    mime: text/html
+    snapshot_path: raw/POL-MARKET-093/yangtze-ban-2020.html
+- id: INT-MSY-095
+  title: 拓展渔业增收增效空间
+  title_zh: 拓展渔业增收增效空间
+  publisher: 吉林省人民政府
+  year: 2024
+  type: fishery_product
+  jurisdiction: national
+  format: html
+  location: raw/INT-MSY-095/msy-2024.html
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P2
+  volume: 1 HTML page; Economic Daily report reprinted by Jilin government
+  update_freq: static
+  hash: 7d7c3025626d4e7a8a468ce9ada8e932d5b510c48d2112c30eb5a1bc1102b83f
+  acquisition: Captured 2026-11-06 from http://www.jl.gov.cn/szfzt/jlssxsxnyxdh/zcyt/202411/t20241127_3324852.html
+  notes: 'Term evidence: the report says 近海渔业资源最大可持续产量保持在1000万吨以上. It is a national policy report reprinted by a provincial government, not a normative definition.'
+  level: national
+  authority_tier: B
+  retrieval:
+    channel: main
+    parseable: true
+    note: Registered in the main index for terminology evidence.
+  lifecycle: active
+  source_class: reference
+  currency:
+    as_of: '2026-11-06'
+    basis: publication
+    review_due: '2027-05-05'
+    cadence: semiannual
+    note: 2024 report; static.
+  watch_note: Static official reprint; rechecked at the quarterly review.
+  provenance:
+    url: http://www.jl.gov.cn/szfzt/jlssxsxnyxdh/zcyt/202411/t20241127_3324852.html
+    published_at: '2024-11-27'
+    retrieved_at: '2026-11-06'
+    sha256: 7d7c3025626d4e7a8a468ce9ada8e932d5b510c48d2112c30eb5a1bc1102b83f
+    bytes: 15642
+    mime: text/html
+    snapshot_path: raw/INT-MSY-095/msy-2024.html
+- id: POL-SUB-094
+  title: 广东省渔业资源养护补贴政策实施方案
+  title_zh: 广东省渔业资源养护补贴政策实施方案
+  publisher: 广东省农业农村厅、广东省财政厅
+  year: 2025
+  type: notice
+  jurisdiction: guangdong
+  format: pdf
+  location: raw/POL-SUB-094/guangdong-subsidy-2025.pdf
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P2
+  volume: 1 PDF; 16 pages
+  update_freq: static
+  hash: 86fb60a97f0025c49e7dd1c85eec0f105921ad2f38ef0122c0df38402d741ccf
+  acquisition: Captured 2026-11-06 from http://www.gd.gov.cn/attachment/0/601/601690/4832105.pdf
+  notes: 'Term evidence: the policy splits 海洋渔业资源养护补贴 into 海洋伏季休渔补贴 and 负责任捕捞补贴; 休渔补贴 is the short working term.'
+  level: provincial
+  authority_tier: A
+  retrieval:
+    channel: main
+    parseable: true
+    note: Registered in the main index for terminology evidence.
+  lifecycle: active
+  source_class: normative
+  currency:
+    as_of: '2026-11-06'
+    basis: publication
+    review_due: '2026-12-06'
+    cadence: monthly
+    note: 2025 provincial policy; static.
+  watch_note: Static provincial policy; rechecked at the quarterly review.
+  provenance:
+    url: http://www.gd.gov.cn/attachment/0/601/601690/4832105.pdf
+    retrieved_at: '2026-11-06'
+    sha256: 86fb60a97f0025c49e7dd1c85eec0f105921ad2f38ef0122c0df38402d741ccf
+    bytes: 1993126
+    mime: application/pdf
+    snapshot_path: raw/POL-SUB-094/guangdong-subsidy-2025.pdf
+
 gaps:
-- Seventy-three sources are registered: seventy-three acquired and no open candidates awaiting disposition.
+- Seventy-six sources are registered: seventy-six acquired and no open candidates awaiting disposition.
 - The yearbook coverage matrix has no values in the public repository; all values stay local.
 - The yearbook infrastructure table is missing for data years 2018 and 2019; the 2018 national port plan supplies a baseline whose port classes are close to, but not identical with, the yearbook table.
 - The vessel-length proxy is missing for data year 2024.

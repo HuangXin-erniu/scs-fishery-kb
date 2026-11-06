@@ -121,3 +121,39 @@ candidates:
   status: accepted
   source_id: INT-SUS-092
   note: 'Batch-2 staging A/B passed: v1 31/31, v2 dev 0.8945, five term forms exact.'
+- id: CAND-2026-011
+  title: 国务院办公厅关于切实做好长江流域禁捕有关工作的通知
+  url: https://www.gov.cn/zhengce/content/2020-07/08/content_5525124.htm
+  publisher: 国务院办公厅
+  proposed_tier: A
+  proposed_class: normative
+  reason: gap
+  first_seen: '2026-11-06'
+  expires_at: '2027-05-05'
+  status: accepted
+  source_id: POL-MARKET-093
+  note: 'Batch-3 staging A/B passed: v1 31/31, v2 dev 0.8945, five term forms exact.'
+- id: CAND-2026-012
+  title: 拓展渔业增收增效空间
+  url: http://www.jl.gov.cn/szfzt/jlssxsxnyxdh/zcyt/202411/t20241127_3324852.html
+  publisher: 吉林省人民政府
+  proposed_tier: B
+  proposed_class: reference
+  reason: gap
+  first_seen: '2026-11-06'
+  expires_at: '2027-05-05'
+  status: accepted
+  source_id: INT-MSY-095
+  note: 'Batch-3 staging A/B passed: v1 31/31, v2 dev 0.8945, five term forms exact.'
+- id: CAND-2026-013
+  title: 广东省渔业资源养护补贴政策实施方案
+  url: http://www.gd.gov.cn/attachment/0/601/601690/4832105.pdf
+  publisher: 广东省农业农村厅、广东省财政厅
+  proposed_tier: A
+  proposed_class: normative
+  reason: gap
+  first_seen: '2026-11-06'
+  expires_at: '2027-05-05'
+  status: accepted
+  source_id: POL-SUB-094
+  note: 'Batch-3 staging A/B passed: v1 31/31, v2 dev 0.8945, five term forms exact.'

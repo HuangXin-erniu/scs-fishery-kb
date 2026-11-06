@@ -3,6 +3,7 @@ updated_at: 2026-11-01
 documents:
   - DICT-STAT-013
   - DICT-STAT-040
+  - INT-MSY-095
   - INT-SUS-092
   - OPS-STD-035
   - OPS-STD-039
@@ -24,6 +25,7 @@ documents:
   - POL-ID-085
   - POL-LAW-009
   - POL-LIST-079
+  - POL-MARKET-093
   - POL-MIN-091
   - POL-OBS-072
   - POL-PEN-078
@@ -38,6 +40,7 @@ documents:
   - POL-SPEC-041
   - POL-STAT-088
   - POL-STD-010
+  - POL-SUB-094
   - POL-WATCH-082
 chunking:
   max_fallback_chars: 800

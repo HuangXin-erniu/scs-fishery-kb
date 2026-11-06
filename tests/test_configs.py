@@ -33,7 +33,7 @@ def test_corpus_structure() -> None:
         "data_dictionary",
         "plan",
     }
-    assert len(data["sources"]) == 73
+    assert len(data["sources"]) == 76
 
     acquired = []
     candidates = []
@@ -46,7 +46,7 @@ def test_corpus_structure() -> None:
         else:
             candidates.append(source)
 
-    assert len(acquired) == 73
+    assert len(acquired) == 76
     assert len(candidates) == 0
     yearbooks = [source for source in acquired if source["id"].startswith("STAT-YB-")]
     assert len(yearbooks) == 9
@@ -129,6 +129,9 @@ def test_corpus_structure() -> None:
         "POL-CONS-090",
         "POL-MIN-091",
         "INT-SUS-092",
+        "POL-MARKET-093",
+        "INT-MSY-095",
+        "POL-SUB-094",
     }
     for source in documents:
         if source["id"] in {
@@ -221,10 +224,10 @@ def test_corpus_structure() -> None:
         "statistical_yearbook": 10,
         "law": 1,
         "regulation": 22,
-        "notice": 17,
+        "notice": 19,
         "standard": 17,
         "operations": 1,
-        "fishery_product": 1,
+        "fishery_product": 2,
         "data_dictionary": 3,
         "plan": 1,
     }
@@ -398,8 +401,8 @@ def test_pipeline_config() -> None:
     pipeline = load_yaml("configs/pipeline.yaml")
     assert pipeline["schema_version"] == 1
     documents = pipeline["documents"]
-    assert len(documents) == 38
-    assert len(set(documents)) == 38
+    assert len(documents) == 41
+    assert len(set(documents)) == 41
     assert pipeline["chunking"]["max_fallback_chars"] >= 200
 
     corpus = load_yaml("configs/corpus.yaml")
@@ -749,8 +752,8 @@ def test_registry_schema_v3() -> None:
     from scs_fkb.registry import CADENCES, load_registry
 
     registry = load_registry("configs/corpus.yaml")
-    assert len(registry) == 73
-    assert sum(1 for entry in registry.values() if entry["status"] == "acquired") == 73
+    assert len(registry) == 76
+    assert sum(1 for entry in registry.values() if entry["status"] == "acquired") == 76
     for entry in registry.values():
         assert entry["lifecycle"] in {"active", "retired"}
         assert entry["currency"]["cadence"] in CADENCES
@@ -773,7 +776,7 @@ def test_candidate_register_is_valid() -> None:
     from scs_fkb.registry import load_registry
 
     candidates = load_candidates("configs/candidates.yaml")
-    assert len(candidates) == 10
+    assert len(candidates) == 13
     assert all(candidate["status"] == "accepted" for candidate in candidates)
     registry = load_registry("configs/corpus.yaml")
     assert all(candidate["source_id"] in registry for candidate in candidates)
