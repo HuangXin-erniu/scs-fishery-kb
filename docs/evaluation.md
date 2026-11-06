@@ -195,16 +195,25 @@ The gold articles (POL-STD-010 第二十八条 and POL-LAW-009 第三十五条) 
 
 ## Coverage-check modes and calibration (2026-11-05)
 
-The deterministic coverage check supports three modes:
+The deterministic coverage check supports four modes:
 
 | Mode | Rule |
 |---|---|
 | `all` | every check term occurs in one cited sentence (default) |
 | `any` | at least one check term occurs in one cited sentence |
 | `section` | every check term occurs somewhere in the cited sentences that share one `doc`/`page`/`section` |
+| `document` | every check term occurs somewhere in the cited sentences that share one document |
 
-`section` does not weaken `all`: `all` remains the default and still requires one sentence. `section` is for gold points whose source section legitimately states the point across several clauses (for example annual-review conditions, penalty tiers or certificate-renewal steps). It still requires every term and a citation for every contributing sentence.
+`section` and `document` do not weaken `all`: `all` remains the default and still requires one sentence. `section` is for gold points whose source section legitimately states the point across several clauses; `document` is for a compound point whose clauses sit in different sections of one regulation. Both still require every term and a citation for every contributing sentence.
 
 The 60-point audit reviewed the check terms against the anchor text and set `section` for 17 points. Seven check-term sets were replaced with source-exact wording (`原证`→`原渔业捕捞许可证`, `未变更`→`未发生变更`, `2021年`→`2021`, `按人`→`以人计罚`, `20万元`→`二十万元`, `200万元`→`二百万元`, `2828.1`→`2828`). Three formatting cases (full-width `２８２８`, `３ 艘` and the spaced `01·yn· W`) are handled by NFKC and whitespace folding rather than term changes.
 
-Five points remain **anchor gaps** because their terms are not in the cited anchor text: Q-E10 p1 (`更严格`), Q-M03 p1 (warning/fine), Q-M12 p0 (`作业事由`), Q-M17 p1 and Q-O03 p1 (pre-operation timing / certificate expiry). They are listed in the private audit and left unchanged; adding the missing sections is a separate anchor decision. No question, gold point, point count, split or test membership changed. The private audit is `runs/P09-EVAL-134/audit.md`.
+P09-EVAL-135 resolved the five anchor gaps found by the audit:
+
+- **Q-E10 p1**: no registered text contains `更严格`; the point now states only the supported clause (附件1/2). The removed unsupported clause is recorded in the private audit.
+- **Q-M03 p1**: added `POL-STD-010` §第五十三条, where the warning/责令改正/1000元 wording actually sits.
+- **Q-M12 p0**: added §第二十八条 for `作业事由`; the point spans §二十六 and §二十八 of one regulation, so it uses `document`.
+- **Q-M17 p1**: added §第六条 and §第二十条; `周期` was replaced by the source term `营运检验` and the point uses `document`.
+- **Q-O03 p1**: anchors are now §第四条, §第六条 and §第二十条; it uses `document`.
+
+No question, point count (60), anchor count (31), abstention count (11), split or test membership changed. Private audit: `runs/P09-EVAL-135/audit.md`.

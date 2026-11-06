@@ -736,3 +736,9 @@ This log records material project changes by date. It does not use release versi
 - Added `mode: section` to the deterministic coverage check: every term must occur in cited sentences sharing one source section; `all` and `any` are unchanged.
 - Audited all 60 gold points. 17 use `section`; 7 check-term sets were replaced with source-exact wording; 3 full-width/space cases are handled by NFKC/whitespace folding; 5 anchor gaps are documented and left for a separate decision.
 - No question, gold point, point count (60), anchor count (31), abstention count (11) or split membership changed. Private audit: `runs/P09-EVAL-134/audit.md`.
+
+## 2026-11-05 — Anchor-gap review
+
+- Resolved the five anchor gaps from the coverage calibration. Added the supporting sections for Q-M03, Q-M12, Q-M17 and Q-O03; corrected Q-E10 point 1 to remove the unsupported `更严格` clause.
+- Added `mode: document` for compound points spanning sections of one regulation. Counts stay 31 anchors / 11 abstention / 60 points; questions and split membership unchanged.
+- Private audit: `runs/P09-EVAL-135/audit.md`.

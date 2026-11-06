@@ -124,3 +124,32 @@ def test_nfkc_and_space_folding() -> None:
         {"terms": ["3艘"], "mode": "all"},
     )
     assert covered
+
+
+def test_document_mode_accepts_terms_across_sections_of_one_document() -> None:
+    answer = "条件甲 [POL-STD-010 §第二十六条]。\n条件乙 [POL-STD-010 §第二十八条]。"
+    covered, missing = point_status(
+        answer,
+        {"terms": ["条件甲", "条件乙"], "mode": "document"},
+    )
+    assert covered
+    assert missing == []
+
+
+def test_document_mode_rejects_terms_from_different_documents() -> None:
+    answer = "条件甲 [POL-STD-010 §第二十六条]。\n条件乙 [POL-LAW-009 §第七十八条]。"
+    covered, _ = point_status(
+        answer,
+        {"terms": ["条件甲", "条件乙"], "mode": "document"},
+    )
+    assert not covered
+
+
+def test_document_mode_reports_missing_term() -> None:
+    answer = "只给出条件甲 [POL-STD-010 §第二十六条]。"
+    covered, missing = point_status(
+        answer,
+        {"terms": ["条件甲", "条件乙"], "mode": "document"},
+    )
+    assert not covered
+    assert missing == ["条件乙"]
