@@ -837,3 +837,9 @@ This log records material project changes by date. It does not use release versi
 - Promoted seven terms: 渔业职务船员证书, 渔船编码, 船舶识别号, 涉渔“三无”船舶, 渔业成品油价格补助, 调查对象 and 赤潮. `统计范围` was already `TERM-131`, so `TERM-130` uses `调查对象` from the same official section. Terms are **123 approved / 27 draft**.
 - Rebuilt the external store: **494 documents / 550 chunks**, chunk index `9405a2f93585`, dense `f1e02a628271a87b`; all seven new terms retrieve in top 5. Added `docs/term-sources.md`.
 - No tag or release; raw HTML stays under the local data root.
+
+## 2026-11-06 — Evaluation docs synced after the term batch
+
+- Post-term-batch 120-question run: overall 0.8069, dev 0.8945, test 0.6319 (0.6189 before the batch), citation 1.0000, recall 0.9667, abstention 0.9000. Gate passes.
+- Updated `docs/evaluation.md` and `docs/plan.md`; earlier 0.5820/0.6189/0.8026 figures remain as history.
+- No code, config, eval set, facts, terms, playbooks or data changed.
