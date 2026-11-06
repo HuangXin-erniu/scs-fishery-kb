@@ -55,7 +55,7 @@ merged.
 | P10-WEB-147 | SearXNG local provider with DuckDuckGo fallback | 15/20 queries with evidence; 1 explicit failure |
 | P10-IDX-148 | Reranker calibration on 31 reviewed anchors | Default off; no arm meets anchor+MRR+latency |
 | P10-IDX-149 | Rebuild external fact/term store after review | 487 docs / 543 chunks; fact and term retrievable |
-| P10-TERM-151 | Seven official term sources with A/B admission | 70 sources / 35 docs / 905 chunks; 123 approved terms |
+| P10-TERM-152 | Seven official term sources with A/B admission | 70 sources / 35 docs / 905 chunks; 123 approved terms |
 
 P10-ING-138 (re-post of the originally scoped ingestion task) is implemented as
 a parallel store: 63 sources are snapshotted, the 28 configured main documents
@@ -110,7 +110,7 @@ and 543 chunks (100 approved facts, 116 approved terms, 119 cards, 140 notes and
 query and a term query both return external records. The corpus store remains 28
 documents / 785 chunks / `20910f0964df`.
 
-P10-TERM-151 admitted seven official term sources through the candidate queue and
+P10-TERM-152 admitted seven official term sources through the candidate queue and
 a staging A/B gate. The corpus is now 70 sources / 35 documents / 905 chunks
 (index `4d94e7c7f27c`); v2 is 905 chunks (index `c25ddffea992`); v1 anchors remain
 31/31, dev 19/19, test 12/12 and abstention 8/11; v2 dev correctness stays
