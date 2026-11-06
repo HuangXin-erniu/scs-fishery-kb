@@ -117,6 +117,12 @@ to `127.0.0.1`; `SCS_FKB_API_KEY` adds `X-API-Key` enforcement. The Web UI is
 server-rendered. A fact lead prepends a precise approved value when its source
 chunk is retrieved; the citation validator runs before any answer is returned.
 
+**Evaluation v2 (2026-11-06).** `src/scs_fkb/eval_v2/` holds deterministic
+RAGAS-compatible metrics and a runner over 120 questions: 80 dev questions from
+approved facts, 30 draft provision test questions and 10 abstention cases. The
+test split is report-only. `scripts/eval_v2.py` writes JSON and Markdown under
+the run root and exits non-zero when the dev gate fails.
+
 **Web evidence v2 (2026-11-06).** `src/scs_fkb/web_v2/` adds the ephemeral
 plane: a SearXNG JSON provider with a DuckDuckGo fallback, allowlist filtering
 before any request, HTTPS fetch with `trafilatura` extraction and a PDF fallback,

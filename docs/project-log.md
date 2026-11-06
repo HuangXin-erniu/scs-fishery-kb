@@ -786,4 +786,11 @@ This log records material project changes by date. It does not use release versi
 - The composer uses v2 hybrid retrieval without the reranker, the calibrated extractive answer, approved fact leads, playbook blocks and optional labelled web evidence. Citations are validated before returning; invalid citations become an abstention.
 - The service defaults to `127.0.0.1:8765`; `SCS_FKB_API_KEY` enforces `X-API-Key`. Feedback is appended to `$SCS_FKB_RUN_ROOT/feedback.jsonl`; nothing is written to the public tree.
 - Added `docs/interface.md` and `configs/interface.yaml`; added optional FastAPI/uvicorn/Jinja2/python-multipart dependencies to `requirements-rag.txt`.
-- 20-scenario report: 19 answered, 1 clarification, 19 cited answers, 16 expected-document hits, median 22 ms, 0 web calls. Private report: `runs/P10-ANS-143/scenarios.md`. The v1 CLI/answer path is unchanged. Next task: P10-EVAL-144.
+- 20-scenario report: 19 answered, 1 clarification, 19 cited answers, 16 expected-document hits, median 22 ms, 0 web calls. Private report: `runs/P10-ANS-143/scenarios.md`. The v1 CLI/answer path is unchanged. Next task: P10-EVAL-145.
+
+## 2026-11-06 — Evaluation v2 and regression gate
+
+- Added `configs/eval-v2.yaml`: 120 questions (80 dev reviewed facts, 30 draft provision test facts, 10 test abstention cases), generated deterministically by `scripts/build_eval_v2.py`.
+- Added `src/scs_fkb/eval_v2/`: RAGAS-compatible deterministic metrics (`faithfulness`, `answer_relevancy`, `context_precision`, `context_recall`, `answer_correctness`, `citation_resolution`, `abstention_accuracy`), per-question rows and a regression gate.
+- Real 120-question run: dev correctness 0.8945, citation resolution 1.0000, context recall 0.9875; overall abstention 0.9000; gate passes. Test correctness 0.5820 is report-only because its 30 fact questions are drafts.
+- Added `docs/evaluation.md`; the v1 evaluation set and product path are unchanged. No tag or release is created.

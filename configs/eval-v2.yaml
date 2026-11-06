@@ -1,0 +1,2489 @@
+schema_version: 1
+updated_at: '2026-11-06'
+description: 'Deterministic v2 evaluation set: 80 reviewed fact questions, 30 draft
+  provision questions and 10 abstention cases.'
+questions:
+- id: EV2-001
+  question: 最小网目尺寸制度的实施时间和海区是什么时间？
+  split: dev
+  persona: extension
+  expected:
+    answer: 2014年6月1日起，黄渤海、东海、南海全面实施
+    terms:
+    - 最小网目尺寸制度
+    - 实施时间和海区
+    - 2014年
+    - 6月
+    - 1日
+    - 黄渤海
+    - 东海
+    - 南海全面实施
+    evidence:
+    - doc: POL-GEAR-016
+      section: 一、实行时间和范围
+    abstained: false
+  source_fact: FACT-GEAR-001
+  review_status: reviewed
+- id: EV2-002
+  question: 渔具分类的类名称与代号是什么？
+  split: dev
+  persona: extension
+  expected:
+    answer: C刺网、W围网、T拖网、Zh张网、D钓具、Di地拉网、Ch抄网、Y掩罩、P耙刺、F敷网、X陷阱、L笼壶
+    terms:
+    - 渔具分类
+    - 类名称与代号
+    - 刺网
+    - 围网
+    - 拖网
+    - 张网
+    - 钓具
+    - 地拉网
+    evidence:
+    - doc: OPS-STD-039
+    abstained: false
+  source_fact: FACT-GEAR-002
+  review_status: reviewed
+- id: EV2-003
+  question: 海洋捕捞抽样调查的分层与样本量要求是什么？
+  split: dev
+  persona: extension
+  expected:
+    answer: 按船籍港省/市/县、渔具类、主机功率四档分层；每层样本不少于3艘
+    terms:
+    - 海洋捕捞抽样调查
+    - 分层与样本量
+    - 按船籍港省
+    - 渔具类
+    - 主机功率四档分层
+    - 每层样本不少于
+    - 3艘
+    evidence:
+    - doc: OPS-STD-035
+    abstained: false
+  source_fact: FACT-GEAR-003
+  review_status: reviewed
+- id: EV2-004
+  question: 农业部关于实施海洋捕捞准用渔具和过渡渔具最小网目尺寸制度的通告的二、主要内容要求是什么？
+  split: dev
+  persona: extension
+  expected:
+    answer: 二、主要内容 （一）根据现有科研基础和捕捞生产实际，海洋捕捞渔具最小网目尺寸制度分为准用渔具和过渡渔具两大类。准用渔具是国家允许使用的海洋捕捞渔具，过渡渔具将根据保护海洋渔业资源的需要，今后分别转为准用或禁用渔具，并予以公告。
+      （二）主捕种类为颚针鱼、青鳞鱼、梅童鱼、凤尾鱼、多鳞鱚、少鳞鱚、银鱼、小公鱼等鱼种的刺网作业，由各省（自治区、直辖市）渔业行政主管部门根据此次确定的最小网目尺寸标准实行特许作业，限定具体作业时间、作业区域。拖网主捕种类为鳀鱼，张网主
+    terms:
+    - 农业部关于实施海
+    - 洋捕捞准用渔具和
+    - 过渡渔具最小网目
+    - 尺寸制度的通告
+    - 主要内容
+    - 根据现有科研基础
+    - 和捕捞生产实际
+    - 海洋捕捞渔具最小
+    evidence:
+    - doc: POL-GEAR-016
+      section: 二、主要内容
+    abstained: false
+  source_fact: FACT-GEAR-004
+  review_status: reviewed
+- id: EV2-005
+  question: 农业部关于实施海洋捕捞准用渔具和过渡渔具最小网目尺寸制度的通告的三、测量办法要求是什么？
+  split: dev
+  persona: extension
+  expected:
+    answer: 三、测量办法 根据GB/T 6964—2010规定，采用扁平楔形网目内径测量仪进行测量。网目长度测量时，网目应沿有结网的纵向或无结网的长轴方向充分拉直，每次逐目测量相邻5目的网目内径，取其最小值为该网片的网目内径。三重刺网在测量时，要测量最里层网的最小网目尺寸；双重刺网要测量两层网中网眼更小的网的最小网目尺寸。各省（自治区、直辖市）渔业行政主管部门可结合本地实际，在上述规定基础上制定出简便易行的测量办法
+    terms:
+    - 农业部关于实施海
+    - 洋捕捞准用渔具和
+    - 过渡渔具最小网目
+    - 尺寸制度的通告
+    - 测量办法
+    - 根据
+    - '6964'
+    - '2010'
+    evidence:
+    - doc: POL-GEAR-016
+      section: 三、测量办法
+    abstained: false
+  source_fact: FACT-GEAR-005
+  review_status: reviewed
+- id: EV2-006
+  question: 海洋捕捞准用渔具最小网目（或网囊）尺寸标准的附件1 海洋捕捞准用渔具最小网目（或网囊）尺寸相包括哪些？
+  split: dev
+  persona: extension
+  expected:
+    answer: 附件1 海洋捕捞准用渔具最小网目（或网囊）尺寸相关标准 海域 渔具分类名称 主捕种类 最小网目（或网囊）尺寸（毫米） 备注 渔具类别 渔具名称
+      黄渤海 刺网类 定置单片刺网、漂流单片刺网 梭子蟹、银鲳、海蜇 110 鳓鱼、马鲛、鳕鱼 90 对虾、鱿鱼、虾蛄、小黄鱼、梭鱼、斑鰶 50 颚针鱼 45
+      该类刺网由地方特许作业 青鳞鱼 35 梅童鱼 30 漂流无下纲刺网 鳓鱼、马鲛、鳕鱼 90 围网类 单船无囊围网、双船无囊围网 不限 35 主捕青鳞鱼、前鳞骨鯔、
+    terms:
+    - 海洋捕捞准用渔具
+    - 最小网目
+    - 或网囊
+    - 尺寸标准
+    - 附件
+    - 尺寸相
+    - 尺寸相关标准
+    - 海域
+    evidence:
+    - doc: POL-GEAR-033
+    abstained: false
+  source_fact: FACT-GEAR-006
+  review_status: reviewed
+- id: EV2-007
+  question: 海洋捕捞过渡渔具最小网目（或网囊）尺寸标准的附件2 海洋捕捞过渡渔具最小网目（或网囊）尺寸相包括哪些？
+  split: dev
+  persona: extension
+  expected:
+    answer: 附件2 海洋捕捞过渡渔具最小网目（或网囊）尺寸相关标准 海域 渔具分类名称 主捕种类 最小网目（或网囊）尺寸（毫米） 备注 渔具类别 渔具名称
+      黄渤海 拖网类 单船桁杆拖网、单船框架拖网 虾类 25 刺网类 漂流双重刺网 定置三重刺网 漂流三重刺网 梭子蟹、银鲳、海蜇 110 鳓鱼、马鲛、鳕鱼
+      90 对虾、鱿鱼、虾蛄、小黄鱼、梭鱼、斑鰶 50 张网类 双桩有翼单囊张网、双桩竖杆张网、樯张竖杆张网、多锚单片张网、单桩框架张网、多桩竖杆张网、双锚竖杆张网
+      不限
+    terms:
+    - 海洋捕捞过渡渔具
+    - 最小网目
+    - 或网囊
+    - 尺寸标准
+    - 附件
+    - 尺寸相
+    - 尺寸相关标准
+    - 海域
+    evidence:
+    - doc: POL-GEAR-034
+    abstained: false
+  source_fact: FACT-GEAR-007
+  review_status: reviewed
+- id: EV2-008
+  question: 海洋捕捞过渡渔具最小网目（或网囊）尺寸标准的双桩有翼单囊张网、双桩竖杆张网、樯张竖杆张网、双要求是什么？
+  split: dev
+  persona: extension
+  expected:
+    answer: 双桩有翼单囊张网、双桩竖杆张网、樯张竖杆张网、双锚张纲张网、单桩桁杆张网、多桩竖杆张网、双锚竖杆张网、双锚单片张网、樯张张纲张网、樯张有翼单囊张网、双锚有翼单囊张网
+      不限 35 主捕毛虾、鳗苗的张网由地方特许作业 陷阱类 导陷建网陷阱 不限 35 笼壶类 定置串联倒须笼 不限 25 PAGE PAGE 1
+    terms:
+    - 海洋捕捞过渡渔具
+    - 最小网目
+    - 或网囊
+    - 尺寸标准
+    - 双桩有翼单囊张网
+    - 双桩竖杆张网
+    - 樯张竖杆张网
+    - 双锚张纲张网
+    evidence:
+    - doc: POL-GEAR-034
+    abstained: false
+  source_fact: FACT-GEAR-008
+  review_status: reviewed
+- id: EV2-009
+  question: 渔具分类、命名及代号（GB/T 5147—2026）的ICS65.150 CCS B 56 中 华 人是什么时间？
+  split: dev
+  persona: extension
+  expected:
+    answer: ICS65.150 CCS B 56 中 华 人 民 共 和 国 国 家 标 准 GB/T 5147—2026 代替 GB/T5147—2003
+      渔具分类 、命名及代号 C las sif ica tion,nomenc lat ureandc odeo ffi shi ngg ear - 2026
+      - 0227 发布 - 2026 - 0901 实施 国家市场监督管理总局 发 布 国家标准化管理委员会
+    terms:
+    - 渔具分类
+    - 命名及代号
+    - '5147'
+    - '2026'
+    - '65.150'
+    - '56'
+    - 代替
+    - '2003'
+    evidence:
+    - doc: OPS-STD-039
+    abstained: false
+  source_fact: FACT-GEAR-009
+  review_status: reviewed
+- id: EV2-010
+  question: 渔具分类、命名及代号（GB/T 5147—2026）的GB/T 5147—2026 前 言 本文件按照要求是什么？
+  split: dev
+  persona: extension
+  expected:
+    answer: 'GB/T 5147—2026 前 言 本文件按照 GB/T1. 1—2020《标准化工作导则 第 1 部分:标准化文件的结构和起草规则》的规定
+      起草。 本文件代替 GB/T5147—2003《渔具分类、命名及代号》,与 GB/T5147—2003 相比,除结构调整和 编辑性改动外,主要技术变化如下:
+      a) 更改了渔具分类的原则(见第 4 章, 2003 年版的第 2 章); b) 更改了渔具分类的命名及代号(见第 5 章, 2003 年版的第 3 章);'
+    terms:
+    - 渔具分类
+    - 命名及代号
+    - '5147'
+    - '2026'
+    - 本文件按照
+    - '2020'
+    - 标准化工作导则
+    - 部分
+    evidence:
+    - doc: OPS-STD-039
+    abstained: false
+  source_fact: FACT-GEAR-010
+  review_status: reviewed
+- id: EV2-011
+  question: 渔具分类、命名及代号（GB/T 5147—2026）的名称与代号的书写顺序包括哪些？
+  split: dev
+  persona: extension
+  expected:
+    answer: 渔具分类名称按式+型+类书写；代号按类·型·式书写，型和式不限定时可省略
+    terms:
+    - 渔具分类
+    - 命名及代号
+    - '5147'
+    - '2026'
+    - 名称与代号的书写
+    - 顺序
+    - 渔具分类名称按式
+    - 类书写
+    evidence:
+    - doc: OPS-STD-039
+    abstained: false
+  source_fact: FACT-GEAR-011
+  review_status: reviewed
+- id: EV2-012
+  question: 渔具分类、命名及代号（GB/T 5147—2026）的GB/T 5147—2026 5 渔具分类的命名需要哪些材料？
+  split: dev
+  persona: extension
+  expected:
+    answer: GB/T 5147—2026 5 渔具分类的命名及代号 5. 1 类的名称及代号 “类”的名称和代号见表 1。 表 1 “类”的名称与代号
+      类的名称 代号 类的名称 代号 类的名称 代号 类的名称 代号 刺网 C 地拉网 Di 抄网 Ch 钓具 D 围网 W 张网 Zh 掩罩 Y 耙刺 P
+      拖网 T 敷网 F 陷阱 X 笼壶 L 5. 2 型的名称、代号及结构说明 “型”的代号以各“型”名称词汉字的汉语拼音小写字母组成。“型”的名称、代号及结构说明见表
+      2
+    terms:
+    - 渔具分类
+    - 命名及代号
+    - '5147'
+    - '2026'
+    - 渔具分类的命名
+    - 渔具分类的命名及
+    - 代号
+    - 类的名称及代号
+    evidence:
+    - doc: OPS-STD-039
+    abstained: false
+  source_fact: FACT-GEAR-012
+  review_status: reviewed
+- id: EV2-013
+  question: 渔具分类、命名及代号（GB/T 5147—2026）的多囊 dun 由网身和若干网囊构成 兜状 d z要求是什么？
+  split: dev
+  persona: extension
+  expected:
+    answer: 多囊 dun 由网身和若干网囊构成 兜状 d zh 由撑架和兜形网囊构成 滚钩 gg 由干线和若干支线连结锐钩构成 桁杆 hg 由桁杆或桁架和网身、网囊(兜)构成
+      混合 hh 具有两种“型”以上性质的渔具 建网 jw 由网墙、网圈和取鱼部等构成 箭铦 x j 由绳索连接箭形尖刺构成 箕状 zh j 由网衣组成簸箕状的网具
+      框格 kg 由被细绳分隔成若干框格的网衣和上、下纲构成 2
+    terms:
+    - 渔具分类
+    - 命名及代号
+    - '5147'
+    - '2026'
+    - 多囊
+    - 由网身和若干网囊
+    - 构成
+    - 兜状
+    evidence:
+    - doc: OPS-STD-039
+    abstained: false
+  source_fact: FACT-GEAR-013
+  review_status: reviewed
+- id: EV2-014
+  question: 南海区伏季休渔的休渔时间是什么时间？
+  split: dev
+  persona: captain
+  expected:
+    answer: 5月1日12时至8月16日12时（北纬26度30分至北纬12度）
+    terms:
+    - 南海区伏季休渔
+    - 休渔时间
+    - 5月
+    - 1日
+    - '12'
+    - 时至
+    - 8月
+    - 16日
+    evidence:
+    - doc: POL-CLOS-015
+      section: 三、休渔时间
+    abstained: false
+  source_fact: FACT-POLICY-001
+  review_status: reviewed
+- id: EV2-015
+  question: 南海区伏季休渔的休渔作业类型包括哪些？
+  split: dev
+  persona: captain
+  expected:
+    answer: 除钓具外的所有作业类型，以及为捕捞渔船配套服务的捕捞辅助船
+    terms:
+    - 南海区伏季休渔
+    - 休渔作业类型
+    - 除钓具外的所有作
+    - 业类型
+    - 以及为捕捞渔船配
+    - 套服务的捕捞辅助
+    evidence:
+    - doc: POL-CLOS-015
+      section: 二、休渔作业类型
+    abstained: false
+  source_fact: FACT-POLICY-002
+  review_status: reviewed
+- id: EV2-016
+  question: 2026年伏季休渔专项捕捞的可申请专项捕捞的作业类型包括哪些？
+  split: dev
+  persona: captain
+  expected:
+    answer: 桁杆拖虾、笼壶类、刺网、灯光围（敷）网4种作业类型，在指定海域和船籍港条件下可申请专项捕捞
+    terms:
+    - 2026年
+    - 伏季休渔专项捕捞
+    - 可申请专项捕捞的
+    - 作业类型
+    - 桁杆拖虾
+    - 笼壶类
+    - 刺网
+    - 灯光围
+    evidence:
+    - doc: POL-SPEC-041
+      section: 二、按作业类型
+    abstained: false
+  source_fact: FACT-POLICY-003
+  review_status: reviewed
+- id: EV2-017
+  question: 渔业捕捞许可证的使用期限是什么时间？
+  split: dev
+  persona: captain
+  expected:
+    answer: 海洋和内陆渔业捕捞许可证5年；其他种类最长不超过3年
+    terms:
+    - 渔业捕捞许可证
+    - 使用期限
+    - 海洋和内陆渔业捕
+    - 捞许可证
+    - 5年
+    - 其他种类最长不超
+    - 3年
+    evidence:
+    - doc: POL-STD-010
+      section: 第三十五条
+    abstained: false
+  source_fact: FACT-POLICY-004
+  review_status: reviewed
+- id: EV2-018
+  question: 渔业捕捞许可证的期满换发要求是什么？
+  split: dev
+  persona: captain
+  expected:
+    answer: 使用期届满前3个月内向原发证机关申请换发；换发时收回原证并注销
+    terms:
+    - 渔业捕捞许可证
+    - 期满换发
+    - 使用期届满前
+    - 3个
+    - 月内向原发证机关
+    - 申请换发
+    - 换发时收回原证并
+    - 注销
+    evidence:
+    - doc: POL-STD-010
+      section: 第三十六条
+    abstained: false
+  source_fact: FACT-POLICY-005
+  review_status: reviewed
+- id: EV2-019
+  question: 船网工具指标批准书的有效期是什么时间？
+  split: dev
+  persona: captain
+  expected:
+    answer: 制造、更新改造、进口渔船18个月；购置渔船6个月；可在届满前3个月内申请延展18个月；远洋特殊渔区可再延展18个月；逾期注销并收回指标
+    terms:
+    - 船网工具指标批准
+    - 有效期
+    - 制造
+    - 更新改造
+    - 进口渔船
+    - 18个
+    - 购置渔船
+    - 6个
+    evidence:
+    - doc: POL-STD-010
+      section: 第十六条
+    abstained: false
+  source_fact: FACT-POLICY-006
+  review_status: reviewed
+- id: EV2-020
+  question: 渔捞日志的记载内容要求是什么？
+  split: dev
+  persona: captain
+  expected:
+    answer: 捕捞作业、进港卸载渔获物、水上收购或转运渔获物等情况
+    terms:
+    - 渔捞日志
+    - 记载内容
+    - 捕捞作业
+    - 进港卸载渔获物
+    - 水上收购或转运渔
+    - 获物等情况
+    evidence:
+    - doc: POL-STD-010
+      section: 第五十条
+    abstained: false
+  source_fact: FACT-POLICY-007
+  review_status: reviewed
+- id: EV2-021
+  question: 渔捞日志的违规处罚是什么？
+  split: dev
+  persona: captain
+  expected:
+    answer: 未按规定提交或填写不真实、不规范的，警告、责令改正；逾期不改正处1000元以上1万元以下罚款
+    terms:
+    - 渔捞日志
+    - 违规处罚
+    - 未按规定提交或填
+    - 写不真实
+    - 不规范的
+    - 警告
+    - 责令改正
+    - 逾期不改正处
+    evidence:
+    - doc: POL-STD-010
+      section: 第五十三条
+    abstained: false
+  source_fact: FACT-POLICY-008
+  review_status: reviewed
+- id: EV2-022
+  question: 渔业捕捞许可证的申请材料需要哪些材料？
+  split: dev
+  persona: captain
+  expected:
+    answer: 申请书、户口簿或营业执照、检验证书、国籍证书、所有权登记证书（徒手作业除外）、渔具和捕捞方法说明；海洋许可另需组织意见、指标批准书或原证
+    terms:
+    - 渔业捕捞许可证
+    - 申请材料
+    - 申请书
+    - 户口簿或营业执照
+    - 检验证书
+    - 国籍证书
+    - 所有权登记证书
+    - 徒手作业除外
+    evidence:
+    - doc: POL-STD-010
+      section: 第二十八条
+    abstained: false
+  source_fact: FACT-POLICY-009
+  review_status: reviewed
+- id: EV2-023
+  question: 渔业捕捞许可证的年审条件要求是什么？
+  split: dev
+  persona: captain
+  expected:
+    answer: 检验证书和国籍证书有效；所有人、主尺度、主机功率、总吨位未变更；作业类型、场所、时限、渔具数量一致；日志、资源费、处罚履行
+    terms:
+    - 渔业捕捞许可证
+    - 年审条件
+    - 检验证书和国籍证
+    - 书有效
+    - 所有人
+    - 主尺度
+    - 主机功率
+    - 总吨位未变更
+    evidence:
+    - doc: POL-STD-010
+      section: 第四十一条
+    abstained: false
+  source_fact: FACT-POLICY-010
+  review_status: reviewed
+- id: EV2-024
+  question: 渔业法的违反禁渔区禁渔期处罚是什么？
+  split: dev
+  persona: captain
+  expected:
+    answer: 没收渔获物、违法所得和渔具，处20万元以下罚款；情节严重处20万元以上200万元以下罚款，吊销捕捞许可证，可以没收船舶
+    terms:
+    - 渔业法
+    - 违反禁渔区禁渔期
+    - 处罚
+    - 没收渔获物
+    - 违法所得和渔具
+    - 20万元
+    - 以下罚款
+    - 情节严重处
+    evidence:
+    - doc: POL-LAW-009
+      section: 第七十八条
+    abstained: false
+  source_fact: FACT-POLICY-011
+  review_status: reviewed
+- id: EV2-025
+  question: 渔业行政处罚的无证捕捞罚款是什么？
+  split: dev
+  persona: captain
+  expected:
+    answer: 海洋水域10万元以下；内陆水域5万元以下
+    terms:
+    - 渔业行政处罚
+    - 无证捕捞罚款
+    - 海洋水域
+    - 10万元
+    - 以下
+    - 内陆水域
+    - 5万元
+    evidence:
+    - doc: POL-PEN-080
+      section: 第八条
+    abstained: false
+  source_fact: FACT-POLICY-012
+  review_status: reviewed
+- id: EV2-026
+  question: 渔港的进出港报告要求是什么？
+  split: dev
+  persona: captain
+  expected:
+    answer: 遵守渔港管理章程和国际海上避碰规则，向渔政渔港监督管理机关报告，接受安全检查
+    terms:
+    - 渔港
+    - 进出港报告
+    - 遵守渔港管理章程
+    - 和国际海上避碰规
+    - 向渔政渔港监督管
+    - 理机关报告
+    - 接受安全检查
+    evidence:
+    - doc: POL-PORT-077
+      section: 第六条
+    abstained: false
+  source_fact: FACT-POLICY-013
+  review_status: reviewed
+- id: EV2-027
+  question: 渔港的未报告处罚是什么？
+  split: dev
+  persona: captain
+  expected:
+    answer: 责令改正，可以并处警告、罚款；情节严重的扣留或者吊销船长职务证书
+    terms:
+    - 渔港
+    - 未报告处罚
+    - 责令改正
+    - 可以并处警告
+    - 罚款
+    - 情节严重的扣留或
+    - 者吊销船长职务证
+    evidence:
+    - doc: POL-PORT-077
+      section: 第二十条
+    abstained: false
+  source_fact: FACT-POLICY-014
+  review_status: reviewed
+- id: EV2-028
+  question: 渔业船舶检验的检验种类包括哪些？
+  split: dev
+  persona: captain
+  expected:
+    answer: 强制检验分为初次检验、营运检验和临时检验
+    terms:
+    - 渔业船舶检验
+    - 检验种类
+    - 强制检验分为初次
+    - 检验
+    - 营运检验和临时检
+    evidence:
+    - doc: POL-RULE-019
+      section: 第四条
+    abstained: false
+  source_fact: FACT-POLICY-015
+  review_status: reviewed
+- id: EV2-029
+  question: 渔业资源增殖保护费的征收幅度是多少？
+  split: dev
+  persona: captain
+  expected:
+    answer: 海洋渔业按前3年平均年总产值1%至3%（不含专项品种）；专项品种3%至5%
+    terms:
+    - 渔业资源增殖保护
+    - 征收幅度
+    - 海洋渔业按前
+    - 3年
+    - 平均年总产值
+    - 1%
+    - 3%
+    - 不含专项品种
+    evidence:
+    - doc: POL-RULE-020
+      section: 第五条
+    abstained: false
+  source_fact: FACT-POLICY-016
+  review_status: reviewed
+- id: EV2-030
+  question: 船网工具指标的制造更新改造规则是多少？
+  split: dev
+  persona: captain
+  expected:
+    answer: 本省指标内通过淘汰旧船解决；船数和功率不得超过被淘汰渔船；大中型与小型不得转换；大中型不得跨海区买卖
+    terms:
+    - 船网工具指标
+    - 制造更新改造规则
+    - 本省指标内通过淘
+    - 汰旧船解决
+    - 船数和功率不得超
+    - 过被淘汰渔船
+    - 大中型与小型不得
+    - 转换
+    evidence:
+    - doc: POL-STD-010
+      section: 第十四条
+    abstained: false
+  source_fact: FACT-POLICY-017
+  review_status: reviewed
+- id: EV2-031
+  question: 渔业捕捞许可管理规定（2022年修订）的第二条要求是什么？
+  split: dev
+  persona: captain
+  expected:
+    answer: 第二条 中华人民共和国的公民、法人和其他组织从事渔业捕捞活动，以及外国人、外国渔业船舶在中华人民共和国领域及管辖的其他水域从事渔业捕捞活动，应当遵守本规定。
+      中华人民共和国缔结的条约、协定另有规定的，按条约、协定执行
+    terms:
+    - 渔业捕捞许可管理
+    - 2022年
+    - 修订
+    - 第二条
+    - 中华人民共和国的
+    - 公民
+    - 法人和其他组织从
+    - 事渔业捕捞活动
+    evidence:
+    - doc: POL-STD-010
+      section: 第二条
+    abstained: false
+  source_fact: FACT-POLICY-018
+  review_status: reviewed
+- id: EV2-032
+  question: 渔业捕捞许可管理规定（2022年修订）的第三条是多少？
+  split: dev
+  persona: captain
+  expected:
+    answer: 第三条 国家对捕捞业实行船网工具控制指标管理，实行捕捞许可证制度和捕捞限额制度。 国家根据渔业资源变化与环境状况，确定船网工具控制指标，控制捕捞能力总量和渔业捕捞许可证数量。渔业捕捞许可证的批准发放，应当遵循公开、公平、公正原则，数量不得超过船网工具控制指标范围
+    terms:
+    - 渔业捕捞许可管理
+    - 2022年
+    - 修订
+    - 第三条
+    - 国家对捕捞业实行
+    - 船网工具控制指标
+    - 管理
+    - 实行捕捞许可证制
+    evidence:
+    - doc: POL-STD-010
+      section: 第三条
+    abstained: false
+  source_fact: FACT-POLICY-019
+  review_status: reviewed
+- id: EV2-033
+  question: 渔业捕捞许可管理规定（2022年修订）的第四条是多少？
+  split: dev
+  persona: captain
+  expected:
+    answer: 第四条 渔业捕捞许可证、船网工具指标等证书文件的审批实行签发人负责制，相关证书文件经签发人签字并加盖公章后方为有效。 签发人对其审批签发证书文件的真实性及合法性负责
+    terms:
+    - 渔业捕捞许可管理
+    - 2022年
+    - 修订
+    - 第四条
+    - 渔业捕捞许可证
+    - 船网工具指标等证
+    - 书文件的审批实行
+    - 签发人负责制
+    evidence:
+    - doc: POL-STD-010
+      section: 第四条
+    abstained: false
+  source_fact: FACT-POLICY-020
+  review_status: reviewed
+- id: EV2-034
+  question: 渔业捕捞许可管理规定（2022年修订）的第五条是什么时间？
+  split: dev
+  persona: captain
+  expected:
+    answer: 第五条 农业农村部主管全国渔业捕捞许可管理和捕捞能力总量控制工作。 县级以上地方人民政府渔业主管部门及其所属的渔政监督管理机构负责本行政区域内的渔业捕捞许可管理和捕捞能力总量控制的组织、实施工作
+    terms:
+    - 渔业捕捞许可管理
+    - 2022年
+    - 修订
+    - 第五条
+    - 农业农村部主管全
+    - 国渔业捕捞许可管
+    - 理和捕捞能力总量
+    - 控制工作
+    evidence:
+    - doc: POL-STD-010
+      section: 第五条
+    abstained: false
+  source_fact: FACT-POLICY-021
+  review_status: reviewed
+- id: EV2-035
+  question: 渔业捕捞许可管理规定（2022年修订）的第六条需要哪些材料？
+  split: dev
+  persona: captain
+  expected:
+    answer: 第六条 县级以上人民政府渔业主管部门应当在其办公场所和网上办理平台，公布船网工具指标、渔业捕捞许可证审批的条件、程序、期限以及需要提交的全部材料目录和申请书示范文本等事项。
+      县级以上人民政府渔业主管部门应当按照本规定自受理船网工具指标或渔业捕捞许可证申请之日起20个工作日内审查完毕或者作出是否批准的决定。不予受理申请或者不予批准的，应当书面通知申请人并说明理由
+    terms:
+    - 渔业捕捞许可管理
+    - 2022年
+    - 修订
+    - 第六条
+    - 县级以上人民政府
+    - 渔业主管部门应当
+    - 在其办公场所和网
+    - 上办理平台
+    evidence:
+    - doc: POL-STD-010
+      section: 第六条
+    abstained: false
+  source_fact: FACT-POLICY-022
+  review_status: reviewed
+- id: EV2-036
+  question: 渔业捕捞许可管理规定（2022年修订）的第七条需要哪些材料？
+  split: dev
+  persona: captain
+  expected:
+    answer: 第七条 县级以上人民政府渔业主管部门应当加强渔船和捕捞许可管理信息系统建设，建立健全渔船动态管理数据库。海洋渔船船网工具指标和捕捞许可证的申请、审核审批及制发证书文件等应当通过全国统一的渔船动态管理系统进行。
+      申请人应当提供的户口簿、营业执照、渔业船舶检验证书、渔业船舶登记证等法定证照、权属证明在全国渔船动态管理系统或者部门间核查能够查询到有效信息的，可以不再提供纸质材料
+    terms:
+    - 渔业捕捞许可管理
+    - 2022年
+    - 修订
+    - 第七条
+    - 县级以上人民政府
+    - 渔业主管部门应当
+    - 加强渔船和捕捞许
+    - 可管理信息系统建
+    evidence:
+    - doc: POL-STD-010
+      section: 第七条
+    abstained: false
+  source_fact: FACT-POLICY-023
+  review_status: reviewed
+- id: EV2-037
+  question: 渔业捕捞许可管理规定（2022年修订）的第八条要求是什么？
+  split: dev
+  persona: captain
+  expected:
+    answer: 第八条 海洋渔船按船长分为以下三类： （一）海洋大型渔船：船长大于或者等于24米； （二）海洋中型渔船：船长大于或者等于12米且小于24米；
+      （三）海洋小型渔船：船长小于12米。 内陆渔船的分类标准由各省、自治区、直辖市人民政府渔业主管部门制定
+    terms:
+    - 渔业捕捞许可管理
+    - 2022年
+    - 修订
+    - 第八条
+    - 海洋渔船按船长分
+    - 为以下三类
+    - 海洋大型渔船
+    - 船长大于或者等于
+    evidence:
+    - doc: POL-STD-010
+      section: 第八条
+    abstained: false
+  source_fact: FACT-POLICY-024
+  review_status: reviewed
+- id: EV2-038
+  question: 渔业捕捞许可管理规定（2022年修订）的第九条是多少？
+  split: dev
+  persona: captain
+  expected:
+    answer: 第九条 国内海洋大中型捕捞渔船的船网工具控制指标由农业农村部确定并报国务院批准后，向有关省、自治区、直辖市下达。国内海洋小型捕捞渔船的船网工具控制指标由省、自治区、直辖市人民政府依据其渔业资源与环境承载能力、资源利用状况、渔民传统作业情况等确定，报农业农村部批准后下达。
+      县级以上地方人民政府渔业主管部门应当控制本行政区域内海洋捕捞渔船的数量、功率，不得超过国家或省、自治区、直辖市人民政府下达的船网工具控制指标，具体办法由省、自治区、直辖市人民政府规定。
+      内
+    terms:
+    - 渔业捕捞许可管理
+    - 2022年
+    - 修订
+    - 第九条
+    - 国内海洋大中型捕
+    - 捞渔船的船网工具
+    - 控制指标由农业农
+    - 村部确定并报国务
+    evidence:
+    - doc: POL-STD-010
+      section: 第九条
+    abstained: false
+  source_fact: FACT-POLICY-025
+  review_status: reviewed
+- id: EV2-039
+  question: 渔业捕捞许可管理规定（2022年修订）的第十条是多少？
+  split: dev
+  persona: captain
+  expected:
+    answer: 第十条 制造、更新改造、购置、进口海洋捕捞渔船，应当经有审批权的人民政府渔业主管部门在国家或者省、自治区、直辖市下达的船网工具控制指标内批准，并取得渔业船网工具指标批准书
+    terms:
+    - 渔业捕捞许可管理
+    - 2022年
+    - 修订
+    - 第十条
+    - 制造
+    - 更新改造
+    - 购置
+    - 进口海洋捕捞渔船
+    evidence:
+    - doc: POL-STD-010
+      section: 第十条
+    abstained: false
+  source_fact: FACT-POLICY-026
+  review_status: reviewed
+- id: EV2-040
+  question: 渔业捕捞许可管理规定（2022年修订）的第十一条需要哪些材料？
+  split: dev
+  persona: captain
+  expected:
+    answer: 第十一条 申请海洋捕捞渔船船网工具指标，应当向户籍所在地、法人或非法人组织登记地县级以上人民政府渔业主管部门提出，提交渔业船网工具指标申请书、申请人户口簿或者营业执照，以及申请人所属渔业组织出具的意见，并按以下情况提供资料：
+      （一）制造海洋捕捞渔船的，提供经确认符合船机桨匹配要求的渔船建造设计图纸。 国内海洋捕捞渔船淘汰后申请制造渔船的，还应当提供渔船拆解所在地县级以上地方人民政府渔业主管部门出具的渔业船舶拆解、销毁或处理证明和现场监督管理的影像资料，以及
+    terms:
+    - 渔业捕捞许可管理
+    - 2022年
+    - 修订
+    - 第十一条
+    - 申请海洋捕捞渔船
+    - 船网工具指标
+    - 应当向户籍所在地
+    - 法人或非法人组织
+    evidence:
+    - doc: POL-STD-010
+      section: 第十一条
+    abstained: false
+  source_fact: FACT-POLICY-027
+  review_status: reviewed
+- id: EV2-041
+  question: 中华人民共和国渔业法（2025年修订）的第七条包括哪些？
+  split: dev
+  persona: captain
+  expected:
+    answer: 第七条 国家对渔业的监督管理，实行统一领导、分级管理。 海洋渔业，除国务院划定由国务院渔业渔政主管部门监督管理的海域和特定渔业资源渔场外，由毗邻海域的省、自治区、直辖市人民政府渔业渔政主管部门监督管理。
+      江河、湖泊、水库等水域的渔业，按照行政区划由有关县级以上地方人民政府渔业渔政主管部门监督管理；跨行政区域的，由有关县级以上地方人民政府协商制定管理办法，或者由上一级人民政府渔业渔政主管部门监督管理。
+      渔业执法工作由县级以上人民政府渔业渔政主管部门或者县级以
+    terms:
+    - 中华人民共和国渔
+    - 业法
+    - 2025年
+    - 修订
+    - 第七条
+    - 国家对渔业的监督
+    - 管理
+    - 实行统一领导
+    evidence:
+    - doc: POL-LAW-009
+      section: 第七条
+    abstained: false
+  source_fact: FACT-POLICY-028
+  review_status: reviewed
+- id: EV2-042
+  question: 中华人民共和国渔业法（2025年修订）的第十一条要求是什么？
+  split: dev
+  persona: captain
+  expected:
+    answer: 第十一条 渔业生产者依法自愿成立行业协会，为其成员提供生产、营销、信息、技术、培训、咨询等方面的服务，发挥协调和自律作用，维护成员和行业的合法权益。
+      国家鼓励发展渔业互助保险等多种形式的渔业保险，增强渔业生产的抗风险能力
+    terms:
+    - 中华人民共和国渔
+    - 业法
+    - 2025年
+    - 修订
+    - 第十一条
+    - 渔业生产者依法自
+    - 愿成立行业协会
+    - 为其成员提供生产
+    evidence:
+    - doc: POL-LAW-009
+      section: 第十一条
+    abstained: false
+  source_fact: FACT-POLICY-029
+  review_status: reviewed
+- id: EV2-043
+  question: 中华人民共和国渔业法（2025年修订）的第十三条需要哪些材料？
+  split: dev
+  persona: captain
+  expected:
+    answer: 第十三条 外国人、外国籍渔业船舶进入中华人民共和国管辖水域，从事渔业生产或者渔业资源调查活动，应当经国务院有关主管部门批准，并遵守本法和中华人民共和国其他有关法律、法规的规定；中华人民共和国缔结或者参加的条约、协定有规定的，按照条约、协定办理。
+      国务院渔业渔政主管部门对外行使渔政渔港监督管理权
+    terms:
+    - 中华人民共和国渔
+    - 业法
+    - 2025年
+    - 修订
+    - 第十三条
+    - 外国人
+    - 外国籍渔业船舶进
+    - 入中华人民共和国
+    evidence:
+    - doc: POL-LAW-009
+      section: 第十三条
+    abstained: false
+  source_fact: FACT-POLICY-030
+  review_status: reviewed
+- id: EV2-044
+  question: 中华人民共和国渔业法（2025年修订）的第二十二条要求是什么？
+  split: dev
+  persona: captain
+  expected:
+    answer: 第二十二条 国家鼓励和支持水产优良品种的选育、培育和推广。 水产新品种应当经全国水产品种审定委员会审定，由国务院渔业渔政主管部门公告后推广。水产新品种审定办法由国务院渔业渔政主管部门制定。
+      从事水产苗种生产活动，应当取得县级以上地方人民政府渔业渔政主管部门核发的水产苗种生产许可证。但是，渔业生产者自育、自用水产苗种的除外
+    terms:
+    - 中华人民共和国渔
+    - 业法
+    - 2025年
+    - 修订
+    - 第二十二条
+    - 国家鼓励和支持水
+    - 产优良品种的选育
+    - 培育和推广
+    evidence:
+    - doc: POL-LAW-009
+      section: 第二十二条
+    abstained: false
+  source_fact: FACT-POLICY-031
+  review_status: reviewed
+- id: EV2-045
+  question: 中华人民共和国渔业法（2025年修订）的第二十四条是什么时间？
+  split: dev
+  persona: captain
+  expected:
+    answer: 第二十四条 水产苗种的进口、出口，应当依照有关进出境动植物检疫的法律、行政法规的规定实施检疫，防止病害传入境内和传出境外，加强生态安全风险防控。
+      引进转基因水产苗种，应当按照国务院有关规定进行安全性评价
+    terms:
+    - 中华人民共和国渔
+    - 业法
+    - 2025年
+    - 修订
+    - 第二十四条
+    - 水产苗种的进口
+    - 出口
+    - 应当依照有关进出
+    evidence:
+    - doc: POL-LAW-009
+      section: 第二十四条
+    abstained: false
+  source_fact: FACT-POLICY-032
+  review_status: reviewed
+- id: EV2-046
+  question: 中华人民共和国渔业法（2025年修订）的第三十条包括哪些？
+  split: dev
+  persona: captain
+  expected:
+    answer: 第三十条 国家根据捕捞量低于渔业资源增长量的原则，确定渔业资源的总可捕捞量，实行捕捞限额制度。国务院渔业渔政主管部门依法组织渔业资源的调查和评估，为实行捕捞限额制度提供科学依据。
+      中华人民共和国内海、领海、专属经济区和其他管辖海域的捕捞限额总量由国务院渔业渔政主管部门确定，报国务院批准后逐级分解下达；国家确定的重要江河、湖泊的捕捞限额总量由有关省、自治区、直辖市人民政府确定或者协商确定，逐级分解下达，并向国务院渔业渔政主管部门报告。捕捞限额总量的分配应当体
+    terms:
+    - 中华人民共和国渔
+    - 业法
+    - 2025年
+    - 修订
+    - 第三十条
+    - 国家根据捕捞量低
+    - 于渔业资源增长量
+    - 的原则
+    evidence:
+    - doc: POL-LAW-009
+      section: 第三十条
+    abstained: false
+  source_fact: FACT-POLICY-033
+  review_status: reviewed
+- id: EV2-047
+  question: 中华人民共和国渔业法（2025年修订）的第三十一条需要哪些材料？
+  split: dev
+  persona: captain
+  expected:
+    answer: 第三十一条 国家根据捕捞能力与渔业资源可捕捞量相适应的原则，确定渔业船网工具控制指标。 县级以上人民政府渔业渔政主管部门在渔业船网工具控制指标范围内，按照规定的权限分级分类批准渔业船网工具指标。
+      对应当取得渔业船网工具指标的渔业船舶，单位和个人取得渔业船网工具指标后方可制造、改造并申请检验、登记。 禁止为应当取得而未取得渔业船网工具指标的单位和个人制造、改造渔业船舶，或者不按照渔业船网工具指标核定的内容制造、改造渔业船舶。
+      渔业船网工具指标可以按照国家有关
+    terms:
+    - 中华人民共和国渔
+    - 业法
+    - 2025年
+    - 修订
+    - 第三十一条
+    - 国家根据捕捞能力
+    - 与渔业资源可捕捞
+    - 量相适应的原则
+    evidence:
+    - doc: POL-LAW-009
+      section: 第三十一条
+    abstained: false
+  source_fact: FACT-POLICY-034
+  review_status: reviewed
+- id: EV2-048
+  question: 中华人民共和国渔业法（2025年修订）的第三十二条需要哪些材料？
+  split: dev
+  persona: captain
+  expected:
+    answer: 第三十二条 国家对捕捞业实行捕捞许可证制度。捕捞许可证由县级以上人民政府渔业渔政主管部门批准发放。 到国务院渔业渔政主管部门规定的渔业资源渔场从事捕捞作业的，应当取得省级以上人民政府渔业渔政主管部门批准发放的捕捞许可证。
+      到公海从事捕捞作业的，应当取得国务院渔业渔政主管部门批准发放的捕捞许可证，遵守中华人民共和国缔结或者参加的有关条约、协定。 到他国管辖海域从事捕捞作业的，应当经国务院渔业渔政主管部门批准，遵守中华人民共和国缔结或者参加的有关条约、协定以及
+    terms:
+    - 中华人民共和国渔
+    - 业法
+    - 2025年
+    - 修订
+    - 第三十二条
+    - 国家对捕捞业实行
+    - 捕捞许可证制度
+    - 捕捞许可证由县级
+    evidence:
+    - doc: POL-LAW-009
+      section: 第三十二条
+    abstained: false
+  source_fact: FACT-POLICY-035
+  review_status: reviewed
+- id: EV2-049
+  question: 中华人民共和国渔业法（2025年修订）的第三十三条包括哪些？
+  split: dev
+  persona: captain
+  expected:
+    answer: 第三十三条 取得捕捞许可证，应当具备下列条件： （一）有渔业船舶所有权登记证书、国籍证书和检验证书，不使用船舶从事捕捞作业的除外； （二）渔具、捕捞方法符合有关规定；
+      （三）国务院渔业渔政主管部门规定的其他条件。 县级以上地方人民政府渔业渔政主管部门批准发放的捕捞许可证，应当与上级人民政府渔业渔政主管部门下达的捕捞限额指标相适应
+    terms:
+    - 中华人民共和国渔
+    - 业法
+    - 2025年
+    - 修订
+    - 第三十三条
+    - 取得捕捞许可证
+    - 应当具备下列条件
+    - 有渔业船舶所有权
+    evidence:
+    - doc: POL-LAW-009
+      section: 第三十三条
+    abstained: false
+  source_fact: FACT-POLICY-036
+  review_status: reviewed
+- id: EV2-050
+  question: 中华人民共和国渔业法（2025年修订）的第三十四条包括哪些？
+  split: dev
+  persona: captain
+  expected:
+    answer: 第三十四条 从事捕捞作业的单位和个人，应当按照捕捞许可证规定的作业类型、场所、时限、渔具数量和捕捞限额等进行作业。 海洋大中型渔业船舶应当如实填写作业日志，记载捕捞作业、转载、购销等信息，并至少保存二年。
+      辅助捕捞作业的船舶，不得从事捕捞作业；携带渔具航行、停泊的，应当进行捆扎、覆盖
+    terms:
+    - 中华人民共和国渔
+    - 业法
+    - 2025年
+    - 修订
+    - 第三十四条
+    - 从事捕捞作业的单
+    - 位和个人
+    - 应当按照捕捞许可
+    evidence:
+    - doc: POL-LAW-009
+      section: 第三十四条
+    abstained: false
+  source_fact: FACT-POLICY-037
+  review_status: reviewed
+- id: EV2-051
+  question: 渔业行政处罚规定的第一条是什么？
+  split: dev
+  persona: captain
+  expected:
+    answer: 第一条 为严格执行渔业法律法规，规范渔业行政处罚，保障渔业生产者的合法权益，根据《中华人民共和国渔业法》（以下简称《渔业法》）《中华人民共和国渔业法实施细则》（以下简称《实施细则》）和《中华人民共和国行政处罚法》等法律法规，制定本规定
+    terms:
+    - 渔业行政处罚规定
+    - 第一条
+    - 为严格执行渔业法
+    - 律法规
+    - 规范渔业行政处罚
+    - 保障渔业生产者的
+    - 合法权益
+    - 根据
+    evidence:
+    - doc: POL-PEN-080
+      section: 第一条
+    abstained: false
+  source_fact: FACT-POLICY-038
+  review_status: reviewed
+- id: EV2-052
+  question: 渔业行政处罚规定的第二条是什么？
+  split: dev
+  persona: captain
+  expected:
+    answer: 第二条 对渔业违法的行政处罚有以下种类： （一）罚款； （二）没收渔获物、违法所得、渔具； （三）暂扣、吊销捕捞许可证等渔业证照； （四）法律、法规规定的其他处罚
+    terms:
+    - 渔业行政处罚规定
+    - 第二条
+    - 对渔业违法的行政
+    - 处罚有以下种类
+    - 罚款
+    - 没收渔获物
+    - 违法所得
+    - 渔具
+    evidence:
+    - doc: POL-PEN-080
+      section: 第二条
+    abstained: false
+  source_fact: FACT-POLICY-039
+  review_status: reviewed
+- id: EV2-053
+  question: 渔业行政处罚规定的第三条是什么？
+  split: dev
+  persona: captain
+  expected:
+    answer: 第三条 渔业违法行为轻微并及时改正，没有造成危害后果的，不予处罚。初次实施渔业违法行为且危害后果轻微并及时改正的，可以不予处罚。当事人有证据足以证明没有主观过错的，不予行政处罚。对当事人的违法行为依法不予行政处罚的，应当对当事人进行教育。有下列行为之一的，应当从轻或者减轻处罚：
+      （一）主动消除或减轻渔业违法行为后果； （二）受他人胁迫或者诱骗实施渔业违法行为的； （三）主动供述渔业执法部门尚未掌握的违法行为的； （四）配合渔业执法部门查处渔业违法行为有立功
+    terms:
+    - 渔业行政处罚规定
+    - 第三条
+    - 渔业违法行为轻微
+    - 并及时改正
+    - 没有造成危害后果
+    - 不予处罚
+    - 初次实施渔业违法
+    - 行为且危害后果轻
+    evidence:
+    - doc: POL-PEN-080
+      section: 第三条
+    abstained: false
+  source_fact: FACT-POLICY-040
+  review_status: reviewed
+- id: EV2-054
+  question: 渔业行政处罚规定的第四条是什么？
+  split: dev
+  persona: captain
+  expected:
+    answer: 第四条 有下列行为之一的，从重处罚： （一）一年内渔业违法三次以上的； （二）对渔业资源破坏程度较重的； （三）渔业违法影响较大的； （四）同一个违法行为违反两项以上规定的；
+      （五）逃避、抗拒检查的
+    terms:
+    - 渔业行政处罚规定
+    - 第四条
+    - 有下列行为之一的
+    - 从重处罚
+    - 一年内渔业违法三
+    - 次以上的
+    - 对渔业资源破坏程
+    - 度较重的
+    evidence:
+    - doc: POL-PEN-080
+      section: 第四条
+    abstained: false
+  source_fact: FACT-POLICY-041
+  review_status: reviewed
+- id: EV2-055
+  question: 渔业行政处罚规定的第五条是什么？
+  split: dev
+  persona: captain
+  expected:
+    answer: 第五条 本规定中需要处以罚款的计罚单位如下： （一）拖网、流刺网、钓钩等用船作业的，以单艘船计罚； （二）围网作业，以一个作业单位计罚； （三）定置作业，用船作业的以单艘船计罚，不用船作业的以一个作业单位计罚；
+      （四）炸鱼、毒鱼、非法电力捕鱼和使用鱼鹰捕鱼的，用船作业的以单艘船计罚，不用船作业的以人计罚； （五）从事赶海、潜水等不用船作业的，以人计罚
+    terms:
+    - 渔业行政处罚规定
+    - 第五条
+    - 本规定中需要处以
+    - 罚款的计罚单位如
+    - 拖网
+    - 流刺网
+    - 钓钩等用船作业的
+    - 以单艘船计罚
+    evidence:
+    - doc: POL-PEN-080
+      section: 第五条
+    abstained: false
+  source_fact: FACT-POLICY-042
+  review_status: reviewed
+- id: EV2-056
+  question: 渔业行政处罚规定的第六条是什么？
+  split: dev
+  persona: captain
+  expected:
+    answer: 第六条 依照《渔业法》第三十八条和《实施细则》第二十九条规定，有下列行为之一的，没收渔获物和违法所得，处以罚款；情节严重的，没收渔具、吊销捕捞许可证；情节特别严重的，可以没收渔船。罚款按以下标准执行：
+      （一）使用炸鱼、毒鱼、电鱼等破坏渔业资源方法进行捕捞的，违反关于禁渔区、禁渔期的规定进行捕捞的，或者使用禁用的渔具、捕捞方法和小于最小网目尺寸的网具进行捕捞或者渔获物中幼鱼超过规定比例的，在内陆水域，处以三万元以下罚款；在海洋水域，处以五万元以下罚款。
+      （二
+    terms:
+    - 渔业行政处罚规定
+    - 第六条
+    - 依照
+    - 渔业法
+    - 第三十八条和
+    - 实施细则
+    - 第二十九条规定
+    - 有下列行为之一的
+    evidence:
+    - doc: POL-PEN-080
+      section: 第六条
+    abstained: false
+  source_fact: FACT-POLICY-043
+  review_status: reviewed
+- id: EV2-057
+  question: 渔业行政处罚规定的第九条是什么？
+  split: dev
+  persona: captain
+  expected:
+    answer: 第九条 按照《渔业法》第四十二条规定，对有捕捞许可证的渔船违反许可证关于作业类型、场所、时限和渔具数量的规定进行捕捞的，没收渔获物和违法所得，可以并处罚款；情节严重的，并可以没收渔具，吊销捕捞许可证。罚款按以下标准执行：
+      （一）在内陆水域，处以二万元以下罚款。 （二）在海洋水域，处以五万元以下罚款
+    terms:
+    - 渔业行政处罚规定
+    - 第九条
+    - 渔业法
+    - 第四十二条规定
+    - 对有捕捞许可证的
+    - 渔船违反许可证关
+    - 于作业类型
+    - 场所
+    evidence:
+    - doc: POL-PEN-080
+      section: 第九条
+    abstained: false
+  source_fact: FACT-POLICY-044
+  review_status: reviewed
+- id: EV2-058
+  question: 渔业行政处罚规定的第十条是什么？
+  split: dev
+  persona: captain
+  expected:
+    answer: 第十条 按照《渔业法》第四十三条规定，对涂改、买卖、出租或以其他形式非法转让捕捞许可证的，没收违法所得，吊销捕捞许可证，可以并处罚款。罚款按以下标准执行：
+      （一）买卖、出租或以其他形式非法转让捕捞许可证的，对违法双方各处一万元以下罚款。 （二）涂改捕捞许可证的，处一万元以下罚款
+    terms:
+    - 渔业行政处罚规定
+    - 第十条
+    - 渔业法
+    - 第四十三条规定
+    - 对涂改
+    - 买卖
+    - 出租或以其他形式
+    - 非法转让捕捞许可
+    evidence:
+    - doc: POL-PEN-080
+      section: 第十条
+    abstained: false
+  source_fact: FACT-POLICY-045
+  review_status: reviewed
+- id: EV2-059
+  question: 渔业行政处罚规定的第十一条是什么？
+  split: dev
+  persona: captain
+  expected:
+    answer: 第十一条 按照《中华人民共和国水污染防治法》第九十四条、《中华人民共和国海洋环境保护法》第九十条规定，造成渔业污染事故的，按以下规定处以罚款：
+      （一）对造成一般或者较大污染事故，按照直接损失的百分之二十计算罚款。 （二）对造成重大或者特大污染事故的，按照直接损失的百分之三十计算罚款
+    terms:
+    - 渔业行政处罚规定
+    - 第十一条
+    - 中华人民共和国水
+    - 污染防治法
+    - 第九十四条
+    - 中华人民共和国海
+    - 洋环境保护法
+    - 第九十条规定
+    evidence:
+    - doc: POL-PEN-080
+      section: 第十一条
+    abstained: false
+  source_fact: FACT-POLICY-046
+  review_status: reviewed
+- id: EV2-060
+  question: 渔业行政处罚规定的第十三条是什么？
+  split: dev
+  persona: captain
+  expected:
+    answer: 第十三条 违反《渔业法》第三十一条和《实施细则》第二十四条、第二十五条规定，擅自捕捞有重要经济价值的水生动物苗种、怀卵亲体的，没收其苗种或怀卵亲体及违法所得，并可处以三万元以下罚款
+    terms:
+    - 渔业行政处罚规定
+    - 第十三条
+    - 违反
+    - 渔业法
+    - 第三十一条和
+    - 实施细则
+    - 第二十四条
+    - 第二十五条规定
+    evidence:
+    - doc: POL-PEN-080
+      section: 第十三条
+    abstained: false
+  source_fact: FACT-POLICY-047
+  review_status: reviewed
+- id: EV2-061
+  question: 中华人民共和国渔业港航监督行政处罚规定的第一条是什么？
+  split: dev
+  persona: captain
+  expected:
+    answer: 第一条 为加强渔业船舶安全监督管理，规范渔业港航法规行政处罚，保障渔业港航法规的执行和渔业生产者的合法权益，根据《中华人民共和国海上交通安全法》、《中华人民共和国海洋环境保护法》、《中华人民共和国渔港水域交通安全管理条例》和《中华人民共和国内河交通安全管理条例》等有关法律、法规，制定本规定
+    terms:
+    - 中华人民共和国渔
+    - 业港航监督行政处
+    - 罚规定
+    - 第一条
+    - 为加强渔业船舶安
+    - 全监督管理
+    - 规范渔业港航法规
+    - 行政处罚
+    evidence:
+    - doc: POL-PEN-078
+      section: 第一条
+    abstained: false
+  source_fact: FACT-POLICY-048
+  review_status: reviewed
+- id: EV2-062
+  question: 中华人民共和国渔业港航监督行政处罚规定的第四条是什么？
+  split: dev
+  persona: captain
+  expected:
+    answer: 第四条 渔政渔港监督管理机关对违反渔业港航法律、法规的行政处罚分为： （一）警告； （二）罚款； （三）扣留或吊销船舶证书或船员证书； （四）法律、法规规定的其他行政处罚
+    terms:
+    - 中华人民共和国渔
+    - 业港航监督行政处
+    - 罚规定
+    - 第四条
+    - 渔政渔港监督管理
+    - 机关对违反渔业港
+    - 航法律
+    - 法规的行政处罚分
+    evidence:
+    - doc: POL-PEN-078
+      section: 第四条
+    abstained: false
+  source_fact: FACT-POLICY-049
+  review_status: reviewed
+- id: EV2-063
+  question: 中华人民共和国渔业港航监督行政处罚规定的第六条是什么？
+  split: dev
+  persona: captain
+  expected:
+    answer: 第六条 有下列行为之一的，可从轻、减轻处罚： （一）主动消除或减轻渔业港航违法行为后果； （二）配合渔政渔港监督管理机关查处渔业港航违法行为；
+      （三）依法可以从轻、减轻的其他渔业港航违法行为
+    terms:
+    - 中华人民共和国渔
+    - 业港航监督行政处
+    - 罚规定
+    - 第六条
+    - 有下列行为之一的
+    - 可从轻
+    - 减轻处罚
+    - 主动消除或减轻渔
+    evidence:
+    - doc: POL-PEN-078
+      section: 第六条
+    abstained: false
+  source_fact: FACT-POLICY-050
+  review_status: reviewed
+- id: EV2-064
+  question: 中华人民共和国渔业港航监督行政处罚规定的第七条是什么？
+  split: dev
+  persona: captain
+  expected:
+    answer: 第七条 有下列行为之一的，可从重处罚： （一）违法情节严重，影响较大； （二）多次违法或违法行为造成重大损失; （三）损失虽然不大，但事后既不向渔政渔港监督管理机关报告，又不采取措施，放任损失扩大；
+      （四）逃避、抗拒渔政渔港监督管理机关检查和管理； （五）依法可以从重处罚的其他渔业港航违法行为
+    terms:
+    - 中华人民共和国渔
+    - 业港航监督行政处
+    - 罚规定
+    - 第七条
+    - 有下列行为之一的
+    - 可从重处罚
+    - 违法情节严重
+    - 影响较大
+    evidence:
+    - doc: POL-PEN-078
+      section: 第七条
+    abstained: false
+  source_fact: FACT-POLICY-051
+  review_status: reviewed
+- id: EV2-065
+  question: 中华人民共和国渔业港航监督行政处罚规定的第八条要求是什么？
+  split: dev
+  persona: captain
+  expected:
+    answer: 第八条 渔政渔港监督管理机关管辖本辖区发生的案件和上级渔政渔港监督管理机关指定管辖的渔业港航违法案件。 渔业港航违法行为有下列情况的，适用“谁查获谁处理”的原则：
+      （一）违法行为发生在共管区、叠区； （二）违法行为发生在管辖权不明或有争议的区域； （三）违法行为地与查获地不一致。 法律、法规或规章另有规定的，按规定管辖
+    terms:
+    - 中华人民共和国渔
+    - 业港航监督行政处
+    - 罚规定
+    - 第八条
+    - 渔政渔港监督管理
+    - 机关管辖本辖区发
+    - 生的案件和上级渔
+    - 政渔港监督管理机
+    evidence:
+    - doc: POL-PEN-078
+      section: 第八条
+    abstained: false
+  source_fact: FACT-POLICY-052
+  review_status: reviewed
+- id: EV2-066
+  question: 中华人民共和国渔业港航监督行政处罚规定的第九条是什么？
+  split: dev
+  persona: captain
+  expected:
+    answer: 第九条 有下列行为之一的，对船长予以警告，并可处50元以上500元以下罚款；情节严重的，扣留其职务船员证书3至6个月；情节特别严重的，吊销船长证书：
+      （一）船舶进出渔港应当按照有关规定到渔政渔港监督管理机关办理签证而未办理签证的； （二）在渔港内不服从渔政渔港监督管理机关对渔港水域交通安全秩序管理的；
+      （三）在渔港内停泊期间，未留足值班人员的
+    terms:
+    - 中华人民共和国渔
+    - 业港航监督行政处
+    - 罚规定
+    - 第九条
+    - 有下列行为之一的
+    - 对船长予以警告
+    - 并可处
+    - 50元
+    evidence:
+    - doc: POL-PEN-078
+      section: 第九条
+    abstained: false
+  source_fact: FACT-POLICY-053
+  review_status: reviewed
+- id: EV2-067
+  question: 中华人民共和国渔业港航监督行政处罚规定的第十一条是什么？
+  split: dev
+  persona: captain
+  expected:
+    answer: 第十一条 停泊或进行装卸作业时，有下列行为之一的，应责令船舶所有者或经营者支付消除污染所需的费用，并可处500元以上10000元以下罚款：
+      （一）造成腐蚀、有毒或放射性等有害物质散落或溢漏，污染渔港或渔港水域的； （二）排放油类或油性混合物造成渔港或渔港水域污染的
+    terms:
+    - 中华人民共和国渔
+    - 业港航监督行政处
+    - 罚规定
+    - 第十一条
+    - 停泊或进行装卸作
+    - 业时
+    - 有下列行为之一的
+    - 应责令船舶所有者
+    evidence:
+    - doc: POL-PEN-078
+      section: 第十一条
+    abstained: false
+  source_fact: FACT-POLICY-054
+  review_status: reviewed
+- id: EV2-068
+  question: 中华人民共和国渔业港航监督行政处罚规定的第十二条是什么？
+  split: dev
+  persona: captain
+  expected:
+    answer: 第十二条 有下列行为之一的，对船长予以警告，情节严重的，并处100元以上1000元以下罚款： （一）未经批准，擅自使用化学消油剂； （二）未按规定持有防止海洋环境污染的证书与文书，或不如实记录涉及污染物排放及操作
+    terms:
+    - 中华人民共和国渔
+    - 业港航监督行政处
+    - 罚规定
+    - 第十二条
+    - 有下列行为之一的
+    - 对船长予以警告
+    - 情节严重的
+    - 并处
+    evidence:
+    - doc: POL-PEN-078
+      section: 第十二条
+    abstained: false
+  source_fact: FACT-POLICY-055
+  review_status: reviewed
+- id: EV2-069
+  question: 中华人民共和国渔业港航监督行政处罚规定的第十三条是什么？
+  split: dev
+  persona: captain
+  expected:
+    answer: 第十三条 未经渔政渔港监督管理机关批准，有下列行为之一者，应责令当事责任人限期清除、纠正，并予以警告；情节严重的，处100元以上1000元以下罚款：
+      （一）在渔港内进行明火作业； （二）在渔港内燃放烟花爆竹
+    terms:
+    - 中华人民共和国渔
+    - 业港航监督行政处
+    - 罚规定
+    - 第十三条
+    - 未经渔政渔港监督
+    - 管理机关批准
+    - 有下列行为之一者
+    - 应责令当事责任人
+    evidence:
+    - doc: POL-PEN-078
+      section: 第十三条
+    abstained: false
+  source_fact: FACT-POLICY-056
+  review_status: reviewed
+- id: EV2-070
+  question: 中华人民共和国渔业港航监督行政处罚规定的第十四条是什么？
+  split: dev
+  persona: captain
+  expected:
+    answer: 第十四条 向渔港港池内倾倒污染物、船舶垃圾及其他有害物质，应责令当事责任人立即清除，并予以警告。情节严重的，400总吨(含400总吨)以下船舶，处5000元以上50000元以下罚款；400总吨以上船舶处50000元以上100000元以下罚款
+    terms:
+    - 中华人民共和国渔
+    - 业港航监督行政处
+    - 罚规定
+    - 第十四条
+    - 向渔港港池内倾倒
+    - 污染物
+    - 船舶垃圾及其他有
+    - 害物质
+    evidence:
+    - doc: POL-PEN-078
+      section: 第十四条
+    abstained: false
+  source_fact: FACT-POLICY-057
+  review_status: reviewed
+- id: EV2-071
+  question: 中华人民共和国渔业法实施细则的第三条包括哪些？
+  split: dev
+  persona: captain
+  expected:
+    answer: 第三条 国家对渔业的监督管理，实行统一领导、分级管理。 国务院划定的“机动渔船底拖网禁渔区线”外侧，属于中华人民共和国管辖海域的渔业，由国务院渔业行政主管部门及其所属的海区渔政管理机构监督管理；“机动渔船底拖网禁渔区线”内侧海域的渔业，除国家另有规定者外，由毗邻海域的省、自治区、直辖市人民政府渔业行政主管部门监督管理。
+      内陆水域渔业，按照行政区划由当地县级以上地方人民政府渔业行政主管部门监督管理；跨行政区域的内陆水域渔业，由有关县级以上地方人民政府协商制定
+    terms:
+    - 中华人民共和国渔
+    - 业法实施细则
+    - 第三条
+    - 国家对渔业的监督
+    - 管理
+    - 实行统一领导
+    - 分级管理
+    - 国务院划定的
+    evidence:
+    - doc: POL-RULE-018
+      section: 第三条
+    abstained: false
+  source_fact: FACT-POLICY-058
+  review_status: reviewed
+- id: EV2-072
+  question: 中华人民共和国渔业法实施细则的第四条包括哪些？
+  split: dev
+  persona: captain
+  expected:
+    answer: 第四条 “机动渔船底拖网禁渔区线”内侧海域的渔业，由有关省、自治区、直辖市人民政府渔业行政主管部门协商划定监督管理范围；划定监督管理范围有困难的，可划叠区或者共管区管理，必要时由国务院渔业行政主管部门决定
+    terms:
+    - 中华人民共和国渔
+    - 业法实施细则
+    - 第四条
+    - 机动渔船底拖网禁
+    - 渔区线
+    - 内侧海域的渔业
+    - 由有关省
+    - 自治区
+    evidence:
+    - doc: POL-RULE-018
+      section: 第四条
+    abstained: false
+  source_fact: FACT-POLICY-059
+  review_status: reviewed
+- id: EV2-073
+  question: 中华人民共和国渔业法实施细则的第五条要求是什么？
+  split: dev
+  persona: captain
+  expected:
+    answer: 第五条 渔场和渔汛生产，应当以渔业资源可捕量为依据，按照有利于保护、增殖和合理利用渔业资源，优先安排邻近地区、兼顾其他地区的原则，统筹安排。
+      舟山渔场冬季带鱼汛，浙江渔场大黄鱼汛，闽东、闽中渔场大黄鱼汛，吕泗渔场大黄鱼、小黄鱼、鲳鱼汛，渤海渔场秋季对虾汛等主要渔场、渔汛和跨海区管理线的捕捞作业，由国务院渔业行政主管部门或其授权单位安排
+    terms:
+    - 中华人民共和国渔
+    - 业法实施细则
+    - 第五条
+    - 渔场和渔汛生产
+    - 应当以渔业资源可
+    - 捕量为依据
+    - 按照有利于保护
+    - 增殖和合理利用渔
+    evidence:
+    - doc: POL-RULE-018
+      section: 第五条
+    abstained: false
+  source_fact: FACT-POLICY-060
+  review_status: reviewed
+- id: EV2-074
+  question: 中华人民共和国渔业法实施细则的第六条要求是什么？
+  split: dev
+  persona: captain
+  expected:
+    answer: 第六条 国务院渔业行政主管部门的渔政渔港监督管理机构，代表国家行使渔政渔港监督管理权。 国务院渔业行政主管部门在黄渤海、东海、南海三个海区设渔政监督管理机构；在重要渔港、边境水域和跨省、自治区、直辖市的大型江河，根据需要设渔政渔港监督管理机构
+    terms:
+    - 中华人民共和国渔
+    - 业法实施细则
+    - 第六条
+    - 国务院渔业行政主
+    - 管部门的渔政渔港
+    - 监督管理机构
+    - 代表国家行使渔政
+    - 渔港监督管理权
+    evidence:
+    - doc: POL-RULE-018
+      section: 第六条
+    abstained: false
+  source_fact: FACT-POLICY-061
+  review_status: reviewed
+- id: EV2-075
+  question: 中华人民共和国渔业法实施细则的第七条包括哪些？
+  split: dev
+  persona: captain
+  expected:
+    answer: 第七条 渔政检查人员有权对各种渔业及渔业船舶的证件、渔船、渔具、渔获物和捕捞方法，进行检查。 渔政检查人员经国务院渔业行政主管部门或者省级人民政府渔业行政主管部门考核，合格者方可执行公务
+    terms:
+    - 中华人民共和国渔
+    - 业法实施细则
+    - 第七条
+    - 渔政检查人员有权
+    - 对各种渔业及渔业
+    - 船舶的证件
+    - 渔船
+    - 渔具
+    evidence:
+    - doc: POL-RULE-018
+      section: 第七条
+    abstained: false
+  source_fact: FACT-POLICY-062
+  review_status: reviewed
+- id: EV2-076
+  question: 中华人民共和国渔业法实施细则的第十四条包括哪些？
+  split: dev
+  persona: captain
+  expected:
+    answer: 第十四条 近海渔场与外海渔场的划分： (一)渤海、黄海为近海渔场。 (二)下列四个基点之间连线内侧海域为东海近海渔场；四个基点之间连线外侧海域为东海外海渔场。四个基点是：
+      1.北纬33度，东经125度； 2.北纬29度，东经125度； 3.北纬28度，东经124度30分； 4.北纬27度，东经123度。 (三)下列两条等深线之内侧海域为南海近海渔场；两条等深线之外侧海域为南海外海渔场。两条等深线是：
+      1.东经112度以东之80米等深线； 2.东经112度以
+    terms:
+    - 中华人民共和国渔
+    - 业法实施细则
+    - 第十四条
+    - 近海渔场与外海渔
+    - 场的划分
+    - 渤海
+    - 黄海为近海渔场
+    - 下列四个基点之间
+    evidence:
+    - doc: POL-RULE-018
+      section: 第十四条
+    abstained: false
+  source_fact: FACT-POLICY-063
+  review_status: reviewed
+- id: EV2-077
+  question: 中华人民共和国渔业法实施细则的第十五条需要哪些材料？
+  split: dev
+  persona: captain
+  expected:
+    answer: 第十五条 国家对捕捞业，实行捕捞许可制度。 从事外海、远洋捕捞业的，由经营者提出申请，经省、自治区、直辖市人民政府渔业行政主管部门审核后，报国务院渔业行政主管部门批准。从事外海生产的渔船，必须按照批准的海域和渔期作业，不得擅自进入近海捕捞。
+      近海大型拖网、围网作业的捕捞许可证，由国务院渔业行政主管部门批准发放；近海其他作业的捕捞许可证，由省、自治区、直辖市人民政府渔业行政主管部门按照国家下达的船网工具控制指标批准发放。
+      内陆水域的捕捞许可证，由县级以上地方
+    terms:
+    - 中华人民共和国渔
+    - 业法实施细则
+    - 第十五条
+    - 国家对捕捞业
+    - 实行捕捞许可制度
+    - 从事外海
+    - 远洋捕捞业的
+    - 由经营者提出申请
+    evidence:
+    - doc: POL-RULE-018
+      section: 第十五条
+    abstained: false
+  source_fact: FACT-POLICY-064
+  review_status: reviewed
+- id: EV2-078
+  question: 海洋捕捞产量的按海区分类是什么？
+  split: dev
+  persona: extension
+  expected:
+    answer: 海洋捕捞产量按捕捞海域分为渤海、黄海、东海和南海区
+    terms:
+    - 海洋捕捞产量
+    - 按海区分类
+    - 海洋捕捞产量按捕
+    - 捞海域分为渤海
+    - 黄海
+    - 东海和南海区
+    evidence:
+    - doc: DICT-STAT-013
+    abstained: false
+  source_fact: FACT-STATS-001
+  review_status: reviewed
+- id: EV2-079
+  question: 机动渔业船舶的分类口径是多少？
+  split: dev
+  persona: extension
+  expected:
+    answer: 机动渔业船舶指依靠本船主机动力推进的渔业船舶，分为渔业生产船和渔业辅助船；捕捞船按主机功率、船长和作业方式分类
+    terms:
+    - 机动渔业船舶
+    - 分类口径
+    - 机动渔业船舶指依
+    - 靠本船主机动力推
+    - 进的渔业船舶
+    - 分为渔业生产船和
+    - 渔业辅助船
+    - 捕捞船按主机功率
+    evidence:
+    - doc: DICT-STAT-013
+    abstained: false
+  source_fact: FACT-STATS-002
+  review_status: reviewed
+- id: EV2-080
+  question: 国内海洋捕捞渔船转远洋的统计归属是什么？
+  split: dev
+  persona: extension
+  expected:
+    answer: 国内海洋捕捞渔业船舶转为远洋渔业船舶的当年，纳入远洋渔业船舶统计，不再计入国内渔船统计
+    terms:
+    - 国内海洋捕捞渔船
+    - 转远洋
+    - 统计归属
+    - 国内海洋捕捞渔业
+    - 船舶转为远洋渔业
+    - 船舶的当年
+    - 纳入远洋渔业船舶
+    - 统计
+    evidence:
+    - doc: DICT-STAT-013
+    abstained: false
+  source_fact: FACT-STATS-003
+  review_status: reviewed
+- id: EV2-081
+  question: 渔业统计指标解释（2024中国渔业统计年鉴附录3） 一、 海水产品的条文要点是什么？
+  split: test
+  persona: extension
+  expected:
+    answer: 一、 海水产品 １４４ ＣＨＩＮＡ ＦＩＳＨＥＲＹ ＳＴＡＴＩＳＴＩＣＡＬ ＹＥＡＲＢＯＯＫ
+    terms:
+    - 渔业统计指标解释
+    - '2024'
+    - 中国渔业统计年鉴
+    - 附录
+    - 海水产品
+    - 条文要点
+    - １４４
+    evidence:
+    - doc: DICT-STAT-013
+      section: 一、 海水产品
+    abstained: false
+  source_fact: FACT-PROV-001
+  review_status: draft
+- id: EV2-082
+  question: 渔业统计指标解释（2024中国渔业统计年鉴附录3） 二、 淡水产品的条文要点是什么？
+  split: test
+  persona: extension
+  expected:
+    answer: '二、 淡水产品 淡水产品包括淡水养殖产品和淡水捕捞产品ꎮ １􀆰 淡水养殖产品: 包括鱼类、 甲壳类 ( 虾、 蟹) 、 贝类、 藻类和其他类产品ꎮ
+      (１) 淡水养殖鱼类: 鲟鱼、 鳗鲡、 青鱼、 草鱼、 鲢鱼、 鳙鱼、 鲤鱼、 鲫鱼、 鳊鲂、 泥鳅、 鲇鱼、 鱼、 黄颡鱼、 鲑鱼、 鳟鱼、 河鲀、
+      短盖巨脂鲤、 长吻 、 黄 鳝、 鳜 鱼、 鲈鱼、 乌鳢和罗非鱼等ꎮ (２) 淡水养殖甲壳类: 虾和河蟹ꎬ 其中虾包括罗氏沼虾、 青虾、 克氏原螯虾和南美
+      白对虾等ꎮ (３) 淡水'
+    terms:
+    - 渔业统计指标解释
+    - '2024'
+    - 中国渔业统计年鉴
+    - 附录
+    - 淡水产品
+    - 条文要点
+    - 淡水产品包括淡水
+    - 养殖产品和淡水捕
+    evidence:
+    - doc: DICT-STAT-013
+      section: 二、 淡水产品
+    abstained: false
+  source_fact: FACT-PROV-002
+  review_status: draft
+- id: EV2-083
+  question: 渔业统计指标解释（2024中国渔业统计年鉴附录3） 一、 水产冷冻品的条文要点是什么？
+  split: test
+  persona: extension
+  expected:
+    answer: 一、 水产冷冻品 水产冷冻品指为了保鲜ꎬ 将水产品进行冷冻加工处理后得到的产品ꎬ 包括冷冻品和冷 冻加工品ꎬ 但不包括商业冷藏品ꎮ 冷冻品泛指未改变其原始性状的粗加工产品ꎬ
+      如冷冻全鱼、 全虾等ꎮ 冷冻加工品指采用各种生产技术和工艺ꎬ 改变其原始性状、 改善其风味后制成的产 品ꎬ 如冻鱼片、 冻虾仁、 冷冻烤鳗、 冻鱼籽等ꎮ
+    terms:
+    - 渔业统计指标解释
+    - '2024'
+    - 中国渔业统计年鉴
+    - 附录
+    - 水产冷冻品
+    - 条文要点
+    - 水产冷冻品指为了
+    - 保鲜
+    evidence:
+    - doc: DICT-STAT-013
+      section: 一、 水产冷冻品
+    abstained: false
+  source_fact: FACT-PROV-003
+  review_status: draft
+- id: EV2-084
+  question: 渔业统计指标解释（2024中国渔业统计年鉴附录3） 二、 鱼糜制品和干腌制品的条文要点是什么？
+  split: test
+  persona: extension
+  expected:
+    answer: '二、 鱼糜制品和干腌制品 鱼糜制品指将鱼 ( 虾、 蟹、 贝等) 肉 ( 或冷冻鱼糜) 绞碎经配料、 擂溃成为稠而富 有黏性的鱼肉浆 (
+      生鱼糜) ꎬ 再做成一定形状后进行水煮 ( 油炸或焙烤烘干) 等加热或干 燥处理而制成的食品ꎬ 如鱼糜、 鱼香肠、 鱼丸、 鱼糕、 鱼饼、 鱼面、 模拟蟹肉等ꎮ
+      干腌制品指以水产品为原料ꎬ 经脱水 ( 烘干、 烟熏、 焙烤等) 或添加腌制剂 ( 盐、 糖、 酒、 糟) 制成具有保藏性和良好风味的产品ꎬ 如烤鱼片、
+      鱿鱼丝、 鱼松、 虾皮、 '
+    terms:
+    - 渔业统计指标解释
+    - '2024'
+    - 中国渔业统计年鉴
+    - 附录
+    - 鱼糜制品和干腌制
+    - 条文要点
+    - 鱼糜制品指将鱼
+    - 贝等
+    evidence:
+    - doc: DICT-STAT-013
+      section: 二、 鱼糜制品和干腌制品
+    abstained: false
+  source_fact: FACT-PROV-004
+  review_status: draft
+- id: EV2-085
+  question: 渔业统计指标解释（2024中国渔业统计年鉴附录3） 三、 水产罐制品的条文要点是什么？
+  split: test
+  persona: extension
+  expected:
+    answer: 三、 水产罐制品 水产罐制品指以水产品为原料按照罐头工艺加工制成的产品ꎬ 包括硬包装和软包装罐 头ꎬ 如鱼类罐头、 虾贝类罐头等ꎮ
+    terms:
+    - 渔业统计指标解释
+    - '2024'
+    - 中国渔业统计年鉴
+    - 附录
+    - 水产罐制品
+    - 条文要点
+    - 水产罐制品指以水
+    - 产品为原料按照罐
+    evidence:
+    - doc: DICT-STAT-013
+      section: 三、 水产罐制品
+    abstained: false
+  source_fact: FACT-PROV-005
+  review_status: draft
+- id: EV2-086
+  question: 农业农村部关于调整海洋伏季休渔制度的通告 一、休渔海域的条文要点是什么？
+  split: test
+  persona: captain
+  expected:
+    answer: 一、休渔海域 渤海、黄海、东海及北纬12度以北的南海（含北部湾）海域。
+    terms:
+    - 农业农村部关于调
+    - 整海洋伏季休渔制
+    - 度的通告
+    - 休渔海域
+    - 条文要点
+    - 渤海
+    - 黄海
+    - 东海及北纬
+    evidence:
+    - doc: POL-CLOS-015
+      section: 一、休渔海域
+    abstained: false
+  source_fact: FACT-PROV-006
+  review_status: draft
+- id: EV2-087
+  question: 农业农村部关于调整海洋伏季休渔制度的通告 二、休渔作业类型的条文要点是什么？
+  split: test
+  persona: captain
+  expected:
+    answer: 二、休渔作业类型 除钓具外的所有作业类型，以及为捕捞渔船配套服务的捕捞辅助船。
+    terms:
+    - 农业农村部关于调
+    - 整海洋伏季休渔制
+    - 度的通告
+    - 休渔作业类型
+    - 条文要点
+    - 除钓具外的所有作
+    - 业类型
+    - 以及为捕捞渔船配
+    evidence:
+    - doc: POL-CLOS-015
+      section: 二、休渔作业类型
+    abstained: false
+  source_fact: FACT-PROV-007
+  review_status: draft
+- id: EV2-088
+  question: 农业农村部关于调整海洋伏季休渔制度的通告 三、休渔时间的条文要点是什么？
+  split: test
+  persona: captain
+  expected:
+    answer: 三、休渔时间 （一）北纬35度以北的渤海和黄海海域为5月1日12时至9月1日12时。 （二）北纬35度至北纬26度30分之间的黄海和东海海域为5月1日12时至9月16日12时。
+      （三）北纬26度30分至北纬12度的东海和南海海域为5月1日12时至8月16日12时。 （四）北纬35度至北纬26度30分之间的黄海和东海海域桁杆拖虾、笼壶类、刺网和灯光围（敷）网4种作业类型渔船可申请开展虾蟹类、中上层鱼类等资源专项捕捞许可，由相关省份渔业主管部门核报农业农村部批准后执行。
+      （五）特
+    terms:
+    - 农业农村部关于调
+    - 整海洋伏季休渔制
+    - 度的通告
+    - 休渔时间
+    - 条文要点
+    - 北纬
+    - 35度
+    - 以北的渤海和黄海
+    evidence:
+    - doc: POL-CLOS-015
+      section: 三、休渔时间
+    abstained: false
+  source_fact: FACT-PROV-008
+  review_status: draft
+- id: EV2-089
+  question: 农业农村部关于调整海洋伏季休渔制度的通告 四、实施时间的条文要点是什么？
+  split: test
+  persona: captain
+  expected:
+    answer: 四、实施时间 上述调整后的伏季休渔规定，自2023年4月15日起施行，《农业农村部关于调整海洋伏季休渔制度的通告》（农业农村部通告〔2021〕1号）相应废止。
+    terms:
+    - 农业农村部关于调
+    - 整海洋伏季休渔制
+    - 度的通告
+    - 实施时间
+    - 条文要点
+    - 上述调整后的伏季
+    - 休渔规定
+    - 2023年
+    evidence:
+    - doc: POL-CLOS-015
+      section: 四、实施时间
+    abstained: false
+  source_fact: FACT-PROV-009
+  review_status: draft
+- id: EV2-090
+  question: Notice on the 2026 marine seasonal-closure enforcement action 一、重点任务的条文要点是什么？
+  split: test
+  persona: captain
+  expected:
+    answer: 一、重点任务 （一）落实船籍港休渔制度。以县（市、区）为单位建立应休渔渔船、重点监管渔船台账，督促所有应休渔渔船按时返回船籍港集中休渔。伏季休渔期间，长期异地渔船必须在船籍港地休渔，期间的安全生产管理及往返航行安全由船籍港地负责。休渔开始后，对港内发现擅自滞留的异地渔船，要依照新修订渔业法关于违反休禁渔制度航行、停泊的相关规定，依法予以严肃查处。
+      （二）开展回港渔船安全执法。充分利用伏季休渔期，全覆盖开展回港渔船安全生产排查整治。重点检查渔船消防设施、救生设备等关键部位，强化
+    terms:
+    - '2026'
+    - 重点任务
+    - 条文要点
+    - 落实船籍港休渔制
+    - 以县
+    - 为单位建立应休渔
+    - 渔船
+    - 重点监管渔船台账
+    evidence:
+    - doc: POL-ENF-068
+      section: 一、重点任务
+    abstained: false
+  source_fact: FACT-PROV-010
+  review_status: draft
+- id: EV2-091
+  question: Notice on the 2026 marine seasonal-closure enforcement action 二、工作要点的条文要点是什么？
+  split: test
+  persona: captain
+  expected:
+    answer: 二、工作要点 （一）5月1日之前，集中召回在外渔船，督促在港异地渔船返回船籍港休渔。 （二）5月1日至5月10日，组织开展渔港码头专项检查，严格落实港内休渔管理要求；全面部署执法船艇开展海上巡查，实现“船艇应出尽出、渔船应检尽检”。
+      （三）8月5日至9月16日，开展北纬35度线至北纬26度30分线之间海域专项监管，紧盯桁杆拖虾、笼壶类、刺网和灯光围（敷）网等四种作业类型专项捕捞渔船。
+      （四）8月16日至9月16日，组织开展北纬26度30分线附近海域集中执法管控行动，重点防控南
+    terms:
+    - '2026'
+    - 工作要点
+    - 条文要点
+    - 5月
+    - 1日
+    - 之前
+    - 集中召回在外渔船
+    - 督促在港异地渔船
+    evidence:
+    - doc: POL-ENF-068
+      section: 二、工作要点
+    abstained: false
+  source_fact: FACT-PROV-011
+  review_status: draft
+- id: EV2-092
+  question: Notice on the 2026 marine seasonal-closure enforcement action 三、有关要求的条文要点是什么？
+  split: test
+  persona: captain
+  expected:
+    answer: 三、有关要求 （一）细化工作举措。各地要结合各自工作职责、辖区监管实际和以往执法经验，进一步细化实化工作措施，明确分工、责任到人，有序推动各项执法工作落地落细、见行见效。要强化工作指导和统筹，及时梳理解决执法过程中出现的新情况、新问题，确保海洋伏季休渔制度不打折扣、执行到位。
+      （二）落实法律要求。各地要严格落实新修订渔业法有关规定，确保执行到位、落实有效。对于“三无”船舶非法捕捞，违反伏季休渔规定捕捞、航行、停泊，为违反伏季休渔规定船舶提供辅助服务，非法越线越界捕捞，跨区域作
+    terms:
+    - '2026'
+    - 有关要求
+    - 条文要点
+    - 细化工作举措
+    - 各地要结合各自工
+    - 作职责
+    - 辖区监管实际和以
+    - 往执法经验
+    evidence:
+    - doc: POL-ENF-068
+      section: 三、有关要求
+    abstained: false
+  source_fact: FACT-PROV-012
+  review_status: draft
+- id: EV2-093
+  question: 福建省实施《中华人民共和国渔业法》办法 第一条的条文要点是什么？
+  split: test
+  persona: captain
+  expected:
+    answer: 第一条 为了加强渔业资源的保护、增殖、开发和合理利用，发展人工养殖，保障渔业生产者的合法权益，促进渔业的可持续发展，根据《中华人民共和国渔业法》等有关法律、法规，结合本省实际，制定本办法。
+    terms:
+    - 福建省实施
+    - 中华人民共和国渔
+    - 业法
+    - 办法
+    - 第一条
+    - 条文要点
+    - 为了加强渔业资源
+    - 的保护
+    evidence:
+    - doc: POL-FJ-025
+      section: 第一条
+    abstained: false
+  source_fact: FACT-PROV-013
+  review_status: draft
+- id: EV2-094
+  question: 福建省实施《中华人民共和国渔业法》办法 第二条的条文要点是什么？
+  split: test
+  persona: captain
+  expected:
+    answer: 第二条 在本省管辖的海域和内陆水域从事养殖和捕捞水生动物、水生植物等渔业生产以及渔业资源繁殖保护活动，适用本办法。
+    terms:
+    - 福建省实施
+    - 中华人民共和国渔
+    - 业法
+    - 办法
+    - 第二条
+    - 条文要点
+    - 在本省管辖的海域
+    - 和内陆水域从事养
+    evidence:
+    - doc: POL-FJ-025
+      section: 第二条
+    abstained: false
+  source_fact: FACT-PROV-014
+  review_status: draft
+- id: EV2-095
+  question: 福建省实施《中华人民共和国渔业法》办法 第三条的条文要点是什么？
+  split: test
+  persona: captain
+  expected:
+    answer: 第三条 省人民政府渔业行政主管部门主管全省的渔业工作，设区的市、县（市、区）人民政府渔业行政主管部门主管本行政区域内的渔业工作。县级以上地方人民政府渔业行政主管部门所属的渔政渔港监督管理机构，依法负责渔政渔港监督管理的具体工作。
+    terms:
+    - 福建省实施
+    - 中华人民共和国渔
+    - 业法
+    - 办法
+    - 第三条
+    - 条文要点
+    - 省人民政府渔业行
+    - 政主管部门主管全
+    evidence:
+    - doc: POL-FJ-025
+      section: 第三条
+    abstained: false
+  source_fact: FACT-PROV-015
+  review_status: draft
+- id: EV2-096
+  question: 福建省实施《中华人民共和国渔业法》办法 第四条的条文要点是什么？
+  split: test
+  persona: captain
+  expected:
+    answer: 第四条 公安、海事、交通运输、生态环境、自然资源、水利、农业农村、应急管理、市场监督管理、海警等部门，应当根据各自的职责，负责有关的渔业监督管理工作。公安部门可以在重点渔业水域和渔区设置派出机构。
+    terms:
+    - 福建省实施
+    - 中华人民共和国渔
+    - 业法
+    - 办法
+    - 第四条
+    - 条文要点
+    - 公安
+    - 海事
+    evidence:
+    - doc: POL-FJ-025
+      section: 第四条
+    abstained: false
+  source_fact: FACT-PROV-016
+  review_status: draft
+- id: EV2-097
+  question: 福建省实施《中华人民共和国渔业法》办法 第五条的条文要点是什么？
+  split: test
+  persona: captain
+  expected:
+    answer: 第五条 渔业的监督管理实行统一领导，分级管理。机动渔船底拖网禁渔区线内侧海域及国家指定由本省管辖的海域，由县级以上地方人民政府渔业行政主管部门及其所属的渔政渔港监督管理机构监督管理。
+      内陆水域的渔业，由行政区域内有关设区的市、县（市、区）人民政府渔业行政主管部门及其所属的渔政渔港监督管理机构监督管理；跨行政区域的，由有关县级以上地方人民政府协商制定管理办法，或者由共同的上一级人民政府渔业行政主管部门及其所属的渔政渔港监督管理机构监督管理。
+    terms:
+    - 福建省实施
+    - 中华人民共和国渔
+    - 业法
+    - 办法
+    - 第五条
+    - 条文要点
+    - 渔业的监督管理实
+    - 行统一领导
+    evidence:
+    - doc: POL-FJ-025
+      section: 第五条
+    abstained: false
+  source_fact: FACT-PROV-017
+  review_status: draft
+- id: EV2-098
+  question: 福建省渔港和渔业船舶管理条例 第一条的条文要点是什么？
+  split: test
+  persona: captain
+  expected:
+    answer: 第一条 为了加强渔港和渔业船舶管理，发挥渔港功能，保障渔港设施、渔业船舶和从业人员人身、财产的安全，促进渔业经济可持续发展，根据有关法律、法规，结合本省实际，制定本条例。
+    terms:
+    - 福建省渔港和渔业
+    - 船舶管理条例
+    - 第一条
+    - 条文要点
+    - 为了加强渔港和渔
+    - 业船舶管理
+    - 发挥渔港功能
+    - 保障渔港设施
+    evidence:
+    - doc: POL-FJ-026
+      section: 第一条
+    abstained: false
+  source_fact: FACT-PROV-018
+  review_status: draft
+- id: EV2-099
+  question: 福建省渔港和渔业船舶管理条例 第二条的条文要点是什么？
+  split: test
+  persona: captain
+  expected:
+    answer: 第二条 本条例所称渔港是指专门为渔业生产服务和供渔业船舶停泊、避风、装卸渔获物、补充渔需物资的人工港口或者自然港湾，包括综合性港口中渔业专用码头、渔业专用的水域和渔船专用的锚地。
+      本条例所称渔业船舶是指从事渔业生产的船舶、为渔业生产服务的船舶和渔业公务船。
+    terms:
+    - 福建省渔港和渔业
+    - 船舶管理条例
+    - 第二条
+    - 条文要点
+    - 本条例所称渔港是
+    - 指专门为渔业生产
+    - 服务和供渔业船舶
+    - 停泊
+    evidence:
+    - doc: POL-FJ-026
+      section: 第二条
+    abstained: false
+  source_fact: FACT-PROV-019
+  review_status: draft
+- id: EV2-100
+  question: 福建省渔港和渔业船舶管理条例 第三条的条文要点是什么？
+  split: test
+  persona: captain
+  expected:
+    answer: 第三条 在本省行政区域内从事渔港规划、建设、经营和管理，渔业船舶设计、建造、修理、使用和管理，以及其他相关活动的，应当遵守本条例。
+    terms:
+    - 福建省渔港和渔业
+    - 船舶管理条例
+    - 第三条
+    - 条文要点
+    - 在本省行政区域内
+    - 从事渔港规划
+    - 建设
+    - 经营和管理
+    evidence:
+    - doc: POL-FJ-026
+      section: 第三条
+    abstained: false
+  source_fact: FACT-PROV-020
+  review_status: draft
+- id: EV2-101
+  question: 福建省渔港和渔业船舶管理条例 第四条的条文要点是什么？
+  split: test
+  persona: captain
+  expected:
+    answer: 第四条 县级以上地方人民政府渔业行政主管部门负责本行政区域内渔港和渔业船舶管理工作。 县级以上地方人民政府渔业行政主管部门所属的渔政渔港监督机构依法对渔港和渔业船舶实施监督管理。
+      渔业船舶检验机构依法负责渔业船舶的检验工作。 公安边防、交通、海洋、国土资源、环境保护、水利、安全生产监督、质量技术监督、工商行政管理等部门和海事管理机构在各自的职责范围内开展渔港和渔业船舶管理工作。
+      第二章 渔港规划与建设
+    terms:
+    - 福建省渔港和渔业
+    - 船舶管理条例
+    - 第四条
+    - 条文要点
+    - 县级以上地方人民
+    - 政府渔业行政主管
+    - 部门负责本行政区
+    - 域内渔港和渔业船
+    evidence:
+    - doc: POL-FJ-026
+      section: 第四条
+    abstained: false
+  source_fact: FACT-PROV-021
+  review_status: draft
+- id: EV2-102
+  question: 福建省渔港和渔业船舶管理条例 第五条的条文要点是什么？
+  split: test
+  persona: captain
+  expected:
+    answer: 第五条 渔港规划应当根据经济和社会发展的需要编制，符合海洋功能区划、港口规划和土地利用总体规划，并与城市总体规划、城镇体系规划、防洪防潮规划等相关规划相衔接。
+      渔港规划包括渔港布局规划和渔港总体规划。
+    terms:
+    - 福建省渔港和渔业
+    - 船舶管理条例
+    - 第五条
+    - 条文要点
+    - 渔港规划应当根据
+    - 经济和社会发展的
+    - 需要编制
+    - 符合海洋功能区划
+    evidence:
+    - doc: POL-FJ-026
+      section: 第五条
+    abstained: false
+  source_fact: FACT-PROV-022
+  review_status: draft
+- id: EV2-103
+  question: 广东省渔业管理条例 第一条的条文要点是什么？
+  split: test
+  persona: captain
+  expected:
+    answer: 第一条 为加强渔业资源保护、增殖、开发和合理利用，保障渔业生产者的合法权益，促进渔业的可持续发展，根据《中华人民共和国农业法》、《中华人民共和国渔业法》及其他有关法律、法规，结合本省实际，制定本条例。
+      第二条 在本省水域、滩涂和国家规定由本省实施渔业监督管理的水域从事养殖、捕捞等渔业生产活动以及管理，必须遵守本条例。 第三条 县级以上人民政府应当把渔业生产纳入国民经济发展计划，采取措施，加强水域的统一规划和综合利用。
+      渔业生产实行以养殖为主，养殖、捕捞、加工并举，因地制宜，各
+    terms:
+    - 广东省渔业管理条
+    - 第一条
+    - 条文要点
+    - 为加强渔业资源保
+    - 增殖
+    - 开发和合理利用
+    - 保障渔业生产者的
+    - 合法权益
+    evidence:
+    - doc: POL-GD-021
+      section: 第一条
+    abstained: false
+  source_fact: FACT-PROV-023
+  review_status: draft
+- id: EV2-104
+  question: 广东省渔业管理条例 第九条的条文要点是什么？
+  split: test
+  persona: captain
+  expected:
+    answer: 第九条 省人民政府渔业行政主管部门应当根据国家对水域、滩涂利用的统一规划，会同交通、自然资源、建设、生态环境、水利、林业、海事等有关部门，制定养殖水域、滩涂利用规划，报省人民政府批准实施。养殖水域、滩涂利用规划应当与土地利用、防洪、防风等规划相衔接。
+      县级以上人民政府应当加强商品鱼生产基地和城市郊区重要养殖水域的保护，划定养殖保护区，采取相应的保护措施。 第十条 县级以上人民政府渔业行政主管部门应当加强对所辖水域、滩涂养殖容量的调查评估，根据养殖区域的自然承载力，确定养殖容量
+    terms:
+    - 广东省渔业管理条
+    - 第九条
+    - 条文要点
+    - 省人民政府渔业行
+    - 政主管部门应当根
+    - 据国家对水域
+    - 滩涂利用的统一规
+    - 会同交通
+    evidence:
+    - doc: POL-GD-021
+      section: 第九条
+    abstained: false
+  source_fact: FACT-PROV-024
+  review_status: draft
+- id: EV2-105
+  question: 广东省渔业管理条例 第十七条的条文要点是什么？
+  split: test
+  persona: captain
+  expected:
+    answer: 第十七条 从事水产苗种生产的单位和个人必须向生产所在地县级以上人民政府渔业行政主管部门提出申请，经批准后方可从事生产。但是，渔业生产者自育、自用水产苗种的除外。渔业行政主管部门必须在收到申请后三十日内作出许可或者不予许可的决定。对不予许可的，必须书面说明理由。
+      水产苗种生产许可证实行分级分类审批制度，具体办法由省人民政府渔业行政主管部门制定。
+    terms:
+    - 广东省渔业管理条
+    - 第十七条
+    - 条文要点
+    - 从事水产苗种生产
+    - 的单位和个人必须
+    - 向生产所在地县级
+    - 以上人民政府渔业
+    - 行政主管部门提出
+    evidence:
+    - doc: POL-GD-021
+      section: 第十七条
+    abstained: false
+  source_fact: FACT-PROV-025
+  review_status: draft
+- id: EV2-106
+  question: 广东省渔业管理条例 第十八条的条文要点是什么？
+  split: test
+  persona: captain
+  expected:
+    answer: 第十八条 从事水产苗种生产的单位和个人应当应用良种良法，按照水产苗种生产技术操作规程和标准进行生产，建立生产和技术档案。 生产和销售的水产苗种质量应当符合国家标准、或者行业标准、或者地方标准。销售的水产苗种应当附有质量合格证。
+      第十九条 县级以上人民政府渔业行政主管部门应当加强水产苗种质量的监督管理。 地级以上市人民政府渔业行政主管部门应当对生产和销售单位进行苗种质量检测，并将结果向社会公布。
+      第二十条 县级以上人民政府渔业行政主管部门应当加强水生生物安全的监督管理，应对辖区
+    terms:
+    - 广东省渔业管理条
+    - 第十八条
+    - 条文要点
+    - 从事水产苗种生产
+    - 的单位和个人应当
+    - 应用良种良法
+    - 按照水产苗种生产
+    - 技术操作规程和标
+    evidence:
+    - doc: POL-GD-021
+      section: 第十八条
+    abstained: false
+  source_fact: FACT-PROV-026
+  review_status: draft
+- id: EV2-107
+  question: 广东省渔业管理条例 第二十一条的条文要点是什么？
+  split: test
+  persona: captain
+  expected:
+    answer: 第二十一条 进口、出口水产苗种，应当依法办理审批手续。 从境外引进的水产苗种，不得擅自转让和销售。 水产苗种进口、出口必须按照国家法律、行政法规的规定实施检疫。
+      第四章 捕捞管理
+    terms:
+    - 广东省渔业管理条
+    - 第二十一条
+    - 条文要点
+    - 进口
+    - 出口水产苗种
+    - 应当依法办理审批
+    - 手续
+    - 从境外引进的水产
+    evidence:
+    - doc: POL-GD-021
+      section: 第二十一条
+    abstained: false
+  source_fact: FACT-PROV-027
+  review_status: draft
+- id: EV2-108
+  question: 广东省渔港和渔业船舶管理条例 第一条的条文要点是什么？
+  split: test
+  persona: captain
+  expected:
+    answer: 第一条 为了加强渔港和渔业船舶管理，保护渔港和渔业船舶所有者和经营者的合法权益，保障渔业生产安全，促进渔业发展，根据《中华人民共和国渔业法》等法律法规，结合本省实际，制定本条例。
+    terms:
+    - 广东省渔港和渔业
+    - 船舶管理条例
+    - 第一条
+    - 条文要点
+    - 为了加强渔港和渔
+    - 业船舶管理
+    - 保护渔港和渔业船
+    - 舶所有者和经营者
+    evidence:
+    - doc: POL-GD-022
+      section: 第一条
+    abstained: false
+  source_fact: FACT-PROV-028
+  review_status: draft
+- id: EV2-109
+  question: 广东省渔港和渔业船舶管理条例 第二条的条文要点是什么？
+  split: test
+  persona: captain
+  expected:
+    answer: 第二条 本条例适用于本省行政区域及管辖水域内渔港的规划、建设、维护、经营和管理，渔业船舶的设计、制造、维修、使用和管理。
+    terms:
+    - 广东省渔港和渔业
+    - 船舶管理条例
+    - 第二条
+    - 条文要点
+    - 本条例适用于本省
+    - 行政区域及管辖水
+    - 域内渔港的规划
+    - 建设
+    evidence:
+    - doc: POL-GD-022
+      section: 第二条
+    abstained: false
+  source_fact: FACT-PROV-029
+  review_status: draft
+- id: EV2-110
+  question: 广东省渔港和渔业船舶管理条例 第三条的条文要点是什么？
+  split: test
+  persona: captain
+  expected:
+    answer: 第三条 县级以上人民政府渔业主管部门负责本行政区域内渔港和渔业船舶的管理工作。县级以上渔政监督管理机构、渔业船舶检验机构具体负责对渔港和渔业船舶的监督管理。
+      县级以上人民政府公安、市场监督管理等部门以及渔港所在地乡镇人民政府，按照各自职责做好渔港和渔业船舶的监督管理工作。
+    terms:
+    - 广东省渔港和渔业
+    - 船舶管理条例
+    - 第三条
+    - 条文要点
+    - 县级以上人民政府
+    - 渔业主管部门负责
+    - 本行政区域内渔港
+    - 和渔业船舶的管理
+    evidence:
+    - doc: POL-GD-022
+      section: 第三条
+    abstained: false
+  source_fact: FACT-PROV-030
+  review_status: draft
+- id: EV2-111
+  question: 某渔场的历史渔汛期与主要经济鱼种是什么？
+  split: test
+  persona: captain
+  expected:
+    answer: 证据不足
+    terms: []
+    evidence: []
+    abstained: true
+    reason: placeholder
+  source_fact: ''
+  review_status: reviewed
+- id: EV2-112
+  question: 某年度南海区拖网渔船数量是多少？
+  split: test
+  persona: captain
+  expected:
+    answer: 证据不足
+    terms: []
+    evidence: []
+    abstained: true
+    reason: placeholder
+  source_fact: ''
+  review_status: reviewed
+- id: EV2-113
+  question: 今年第5号台风对南海渔场的影响如何？
+  split: test
+  persona: captain
+  expected:
+    answer: 证据不足
+    terms: []
+    evidence: []
+    abstained: true
+    reason: no_hazard_source
+  source_fact: ''
+  review_status: reviewed
+- id: EV2-114
+  question: 未来一周南海海温预报是多少？
+  split: test
+  persona: captain
+  expected:
+    answer: 证据不足
+    terms: []
+    evidence: []
+    abstained: true
+    reason: no_forecast_source
+  source_fact: ''
+  review_status: reviewed
+- id: EV2-115
+  question: 某品种的IUCN保护等级是什么？
+  split: test
+  persona: captain
+  expected:
+    answer: 证据不足
+    terms: []
+    evidence: []
+    abstained: true
+    reason: placeholder
+  source_fact: ''
+  review_status: reviewed
+- id: EV2-116
+  question: 某海域的珊瑚礁覆盖率是多少？
+  split: test
+  persona: captain
+  expected:
+    answer: 证据不足
+    terms: []
+    evidence: []
+    abstained: true
+    reason: placeholder
+  source_fact: ''
+  review_status: reviewed
+- id: EV2-117
+  question: 2027年南海伏季休渔时间是否已经公布？
+  split: test
+  persona: captain
+  expected:
+    answer: 证据不足
+    terms: []
+    evidence: []
+    abstained: true
+    reason: future
+  source_fact: ''
+  review_status: reviewed
+- id: EV2-118
+  question: 某渔港的泊位数量是多少？
+  split: test
+  persona: captain
+  expected:
+    answer: 证据不足
+    terms: []
+    evidence: []
+    abstained: true
+    reason: placeholder
+  source_fact: ''
+  review_status: reviewed
+- id: EV2-119
+  question: 某类渔船的船员最低配员是多少？
+  split: test
+  persona: captain
+  expected:
+    answer: 证据不足
+    terms: []
+    evidence: []
+    abstained: true
+    reason: placeholder
+  source_fact: ''
+  review_status: reviewed
+- id: EV2-120
+  question: 历史渔汛与中心渔场如何变化？
+  split: test
+  persona: captain
+  expected:
+    answer: 证据不足
+    terms: []
+    evidence: []
+    abstained: true
+    reason: no_source
+  source_fact: ''
+  review_status: reviewed
