@@ -2419,8 +2419,134 @@ sources:
     mime: text/html
     snapshot_path: raw/POL-RED-089/red-tide-emergency-plan-2021.html
 
+- id: POL-CONS-090
+  title: 我国海洋渔业资源衰退速度大幅减慢 水产品总产量连续34年居世界第一
+  title_zh: 我国海洋渔业资源衰退速度大幅减慢 水产品总产量连续34年居世界第一
+  publisher: 农业农村部
+  year: 2024
+  type: notice
+  jurisdiction: national
+  format: html
+  location: raw/POL-CONS-090/overfishing-2024.html
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P2
+  volume: 1 HTML page; official reprint of a People's Daily report
+  update_freq: static
+  hash: d943c9d0b0546b9ff10204537f9226d732e38ac0c4d3a37f93ec5235bf5e3cd2
+  acquisition: Captured 2026-11-06 from https://www.moa.gov.cn/ztzl/ymksn/rmrbbd/202412/t20241205_6467503.htm
+  notes: 'Term evidence: the report states that climate change, water pollution, construction and 过度捕捞 continue to pressure fishery resources. It is an official news/reference page, not a normative definition.'
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: main
+    parseable: true
+    note: Registered in the main index for terminology evidence.
+  lifecycle: active
+  source_class: reference
+  currency:
+    as_of: '2026-11-06'
+    basis: publication
+    review_due: '2027-05-05'
+    cadence: semiannual
+    note: 2024 news report; static.
+  watch_note: Static official news page; rechecked at the quarterly review.
+  provenance:
+    url: https://www.moa.gov.cn/ztzl/ymksn/rmrbbd/202412/t20241205_6467503.htm
+    published_at: '2024-12-05'
+    retrieved_at: '2026-11-06'
+    sha256: d943c9d0b0546b9ff10204537f9226d732e38ac0c4d3a37f93ec5235bf5e3cd2
+    bytes: 50363
+    mime: text/html
+    snapshot_path: raw/POL-CONS-090/overfishing-2024.html
+
+- id: POL-MIN-091
+  title: 农业部关于实施带鱼等15种重要经济鱼类最小可捕标准及幼鱼比例管理规定的通告
+  title_zh: 农业部关于实施带鱼等15种重要经济鱼类最小可捕标准及幼鱼比例管理规定的通告
+  publisher: 农业部
+  year: 2018
+  type: notice
+  jurisdiction: national
+  format: html
+  location: raw/POL-MIN-091/minimum-catch-2018.html
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P2
+  volume: 1 HTML page; 15 species and juvenile-ratio rules
+  update_freq: static
+  hash: af9068fe40c765752bc515d7f5438f4a4a2cd6737df3bbe38e492bb9418c75cb
+  acquisition: Captured 2026-11-06 from https://www.moa.gov.cn/govpublic/YYJ/201802/t20180213_6136943.htm
+  notes: 'Term evidence: the heading and table use 最小可捕规格 for 15 economic fish species; fish below the minimum are 幼鱼.'
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: main
+    parseable: true
+    note: Registered in the main index for terminology evidence.
+  lifecycle: active
+  source_class: normative
+  currency:
+    as_of: '2026-11-06'
+    basis: publication
+    review_due: '2026-12-06'
+    cadence: monthly
+    note: 2018 notice; static.
+  watch_note: Static official notice; no change feed. Rechecked at the quarterly review.
+  provenance:
+    url: https://www.moa.gov.cn/govpublic/YYJ/201802/t20180213_6136943.htm
+    document_no: 农业部通告〔2018〕3号
+    published_at: '2018-02-12'
+    retrieved_at: '2026-11-06'
+    sha256: af9068fe40c765752bc515d7f5438f4a4a2cd6737df3bbe38e492bb9418c75cb
+    bytes: 78492
+    mime: text/html
+    snapshot_path: raw/POL-MIN-091/minimum-catch-2018.html
+
+- id: INT-SUS-092
+  title: 中国积极行动促进可持续渔业发展
+  title_zh: 中国积极行动促进可持续渔业发展
+  publisher: 联合国
+  year: 2024
+  type: fishery_product
+  jurisdiction: international
+  format: pdf
+  location: raw/INT-SUS-092/china-sustainable-fisheries.pdf
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P2
+  volume: 1 PDF; 7 pages
+  update_freq: static
+  hash: 3e67a3ce5fe91050832ee32c8826af435d64f9f2905511597d8da10c636aad5e
+  acquisition: Captured 2026-11-06 from https://www.un.org/oceancapacity/sites/www.un.org.oceancapacity/files/china.pdf
+  notes: 'Term evidence: section 一（二） is titled 加强兼捕物种保护和管理; the document is an undated UN capacity-development report, so year is approximate.'
+  level: international
+  authority_tier: A
+  retrieval:
+    channel: main
+    parseable: true
+    note: Registered in the main index for terminology evidence.
+  lifecycle: active
+  source_class: reference
+  currency:
+    as_of: '2026-11-06'
+    basis: retrieval
+    review_due: '2027-05-05'
+    cadence: semiannual
+    note: Undated UN report; rechecked at the semiannual review.
+  watch_note: Static international report; rechecked at the quarterly review.
+  provenance:
+    url: https://www.un.org/oceancapacity/sites/www.un.org.oceancapacity/files/china.pdf
+    retrieved_at: '2026-11-06'
+    sha256: 3e67a3ce5fe91050832ee32c8826af435d64f9f2905511597d8da10c636aad5e
+    bytes: 679636
+    mime: application/pdf
+    snapshot_path: raw/INT-SUS-092/china-sustainable-fisheries.pdf
+
 gaps:
-- Seventy sources are registered: seventy acquired and no open candidates awaiting disposition.
+- Seventy-three sources are registered: seventy-three acquired and no open candidates awaiting disposition.
 - The yearbook coverage matrix has no values in the public repository; all values stay local.
 - The yearbook infrastructure table is missing for data years 2018 and 2019; the 2018 national port plan supplies a baseline whose port classes are close to, but not identical with, the yearbook table.
 - The vessel-length proxy is missing for data year 2024.

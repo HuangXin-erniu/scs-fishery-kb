@@ -843,3 +843,11 @@ This log records material project changes by date. It does not use release versi
 - Post-term-batch 120-question run: overall 0.8069, dev 0.8945, test 0.6319 (0.6189 before the batch), citation 1.0000, recall 0.9667, abstention 0.9000. Gate passes.
 - Updated `docs/evaluation.md` and `docs/plan.md`; earlier 0.5820/0.6189/0.8026 figures remain as history.
 - No code, config, eval set, facts, terms, playbooks or data changed.
+
+## 2026-11-06 — Batch 2: three sources, five term approvals
+
+- Added `POL-CONS-090` (2024 MOA report on 过度捕捞), `POL-MIN-091` (2018 standalone 最小可捕规格 notice) and `INT-SUS-092` (UN 兼捕 report). The first broad captures (the 2006 action outline and a 64-page gazette PDF) were replaced after staging showed they answered out-of-scope loan and voyage questions.
+- Approved 5 more terms: 非法捕捞水产品罪 and 型宽 from existing sources, plus 过度捕捞, 最小可捕规格 and 兼捕. Terms are **128 approved / 22 draft**.
+- Staging/main gate: v1 31/31, dev 19/19, test 12/12, abstention 8/11; v2 dev 0.8945, test 0.6327, overall 0.8072, citation 1.0000, recall 0.9667, abstention 0.9000.
+- Corpus is 73 sources / 38 documents / **920 chunks** (v1 `0a8d928f2ad2`, v2 `659a7a8c507e`); external store is 499 documents / 555 chunks (`7c58c522ab5c`, dense `05da8d22eab284cc`). All five new terms retrieve in top 5.
+- 414 tests pass; private gate 0 hits; no tag or release.
