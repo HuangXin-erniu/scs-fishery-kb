@@ -8,6 +8,7 @@ import json
 import os
 import sys
 import time
+from collections import Counter
 from pathlib import Path
 
 import yaml
@@ -47,6 +48,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--allowlist", default=str(REPO_ROOT / "configs" / "web-sources.yaml"))
     parser.add_argument("--searxng-url", default=os.environ.get("SEARXNG_URL", ""))
     parser.add_argument("--delay", type=float, default=5.0)
+    parser.add_argument("--report-dir", default="P10-WEB-140")
     args = parser.parse_args(argv)
     if not args.data_root or not args.run_root:
         print("error: set SCS_FKB_DATA_ROOT and SCS_FKB_RUN_ROOT", file=sys.stderr)
@@ -76,6 +78,7 @@ def main(argv: list[str] | None = None) -> int:
                 "question": question,
                 "nature": nature,
                 "triggered": result.triggered,
+                "provider": result.provider,
                 "evidences": len(result.evidences),
                 "cached": result.cached,
                 "dropped": len(result.dropped),
@@ -91,7 +94,7 @@ def main(argv: list[str] | None = None) -> int:
         )
         if index < len(QUERIES) and args.delay > 0:
             time.sleep(args.delay)
-    report_path = Path(args.run_root).expanduser() / "P10-WEB-140" / "smoke.md"
+    report_path = Path(args.run_root).expanduser() / args.report_dir / "smoke.md"
     report_path.parent.mkdir(parents=True, exist_ok=True)
     total = len(rows)
     with_evidence = sum(1 for row in rows if row["evidences"] > 0)
@@ -99,13 +102,14 @@ def main(argv: list[str] | None = None) -> int:
     total_dropped = sum(row["dropped"] for row in rows)
     total_failures = sum(row["failures"] for row in rows)
     lines = [
-        "# P10-WEB-140 web smoke",
+        f"# {args.report_dir} web smoke",
         "",
         f"- Queries: {total}",
         f"- Queries with at least one allowlisted evidence: {with_evidence}",
         f"- Evidence records: {total_evidence}",
         f"- Non-allowlisted drops: {total_dropped}",
         f"- Fetch/search failures: {total_failures}",
+        f"- Providers: {dict(Counter(row['provider'] for row in rows))}",
         "",
         "| # | Question | Nature | Evidence | Dropped | Failures | TTLs |",
         "|---:|---|---|---:|---:|---:|---|",

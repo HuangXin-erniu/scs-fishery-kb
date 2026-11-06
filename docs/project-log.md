@@ -802,3 +802,11 @@ This log records material project changes by date. It does not use release versi
 - Reviewed 15 playbooks / 32 steps and corrected six unsupported statements (application materials, permit-term wording, quota rule, fee range, “可以并处” wording).
 - Added `docs/review-2026-11-06.md` with the method, promotion IDs, rejection categories, term gaps and playbook corrections. This is an AI-assisted first pass; owner spot-check of the 20 promotions and six corrections is still required.
 - No answer, service, retrieval, web, index or evaluation code changed. No tag or release is created.
+
+## 2026-11-06 — Optional SearXNG provider with DuckDuckGo fallback
+
+- Added `FallbackProvider`: a configured SearXNG JSON endpoint is tried first; empty results or provider errors fall back to DuckDuckGo. `SEARXNG_URL` remains optional and CI does not need a SearXNG instance.
+- Removed the `safesearch` query parameter from the SearXNG request; the local instance uses the two Chinese engines that work here (`360search`, `sogou`) via `use_default_settings.engines.keep_only`.
+- Added `docs/web-search.md` with reproducible local setup, settings, JSON check and the `SEARXNG_URL` smoke command.
+- Combined-provider smoke: 20 queries, 15 with allowlisted evidence, 37 evidence records, 84 non-allowlisted drops, 1 explicit PDF timeout, provider label `searxng+ddgs`. The fallback recovered long queries that SearXNG returned empty.
+- No corpus, answer, index, facts, terms or playbook changes; no tag or release.
