@@ -874,3 +874,9 @@ This log records material project changes by date. It does not use release versi
 - Staging/main gate: v1 31/31, dev 19/19, test 12/12, abstention 8/11; v2 dev 0.8945, test 0.6161, overall 0.8017, citation 1.0000, recall 0.9667, abstention 0.9000. Test fell 1.49pp and is report-only under the agreed gate.
 - Corpus is 77 sources / 42 documents / **1014 chunks** (v1 `f7a244373e77`, v2 `d007984ae168`); external store is 507 documents / 563 chunks (`458aad366fe1`, dense `91e8ec609611dccb`). The three new terms retrieve in top 5.
 - 414 tests pass; private gate 0 hits; no tag or release.
+
+## 2026-11-06 — Evaluation docs synced after term batch 4
+
+- Post-batch-4 120-question run: overall 0.8017, dev 0.8945, test 0.6161 (0.6310 before), citation 1.0000, recall 0.9667, abstention 0.9000. Dev gate held; test is report-only.
+- Updated `docs/evaluation.md` and `docs/plan.md`; earlier 0.8066/0.6310 figures remain as history.
+- No code, config, eval set, facts, terms, playbooks or data changed.
