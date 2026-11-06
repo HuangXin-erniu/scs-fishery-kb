@@ -13,6 +13,7 @@ from scs_fkb.web_v2 import (
     ProviderError,
     SearchResult,
     SearXNGProvider,
+    build_provider,
     citation,
     fetch_page,
     find_allowed,
@@ -22,6 +23,7 @@ from scs_fkb.web_v2 import (
     should_search,
     ttl_days,
 )
+from scs_fkb.web_v2.providers import FallbackProvider
 
 
 def _allowlist(tmp_path: Path) -> list[AllowedSource]:
@@ -222,3 +224,48 @@ def test_searxng_provider_parses_json() -> None:
     provider = SearXNGProvider("http://127.0.0.1:8888", opener=opener)
     results = provider.search("休渔")
     assert results[0].url == "https://www.moa.gov.cn/a"
+
+
+class _FixedProvider:
+    def __init__(self, name: str, results: list[SearchResult], error: Exception | None = None):
+        self.name = name
+        self.results = results
+        self.error = error
+        self.calls = 0
+
+    def search(self, query: str, max_results: int = 8) -> list[SearchResult]:
+        self.calls += 1
+        if self.error:
+            raise self.error
+        return self.results
+
+
+def test_fallback_provider_prefers_primary() -> None:
+    primary = _FixedProvider("primary", [SearchResult("P", "https://www.moa.gov.cn/a", "", 1)])
+    fallback = _FixedProvider("fallback", [SearchResult("F", "https://www.moa.gov.cn/b", "", 1)])
+    result = FallbackProvider(primary, fallback).search("休渔")
+    assert result[0].title == "P"
+    assert fallback.calls == 0
+
+
+def test_fallback_provider_uses_fallback_on_empty_or_error() -> None:
+    empty = _FixedProvider("primary", [])
+    fallback = _FixedProvider("fallback", [SearchResult("F", "https://www.moa.gov.cn/b", "", 1)])
+    assert FallbackProvider(empty, fallback).search("休渔")[0].title == "F"
+
+    broken = _FixedProvider("primary", [], ProviderError("offline"))
+    assert FallbackProvider(broken, fallback).search("休渔")[0].title == "F"
+
+
+def test_fallback_provider_raises_when_both_fail() -> None:
+    primary = _FixedProvider("primary", [], ProviderError("p"))
+    fallback = _FixedProvider("fallback", [], ProviderError("f"))
+    with pytest.raises(ProviderError, match="p.*f"):
+        FallbackProvider(primary, fallback).search("休渔")
+
+
+def test_build_provider_returns_combined_when_searxng_is_configured() -> None:
+    provider = build_provider("http://127.0.0.1:8888")
+    assert isinstance(provider, FallbackProvider)
+    assert isinstance(provider.primary, SearXNGProvider)
+    assert isinstance(build_provider(""), type(build_provider("")))

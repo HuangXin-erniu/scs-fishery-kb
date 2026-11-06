@@ -53,9 +53,7 @@ class SearXNGProvider:
             return response.read()
 
     def search(self, query: str, max_results: int = 8) -> list[SearchResult]:
-        params = urllib.parse.urlencode(
-            {"q": query, "format": "json", "language": self.language, "safesearch": 1}
-        )
+        params = urllib.parse.urlencode({"q": query, "format": "json", "language": self.language})
         request = urllib.request.Request(
             f"{self.base_url}/search?{params}",
             headers={"User-Agent": self.user_agent, "Accept": "application/json"},
@@ -149,6 +147,34 @@ class DuckDuckGoProvider:
         return results
 
 
+class FallbackProvider:
+    """Use a primary provider, then fall back when it is empty or fails."""
+
+    name = "searxng+ddgs"
+
+    def __init__(self, primary: SearchProvider, fallback: SearchProvider) -> None:
+        self.primary = primary
+        self.fallback = fallback
+
+    def search(self, query: str, max_results: int = 8) -> list[SearchResult]:
+        errors: list[str] = []
+        try:
+            results = self.primary.search(query, max_results=max_results)
+            if results:
+                return results
+        except ProviderError as exc:
+            errors.append(str(exc))
+        try:
+            results = self.fallback.search(query, max_results=max_results)
+            if results:
+                return results
+        except ProviderError as exc:
+            errors.append(str(exc))
+        if errors:
+            raise ProviderError("; ".join(errors))
+        return []
+
+
 def build_provider(
     searxng_url: str = "",
     *,
@@ -156,15 +182,17 @@ def build_provider(
     timeout: float = 15.0,
     backend: str = "auto",
 ) -> SearchProvider:
-    if searxng_url:
-        return SearXNGProvider(searxng_url, timeout=timeout)
     if fallback != "ddgs":
         raise ProviderError(f"unsupported search fallback: {fallback}")
-    return DuckDuckGoProvider(timeout=timeout, backend=backend)
+    ddg = DuckDuckGoProvider(timeout=timeout, backend=backend)
+    if searxng_url:
+        return FallbackProvider(SearXNGProvider(searxng_url, timeout=timeout), ddg)
+    return ddg
 
 
 __all__ = [
     "DuckDuckGoProvider",
+    "FallbackProvider",
     "ProviderError",
     "SearchProvider",
     "SearchResult",

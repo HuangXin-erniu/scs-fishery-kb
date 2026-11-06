@@ -121,7 +121,7 @@ The seeded cards are four WoRMS taxonomy cards for South China Sea species, one 
 
 ## Controlled web evidence
 
-The ephemeral channel is not a web card. A `SearXNG` JSON endpoint is used when configured; otherwise the DuckDuckGo client in `requirements-rag.txt` is the fallback. Neither is required by CI. A `WebEvidence` record is created at query time and cached with a TTL; it carries `url`, `publisher`, `domain`, `fetched_at`, `content_hash`, `authority_tier`, `snippet`, `search_query`, `rank` and `ttl_days`. It is never written to `corpus.yaml` or the canonical index.
+The ephemeral channel is not a web card. A `SearXNG` JSON endpoint is used when configured; when it returns no results or errors, the provider falls back to the DuckDuckGo client in `requirements-rag.txt`. Neither is required by CI. The local setup is documented in [web-search.md](web-search.md). A `WebEvidence` record is created at query time and cached with a TTL; it carries `url`, `publisher`, `domain`, `fetched_at`, `content_hash`, `authority_tier`, `snippet`, `search_query`, `rank` and `ttl_days`. It is never written to `corpus.yaml` or the canonical index.
 
 - **Trigger:** explicit user request, a freshness cue (`最新`, `今年`, `现在`, `台风`, `预警`), an in-scope canonical abstention, or canonical evidence older than the freshness window for the claim nature.
 - **Allowlist:** only hosts in [configs/web-sources.yaml](../configs/web-sources.yaml); https only; non-allowlisted results are dropped and logged. Specific central and provincial domains carry tier A/B; the generic `gov.cn` fallback is tier C and is labelled `地方政府网站（层级待核）`, so a municipal page cannot be promoted to national authority by host alone.
