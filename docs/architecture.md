@@ -110,6 +110,13 @@ step references and source ids; `scripts/weekly_update.sh` runs the source,
 watch, fact, term and playbook checks and writes a dated report without
 ingesting anything.
 
+**Answer service v2 (2026-11-06).** `src/scs_fkb/service_v2/` composes v2 hybrid
+retrieval, the extractive answer path, approved facts/playbooks and optional
+web evidence behind a FastAPI contract. It is local and single-user, defaulting
+to `127.0.0.1`; `SCS_FKB_API_KEY` adds `X-API-Key` enforcement. The Web UI is
+server-rendered. A fact lead prepends a precise approved value when its source
+chunk is retrieved; the citation validator runs before any answer is returned.
+
 **Web evidence v2 (2026-11-06).** `src/scs_fkb/web_v2/` adds the ephemeral
 plane: a SearXNG JSON provider with a DuckDuckGo fallback, allowlist filtering
 before any request, HTTPS fetch with `trafilatura` extraction and a PDF fallback,

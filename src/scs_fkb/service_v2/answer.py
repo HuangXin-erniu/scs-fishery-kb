@@ -1,0 +1,416 @@
+from __future__ import annotations
+
+import os
+import re
+import time
+import uuid
+from dataclasses import replace
+from datetime import date
+from pathlib import Path
+from typing import Any
+
+from ..answer import answer_question, citation_text, validate_citations
+from ..facts import DEFAULT_FACTS_DIR, load_all
+from ..knowledge_v2 import load_playbooks
+from ..models import Citation, SearchHit
+from ..registry import load_registry
+from ..retrieve_v2 import plan_query
+from .schemas import (
+    CitationModel,
+    PlaybookStep,
+    PlaybookView,
+    QueryResponse,
+)
+
+DISCLAIMER = "以官方发布文本为准；本服务不构成法律意见。"
+WEB_LABEL = "网络检索 · 未入知识库"
+YEAR_RE = re.compile(r"(20\d{2})\s*年?")
+CLARIFY_PATTERNS = ("某渔场", "某海域", "某年度", "某类", "某品种", "某一")
+KEYWORD_GROUPS = (
+    ("休渔", "禁渔"),
+    ("处罚", "罚款"),
+    ("许可证", "捕捞许可"),
+    ("换发", "重新申请"),
+    ("年审", "审验"),
+    ("网目", "网眼"),
+    ("日志", "日志"),
+    ("检验", "检验"),
+    ("资源费", "增殖保护费"),
+    ("渔港", "渔港"),
+    ("报告", "报告"),
+    ("船网", "指标"),
+    ("产量", "产量"),
+    ("船员", "船员"),
+    ("值班", "值班"),
+    ("专项", "专项"),
+    ("统计", "统计"),
+)
+
+
+def _keyword_score(question: str, text: str) -> int:
+    return sum(
+        1
+        for group in KEYWORD_GROUPS
+        if any(word in question for word in group) and any(word in text for word in group)
+    )
+
+
+def _tokens(text: str) -> set[str]:
+    clean = re.sub(r"\s+", "", text)
+    return {clean[index : index + 2] for index in range(max(0, len(clean) - 1))}
+
+
+def _match_playbook(question: str, playbooks: list[dict[str, Any]]) -> dict[str, Any] | None:
+    query = _tokens(question)
+    if not query:
+        return None
+    best: tuple[float, dict[str, Any]] | None = None
+    for playbook in playbooks:
+        if playbook.get("status") != "approved":
+            continue
+        text = (
+            str(playbook.get("title") or "")
+            + " "
+            + " ".join(str(step.get("action") or "") for step in playbook.get("steps") or [])
+        )
+        overlap = len(query & _tokens(text))
+        score = overlap / max(1, len(query))
+        if overlap >= 2 and score >= 0.12 and (best is None or score > best[0]):
+            best = (score, playbook)
+    return best[1] if best else None
+
+
+class AnswerService:
+    """Compose v2 retrieval, playbooks and optional labelled web evidence."""
+
+    def __init__(
+        self,
+        *,
+        retriever: Any,
+        playbooks: list[dict[str, Any]] | None = None,
+        facts: list[dict[str, Any]] | None = None,
+        data_root: Path | str | None = None,
+        run_root: Path | str | None = None,
+        index_version: str = "v2",
+        web_search: Any = None,
+    ) -> None:
+        self.retriever = retriever
+        self.playbooks = playbooks if playbooks is not None else load_playbooks()
+        self.facts = facts if facts is not None else load_all(DEFAULT_FACTS_DIR)
+        self.data_root = Path(data_root).expanduser().resolve() if data_root else None
+        self.run_root = Path(run_root).expanduser().resolve() if run_root else None
+        self.index_version = index_version
+        self.web_search = web_search
+        self._registry = load_registry()
+
+    def _search(self, question: str, filters: Any) -> list[SearchHit]:
+        try:
+            return self.retriever.search(question, top_k=5, filters=filters, rerank=False)
+        except TypeError:
+            return self.retriever.search(question, top_k=5)
+
+    def _gate(self, question: str) -> bool:
+        gate = getattr(self.retriever, "gate_ok", None)
+        if gate is None:
+            return True
+        return bool(gate(question, 19.0, 3))
+
+    def _fact_lead(
+        self, question: str, hits: list[SearchHit], nature: str = ""
+    ) -> tuple[str, Citation] | None:
+        tokens = _tokens(question)
+        if not tokens:
+            return None
+        best: tuple[float, dict[str, Any]] | None = None
+        for fact in self.facts:
+            if fact.get("status") != "approved":
+                continue
+            value = str(fact.get("value") or "").strip()
+            if not value or len(value) > 220:
+                continue
+            text = " ".join(str(fact.get(key) or "") for key in ("subject", "predicate", "value"))
+            keyword = _keyword_score(question, text)
+            overlap = len(tokens & _tokens(text))
+            score = overlap / max(1, len(tokens)) + 0.12 * keyword
+            if nature and fact.get("question_class") == nature:
+                score += 0.1
+            if keyword >= 1 and (best is None or score > best[0]):
+                best = (score, fact)
+            elif overlap >= 2 and score >= 0.18 and (best is None or score > best[0]):
+                best = (score, fact)
+        if best is None:
+            return None
+        fact = best[1]
+        source = fact.get("source") or {}
+        doc_id = str(source.get("doc") or "")
+        section = str(source.get("section") or "")
+        for hit in hits:
+            if hit.chunk.doc_id != doc_id:
+                continue
+            if section and not (
+                hit.chunk.section.startswith(section) or section.startswith(hit.chunk.section)
+            ):
+                continue
+            citation = Citation(
+                doc_id=hit.chunk.doc_id,
+                title=hit.chunk.doc_id,
+                page=hit.chunk.page,
+                section=hit.chunk.section,
+                snippet=str(fact.get("value") or ""),
+                score=hit.score,
+                url=hit.chunk.url,
+                retrieved_at=hit.chunk.retrieved_at,
+            )
+            return str(fact.get("value") or "").strip(), citation
+        return None
+
+    def _playbook_view(self, playbook: dict[str, Any]) -> PlaybookView:
+        steps: list[PlaybookStep] = []
+        for step in playbook.get("steps") or []:
+            sources = []
+            for fact_id in step.get("facts") or []:
+                fact = next(
+                    (item for item in self.facts if item.get("id") == fact_id),
+                    None,
+                )
+                if fact:
+                    source = fact.get("source") or {}
+                    sources.append(str(source.get("doc") or ""))
+            steps.append(
+                PlaybookStep(
+                    order=int(step.get("order") or 0),
+                    action=str(step.get("action") or ""),
+                    detail=str(step.get("detail") or ""),
+                    facts=[str(item) for item in step.get("facts") or []],
+                    sources=[item for item in sources if item],
+                )
+            )
+        return PlaybookView(
+            id=str(playbook.get("id") or ""),
+            title=str(playbook.get("title") or ""),
+            persona=str(playbook.get("persona") or ""),
+            steps=steps,
+        )
+
+    def _web_result(self, question: str, nature: str, filters: Any) -> Any:
+        if self.web_search is None:
+            return None
+        try:
+            return self.web_search(question, nature=nature, filters=filters)
+        except TypeError:
+            return self.web_search(question)
+
+    def query(
+        self,
+        question: str,
+        *,
+        persona: str = "general",
+        region: str | None = None,
+        year: int | None = None,
+        web: str = "auto",
+    ) -> QueryResponse:
+        started = time.perf_counter()
+        request_id = f"REQ-{uuid.uuid4().hex[:12]}"
+        if len(question.strip()) < 2 or any(word in question for word in CLARIFY_PATTERNS):
+            return QueryResponse(
+                request_id=request_id,
+                answer="请补充一个更具体的问题，例如休渔时间、许可证换发或网目尺寸。",
+                abstained=True,
+                reason="clarify",
+                mode="clarify",
+                latency_ms=int((time.perf_counter() - started) * 1000),
+                disclaimer=DISCLAIMER,
+                index_version=self.index_version,
+            )
+        plan = plan_query(question, today=date.today())
+        filters = plan.filters
+        if region:
+            filters = replace(filters, jurisdictions=(region,))
+        if year:
+            filters = replace(filters, as_of=f"{year}-12-31")
+        hits = self._search(question, filters)
+        gate = self._gate(question)
+        lead = self._fact_lead(question, hits, plan.nature)
+        if gate:
+            answer = answer_question(
+                question,
+                hits,
+                min_score=0.0,
+                min_matched=0,
+                require_corpus=True,
+            )
+        elif lead is not None:
+            lead_text, lead_citation = lead
+            from ..models import Answer
+
+            answer = Answer(
+                text=f"{lead_text} {citation_text(lead_citation)}",
+                citations=[lead_citation],
+                abstained=False,
+                reason="fact_lead",
+            )
+        else:
+            from ..models import Answer
+
+            answer = Answer(
+                text="证据不足：检索到的证据覆盖不足，无法支持回答。",
+                abstained=True,
+                reason="weak_evidence",
+            )
+        citations = [
+            CitationModel(
+                doc_id=item.doc_id,
+                title=item.title,
+                page=item.page,
+                section=item.section,
+                snippet=item.snippet,
+                score=item.score,
+                url=item.url,
+                retrieved_at=item.retrieved_at,
+                source_type="corpus",
+            )
+            for item in answer.citations
+        ]
+        if not answer.abstained:
+            lead = lead if "lead" in locals() else self._fact_lead(question, hits)
+            if lead is not None and lead[0] not in answer.text:
+                lead_text, lead_citation = lead
+                candidate = f"{lead_text} {citation_text(lead_citation)}\n\n{answer.text}"
+                if validate_citations(candidate, hits)[0]:
+                    answer = answer.__class__(
+                        text=candidate,
+                        citations=[lead_citation, *answer.citations],
+                        abstained=False,
+                        reason=answer.reason,
+                    )
+                    citations = [
+                        CitationModel(
+                            doc_id=lead_citation.doc_id,
+                            title=lead_citation.title,
+                            page=lead_citation.page,
+                            section=lead_citation.section,
+                            snippet=lead_citation.snippet,
+                            score=lead_citation.score,
+                            url=lead_citation.url,
+                            retrieved_at=lead_citation.retrieved_at,
+                            source_type="corpus",
+                        ),
+                        *citations,
+                    ]
+            valid, invalid = validate_citations(answer.text, hits)
+            if not valid:
+                answer = answer.__class__(
+                    text="证据不足：答案引用无法解析，已拒绝给出结论。",
+                    citations=[],
+                    abstained=True,
+                    reason="citation_invalid",
+                )
+                citations = []
+        playbook = _match_playbook(question, self.playbooks)
+        playbook_view = self._playbook_view(playbook) if playbook else None
+        used_web = False
+        started_abstained = answer.abstained
+        should_web = web == "on" or (web == "auto" and (answer.abstained or plan.freshness))
+        if should_web:
+            web_result = self._web_result(question, plan.nature, filters)
+            evidences = list(getattr(web_result, "evidences", []) or [])
+            if evidences:
+                lines = [answer.text] if not answer.abstained else []
+                for evidence in evidences[:2]:
+                    snippet = str(getattr(evidence, "snippet", "") or "")[:300]
+                    label = f"{WEB_LABEL}：{snippet}"
+                    lines.append(label)
+                    citations.append(
+                        CitationModel(
+                            doc_id=str(getattr(evidence, "evidence_id", "WEB")),
+                            title=str(getattr(evidence, "title", "") or "网络资料"),
+                            page=None,
+                            section=None,
+                            snippet=snippet,
+                            score=0.0,
+                            url=str(getattr(evidence, "url", "")),
+                            retrieved_at=str(getattr(evidence, "fetched_at", ""))[:10],
+                            source_type="web",
+                            label=WEB_LABEL,
+                        )
+                    )
+                if lines:
+                    answer = answer.__class__(
+                        text="\n\n".join(lines),
+                        citations=answer.citations,
+                        abstained=False if answer.abstained else answer.abstained,
+                        reason="web_supplement" if answer.abstained else answer.reason,
+                    )
+                    used_web = True
+        mode = "clarify" if answer.reason == "clarify" else "abstain"
+        if used_web and started_abstained:
+            mode = "web_only"
+        elif not answer.abstained:
+            mode = "kb_plus_web" if used_web else "kb_only"
+        return QueryResponse(
+            request_id=request_id,
+            answer=answer.text,
+            citations=citations,
+            abstained=answer.abstained,
+            reason=answer.reason,
+            mode=mode,
+            used_web=used_web,
+            playbook=playbook_view,
+            index_version=self.index_version,
+            latency_ms=int((time.perf_counter() - started) * 1000),
+            disclaimer=DISCLAIMER,
+        )
+
+    def sources(self) -> list[dict[str, Any]]:
+        return [
+            {
+                "id": source_id,
+                "title": str(meta.get("title") or source_id),
+                "publisher": str(meta.get("publisher") or ""),
+                "tier": str(meta.get("authority_tier") or ""),
+                "year": meta.get("year"),
+                "url": str(meta.get("url") or ""),
+            }
+            for source_id, meta in sorted(self._registry.items())
+        ]
+
+    def playbook_list(self) -> list[dict[str, Any]]:
+        return [
+            {"id": item.get("id"), "title": item.get("title"), "persona": item.get("persona")}
+            for item in self.playbooks
+            if item.get("status") == "approved"
+        ]
+
+
+def build_service(
+    data_root: Path | str | None = None,
+    run_root: Path | str | None = None,
+) -> AnswerService:
+    from ..retrieve_v2 import build_retriever
+
+    configured = data_root or os.environ.get("SCS_FKB_DATA_ROOT", "")
+    if not configured:
+        raise RuntimeError("SCS_FKB_DATA_ROOT is required")
+    root = Path(configured).expanduser()
+    retriever = build_retriever(root, reranker=False)
+
+    def web_search(question: str, *, nature: str, filters: Any) -> Any:
+        from ..web_v2 import build_provider, load_allowlist, search_web
+
+        allowlist = load_allowlist()
+        provider = build_provider(os.environ.get("SEARXNG_URL", ""))
+        return search_web(
+            question,
+            nature=nature,
+            allowlist=allowlist,
+            provider=provider,
+            data_root=root,
+            max_results=2,
+        )
+
+    return AnswerService(
+        retriever=retriever,
+        data_root=root,
+        run_root=run_root or os.environ.get("SCS_FKB_RUN_ROOT"),
+        web_search=web_search,
+    )
