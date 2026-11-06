@@ -133,6 +133,28 @@ the same document/page/section, so a rebuild does not renumber citations.
 `src/scs_fkb/ingest_v2/chunking.py` builds the hierarchy; `src/scs_fkb/ingest.py`
 and the v1 default path are unchanged.
 
+## 3b. Dense index manifest v2
+
+The v2 dense index is a LanceDB table built from `v2/processed/chunks.jsonl`.
+Its manifest is a small JSON file under the local data root; it is never
+published.
+
+| Field | Meaning |
+|---|---|
+| `index_version` | First 12 hex characters of the model, dimension, chunk digest and snapshot hash |
+| `built_at` | UTC build timestamp |
+| `model`, `dim` | Embedding model and vector dimension |
+| `chunks`, `documents`, `table_rows` | Child chunks, documents and LanceDB rows |
+| `chunk_digest` | SHA-256 over the sorted chunk records; the no-op key |
+| `per_document` | Per-document chunk digests; the incremental key |
+| `snapshot_manifest_sha256` | Snapshot manifest used for the build |
+| `build_seconds`, `peak_rss_mb` | Local build cost |
+| `rebuilt`, `removed` | Documents changed or dropped in the last build |
+
+A build with the same model, dimension, chunk digest and a live table is a no-op.
+A changed or removed document deletes its old rows by `doc_id` and adds only the
+new rows. The v1 index, the answer path and the evaluation set are unaffected.
+
 ## 4. Lifecycle
 
 - `active` sources participate in their channel.

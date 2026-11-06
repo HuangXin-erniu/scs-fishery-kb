@@ -46,11 +46,18 @@ merged.
 |---|---|---|
 | P10-GOV-136 | Source schema v4, provenance/effective/quality, RAG standard, ADRs, migration audit, technology spike | 63 sources load under v4; checks green |
 | P10-ING-138 | Docling/trafilatura adapters, hierarchical chunking, snapshots and incremental manifest | 28 main documents rebuild with 0 lost anchors; 63 sources snapshotted; reference/statistics channels unchanged |
-| P10-IDX-138 | LanceDB, BGE embedding/reranker, hybrid retrieval, router and filters | 48-question regression not below baseline; latency/RSS targets |
-| P10-WEB-139 | SearXNG, allowlist, WebEvidence, TTL, trigger policy and promotion | 20 freshness questions; 0 non-allowlisted; no auto-ingest |
-| P10-KB-140 | 15 playbooks, 150 terms, 200 facts, extraction/review, weekly loop | Validators green; weekly report reproducible |
-| P10-ANS-141 | Answer composer/validator, FastAPI `/v1`, Web UI and feedback | 20 scenarios; citation resolution 100%; localhost service |
-| P10-EVAL-142 | 120-question set, RAGAS-compatible metrics, regression gate, docs sync | Acceptance thresholds met; release gate clean |
+| P10-IDX-139 | LanceDB, BGE embedding/reranker, hybrid retrieval, router and filters | 48-question regression not below baseline; latency/RSS targets |
+| P10-WEB-140 | SearXNG, allowlist, WebEvidence, TTL, trigger policy and promotion | 20 freshness questions; 0 non-allowlisted; no auto-ingest |
+| P10-KB-141 | 15 playbooks, 150 terms, 200 facts, extraction/review, weekly loop | Validators green; weekly report reproducible |
+| P10-ANS-142 | Answer composer/validator, FastAPI `/v1`, Web UI and feedback | 20 scenarios; citation resolution 100%; localhost service |
+| P10-EVAL-143 | 120-question set, RAGAS-compatible metrics, regression gate, docs sync | Acceptance thresholds met; release gate clean |
+
+P10-IDX-139 is implemented as a parallel retrieval stack: the 785 v2 child
+chunks are embedded into a LanceDB table (`23e933753e22`, 512 dims) in 98 s at
+4.49 GB peak RSS. The no-rerank hybrid arm matches the v1 baseline (dev 19/19,
+test 12/12, abstention 8/11, P95 16 ms); the optional BGE reranker improves MRR
+but loses two anchors and raises P95 to 2.27 s, so it is off by default. The v1
+answer path is not switched. The next task is P10-WEB-140.
 
 P10-ING-138 (re-post of the originally scoped ingestion task) is implemented as a parallel store: 63 sources are snapshotted,
 the 28 configured main documents build into 745 parent and 785 child chunks with

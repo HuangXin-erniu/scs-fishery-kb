@@ -1,5 +1,9 @@
-# Optional ingestion adapters for the P10 refactor.
+# Optional RAG adapters for the P10 refactor.
 # CI installs requirements-dev.txt only; these stay optional so the public
-# checks do not download large models or require a GPU.
+# checks do not download models or require a vector database.
 docling>=2.0,<3
 trafilatura>=2.0,<3
+lancedb>=0.13,<1
+llama-index-core>=0.12,<1
+llama-index-vector-stores-lancedb>=0.3,<1
+pandas>=2.0,<4
