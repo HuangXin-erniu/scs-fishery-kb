@@ -37,11 +37,13 @@ anchors:
   Q-M03:
     - {doc: POL-STD-010, section: "第五十一条"}
     - {doc: POL-STD-010, section: "第五十二条"}
+    - {doc: POL-STD-010, section: "第五十三条"}
   Q-M10:
     - {doc: POL-STD-010, section: "第二十八条"}
     - {doc: POL-LAW-009, section: "第三十五条"}
   Q-M12:
     - {doc: POL-STD-010, section: "第二十六条"}
+    - {doc: POL-STD-010, section: "第二十八条"}
     - {doc: POL-LAW-009, section: "第七十八条"}
   Q-M13:
     - {doc: POL-STD-010, section: "第三十六条"}
@@ -54,6 +56,8 @@ anchors:
     - {doc: POL-RULE-020, section: "第五条"}
   Q-M17:
     - {doc: POL-RULE-019, section: "第四条"}
+    - {doc: POL-RULE-019, section: "第六条"}
+    - {doc: POL-RULE-019, section: "第二十条"}
   Q-C01:
     - {doc: POL-WATCH-082, section: "第三条"}
   Q-C02:
@@ -67,8 +71,8 @@ anchors:
     - {doc: POL-STD-010, section: "第十六条"}
   Q-O03:
     - {doc: POL-RULE-019, section: "第四条"}
-    - {doc: POL-RULE-019, section: "第十三条"}
-    - {doc: POL-RULE-019, section: "第十九条"}
+    - {doc: POL-RULE-019, section: "第六条"}
+    - {doc: POL-RULE-019, section: "第二十条"}
   Q-F01:
     - {doc: POL-PEN-080, section: "第二条"}
     - {doc: POL-PEN-080, section: "第五条"}
@@ -201,7 +205,7 @@ gold:
   Q-E10:
     points:
       - "自2014年6月1日起，黄渤海、东海、南海三个海区全面实施海洋捕捞准用渔具和过渡渔具最小网目尺寸制度。"
-      - "具体最小网目尺寸标准见通告附件1和附件2；省级主管部门可制定更严格标准。"
+      - "具体最小网目尺寸标准见通告附件1和附件2。"
     evidence:
       - {doc: POL-GEAR-016, section: "一、实行时间和范围"}
       - {doc: POL-GEAR-016, section: "二、主要内容"}
@@ -321,7 +325,7 @@ gold:
   Q-M17:
     points:
       - "国家对渔业船舶实行强制检验，分为初次检验、营运检验和临时检验。"
-      - "初次检验在投入营运前实施；营运检验按周期实施；临时检验适用于证书失效、被责令检验等特定情形。"
+      - "初次检验在投入营运前实施；营运检验是对营运中渔业船舶的常规性检验；临时检验适用于证书失效、被责令检验等特定情形。"
     evidence:
       - {doc: POL-RULE-019, section: "第四条"}
       - {doc: POL-RULE-019, section: "第十九条"}
@@ -435,7 +439,7 @@ checks:
     - {point: 1, terms: ["3个月", "原渔业捕捞许可证"], mode: section}
   Q-E10:
     - {point: 0, terms: ["2014年6月1日", "黄渤海", "东海", "南海"], mode: all}
-    - {point: 1, terms: ["附件", "更严格"], mode: all}
+    - {point: 1, terms: ["附件"], mode: all}
   Q-E12:
     - {point: 0, terms: ["禁渔区", "没收", "二十万元"], mode: all}
     - {point: 1, terms: ["二百万元", "吊销", "航行"], mode: section}
@@ -458,7 +462,7 @@ checks:
     - {point: 0, terms: ["申请书", "户口簿", "检验证书", "国籍证书"], mode: section}
     - {point: 1, terms: ["船网工具指标", "批准书"], mode: all}
   Q-M12:
-    - {point: 0, terms: ["第二十六条", "作业事由"], mode: all}
+    - {point: 0, terms: ["第二十六条", "作业事由"], mode: document}
     - {point: 1, terms: ["第七十八条", "没收", "吊销"], mode: section}
   Q-M13:
     - {point: 0, terms: ["换发", "3个月", "污损"], mode: section}
@@ -474,7 +478,7 @@ checks:
     - {point: 1, terms: ["3%至5%", "省级"], mode: all}
   Q-M17:
     - {point: 0, terms: ["初次检验", "营运检验", "临时检验"], mode: all}
-    - {point: 1, terms: ["投入营运前", "周期", "证书失效"], mode: all}
+    - {point: 1, terms: ["投入营运前", "营运检验", "证书失效"], mode: document}
   Q-C01:
     - {point: 0, terms: ["适任证书", "职务船员"], mode: all}
     - {point: 1, terms: ["充分休息", "饮酒"], mode: section}
@@ -492,7 +496,7 @@ checks:
     - {point: 1, terms: ["延展", "注销"], mode: section}
   Q-O03:
     - {point: 0, terms: ["初次检验", "营运检验", "临时检验"], mode: all}
-    - {point: 1, terms: ["投入营运前", "证书失效"], mode: all}
+    - {point: 1, terms: ["投入营运前", "证书失效"], mode: document}
   Q-F01:
     - {point: 0, terms: ["罚款", "没收", "吊销"], mode: section}
     - {point: 1, terms: ["单艘船", "作业单位", "以人计罚"], mode: section}

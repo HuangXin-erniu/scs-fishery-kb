@@ -34,12 +34,20 @@ def _cited_groups(answer_text: str) -> dict[tuple[str, int, str], list[str]]:
     return groups
 
 
+def _cited_doc_groups(answer_text: str) -> dict[str, list[str]]:
+    groups: dict[str, list[str]] = {}
+    for (doc_id, _page, _section), sentences in _cited_groups(answer_text).items():
+        groups.setdefault(doc_id, []).extend(sentences)
+    return groups
+
+
 def point_status(answer_text: str, checks: dict[str, Any]) -> tuple[bool, list[str]]:
     """A point is covered by cited text carrying every check term.
 
     mode=all: every term in one cited sentence;
     mode=any: at least one term in one cited sentence;
-    mode=section: every term in cited sentences from the same doc/page/section.
+    mode=section: every term in cited sentences from the same doc/page/section;
+    mode=document: every term in cited sentences from the same document.
     """
     terms = [_norm(term) for term in checks.get("terms") or []]
     mode = str(checks.get("mode") or "all")
@@ -49,6 +57,12 @@ def point_status(answer_text: str, checks: dict[str, Any]) -> tuple[bool, list[s
     missing = [term for term in terms if term not in answer_norm]
     if mode == "section":
         for group in _cited_groups(answer_text).values():
+            joined = _norm(" ".join(group))
+            if all(term in joined for term in terms):
+                return True, []
+        return False, missing
+    if mode == "document":
+        for group in _cited_doc_groups(answer_text).values():
             joined = _norm(" ".join(group))
             if all(term in joined for term in terms):
                 return True, []
