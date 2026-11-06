@@ -53,6 +53,7 @@ merged.
 | P10-EVAL-145 | 120-question set, RAGAS-compatible metrics, regression gate, docs sync | Acceptance thresholds met; release gate clean |
 | P10-REV-146 | Review 120 draft facts, 34 draft terms and 15 playbooks | 20 promoted; 34 terms kept draft; playbooks corrected |
 | P10-WEB-147 | SearXNG local provider with DuckDuckGo fallback | 15/20 queries with evidence; 1 explicit failure |
+| P10-IDX-148 | Reranker calibration on 31 reviewed anchors | Default off; no arm meets anchor+MRR+latency |
 
 P10-ING-138 (re-post of the originally scoped ingestion task) is implemented as
 a parallel store: 63 sources are snapshotted, the 28 configured main documents
