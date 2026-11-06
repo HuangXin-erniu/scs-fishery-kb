@@ -291,6 +291,8 @@ def test_config_schema_version_key() -> None:
         data = load_yaml(relative)
         assert data["schema_version"] == 1
         assert "version" not in data
+    for relative in ("configs/corpus.yaml", "configs/schema.yaml"):
+        assert load_yaml(relative)["source_record_schema"] == 4
 
 
 def test_data_root_is_external() -> None:
