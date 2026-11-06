@@ -865,3 +865,12 @@ This log records material project changes by date. It does not use release versi
 - Post-batch-3 120-question run: overall 0.8066, dev 0.8945, test 0.6310 (0.6319 before), citation 1.0000, recall 0.9667, abstention 0.9000. Gate passes.
 - Updated `docs/evaluation.md` and `docs/plan.md`; earlier 0.8069/0.6319 figures remain as history.
 - No code, config, eval set, facts, terms, playbooks or data changed.
+
+## 2026-11-06 — Batch 4: ocean product terms, metadata deferred
+
+- Added `POL-OCEAN-096` (satellite fishery-environment product catalog) and approved **叶绿素a浓度**, **海面风场** and **有效波高**.
+- Captured `STD-MDR-098` (GB/T 18391.3-2009) for **数据元** and **元数据**, but kept both draft: the 89-page standard pulled generic metadata chunks into Q-M06 and dropped v1 abstention to 7/11. The candidate remains open; no source record or pipeline document was added.
+- Terms are **136 approved / 14 draft**.
+- Staging/main gate: v1 31/31, dev 19/19, test 12/12, abstention 8/11; v2 dev 0.8945, test 0.6161, overall 0.8017, citation 1.0000, recall 0.9667, abstention 0.9000. Test fell 1.49pp and is report-only under the agreed gate.
+- Corpus is 77 sources / 42 documents / **1014 chunks** (v1 `f7a244373e77`, v2 `d007984ae168`); external store is 507 documents / 563 chunks (`458aad366fe1`, dense `91e8ec609611dccb`). The three new terms retrieve in top 5.
+- 414 tests pass; private gate 0 hits; no tag or release.

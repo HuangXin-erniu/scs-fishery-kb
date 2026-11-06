@@ -1580,13 +1580,15 @@ terms:
   - national
   source:
     kind: glossary
-    note: 渔业领域术语候选；按规范说法与语料复核
+    note: No public exact-definition source retained; kept draft after the metadata
+      standard failed the staging abstention gate.
   status: draft
   review:
     decision: keep_draft
     reviewer: agent-review
     reviewed_at: '2026-11-06'
-    note: 规范说法未出现在已登记语料中；作为术语候选保留，待补充来源后再审
+    note: Metadata standard kept as an open candidate after the staging abstention
+      gate failed; term remains draft.
 - id: TERM-138
   standard: 元数据
   variants:
@@ -1595,13 +1597,15 @@ terms:
   - national
   source:
     kind: glossary
-    note: 渔业领域术语候选；按规范说法与语料复核
+    note: No public exact-definition source retained; kept draft after the metadata
+      standard failed the staging abstention gate.
   status: draft
   review:
     decision: keep_draft
     reviewer: agent-review
     reviewed_at: '2026-11-06'
-    note: 规范说法未出现在已登记语料中；作为术语候选保留，待补充来源后再审
+    note: Metadata standard kept as an open candidate after the staging abstention
+      gate failed; term remains draft.
 - id: TERM-139
   standard: 数据共享
   variants:
@@ -1710,17 +1714,19 @@ terms:
   standard: 叶绿素a浓度
   variants:
   - 叶绿素浓度
+  - Chl-a
   region:
   - national
   source:
-    kind: glossary
-    note: 渔业领域术语候选；按规范说法与语料复核
-  status: draft
+    kind: corpus
+    doc: POL-OCEAN-096
+    note: 来源产品目录将“叶绿素a浓度”列为渔场环境要素并给出编码。
+  status: approved
   review:
-    decision: keep_draft
+    decision: promote
     reviewer: agent-review
     reviewed_at: '2026-11-06'
-    note: 规范说法未出现在已登记语料中；作为术语候选保留，待补充来源后再审
+    note: 来源产品目录将“叶绿素a浓度”列为渔场环境要素并给出编码。
 - id: TERM-147
   standard: 海面风场
   variants:
@@ -1728,29 +1734,32 @@ terms:
   region:
   - national
   source:
-    kind: glossary
-    note: 渔业领域术语候选；按规范说法与语料复核
-  status: draft
+    kind: corpus
+    doc: POL-OCEAN-096
+    note: 来源产品目录将“海面风场”列为渔场环境要素并给出编码。
+  status: approved
   review:
-    decision: keep_draft
+    decision: promote
     reviewer: agent-review
     reviewed_at: '2026-11-06'
-    note: 规范说法未出现在已登记语料中；作为术语候选保留，待补充来源后再审
+    note: 来源产品目录将“海面风场”列为渔场环境要素并给出编码。
 - id: TERM-148
   standard: 有效波高
   variants:
   - 浪高
+  - SWH
   region:
   - national
   source:
-    kind: glossary
-    note: 渔业领域术语候选；按规范说法与语料复核
-  status: draft
+    kind: corpus
+    doc: POL-OCEAN-096
+    note: 来源产品目录将“有效波高”列为渔场环境要素并给出编码。
+  status: approved
   review:
-    decision: keep_draft
+    decision: promote
     reviewer: agent-review
     reviewed_at: '2026-11-06'
-    note: 规范说法未出现在已登记语料中；作为术语候选保留，待补充来源后再审
+    note: 来源产品目录将“有效波高”列为渔场环境要素并给出编码。
 - id: TERM-149
   standard: 风暴潮
   variants:

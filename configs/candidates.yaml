@@ -157,3 +157,27 @@ candidates:
   status: accepted
   source_id: POL-SUB-094
   note: 'Batch-3 staging A/B passed: v1 31/31, v2 dev 0.8945, five term forms exact.'
+- id: CAND-2026-014
+  title: 卫星遥感远洋渔场环境监测产品编目规范
+  url: http://www.lasac.cn/gfpdf/2020/5standard.pdf
+  publisher: 自然资源部
+  proposed_tier: A
+  proposed_class: standard
+  reason: gap
+  first_seen: '2026-11-06'
+  expires_at: '2027-05-05'
+  status: accepted
+  source_id: POL-OCEAN-096
+  note: Batch-4 staging v1 passed with 3 ocean terms; 8/11 abstention.
+- id: CAND-2026-015
+  title: 信息技术 元数据注册系统（MDR）第3部分：注册系统元模型与基本属性
+  url: http://spec.nstl.gov.cn/metadata/download/upload/attpdf/4cc36296-b010-4fe3-ae23-d4414b36967f.pdf
+  publisher: 国家质量监督检验检疫总局、中国国家标准化管理委员会
+  proposed_tier: A
+  proposed_class: standard
+  reason: gap
+  first_seen: '2026-11-06'
+  expires_at: '2027-05-05'
+  status: open
+  note: 'Staging failed: the 89-page metadata standard pulled generic chunks into
+    Q-M06 and degraded abstention; kept open.'

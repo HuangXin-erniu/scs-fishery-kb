@@ -48,9 +48,9 @@ def _write(tmp_path: Path, entries: list[dict]) -> Path:
     return path
 
 
-def test_live_register_loads_all_76_as_v4() -> None:
+def test_live_register_loads_all_77_as_v4() -> None:
     registry = load_registry(ROOT / "configs" / "corpus.yaml")
-    assert len(registry) == 76
+    assert len(registry) == 77
     for source in registry.values():
         assert source["source_record_schema"] == 4
         assert source["provenance"]["sha256"] == source["hash"]
