@@ -95,9 +95,9 @@ is server-rendered and the v1 CLI/answer path is unchanged.
 P10-EVAL-145 is implemented: the 120-question set has 80 dev reviewed facts, 30
 draft test facts and 10 test abstention cases. The dev run scores 0.8945
 correctness, 1.0000 citation resolution and 0.9875 context recall; overall
-abstention is 0.9000. The gate passes; the test split scores 0.6319 correctness
-(0.5820 before the review, 0.6189 after the provision review) and is report-only
-because its 30 fact questions are drafts. This completes the
+abstention is 0.9000. The gate passes; the test split scores 0.6310 correctness
+(0.5820 before the review, 0.6189 after the provision review, 0.6319 after the
+second term batch) and is report-only because its 30 fact questions are drafts. This completes the
 planned P10 phases; no tag or release is created.
 
 P10-REV-146 reviewed the draft knowledge layer: 20 article-level provision facts
