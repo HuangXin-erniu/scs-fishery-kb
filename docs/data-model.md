@@ -155,6 +155,28 @@ A build with the same model, dimension, chunk digest and a live table is a no-op
 A changed or removed document deletes its old rows by `doc_id` and adds only the
 new rows. The v1 index, the answer path and the evaluation set are unaffected.
 
+## 3c. WebEvidence
+
+The ephemeral web plane stores a metadata record and the extracted text separately.
+The text stays under the local data root; the public tree sees only metadata and
+short citations.
+
+| Field | Meaning |
+|---|---|
+| `evidence_id` | `WEBV-<hash>` from URL and content hash |
+| `url`, `canonical_url` | Requested and final URL after allowed redirects |
+| `title`, `publisher`, `domain` | Page identity and allowlist publisher |
+| `authority_tier`, `source_class` | Tier from the allowlist; `reference` for web text |
+| `fetched_at`, `content_hash` | Fetch time and SHA-256 of the response bytes |
+| `snippet`, `text_path` | Short excerpt and relative path to the local full text |
+| `search_query`, `rank` | Query and provider rank |
+| `ttl_days`, `status` | Freshness window and `fetched`/`failed` state |
+| `promotion_candidate_id` | Empty until a human promotes the evidence |
+
+TTLs: warning/status 7 days, rule 30, definition/identification 90,
+statistics/history 365. A fresh record is reused; an expired record is refetched
+or marked stale. The v1 web-card path is unchanged.
+
 ## 4. Lifecycle
 
 - `active` sources participate in their channel.

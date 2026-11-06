@@ -764,3 +764,10 @@ This log records material project changes by date. It does not use release versi
 - Added `src/scs_fkb/index_v2/` (LlamaIndex vector-store adapter, manifest, per-document delete/add) and `src/scs_fkb/retrieve_v2/` (BM25 + dense RRF, sensitivity/authority/level/effective-date filters, router, optional BGE reranker).
 - Regression on the 31 anchored questions: no-rerank dev 19/19 (MRR 0.6816), test 12/12, abstention 8/11, P95 16 ms; the optional reranker scores 29/31 (MRR 0.8360) and P95 2.27 s, so it stays disabled by default until calibrated.
 - The v1 index, answer path, evaluation set and public boundary are unchanged. Private reports: `runs/P10-IDX-139/build.md` and `runs/P10-IDX-139/regression.md`. Next task: P10-WEB-140.
+
+## 2026-11-06 — Ephemeral web evidence plane
+
+- Added `src/scs_fkb/web_v2/`: SearXNG JSON provider with DuckDuckGo fallback, allowlist-only results, HTTPS fetch with trafilatura/PDF extraction, TTL-aware WebEvidence cache, trigger rules and a promotion draft that never writes the register.
+- Smoke-tested 20 freshness queries: 13 returned allowlisted evidence (32 records), 75 non-allowlisted results were dropped and 5 provider failures were recorded explicitly. TTLs are 7 days for warning/status, 30 for rule, 90 for definition/identification and 365 for statistics/history.
+- The generic `gov.cn` fallback is tier C and labelled `地方政府网站（层级待核）`; specific central/provincial domains remain A/B. The v1 web-card path, answer path, corpus register and evaluation set are unchanged.
+- Private report: `runs/P10-WEB-140/smoke.md`. Next task: P10-KB-141.
