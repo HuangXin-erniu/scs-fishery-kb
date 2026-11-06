@@ -41,6 +41,34 @@ Rules:
 | `scs-fkb knowledge check --write` | Validate, mark changed/expired notes stale, report due notes |
 | `scs-fkb knowledge approve <id>` | Approve a draft note (refused if stale) |
 
+## 2a. Playbooks (2026-11-06)
+
+A playbook is a short, persona-specific procedure. Every step cites at least one
+approved fact; the validator rejects an unknown, draft or stale fact and a source
+that is not in the register. The first batch has 15 playbooks and 32 steps:
+
+| Playbook | Persona | Covers |
+|---|---|---|
+| PLAY-CAPTAIN-001 | captain | Closure compliance |
+| PLAY-OWNER-002 | owner | Special-permit application |
+| PLAY-OWNER-003 | owner | Marine permit application |
+| PLAY-OWNER-004 | owner | Permit renewal and annual review |
+| PLAY-OWNER-005 | owner | Vessel/gear quota |
+| PLAY-CAPTAIN-006 | captain | Logbook |
+| PLAY-CAPTAIN-007 | captain | Port entry and reporting |
+| PLAY-OWNER-008 | owner | Vessel inspection |
+| PLAY-OWNER-009 | owner | Resource fee |
+| PLAY-CAPTAIN-010 | captain | Minimum mesh and gear check |
+| PLAY-EXTENSION-011 | extension | Gear classification |
+| PLAY-CAPTAIN-012 | captain | Penalty response |
+| PLAY-CAPTAIN-013 | captain | Port berthing and safety check |
+| PLAY-EXTENSION-014 | extension | Capture statistics definitions |
+| PLAY-CAPTAIN-015 | captain | Fisheries Law duties |
+
+The playbook layer is validated by `scripts/check_playbooks.py`; the weekly
+script runs it together with the fact and term checks. A playbook is not a
+substitute for the source text: it always links the underlying provision.
+
 ## 3. Pilot (2026-11-03)
 
 | Note | Topic | Facts | Source |
@@ -115,7 +143,7 @@ The note layer is descriptive; P09-KB-131 adds a verified fact layer and two sup
   supersedes: null
 ```
 
-The layer has **80 approved facts**: 20 atomic facts with precise values/units/effective dates and 60 provision facts that tag an article or section with a `question_class`, `subject` and `predicate`. Distribution: 64 policy, 13 gear, 3 stats. Every fact carries a verbatim `evidence` quote and a `source` with the register hash.
+The layer has **200 facts**: 80 approved and 120 draft provision facts. The approved set has 20 atomic facts with precise values/units/effective dates and 60 provision facts that tag an article or section with a `question_class`, `subject` and `predicate`. The 120 generated provision facts are section-level review candidates, not approved values. Every fact carries a verbatim `evidence` quote and a `source` with the register hash.
 
 `scs-fkb facts check --data-root "$SCS_FKB_DATA_ROOT"` verifies that the evidence is a substring of a chunk with the same document and section, that the source hash equals the register, that approved facts use an A/B public source, that effective dates do not invert, and that facts with the same subject/predicate/jurisdiction do not overlap with different values. A `supersedes` chain resolves an intentional replacement. The check exits non-zero on any error, conflict or expired fact; facts approaching `review_due` are reported as due.
 
@@ -130,7 +158,7 @@ The layer has **80 approved facts**: 20 atomic facts with precise values/units/e
   status: approved
 ```
 
-**24 terms** map colloquial wording to the standard term. `scs-fkb terms check --data-root ...` requires the standard term to appear in the indexed corpus and the corpus source to resolve. Terms are retrieval and answer-wording aids; they never replace a citation.
+**150 terms** map colloquial wording to the standard term (116 approved, 34 draft). `scs-fkb terms check --data-root ...` requires an approved standard term to appear in the indexed corpus and the corpus source to resolve. Terms are retrieval and answer-wording aids; they never replace a citation.
 
 ### 7.3 FAQ
 

@@ -177,6 +177,18 @@ TTLs: warning/status 7 days, rule 30, definition/identification 90,
 statistics/history 365. A fresh record is reused; an expired record is refetched
 or marked stale. The v1 web-card path is unchanged.
 
+## 3d. Playbooks and provision facts
+
+**Playbook**: `id` (`PLAY-<PERSONA>-NNN`), `title`, `persona`, `applies_to`,
+`steps[]` (`order`, `action`, `detail`, `facts[]`), `documents[]`, `deadlines[]`,
+`penalties[]`, `sources[]`, `status`, `review_due`. Every step's facts must be
+approved; every source must be in the register.
+
+**Provision fact**: a reviewable section-level pointer with `kind: provision`,
+exact `evidence`, `source` hash/section, `status: draft`, `confidence` and a
+90-day review date. The first batch adds 120 draft provision facts; they are
+not approved values and do not enter the answer path until reviewed.
+
 ## 4. Lifecycle
 
 - `active` sources participate in their channel.
@@ -226,5 +238,5 @@ An `approved` fact must have an A/B public source, a matching hash and verbatim 
 
 ### Counts and validation
 
-- 80 facts (20 atomic + 60 provision), 24 terms, 12 FAQs; rebuilt external store 375 documents / 431 chunks, index `3259a7694499`; corpus unchanged at 28 documents / 785 chunks / `20910f0964df`.
+- 200 facts (20 atomic + 180 provision; 80 approved + 120 draft), 150 terms (116 approved + 34 draft), 12 FAQs and 15 playbooks (32 steps); the v1 external store remains at 375 documents / 431 chunks and the corpus at 28 documents / 785 chunks / `20910f0964df` until the v2 answer path is cut over.
 - `scs-fkb facts check --data-root "$SCS_FKB_DATA_ROOT"` verifies evidence, hashes, effective dates, conflicts and expiry; `terms check` verifies standards and sources; `faq check` verifies claims. All three exit non-zero on errors.

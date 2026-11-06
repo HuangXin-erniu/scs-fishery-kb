@@ -71,7 +71,13 @@ P10-WEB-140 is implemented as the ephemeral web plane: 20 freshness queries were
 smoke-tested with 13 queries returning 32 allowlisted evidence records, 75
 non-allowlisted results dropped and 5 provider failures recorded. TTLs are 7/30/
 90/365 days by claim nature; promotion returns a candidate draft and writes
-nothing. The next task is P10-KB-141.
+nothing.
+
+P10-KB-141 is implemented: 15 approved playbooks with 32 fact-cited steps, 150
+terms (116 approved, 34 draft), 200 facts (80 approved, 120 draft provision
+facts), a playbook validator and a read-only weekly report. The checks are green
+and the weekly report records 63 sources, 26 watch entries, 200 facts, 150 terms,
+15 playbooks and 6 gaps. The next task is P10-ANS-142.
 
 The architecture decisions are [0005](adr/0005-two-plane-evidence.md),
 [0006](adr/0006-llamaindex-lancedb-bge.md),

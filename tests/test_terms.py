@@ -130,9 +130,11 @@ def test_duplicate_standard_is_rejected(tmp_path: Path) -> None:
         load_terms(_write(tmp_path, [_term(), _term(id="TERM-002")]))
 
 
-def test_real_term_map_has_24_terms() -> None:
+def test_real_term_map_has_150_terms() -> None:
     root = Path(__file__).resolve().parents[1]
     terms = load_terms(root / "configs" / "terms.yaml")
-    assert len(terms) == 24
+    assert len(terms) == 150
+    assert sum(1 for term in terms if term["status"] == "approved") == 116
+    assert sum(1 for term in terms if term["status"] == "draft") == 34
     assert all(term["variants"] for term in terms)
     assert all(term["source"].get("doc") or term["source"].get("note") for term in terms)

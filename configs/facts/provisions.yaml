@@ -1,0 +1,2453 @@
+schema_version: 1
+updated_at: '2026-11-06'
+facts:
+- id: FACT-PROV-001
+  kind: provision
+  topic: stats
+  question_class: definition
+  subject: 渔业统计指标解释（2024中国渔业统计年鉴附录3） 一、 海水产品
+  predicate: 条文要点
+  value: 一、 海水产品 １４４ ＣＨＩＮＡ ＦＩＳＨＥＲＹ ＳＴＡＴＩＳＴＩＣＡＬ ＹＥＡＲＢＯＯＫ
+  evidence: 一、 海水产品 １４４ ＣＨＩＮＡ ＦＩＳＨＥＲＹ ＳＴＡＴＩＳＴＩＣＡＬ ＹＥＡＲＢＯＯＫ
+  source:
+    doc: DICT-STAT-013
+    section: 一、 海水产品
+    sha256: 8f67eebf4ffdf4d834d5034ab6cd131486dfa3db4fe564e9e42eea67c4244567
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-002
+  kind: provision
+  topic: stats
+  question_class: definition
+  subject: 渔业统计指标解释（2024中国渔业统计年鉴附录3） 二、 淡水产品
+  predicate: 条文要点
+  value: '二、 淡水产品 淡水产品包括淡水养殖产品和淡水捕捞产品ꎮ １􀆰 淡水养殖产品: 包括鱼类、 甲壳类 ( 虾、 蟹) 、 贝类、 藻类和其他类产品ꎮ
+    (１) 淡水养殖鱼类: 鲟鱼、 鳗鲡、 青鱼、 草鱼、 鲢鱼、 鳙鱼、 鲤鱼、 鲫鱼、 鳊鲂、 泥鳅、 鲇鱼、 鱼、 黄颡鱼、 鲑鱼、 鳟鱼、 河鲀、 短盖巨脂鲤、
+    长吻 、 黄 鳝、 鳜 鱼、 鲈鱼、 乌鳢和罗非鱼等ꎮ (２) 淡水养殖甲壳类: 虾和河蟹ꎬ 其中虾包括罗氏沼虾、 青虾、 克氏原螯虾和南美 白对虾等ꎮ (３)
+    淡水'
+  evidence: '二、 淡水产品 淡水产品包括淡水养殖产品和淡水捕捞产品ꎮ １􀆰 淡水养殖产品: 包括鱼类、 甲壳类 ( 虾、 蟹) 、 贝类、 藻类和其他类产品ꎮ
+    (１) 淡水养殖鱼类: 鲟鱼、 鳗鲡、 青鱼、 草鱼、 鲢鱼、 鳙鱼、 鲤鱼、 鲫鱼、 鳊鲂、 泥鳅、 鲇鱼、 鱼、 黄颡鱼、 鲑鱼、 鳟鱼、 河鲀、 短盖巨脂鲤、
+    长吻 、 黄 鳝、 鳜 鱼、 鲈鱼、 乌鳢和罗非鱼等ꎮ (２) 淡水养殖甲壳类: 虾和河蟹ꎬ 其中虾包括罗氏沼虾、 青虾、 克氏原螯虾和南美 白对虾等ꎮ (３)
+    淡水'
+  source:
+    doc: DICT-STAT-013
+    section: 二、 淡水产品
+    sha256: 8f67eebf4ffdf4d834d5034ab6cd131486dfa3db4fe564e9e42eea67c4244567
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-003
+  kind: provision
+  topic: stats
+  question_class: definition
+  subject: 渔业统计指标解释（2024中国渔业统计年鉴附录3） 一、 水产冷冻品
+  predicate: 条文要点
+  value: 一、 水产冷冻品 水产冷冻品指为了保鲜ꎬ 将水产品进行冷冻加工处理后得到的产品ꎬ 包括冷冻品和冷 冻加工品ꎬ 但不包括商业冷藏品ꎮ 冷冻品泛指未改变其原始性状的粗加工产品ꎬ
+    如冷冻全鱼、 全虾等ꎮ 冷冻加工品指采用各种生产技术和工艺ꎬ 改变其原始性状、 改善其风味后制成的产 品ꎬ 如冻鱼片、 冻虾仁、 冷冻烤鳗、 冻鱼籽等ꎮ
+  evidence: 一、 水产冷冻品 水产冷冻品指为了保鲜ꎬ 将水产品进行冷冻加工处理后得到的产品ꎬ 包括冷冻品和冷 冻加工品ꎬ 但不包括商业冷藏品ꎮ 冷冻品泛指未改变其原始性状的粗加工产品ꎬ
+    如冷冻全鱼、 全虾等ꎮ 冷冻加工品指采用各种生产技术和工艺ꎬ 改变其原始性状、 改善其风味后制成的产 品ꎬ 如冻鱼片、 冻虾仁、 冷冻烤鳗、 冻鱼籽等ꎮ
+  source:
+    doc: DICT-STAT-013
+    section: 一、 水产冷冻品
+    sha256: 8f67eebf4ffdf4d834d5034ab6cd131486dfa3db4fe564e9e42eea67c4244567
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-004
+  kind: provision
+  topic: stats
+  question_class: definition
+  subject: 渔业统计指标解释（2024中国渔业统计年鉴附录3） 二、 鱼糜制品和干腌制品
+  predicate: 条文要点
+  value: '二、 鱼糜制品和干腌制品 鱼糜制品指将鱼 ( 虾、 蟹、 贝等) 肉 ( 或冷冻鱼糜) 绞碎经配料、 擂溃成为稠而富 有黏性的鱼肉浆 ( 生鱼糜)
+    ꎬ 再做成一定形状后进行水煮 ( 油炸或焙烤烘干) 等加热或干 燥处理而制成的食品ꎬ 如鱼糜、 鱼香肠、 鱼丸、 鱼糕、 鱼饼、 鱼面、 模拟蟹肉等ꎮ 干腌制品指以水产品为原料ꎬ
+    经脱水 ( 烘干、 烟熏、 焙烤等) 或添加腌制剂 ( 盐、 糖、 酒、 糟) 制成具有保藏性和良好风味的产品ꎬ 如烤鱼片、 鱿鱼丝、 鱼松、 虾皮、 '
+  evidence: '二、 鱼糜制品和干腌制品 鱼糜制品指将鱼 ( 虾、 蟹、 贝等) 肉 ( 或冷冻鱼糜) 绞碎经配料、 擂溃成为稠而富 有黏性的鱼肉浆 (
+    生鱼糜) ꎬ 再做成一定形状后进行水煮 ( 油炸或焙烤烘干) 等加热或干 燥处理而制成的食品ꎬ 如鱼糜、 鱼香肠、 鱼丸、 鱼糕、 鱼饼、 鱼面、 模拟蟹肉等ꎮ
+    干腌制品指以水产品为原料ꎬ 经脱水 ( 烘干、 烟熏、 焙烤等) 或添加腌制剂 ( 盐、 糖、 酒、 糟) 制成具有保藏性和良好风味的产品ꎬ 如烤鱼片、 鱿鱼丝、
+    鱼松、 虾皮、 '
+  source:
+    doc: DICT-STAT-013
+    section: 二、 鱼糜制品和干腌制品
+    sha256: 8f67eebf4ffdf4d834d5034ab6cd131486dfa3db4fe564e9e42eea67c4244567
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-005
+  kind: provision
+  topic: stats
+  question_class: definition
+  subject: 渔业统计指标解释（2024中国渔业统计年鉴附录3） 三、 水产罐制品
+  predicate: 条文要点
+  value: 三、 水产罐制品 水产罐制品指以水产品为原料按照罐头工艺加工制成的产品ꎬ 包括硬包装和软包装罐 头ꎬ 如鱼类罐头、 虾贝类罐头等ꎮ
+  evidence: 三、 水产罐制品 水产罐制品指以水产品为原料按照罐头工艺加工制成的产品ꎬ 包括硬包装和软包装罐 头ꎬ 如鱼类罐头、 虾贝类罐头等ꎮ
+  source:
+    doc: DICT-STAT-013
+    section: 三、 水产罐制品
+    sha256: 8f67eebf4ffdf4d834d5034ab6cd131486dfa3db4fe564e9e42eea67c4244567
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-006
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: 农业农村部关于调整海洋伏季休渔制度的通告 一、休渔海域
+  predicate: 条文要点
+  value: 一、休渔海域 渤海、黄海、东海及北纬12度以北的南海（含北部湾）海域。
+  evidence: 一、休渔海域 渤海、黄海、东海及北纬12度以北的南海（含北部湾）海域。
+  source:
+    doc: POL-CLOS-015
+    section: 一、休渔海域
+    sha256: 15660ed713803ff440da583e1d5a219ab5e488c2237f3bb33cd30e7115174bdc
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-007
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: 农业农村部关于调整海洋伏季休渔制度的通告 二、休渔作业类型
+  predicate: 条文要点
+  value: 二、休渔作业类型 除钓具外的所有作业类型，以及为捕捞渔船配套服务的捕捞辅助船。
+  evidence: 二、休渔作业类型 除钓具外的所有作业类型，以及为捕捞渔船配套服务的捕捞辅助船。
+  source:
+    doc: POL-CLOS-015
+    section: 二、休渔作业类型
+    sha256: 15660ed713803ff440da583e1d5a219ab5e488c2237f3bb33cd30e7115174bdc
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-008
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: 农业农村部关于调整海洋伏季休渔制度的通告 三、休渔时间
+  predicate: 条文要点
+  value: 三、休渔时间 （一）北纬35度以北的渤海和黄海海域为5月1日12时至9月1日12时。 （二）北纬35度至北纬26度30分之间的黄海和东海海域为5月1日12时至9月16日12时。
+    （三）北纬26度30分至北纬12度的东海和南海海域为5月1日12时至8月16日12时。 （四）北纬35度至北纬26度30分之间的黄海和东海海域桁杆拖虾、笼壶类、刺网和灯光围（敷）网4种作业类型渔船可申请开展虾蟹类、中上层鱼类等资源专项捕捞许可，由相关省份渔业主管部门核报农业农村部批准后执行。
+    （五）特
+  evidence: 三、休渔时间 （一）北纬35度以北的渤海和黄海海域为5月1日12时至9月1日12时。 （二）北纬35度至北纬26度30分之间的黄海和东海海域为5月1日12时至9月16日12时。
+    （三）北纬26度30分至北纬12度的东海和南海海域为5月1日12时至8月16日12时。 （四）北纬35度至北纬26度30分之间的黄海和东海海域桁杆拖虾、笼壶类、刺网和灯光围（敷）网4种作业类型渔船可申请开展虾蟹类、中上层鱼类等资源专项捕捞许可，由相关省份渔业主管部门核报农业农村部批准后执行。
+    （五）特
+  source:
+    doc: POL-CLOS-015
+    section: 三、休渔时间
+    sha256: 15660ed713803ff440da583e1d5a219ab5e488c2237f3bb33cd30e7115174bdc
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-009
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: 农业农村部关于调整海洋伏季休渔制度的通告 四、实施时间
+  predicate: 条文要点
+  value: 四、实施时间 上述调整后的伏季休渔规定，自2023年4月15日起施行，《农业农村部关于调整海洋伏季休渔制度的通告》（农业农村部通告〔2021〕1号）相应废止。
+  evidence: 四、实施时间 上述调整后的伏季休渔规定，自2023年4月15日起施行，《农业农村部关于调整海洋伏季休渔制度的通告》（农业农村部通告〔2021〕1号）相应废止。
+  source:
+    doc: POL-CLOS-015
+    section: 四、实施时间
+    sha256: 15660ed713803ff440da583e1d5a219ab5e488c2237f3bb33cd30e7115174bdc
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-010
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: Notice on the 2026 marine seasonal-closure enforcement action 一、重点任务
+  predicate: 条文要点
+  value: 一、重点任务 （一）落实船籍港休渔制度。以县（市、区）为单位建立应休渔渔船、重点监管渔船台账，督促所有应休渔渔船按时返回船籍港集中休渔。伏季休渔期间，长期异地渔船必须在船籍港地休渔，期间的安全生产管理及往返航行安全由船籍港地负责。休渔开始后，对港内发现擅自滞留的异地渔船，要依照新修订渔业法关于违反休禁渔制度航行、停泊的相关规定，依法予以严肃查处。
+    （二）开展回港渔船安全执法。充分利用伏季休渔期，全覆盖开展回港渔船安全生产排查整治。重点检查渔船消防设施、救生设备等关键部位，强化
+  evidence: 一、重点任务 （一）落实船籍港休渔制度。以县（市、区）为单位建立应休渔渔船、重点监管渔船台账，督促所有应休渔渔船按时返回船籍港集中休渔。伏季休渔期间，长期异地渔船必须在船籍港地休渔，期间的安全生产管理及往返航行安全由船籍港地负责。休渔开始后，对港内发现擅自滞留的异地渔船，要依照新修订渔业法关于违反休禁渔制度航行、停泊的相关规定，依法予以严肃查处。
+    （二）开展回港渔船安全执法。充分利用伏季休渔期，全覆盖开展回港渔船安全生产排查整治。重点检查渔船消防设施、救生设备等关键部位，强化
+  source:
+    doc: POL-ENF-068
+    section: 一、重点任务
+    sha256: 174ab3e343df18e09d8340272e329d956b062ce909216eea8282e206a6bca8af
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-011
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: Notice on the 2026 marine seasonal-closure enforcement action 二、工作要点
+  predicate: 条文要点
+  value: 二、工作要点 （一）5月1日之前，集中召回在外渔船，督促在港异地渔船返回船籍港休渔。 （二）5月1日至5月10日，组织开展渔港码头专项检查，严格落实港内休渔管理要求；全面部署执法船艇开展海上巡查，实现“船艇应出尽出、渔船应检尽检”。
+    （三）8月5日至9月16日，开展北纬35度线至北纬26度30分线之间海域专项监管，紧盯桁杆拖虾、笼壶类、刺网和灯光围（敷）网等四种作业类型专项捕捞渔船。 （四）8月16日至9月16日，组织开展北纬26度30分线附近海域集中执法管控行动，重点防控南
+  evidence: 二、工作要点 （一）5月1日之前，集中召回在外渔船，督促在港异地渔船返回船籍港休渔。 （二）5月1日至5月10日，组织开展渔港码头专项检查，严格落实港内休渔管理要求；全面部署执法船艇开展海上巡查，实现“船艇应出尽出、渔船应检尽检”。
+    （三）8月5日至9月16日，开展北纬35度线至北纬26度30分线之间海域专项监管，紧盯桁杆拖虾、笼壶类、刺网和灯光围（敷）网等四种作业类型专项捕捞渔船。 （四）8月16日至9月16日，组织开展北纬26度30分线附近海域集中执法管控行动，重点防控南
+  source:
+    doc: POL-ENF-068
+    section: 二、工作要点
+    sha256: 174ab3e343df18e09d8340272e329d956b062ce909216eea8282e206a6bca8af
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-012
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: Notice on the 2026 marine seasonal-closure enforcement action 三、有关要求
+  predicate: 条文要点
+  value: 三、有关要求 （一）细化工作举措。各地要结合各自工作职责、辖区监管实际和以往执法经验，进一步细化实化工作措施，明确分工、责任到人，有序推动各项执法工作落地落细、见行见效。要强化工作指导和统筹，及时梳理解决执法过程中出现的新情况、新问题，确保海洋伏季休渔制度不打折扣、执行到位。
+    （二）落实法律要求。各地要严格落实新修订渔业法有关规定，确保执行到位、落实有效。对于“三无”船舶非法捕捞，违反伏季休渔规定捕捞、航行、停泊，为违反伏季休渔规定船舶提供辅助服务，非法越线越界捕捞，跨区域作
+  evidence: 三、有关要求 （一）细化工作举措。各地要结合各自工作职责、辖区监管实际和以往执法经验，进一步细化实化工作措施，明确分工、责任到人，有序推动各项执法工作落地落细、见行见效。要强化工作指导和统筹，及时梳理解决执法过程中出现的新情况、新问题，确保海洋伏季休渔制度不打折扣、执行到位。
+    （二）落实法律要求。各地要严格落实新修订渔业法有关规定，确保执行到位、落实有效。对于“三无”船舶非法捕捞，违反伏季休渔规定捕捞、航行、停泊，为违反伏季休渔规定船舶提供辅助服务，非法越线越界捕捞，跨区域作
+  source:
+    doc: POL-ENF-068
+    section: 三、有关要求
+    sha256: 174ab3e343df18e09d8340272e329d956b062ce909216eea8282e206a6bca8af
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-013
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: 福建省实施《中华人民共和国渔业法》办法 第一条
+  predicate: 条文要点
+  value: 第一条 为了加强渔业资源的保护、增殖、开发和合理利用，发展人工养殖，保障渔业生产者的合法权益，促进渔业的可持续发展，根据《中华人民共和国渔业法》等有关法律、法规，结合本省实际，制定本办法。
+  evidence: 第一条 为了加强渔业资源的保护、增殖、开发和合理利用，发展人工养殖，保障渔业生产者的合法权益，促进渔业的可持续发展，根据《中华人民共和国渔业法》等有关法律、法规，结合本省实际，制定本办法。
+  source:
+    doc: POL-FJ-025
+    section: 第一条
+    sha256: 2bc7fc1382737d874bf5a5a252fa6f17bd2c038affcb95654cdcf4547127b92d
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: fujian
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-014
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: 福建省实施《中华人民共和国渔业法》办法 第二条
+  predicate: 条文要点
+  value: 第二条 在本省管辖的海域和内陆水域从事养殖和捕捞水生动物、水生植物等渔业生产以及渔业资源繁殖保护活动，适用本办法。
+  evidence: 第二条 在本省管辖的海域和内陆水域从事养殖和捕捞水生动物、水生植物等渔业生产以及渔业资源繁殖保护活动，适用本办法。
+  source:
+    doc: POL-FJ-025
+    section: 第二条
+    sha256: 2bc7fc1382737d874bf5a5a252fa6f17bd2c038affcb95654cdcf4547127b92d
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: fujian
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-015
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: 福建省实施《中华人民共和国渔业法》办法 第三条
+  predicate: 条文要点
+  value: 第三条 省人民政府渔业行政主管部门主管全省的渔业工作，设区的市、县（市、区）人民政府渔业行政主管部门主管本行政区域内的渔业工作。县级以上地方人民政府渔业行政主管部门所属的渔政渔港监督管理机构，依法负责渔政渔港监督管理的具体工作。
+  evidence: 第三条 省人民政府渔业行政主管部门主管全省的渔业工作，设区的市、县（市、区）人民政府渔业行政主管部门主管本行政区域内的渔业工作。县级以上地方人民政府渔业行政主管部门所属的渔政渔港监督管理机构，依法负责渔政渔港监督管理的具体工作。
+  source:
+    doc: POL-FJ-025
+    section: 第三条
+    sha256: 2bc7fc1382737d874bf5a5a252fa6f17bd2c038affcb95654cdcf4547127b92d
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: fujian
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-016
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: 福建省实施《中华人民共和国渔业法》办法 第四条
+  predicate: 条文要点
+  value: 第四条 公安、海事、交通运输、生态环境、自然资源、水利、农业农村、应急管理、市场监督管理、海警等部门，应当根据各自的职责，负责有关的渔业监督管理工作。公安部门可以在重点渔业水域和渔区设置派出机构。
+  evidence: 第四条 公安、海事、交通运输、生态环境、自然资源、水利、农业农村、应急管理、市场监督管理、海警等部门，应当根据各自的职责，负责有关的渔业监督管理工作。公安部门可以在重点渔业水域和渔区设置派出机构。
+  source:
+    doc: POL-FJ-025
+    section: 第四条
+    sha256: 2bc7fc1382737d874bf5a5a252fa6f17bd2c038affcb95654cdcf4547127b92d
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: fujian
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-017
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: 福建省实施《中华人民共和国渔业法》办法 第五条
+  predicate: 条文要点
+  value: 第五条 渔业的监督管理实行统一领导，分级管理。机动渔船底拖网禁渔区线内侧海域及国家指定由本省管辖的海域，由县级以上地方人民政府渔业行政主管部门及其所属的渔政渔港监督管理机构监督管理。
+    内陆水域的渔业，由行政区域内有关设区的市、县（市、区）人民政府渔业行政主管部门及其所属的渔政渔港监督管理机构监督管理；跨行政区域的，由有关县级以上地方人民政府协商制定管理办法，或者由共同的上一级人民政府渔业行政主管部门及其所属的渔政渔港监督管理机构监督管理。
+  evidence: 第五条 渔业的监督管理实行统一领导，分级管理。机动渔船底拖网禁渔区线内侧海域及国家指定由本省管辖的海域，由县级以上地方人民政府渔业行政主管部门及其所属的渔政渔港监督管理机构监督管理。
+    内陆水域的渔业，由行政区域内有关设区的市、县（市、区）人民政府渔业行政主管部门及其所属的渔政渔港监督管理机构监督管理；跨行政区域的，由有关县级以上地方人民政府协商制定管理办法，或者由共同的上一级人民政府渔业行政主管部门及其所属的渔政渔港监督管理机构监督管理。
+  source:
+    doc: POL-FJ-025
+    section: 第五条
+    sha256: 2bc7fc1382737d874bf5a5a252fa6f17bd2c038affcb95654cdcf4547127b92d
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: fujian
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-018
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: 福建省渔港和渔业船舶管理条例 第一条
+  predicate: 条文要点
+  value: 第一条 为了加强渔港和渔业船舶管理，发挥渔港功能，保障渔港设施、渔业船舶和从业人员人身、财产的安全，促进渔业经济可持续发展，根据有关法律、法规，结合本省实际，制定本条例。
+  evidence: 第一条 为了加强渔港和渔业船舶管理，发挥渔港功能，保障渔港设施、渔业船舶和从业人员人身、财产的安全，促进渔业经济可持续发展，根据有关法律、法规，结合本省实际，制定本条例。
+  source:
+    doc: POL-FJ-026
+    section: 第一条
+    sha256: 3052385ad2009f7e0bf811b789acf12594e502ba08fa1f526c54e8e0db68daf6
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: fujian
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-019
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: 福建省渔港和渔业船舶管理条例 第二条
+  predicate: 条文要点
+  value: 第二条 本条例所称渔港是指专门为渔业生产服务和供渔业船舶停泊、避风、装卸渔获物、补充渔需物资的人工港口或者自然港湾，包括综合性港口中渔业专用码头、渔业专用的水域和渔船专用的锚地。
+    本条例所称渔业船舶是指从事渔业生产的船舶、为渔业生产服务的船舶和渔业公务船。
+  evidence: 第二条 本条例所称渔港是指专门为渔业生产服务和供渔业船舶停泊、避风、装卸渔获物、补充渔需物资的人工港口或者自然港湾，包括综合性港口中渔业专用码头、渔业专用的水域和渔船专用的锚地。
+    本条例所称渔业船舶是指从事渔业生产的船舶、为渔业生产服务的船舶和渔业公务船。
+  source:
+    doc: POL-FJ-026
+    section: 第二条
+    sha256: 3052385ad2009f7e0bf811b789acf12594e502ba08fa1f526c54e8e0db68daf6
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: fujian
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-020
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: 福建省渔港和渔业船舶管理条例 第三条
+  predicate: 条文要点
+  value: 第三条 在本省行政区域内从事渔港规划、建设、经营和管理，渔业船舶设计、建造、修理、使用和管理，以及其他相关活动的，应当遵守本条例。
+  evidence: 第三条 在本省行政区域内从事渔港规划、建设、经营和管理，渔业船舶设计、建造、修理、使用和管理，以及其他相关活动的，应当遵守本条例。
+  source:
+    doc: POL-FJ-026
+    section: 第三条
+    sha256: 3052385ad2009f7e0bf811b789acf12594e502ba08fa1f526c54e8e0db68daf6
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: fujian
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-021
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: 福建省渔港和渔业船舶管理条例 第四条
+  predicate: 条文要点
+  value: 第四条 县级以上地方人民政府渔业行政主管部门负责本行政区域内渔港和渔业船舶管理工作。 县级以上地方人民政府渔业行政主管部门所属的渔政渔港监督机构依法对渔港和渔业船舶实施监督管理。
+    渔业船舶检验机构依法负责渔业船舶的检验工作。 公安边防、交通、海洋、国土资源、环境保护、水利、安全生产监督、质量技术监督、工商行政管理等部门和海事管理机构在各自的职责范围内开展渔港和渔业船舶管理工作。
+    第二章 渔港规划与建设
+  evidence: 第四条 县级以上地方人民政府渔业行政主管部门负责本行政区域内渔港和渔业船舶管理工作。 县级以上地方人民政府渔业行政主管部门所属的渔政渔港监督机构依法对渔港和渔业船舶实施监督管理。
+    渔业船舶检验机构依法负责渔业船舶的检验工作。 公安边防、交通、海洋、国土资源、环境保护、水利、安全生产监督、质量技术监督、工商行政管理等部门和海事管理机构在各自的职责范围内开展渔港和渔业船舶管理工作。
+    第二章 渔港规划与建设
+  source:
+    doc: POL-FJ-026
+    section: 第四条
+    sha256: 3052385ad2009f7e0bf811b789acf12594e502ba08fa1f526c54e8e0db68daf6
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: fujian
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-022
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: 福建省渔港和渔业船舶管理条例 第五条
+  predicate: 条文要点
+  value: 第五条 渔港规划应当根据经济和社会发展的需要编制，符合海洋功能区划、港口规划和土地利用总体规划，并与城市总体规划、城镇体系规划、防洪防潮规划等相关规划相衔接。
+    渔港规划包括渔港布局规划和渔港总体规划。
+  evidence: 第五条 渔港规划应当根据经济和社会发展的需要编制，符合海洋功能区划、港口规划和土地利用总体规划，并与城市总体规划、城镇体系规划、防洪防潮规划等相关规划相衔接。
+    渔港规划包括渔港布局规划和渔港总体规划。
+  source:
+    doc: POL-FJ-026
+    section: 第五条
+    sha256: 3052385ad2009f7e0bf811b789acf12594e502ba08fa1f526c54e8e0db68daf6
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: fujian
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-023
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: 广东省渔业管理条例 第一条
+  predicate: 条文要点
+  value: 第一条 为加强渔业资源保护、增殖、开发和合理利用，保障渔业生产者的合法权益，促进渔业的可持续发展，根据《中华人民共和国农业法》、《中华人民共和国渔业法》及其他有关法律、法规，结合本省实际，制定本条例。
+    第二条 在本省水域、滩涂和国家规定由本省实施渔业监督管理的水域从事养殖、捕捞等渔业生产活动以及管理，必须遵守本条例。 第三条 县级以上人民政府应当把渔业生产纳入国民经济发展计划，采取措施，加强水域的统一规划和综合利用。
+    渔业生产实行以养殖为主，养殖、捕捞、加工并举，因地制宜，各
+  evidence: 第一条 为加强渔业资源保护、增殖、开发和合理利用，保障渔业生产者的合法权益，促进渔业的可持续发展，根据《中华人民共和国农业法》、《中华人民共和国渔业法》及其他有关法律、法规，结合本省实际，制定本条例。
+    第二条 在本省水域、滩涂和国家规定由本省实施渔业监督管理的水域从事养殖、捕捞等渔业生产活动以及管理，必须遵守本条例。 第三条 县级以上人民政府应当把渔业生产纳入国民经济发展计划，采取措施，加强水域的统一规划和综合利用。
+    渔业生产实行以养殖为主，养殖、捕捞、加工并举，因地制宜，各
+  source:
+    doc: POL-GD-021
+    section: 第一条
+    sha256: 7cd26c0c5fb8db0b515ed79da1a5968b863e08d1a31615ad504043100e6b998b
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: guangdong
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-024
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: 广东省渔业管理条例 第九条
+  predicate: 条文要点
+  value: 第九条 省人民政府渔业行政主管部门应当根据国家对水域、滩涂利用的统一规划，会同交通、自然资源、建设、生态环境、水利、林业、海事等有关部门，制定养殖水域、滩涂利用规划，报省人民政府批准实施。养殖水域、滩涂利用规划应当与土地利用、防洪、防风等规划相衔接。
+    县级以上人民政府应当加强商品鱼生产基地和城市郊区重要养殖水域的保护，划定养殖保护区，采取相应的保护措施。 第十条 县级以上人民政府渔业行政主管部门应当加强对所辖水域、滩涂养殖容量的调查评估，根据养殖区域的自然承载力，确定养殖容量
+  evidence: 第九条 省人民政府渔业行政主管部门应当根据国家对水域、滩涂利用的统一规划，会同交通、自然资源、建设、生态环境、水利、林业、海事等有关部门，制定养殖水域、滩涂利用规划，报省人民政府批准实施。养殖水域、滩涂利用规划应当与土地利用、防洪、防风等规划相衔接。
+    县级以上人民政府应当加强商品鱼生产基地和城市郊区重要养殖水域的保护，划定养殖保护区，采取相应的保护措施。 第十条 县级以上人民政府渔业行政主管部门应当加强对所辖水域、滩涂养殖容量的调查评估，根据养殖区域的自然承载力，确定养殖容量
+  source:
+    doc: POL-GD-021
+    section: 第九条
+    sha256: 7cd26c0c5fb8db0b515ed79da1a5968b863e08d1a31615ad504043100e6b998b
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: guangdong
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-025
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: 广东省渔业管理条例 第十七条
+  predicate: 条文要点
+  value: 第十七条 从事水产苗种生产的单位和个人必须向生产所在地县级以上人民政府渔业行政主管部门提出申请，经批准后方可从事生产。但是，渔业生产者自育、自用水产苗种的除外。渔业行政主管部门必须在收到申请后三十日内作出许可或者不予许可的决定。对不予许可的，必须书面说明理由。
+    水产苗种生产许可证实行分级分类审批制度，具体办法由省人民政府渔业行政主管部门制定。
+  evidence: 第十七条 从事水产苗种生产的单位和个人必须向生产所在地县级以上人民政府渔业行政主管部门提出申请，经批准后方可从事生产。但是，渔业生产者自育、自用水产苗种的除外。渔业行政主管部门必须在收到申请后三十日内作出许可或者不予许可的决定。对不予许可的，必须书面说明理由。
+    水产苗种生产许可证实行分级分类审批制度，具体办法由省人民政府渔业行政主管部门制定。
+  source:
+    doc: POL-GD-021
+    section: 第十七条
+    sha256: 7cd26c0c5fb8db0b515ed79da1a5968b863e08d1a31615ad504043100e6b998b
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: guangdong
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-026
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: 广东省渔业管理条例 第十八条
+  predicate: 条文要点
+  value: 第十八条 从事水产苗种生产的单位和个人应当应用良种良法，按照水产苗种生产技术操作规程和标准进行生产，建立生产和技术档案。 生产和销售的水产苗种质量应当符合国家标准、或者行业标准、或者地方标准。销售的水产苗种应当附有质量合格证。
+    第十九条 县级以上人民政府渔业行政主管部门应当加强水产苗种质量的监督管理。 地级以上市人民政府渔业行政主管部门应当对生产和销售单位进行苗种质量检测，并将结果向社会公布。
+    第二十条 县级以上人民政府渔业行政主管部门应当加强水生生物安全的监督管理，应对辖区
+  evidence: 第十八条 从事水产苗种生产的单位和个人应当应用良种良法，按照水产苗种生产技术操作规程和标准进行生产，建立生产和技术档案。 生产和销售的水产苗种质量应当符合国家标准、或者行业标准、或者地方标准。销售的水产苗种应当附有质量合格证。
+    第十九条 县级以上人民政府渔业行政主管部门应当加强水产苗种质量的监督管理。 地级以上市人民政府渔业行政主管部门应当对生产和销售单位进行苗种质量检测，并将结果向社会公布。
+    第二十条 县级以上人民政府渔业行政主管部门应当加强水生生物安全的监督管理，应对辖区
+  source:
+    doc: POL-GD-021
+    section: 第十八条
+    sha256: 7cd26c0c5fb8db0b515ed79da1a5968b863e08d1a31615ad504043100e6b998b
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: guangdong
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-027
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: 广东省渔业管理条例 第二十一条
+  predicate: 条文要点
+  value: 第二十一条 进口、出口水产苗种，应当依法办理审批手续。 从境外引进的水产苗种，不得擅自转让和销售。 水产苗种进口、出口必须按照国家法律、行政法规的规定实施检疫。
+    第四章 捕捞管理
+  evidence: 第二十一条 进口、出口水产苗种，应当依法办理审批手续。 从境外引进的水产苗种，不得擅自转让和销售。 水产苗种进口、出口必须按照国家法律、行政法规的规定实施检疫。
+    第四章 捕捞管理
+  source:
+    doc: POL-GD-021
+    section: 第二十一条
+    sha256: 7cd26c0c5fb8db0b515ed79da1a5968b863e08d1a31615ad504043100e6b998b
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: guangdong
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-028
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: 广东省渔港和渔业船舶管理条例 第一条
+  predicate: 条文要点
+  value: 第一条 为了加强渔港和渔业船舶管理，保护渔港和渔业船舶所有者和经营者的合法权益，保障渔业生产安全，促进渔业发展，根据《中华人民共和国渔业法》等法律法规，结合本省实际，制定本条例。
+  evidence: 第一条 为了加强渔港和渔业船舶管理，保护渔港和渔业船舶所有者和经营者的合法权益，保障渔业生产安全，促进渔业发展，根据《中华人民共和国渔业法》等法律法规，结合本省实际，制定本条例。
+  source:
+    doc: POL-GD-022
+    section: 第一条
+    sha256: 6ce9089d55e911f00647639bc024e216fbd830c48c862c05342e142d01f17a2b
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: guangdong
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-029
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: 广东省渔港和渔业船舶管理条例 第二条
+  predicate: 条文要点
+  value: 第二条 本条例适用于本省行政区域及管辖水域内渔港的规划、建设、维护、经营和管理，渔业船舶的设计、制造、维修、使用和管理。
+  evidence: 第二条 本条例适用于本省行政区域及管辖水域内渔港的规划、建设、维护、经营和管理，渔业船舶的设计、制造、维修、使用和管理。
+  source:
+    doc: POL-GD-022
+    section: 第二条
+    sha256: 6ce9089d55e911f00647639bc024e216fbd830c48c862c05342e142d01f17a2b
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: guangdong
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-030
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: 广东省渔港和渔业船舶管理条例 第三条
+  predicate: 条文要点
+  value: 第三条 县级以上人民政府渔业主管部门负责本行政区域内渔港和渔业船舶的管理工作。县级以上渔政监督管理机构、渔业船舶检验机构具体负责对渔港和渔业船舶的监督管理。
+    县级以上人民政府公安、市场监督管理等部门以及渔港所在地乡镇人民政府，按照各自职责做好渔港和渔业船舶的监督管理工作。
+  evidence: 第三条 县级以上人民政府渔业主管部门负责本行政区域内渔港和渔业船舶的管理工作。县级以上渔政监督管理机构、渔业船舶检验机构具体负责对渔港和渔业船舶的监督管理。
+    县级以上人民政府公安、市场监督管理等部门以及渔港所在地乡镇人民政府，按照各自职责做好渔港和渔业船舶的监督管理工作。
+  source:
+    doc: POL-GD-022
+    section: 第三条
+    sha256: 6ce9089d55e911f00647639bc024e216fbd830c48c862c05342e142d01f17a2b
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: guangdong
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-031
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: 广东省渔港和渔业船舶管理条例 第四条
+  predicate: 条文要点
+  value: 第四条 县级以上人民政府应当加强渔港建设，鼓励渔业生产采用节能、环保、高效的新技术、新工艺和新材料，促进现代渔业发展。 县级以上人民政府应当推进渔港和渔业船舶管理信息化建设，建立健全管理信息系统，提高服务水平。
+    第二章 渔港规划与建设
+  evidence: 第四条 县级以上人民政府应当加强渔港建设，鼓励渔业生产采用节能、环保、高效的新技术、新工艺和新材料，促进现代渔业发展。 县级以上人民政府应当推进渔港和渔业船舶管理信息化建设，建立健全管理信息系统，提高服务水平。
+    第二章 渔港规划与建设
+  source:
+    doc: POL-GD-022
+    section: 第四条
+    sha256: 6ce9089d55e911f00647639bc024e216fbd830c48c862c05342e142d01f17a2b
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: guangdong
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-032
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: 广东省渔港和渔业船舶管理条例 第五条
+  predicate: 条文要点
+  value: 第五条 省人民政府渔业主管部门应当根据国家渔港布局规划及本省经济和社会发展的需要，会同省发展改革、城乡规划、交通运输、海事、生态环境等部门和有关市、县人民政府，编制全省渔港布局规划，报省人民政府批准后公布实施。
+    县级以上人民政府渔业主管部门应当根据全省渔港布局规划，会同发展改革、城乡规划、交通运输、海事、生态环境等有关部门及渔港所在地的乡（镇）人民政府，编制本地区渔港建设规划，报本级人民政府批准实施，并报上一级人民政府渔业主管部门备案。
+  evidence: 第五条 省人民政府渔业主管部门应当根据国家渔港布局规划及本省经济和社会发展的需要，会同省发展改革、城乡规划、交通运输、海事、生态环境等部门和有关市、县人民政府，编制全省渔港布局规划，报省人民政府批准后公布实施。
+    县级以上人民政府渔业主管部门应当根据全省渔港布局规划，会同发展改革、城乡规划、交通运输、海事、生态环境等有关部门及渔港所在地的乡（镇）人民政府，编制本地区渔港建设规划，报本级人民政府批准实施，并报上一级人民政府渔业主管部门备案。
+  source:
+    doc: POL-GD-022
+    section: 第五条
+    sha256: 6ce9089d55e911f00647639bc024e216fbd830c48c862c05342e142d01f17a2b
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: guangdong
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-033
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: 农业部关于实施海洋捕捞准用渔具和过渡渔具最小网目尺寸制度的通告 一、实行时间和范围
+  predicate: 条文要点
+  value: 一、实行时间和范围 自2014年6月1日起，黄渤海、东海、南海三个海区全面实施海洋捕捞准用渔具和过渡渔具最小网目尺寸制度，有关最小网目尺寸标准详见附件1、2。
+  evidence: 一、实行时间和范围 自2014年6月1日起，黄渤海、东海、南海三个海区全面实施海洋捕捞准用渔具和过渡渔具最小网目尺寸制度，有关最小网目尺寸标准详见附件1、2。
+  source:
+    doc: POL-GEAR-016
+    section: 一、实行时间和范围
+    sha256: 94fa54b1133ec4c9e87b7c29d1ce212747bef8b4762282d5fffce659a6fc2794
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-034
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: 农业部关于实施海洋捕捞准用渔具和过渡渔具最小网目尺寸制度的通告 二、主要内容
+  predicate: 条文要点
+  value: 二、主要内容 （一）根据现有科研基础和捕捞生产实际，海洋捕捞渔具最小网目尺寸制度分为准用渔具和过渡渔具两大类。准用渔具是国家允许使用的海洋捕捞渔具，过渡渔具将根据保护海洋渔业资源的需要，今后分别转为准用或禁用渔具，并予以公告。
+    （二）主捕种类为颚针鱼、青鳞鱼、梅童鱼、凤尾鱼、多鳞鱚、少鳞鱚、银鱼、小公鱼等鱼种的刺网作业，由各省（自治区、直辖市）渔业行政主管部门根据此次确定的最小网目尺寸标准实行特许作业，限定具体作业时间、作业区域。拖网主捕种类为鳀鱼，张网主捕种类为毛虾和鳗苗，
+  evidence: 二、主要内容 （一）根据现有科研基础和捕捞生产实际，海洋捕捞渔具最小网目尺寸制度分为准用渔具和过渡渔具两大类。准用渔具是国家允许使用的海洋捕捞渔具，过渡渔具将根据保护海洋渔业资源的需要，今后分别转为准用或禁用渔具，并予以公告。
+    （二）主捕种类为颚针鱼、青鳞鱼、梅童鱼、凤尾鱼、多鳞鱚、少鳞鱚、银鱼、小公鱼等鱼种的刺网作业，由各省（自治区、直辖市）渔业行政主管部门根据此次确定的最小网目尺寸标准实行特许作业，限定具体作业时间、作业区域。拖网主捕种类为鳀鱼，张网主捕种类为毛虾和鳗苗，
+  source:
+    doc: POL-GEAR-016
+    section: 二、主要内容
+    sha256: 94fa54b1133ec4c9e87b7c29d1ce212747bef8b4762282d5fffce659a6fc2794
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-035
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: 农业部关于实施海洋捕捞准用渔具和过渡渔具最小网目尺寸制度的通告 三、测量办法
+  predicate: 条文要点
+  value: 三、测量办法 根据GB/T 6964—2010规定，采用扁平楔形网目内径测量仪进行测量。网目长度测量时，网目应沿有结网的纵向或无结网的长轴方向充分拉直，每次逐目测量相邻5目的网目内径，取其最小值为该网片的网目内径。三重刺网在测量时，要测量最里层网的最小网目尺寸；双重刺网要测量两层网中网眼更小的网的最小网目尺寸。各省（自治区、直辖市）渔业行政主管部门可结合本地实际，在上述规定基础上制定出简便易行的测量办法。
+  evidence: 三、测量办法 根据GB/T 6964—2010规定，采用扁平楔形网目内径测量仪进行测量。网目长度测量时，网目应沿有结网的纵向或无结网的长轴方向充分拉直，每次逐目测量相邻5目的网目内径，取其最小值为该网片的网目内径。三重刺网在测量时，要测量最里层网的最小网目尺寸；双重刺网要测量两层网中网眼更小的网的最小网目尺寸。各省（自治区、直辖市）渔业行政主管部门可结合本地实际，在上述规定基础上制定出简便易行的测量办法。
+  source:
+    doc: POL-GEAR-016
+    section: 三、测量办法
+    sha256: 94fa54b1133ec4c9e87b7c29d1ce212747bef8b4762282d5fffce659a6fc2794
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-036
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: 农业部关于实施海洋捕捞准用渔具和过渡渔具最小网目尺寸制度的通告 四、有关要求
+  predicate: 条文要点
+  value: 四、有关要求 （一）2014年6月1日之前，小于最小网目尺寸的捕捞渔具所有者、使用者须按上述标准尽快调整和更换，执法机构仍按国家已有网目尺寸规定进行执法。
+    （二）自2014年6月1日起，禁止使用小于最小网目尺寸的渔具进行捕捞。沿海各级渔业执法机构要根据本通告，对海上、滩涂、港口渔船携带、使用渔具的网目情况进行执法检查。对使用小于最小网目尺寸的渔具进行捕捞的，依据《渔业法》第三十八条予以处罚，并全部或部分扣除当年的渔业油价补助资金。对携带小于最小网目尺寸渔具的捕捞渔船，按使用小
+  evidence: 四、有关要求 （一）2014年6月1日之前，小于最小网目尺寸的捕捞渔具所有者、使用者须按上述标准尽快调整和更换，执法机构仍按国家已有网目尺寸规定进行执法。
+    （二）自2014年6月1日起，禁止使用小于最小网目尺寸的渔具进行捕捞。沿海各级渔业执法机构要根据本通告，对海上、滩涂、港口渔船携带、使用渔具的网目情况进行执法检查。对使用小于最小网目尺寸的渔具进行捕捞的，依据《渔业法》第三十八条予以处罚，并全部或部分扣除当年的渔业油价补助资金。对携带小于最小网目尺寸渔具的捕捞渔船，按使用小
+  source:
+    doc: POL-GEAR-016
+    section: 四、有关要求
+    sha256: 94fa54b1133ec4c9e87b7c29d1ce212747bef8b4762282d5fffce659a6fc2794
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-037
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: 广西壮族自治区实施《中华人民共和国渔业法》办法 第一条
+  predicate: 条文要点
+  value: 第一条 根据《中华人民共和国渔业法》及有关法律、行政法规的规定，结合本自治区实际，制定本办法。
+  evidence: 第一条 根据《中华人民共和国渔业法》及有关法律、行政法规的规定，结合本自治区实际，制定本办法。
+  source:
+    doc: POL-GX-023
+    section: 第一条
+    sha256: 3f85441ad37f266b6d2675fda1d012a34e0d49f6a30501895bde093ad7505de9
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: guangxi
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-038
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: 广西壮族自治区实施《中华人民共和国渔业法》办法 第二条
+  predicate: 条文要点
+  value: 第二条 在本自治区行政区域内的水域、滩涂和国家指定由本自治区实施渔业管理的水域从事养殖和捕捞水生动物、水生植物或者利用其他水体从事养殖等渔业生产活动，以及从事与渔业资源增殖、保护活动有关的单位和个人，必须遵守本办法。
+  evidence: 第二条 在本自治区行政区域内的水域、滩涂和国家指定由本自治区实施渔业管理的水域从事养殖和捕捞水生动物、水生植物或者利用其他水体从事养殖等渔业生产活动，以及从事与渔业资源增殖、保护活动有关的单位和个人，必须遵守本办法。
+  source:
+    doc: POL-GX-023
+    section: 第二条
+    sha256: 3f85441ad37f266b6d2675fda1d012a34e0d49f6a30501895bde093ad7505de9
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: guangxi
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-039
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: 广西壮族自治区实施《中华人民共和国渔业法》办法 第三条
+  predicate: 条文要点
+  value: 第三条 县级以上人民政府应当把渔业生产纳入国民经济和社会发展规划，加强水域、滩涂的统一规划和综合利用，增加投入，加强渔业科学技术研究，提高渔业科技水平，保护渔业生态环境，促进渔业生产的可持续发展。
+  evidence: 第三条 县级以上人民政府应当把渔业生产纳入国民经济和社会发展规划，加强水域、滩涂的统一规划和综合利用，增加投入，加强渔业科学技术研究，提高渔业科技水平，保护渔业生态环境，促进渔业生产的可持续发展。
+  source:
+    doc: POL-GX-023
+    section: 第三条
+    sha256: 3f85441ad37f266b6d2675fda1d012a34e0d49f6a30501895bde093ad7505de9
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: guangxi
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-040
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: 广西壮族自治区实施《中华人民共和国渔业法》办法 第四条
+  predicate: 条文要点
+  value: 第四条 县级以上人民政府渔业行政主管部门主管本行政区域内的渔业工作。 渔业行政主管部门所属的渔政监督管理机构负责本行政区域内渔业监督管理的具体工作。
+  evidence: 第四条 县级以上人民政府渔业行政主管部门主管本行政区域内的渔业工作。 渔业行政主管部门所属的渔政监督管理机构负责本行政区域内渔业监督管理的具体工作。
+  source:
+    doc: POL-GX-023
+    section: 第四条
+    sha256: 3f85441ad37f266b6d2675fda1d012a34e0d49f6a30501895bde093ad7505de9
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: guangxi
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-041
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: 广西壮族自治区实施《中华人民共和国渔业法》办法 第五条
+  predicate: 条文要点
+  value: '第五条 渔业监督按照下列规定分级管理: （一）“机动渔船底拖网禁渔区线”内侧海域的渔业，由自治区人民政府渔业行政主管部门及其所属渔政监督管理机构管理；
+    （二）沿海滩涂的渔业，由所在地县级以上人民政府渔业行政主管部门及其所属渔政监督管理机构管理； （三）内陆水域的渔业，由所在地县级以上人民政府渔业行政主管部门及其所属渔政监督管理机构管理；
+    （四）跨行政区域的水域、滩涂的渔业，由有关县级以上人民政府协商制定管理办法，共同组织管理，或者由上一级人民政府渔业行政主管部门及其所属渔政监'
+  evidence: '第五条 渔业监督按照下列规定分级管理: （一）“机动渔船底拖网禁渔区线”内侧海域的渔业，由自治区人民政府渔业行政主管部门及其所属渔政监督管理机构管理；
+    （二）沿海滩涂的渔业，由所在地县级以上人民政府渔业行政主管部门及其所属渔政监督管理机构管理； （三）内陆水域的渔业，由所在地县级以上人民政府渔业行政主管部门及其所属渔政监督管理机构管理；
+    （四）跨行政区域的水域、滩涂的渔业，由有关县级以上人民政府协商制定管理办法，共同组织管理，或者由上一级人民政府渔业行政主管部门及其所属渔政监'
+  source:
+    doc: POL-GX-023
+    section: 第五条
+    sha256: 3f85441ad37f266b6d2675fda1d012a34e0d49f6a30501895bde093ad7505de9
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: guangxi
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-042
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: 广西壮族自治区渔港渔业船舶管理条例 第一条
+  predicate: 条文要点
+  value: 第一条 为加强渔港渔业船舶监督管理，保护渔业资源，维护渔业生产秩序，保障渔港设施、渔业船舶和渔民生命财产安全，促进渔业生产发展，根据《中华人民共和国渔业法》、《中华人民共和国渔港水域交通安全管理条例》等有关法律、法规，结合本自治区实际，制定本条例。
+  evidence: 第一条 为加强渔港渔业船舶监督管理，保护渔业资源，维护渔业生产秩序，保障渔港设施、渔业船舶和渔民生命财产安全，促进渔业生产发展，根据《中华人民共和国渔业法》、《中华人民共和国渔港水域交通安全管理条例》等有关法律、法规，结合本自治区实际，制定本条例。
+  source:
+    doc: POL-GX-024
+    section: 第一条
+    sha256: 9a6239830a762cc79d45c5edd0c82622b8ad414fba877ab542bc232b635b4b31
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: guangxi
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-043
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: 广西壮族自治区渔港渔业船舶管理条例 第二条
+  predicate: 条文要点
+  value: 第二条 本条例所称渔港，是指主要为渔业生产服务和供渔业船舶停泊、避风、装卸渔获物和补充渔需物资的人工港口或者自然港湾。 本条例所称渔业船舶，是指从事渔业生产的船舶以及为渔业生产服务的船舶，包括捕捞船、养殖船、水产运销船、冷藏加工船、油船、供应船、渔业指导船、科研调查船、教学实习船、渔港工程船、拖船、交通船、驳船、渔政船和渔监船等。
+  evidence: 第二条 本条例所称渔港，是指主要为渔业生产服务和供渔业船舶停泊、避风、装卸渔获物和补充渔需物资的人工港口或者自然港湾。 本条例所称渔业船舶，是指从事渔业生产的船舶以及为渔业生产服务的船舶，包括捕捞船、养殖船、水产运销船、冷藏加工船、油船、供应船、渔业指导船、科研调查船、教学实习船、渔港工程船、拖船、交通船、驳船、渔政船和渔监船等。
+  source:
+    doc: POL-GX-024
+    section: 第二条
+    sha256: 9a6239830a762cc79d45c5edd0c82622b8ad414fba877ab542bc232b635b4b31
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: guangxi
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-044
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: 广西壮族自治区渔港渔业船舶管理条例 第三条
+  predicate: 条文要点
+  value: 第三条 县级以上人民政府渔业行政主管部门依照渔港隶属关系主管本行政区域内的渔港渔业船舶管理工作，其所属的渔政渔港监督管理机构和渔业船舶检验机构按照各自法定职责，具体实施渔港渔业船舶管理和渔业船舶检验工作。
+    交通运输、公安、市场监督管理等部门，根据有关法律、法规的规定，按照各自的法定职责，配合渔业行政主管部门对渔港渔业船舶进行管理。
+  evidence: 第三条 县级以上人民政府渔业行政主管部门依照渔港隶属关系主管本行政区域内的渔港渔业船舶管理工作，其所属的渔政渔港监督管理机构和渔业船舶检验机构按照各自法定职责，具体实施渔港渔业船舶管理和渔业船舶检验工作。
+    交通运输、公安、市场监督管理等部门，根据有关法律、法规的规定，按照各自的法定职责，配合渔业行政主管部门对渔港渔业船舶进行管理。
+  source:
+    doc: POL-GX-024
+    section: 第三条
+    sha256: 9a6239830a762cc79d45c5edd0c82622b8ad414fba877ab542bc232b635b4b31
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: guangxi
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-045
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: 广西壮族自治区渔港渔业船舶管理条例 第四条
+  predicate: 条文要点
+  value: 第四条 渔港依其隶属关系按下列权限认定： （一）隶属县（含县级市和市辖区，下同）管理的渔港，由县人民政府渔业行政主管部门会同渔港所在地的乡、镇人民政府提出认定方案，报县人民政府批准认定；
+    （二）隶属设区的市管理的渔港，由设区的市人民政府渔业行政主管部门会同渔港所在地的县人民政府提出认定方案，报设区的市人民政府批准认定； （三）隶属自治区管理的渔港，由自治区人民政府渔业行政主管部门会同渔港所在地的设区的市人民政府提出认定方案，报自治区人民政府批准认定。
+    以渔为主、兼为水路运输提
+  evidence: 第四条 渔港依其隶属关系按下列权限认定： （一）隶属县（含县级市和市辖区，下同）管理的渔港，由县人民政府渔业行政主管部门会同渔港所在地的乡、镇人民政府提出认定方案，报县人民政府批准认定；
+    （二）隶属设区的市管理的渔港，由设区的市人民政府渔业行政主管部门会同渔港所在地的县人民政府提出认定方案，报设区的市人民政府批准认定； （三）隶属自治区管理的渔港，由自治区人民政府渔业行政主管部门会同渔港所在地的设区的市人民政府提出认定方案，报自治区人民政府批准认定。
+    以渔为主、兼为水路运输提
+  source:
+    doc: POL-GX-024
+    section: 第四条
+    sha256: 9a6239830a762cc79d45c5edd0c82622b8ad414fba877ab542bc232b635b4b31
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: guangxi
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-046
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: 广西壮族自治区渔港渔业船舶管理条例 第五条
+  predicate: 条文要点
+  value: 第五条 经批准认定的渔港，应当依法制定渔港港章。 渔港港章按渔港隶属关系由县级以上人民政府渔业行政主管部门制定，报同级人民政府批准后颁布施行。
+  evidence: 第五条 经批准认定的渔港，应当依法制定渔港港章。 渔港港章按渔港隶属关系由县级以上人民政府渔业行政主管部门制定，报同级人民政府批准后颁布施行。
+  source:
+    doc: POL-GX-024
+    section: 第五条
+    sha256: 9a6239830a762cc79d45c5edd0c82622b8ad414fba877ab542bc232b635b4b31
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: guangxi
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-047
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: 中华人民共和国渔业法（2025年修订） 第一条
+  predicate: 条文要点
+  value: 第一条 为了加强渔业资源的保护、开发和可持续利用，保障渔业生产者的合法权益，促进渔业高质量发展，适应社会主义现代化建设和人民生活需要，制定本法。
+  evidence: 第一条 为了加强渔业资源的保护、开发和可持续利用，保障渔业生产者的合法权益，促进渔业高质量发展，适应社会主义现代化建设和人民生活需要，制定本法。
+  source:
+    doc: POL-LAW-009
+    section: 第一条
+    sha256: cdeaaf75a9992bc98642fbe6c004f790506549a4afaf223e3bf2b7b5eb365fa4
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-048
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: 中华人民共和国渔业法（2025年修订） 第二条
+  predicate: 条文要点
+  value: 第二条 在中华人民共和国内水、滩涂、领海、专属经济区以及中华人民共和国管辖的其他海域从事养殖和捕捞水生动物、水生植物等渔业生产活动，以及渔业资源保护等活动，适用本法。
+  evidence: 第二条 在中华人民共和国内水、滩涂、领海、专属经济区以及中华人民共和国管辖的其他海域从事养殖和捕捞水生动物、水生植物等渔业生产活动，以及渔业资源保护等活动，适用本法。
+  source:
+    doc: POL-LAW-009
+    section: 第二条
+    sha256: cdeaaf75a9992bc98642fbe6c004f790506549a4afaf223e3bf2b7b5eb365fa4
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-049
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: 中华人民共和国渔业法（2025年修订） 第三条
+  predicate: 条文要点
+  value: 第三条 渔业工作坚持中国共产党的领导，统筹发展和安全，统筹渔业资源保护与可持续利用，坚持量质并重、创新驱动、绿色发展。
+  evidence: 第三条 渔业工作坚持中国共产党的领导，统筹发展和安全，统筹渔业资源保护与可持续利用，坚持量质并重、创新驱动、绿色发展。
+  source:
+    doc: POL-LAW-009
+    section: 第三条
+    sha256: cdeaaf75a9992bc98642fbe6c004f790506549a4afaf223e3bf2b7b5eb365fa4
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-050
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: 中华人民共和国渔业法（2025年修订） 第四条
+  predicate: 条文要点
+  value: 第四条 国家对渔业生产实行以养殖为主，养殖、捕捞、加工并举，因地制宜、各有侧重的方针，提高水产品供应保障能力。
+  evidence: 第四条 国家对渔业生产实行以养殖为主，养殖、捕捞、加工并举，因地制宜、各有侧重的方针，提高水产品供应保障能力。
+  source:
+    doc: POL-LAW-009
+    section: 第四条
+    sha256: cdeaaf75a9992bc98642fbe6c004f790506549a4afaf223e3bf2b7b5eb365fa4
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-051
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: 中华人民共和国渔业法（2025年修订） 第五条
+  predicate: 条文要点
+  value: 第五条 县级以上人民政府应当把渔业发展纳入国民经济和社会发展规划。
+  evidence: 第五条 县级以上人民政府应当把渔业发展纳入国民经济和社会发展规划。
+  source:
+    doc: POL-LAW-009
+    section: 第五条
+    sha256: cdeaaf75a9992bc98642fbe6c004f790506549a4afaf223e3bf2b7b5eb365fa4
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-052
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: Regulations on the administration of ocean observation and forecasting
+    第一条
+  predicate: 条文要点
+  value: 第一条 为了加强海洋观测预报管理，规范海洋观测预报活动，防御和减轻海洋灾害，为经济建设、国防建设和社会发展服务，制定本条例。
+  evidence: 第一条 为了加强海洋观测预报管理，规范海洋观测预报活动，防御和减轻海洋灾害，为经济建设、国防建设和社会发展服务，制定本条例。
+  source:
+    doc: POL-OBS-072
+    section: 第一条
+    sha256: 2ff2302e890798305958f38b1e21cbf0e6f2ddaea2d2619edd94c699c9b03af6
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-053
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: Regulations on the administration of ocean observation and forecasting
+    第二条
+  predicate: 条文要点
+  value: 第二条 在中华人民共和国领域和中华人民共和国管辖的其他海域从事海洋观测预报活动，应当遵守本条例。
+  evidence: 第二条 在中华人民共和国领域和中华人民共和国管辖的其他海域从事海洋观测预报活动，应当遵守本条例。
+  source:
+    doc: POL-OBS-072
+    section: 第二条
+    sha256: 2ff2302e890798305958f38b1e21cbf0e6f2ddaea2d2619edd94c699c9b03af6
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-054
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: Regulations on the administration of ocean observation and forecasting
+    第三条
+  predicate: 条文要点
+  value: 第三条 海洋观测预报事业是基础性公益事业。国务院和沿海县级以上地方人民政府应当将海洋观测预报事业纳入本级国民经济和社会发展规划，所需经费纳入本级财政预算。
+  evidence: 第三条 海洋观测预报事业是基础性公益事业。国务院和沿海县级以上地方人民政府应当将海洋观测预报事业纳入本级国民经济和社会发展规划，所需经费纳入本级财政预算。
+  source:
+    doc: POL-OBS-072
+    section: 第三条
+    sha256: 2ff2302e890798305958f38b1e21cbf0e6f2ddaea2d2619edd94c699c9b03af6
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-055
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: Regulations on the administration of ocean observation and forecasting
+    第四条
+  predicate: 条文要点
+  value: 第四条 国务院海洋主管部门主管全国海洋观测预报工作。 国务院海洋主管部门的海区派出机构依照本条例和国务院海洋主管部门规定的权限，负责所管辖海域的海洋观测预报监督管理。
+    沿海县级以上地方人民政府海洋主管部门主管本行政区毗邻海域的海洋观测预报工作。
+  evidence: 第四条 国务院海洋主管部门主管全国海洋观测预报工作。 国务院海洋主管部门的海区派出机构依照本条例和国务院海洋主管部门规定的权限，负责所管辖海域的海洋观测预报监督管理。
+    沿海县级以上地方人民政府海洋主管部门主管本行政区毗邻海域的海洋观测预报工作。
+  source:
+    doc: POL-OBS-072
+    section: 第四条
+    sha256: 2ff2302e890798305958f38b1e21cbf0e6f2ddaea2d2619edd94c699c9b03af6
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-056
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: Regulations on the administration of ocean observation and forecasting
+    第五条
+  predicate: 条文要点
+  value: 第五条 国家鼓励、支持海洋观测预报科学技术的研究，推广先进的技术和设备，培养海洋观测预报人才，促进海洋观测预报业务水平的提高。 对在海洋观测预报工作中作出突出贡献的单位和个人，给予表彰和奖励。
+  evidence: 第五条 国家鼓励、支持海洋观测预报科学技术的研究，推广先进的技术和设备，培养海洋观测预报人才，促进海洋观测预报业务水平的提高。 对在海洋观测预报工作中作出突出贡献的单位和个人，给予表彰和奖励。
+  source:
+    doc: POL-OBS-072
+    section: 第五条
+    sha256: 2ff2302e890798305958f38b1e21cbf0e6f2ddaea2d2619edd94c699c9b03af6
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-057
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: Provisions on administrative penalties for fishing port and navigation
+    supervision 第一条
+  predicate: 条文要点
+  value: 第一条 为加强渔业船舶安全监督管理，规范渔业港航法规行政处罚，保障渔业港航法规的执行和渔业生产者的合法权益，根据《中华人民共和国海上交通安全法》、《中华人民共和国海洋环境保护法》、《中华人民共和国渔港水域交通安全管理条例》和《中华人民共和国内河交通安全管理条例》等有关法律、法规，制定本规定。
+  evidence: 第一条 为加强渔业船舶安全监督管理，规范渔业港航法规行政处罚，保障渔业港航法规的执行和渔业生产者的合法权益，根据《中华人民共和国海上交通安全法》、《中华人民共和国海洋环境保护法》、《中华人民共和国渔港水域交通安全管理条例》和《中华人民共和国内河交通安全管理条例》等有关法律、法规，制定本规定。
+  source:
+    doc: POL-PEN-078
+    section: 第一条
+    sha256: 42884cb595529b9f687a4442ff5a8bf8f5706c5764cbb7df57859e29923bc428
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-058
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: Provisions on administrative penalties for fishing port and navigation
+    supervision 第二条
+  predicate: 条文要点
+  value: 第二条 本规定适用于中国籍渔业船舶及其船员、所有者和经营者，以及在中华人民共和国渔港和渔港水域内航行、停泊和作业的其他船舶、设施及其船员、所有者和经营者。
+  evidence: 第二条 本规定适用于中国籍渔业船舶及其船员、所有者和经营者，以及在中华人民共和国渔港和渔港水域内航行、停泊和作业的其他船舶、设施及其船员、所有者和经营者。
+  source:
+    doc: POL-PEN-078
+    section: 第二条
+    sha256: 42884cb595529b9f687a4442ff5a8bf8f5706c5764cbb7df57859e29923bc428
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-059
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: Provisions on administrative penalties for fishing port and navigation
+    supervision 第三条
+  predicate: 条文要点
+  value: 第三条 中华人民共和国渔政渔港监督管理机关(以下简称渔政渔港监督管理机关)依据本规定行使渔业港航监督行政处罚权。
+  evidence: 第三条 中华人民共和国渔政渔港监督管理机关(以下简称渔政渔港监督管理机关)依据本规定行使渔业港航监督行政处罚权。
+  source:
+    doc: POL-PEN-078
+    section: 第三条
+    sha256: 42884cb595529b9f687a4442ff5a8bf8f5706c5764cbb7df57859e29923bc428
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-060
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: Provisions on administrative penalties for fishing port and navigation
+    supervision 第四条
+  predicate: 条文要点
+  value: 第四条 渔政渔港监督管理机关对违反渔业港航法律、法规的行政处罚分为： （一）警告； （二）罚款； （三）扣留或吊销船舶证书或船员证书； （四）法律、法规规定的其他行政处罚。
+  evidence: 第四条 渔政渔港监督管理机关对违反渔业港航法律、法规的行政处罚分为： （一）警告； （二）罚款； （三）扣留或吊销船舶证书或船员证书； （四）法律、法规规定的其他行政处罚。
+  source:
+    doc: POL-PEN-078
+    section: 第四条
+    sha256: 42884cb595529b9f687a4442ff5a8bf8f5706c5764cbb7df57859e29923bc428
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-061
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: Provisions on administrative penalties for fishing port and navigation
+    supervision 第五条
+  predicate: 条文要点
+  value: 第五条 有下列行为之一的，可免予处罚： （一）因不可抗力或以紧急避险为目的的行为； （二）渔业港航违法行为显著轻微并及时纠正，没有造成危害性后果。
+  evidence: 第五条 有下列行为之一的，可免予处罚： （一）因不可抗力或以紧急避险为目的的行为； （二）渔业港航违法行为显著轻微并及时纠正，没有造成危害性后果。
+  source:
+    doc: POL-PEN-078
+    section: 第五条
+    sha256: 42884cb595529b9f687a4442ff5a8bf8f5706c5764cbb7df57859e29923bc428
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-062
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: Provisions on fishery administrative penalties 第一条
+  predicate: 条文要点
+  value: 第一条 为严格执行渔业法律法规，规范渔业行政处罚，保障渔业生产者的合法权益，根据《中华人民共和国渔业法》（以下简称《渔业法》）《中华人民共和国渔业法实施细则》（以下简称《实施细则》）和《中华人民共和国行政处罚法》等法律法规，制定本规定。
+  evidence: 第一条 为严格执行渔业法律法规，规范渔业行政处罚，保障渔业生产者的合法权益，根据《中华人民共和国渔业法》（以下简称《渔业法》）《中华人民共和国渔业法实施细则》（以下简称《实施细则》）和《中华人民共和国行政处罚法》等法律法规，制定本规定。
+  source:
+    doc: POL-PEN-080
+    section: 第一条
+    sha256: 57027911e2ce6b23d6e84aee6269f19623b19f927cdb31fcbad606e032756e81
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-063
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: Provisions on fishery administrative penalties 第二条
+  predicate: 条文要点
+  value: 第二条 对渔业违法的行政处罚有以下种类： （一）罚款； （二）没收渔获物、违法所得、渔具； （三）暂扣、吊销捕捞许可证等渔业证照； （四）法律、法规规定的其他处罚。
+  evidence: 第二条 对渔业违法的行政处罚有以下种类： （一）罚款； （二）没收渔获物、违法所得、渔具； （三）暂扣、吊销捕捞许可证等渔业证照； （四）法律、法规规定的其他处罚。
+  source:
+    doc: POL-PEN-080
+    section: 第二条
+    sha256: 57027911e2ce6b23d6e84aee6269f19623b19f927cdb31fcbad606e032756e81
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-064
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: Provisions on fishery administrative penalties 第三条
+  predicate: 条文要点
+  value: 第三条 渔业违法行为轻微并及时改正，没有造成危害后果的，不予处罚。初次实施渔业违法行为且危害后果轻微并及时改正的，可以不予处罚。当事人有证据足以证明没有主观过错的，不予行政处罚。对当事人的违法行为依法不予行政处罚的，应当对当事人进行教育。有下列行为之一的，应当从轻或者减轻处罚：
+    （一）主动消除或减轻渔业违法行为后果； （二）受他人胁迫或者诱骗实施渔业违法行为的； （三）主动供述渔业执法部门尚未掌握的违法行为的； （四）配合渔业执法部门查处渔业违法行为有立功表现的；
+    （五）依法
+  evidence: 第三条 渔业违法行为轻微并及时改正，没有造成危害后果的，不予处罚。初次实施渔业违法行为且危害后果轻微并及时改正的，可以不予处罚。当事人有证据足以证明没有主观过错的，不予行政处罚。对当事人的违法行为依法不予行政处罚的，应当对当事人进行教育。有下列行为之一的，应当从轻或者减轻处罚：
+    （一）主动消除或减轻渔业违法行为后果； （二）受他人胁迫或者诱骗实施渔业违法行为的； （三）主动供述渔业执法部门尚未掌握的违法行为的； （四）配合渔业执法部门查处渔业违法行为有立功表现的；
+    （五）依法
+  source:
+    doc: POL-PEN-080
+    section: 第三条
+    sha256: 57027911e2ce6b23d6e84aee6269f19623b19f927cdb31fcbad606e032756e81
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-065
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: Provisions on fishery administrative penalties 第四条
+  predicate: 条文要点
+  value: 第四条 有下列行为之一的，从重处罚： （一）一年内渔业违法三次以上的； （二）对渔业资源破坏程度较重的； （三）渔业违法影响较大的； （四）同一个违法行为违反两项以上规定的；
+    （五）逃避、抗拒检查的。
+  evidence: 第四条 有下列行为之一的，从重处罚： （一）一年内渔业违法三次以上的； （二）对渔业资源破坏程度较重的； （三）渔业违法影响较大的； （四）同一个违法行为违反两项以上规定的；
+    （五）逃避、抗拒检查的。
+  source:
+    doc: POL-PEN-080
+    section: 第四条
+    sha256: 57027911e2ce6b23d6e84aee6269f19623b19f927cdb31fcbad606e032756e81
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-066
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: Provisions on fishery administrative penalties 第五条
+  predicate: 条文要点
+  value: 第五条 本规定中需要处以罚款的计罚单位如下： （一）拖网、流刺网、钓钩等用船作业的，以单艘船计罚； （二）围网作业，以一个作业单位计罚； （三）定置作业，用船作业的以单艘船计罚，不用船作业的以一个作业单位计罚；
+    （四）炸鱼、毒鱼、非法电力捕鱼和使用鱼鹰捕鱼的，用船作业的以单艘船计罚，不用船作业的以人计罚； （五）从事赶海、潜水等不用船作业的，以人计罚。
+  evidence: 第五条 本规定中需要处以罚款的计罚单位如下： （一）拖网、流刺网、钓钩等用船作业的，以单艘船计罚； （二）围网作业，以一个作业单位计罚； （三）定置作业，用船作业的以单艘船计罚，不用船作业的以一个作业单位计罚；
+    （四）炸鱼、毒鱼、非法电力捕鱼和使用鱼鹰捕鱼的，用船作业的以单艘船计罚，不用船作业的以人计罚； （五）从事赶海、潜水等不用船作业的，以人计罚。
+  source:
+    doc: POL-PEN-080
+    section: 第五条
+    sha256: 57027911e2ce6b23d6e84aee6269f19623b19f927cdb31fcbad606e032756e81
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-067
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: Regulations on traffic safety in fishing port waters 第一条
+  predicate: 条文要点
+  value: 第一条 根据《中华人民共和国海上交通安全法》第四十八条的规定，制定本条例。
+  evidence: 第一条 根据《中华人民共和国海上交通安全法》第四十八条的规定，制定本条例。
+  source:
+    doc: POL-PORT-077
+    section: 第一条
+    sha256: 1ff9570272738ada371f4e412c3b47ef13eaf94c68481a31640421fda6fc1fd2
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-068
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: Regulations on traffic safety in fishing port waters 第二条
+  predicate: 条文要点
+  value: 第二条 本条例适用于在中华人民共和国沿海以渔业为主的渔港和渔港水域（以下简称“渔港”和“渔港水域”）航行、停泊、作业的船舶、设施和人员以及船舶、设施的所有者、经营者。
+  evidence: 第二条 本条例适用于在中华人民共和国沿海以渔业为主的渔港和渔港水域（以下简称“渔港”和“渔港水域”）航行、停泊、作业的船舶、设施和人员以及船舶、设施的所有者、经营者。
+  source:
+    doc: POL-PORT-077
+    section: 第二条
+    sha256: 1ff9570272738ada371f4e412c3b47ef13eaf94c68481a31640421fda6fc1fd2
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-069
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: Regulations on traffic safety in fishing port waters 第三条
+  predicate: 条文要点
+  value: 第三条 中华人民共和国渔政渔港监督管理机关是对渔港水域交通安全实施监督管理的主管机关，并负责沿海水域渔业船舶之间交通事故的调查处理。
+  evidence: 第三条 中华人民共和国渔政渔港监督管理机关是对渔港水域交通安全实施监督管理的主管机关，并负责沿海水域渔业船舶之间交通事故的调查处理。
+  source:
+    doc: POL-PORT-077
+    section: 第三条
+    sha256: 1ff9570272738ada371f4e412c3b47ef13eaf94c68481a31640421fda6fc1fd2
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-070
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: Regulations on traffic safety in fishing port waters 第四条
+  predicate: 条文要点
+  value: 第四条 本条例下列用语的含义是： 渔港是指主要为渔业生产服务和供渔业船舶停泊、避风、装卸渔获物和补充渔需物资的人工港口或者自然港湾。 渔港水域是指渔港的港池、锚地、避风湾和航道。
+    渔业船舶是指从事渔业生产的船舶以及属于水产系统为渔业生产服务的船舶，包括捕捞船、养殖船、水产运销船、冷藏加工船、油船、供应船、渔业指导船、科研调查船、教学实习船、渔港工程船、拖轮、交通船、驳船、渔政船和渔监船。
+  evidence: 第四条 本条例下列用语的含义是： 渔港是指主要为渔业生产服务和供渔业船舶停泊、避风、装卸渔获物和补充渔需物资的人工港口或者自然港湾。 渔港水域是指渔港的港池、锚地、避风湾和航道。
+    渔业船舶是指从事渔业生产的船舶以及属于水产系统为渔业生产服务的船舶，包括捕捞船、养殖船、水产运销船、冷藏加工船、油船、供应船、渔业指导船、科研调查船、教学实习船、渔港工程船、拖轮、交通船、驳船、渔政船和渔监船。
+  source:
+    doc: POL-PORT-077
+    section: 第四条
+    sha256: 1ff9570272738ada371f4e412c3b47ef13eaf94c68481a31640421fda6fc1fd2
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-071
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: Regulations on traffic safety in fishing port waters 第五条
+  predicate: 条文要点
+  value: 第五条 对渔港认定有不同意见的，依照港口隶属关系由县级以上人民政府确定。
+  evidence: 第五条 对渔港认定有不同意见的，依照港口隶属关系由县级以上人民政府确定。
+  source:
+    doc: POL-PORT-077
+    section: 第五条
+    sha256: 1ff9570272738ada371f4e412c3b47ef13eaf94c68481a31640421fda6fc1fd2
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-072
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: Regulations on the administration of aquatic organism stock enhancement
+    第一条
+  predicate: 条文要点
+  value: 第一条 为规范水生生物增殖放流活动，科学养护水生生物资源，维护生物多样性和水域生态安全，促进渔业可持续健康发展，根据《中华人民共和国渔业法》、《中华人民共和国野生动物保护法》等法律法规，制定本规定。
+  evidence: 第一条 为规范水生生物增殖放流活动，科学养护水生生物资源，维护生物多样性和水域生态安全，促进渔业可持续健康发展，根据《中华人民共和国渔业法》、《中华人民共和国野生动物保护法》等法律法规，制定本规定。
+  source:
+    doc: POL-RES-075
+    section: 第一条
+    sha256: 90abf8647b254325125ed7f79bff16a4c573aab0a773fb166fb0dc79c3ec5971
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-073
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: Regulations on the administration of aquatic organism stock enhancement
+    第二条
+  predicate: 条文要点
+  value: 第二条 本规定所称水生生物增殖放流，是指采用放流、底播、移植等人工方式向海洋、江河、湖泊、水库等公共水域投放亲体、苗种等活体水生生物的活动。
+  evidence: 第二条 本规定所称水生生物增殖放流，是指采用放流、底播、移植等人工方式向海洋、江河、湖泊、水库等公共水域投放亲体、苗种等活体水生生物的活动。
+  source:
+    doc: POL-RES-075
+    section: 第二条
+    sha256: 90abf8647b254325125ed7f79bff16a4c573aab0a773fb166fb0dc79c3ec5971
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-074
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: Regulations on the administration of aquatic organism stock enhancement
+    第三条
+  predicate: 条文要点
+  value: 第三条 在中华人民共和国管辖水域内进行水生生物增殖放流活动，应当遵守本规定。
+  evidence: 第三条 在中华人民共和国管辖水域内进行水生生物增殖放流活动，应当遵守本规定。
+  source:
+    doc: POL-RES-075
+    section: 第三条
+    sha256: 90abf8647b254325125ed7f79bff16a4c573aab0a773fb166fb0dc79c3ec5971
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-075
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: Regulations on the administration of aquatic organism stock enhancement
+    第四条
+  predicate: 条文要点
+  value: 第四条 农业部主管全国水生生物增殖放流工作。 县级以上地方人民政府渔业行政主管部门负责本行政区域内水生生物增殖放流的组织、协调与监督管理。
+  evidence: 第四条 农业部主管全国水生生物增殖放流工作。 县级以上地方人民政府渔业行政主管部门负责本行政区域内水生生物增殖放流的组织、协调与监督管理。
+  source:
+    doc: POL-RES-075
+    section: 第四条
+    sha256: 90abf8647b254325125ed7f79bff16a4c573aab0a773fb166fb0dc79c3ec5971
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-076
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: Regulations on the administration of aquatic organism stock enhancement
+    第五条
+  predicate: 条文要点
+  value: 第五条 各级渔业行政主管部门应当加大对水生生物增殖放流的投入，积极引导、鼓励社会资金支持水生生物资源养护和增殖放流事业。 水生生物增殖放流专项资金应专款专用，并遵守有关管理规定。渔业行政主管部门使用社会资金用于增殖放流的，应当向社会、出资人公开资金使用情况。
+  evidence: 第五条 各级渔业行政主管部门应当加大对水生生物增殖放流的投入，积极引导、鼓励社会资金支持水生生物资源养护和增殖放流事业。 水生生物增殖放流专项资金应专款专用，并遵守有关管理规定。渔业行政主管部门使用社会资金用于增殖放流的，应当向社会、出资人公开资金使用情况。
+  source:
+    doc: POL-RES-075
+    section: 第五条
+    sha256: 90abf8647b254325125ed7f79bff16a4c573aab0a773fb166fb0dc79c3ec5971
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-077
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: 中华人民共和国渔业法实施细则 第一条
+  predicate: 条文要点
+  value: 第一条 根据《中华人民共和国渔业法》(以下简称《渔业法》)第三十四条的规定，制定本实施细则。
+  evidence: 第一条 根据《中华人民共和国渔业法》(以下简称《渔业法》)第三十四条的规定，制定本实施细则。
+  source:
+    doc: POL-RULE-018
+    section: 第一条
+    sha256: 90d7e013d92361ec219a59b51ef255c70a08d5654f9a0351fd633c865028bf77
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-078
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: 中华人民共和国渔业法实施细则 第二条
+  predicate: 条文要点
+  value: 第二条 《渔业法》及本实施细则中下列用语的含义是： (一)“中华人民共和国的内水”，是指中华人民共和国领海基线向陆一侧的海域和江河、湖泊等内陆水域。
+    (二)“中华人民共和国管辖的一切其他海域”，是指根据中华人民共和国法律，中华人民共和国缔结、参加的国际条约、协定或者其他有关国际法，而由中华人民共和国管辖的海域。
+    (三)“渔业水域”，是指中华人民共和国管辖水域中鱼、虾、蟹、贝类的产卵场、索饵场、越冬场、洄游通道和鱼、虾、蟹、贝、藻类及其他水生动植物的养殖场所。 第二章
+    渔业的监
+  evidence: 第二条 《渔业法》及本实施细则中下列用语的含义是： (一)“中华人民共和国的内水”，是指中华人民共和国领海基线向陆一侧的海域和江河、湖泊等内陆水域。
+    (二)“中华人民共和国管辖的一切其他海域”，是指根据中华人民共和国法律，中华人民共和国缔结、参加的国际条约、协定或者其他有关国际法，而由中华人民共和国管辖的海域。
+    (三)“渔业水域”，是指中华人民共和国管辖水域中鱼、虾、蟹、贝类的产卵场、索饵场、越冬场、洄游通道和鱼、虾、蟹、贝、藻类及其他水生动植物的养殖场所。 第二章
+    渔业的监
+  source:
+    doc: POL-RULE-018
+    section: 第二条
+    sha256: 90d7e013d92361ec219a59b51ef255c70a08d5654f9a0351fd633c865028bf77
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-079
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: 中华人民共和国渔业法实施细则 第三条
+  predicate: 条文要点
+  value: 第三条 国家对渔业的监督管理，实行统一领导、分级管理。 国务院划定的“机动渔船底拖网禁渔区线”外侧，属于中华人民共和国管辖海域的渔业，由国务院渔业行政主管部门及其所属的海区渔政管理机构监督管理；“机动渔船底拖网禁渔区线”内侧海域的渔业，除国家另有规定者外，由毗邻海域的省、自治区、直辖市人民政府渔业行政主管部门监督管理。
+    内陆水域渔业，按照行政区划由当地县级以上地方人民政府渔业行政主管部门监督管理；跨行政区域的内陆水域渔业，由有关县级以上地方人民政府协商制定管理办法，或者由上一
+  evidence: 第三条 国家对渔业的监督管理，实行统一领导、分级管理。 国务院划定的“机动渔船底拖网禁渔区线”外侧，属于中华人民共和国管辖海域的渔业，由国务院渔业行政主管部门及其所属的海区渔政管理机构监督管理；“机动渔船底拖网禁渔区线”内侧海域的渔业，除国家另有规定者外，由毗邻海域的省、自治区、直辖市人民政府渔业行政主管部门监督管理。
+    内陆水域渔业，按照行政区划由当地县级以上地方人民政府渔业行政主管部门监督管理；跨行政区域的内陆水域渔业，由有关县级以上地方人民政府协商制定管理办法，或者由上一
+  source:
+    doc: POL-RULE-018
+    section: 第三条
+    sha256: 90d7e013d92361ec219a59b51ef255c70a08d5654f9a0351fd633c865028bf77
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-080
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: 中华人民共和国渔业法实施细则 第四条
+  predicate: 条文要点
+  value: 第四条 “机动渔船底拖网禁渔区线”内侧海域的渔业，由有关省、自治区、直辖市人民政府渔业行政主管部门协商划定监督管理范围；划定监督管理范围有困难的，可划叠区或者共管区管理，必要时由国务院渔业行政主管部门决定。
+  evidence: 第四条 “机动渔船底拖网禁渔区线”内侧海域的渔业，由有关省、自治区、直辖市人民政府渔业行政主管部门协商划定监督管理范围；划定监督管理范围有困难的，可划叠区或者共管区管理，必要时由国务院渔业行政主管部门决定。
+  source:
+    doc: POL-RULE-018
+    section: 第四条
+    sha256: 90d7e013d92361ec219a59b51ef255c70a08d5654f9a0351fd633c865028bf77
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-081
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: 中华人民共和国渔业法实施细则 第五条
+  predicate: 条文要点
+  value: 第五条 渔场和渔汛生产，应当以渔业资源可捕量为依据，按照有利于保护、增殖和合理利用渔业资源，优先安排邻近地区、兼顾其他地区的原则，统筹安排。 舟山渔场冬季带鱼汛，浙江渔场大黄鱼汛，闽东、闽中渔场大黄鱼汛，吕泗渔场大黄鱼、小黄鱼、鲳鱼汛，渤海渔场秋季对虾汛等主要渔场、渔汛和跨海区管理线的捕捞作业，由国务院渔业行政主管部门或其授权单位安排。
+  evidence: 第五条 渔场和渔汛生产，应当以渔业资源可捕量为依据，按照有利于保护、增殖和合理利用渔业资源，优先安排邻近地区、兼顾其他地区的原则，统筹安排。
+    舟山渔场冬季带鱼汛，浙江渔场大黄鱼汛，闽东、闽中渔场大黄鱼汛，吕泗渔场大黄鱼、小黄鱼、鲳鱼汛，渤海渔场秋季对虾汛等主要渔场、渔汛和跨海区管理线的捕捞作业，由国务院渔业行政主管部门或其授权单位安排。
+  source:
+    doc: POL-RULE-018
+    section: 第五条
+    sha256: 90d7e013d92361ec219a59b51ef255c70a08d5654f9a0351fd633c865028bf77
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-082
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: 中华人民共和国渔业船舶检验条例 第一条
+  predicate: 条文要点
+  value: 第一条 为了规范渔业船舶的检验，保证渔业船舶具备安全航行和作业的条件，保障渔业船舶和渔民生命财产的安全，防止污染环境，依照《中华人民共和国渔业法》，制定本条例。
+  evidence: 第一条 为了规范渔业船舶的检验，保证渔业船舶具备安全航行和作业的条件，保障渔业船舶和渔民生命财产的安全，防止污染环境，依照《中华人民共和国渔业法》，制定本条例。
+  source:
+    doc: POL-RULE-019
+    section: 第一条
+    sha256: 413acf724b599a83bc61480168bc5b3452fad0ad0bcff65cb94e17b05ce69165
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-083
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: 中华人民共和国渔业船舶检验条例 第二条
+  predicate: 条文要点
+  value: 第二条 在中华人民共和国登记和将要登记的渔业船舶(以下简称渔业船舶)的检验，适用本条例。从事国际航运的渔业辅助船舶除外。
+  evidence: 第二条 在中华人民共和国登记和将要登记的渔业船舶(以下简称渔业船舶)的检验，适用本条例。从事国际航运的渔业辅助船舶除外。
+  source:
+    doc: POL-RULE-019
+    section: 第二条
+    sha256: 413acf724b599a83bc61480168bc5b3452fad0ad0bcff65cb94e17b05ce69165
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-084
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: 中华人民共和国渔业船舶检验条例 第三条
+  predicate: 条文要点
+  value: 第三条 国务院渔业行政主管部门主管全国渔业船舶检验及其监督管理工作。 中华人民共和国渔业船舶检验局(以下简称国家渔业船舶检验机构)行使渔业船舶检验及其监督管理职能。
+    地方渔业船舶检验机构依照本条例规定，负责有关的渔业船舶检验工作。 各级公安边防、质量监督和工商行政管理等部门，应当在各自的职责范围内对渔业船舶检验和监督管理工作予以协助。
+  evidence: 第三条 国务院渔业行政主管部门主管全国渔业船舶检验及其监督管理工作。 中华人民共和国渔业船舶检验局(以下简称国家渔业船舶检验机构)行使渔业船舶检验及其监督管理职能。
+    地方渔业船舶检验机构依照本条例规定，负责有关的渔业船舶检验工作。 各级公安边防、质量监督和工商行政管理等部门，应当在各自的职责范围内对渔业船舶检验和监督管理工作予以协助。
+  source:
+    doc: POL-RULE-019
+    section: 第三条
+    sha256: 413acf724b599a83bc61480168bc5b3452fad0ad0bcff65cb94e17b05ce69165
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-085
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: 中华人民共和国渔业船舶检验条例 第四条
+  predicate: 条文要点
+  value: 第四条 国家对渔业船舶实行强制检验制度。强制检验分为初次检验、营运检验和临时检验。
+  evidence: 第四条 国家对渔业船舶实行强制检验制度。强制检验分为初次检验、营运检验和临时检验。
+  source:
+    doc: POL-RULE-019
+    section: 第四条
+    sha256: 413acf724b599a83bc61480168bc5b3452fad0ad0bcff65cb94e17b05ce69165
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-086
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: 中华人民共和国渔业船舶检验条例 第五条
+  predicate: 条文要点
+  value: 第五条 渔业船舶检验，应当遵循安全第一、保证质量和方便渔民的原则。 第二章 初次检验
+  evidence: 第五条 渔业船舶检验，应当遵循安全第一、保证质量和方便渔民的原则。 第二章 初次检验
+  source:
+    doc: POL-RULE-019
+    section: 第五条
+    sha256: 413acf724b599a83bc61480168bc5b3452fad0ad0bcff65cb94e17b05ce69165
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-087
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: 渔业资源增殖保护费征收使用办法 第一条
+  predicate: 条文要点
+  value: 第一条 根据《中华人民共和国渔业法》的有关规定，制定本办法。
+  evidence: 第一条 根据《中华人民共和国渔业法》的有关规定，制定本办法。
+  source:
+    doc: POL-RULE-020
+    section: 第一条
+    sha256: abedb250e0982b34bd66b0d00bccdfdc92c750d5f04d2f2919db858dfe4e8302
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-088
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: 渔业资源增殖保护费征收使用办法 第二条
+  predicate: 条文要点
+  value: 第二条 凡在中华人民共和国的内水、滩涂、领海以及中华人民共和国管辖的其他海域采捕天然生长和人工增殖水生动植物的单位和个人，必须依照本办法缴纳渔业资源增殖保护费(以下简称“渔业资源费”)。
+  evidence: 第二条 凡在中华人民共和国的内水、滩涂、领海以及中华人民共和国管辖的其他海域采捕天然生长和人工增殖水生动植物的单位和个人，必须依照本办法缴纳渔业资源增殖保护费(以下简称“渔业资源费”)。
+  source:
+    doc: POL-RULE-020
+    section: 第二条
+    sha256: abedb250e0982b34bd66b0d00bccdfdc92c750d5f04d2f2919db858dfe4e8302
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-089
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: 渔业资源增殖保护费征收使用办法 第三条
+  predicate: 条文要点
+  value: 第三条 渔业资源费的征收和使用，实行取之于渔、用之于渔的原则。
+  evidence: 第三条 渔业资源费的征收和使用，实行取之于渔、用之于渔的原则。
+  source:
+    doc: POL-RULE-020
+    section: 第三条
+    sha256: abedb250e0982b34bd66b0d00bccdfdc92c750d5f04d2f2919db858dfe4e8302
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-090
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: 渔业资源增殖保护费征收使用办法 第四条
+  predicate: 条文要点
+  value: 第四条 渔业资源费由县级以上人民政府渔业行政主管部门及其授权单位依照批准发放捕捞许可证的权限征收。由国务院渔业行政主管部门批准发放捕捞许可证的，渔业资源费由国务院渔业行政主管部门所属的海区渔政监督管理机构(以下称“海区渔政监督管理机构”)征收。
+  evidence: 第四条 渔业资源费由县级以上人民政府渔业行政主管部门及其授权单位依照批准发放捕捞许可证的权限征收。由国务院渔业行政主管部门批准发放捕捞许可证的，渔业资源费由国务院渔业行政主管部门所属的海区渔政监督管理机构(以下称“海区渔政监督管理机构”)征收。
+  source:
+    doc: POL-RULE-020
+    section: 第四条
+    sha256: abedb250e0982b34bd66b0d00bccdfdc92c750d5f04d2f2919db858dfe4e8302
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-091
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: 渔业资源增殖保护费征收使用办法 第五条
+  predicate: 条文要点
+  value: 第五条 渔业资源费分为海洋渔业资源费和内陆水域渔业资源费。 海洋渔业资源费年征收金额，由沿海省级人民政府渔业行政主管部门或者海区渔政监督管理机构，在其批准发放捕捞许可证的渔船前3年采捕水产品的平均年总产值(不含专项采捕经济价值较高的渔业资源品种产值)1%至3%的幅度内确定。
+    内陆水域渔业资源费年征收金额由省级人民政府确定。 专项采捕经济价值较高的渔业资源品种，渔业资源费年征收金额，由省级人民政府渔业行政主管部门或者海区渔政监督管理机构，在其批准发放捕捞许可证的渔船前3年采捕该
+  evidence: 第五条 渔业资源费分为海洋渔业资源费和内陆水域渔业资源费。 海洋渔业资源费年征收金额，由沿海省级人民政府渔业行政主管部门或者海区渔政监督管理机构，在其批准发放捕捞许可证的渔船前3年采捕水产品的平均年总产值(不含专项采捕经济价值较高的渔业资源品种产值)1%至3%的幅度内确定。
+    内陆水域渔业资源费年征收金额由省级人民政府确定。 专项采捕经济价值较高的渔业资源品种，渔业资源费年征收金额，由省级人民政府渔业行政主管部门或者海区渔政监督管理机构，在其批准发放捕捞许可证的渔船前3年采捕该
+  source:
+    doc: POL-RULE-020
+    section: 第五条
+    sha256: abedb250e0982b34bd66b0d00bccdfdc92c750d5f04d2f2919db858dfe4e8302
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-092
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: 农业农村部关于2026年伏季休渔期间专项捕捞许可和捕捞辅助船配套服务安排的通告 一、按品种专项捕捞许可2026年伏季休渔期间按品种专项捕捞许可品种为海蜇、沙海蜇、口虾蛄、毛虾、鱿鱼、银鱼、丁香鱼、鸢乌贼。
+  predicate: 条文要点
+  value: 一、按品种专项捕捞许可2026年伏季休渔期间按品种专项捕捞许可品种为海蜇、沙海蜇、口虾蛄、毛虾、鱿鱼、银鱼、丁香鱼、鸢乌贼。 上述专项捕捞许可的作业场所、作业时限、最大船数、捕捞限额、作业类型、最小网目—1—
+  evidence: 一、按品种专项捕捞许可2026年伏季休渔期间按品种专项捕捞许可品种为海蜇、沙海蜇、口虾蛄、毛虾、鱿鱼、银鱼、丁香鱼、鸢乌贼。 上述专项捕捞许可的作业场所、作业时限、最大船数、捕捞限额、作业类型、最小网目—1—
+  source:
+    doc: POL-SPEC-041
+    section: 一、按品种专项捕捞许可2026年伏季休渔期间按品种专项捕捞许可品种为海蜇、沙海蜇、口虾蛄、毛虾、鱿鱼、银鱼、丁香鱼、鸢乌贼。
+    sha256: b383ea35974fe85acea89f95c7c8c263a7cea382aefdc10f04733efb7118c647
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-093
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: 农业农村部关于2026年伏季休渔期间专项捕捞许可和捕捞辅助船配套服务安排的通告 二、按作业类型(方式)专项捕捞许可2026年伏季休渔期间,同时满足以下条件的海洋捕捞渔船所有人可申请开展虾蟹类、中上层鱼类等
+  predicate: 条文要点
+  value: 二、按作业类型(方式)专项捕捞许可2026年伏季休渔期间,同时满足以下条件的海洋捕捞渔船所有人可申请开展虾蟹类、中上层鱼类等资源专项捕捞。 (一)渔业捕捞许可证核定的作业类型(方式)为桁杆拖虾、笼壶类、刺网或者灯光围(敷)网。
+    (二)渔业船舶所有权登记证书记载的船籍港在上海市、江苏省、浙江省或者福建省辖区内。 (三)渔业捕捞许可证核定的作业场所全部或者部分在北纬35度至北纬26度30分之间的黄海和东海海域。
+    上述专项捕捞许可的作业场所、作业时限、最大船数、捕捞限额、最小网目尺
+  evidence: 二、按作业类型(方式)专项捕捞许可2026年伏季休渔期间,同时满足以下条件的海洋捕捞渔船所有人可申请开展虾蟹类、中上层鱼类等资源专项捕捞。
+    (一)渔业捕捞许可证核定的作业类型(方式)为桁杆拖虾、笼壶类、刺网或者灯光围(敷)网。 (二)渔业船舶所有权登记证书记载的船籍港在上海市、江苏省、浙江省或者福建省辖区内。
+    (三)渔业捕捞许可证核定的作业场所全部或者部分在北纬35度至北纬26度30分之间的黄海和东海海域。 上述专项捕捞许可的作业场所、作业时限、最大船数、捕捞限额、最小网目尺
+  source:
+    doc: POL-SPEC-041
+    section: 二、按作业类型(方式)专项捕捞许可2026年伏季休渔期间,同时满足以下条件的海洋捕捞渔船所有人可申请开展虾蟹类、中上层鱼类等
+    sha256: b383ea35974fe85acea89f95c7c8c263a7cea382aefdc10f04733efb7118c647
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-094
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: 农业农村部关于2026年伏季休渔期间专项捕捞许可和捕捞辅助船配套服务安排的通告 三、捕捞辅助船配套服务安排2026年捕捞辅助船配套服务允许作业场所、作业时限、服务类型、最大船数和定点上岸渔港等详见附件3。
+  predicate: 条文要点
+  value: 三、捕捞辅助船配套服务安排2026年捕捞辅助船配套服务允许作业场所、作业时限、服务类型、最大船数和定点上岸渔港等详见附件3。
+  evidence: 三、捕捞辅助船配套服务安排2026年捕捞辅助船配套服务允许作业场所、作业时限、服务类型、最大船数和定点上岸渔港等详见附件3。
+  source:
+    doc: POL-SPEC-041
+    section: 三、捕捞辅助船配套服务安排2026年捕捞辅助船配套服务允许作业场所、作业时限、服务类型、最大船数和定点上岸渔港等详见附件3。
+    sha256: b383ea35974fe85acea89f95c7c8c263a7cea382aefdc10f04733efb7118c647
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-095
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: 农业农村部关于2026年伏季休渔期间专项捕捞许可和捕捞辅助船配套服务安排的通告 四、专项捕捞许可申请、审批及生产要求申请从事上述专项许可作业的渔船须为纳入中国渔政管理指挥系统的渔船,证书证件齐全有效。
+  predicate: 条文要点
+  value: 四、专项捕捞许可申请、审批及生产要求申请从事上述专项许可作业的渔船须为纳入中国渔政管理指挥系统的渔船,证书证件齐全有效。 2025年有违法记录、存在安全生产隐患未完成整改、过去一年发生过安全生产事故险情以及证书证件不齐、失效的渔船不得申请从事专项捕捞。
+    专项捕捞许可证由县级以上渔业渔政主管部门审批发放。 符合条件的渔民可依法向船籍港所在地县级以上渔业渔政主管部门—2—
+  evidence: 四、专项捕捞许可申请、审批及生产要求申请从事上述专项许可作业的渔船须为纳入中国渔政管理指挥系统的渔船,证书证件齐全有效。 2025年有违法记录、存在安全生产隐患未完成整改、过去一年发生过安全生产事故险情以及证书证件不齐、失效的渔船不得申请从事专项捕捞。
+    专项捕捞许可证由县级以上渔业渔政主管部门审批发放。 符合条件的渔民可依法向船籍港所在地县级以上渔业渔政主管部门—2—
+  source:
+    doc: POL-SPEC-041
+    section: 四、专项捕捞许可申请、审批及生产要求申请从事上述专项许可作业的渔船须为纳入中国渔政管理指挥系统的渔船,证书证件齐全有效。
+    sha256: b383ea35974fe85acea89f95c7c8c263a7cea382aefdc10f04733efb7118c647
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-096
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: 渔业捕捞许可管理规定（2022年修订） 第一条
+  predicate: 条文要点
+  value: 第一条 为了保护、合理利用渔业资源，控制捕捞强度，维护渔业生产秩序，保障渔业生产者的合法权益，根据《中华人民共和国渔业法》，制定本规定。
+  evidence: 第一条 为了保护、合理利用渔业资源，控制捕捞强度，维护渔业生产秩序，保障渔业生产者的合法权益，根据《中华人民共和国渔业法》，制定本规定。
+  source:
+    doc: POL-STD-010
+    section: 第一条
+    sha256: 35e2069db4de910494c1e6e07c435c4aca91c846e912acba2d6178776b981910
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-097
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: 渔业捕捞许可管理规定（2022年修订） 第二条
+  predicate: 条文要点
+  value: 第二条 中华人民共和国的公民、法人和其他组织从事渔业捕捞活动，以及外国人、外国渔业船舶在中华人民共和国领域及管辖的其他水域从事渔业捕捞活动，应当遵守本规定。
+    中华人民共和国缔结的条约、协定另有规定的，按条约、协定执行。
+  evidence: 第二条 中华人民共和国的公民、法人和其他组织从事渔业捕捞活动，以及外国人、外国渔业船舶在中华人民共和国领域及管辖的其他水域从事渔业捕捞活动，应当遵守本规定。
+    中华人民共和国缔结的条约、协定另有规定的，按条约、协定执行。
+  source:
+    doc: POL-STD-010
+    section: 第二条
+    sha256: 35e2069db4de910494c1e6e07c435c4aca91c846e912acba2d6178776b981910
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-098
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: 渔业捕捞许可管理规定（2022年修订） 第三条
+  predicate: 条文要点
+  value: 第三条 国家对捕捞业实行船网工具控制指标管理，实行捕捞许可证制度和捕捞限额制度。 国家根据渔业资源变化与环境状况，确定船网工具控制指标，控制捕捞能力总量和渔业捕捞许可证数量。渔业捕捞许可证的批准发放，应当遵循公开、公平、公正原则，数量不得超过船网工具控制指标范围。
+  evidence: 第三条 国家对捕捞业实行船网工具控制指标管理，实行捕捞许可证制度和捕捞限额制度。 国家根据渔业资源变化与环境状况，确定船网工具控制指标，控制捕捞能力总量和渔业捕捞许可证数量。渔业捕捞许可证的批准发放，应当遵循公开、公平、公正原则，数量不得超过船网工具控制指标范围。
+  source:
+    doc: POL-STD-010
+    section: 第三条
+    sha256: 35e2069db4de910494c1e6e07c435c4aca91c846e912acba2d6178776b981910
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-099
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: 渔业捕捞许可管理规定（2022年修订） 第四条
+  predicate: 条文要点
+  value: 第四条 渔业捕捞许可证、船网工具指标等证书文件的审批实行签发人负责制，相关证书文件经签发人签字并加盖公章后方为有效。 签发人对其审批签发证书文件的真实性及合法性负责。
+  evidence: 第四条 渔业捕捞许可证、船网工具指标等证书文件的审批实行签发人负责制，相关证书文件经签发人签字并加盖公章后方为有效。 签发人对其审批签发证书文件的真实性及合法性负责。
+  source:
+    doc: POL-STD-010
+    section: 第四条
+    sha256: 35e2069db4de910494c1e6e07c435c4aca91c846e912acba2d6178776b981910
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-100
+  kind: provision
+  topic: policy
+  question_class: status
+  subject: 渔业捕捞许可管理规定（2022年修订） 第五条
+  predicate: 条文要点
+  value: 第五条 农业农村部主管全国渔业捕捞许可管理和捕捞能力总量控制工作。 县级以上地方人民政府渔业主管部门及其所属的渔政监督管理机构负责本行政区域内的渔业捕捞许可管理和捕捞能力总量控制的组织、实施工作。
+  evidence: 第五条 农业农村部主管全国渔业捕捞许可管理和捕捞能力总量控制工作。 县级以上地方人民政府渔业主管部门及其所属的渔政监督管理机构负责本行政区域内的渔业捕捞许可管理和捕捞能力总量控制的组织、实施工作。
+  source:
+    doc: POL-STD-010
+    section: 第五条
+    sha256: 35e2069db4de910494c1e6e07c435c4aca91c846e912acba2d6178776b981910
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-101
+  kind: provision
+  topic: gear
+  question_class: procedure
+  subject: Standards for navigation watchkeeping on fishing vessels (trial) 第一条
+  predicate: 条文要点
+  value: 第一条 为保证渔业船舶航行作业的安全，规范渔业船舶值班标准，保护海洋环境，根据《中华人民共和国海上交通安全法》、《中华人民共和国海洋环境保护法》和《中华人民共和国渔港水域交通安全管理条例》制定本准则。
+  evidence: 第一条 为保证渔业船舶航行作业的安全，规范渔业船舶值班标准，保护海洋环境，根据《中华人民共和国海上交通安全法》、《中华人民共和国海洋环境保护法》和《中华人民共和国渔港水域交通安全管理条例》制定本准则。
+  source:
+    doc: POL-WATCH-082
+    section: 第一条
+    sha256: 8eecbc9171dbc0dbc1cfc82d7e92b42bcf874c47c66a533cf8ed4b6cb6ec3bba
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-102
+  kind: provision
+  topic: gear
+  question_class: procedure
+  subject: Standards for navigation watchkeeping on fishing vessels (trial) 第二条
+  predicate: 条文要点
+  value: 第二条 渔业船舶所有人应根据本准则，并结合所属船舶的具体情况做到： 1.渔船所有值班人员都必须根据国家有关规定持有相应证书； 2.编制船舶的航行值班规则，并报所在地渔港监督机关批准；
+    3.值班规则应悬挂在船舶驾驶室、轮机舱和无线电通信室内，并确保船长和相应的值班人员遵守； 4.保证船长能组织和领导船上的一切工作，船长和其他所有船员都必须按国家有关规定进行培训、考试，并持有相应证书；
+    5.船上安装的通信和助航仪器以及保障船舶安全航行的任何设备都必须处于正常的使用状态。
+  evidence: 第二条 渔业船舶所有人应根据本准则，并结合所属船舶的具体情况做到： 1.渔船所有值班人员都必须根据国家有关规定持有相应证书； 2.编制船舶的航行值班规则，并报所在地渔港监督机关批准；
+    3.值班规则应悬挂在船舶驾驶室、轮机舱和无线电通信室内，并确保船长和相应的值班人员遵守； 4.保证船长能组织和领导船上的一切工作，船长和其他所有船员都必须按国家有关规定进行培训、考试，并持有相应证书；
+    5.船上安装的通信和助航仪器以及保障船舶安全航行的任何设备都必须处于正常的使用状态。
+  source:
+    doc: POL-WATCH-082
+    section: 第二条
+    sha256: 8eecbc9171dbc0dbc1cfc82d7e92b42bcf874c47c66a533cf8ed4b6cb6ec3bba
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-103
+  kind: provision
+  topic: gear
+  question_class: procedure
+  subject: Standards for navigation watchkeeping on fishing vessels (trial) 第三条
+  predicate: 条文要点
+  value: 第三条 船长应当保证： 1.所有值班人员必须由持有相应适任证书的职务船员担任； 2.除航行值班人员外其他人员不得随意进入驾驶室； 3.所有值班人员上岗前必须经过充分休息，不能因值班人员疲劳而影响航行安全；
+    4.在航行期间值班人员不得饮酒； 5.不得安排正在值班的值班人员从事与值班无关的事项。
+  evidence: 第三条 船长应当保证： 1.所有值班人员必须由持有相应适任证书的职务船员担任； 2.除航行值班人员外其他人员不得随意进入驾驶室； 3.所有值班人员上岗前必须经过充分休息，不能因值班人员疲劳而影响航行安全；
+    4.在航行期间值班人员不得饮酒； 5.不得安排正在值班的值班人员从事与值班无关的事项。
+  source:
+    doc: POL-WATCH-082
+    section: 第三条
+    sha256: 8eecbc9171dbc0dbc1cfc82d7e92b42bcf874c47c66a533cf8ed4b6cb6ec3bba
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-104
+  kind: provision
+  topic: gear
+  question_class: procedure
+  subject: Standards for navigation watchkeeping on fishing vessels (trial) 第四条
+  predicate: 条文要点
+  value: 第四条 船长和值班人员应有良好的职业道德，遇有海难事故时，在不危及本船安全的情况下，应全力进行救助。
+  evidence: 第四条 船长和值班人员应有良好的职业道德，遇有海难事故时，在不危及本船安全的情况下，应全力进行救助。
+  source:
+    doc: POL-WATCH-082
+    section: 第四条
+    sha256: 8eecbc9171dbc0dbc1cfc82d7e92b42bcf874c47c66a533cf8ed4b6cb6ec3bba
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-105
+  kind: provision
+  topic: gear
+  question_class: procedure
+  subject: Standards for navigation watchkeeping on fishing vessels (trial) 第五条
+  predicate: 条文要点
+  value: 第五条 船长和值班人员应遵守国际、国内有关法律、法规、规章和当地港口港章的有关规定。并应采取一切可能的预防措施，防止污染海洋。
+  evidence: 第五条 船长和值班人员应遵守国际、国内有关法律、法规、规章和当地港口港章的有关规定。并应采取一切可能的预防措施，防止污染海洋。
+  source:
+    doc: POL-WATCH-082
+    section: 第五条
+    sha256: 8eecbc9171dbc0dbc1cfc82d7e92b42bcf874c47c66a533cf8ed4b6cb6ec3bba
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-106
+  kind: provision
+  topic: stats
+  question_class: definition
+  subject: 渔业统计指标解释（2024中国渔业统计年鉴附录3） 片段106
+  predicate: 条文要点
+  value: '２０２４ 中国渔业统计年鉴 １􀆰 按捕捞海域分为渤海、 黄海、 东海和南海区产量ꎮ 渤海、 黄海、 东海、 南海区划 分界线: (１) 渤海:
+    东以辽宁老铁山西角经庙岛群岛至蓬莱角连线与黄海为界ꎮ (２) 黄海: 南以长江口北角至韩国济州岛西南端连线与东海为界ꎬ 东至朝鲜半岛与 朝鲜海峡ꎮ (３)
+    东海: 南以闽粤省界经东山岛南端至台湾省南端的鹅銮鼻灯塔连线与南海为界ꎬ 东至对马海峡日本琉球群岛与我国台湾省ꎮ (４) 南海: 东以巴士海峡、 巴林塘海峡、
+    菲律宾群岛与太平洋为'
+  evidence: '２０２４ 中国渔业统计年鉴 １􀆰 按捕捞海域分为渤海、 黄海、 东海和南海区产量ꎮ 渤海、 黄海、 东海、 南海区划 分界线: (１) 渤海:
+    东以辽宁老铁山西角经庙岛群岛至蓬莱角连线与黄海为界ꎮ (２) 黄海: 南以长江口北角至韩国济州岛西南端连线与东海为界ꎬ 东至朝鲜半岛与 朝鲜海峡ꎮ (３)
+    东海: 南以闽粤省界经东山岛南端至台湾省南端的鹅銮鼻灯塔连线与南海为界ꎬ 东至对马海峡日本琉球群岛与我国台湾省ꎮ (４) 南海: 东以巴士海峡、 巴林塘海峡、
+    菲律宾群岛与太平洋为'
+  source:
+    doc: DICT-STAT-013
+    sha256: 8f67eebf4ffdf4d834d5034ab6cd131486dfa3db4fe564e9e42eea67c4244567
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-107
+  kind: provision
+  topic: stats
+  question_class: definition
+  subject: 渔业统计指标解释（2024中国渔业统计年鉴附录3） 片段107
+  predicate: 条文要点
+  value: '(２) 深水网箱: 深水网箱是一种大型海水网箱ꎬ 主要有重力式聚乙烯网箱、 浮绳式 网箱和碟形网箱三种类型ꎬ 具有抗风浪性能ꎮ 网箱水体均为数百立方米到数千立方米ꎮ
+    深 水网箱一般安置在水深 ２０ 米以下的海域ꎮ (３) 工厂化: 工厂化养殖即按工艺过程的连续性和流水性的原则ꎬ 通过机械或自动 化设备ꎬ 对养殖水体进行水质和水温的控制ꎬ
+    保持最适宜于鱼类生长和发育的生态条件ꎬ 使鱼类的繁殖、 苗种培育、 商品鱼的养殖等各个环节能相互衔接ꎬ 形成一个独自的生产体 系ꎬ 以进行无'
+  evidence: '(２) 深水网箱: 深水网箱是一种大型海水网箱ꎬ 主要有重力式聚乙烯网箱、 浮绳式 网箱和碟形网箱三种类型ꎬ 具有抗风浪性能ꎮ 网箱水体均为数百立方米到数千立方米ꎮ
+    深 水网箱一般安置在水深 ２０ 米以下的海域ꎮ (３) 工厂化: 工厂化养殖即按工艺过程的连续性和流水性的原则ꎬ 通过机械或自动 化设备ꎬ 对养殖水体进行水质和水温的控制ꎬ
+    保持最适宜于鱼类生长和发育的生态条件ꎬ 使鱼类的繁殖、 苗种培育、 商品鱼的养殖等各个环节能相互衔接ꎬ 形成一个独自的生产体 系ꎬ 以进行无'
+  source:
+    doc: DICT-STAT-013
+    sha256: 8f67eebf4ffdf4d834d5034ab6cd131486dfa3db4fe564e9e42eea67c4244567
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-108
+  kind: provision
+  topic: stats
+  question_class: definition
+  subject: 渔业统计指标解释（2024中国渔业统计年鉴附录3） 片段108
+  predicate: 条文要点
+  value: 附 录 水养殖面积ꎮ 在报告期内无论是否全部收获或尚未收获其产品ꎬ 均应统计在养殖面积中ꎮ 但有些水面不投放苗种或投放少量苗种ꎬ 只进行一般管理的ꎬ
+    不统计为养殖面积ꎮ 养殖面 积法定计量单位为公顷ꎮ 第 １１ 条 海水养殖面积 海水养殖面积指利用天然海水养殖水产品的水面面积ꎬ 包括海上养殖、 滩涂养殖、
+    其 他养殖ꎮ 工厂化、 深水网箱不计入养殖面积ꎮ 第 １２ 条 淡水养殖面积 淡水养殖面积指在淡水水域养殖水产品的水面面积ꎬ 包括池塘、 湖泊、 水库、 河沟和
+    其他五部分
+  evidence: 附 录 水养殖面积ꎮ 在报告期内无论是否全部收获或尚未收获其产品ꎬ 均应统计在养殖面积中ꎮ 但有些水面不投放苗种或投放少量苗种ꎬ 只进行一般管理的ꎬ
+    不统计为养殖面积ꎮ 养殖面 积法定计量单位为公顷ꎮ 第 １１ 条 海水养殖面积 海水养殖面积指利用天然海水养殖水产品的水面面积ꎬ 包括海上养殖、 滩涂养殖、
+    其 他养殖ꎮ 工厂化、 深水网箱不计入养殖面积ꎮ 第 １２ 条 淡水养殖面积 淡水养殖面积指在淡水水域养殖水产品的水面面积ꎬ 包括池塘、 湖泊、 水库、 河沟和
+    其他五部分
+  source:
+    doc: DICT-STAT-013
+    sha256: 8f67eebf4ffdf4d834d5034ab6cd131486dfa3db4fe564e9e42eea67c4244567
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-109
+  kind: provision
+  topic: stats
+  question_class: definition
+  subject: 渔业统计指标解释（2024中国渔业统计年鉴附录3） 片段109
+  predicate: 条文要点
+  value: '渔业增加值指以货币表现的核算期内全社会从事渔业捕捞和养殖生产活动所创造的最 终产品的价值ꎬ 其计算方法: 渔业总产出扣除渔业中间投入ꎮ 渔业产值和增加值的数据取自同级统计部门ꎮ
+    第 １６ 条 渔业工业、 建筑业产值和增加值 渔业工业、 建筑业产值和增加值指以货币表现的核算期内全社会从事水产品加工业、 渔用机具制造业、 渔用饲料工业、
+    渔用药物制造业、 渔业建筑业等的产出和成果ꎮ 水产品加工业产值等于加工产品量乘以现行价格ꎬ 其增加值采用食品加工业增加值率 进行推算ꎮ 渔用机具'
+  evidence: '渔业增加值指以货币表现的核算期内全社会从事渔业捕捞和养殖生产活动所创造的最 终产品的价值ꎬ 其计算方法: 渔业总产出扣除渔业中间投入ꎮ 渔业产值和增加值的数据取自同级统计部门ꎮ
+    第 １６ 条 渔业工业、 建筑业产值和增加值 渔业工业、 建筑业产值和增加值指以货币表现的核算期内全社会从事水产品加工业、 渔用机具制造业、 渔用饲料工业、
+    渔用药物制造业、 渔业建筑业等的产出和成果ꎮ 水产品加工业产值等于加工产品量乘以现行价格ꎬ 其增加值采用食品加工业增加值率 进行推算ꎮ 渔用机具'
+  source:
+    doc: DICT-STAT-013
+    sha256: 8f67eebf4ffdf4d834d5034ab6cd131486dfa3db4fe564e9e42eea67c4244567
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-110
+  kind: provision
+  topic: stats
+  question_class: definition
+  subject: 渔业统计指标解释（2024中国渔业统计年鉴附录3） 片段110
+  predicate: 条文要点
+  value: ２０２４ 中国渔业统计年鉴 业的产值、 增加值之和ꎻ 其产值计算方法主要采用 “ 工厂法” 计算ꎬ 增加值的计算方法 采用统计部门 “ 规模以上工业企业总产值表”
+    中的相应指标增加值率进行推算ꎮ 渔用饲料工业产值主要采用 “ 工厂法” ꎬ 增加值是渔用饲料工业现行总产出乘以 “ 规 模以上” 饲料工业现价增加值率ꎮ 渔用药物制造业产值取同级相关部门统计年报表中的有关数据ꎬ
+    其增加值等于渔用药 物总产出乘以 “ 规模以上” 生物制药业现价增加值率ꎮ 渔业建筑业产值计算方法是从建
+  evidence: ２０２４ 中国渔业统计年鉴 业的产值、 增加值之和ꎻ 其产值计算方法主要采用 “ 工厂法” 计算ꎬ 增加值的计算方法 采用统计部门 “ 规模以上工业企业总产值表”
+    中的相应指标增加值率进行推算ꎮ 渔用饲料工业产值主要采用 “ 工厂法” ꎬ 增加值是渔用饲料工业现行总产出乘以 “ 规 模以上” 饲料工业现价增加值率ꎮ 渔用药物制造业产值取同级相关部门统计年报表中的有关数据ꎬ
+    其增加值等于渔用药 物总产出乘以 “ 规模以上” 生物制药业现价增加值率ꎮ 渔业建筑业产值计算方法是从建
+  source:
+    doc: DICT-STAT-013
+    sha256: 8f67eebf4ffdf4d834d5034ab6cd131486dfa3db4fe564e9e42eea67c4244567
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-111
+  kind: provision
+  topic: stats
+  question_class: definition
+  subject: 渔业统计指标解释（2024中国渔业统计年鉴附录3） 片段111
+  predicate: 条文要点
+  value: '国内海洋捕捞渔业船舶转为远洋渔业船舶的当年ꎬ 应纳入远洋渔业船舶统计范围内ꎬ 在国内渔船统计范围中不再进行统计ꎮ 第 ２０ 条 机动渔业船舶 机动渔业船舶指依靠本船主机动力来推进的渔业船舶ꎬ
+    分为渔业生产船和渔业辅 助船ꎮ 渔业生产船是直接从事渔业捕捞和养殖活动的船舶统称ꎮ 从事捕捞业活动的渔船为 捕捞船ꎬ 从 事 养 殖 业 活 动 的 渔 船
+    为 养 殖 船ꎮ 捕 捞 船ꎬ 按 主 机 总 功 率 分 为: ４４１ 千 瓦 ( 含) 以上、 ４４􀆰 １ ( 含) ~ ４４'
+  evidence: '国内海洋捕捞渔业船舶转为远洋渔业船舶的当年ꎬ 应纳入远洋渔业船舶统计范围内ꎬ 在国内渔船统计范围中不再进行统计ꎮ 第 ２０ 条 机动渔业船舶
+    机动渔业船舶指依靠本船主机动力来推进的渔业船舶ꎬ 分为渔业生产船和渔业辅 助船ꎮ 渔业生产船是直接从事渔业捕捞和养殖活动的船舶统称ꎮ 从事捕捞业活动的渔船为
+    捕捞船ꎬ 从 事 养 殖 业 活 动 的 渔 船 为 养 殖 船ꎮ 捕 捞 船ꎬ 按 主 机 总 功 率 分 为: ４４１ 千 瓦 ( 含) 以上、 ４４􀆰
+    １ ( 含) ~ ４４'
+  source:
+    doc: DICT-STAT-013
+    sha256: 8f67eebf4ffdf4d834d5034ab6cd131486dfa3db4fe564e9e42eea67c4244567
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-112
+  kind: provision
+  topic: stats
+  question_class: definition
+  subject: 渔业统计指标解释（2024中国渔业统计年鉴附录3） 片段112
+  predicate: 条文要点
+  value: 附 录 具、 其他共 ６ 类ꎬ 有关解释请参照第 ６ 条的相关内容ꎮ 渔业辅助船指从事各种加工、 贮藏、 运输、 补给、 渔业执法等渔业辅助活动的渔业
+    船舶统称ꎬ 包括水产运销船、 冷藏加工船、 油船、 供应船、 科研调查船、 教学实习船、 渔港工程船、 拖轮、 驳船和渔业行政执法船等ꎮ 其中捕捞辅助船指水产运销船、
+    冷藏 加工船、 油船、 供应船等为渔业捕捞生产提供服务的渔业船舶ꎮ 钓具、 围网等作业渔 船中的子船纳入捕捞辅助船统计范围ꎮ 机动渔船年末拥有量应按数量、
+    吨位
+  evidence: 附 录 具、 其他共 ６ 类ꎬ 有关解释请参照第 ６ 条的相关内容ꎮ 渔业辅助船指从事各种加工、 贮藏、 运输、 补给、 渔业执法等渔业辅助活动的渔业
+    船舶统称ꎬ 包括水产运销船、 冷藏加工船、 油船、 供应船、 科研调查船、 教学实习船、 渔港工程船、 拖轮、 驳船和渔业行政执法船等ꎮ 其中捕捞辅助船指水产运销船、
+    冷藏 加工船、 油船、 供应船等为渔业捕捞生产提供服务的渔业船舶ꎮ 钓具、 围网等作业渔 船中的子船纳入捕捞辅助船统计范围ꎮ 机动渔船年末拥有量应按数量、
+    吨位
+  source:
+    doc: DICT-STAT-013
+    sha256: 8f67eebf4ffdf4d834d5034ab6cd131486dfa3db4fe564e9e42eea67c4244567
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-113
+  kind: provision
+  topic: stats
+  question_class: definition
+  subject: 渔业统计指标解释（2024中国渔业统计年鉴附录3） 片段113
+  predicate: 条文要点
+  value: 第六章 渔业人口与渔业从业人员 第 ２３ 条 渔业乡和渔业村 在农村中ꎬ 从事渔业生产与经营的人员占全部从业人员 ５０％ 以上或渔业产值占农 业产值的比重
+    ５０％ 以上的乡、 村ꎬ 即为渔业乡和渔业村ꎻ 达不到上述标准的ꎬ 但一直 是以经营渔业为主ꎬ 并经上级主管部门批准定为渔业乡、 村的ꎬ 亦可统计为渔业乡和
+    渔业村ꎮ 第 ２４ 条 渔业户 ( 家庭) 渔业户指农 ( 渔) 村和城镇住户中主要从事渔业生产与经营的家庭ꎮ 凡家庭主要劳 动力或多数劳动力从事渔业生产与经营的时间
+  evidence: 第六章 渔业人口与渔业从业人员 第 ２３ 条 渔业乡和渔业村 在农村中ꎬ 从事渔业生产与经营的人员占全部从业人员 ５０％ 以上或渔业产值占农
+    业产值的比重 ５０％ 以上的乡、 村ꎬ 即为渔业乡和渔业村ꎻ 达不到上述标准的ꎬ 但一直 是以经营渔业为主ꎬ 并经上级主管部门批准定为渔业乡、 村的ꎬ 亦可统计为渔业乡和
+    渔业村ꎮ 第 ２４ 条 渔业户 ( 家庭) 渔业户指农 ( 渔) 村和城镇住户中主要从事渔业生产与经营的家庭ꎮ 凡家庭主要劳 动力或多数劳动力从事渔业生产与经营的时间
+  source:
+    doc: DICT-STAT-013
+    sha256: 8f67eebf4ffdf4d834d5034ab6cd131486dfa3db4fe564e9e42eea67c4244567
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-114
+  kind: provision
+  topic: stats
+  question_class: definition
+  subject: 渔业统计指标解释（2024中国渔业统计年鉴附录3） 片段114
+  predicate: 条文要点
+  value: '２０２４ 中国渔业统计年鉴 纯收入占家庭纯收入总额 ５０％ 以上者均可统计为渔业户ꎮ 第 ２５ 条 渔业人口 渔业人口指依靠渔业生产和相关活动维持生活的全部人口ꎬ
+    包括实际从事渔业生产和 相关活动的人口及其赡 ( 抚) 养的人口ꎬ 具体如下: (１) 直接从事渔业生产和相关活动的在业人口ꎮ (２) 兼营渔业和其他非渔业劳动者中ꎬ
+    凡从事渔业生产和相关活动的时间全年累计 达到或超过 ３ 个月者ꎬ 或者虽全年累计不足 ３ 个月ꎬ 但渔业纯收入占纯收入总额比重超过 ５０％ 者ꎮ ('
+  evidence: '２０２４ 中国渔业统计年鉴 纯收入占家庭纯收入总额 ５０％ 以上者均可统计为渔业户ꎮ 第 ２５ 条 渔业人口 渔业人口指依靠渔业生产和相关活动维持生活的全部人口ꎬ
+    包括实际从事渔业生产和 相关活动的人口及其赡 ( 抚) 养的人口ꎬ 具体如下: (１) 直接从事渔业生产和相关活动的在业人口ꎮ (２) 兼营渔业和其他非渔业劳动者中ꎬ
+    凡从事渔业生产和相关活动的时间全年累计 达到或超过 ３ 个月者ꎬ 或者虽全年累计不足 ３ 个月ꎬ 但渔业纯收入占纯收入总额比重超过 ５０％ 者ꎮ ('
+  source:
+    doc: DICT-STAT-013
+    sha256: 8f67eebf4ffdf4d834d5034ab6cd131486dfa3db4fe564e9e42eea67c4244567
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-115
+  kind: provision
+  topic: stats
+  question_class: definition
+  subject: 渔业统计指标解释（2024中国渔业统计年鉴附录3） 片段115
+  predicate: 条文要点
+  value: '第 ２８ 条 苗种 鱼苗: 卵黄囊基本消失ꎬ 鱼鳔充气ꎬ 能平游主动摄食的仔鱼ꎬ 包括人工孵化和江河湖 海港湾采捕的天然鱼苗ꎮ 鱼种: 鱼苗经培育后ꎬ
+    发育至全体鳞片ꎬ 鳍条长全ꎬ 外观具有成鱼基本特征的幼鱼ꎬ 一般全长在 １􀆰 ７ ~ ２３􀆰 ３ 厘米ꎬ 因出塘季节和培育期的不同ꎬ 又俗称为夏花、 冬片、
+    春片、 秋片、 仔口和老口ꎮ １５０ ＣＨＩＮＡ ＦＩＳＨＥＲＹ ＳＴＡＴＩＳＴＩＣＡＬ ＹＥＡＲＢＯＯＫ'
+  evidence: '第 ２８ 条 苗种 鱼苗: 卵黄囊基本消失ꎬ 鱼鳔充气ꎬ 能平游主动摄食的仔鱼ꎬ 包括人工孵化和江河湖 海港湾采捕的天然鱼苗ꎮ 鱼种: 鱼苗经培育后ꎬ
+    发育至全体鳞片ꎬ 鳍条长全ꎬ 外观具有成鱼基本特征的幼鱼ꎬ 一般全长在 １􀆰 ７ ~ ２３􀆰 ３ 厘米ꎬ 因出塘季节和培育期的不同ꎬ 又俗称为夏花、 冬片、
+    春片、 秋片、 仔口和老口ꎮ １５０ ＣＨＩＮＡ ＦＩＳＨＥＲＹ ＳＴＡＴＩＳＴＩＣＡＬ ＹＥＡＲＢＯＯＫ'
+  source:
+    doc: DICT-STAT-013
+    sha256: 8f67eebf4ffdf4d834d5034ab6cd131486dfa3db4fe564e9e42eea67c4244567
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-116
+  kind: provision
+  topic: stats
+  question_class: definition
+  subject: 渔业统计指标解释（2024中国渔业统计年鉴附录3） 四、 鱼粉
+  predicate: 条文要点
+  value: 四、 鱼粉 鱼粉指用低值水产品及水产品加工废弃物 ( 如鱼骨、 内脏、 虾壳等) 等为主要原料 生产而成的加工品ꎮ
+  evidence: 四、 鱼粉 鱼粉指用低值水产品及水产品加工废弃物 ( 如鱼骨、 内脏、 虾壳等) 等为主要原料 生产而成的加工品ꎮ
+  source:
+    doc: DICT-STAT-013
+    section: 四、 鱼粉
+    sha256: 8f67eebf4ffdf4d834d5034ab6cd131486dfa3db4fe564e9e42eea67c4244567
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-117
+  kind: provision
+  topic: stats
+  question_class: definition
+  subject: 渔业统计指标解释（2024中国渔业统计年鉴附录3） 五、 鱼油制品
+  predicate: 条文要点
+  value: 五、 鱼油制品 鱼油制品指从鱼肉或鱼肝中提取油脂ꎬ 并制成的产品ꎬ 如粗鱼油、 精鱼油、 鱼肝油、 深海鱼油等ꎮ
+  evidence: 五、 鱼油制品 鱼油制品指从鱼肉或鱼肝中提取油脂ꎬ 并制成的产品ꎬ 如粗鱼油、 精鱼油、 鱼肝油、 深海鱼油等ꎮ
+  source:
+    doc: DICT-STAT-013
+    section: 五、 鱼油制品
+    sha256: 8f67eebf4ffdf4d834d5034ab6cd131486dfa3db4fe564e9e42eea67c4244567
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-118
+  kind: provision
+  topic: stats
+  question_class: definition
+  subject: 渔业统计指标解释（2024中国渔业统计年鉴附录3） 六、 其他水产加工品
+  predicate: 条文要点
+  value: 六、 其他水产加工品 其他水产加工品指除上述加工产品之外的加工品统称ꎬ 如助剂和添加剂 ( 蛋白胨、 褐藻胶、 碘、 甘露醇、 卡拉胶、 琼胶等)
+    、 珍珠加工品、 贝壳工艺品、 鱼酒、 鱼奶等ꎮ 第十章 渔民家庭当年收支情况调查 第 ３３ 条 家庭常住人口数 家庭常住人口数指全年经常在家或在家居住 ６
+    个月以上ꎬ 而且经济和生活与本户连成一 体的人口数ꎮ 外出从业人员在外居住时间虽然在 ６ 个月以上ꎬ 但收入主要带回家中ꎬ 经济与 本户连为一体ꎬ 仍视为家庭常住人口ꎻ
+    在家
+  evidence: 六、 其他水产加工品 其他水产加工品指除上述加工产品之外的加工品统称ꎬ 如助剂和添加剂 ( 蛋白胨、 褐藻胶、 碘、 甘露醇、 卡拉胶、 琼胶等)
+    、 珍珠加工品、 贝壳工艺品、 鱼酒、 鱼奶等ꎮ 第十章 渔民家庭当年收支情况调查 第 ３３ 条 家庭常住人口数 家庭常住人口数指全年经常在家或在家居住 ６
+    个月以上ꎬ 而且经济和生活与本户连成一 体的人口数ꎮ 外出从业人员在外居住时间虽然在 ６ 个月以上ꎬ 但收入主要带回家中ꎬ 经济与 本户连为一体ꎬ 仍视为家庭常住人口ꎻ
+    在家
+  source:
+    doc: DICT-STAT-013
+    section: 六、 其他水产加工品
+    sha256: 8f67eebf4ffdf4d834d5034ab6cd131486dfa3db4fe564e9e42eea67c4244567
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-119
+  kind: provision
+  topic: stats
+  question_class: definition
+  subject: 渔业统计指标解释（2024中国渔业统计年鉴附录3） 片段119
+  predicate: 条文要点
+  value: 附 录 林业等第一产业ꎬ 或从事第二、 第三产业所取得的经营收入ꎮ 第一产业的收入包括现金和 实物两个部分ꎬ 计算方法与渔业收入类似ꎻ 第二、 第三产业只计算现金部分ꎮ
+    第 ３７ 条 工资性收入 工资性收入指渔民家庭中从业人员通过各种途径得到的全部劳动报酬和各种福利ꎬ 包 括在渔业生产劳动中获得的工资和在其他行业劳动中获得的工资ꎮ
+    工资的形式包含计时计件劳动报酬、 奖金、 津贴ꎬ 以及单位代个人缴纳的养老保险、 医疗保险、 失业保险、 房租费、 水电费、 托儿费、 医疗费等ꎬ
+  evidence: 附 录 林业等第一产业ꎬ 或从事第二、 第三产业所取得的经营收入ꎮ 第一产业的收入包括现金和 实物两个部分ꎬ 计算方法与渔业收入类似ꎻ 第二、
+    第三产业只计算现金部分ꎮ 第 ３７ 条 工资性收入 工资性收入指渔民家庭中从业人员通过各种途径得到的全部劳动报酬和各种福利ꎬ 包 括在渔业生产劳动中获得的工资和在其他行业劳动中获得的工资ꎮ
+    工资的形式包含计时计件劳动报酬、 奖金、 津贴ꎬ 以及单位代个人缴纳的养老保险、 医疗保险、 失业保险、 房租费、 水电费、 托儿费、 医疗费等ꎬ
+  source:
+    doc: DICT-STAT-013
+    sha256: 8f67eebf4ffdf4d834d5034ab6cd131486dfa3db4fe564e9e42eea67c4244567
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1
+- id: FACT-PROV-120
+  kind: provision
+  topic: stats
+  question_class: definition
+  subject: 渔业统计指标解释（2024中国渔业统计年鉴附录3） 片段120
+  predicate: 条文要点
+  value: '括各类定期和活期存款利息、 债券利息、 个人借款利息等ꎬ 银行代扣的利息所得税也包括 在内ꎮ 红利收入指住户或个人作为股东将其资金交由公司支配或处置而有权获得的收益ꎮ
+    包 括股票发行公司按入股数量定期分配的股息、 年终分红以及从集体财产入股或其他投资分 配得到的股息和红利ꎮ 股票买卖结算后获得的收益 ( 含亏损) 不包含在内ꎮ
+    储蓄性保险净收益指住户或个人参加储蓄性保险ꎬ 扣除缴纳的保险本金及相关费用 后ꎬ 所获得的保险净收益ꎬ 不包括保险责任人对保险人给予的保险理赔收入ꎮ '
+  evidence: '括各类定期和活期存款利息、 债券利息、 个人借款利息等ꎬ 银行代扣的利息所得税也包括 在内ꎮ 红利收入指住户或个人作为股东将其资金交由公司支配或处置而有权获得的收益ꎮ
+    包 括股票发行公司按入股数量定期分配的股息、 年终分红以及从集体财产入股或其他投资分 配得到的股息和红利ꎮ 股票买卖结算后获得的收益 ( 含亏损) 不包含在内ꎮ
+    储蓄性保险净收益指住户或个人参加储蓄性保险ꎬ 扣除缴纳的保险本金及相关费用 后ꎬ 所获得的保险净收益ꎬ 不包括保险责任人对保险人给予的保险理赔收入ꎮ '
+  source:
+    doc: DICT-STAT-013
+    sha256: 8f67eebf4ffdf4d834d5034ab6cd131486dfa3db4fe564e9e42eea67c4244567
+  status: draft
+  confidence: medium
+  as_of: '2026-11-06'
+  review_due: '2027-02-04'
+  jurisdiction: national
+  reviewer: auto:provision-v1
+  extraction: section-provision-v1

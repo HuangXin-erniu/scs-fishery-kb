@@ -22,9 +22,9 @@ def test_fact_term_faq_builders_add_expected_documents() -> None:
     assert len(fact_docs) == 80
     assert len(fact_chunks) == 80
     assert sum(fact_counts.values()) == 80
-    assert len(term_docs) == 24
-    assert len(term_chunks) == 24
-    assert sum(term_counts.values()) == 24
+    assert len(term_docs) == 116
+    assert len(term_chunks) == 116
+    assert sum(term_counts.values()) == 116
     assert len(faq_docs) == 12
     assert len(faq_chunks) == 12
     assert sum(faq_counts.values()) == 12
