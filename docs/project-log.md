@@ -757,3 +757,10 @@ This log records material project changes by date. It does not use release versi
 - The 28 configured main documents build into 745 parent and 785 child chunks with 0 lost page/section anchors against the v1 store. A second build skips all 28; a changed source rebuilds only itself; a removed document is dropped; a parse failure is quarantined.
 - Registered HTML/PDF/DOCX keep the legacy parsers so anchors are preserved; Docling and trafilatura are optional fallbacks listed in `requirements-rag.txt` and are not required by CI. The v1 store, index, answer path and evaluation set are unchanged.
 - Private report: `runs/P10-ING-138/build.md`.
+
+## 2026-11-06 — Retrieval v2: LanceDB index and regression
+
+- Built a parallel LanceDB index over the 785 v2 child chunks with `BAAI/bge-small-zh-v1.5` (512 dims): index `23e933753e22`, 98 s build, 4.49 GB peak RSS, 0.8 s no-op rebuild.
+- Added `src/scs_fkb/index_v2/` (LlamaIndex vector-store adapter, manifest, per-document delete/add) and `src/scs_fkb/retrieve_v2/` (BM25 + dense RRF, sensitivity/authority/level/effective-date filters, router, optional BGE reranker).
+- Regression on the 31 anchored questions: no-rerank dev 19/19 (MRR 0.6816), test 12/12, abstention 8/11, P95 16 ms; the optional reranker scores 29/31 (MRR 0.8360) and P95 2.27 s, so it stays disabled by default until calibrated.
+- The v1 index, answer path, evaluation set and public boundary are unchanged. Private reports: `runs/P10-IDX-139/build.md` and `runs/P10-IDX-139/regression.md`. Next task: P10-WEB-140.
