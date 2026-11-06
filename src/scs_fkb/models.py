@@ -33,6 +33,17 @@ class Document:
     language: str
     page_count: int
     file_hash: str
+    version_id: str = ""
+    snapshot_hash: str = ""
+    authority_tier: str = ""
+    level: str = ""
+    source_class: str = ""
+    license: str = ""
+    jurisdiction: str = ""
+    effective_from: str = ""
+    effective_to: str = ""
+    url: str = ""
+    retrieved_at: str = ""
 
 
 @dataclass(frozen=True)
@@ -53,6 +64,17 @@ class Chunk:
     source_class: str = ""
     trust: str = ""
     review_due: str = ""
+    parent_id: str = ""
+    chunk_type: str = "text"
+    section_path: str = ""
+    version_id: str = ""
+    snapshot_hash: str = ""
+    authority_tier: str = ""
+    level: str = ""
+    jurisdiction: str = ""
+    license: str = ""
+    effective_from: str = ""
+    effective_to: str = ""
 
 
 @dataclass(frozen=True)
