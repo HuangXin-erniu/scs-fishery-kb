@@ -51,6 +51,8 @@ The checker is read-only by design. It never downloads a document into the regis
 
 A change report does not become a source by itself. `scs-fkb watch --propose` turns every `changed` or `unbaselined` entry into a proposal carrying `watch_ref`, `first_seen` and an `expires_at` 180 days out. The proposal is written to the watch report only; both `configs/corpus.yaml` and `configs/candidates.yaml` stay byte-identical.
 
+The batch-1 term sources, their exact evidence and the A/B gate are recorded in [term-sources.md](term-sources.md).
+
 The proposal is reviewed as a **candidate** in [configs/candidates.yaml](../configs/candidates.yaml):
 
 | Field | Rule |

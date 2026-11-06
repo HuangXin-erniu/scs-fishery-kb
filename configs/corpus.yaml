@@ -2126,8 +2126,301 @@ sources:
     cadence: quarterly
     note: "Published with the 2019-03-28 announcement; no later Hainan catalog was found."
   watch_note: Static publisher text; no change feed. Rechecked at the quarterly review against the in-force catalogue.
+- id: POL-CREW-083
+  title: 中华人民共和国渔业船员管理办法
+  title_zh: 中华人民共和国渔业船员管理办法
+  publisher: 农业农村部
+  year: 2022
+  type: regulation
+  jurisdiction: national
+  format: html
+  location: raw/POL-CREW-083/fishery-crew-management-2022.html
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P2
+  volume: 1 HTML page; 8 chapters, 54 articles
+  update_freq: static
+  hash: 335092a951c3bf1584c287da634491221c36318acf02f1a361d8c4f7bd434ce8
+  acquisition: Captured 2026-11-06 from https://www.gov.cn/zhengce/2022-01/07/content_5721358.htm
+  notes: 'Term evidence: 第五条 defines 渔业职务船员证书 (海洋/内陆) and its use; the page is the 2022 revision (农业农村部令2022年第1号). It also defines 职务船员 and 普通船员.'
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: main
+    parseable: true
+    note: Registered in the main index for terminology evidence.
+  lifecycle: active
+  source_class: normative
+  currency:
+    as_of: '2026-11-06'
+    basis: publication
+    review_due: '2026-12-06'
+    cadence: monthly
+    note: 2022 revision; static official regulation.
+  watch_note: Static official regulation; no change feed. Rechecked at the quarterly review.
+  provenance:
+    url: https://www.gov.cn/zhengce/2022-01/07/content_5721358.htm
+    document_no: 农业农村部令2022年第1号
+    published_at: '2022-01-07'
+    retrieved_at: '2026-11-06'
+    sha256: 335092a951c3bf1584c287da634491221c36318acf02f1a361d8c4f7bd434ce8
+    bytes: 69734
+    mime: text/html
+    snapshot_path: raw/POL-CREW-083/fishery-crew-management-2022.html
+- id: POL-CODE-084
+  title: 中华人民共和国农业部公告第1100号
+  title_zh: 中华人民共和国农业部公告第1100号
+  publisher: 农业部
+  year: 2008
+  type: notice
+  jurisdiction: national
+  format: html
+  location: raw/POL-CODE-084/moa-announcement-1100-2008.html
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P2
+  volume: 1 HTML page; marine capture permit certificate-format notice
+  update_freq: static
+  hash: 9e4aa06c98179cb1c7025e1ab2c373f8bd54c1d2b965120e68f1e3315cce278f
+  acquisition: Captured 2026-11-06 from https://www.moa.gov.cn/govpublic/YYJ/201006/t20100606_1538517.htm
+  notes: 'Term evidence: the notice states that all fishery vessel certificates add 渔船编码, the unique lifelong vessel identification code; it gives the 16-digit coding rule (6-digit region + 4-digit year + 2-digit month + 4-digit sequence). This replaces the earlier 1562 notice as the term source because it is narrowly about coding and does not introduce unrelated mortgage material.'
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: main
+    parseable: true
+    note: Registered in the main index for terminology evidence.
+  lifecycle: active
+  source_class: normative
+  currency:
+    as_of: '2026-11-06'
+    basis: publication
+    review_due: '2026-12-06'
+    cadence: monthly
+    note: 2008 certificate-format notice; static.
+  watch_note: Static official notice; no change feed. Rechecked at the quarterly review.
+  provenance:
+    url: https://www.moa.gov.cn/govpublic/YYJ/201006/t20100606_1538517.htm
+    document_no: 农业部公告第1100号
+    published_at: '2008-10-31'
+    retrieved_at: '2026-11-06'
+    sha256: 9e4aa06c98179cb1c7025e1ab2c373f8bd54c1d2b965120e68f1e3315cce278f
+    bytes: 19669
+    mime: text/html
+    snapshot_path: raw/POL-CODE-084/moa-announcement-1100-2008.html
+- id: POL-ID-085
+  title: 中华人民共和国船舶识别号管理规定
+  title_zh: 中华人民共和国船舶识别号管理规定
+  publisher: 交通运输部
+  year: 2010
+  type: regulation
+  jurisdiction: national
+  format: html
+  location: raw/POL-ID-085/ship-identification-2010.html
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P2
+  volume: 1 HTML page; 15 articles
+  update_freq: static
+  hash: 1eab91202ff5222a9422088dcd385745c65190fed1621fbb27cc415488da2d77
+  acquisition: Captured 2026-11-06 from https://www.gov.cn/gongbao/content/2011/content_1786420.htm (State Council Gazette)
+  notes: 'Term evidence: 第二条 defines 船舶识别号 as the permanent unique code for a ship, composed of CN plus 11 digits; 第四条 covers sealing for fishery vessels that leave the register.'
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: main
+    parseable: true
+    note: Registered in the main index for terminology evidence.
+  lifecycle: active
+  source_class: normative
+  currency:
+    as_of: '2026-11-06'
+    basis: publication
+    review_due: '2026-12-06'
+    cadence: monthly
+    note: 2010 ministerial rule; static.
+  watch_note: Static official regulation; no change feed. Rechecked at the quarterly review.
+  provenance:
+    url: https://www.gov.cn/gongbao/content/2011/content_1786420.htm
+    document_no: 交通运输部令2010年第4号
+    published_at: '2010-09-01'
+    retrieved_at: '2026-11-06'
+    sha256: 1eab91202ff5222a9422088dcd385745c65190fed1621fbb27cc415488da2d77
+    bytes: 27162
+    mime: text/html
+    snapshot_path: raw/POL-ID-085/ship-identification-2010.html
+- id: POL-SANWU-086
+  title: 农业农村部关于印发“中国渔政亮剑2024”执法典型案例的通知
+  title_zh: 农业农村部关于印发“中国渔政亮剑2024”执法典型案例的通知
+  publisher: 农业农村部
+  year: 2025
+  type: notice
+  jurisdiction: national
+  format: html
+  location: raw/POL-SANWU-086/liangjian-2024-cases-2025.html
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P2
+  volume: 1 HTML page; 9 enforcement cases
+  update_freq: static
+  hash: 98709dce539fb1d48b7416c23a2e35145a4c92ca9488506e70dad64a274c3abd
+  acquisition: Captured 2026-11-06 from https://www.moa.gov.cn:10443/govpublic/YYJ/202505/t20250506_6473730.htm
+  notes: 'Term evidence: the notice uses 涉渔“三无”船舶 in the national enforcement summary and case five; it is an official usage source for the term, not a statutory definition.'
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: main
+    parseable: true
+    note: Registered in the main index for terminology evidence.
+  lifecycle: active
+  source_class: reference
+  currency:
+    as_of: '2026-11-06'
+    basis: publication
+    review_due: '2027-02-02'
+    cadence: semiannual
+    note: 2024 cases published 2025; static.
+  watch_note: Static official notice; no change feed. Rechecked at the quarterly review.
+  provenance:
+    url: https://www.moa.gov.cn:10443/govpublic/YYJ/202505/t20250506_6473730.htm
+    document_no: 农渔发〔2025〕12号
+    published_at: '2025-05-06'
+    retrieved_at: '2026-11-06'
+    sha256: 98709dce539fb1d48b7416c23a2e35145a4c92ca9488506e70dad64a274c3abd
+    bytes: 60502
+    mime: text/html
+    snapshot_path: raw/POL-SANWU-086/liangjian-2024-cases-2025.html
+- id: POL-FUEL-087
+  title: 财政部 农业部关于印发《渔业成品油价格补助专项资金管理暂行办法》的通知
+  title_zh: 财政部 农业部关于印发《渔业成品油价格补助专项资金管理暂行办法》的通知
+  publisher: 财政部、农业部
+  year: 2009
+  type: notice
+  jurisdiction: national
+  format: html
+  location: raw/POL-FUEL-087/fishery-fuel-subsidy-2009.html
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P2
+  volume: 1 HTML page; 25 articles and 7 annexes
+  update_freq: static
+  hash: 40c4e44a0ece5affeb37b642b66d3b3ce03f8660a71ce4e148d9c51c7a16deef
+  acquisition: Captured 2026-11-06 from https://www.gov.cn/gongbao/content/2010/content_1629134.htm (State Council Gazette)
+  notes: 'Term evidence: the title and 第二条-第三条 define 渔业成品油价格补助专项资金 and its object; the colloquial 油价补贴 is retained as a variant.'
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: main
+    parseable: true
+    note: Registered in the main index for terminology evidence.
+  lifecycle: active
+  source_class: normative
+  currency:
+    as_of: '2026-11-06'
+    basis: publication
+    review_due: '2026-12-06'
+    cadence: monthly
+    note: 2009 notice; static.
+  watch_note: Static official notice; no change feed. Rechecked at the quarterly review.
+  provenance:
+    url: https://www.gov.cn/gongbao/content/2010/content_1629134.htm
+    document_no: 财建〔2009〕1006号
+    published_at: '2009-12-31'
+    retrieved_at: '2026-11-06'
+    sha256: 40c4e44a0ece5affeb37b642b66d3b3ce03f8660a71ce4e148d9c51c7a16deef
+    bytes: 33783
+    mime: text/html
+    snapshot_path: raw/POL-FUEL-087/fishery-fuel-subsidy-2009.html
+- id: POL-STAT-088
+  title: 渔业统计调查制度
+  title_zh: 渔业统计调查制度
+  publisher: 国家统计局
+  year: 2024
+  type: data_dictionary
+  jurisdiction: national
+  format: html
+  location: raw/POL-STAT-088/fishery-statistics-system-2024.html
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P2
+  volume: 1 HTML page; six sections
+  update_freq: annual
+  hash: ee29cca7e24cd18d5f4eb11c6b4219060143cb641f5d64610e8dd67f6980cf97
+  acquisition: Captured 2026-11-06 from https://www.stats.gov.cn/fw/bmdcxmsp/bmzd/202407/t20240719_1955798.html
+  notes: 'Term evidence: section 二 is titled 调查对象和统计范围 and defines the statistical scope; 统计口径 is retained as the colloquial variant. The page is a departmental survey system, not a yearbook table.'
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: main
+    parseable: true
+    note: Registered in the main index for terminology evidence.
+  lifecycle: active
+  source_class: official_statistics
+  currency:
+    as_of: '2026-11-06'
+    basis: publication
+    review_due: '2027-02-02'
+    cadence: annual
+    note: 2024 survey system; annual review.
+  watch_note: Static departmental statistical system; rechecked at the quarterly review.
+  provenance:
+    url: https://www.stats.gov.cn/fw/bmdcxmsp/bmzd/202407/t20240719_1955798.html
+    retrieved_at: '2026-11-06'
+    sha256: ee29cca7e24cd18d5f4eb11c6b4219060143cb641f5d64610e8dd67f6980cf97
+    bytes: 82024
+    mime: text/html
+    snapshot_path: raw/POL-STAT-088/fishery-statistics-system-2024.html
+- id: POL-RED-089
+  title: 自然资源部办公厅关于印发《赤潮灾害应急预案》的通知
+  title_zh: 自然资源部办公厅关于印发《赤潮灾害应急预案》的通知
+  publisher: 自然资源部办公厅
+  year: 2021
+  type: plan
+  jurisdiction: national
+  format: html
+  location: raw/POL-RED-089/red-tide-emergency-plan-2021.html
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P2
+  volume: 1 HTML page; notice page
+  update_freq: static
+  hash: f7a9349656313a8e263a4a7ca637945f679f0f213f577ccb91d19e7a4ed637b5
+  acquisition: Captured 2026-11-06 from https://www.gov.cn/zhengce/zhengceku/2021-08/07/content_5630005.htm
+  notes: 'Term evidence: 赤潮 appears in the plan title and the notice body; this is an official usage source, not the full plan text.'
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: main
+    parseable: true
+    note: Registered in the main index for terminology evidence.
+  lifecycle: active
+  source_class: normative
+  currency:
+    as_of: '2026-11-06'
+    basis: publication
+    review_due: '2026-12-06'
+    cadence: monthly
+    note: 2021 notice; static.
+  watch_note: Static official notice; no change feed. Rechecked at the quarterly review.
+  provenance:
+    url: https://www.gov.cn/zhengce/zhengceku/2021-08/07/content_5630005.htm
+    document_no: 自然资办函〔2021〕1258号
+    published_at: '2021-07-09'
+    retrieved_at: '2026-11-06'
+    sha256: f7a9349656313a8e263a4a7ca637945f679f0f213f577ccb91d19e7a4ed637b5
+    bytes: 26666
+    mime: text/html
+    snapshot_path: raw/POL-RED-089/red-tide-emergency-plan-2021.html
+
 gaps:
-- Sixty-three sources are registered: sixty-three acquired and no candidates awaiting disposition.
+- Seventy sources are registered: seventy acquired and no open candidates awaiting disposition.
 - The yearbook coverage matrix has no values in the public repository; all values stay local.
 - The yearbook infrastructure table is missing for data years 2018 and 2019; the 2018 national port plan supplies a baseline whose port classes are close to, but not identical with, the yearbook table.
 - The vessel-length proxy is missing for data year 2024.

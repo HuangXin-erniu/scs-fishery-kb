@@ -33,7 +33,7 @@ def test_corpus_structure() -> None:
         "data_dictionary",
         "plan",
     }
-    assert len(data["sources"]) == 63
+    assert len(data["sources"]) == 70
 
     acquired = []
     candidates = []
@@ -46,7 +46,7 @@ def test_corpus_structure() -> None:
         else:
             candidates.append(source)
 
-    assert len(acquired) == 63
+    assert len(acquired) == 70
     assert len(candidates) == 0
     yearbooks = [source for source in acquired if source["id"].startswith("STAT-YB-")]
     assert len(yearbooks) == 9
@@ -58,7 +58,7 @@ def test_corpus_structure() -> None:
         assert source["sensitivity"] == "internal"
         assert source["location"] == f"raw/{source['id']}/"
         assert re.fullmatch(r"[0-9a-f]{64}", source["hash"])
-        assert source["volume"].endswith(("files", "pages"))
+        assert source["volume"].endswith(("files", "pages", "page"))
 
     jurisdictions = {"national", "guangdong", "guangxi", "hainan", "fujian", "international"}
     for source in acquired:
@@ -119,6 +119,13 @@ def test_corpus_structure() -> None:
         "POL-LIST-079",
         "POL-PEN-080",
         "POL-WATCH-082",
+        "POL-CREW-083",
+        "POL-CODE-084",
+        "POL-ID-085",
+        "POL-SANWU-086",
+        "POL-FUEL-087",
+        "POL-STAT-088",
+        "POL-RED-089",
     }
     for source in documents:
         if source["id"] in {
@@ -180,6 +187,7 @@ def test_corpus_structure() -> None:
     assert {source["id"] for source in dictionaries} == {
         "DICT-STAT-013",
         "DICT-STAT-040",
+        "POL-STAT-088",
     }
     for source in dictionaries:
         assert source["license"] == "public"
@@ -209,13 +217,13 @@ def test_corpus_structure() -> None:
     assert type_counts == {
         "statistical_yearbook": 10,
         "law": 1,
-        "regulation": 20,
-        "notice": 12,
+        "regulation": 22,
+        "notice": 15,
         "standard": 17,
         "operations": 1,
         "fishery_product": 0,
-        "data_dictionary": 2,
-        "plan": 0,
+        "data_dictionary": 3,
+        "plan": 1,
     }
 
 
@@ -387,8 +395,8 @@ def test_pipeline_config() -> None:
     pipeline = load_yaml("configs/pipeline.yaml")
     assert pipeline["schema_version"] == 1
     documents = pipeline["documents"]
-    assert len(documents) == 28
-    assert len(set(documents)) == 28
+    assert len(documents) == 35
+    assert len(set(documents)) == 35
     assert pipeline["chunking"]["max_fallback_chars"] >= 200
 
     corpus = load_yaml("configs/corpus.yaml")
@@ -738,8 +746,8 @@ def test_registry_schema_v3() -> None:
     from scs_fkb.registry import CADENCES, load_registry
 
     registry = load_registry("configs/corpus.yaml")
-    assert len(registry) == 63
-    assert sum(1 for entry in registry.values() if entry["status"] == "acquired") == 63
+    assert len(registry) == 70
+    assert sum(1 for entry in registry.values() if entry["status"] == "acquired") == 70
     for entry in registry.values():
         assert entry["lifecycle"] in {"active", "retired"}
         assert entry["currency"]["cadence"] in CADENCES
@@ -759,8 +767,13 @@ def test_schema_source_allowlists_match_registry() -> None:
 
 def test_candidate_register_is_valid() -> None:
     from scs_fkb.candidates import load_candidates
+    from scs_fkb.registry import load_registry
 
-    assert load_candidates("configs/candidates.yaml") == []
+    candidates = load_candidates("configs/candidates.yaml")
+    assert len(candidates) == 7
+    assert all(candidate["status"] == "accepted" for candidate in candidates)
+    registry = load_registry("configs/corpus.yaml")
+    assert all(candidate["source_id"] in registry for candidate in candidates)
 
 
 def test_cleanup_state() -> None:
