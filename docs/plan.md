@@ -83,8 +83,14 @@ P10-ANS-143 is implemented as a local service: 20 reviewed scenarios through the
 real v2 stack produced 19 answers, 1 clarification, 19 cited answers and 16
 expected-document hits, median 22 ms. The API exposes `/v1/query`,
 `/v1/sources`, `/v1/playbooks`, `/v1/feedback` and health endpoints; the Web UI
-is server-rendered and the v1 CLI/answer path is unchanged. The next task is
-P10-EVAL-144.
+is server-rendered and the v1 CLI/answer path is unchanged.
+
+P10-EVAL-144 is implemented: the 120-question set has 80 dev reviewed facts, 30
+draft test facts and 10 test abstention cases. The dev run scores 0.8945
+correctness, 1.0000 citation resolution and 0.9875 context recall; overall
+abstention is 0.9000. The gate passes; the test split scores 0.5820 correctness
+and is report-only because its 30 fact questions are drafts. This completes the
+planned P10 phases; no tag or release is created.
 
 The architecture decisions are [0005](adr/0005-two-plane-evidence.md),
 [0006](adr/0006-llamaindex-lancedb-bge.md),

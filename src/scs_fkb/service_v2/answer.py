@@ -26,6 +26,7 @@ DISCLAIMER = "以官方发布文本为准；本服务不构成法律意见。"
 WEB_LABEL = "网络检索 · 未入知识库"
 YEAR_RE = re.compile(r"(20\d{2})\s*年?")
 CLARIFY_PATTERNS = ("某渔场", "某海域", "某年度", "某类", "某品种", "某一")
+WEATHER_WORDS = ("台风", "海温", "预报", "风暴潮", "赤潮", "海浪", "预警")
 KEYWORD_GROUPS = (
     ("休渔", "禁渔"),
     ("处罚", "罚款"),
@@ -117,7 +118,7 @@ class AnswerService:
 
     def _fact_lead(
         self, question: str, hits: list[SearchHit], nature: str = ""
-    ) -> tuple[str, Citation] | None:
+    ) -> tuple[str, Citation, SearchHit] | None:
         tokens = _tokens(question)
         if not tokens:
             return None
@@ -128,15 +129,18 @@ class AnswerService:
             value = str(fact.get("value") or "").strip()
             if not value or len(value) > 220:
                 continue
+            subject_text = f"{fact.get('subject') or ''} {fact.get('predicate') or ''}"
             text = " ".join(str(fact.get(key) or "") for key in ("subject", "predicate", "value"))
+            subject_score = len(tokens & _tokens(subject_text)) / max(1, len(tokens))
+            value_score = len(tokens & _tokens(value)) / max(1, len(tokens))
             keyword = _keyword_score(question, text)
-            overlap = len(tokens & _tokens(text))
-            score = overlap / max(1, len(tokens)) + 0.12 * keyword
+            score = 1.6 * subject_score + 0.4 * value_score + 0.12 * keyword
             if nature and fact.get("question_class") == nature:
-                score += 0.1
-            if keyword >= 1 and (best is None or score > best[0]):
-                best = (score, fact)
-            elif overlap >= 2 and score >= 0.18 and (best is None or score > best[0]):
+                score += 0.05
+            predicate = str(fact.get("predicate") or "")
+            if predicate and predicate in question:
+                score += 0.35
+            if score >= 0.25 and (best is None or score > best[0]):
                 best = (score, fact)
         if best is None:
             return None
@@ -144,25 +148,42 @@ class AnswerService:
         source = fact.get("source") or {}
         doc_id = str(source.get("doc") or "")
         section = str(source.get("section") or "")
-        for hit in hits:
-            if hit.chunk.doc_id != doc_id:
+        chunk = None
+        hit = None
+        for item in hits:
+            if item.chunk.doc_id != doc_id:
                 continue
             if section and not (
-                hit.chunk.section.startswith(section) or section.startswith(hit.chunk.section)
+                item.chunk.section.startswith(section) or section.startswith(item.chunk.section)
             ):
                 continue
-            citation = Citation(
-                doc_id=hit.chunk.doc_id,
-                title=hit.chunk.doc_id,
-                page=hit.chunk.page,
-                section=hit.chunk.section,
-                snippet=str(fact.get("value") or ""),
-                score=hit.score,
-                url=hit.chunk.url,
-                retrieved_at=hit.chunk.retrieved_at,
-            )
-            return str(fact.get("value") or "").strip(), citation
-        return None
+            chunk = item.chunk
+            hit = item
+            break
+        if chunk is None:
+            for candidate in getattr(self.retriever, "chunks", []) or []:
+                if candidate.doc_id != doc_id:
+                    continue
+                if section and not (
+                    candidate.section.startswith(section) or section.startswith(candidate.section)
+                ):
+                    continue
+                chunk = candidate
+                hit = SearchHit(chunk=candidate, score=1.0)
+                break
+        if chunk is None or hit is None:
+            return None
+        citation = Citation(
+            doc_id=chunk.doc_id,
+            title=chunk.doc_id,
+            page=chunk.page,
+            section=chunk.section,
+            snippet=str(fact.get("value") or ""),
+            score=hit.score,
+            url=chunk.url,
+            retrieved_at=chunk.retrieved_at,
+        )
+        return str(fact.get("value") or "").strip(), citation, hit
 
     def _playbook_view(self, playbook: dict[str, Any]) -> PlaybookView:
         steps: list[PlaybookStep] = []
@@ -211,7 +232,16 @@ class AnswerService:
     ) -> QueryResponse:
         started = time.perf_counter()
         request_id = f"REQ-{uuid.uuid4().hex[:12]}"
-        if len(question.strip()) < 2 or any(word in question for word in CLARIFY_PATTERNS):
+        future_year = any(int(value) > date.today().year for value in YEAR_RE.findall(question))
+        if (
+            len(question.strip()) < 2
+            or any(word in question for word in CLARIFY_PATTERNS)
+            or future_year
+            or (
+                any(word in question for word in WEATHER_WORDS)
+                and not any(word in question for word in ("规定", "制度", "办法"))
+            )
+        ):
             return QueryResponse(
                 request_id=request_id,
                 answer="请补充一个更具体的问题，例如休渔时间、许可证换发或网目尺寸。",
@@ -231,6 +261,8 @@ class AnswerService:
         hits = self._search(question, filters)
         gate = self._gate(question)
         lead = self._fact_lead(question, hits, plan.nature)
+        if lead is not None and all(item.chunk.chunk_id != lead[2].chunk.chunk_id for item in hits):
+            hits.append(lead[2])
         if gate:
             answer = answer_question(
                 question,
@@ -240,7 +272,7 @@ class AnswerService:
                 require_corpus=True,
             )
         elif lead is not None:
-            lead_text, lead_citation = lead
+            lead_text, lead_citation, _lead_hit = lead
             from ..models import Answer
 
             answer = Answer(
@@ -272,9 +304,9 @@ class AnswerService:
             for item in answer.citations
         ]
         if not answer.abstained:
-            lead = lead if "lead" in locals() else self._fact_lead(question, hits)
+            lead = lead if "lead" in locals() else self._fact_lead(question, hits, plan.nature)
             if lead is not None and lead[0] not in answer.text:
-                lead_text, lead_citation = lead
+                lead_text, lead_citation, _lead_hit = lead
                 candidate = f"{lead_text} {citation_text(lead_citation)}\n\n{answer.text}"
                 if validate_citations(candidate, hits)[0]:
                     answer = answer.__class__(

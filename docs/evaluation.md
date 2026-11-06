@@ -217,3 +217,90 @@ P09-EVAL-135 resolved the five anchor gaps found by the audit:
 - **Q-O03 p1**: anchors are now §第四条, §第六条 and §第二十条; it uses `document`.
 
 No question, point count (60), anchor count (31), abstention count (11), split or test membership changed. Private audit: `runs/P09-EVAL-135/audit.md`.
+
+---
+
+## Evaluation v2 (2026-11-06)
+
+> **中文摘要**：本文件定义 120 题 v2 评测集和确定性指标。80 道 dev 题来自 80 条已批准事实，30 道 test 题来自草稿条款事实，10 道 test 题为拒答/澄清题。指标名称与 RAGAS 兼容，但不使用 LLM 评判；test 只报告、不用于调参。回归门禁要求 dev 正确率 ≥0.85、引用解析率 ≥0.99、上下文召回 ≥0.80、拒答准确率 ≥0.90。草稿题和合成题不是人工金标，报告中必须标注。
+
+## 1. Question mix
+
+| Split | Count | Source | Review status | Use |
+|---|---:|---|---|---|
+| dev | 80 | 80 approved facts | reviewed | Gate and regression |
+| test | 30 | 30 draft provision facts | draft | Report only |
+| test | 10 | abstention/placeholder cases | reviewed | Abstention gate |
+| **total** | **120** | | | |
+
+The set is generated deterministically by `scripts/build_eval_v2.py` from
+`configs/facts/`. IDs are stable (`EV2-001` … `EV2-120`), and every expected
+evidence doc/section must resolve to `configs/corpus.yaml`. The v1
+`configs/eval.yaml` is not modified.
+
+The 30 draft questions and the 10 abstention cases are test-only. The test split
+is never used to tune retrieval, prompts or thresholds. Draft questions are not
+human gold; their metrics are reported separately.
+
+## 2. Metrics
+
+The names follow the RAGAS vocabulary, but the implementation is deterministic
+and does not call an LLM judge:
+
+| Metric | Definition |
+|---|---|
+| `faithfulness` | Fraction of answer sentences carrying a resolvable citation; an abstention scores 1.0 |
+| `answer_relevancy` | Character-bigram overlap between question and answer; abstention is scored against the expected abstention |
+| `context_precision` | Fraction of cited documents that are in the expected evidence set |
+| `context_recall` | Fraction of expected evidence documents present in the citations |
+| `answer_correctness` | Max of expected-term coverage and character-bigram recall against the gold fact value; abstention must match |
+| `citation_resolution` | Every citation has a doc id and a page/section/url; non-abstained answers need at least one citation |
+| `abstention_accuracy` | Fraction of expected-abstention questions that actually abstain |
+
+A per-question row also carries `latency_ms`, `mode`, `reason`, `error` and the
+full answer/citation payload. `error` is recorded per question and never hidden.
+
+## 3. Gate
+
+`scripts/eval_v2.py` runs the service with `web=off` and enforces:
+
+- dev `answer_correctness` ≥ 0.85
+- dev `citation_resolution` ≥ 0.99
+- dev `context_recall` ≥ 0.80
+- overall `abstention_accuracy` ≥ 0.90
+
+The test split is reported but not gated for correctness. A failing gate writes
+the report and exits non-zero; the failure text is copied into the report.
+
+## 4. Current result
+
+The 2026-11-06 run:
+
+| Group | Questions | Correctness | Citation | Context recall | Abstention |
+|---|---:|---:|---:|---:|---:|
+| dev | 80 | 0.8945 | 1.0000 | 0.9875 | — |
+| test | 40 | 0.5820 | 1.0000 | 0.9500 | 0.9000 |
+| overall | 120 | 0.7903 | 1.0000 | 0.9750 | 0.9000 |
+
+The gate passes. The lower test correctness is expected: 30 test questions are
+derived from draft section-level facts, not human gold answers. The report lists
+the failing rows individually.
+
+## 5. Limitations
+
+- No LLM judge; the metrics are deterministic proxies, not a semantic grader.
+- 30 test questions are draft/synthetic; the 10 abstention cases are reviewed
+  but intentionally unanswerable.
+- The dev set is derived from the approved fact layer, so it measures fact
+  coverage and citation behavior more than open-ended reading comprehension.
+- Web evidence is disabled in this run; the web label path is covered by service
+  tests, not by this metric set.
+
+## 6. Reproduce
+
+```bash
+SCS_FKB_DATA_ROOT=... SCS_FKB_RUN_ROOT=... \
+  PYTHONPATH=src python scripts/eval_v2.py
+```
+
+Outputs: `$SCS_FKB_RUN_ROOT/P10-EVAL-144/metrics.json` and `report.md`.
