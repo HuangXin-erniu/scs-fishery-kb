@@ -279,12 +279,13 @@ The 2026-11-06 run:
 | Group | Questions | Correctness | Citation | Context recall | Abstention |
 |---|---:|---:|---:|---:|---:|
 | dev | 80 | 0.8945 | 1.0000 | 0.9875 | — |
-| test | 40 | 0.6310 | 1.0000 | 0.9500 | 0.9000 |
-| overall | 120 | 0.8066 | 1.0000 | 0.9667 | 0.9000 |
+| test | 40 | 0.6161 | 1.0000 | 0.9500 | 0.9000 |
+| overall | 120 | 0.8017 | 1.0000 | 0.9667 | 0.9000 |
 
 The gate passes. The test correctness improved from 0.5820 before the 2026-11-06 review to
 0.6189 after the 20 provision promotions, to 0.6319 after the seven-source
-term batch, and to 0.6310 after the third term batch (still within the gate). It remains lower than dev because 30 test questions are derived from
+term batch, to 0.6310 after the third term batch, and to 0.6161 after the fourth
+term batch (report-only; the dev gate held). It remains lower than dev because 30 test questions are derived from
 draft section-level facts, not human gold answers. The report lists the failing rows individually.
 
 ## 5. Limitations
