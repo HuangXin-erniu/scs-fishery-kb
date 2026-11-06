@@ -208,12 +208,14 @@ def test_load_all_reads_yaml(tmp_path: Path) -> None:
     assert [fact["id"] for fact in facts] == ["FACT-POLICY-001"]
 
 
-def test_real_fact_layer_has_80_approved_facts() -> None:
+def test_real_fact_layer_has_200_facts() -> None:
     root = Path(__file__).resolve().parents[1]
     facts = load_all(root / "configs" / "facts")
-    assert len(facts) == 80
+    assert len(facts) == 200
     assert sum(1 for fact in facts if fact["kind"] == "atomic") == 20
+    assert sum(1 for fact in facts if fact["kind"] == "provision") == 180
     assert sum(1 for fact in facts if fact["status"] == "approved") == 80
+    assert sum(1 for fact in facts if fact["status"] == "draft") == 120
     for fact in facts:
         assert fact["evidence"]
         assert fact["source"]["sha256"]

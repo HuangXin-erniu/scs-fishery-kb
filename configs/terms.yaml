@@ -1,5 +1,5 @@
 schema_version: 1
-updated_at: '2026-11-04'
+updated_at: '2026-11-06'
 terms:
 - id: TERM-001
   standard: 渔业捕捞许可证
@@ -309,3 +309,1272 @@ terms:
     doc: DICT-STAT-013
     note: 捕捞活动获得的产量
   status: approved
+- id: TERM-025
+  standard: 船网工具指标批准书
+  variants:
+  - 指标书
+  - 指标批准书
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-026
+  standard: 捕捞许可
+  variants:
+  - 捕捞许可证
+  - 捕捞执照
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-027
+  standard: 渔业船舶国籍证书
+  variants:
+  - 国籍证书
+  - 船舶国籍证书
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-028
+  standard: 渔业船舶所有权登记证书
+  variants:
+  - 所有权登记证书
+  - 所有权证书
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-029
+  standard: 渔业船舶检验证书
+  variants:
+  - 检验证书
+  - 船检证书
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-030
+  standard: 渔业船员适任证书
+  variants:
+  - 适任证书
+  - 职务证书
+  - 船员证书
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: draft
+- id: TERM-031
+  standard: 渔捞日志
+  variants:
+  - 捕捞日志
+  - 日志
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-032
+  standard: 渔获物
+  variants:
+  - 渔获
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-033
+  standard: 捕捞辅助船
+  variants:
+  - 辅助船
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-034
+  standard: 海洋捕捞
+  variants:
+  - 海洋捕鱼
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-035
+  standard: 近海捕捞
+  variants:
+  - 近海渔业
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-036
+  standard: 远洋渔业
+  variants:
+  - 远洋捕捞
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-037
+  standard: 南海区
+  variants:
+  - 南海
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-038
+  standard: 休渔海域
+  variants:
+  - 休渔区
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-039
+  standard: 休渔作业类型
+  variants:
+  - 休渔类型
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-040
+  standard: 禁渔区
+  variants:
+  - 禁捕区
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-041
+  standard: 禁渔期
+  variants:
+  - 禁捕期
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-042
+  standard: 专项捕捞
+  variants:
+  - 特许捕捞
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-043
+  standard: 捕捞限额
+  variants:
+  - 限额捕捞
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-044
+  standard: 渔业行政处罚
+  variants:
+  - 渔业处罚
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-045
+  standard: 责令改正
+  variants:
+  - 限期改正
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-046
+  standard: 警告
+  variants:
+  - 警告处罚
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-047
+  standard: 吊销捕捞许可证
+  variants:
+  - 吊销许可证
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-048
+  standard: 非法捕捞水产品罪
+  variants:
+  - 非法捕捞罪
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: draft
+- id: TERM-049
+  standard: 渔业法
+  variants:
+  - 中华人民共和国渔业法
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-050
+  standard: 渔业法实施细则
+  variants:
+  - 实施细则
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-051
+  standard: 渔业捕捞许可管理规定
+  variants:
+  - 捕捞许可规定
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-052
+  standard: 渔业资源
+  variants:
+  - 渔业资源量
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-053
+  standard: 增殖放流
+  variants:
+  - 放流
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-054
+  standard: 海洋牧场
+  variants:
+  - 人工鱼礁
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-055
+  standard: 水产种质资源保护区
+  variants:
+  - 种质保护区
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-056
+  standard: 幼鱼
+  variants:
+  - 幼体
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-057
+  standard: 亲体
+  variants:
+  - 亲鱼
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-058
+  standard: 可捕量
+  variants:
+  - 允许捕捞量
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-059
+  standard: 最大可持续产量
+  variants:
+  - MSY
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: draft
+- id: TERM-060
+  standard: 捕捞强度
+  variants:
+  - 捕捞压力
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-061
+  standard: 过度捕捞
+  variants:
+  - 过度渔业
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: draft
+- id: TERM-062
+  standard: 兼捕
+  variants:
+  - 混捕
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: draft
+- id: TERM-063
+  standard: 副渔获
+  variants:
+  - 副捕获物
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-064
+  standard: 选择性
+  variants:
+  - 选择性渔具
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: draft
+- id: TERM-065
+  standard: 最小可捕规格
+  variants:
+  - 最小规格
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: draft
+- id: TERM-066
+  standard: 渔具分类
+  variants:
+  - 渔具类别
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-067
+  standard: 渔具代号
+  variants:
+  - 渔具代码
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: draft
+- id: TERM-068
+  standard: 准用渔具
+  variants:
+  - 允许渔具
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-069
+  standard: 过渡渔具
+  variants:
+  - 过渡期渔具
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-070
+  standard: 禁用渔具
+  variants:
+  - 禁止渔具
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-071
+  standard: 网目
+  variants:
+  - 网眼
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-072
+  standard: 网囊
+  variants:
+  - 囊网
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-073
+  standard: 张网
+  variants:
+  - 张网类
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-074
+  standard: 钓具
+  variants:
+  - 钓具类
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-075
+  standard: 耙刺
+  variants:
+  - 耙刺类
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-076
+  standard: 掩罩
+  variants:
+  - 掩罩类
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-077
+  standard: 敷网
+  variants:
+  - 敷网类
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-078
+  standard: 地拉网
+  variants:
+  - 地拉网类
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-079
+  standard: 抄网
+  variants:
+  - 抄网类
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-080
+  standard: 陷阱
+  variants:
+  - 陷阱类
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-081
+  standard: 灯光围网
+  variants:
+  - 光诱围网
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-082
+  standard: 桁杆拖虾
+  variants:
+  - 拖虾
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-083
+  standard: 船籍港
+  variants:
+  - 登记港
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-084
+  standard: 渔船编码
+  variants:
+  - 渔船编号
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: draft
+- id: TERM-085
+  standard: 船舶识别号
+  variants:
+  - 船舶ID
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: draft
+- id: TERM-086
+  standard: 总吨位
+  variants:
+  - 总吨
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-087
+  standard: 型深
+  variants:
+  - 船型深
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-088
+  standard: 船宽
+  variants:
+  - 型宽
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: draft
+- id: TERM-089
+  standard: 渔业船舶
+  variants:
+  - 渔船
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-090
+  standard: 渔业生产船
+  variants:
+  - 生产船
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-091
+  standard: 渔业辅助船
+  variants:
+  - 辅助渔船
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-092
+  standard: 机动渔船
+  variants:
+  - 机动船
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-093
+  standard: 非机动渔船
+  variants:
+  - 非机动船
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-094
+  standard: 三无船
+  variants:
+  - 三无渔船
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: draft
+- id: TERM-095
+  standard: 涉渔
+  variants:
+  - 涉渔船舶
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-096
+  standard: 渔政
+  variants:
+  - 渔政管理
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-097
+  standard: 海警
+  variants:
+  - 中国海警
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-098
+  standard: 海事
+  variants:
+  - 海事管理
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-099
+  standard: 渔港监督
+  variants:
+  - 渔港监督机构
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-100
+  standard: 中心渔港
+  variants:
+  - 中心港
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-101
+  standard: 一级渔港
+  variants:
+  - 一级港
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-102
+  standard: 二级渔港
+  variants:
+  - 二级港
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-103
+  standard: 三级渔港
+  variants:
+  - 三级港
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-104
+  standard: 未评级渔港
+  variants:
+  - 未评级港
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: draft
+- id: TERM-105
+  standard: 避风港
+  variants:
+  - 避风锚地
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: draft
+- id: TERM-106
+  standard: 卸货
+  variants:
+  - 卸鱼
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-107
+  standard: 渔获物交易
+  variants:
+  - 渔获交易
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: draft
+- id: TERM-108
+  standard: 渔港管理章程
+  variants:
+  - 渔港章程
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-109
+  standard: 安全检查
+  variants:
+  - 安全查验
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-110
+  standard: 值班
+  variants:
+  - 值班制度
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-111
+  standard: 交接班
+  variants:
+  - 交接班制度
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-112
+  standard: 航行安全
+  variants:
+  - 航行值班
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-113
+  standard: 避碰规则
+  variants:
+  - 国际海上避碰规则
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-114
+  standard: 救生设备
+  variants:
+  - 救生筏
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-115
+  standard: 消防设备
+  variants:
+  - 灭火器
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-116
+  standard: 通信设备
+  variants:
+  - 无线电
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-117
+  standard: 应急预案
+  variants:
+  - 应急方案
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-118
+  standard: 搜救
+  variants:
+  - 搜寻救助
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-119
+  standard: 事故报告
+  variants:
+  - 事故上报
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-120
+  standard: 渔业保险
+  variants:
+  - 渔船保险
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-121
+  standard: 渔船抵押
+  variants:
+  - 船舶抵押
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: draft
+- id: TERM-122
+  standard: 渔业贷款
+  variants:
+  - 渔船贷款
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: draft
+- id: TERM-123
+  standard: 油价补贴
+  variants:
+  - 燃油补贴
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: draft
+- id: TERM-124
+  standard: 休渔补贴
+  variants:
+  - 休渔补助
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: draft
+- id: TERM-125
+  standard: 转产转业
+  variants:
+  - 转产转业渔民
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-126
+  standard: 渔业人口
+  variants:
+  - 渔业从业人口
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-127
+  standard: 传统渔民
+  variants:
+  - 传统捕捞渔民
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-128
+  standard: 兼业渔民
+  variants:
+  - 兼业捕捞
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: draft
+- id: TERM-129
+  standard: 渔业统计
+  variants:
+  - 渔业统计调查
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-130
+  standard: 统计口径
+  variants:
+  - 统计标准
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: draft
+- id: TERM-131
+  standard: 统计范围
+  variants:
+  - 统计边界
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-132
+  standard: 海洋捕捞产量
+  variants:
+  - 海洋捕捞量
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-133
+  standard: 海水养殖产量
+  variants:
+  - 海水养殖量
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-134
+  standard: 淡水捕捞产量
+  variants:
+  - 淡水捕捞量
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: draft
+- id: TERM-135
+  standard: 渔业经济总产值
+  variants:
+  - 渔业总产值
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-136
+  standard: 渔民人均纯收入
+  variants:
+  - 渔民收入
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-137
+  standard: 数据元
+  variants:
+  - 数据元素
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: draft
+- id: TERM-138
+  standard: 元数据
+  variants:
+  - 数据描述
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: draft
+- id: TERM-139
+  standard: 数据共享
+  variants:
+  - 数据交换
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: draft
+- id: TERM-140
+  standard: 数据质量
+  variants:
+  - 数据治理
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-141
+  standard: 缺失值
+  variants:
+  - 空值
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: draft
+- id: TERM-142
+  standard: 异常值
+  variants:
+  - 离群值
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: draft
+- id: TERM-143
+  standard: 时间分辨率
+  variants:
+  - 时间精度
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: draft
+- id: TERM-144
+  standard: 空间分辨率
+  variants:
+  - 空间精度
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: draft
+- id: TERM-145
+  standard: 海表温度
+  variants:
+  - SST
+  - 海温
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: draft
+- id: TERM-146
+  standard: 叶绿素a浓度
+  variants:
+  - 叶绿素浓度
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: draft
+- id: TERM-147
+  standard: 海面风场
+  variants:
+  - 风场
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: draft
+- id: TERM-148
+  standard: 有效波高
+  variants:
+  - 浪高
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: draft
+- id: TERM-149
+  standard: 风暴潮
+  variants:
+  - 风暴增水
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: approved
+- id: TERM-150
+  standard: 赤潮
+  variants:
+  - 有害藻华
+  region:
+  - national
+  source:
+    kind: glossary
+    note: 渔业领域术语候选；按规范说法与语料复核
+  status: draft

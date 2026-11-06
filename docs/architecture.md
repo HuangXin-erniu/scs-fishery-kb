@@ -102,6 +102,14 @@ abstention 8/11, P95 16 ms. The reranker improves MRR but loses two anchors and
 raises P95 to 2.27 s, so it is disabled by default and enabled with `--rerank`
 for calibration. The v1 answer path is not switched.
 
+**Knowledge internalisation (2026-11-06).** `configs/playbooks/` holds 15
+persona playbooks with 32 steps, each citing approved facts. The fact layer is
+200 entries (80 approved + 120 draft provision facts) and the terminology map is
+150 entries (116 approved + 34 draft). `scripts/check_playbooks.py` validates
+step references and source ids; `scripts/weekly_update.sh` runs the source,
+watch, fact, term and playbook checks and writes a dated report without
+ingesting anything.
+
 **Web evidence v2 (2026-11-06).** `src/scs_fkb/web_v2/` adds the ephemeral
 plane: a SearXNG JSON provider with a DuckDuckGo fallback, allowlist filtering
 before any request, HTTPS fetch with `trafilatura` extraction and a PDF fallback,
@@ -111,7 +119,7 @@ records), dropped 75 non-allowlisted results and recorded 5 provider failures;
 the failures are explicit and do not affect the canonical path. The v1 web-card
 path and answer path are unchanged.
 
-The internalised layer is separate from the corpus index. `facts.py` validates 80 facts against the indexed chunks (verbatim evidence, register hash, effective dates and conflicts); `terms.py` validates 24 terminology entries; `faq.py` checks that every FAQ claim resolves to an approved fact. `ingest --external-only` turns the approved records into external documents; the corpus store and its index stay unchanged. The checks run through `facts check`, `terms check` and `faq check`, and none of these records is read by the corpus answer path yet.
+The internalised layer is separate from the corpus index. `facts.py` validates 200 facts against the indexed chunks (80 approved + 120 draft; verbatim evidence, register hash, effective dates and conflicts); `terms.py` validates 150 terminology entries; `playbooks.py` validates 15 procedures with 32 fact-cited steps; `faq.py` checks that every FAQ claim resolves to an approved fact. `ingest --external-only` turns the approved records into external documents; the corpus store and its index stay unchanged. The checks run through `facts check`, `terms check` and `faq check`, and none of these records is read by the corpus answer path yet.
 Each module exposes a small callable surface rather than a framework. Shared code is extracted only when a second module needs it. The v1 baseline is deterministic: it makes no model call and needs no network access; the P10 target adds local BGE embedding/reranking and a controlled web channel behind separate interfaces. Citations carry a page anchor for the paginated OFD and PDF sources and an article or section anchor for the HTML, DOCX and DOC sources. The ranker is BM25 over character bigrams with an optional title boost, which multiplies a chunk score by 1 + title_boost × the share of query tokens present in the document title. The evaluation compares the top five chunks against gold anchors in `configs/eval.yaml`: a document plus a section prefix, or a document plus a page. Retrieval runs in one of three modes: `bm25`, `dense` or `hybrid`. Hybrid fuses the BM25 and dense rankings with weighted reciprocal-rank fusion (BM25 weight 2.0, dense weight 1.0) and keeps the lexical gate as the only abstention signal, so RRF scores are never compared with BM25 scores. Statistical questions pass through a third, local-only channel: `stats.py` reads the copied indicator table, parses years, region, sea area, gear and indicator cues from the question, filters rows and returns the published values with their edition, table name and basis. The channel never enters the main index or the gate, and it names the two dimensions the yearbooks do not publish rather than substituting one for the other. Definition questions also pass through a reference channel: the terminology bridge in `configs/glossary-bridge.yaml` maps a Chinese term to English concepts, and `reference.py` queries the three CWP pages with those concepts only, returning passages that carry their own citations while the main ranking and its gate stay untouched.
 
 ## 5. Data flow

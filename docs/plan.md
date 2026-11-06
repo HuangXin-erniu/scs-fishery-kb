@@ -48,9 +48,9 @@ merged.
 | P10-ING-138 | Docling/trafilatura adapters, hierarchical chunking, snapshots and incremental manifest | 28 main documents rebuild with 0 lost anchors; 63 sources snapshotted; reference/statistics channels unchanged |
 | P10-IDX-139 | LanceDB, BGE embedding/reranker, hybrid retrieval, router and filters | 48-question regression not below baseline; latency/RSS targets |
 | P10-WEB-140 | SearXNG/DDG, allowlist, WebEvidence, TTL, trigger policy and promotion | 20 freshness questions; 0 non-allowlisted; no auto-ingest |
-| P10-KB-141 | 15 playbooks, 150 terms, 200 facts, extraction/review, weekly loop | Validators green; weekly report reproducible |
-| P10-ANS-142 | Answer composer/validator, FastAPI `/v1`, Web UI and feedback | 20 scenarios; citation resolution 100%; localhost service |
-| P10-EVAL-143 | 120-question set, RAGAS-compatible metrics, regression gate, docs sync | Acceptance thresholds met; release gate clean |
+| P10-KB-142 | 15 playbooks, 150 terms, 200 facts, extraction/review, weekly loop | Validators green; weekly report reproducible |
+| P10-ANS-143 | Answer composer/validator, FastAPI `/v1`, Web UI and feedback | 20 scenarios; citation resolution 100%; localhost service |
+| P10-EVAL-144 | 120-question set, RAGAS-compatible metrics, regression gate, docs sync | Acceptance thresholds met; release gate clean |
 
 P10-ING-138 (re-post of the originally scoped ingestion task) is implemented as
 a parallel store: 63 sources are snapshotted, the 28 configured main documents
@@ -71,7 +71,13 @@ P10-WEB-140 is implemented as the ephemeral web plane: 20 freshness queries were
 smoke-tested with 13 queries returning 32 allowlisted evidence records, 75
 non-allowlisted results dropped and 5 provider failures recorded. TTLs are 7/30/
 90/365 days by claim nature; promotion returns a candidate draft and writes
-nothing. The next task is P10-KB-141.
+nothing.
+
+P10-KB-142 is implemented: 15 approved playbooks with 32 fact-cited steps, 150
+terms (116 approved, 34 draft), 200 facts (80 approved, 120 draft provision
+facts), a playbook validator and a read-only weekly report. The checks are green
+and the weekly report records 63 sources, 26 watch entries, 200 facts, 150 terms,
+15 playbooks and 6 gaps. The next task is P10-ANS-143.
 
 The architecture decisions are [0005](adr/0005-two-plane-evidence.md),
 [0006](adr/0006-llamaindex-lancedb-bge.md),

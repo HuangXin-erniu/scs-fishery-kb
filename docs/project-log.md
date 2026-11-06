@@ -770,4 +770,12 @@ This log records material project changes by date. It does not use release versi
 - Added `src/scs_fkb/web_v2/`: SearXNG JSON provider with DuckDuckGo fallback, allowlist-only results, HTTPS fetch with trafilatura/PDF extraction, TTL-aware WebEvidence cache, trigger rules and a promotion draft that never writes the register.
 - Smoke-tested 20 freshness queries: 13 returned allowlisted evidence (32 records), 75 non-allowlisted results were dropped and 5 provider failures were recorded explicitly. TTLs are 7 days for warning/status, 30 for rule, 90 for definition/identification and 365 for statistics/history.
 - The generic `gov.cn` fallback is tier C and labelled `地方政府网站（层级待核）`; specific central/provincial domains remain A/B. The v1 web-card path, answer path, corpus register and evaluation set are unchanged.
-- Private report: `runs/P10-WEB-140/smoke.md`. Next task: P10-KB-141.
+- Private report: `runs/P10-WEB-140/smoke.md`. Next task: P10-KB-142.
+
+## 2026-11-06 — Knowledge internalisation: playbooks, terms and provision facts
+
+- Added 15 approved playbooks with 32 steps under `configs/playbooks/`; every step cites an approved fact and every source is in the register. The validator rejects unknown, draft or stale facts.
+- Expanded the terminology map to 150 entries: 116 approved (standard term occurs in the indexed corpus) and 34 draft. The existing 24 approved terms are unchanged.
+- Generated 120 draft provision facts from the indexed corpus, each with verbatim evidence and source hash; the fact layer is now 200 (80 approved + 120 draft). The generated facts are section-level review candidates, not approved values.
+- Added `scripts/check_playbooks.py` and `scripts/weekly_update.sh`; the weekly report runs source currency, offline watch, facts, terms, playbooks and gap checks without downloading, ingesting or editing the register.
+- Checks: facts 200/80/120, 0 errors; terms 150/116/34, 0 errors; playbooks 15/15, 32 steps, 0 errors. Private reports: `runs/P10-KB-142/checks.md` and `runs/P10-KB-142/weekly.md`. Next task: P10-ANS-143.
