@@ -1,0 +1,38 @@
+schema_version: 1
+service: scs-fkb-v2
+base_url: http://127.0.0.1:8765
+versioning:
+  scheme: path
+  current: v1
+  stability: local-single-user
+auth:
+  optional: true
+  env: SCS_FKB_API_KEY
+  header: X-API-Key
+  note: When the environment variable is set, every /v1 request must send it.
+limits:
+  question_chars: 500
+  top_k: 5
+  web_results: 2
+  feedback_chars: 1000
+endpoints:
+  - {method: POST, path: /v1/query, purpose: answer a question}
+  - {method: GET, path: /v1/sources, purpose: list registered sources}
+  - {method: GET, path: /v1/playbooks, purpose: list approved playbooks}
+  - {method: POST, path: /v1/feedback, purpose: record helpfulness}
+  - {method: GET, path: /healthz, purpose: liveness}
+  - {method: GET, path: /readyz, purpose: readiness and index version}
+  - {method: GET, path: /, purpose: server-rendered Web UI}
+query:
+  request: [question, persona, region, year, web]
+  web_modes: [auto, on, off]
+  response: [request_id, answer, citations, abstained, reason, mode, used_web, playbook, index_version, latency_ms, disclaimer]
+  modes: [kb_only, kb_plus_web, web_only, clarify, abstain]
+citations:
+  corpus: "[doc_id p.N §section]"
+  web: "[WEB:domain:hash8] URL (抓取于 YYYY-MM-DD)"
+  web_label: 网络检索 · 未入知识库
+feedback:
+  storage: run_root/feedback.jsonl
+  fields: [request_id, helpful, comment, question, created_at]
+disclaimer: 以官方发布文本为准；本服务不构成法律意见。

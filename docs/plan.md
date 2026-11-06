@@ -77,7 +77,14 @@ P10-KB-142 is implemented: 15 approved playbooks with 32 fact-cited steps, 150
 terms (116 approved, 34 draft), 200 facts (80 approved, 120 draft provision
 facts), a playbook validator and a read-only weekly report. The checks are green
 and the weekly report records 63 sources, 26 watch entries, 200 facts, 150 terms,
-15 playbooks and 6 gaps. The next task is P10-ANS-143.
+15 playbooks and 6 gaps.
+
+P10-ANS-143 is implemented as a local service: 20 reviewed scenarios through the
+real v2 stack produced 19 answers, 1 clarification, 19 cited answers and 16
+expected-document hits, median 22 ms. The API exposes `/v1/query`,
+`/v1/sources`, `/v1/playbooks`, `/v1/feedback` and health endpoints; the Web UI
+is server-rendered and the v1 CLI/answer path is unchanged. The next task is
+P10-EVAL-144.
 
 The architecture decisions are [0005](adr/0005-two-plane-evidence.md),
 [0006](adr/0006-llamaindex-lancedb-bge.md),

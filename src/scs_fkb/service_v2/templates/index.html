@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>南海近岸渔业知识库</title>
+<style>
+:root{--ink:#132a2f;--muted:#587075;--line:#d7e3e2;--sea:#0f6b73;--sand:#f4f7f4;--warn:#8a4b00}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Noto Sans SC",sans-serif;color:var(--ink);background:var(--sand);line-height:1.65}
+main{max-width:880px;margin:0 auto;padding:32px 18px 56px}
+header{border-left:6px solid var(--sea);padding-left:16px;margin-bottom:24px}
+h1{font-size:clamp(1.45rem,4vw,2.2rem);margin:0 0 6px}
+.sub{color:var(--muted);margin:0}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px;box-shadow:0 8px 24px rgba(19,42,47,.05)}
+label{display:block;font-weight:650;margin:12px 0 6px;font-size:.92rem}
+textarea,input,select{width:100%;font:inherit;padding:10px 12px;border:1px solid #b9cbc9;border-radius:8px;background:#fff}
+textarea{min-height:96px;resize:vertical}
+.row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.check{display:flex;align-items:center;gap:8px;margin:14px 0;font-weight:500}
+.check input{width:auto}
+button{font:inherit;font-weight:700;background:var(--sea);color:#fff;border:0;border-radius:8px;padding:11px 18px;cursor:pointer}
+button.secondary{background:#e8f0ef;color:var(--sea)}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.chip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:5px 10px;font-size:.85rem;cursor:pointer}
+.note{color:var(--muted);font-size:.85rem;margin-top:14px}
+@media(max-width:620px){.row{grid-template-columns:1fr}}
+</style>
+</head>
+<body><main>
+<header>
+<h1>南海近岸渔业知识库</h1>
+<p class="sub">先查知识库；缺失时可在明确标注下补充网络检索。答案附来源，证据不足会拒答。</p>
+</header>
+<section class="card">
+<form method="post" action="/">
+<label for="question">问题</label>
+<textarea id="question" name="question" required placeholder="例如：2026年南海区伏季休渔从什么时候开始？"></textarea>
+<div class="chips">
+{% for example in examples %}<button class="chip" type="button" onclick="document.getElementById('question').value={{ example|tojson }}">{{ example }}</button>{% endfor %}
+</div>
+<div class="row" style="margin-top:12px">
+<div><label for="persona">身份</label><select id="persona" name="persona"><option value="general">通用</option><option value="captain">船长/船员</option><option value="owner">船东/经营人</option><option value="extension">推广/技术</option><option value="enforcement">执法/管理</option></select></div>
+<div><label for="region">地区</label><input id="region" name="region" placeholder="广东/广西/海南/福建"></div>
+<div><label for="year">年份</label><input id="year" name="year" inputmode="numeric" placeholder="2026"></div>
+</div>
+<label class="check"><input type="checkbox" name="web" value="on"> 允许补充网络检索（会标注“未入知识库”）</label>
+<button type="submit">查询知识库</button>
+</form>
+<p class="note">本服务只读取已登记来源和本地索引；网络结果不会自动入库，也不覆盖法律法规或统计口径。以官方发布文本为准。</p>
+</section>
+</main></body></html>

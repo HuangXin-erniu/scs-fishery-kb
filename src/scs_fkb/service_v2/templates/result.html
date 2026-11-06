@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>查询结果 · 南海近岸渔业知识库</title>
+<style>
+:root{--ink:#132a2f;--muted:#587075;--line:#d7e3e2;--sea:#0f6b73;--sand:#f4f7f4;--warn:#8a4b00}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Noto Sans SC",sans-serif;color:var(--ink);background:var(--sand);line-height:1.65}
+main{max-width:880px;margin:0 auto;padding:28px 18px 56px}
+a{color:var(--sea)}h1{font-size:1.3rem;margin:0 0 14px}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px;margin-bottom:16px;box-shadow:0 8px 24px rgba(19,42,47,.05)}
+.badge{display:inline-block;border-radius:999px;padding:3px 9px;font-size:.78rem;font-weight:700;background:#e8f0ef;color:var(--sea);margin:0 6px 6px 0}
+.badge.web{background:#fff1dc;color:var(--warn)}
+.answer{white-space:pre-wrap;font-size:1.03rem}
+.cite{list-style:none;padding:0;margin:0}.cite li{border-top:1px solid var(--line);padding:10px 0}
+.cite small{color:var(--muted)}
+.steps{padding-left:20px}.steps li{margin:10px 0}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+button{font:inherit;font-weight:700;border:1px solid var(--line);background:#fff;color:var(--sea);border-radius:8px;padding:9px 14px;cursor:pointer}
+button.primary{background:var(--sea);color:#fff;border-color:var(--sea)}
+.muted{color:var(--muted);font-size:.88rem}.warn{color:var(--warn)}
+@media(max-width:620px){main{padding:18px 12px 40px}}
+</style>
+</head>
+<body><main>
+<h1>查询结果</h1>
+<section class="card">
+<div>
+<span class="badge">{{ result.mode }}</span>
+{% if result.used_web %}<span class="badge web">网络检索 · 未入知识库</span>{% endif %}
+{% if result.abstained %}<span class="badge warn">证据不足</span>{% endif %}
+<span class="muted">{{ result.latency_ms }} ms · 索引 {{ result.index_version }}</span>
+</div>
+<div class="answer">{{ result.answer }}</div>
+{% if result.playbook %}
+<h3>办理流程：{{ result.playbook.title }}</h3>
+<ol class="steps">
+{% for step in result.playbook.steps %}
+<li><strong>{{ step.action }}</strong><br>{{ step.detail }}<br><small class="muted">依据：{{ step.facts|join('、') }}{% if step.sources %}（{{ step.sources|join('、') }}）{% endif %}</small></li>
+{% endfor %}
+</ol>
+{% endif %}
+{% if result.citations %}
+<h3>引用来源</h3>
+<ul class="cite">
+{% for c in result.citations %}
+<li>
+<strong>{{ c.doc_id }}</strong>{% if c.page %} p.{{ c.page }}{% endif %}{% if c.section %} §{{ c.section }}{% endif %}
+{% if c.source_type == 'web' %}<span class="badge web">{{ c.label or '网络检索 · 未入知识库' }}</span>{% endif %}
+<div>{{ c.snippet }}</div>
+{% if c.url %}<small><a href="{{ c.url }}" rel="noreferrer noopener" target="_blank">{{ c.url }}</a>{% if c.retrieved_at %} · 抓取于 {{ c.retrieved_at }}{% endif %}</small>{% endif %}
+</li>
+{% endfor %}
+</ul>
+{% endif %}
+<div class="actions">
+<button class="primary" onclick="feedback(true)">有帮助</button>
+<button onclick="feedback(false)">没帮助</button>
+<a href="/">再问一个</a>
+</div>
+<p class="muted">{{ result.disclaimer }}</p>
+</section>
+<script>
+async function feedback(helpful){
+  const body={request_id:{{ result.request_id|tojson }},helpful:helpful,question:{{ result.answer|tojson }}};
+  try{const r=await fetch('/v1/feedback',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});alert(r.ok?'已记录反馈':'反馈失败');}catch(e){alert('反馈失败');}
+}
+</script>
+</main></body></html>

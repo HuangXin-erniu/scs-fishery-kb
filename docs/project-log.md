@@ -779,3 +779,11 @@ This log records material project changes by date. It does not use release versi
 - Generated 120 draft provision facts from the indexed corpus, each with verbatim evidence and source hash; the fact layer is now 200 (80 approved + 120 draft). The generated facts are section-level review candidates, not approved values.
 - Added `scripts/check_playbooks.py` and `scripts/weekly_update.sh`; the weekly report runs source currency, offline watch, facts, terms, playbooks and gap checks without downloading, ingesting or editing the register.
 - Checks: facts 200/80/120, 0 errors; terms 150/116/34, 0 errors; playbooks 15/15, 32 steps, 0 errors. Private reports: `runs/P10-KB-142/checks.md` and `runs/P10-KB-142/weekly.md`. Next task: P10-ANS-143.
+
+## 2026-11-06 — Local answer service v2 and Web UI
+
+- Added `src/scs_fkb/service_v2/`: `AnswerService`, Pydantic schemas, FastAPI `/v1/query`, `/v1/sources`, `/v1/playbooks`, `/v1/feedback`, health endpoints and a server-rendered Jinja2 UI.
+- The composer uses v2 hybrid retrieval without the reranker, the calibrated extractive answer, approved fact leads, playbook blocks and optional labelled web evidence. Citations are validated before returning; invalid citations become an abstention.
+- The service defaults to `127.0.0.1:8765`; `SCS_FKB_API_KEY` enforces `X-API-Key`. Feedback is appended to `$SCS_FKB_RUN_ROOT/feedback.jsonl`; nothing is written to the public tree.
+- Added `docs/interface.md` and `configs/interface.yaml`; added optional FastAPI/uvicorn/Jinja2/python-multipart dependencies to `requirements-rag.txt`.
+- 20-scenario report: 19 answered, 1 clarification, 19 cited answers, 16 expected-document hits, median 22 ms, 0 web calls. Private report: `runs/P10-ANS-143/scenarios.md`. The v1 CLI/answer path is unchanged. Next task: P10-EVAL-144.
