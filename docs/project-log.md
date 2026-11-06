@@ -816,3 +816,9 @@ This log records material project changes by date. It does not use release versi
 - Calibrated the BGE reranker on 31 reviewed anchors: no-rerank 31/31, MRR 0.9301; pure rerank 29/31, MRR 0.8495, P95 2,714 ms; short6 rerank 31/31, MRR 0.9140, P95 2,976 ms; top-1/top-2 preservation 30/31.
 - No arm meets 31/31 anchors, MRR at least no-rerank, and P95 <= 500 ms together. The default stays off; `--rerank` remains an optional offline flag.
 - Added `docs/reranker.md` with the table, decision, reproduction command and limitations. No retrieval, index, corpus, facts, terms, playbooks or eval code changed.
+
+## 2026-11-06 — External fact/term store rebuilt
+
+- Rebuilt the v1 external store after the knowledge review: 487 documents / 543 chunks (119 cards, 140 notes, 100 approved facts, 116 approved terms, 12 FAQs), chunk index `0b1ecdf229fe`, dense index `6bdf2aad95935994`. Before the rebuild it was 375 documents / 431 chunks / `3259a7694499`.
+- Verified external retrieval: `渔业港航行政处罚种类` returns `FACT-POLICY-049` (the promoted fourth-article penalty-types provision); `渔业捕捞许可证` returns `FACT-POLICY-004` and `TERM-001`.
+- The corpus store is unchanged at 28 documents / 785 chunks / `20910f0964df`. No code, config, corpus or answer path changed; no tag or release.

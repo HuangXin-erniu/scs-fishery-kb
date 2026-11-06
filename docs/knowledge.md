@@ -183,4 +183,4 @@ scs-fkb ingest --external-only --data-root "$SCS_FKB_DATA_ROOT/external"
 scs-fkb embed --data-root "$SCS_FKB_DATA_ROOT/external"
 ```
 
-The rebuilt external store has **375 documents and 431 chunks** (119 cards, 140 notes, 80 facts, 24 terms, 12 FAQs), index `3259a7694499`; the corpus store is unchanged at 28 documents, 785 chunks and `20910f0964df`.
+The rebuilt external store now has **487 documents and 543 chunks** (119 cards, 140 notes, 100 approved facts, 116 approved terms, 12 FAQs), chunk index `0b1ecdf229fe` and dense index `6bdf2aad95935994`. The pre-review store was 375 documents / 431 chunks / `3259a7694499`; the corpus store is unchanged at 28 documents, 785 chunks and `20910f0964df`.
