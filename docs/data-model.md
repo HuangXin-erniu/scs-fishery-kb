@@ -239,5 +239,5 @@ An `approved` fact must have an A/B public source, a matching hash and verbatim 
 
 ### Counts and validation
 
-- 200 facts (20 atomic + 180 provision; 100 approved + 100 draft), 150 terms (133 approved + 17 draft), 12 FAQs and 15 playbooks (32 steps); the v1 external store is 504 documents / 560 chunks (chunk index `c03a133b9f2e`, dense `e06fd4f9fccc5205`) and the corpus is 41 documents / 971 chunks / `43491719734d` (v2 index `7d372c2b5f47`).
+- 200 facts (20 atomic + 180 provision; 100 approved + 100 draft), 150 terms (136 approved + 14 draft), 12 FAQs and 15 playbooks (32 steps); the v1 external store is 507 documents / 563 chunks (chunk index `458aad366fe1`, dense `91e8ec609611dccb`) and the corpus is 42 documents / 1014 chunks / `f7a244373e77` (v2 index `d007984ae168`).
 - `scs-fkb facts check --data-root "$SCS_FKB_DATA_ROOT"` verifies evidence, hashes, effective dates, conflicts and expiry; `terms check` verifies standards and sources; `faq check` verifies claims. All three exit non-zero on errors.

@@ -2669,8 +2669,49 @@ sources:
     mime: application/pdf
     snapshot_path: raw/POL-SUB-094/guangdong-subsidy-2025.pdf
 
+- id: POL-OCEAN-096
+  title: 卫星遥感远洋渔场环境监测产品编目规范
+  title_zh: 卫星遥感远洋渔场环境监测产品编目规范
+  publisher: 自然资源部
+  year: 2020
+  type: standard
+  jurisdiction: national
+  format: pdf
+  location: raw/POL-OCEAN-096/fishery-remote-sensing-catalog-2020.pdf
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P2
+  volume: 1 PDF; 30 pages, survey industry standard
+  update_freq: static
+  hash: f665e2da077d4a5eea98bd43aa5f6711b3925db117fd17c662542a670d8d947c
+  acquisition: Captured 2026-11-06 from http://www.lasac.cn/gfpdf/2020/5standard.pdf
+  notes: 'Term evidence: the catalog lists 海表温度, 叶绿素a浓度, 有效波高 and 海面风场 among fishery-environment elements and gives their codes. It is a survey-industry product catalog, not a biological definition.'
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: main
+    parseable: true
+    note: Registered in the main index for terminology evidence.
+  lifecycle: active
+  source_class: standard
+  currency:
+    as_of: '2026-11-06'
+    basis: publication
+    review_due: '2027-02-02'
+    cadence: quarterly
+    note: 2020 survey-industry standard; static.
+  watch_note: Static standard; no change feed. Rechecked at the quarterly review.
+  provenance:
+    url: http://www.lasac.cn/gfpdf/2020/5standard.pdf
+    published_at: '2020-01-01'
+    retrieved_at: '2026-11-06'
+    sha256: f665e2da077d4a5eea98bd43aa5f6711b3925db117fd17c662542a670d8d947c
+    bytes: 1012199
+    mime: application/pdf
+    snapshot_path: raw/POL-OCEAN-096/fishery-remote-sensing-catalog-2020.pdf
 gaps:
-- Seventy-six sources are registered: seventy-six acquired and no open candidates awaiting disposition.
+- Seventy-seven sources are registered: seventy-seven acquired and no open candidates awaiting disposition.
 - The yearbook coverage matrix has no values in the public repository; all values stay local.
 - The yearbook infrastructure table is missing for data years 2018 and 2019; the 2018 national port plan supplies a baseline whose port classes are close to, but not identical with, the yearbook table.
 - The vessel-length proxy is missing for data year 2024.

@@ -33,7 +33,7 @@ def test_corpus_structure() -> None:
         "data_dictionary",
         "plan",
     }
-    assert len(data["sources"]) == 76
+    assert len(data["sources"]) == 77
 
     acquired = []
     candidates = []
@@ -46,7 +46,7 @@ def test_corpus_structure() -> None:
         else:
             candidates.append(source)
 
-    assert len(acquired) == 76
+    assert len(acquired) == 77
     assert len(candidates) == 0
     yearbooks = [source for source in acquired if source["id"].startswith("STAT-YB-")]
     assert len(yearbooks) == 9
@@ -132,6 +132,7 @@ def test_corpus_structure() -> None:
         "POL-MARKET-093",
         "INT-MSY-095",
         "POL-SUB-094",
+        "POL-OCEAN-096",
     }
     for source in documents:
         if source["id"] in {
@@ -225,7 +226,7 @@ def test_corpus_structure() -> None:
         "law": 1,
         "regulation": 22,
         "notice": 19,
-        "standard": 17,
+        "standard": 18,
         "operations": 1,
         "fishery_product": 2,
         "data_dictionary": 3,
@@ -401,8 +402,8 @@ def test_pipeline_config() -> None:
     pipeline = load_yaml("configs/pipeline.yaml")
     assert pipeline["schema_version"] == 1
     documents = pipeline["documents"]
-    assert len(documents) == 41
-    assert len(set(documents)) == 41
+    assert len(documents) == 42
+    assert len(set(documents)) == 42
     assert pipeline["chunking"]["max_fallback_chars"] >= 200
 
     corpus = load_yaml("configs/corpus.yaml")
@@ -752,8 +753,8 @@ def test_registry_schema_v3() -> None:
     from scs_fkb.registry import CADENCES, load_registry
 
     registry = load_registry("configs/corpus.yaml")
-    assert len(registry) == 76
-    assert sum(1 for entry in registry.values() if entry["status"] == "acquired") == 76
+    assert len(registry) == 77
+    assert sum(1 for entry in registry.values() if entry["status"] == "acquired") == 77
     for entry in registry.values():
         assert entry["lifecycle"] in {"active", "retired"}
         assert entry["currency"]["cadence"] in CADENCES
@@ -776,10 +777,12 @@ def test_candidate_register_is_valid() -> None:
     from scs_fkb.registry import load_registry
 
     candidates = load_candidates("configs/candidates.yaml")
-    assert len(candidates) == 13
-    assert all(candidate["status"] == "accepted" for candidate in candidates)
+    assert len(candidates) == 15
+    assert sum(1 for candidate in candidates if candidate["status"] == "accepted") == 14
+    assert sum(1 for candidate in candidates if candidate["status"] == "open") == 1
     registry = load_registry("configs/corpus.yaml")
-    assert all(candidate["source_id"] in registry for candidate in candidates)
+    accepted = [candidate for candidate in candidates if candidate["status"] == "accepted"]
+    assert all(candidate["source_id"] in registry for candidate in accepted)
 
 
 def test_cleanup_state() -> None:

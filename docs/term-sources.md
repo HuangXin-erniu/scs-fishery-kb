@@ -120,3 +120,30 @@ All five new terms retrieve in the external top 5.
 | External store | 499 / 555 / `7c58c522ab5c` | 504 / 560 / `c03a133b9f2e` |
 
 All five new terms retrieve in the external top 5. The small v2 test/overall movement is report-only and within the agreed gate.
+
+## 8. Batch 4 — 2026-11-06 (partial)
+
+| Source | Term | Official page | SHA-256 (short) | Evidence |
+|---|---|---|---|---|
+| `POL-OCEAN-096` | 叶绿素a浓度 | [卫星遥感远洋渔场环境监测产品编目规范](http://www.lasac.cn/gfpdf/2020/5standard.pdf) | `f665e2da077d` | 渔场环境要素编码表 |
+| `POL-OCEAN-096` | 海面风场 | same | same | 渔场环境要素编码表 |
+| `POL-OCEAN-096` | 有效波高 | same | same | 渔场环境要素编码表 |
+| `STD-MDR-098` (candidate only) | 数据元 | [GB/T 18391.3-2009](http://spec.nstl.gov.cn/metadata/download/upload/attpdf/4cc36296-b010-4fe3-ae23-d4414b36967f.pdf) | `d0bd827f0d75` | 术语和定义 |
+| `STD-MDR-098` (candidate only) | 元数据 | same | same | 术语和定义 |
+
+- Three ocean terms were approved from `POL-OCEAN-096`.
+- `数据元` and `元数据` stayed **draft**: the 89-page GB/T copy caused Q-M06 (voyage/port definitions) to be answered from generic metadata chunks, dropping v1 abstention to 7/11. The candidate remains open; no source record or pipeline document was added.
+- Batch 4 result: **136 approved / 14 draft**.
+
+### Batch 4 A/B (with metadata standard excluded)
+
+| Arm | Before | After |
+|---|---|---|
+| v1 docs/chunks/index | 41 / 971 / `43491719734d` | 42 / 1014 / `f7a244373e77` |
+| v1 anchors / abstention | 31/31 / 8/11 | 31/31 / 8/11 |
+| v2 chunks/index | 971 / `7d372c2b5f47` | 1014 / `d007984ae168` |
+| v2 dev / test / overall | 0.8945 / 0.6310 / 0.8066 | 0.8945 / 0.6161 / 0.8017 |
+| v2 citation / recall / abstention | 1.0000 / 0.9667 / 0.9000 | 1.0000 / 0.9667 / 0.9000 |
+| External store | 504 / 560 / `c03a133b9f2e` | 507 / 563 / `458aad366fe1` |
+
+The test split fell 1.49pp; it is report-only under the agreed gate. Dev correctness, citation, recall and abstention held.
