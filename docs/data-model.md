@@ -1,6 +1,6 @@
 # Data Model
 
-> **中文摘要**：本文件定义语料登记 schema v3。每条来源必须声明层级（国家/省/市/国际）、权威等级（A/B/C）、来源类别（规范/官方统计/标准/参考）、时效（核验日期、依据、复查日期、复查节奏）、许可与敏感级别、可检索性（通道、可解析）和生命周期（在用/退役）。复查日期受节奏上限约束，超期由 `sources check` 在 CI 中拦截；候选登记独立于正式来源，未准入前不得入库、索引或引用。退役保留哈希与文件，删除只用于无许可或非官方来源。
+> **中文摘要**：本文件定义语料登记 schema v4。每条来源必须声明层级（国家/省/市/国际/非官方）、权威等级（A/B/C/D）、来源类别（规范/官方统计/标准/参考）、来源证据（URL、文号、发布日期、抓取日期、哈希、快照）、生效期、时效（核验日期、依据、复查日期、复查节奏）、许可与敏感级别、可检索性（通道、可解析）和生命周期（在用/退役）。A/B 可作主证据，C 仅地方补充，D 仅背景/定义；付费文本用 `licensed` 并记录授权说明。v3 条目由加载器派生 v4 默认值，不丢失 id/hash。复查日期受节奏上限约束，超期由 `sources check` 在 CI 中拦截；候选登记独立于正式来源，未准入前不得入库、索引或引用。退役保留哈希与文件，删除只用于无许可或非官方来源。
 
 ## 1. Fields
 
@@ -16,13 +16,24 @@
 | `location`, `hash` | string | yes | Local path and sha256 of the registered bytes |
 | `license`, `sensitivity` | string | yes | Licence and sensitivity marker |
 | `status` | string | yes | Acquisition status: acquired, candidate, deferred |
-| `level` | enum | yes | `national` / `provincial` / `municipal` / `international` |
-| `authority_tier` | enum | yes | `A` publisher's own page, `B` gazette or official attachment or compilation, `C` municipal page |
+| `source_record_schema` | integer | no | `4` for explicit v4 records; legacy records are derived to 4 by the loader |
+| `level` | enum | yes | `national` / `provincial` / `municipal` / `international` / `non_official` |
+| `authority_tier` | enum | yes | `A` publisher's own page, `B` gazette or official attachment or compilation, `C` municipal page (supplement only), `D` non-official expert source |
 | `source_class` | enum | yes | `normative` / `official_statistics` / `standard` / `reference` |
+| `provenance` | mapping | no (derived) | `url`, `document_no`, `published_at`, `retrieved_at`, `sha256`, `bytes`, `mime`, `snapshot_path`; `sha256`/`snapshot_path` derive from `hash`/`location` |
+| `effective` | mapping | no (derived) | `from`, `to`; both null when open-ended |
+| `quality` | mapping | no (derived) | `text_layer`, `anchors`, `tables`, `ocr`, `quarantine_reason` |
+| `supersedes`, `superseded_by` | string / null | no | version lineage; never self-referential |
+| `license_note` | string / null | required for `licensed` | authorisation reference; the text is not published |
 | `currency` | mapping | yes | See section 2 |
 | `retrieval` | mapping | yes | See section 3 |
 | `lifecycle` | enum | yes | `active` / `retired` |
 | `retirement` | mapping | when retired | `date`, `reason`, `decision_key` |
+
+The file-level `schema_version` stays `1`; `source_record_schema: 4` names the
+record contract. This keeps the existing loaders and fixtures valid while the
+record semantics move to v4. The loader derives missing v4 fields from `hash`
+and `location` and never overwrites an explicit value.
 
 ## 2. Source class and currency
 
@@ -37,8 +48,11 @@ currency:
 ```
 
 - `source_class` says what kind of source it is, not whether it is current. `normative` covers laws, regulations and notices; `official_statistics` covers yearbook editions and statistical series; `standard` covers technical standards and operational norms; `reference` covers definitions, product documentation and other reference material.
+- `authority_tier` and `level` are a pair. A/B may be national, provincial or international. C must be municipal and is a supplement, never a substitute for a missing higher-level document. D must be `non_official` and is background or definition only; it is never primary for a rule, current status, quantity or warning.
+- `license: licensed` is for paid or otherwise authorised text. It requires `license_note` (authorisation reference) and the text stays local; the register publishes metadata only.
+- `provenance.sha256` must equal `hash` when both are present; `snapshot_path` must stay under the data root. `effective.from/to` are ISO dates and `to` must not precede `from`.
 - `currency.as_of` is the date the entry was last checked; `basis` names what that check rested on; `review_due` is when it must be checked again; `cadence` is the review rhythm that justifies that due date.
-- Default review periods and v3 caps:
+- Default review periods and cadence caps:
 
   | cadence | default interval | maximum `review_due - as_of` |
   |---|---|---:|
@@ -55,19 +69,46 @@ currency:
 - A `review_due` beyond the cap is a schema error, not a warning. `scs-fkb sources check --today YYYY-MM-DD` fails when an active source is more than 30 days past `review_due`; the CI job runs it with the real date. A due source is still cited, but the answer must say the source has reached its review date.
 - `currency.note` carries the evidence sentence where one exists (an effective date, an approval number, a publication date) or a short review remark. It is optional, not a status field.
 - There is no in-force / not-applicable / unknown state. An entry that cannot be checked keeps its existing dates, and the watch report lists it as due.
-- `license` must be in the allowlist published in `configs/schema.yaml` (`public`, `internal`, `cc-by-nc-sa-3.0-igo`); `sensitivity` must be `public`, `internal` or `restricted`. Unknown values are rejected at registration, so an unlicensed page cannot silently enter the corpus.
-- `authority_tier` and `level` must agree: tier `C` is municipal only, and tiers `A`/`B` are never municipal. A municipal page cannot stand in for a missing provincial or national document.
+- `license` must be in the allowlist published in `configs/schema.yaml` (`public`, `internal`, `licensed`, `cc-by-nc-sa-3.0-igo`); `sensitivity` must be `public`, `internal` or `restricted`. Unknown values are rejected at registration, so an unlicensed page cannot silently enter the corpus. `licensed` requires `license_note`.
+- `authority_tier` and `level` must agree: tier `C` is municipal only; tier `D` is `non_official` only; tiers `A`/`B` are never municipal or non-official. A municipal page cannot stand in for a missing provincial or national document, and a D source is never primary for an operational claim.
+
+### 2.1 Provenance, effective dates and quality
+
+```yaml
+provenance:
+  url: https://example.org/document
+  document_no: 农渔发〔2026〕1号
+  published_at: '2026-01-01'
+  retrieved_at: '2026-11-03'
+  sha256: <64 hex>
+  bytes: 1024
+  mime: text/html
+  snapshot_path: snapshots/POL-EXAMPLE-001/<64 hex>
+effective: {from: '2026-05-01', to: null}
+quality: {text_layer: true, anchors: 42, tables: 3, ocr: false, quarantine_reason: null}
+```
+
+- `provenance` is the audit trail from a citation to the bytes that were read.
+  A null `url` is allowed for an owner-supplied file; a null `retrieved_at` is
+  allowed for a file whose acquisition date is recorded in `acquisition`.
+- `effective` is the period in which the document is in force or the edition is
+  current. It is not the same as `currency.review_due`: one is legal effect, the
+  other is the next check.
+- `quality` records what the parser actually achieved. A quarantine reason is
+  mandatory when the text layer is absent or the anchor count is zero.
+- The v4 loader fills these blocks with nulls for legacy entries. A later
+  review makes them explicit; the migration audit records the derivation.
 
 ## 3. Retrieval
 
 ```yaml
 retrieval:
-  channel: main | collection | statistics | watch | none
+  channel: main | collection | statistics | watch | web | local | none
   parseable: true | false
   note: one sentence on where the text is reachable
 ```
 
-- `main` is the frozen legal-and-technical index; `collection` is a reference collection; `statistics` is the extract pipeline; `watch` is monitored but not ingested; `none` means registered for provenance only.
+- `main` is the frozen legal-and-technical index; `collection` is a reference collection; `statistics` is the extract pipeline; `watch` is monitored but not ingested; `web` is a curated web card; `local` is a restricted or internal-only channel; `none` means registered for provenance only.
 - `parseable: false` marks image-only or otherwise unreachable text. Such a source may stay registered as provenance but must not be cited as if its text were searchable.
 
 ## 4. Lifecycle
@@ -82,11 +123,11 @@ retrieval:
 - A candidate is **not** a source. It is never ingested, indexed or cited, and `watch --propose` only writes a report; it never edits the register. Open candidates are reported after 90 days and treated as expired after `expires_at` (180 days by default).
 - Admission: a publisher's own page or an official gazette attachment, a document number or publication date, a licence, a verified hash, and an accepted candidate entry.
 - Supersession: a newer text supersedes but never deletes; the older entry stays with its date, the newer entry records what it replaces.
-- Main index: only `level: national` (or `international`) sources with parseable text and a public or open licence may enter `configs/pipeline.yaml`. Provincial and municipal sources stay in the reference layer.
+- Main index: only `level: national` (or `international`) sources with parseable text and a public or open licence may enter `configs/pipeline.yaml`. Provincial and municipal sources stay in the reference layer. D sources and `sensitivity: internal/restricted` sources never enter the public main index; D material may be used as labelled background in a local collection, and restricted material stays in a local-only channel.
 
 ## 6. Validation
 
-`src/scs_fkb/registry.py` loads the register and enforces schema v3: the enums, `currency.cadence` and its cap, licence and sensitivity allowlists, tier/level consistency, the retirement block and unique ids. `src/scs_fkb/candidates.py` enforces the candidate lifecycle and duplicate URLs. `scs-fkb sources check` combines both with the review-date gate; CI runs it against the real register, so a malformed, unlicensed or overdue entry fails the build rather than reaching an answer. Tests inject a fixed `--today`, so the gate is deterministic.
+`src/scs_fkb/registry.py` loads the register and enforces source schema v4: the enums, `currency.cadence` and its cap, licence and sensitivity allowlists, A/B/C/D tier and level consistency, provenance/effective/quality shapes, supersession, the retirement block and unique ids. Legacy v3 entries are normalised in memory, so a missing `provenance`, `effective` or `quality` block is derived rather than treated as an error. `scripts/migrate_v4.py` writes an audit of that derivation without rewriting the register. `src/scs_fkb/candidates.py` enforces the candidate lifecycle and duplicate URLs. `scs-fkb sources check` combines both with the review-date gate; CI runs it against the real register, so a malformed, unlicensed or overdue entry fails the build rather than reaching an answer. Tests inject a fixed `--today`, so the gate is deterministic.
 
 ## 7. Fact, term and FAQ records
 

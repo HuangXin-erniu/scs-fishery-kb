@@ -742,3 +742,11 @@ This log records material project changes by date. It does not use release versi
 - Resolved the five anchor gaps from the coverage calibration. Added the supporting sections for Q-M03, Q-M12, Q-M17 and Q-O03; corrected Q-E10 point 1 to remove the unsupported `更严格` clause.
 - Added `mode: document` for compound points spanning sections of one regulation. Counts stay 31 anchors / 11 abstention / 60 points; questions and split membership unchanged.
 - Private audit: `runs/P09-EVAL-135/audit.md`.
+
+## 2026-11-06 — SCS-FKB refactor governance baseline
+
+- Froze `main` at `f038cbd` as the refactor baseline: 63 registered sources, 28 indexed documents, 785 chunks, index `20910f0964df`, 48 evaluation questions (33 dev + 15 test), 340 passing tests and 2 skipped tests. No tag or release was created.
+- Cancelled the paused B1 task and kept its branch and worktree at `0841f56` as reference only. The approved plan does not merge B1.
+- Adopted source schema v4: A/B/C/D authority tiers, `non_official` level, `licensed` licence with an authorisation note, and explicit `provenance`, `effective`, `quality`, `supersedes`/`superseded_by` and `license_note` records. The loader derives v4 defaults for legacy entries without changing ids or hashes; `scripts/migrate_v4.py` writes the derivation audit.
+- Adopted the [RAG standard](rag-standard.md) and ADRs [0005](adr/0005-two-plane-evidence.md), [0006](adr/0006-llamaindex-lancedb-bge.md), [0007](adr/0007-controlled-web-evidence.md) and [0008](adr/0008-playbooks-and-terms.md): canonical evidence stays versioned and reproducible, live web evidence is ephemeral, labelled and never auto-ingested, and playbooks/terms carry the internalisation layer.
+- Recorded the P10-GOV-136 → P10-EVAL-142 sequence in [plan.md](plan.md). The next task is P10-ING-137: Docling/trafilatura adapters, hierarchical chunking and incremental snapshots.

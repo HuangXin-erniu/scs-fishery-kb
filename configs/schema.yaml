@@ -1,9 +1,23 @@
 schema_version: 1
+source_record_schema: 4
 
 source:
-  licenses: [public, internal, cc-by-nc-sa-3.0-igo]
+  levels: [national, provincial, municipal, international, non_official]
+  authority_tiers: [A, B, C, D]
+  source_classes: [normative, official_statistics, standard, reference]
+  channels: [main, collection, statistics, watch, web, local, none]
+  licenses: [public, internal, licensed, cc-by-nc-sa-3.0-igo]
   sensitivities: [public, internal, restricted]
   cadences: [daily, weekly, monthly, quarterly, semiannual, annual, edition, irregular, static]
+  provenance_fields: [url, document_no, published_at, retrieved_at, sha256, bytes, mime, snapshot_path]
+  effective_fields: [from, to]
+  quality_fields: [text_layer, anchors, tables, ocr, quarantine_reason]
+  rules:
+    A: "Publisher's own central or provincial page, or the national law database."
+    B: "Official gazette, government-information attachment or compilation."
+    C: "Municipal or county official page; supplement only, never a substitute for a higher level."
+    D: "Non-official expert source (association, university, extension station); never primary for rule, status, quantity or warning."
+    licensed: "Paid or otherwise licensed text; requires license_note and must not be published."
   cadence_caps_days:
     daily: 3
     weekly: 21

@@ -14,14 +14,17 @@ The knowledge base cites documents, not pages in general. Every citable source m
 | A | A central ministry, a provincial department or a national law database page | 农业农村部, 广东省农业农村厅, 海南省农业农村厅, 国家法律法规数据库, 交通运输部海事局, 国家卫星海洋应用中心 |
 | B | An official gazette index or a government-information attachment | 农业农村部公报各期, 政府信息公开附件, 公报 PDF |
 | C | A municipal or county-level department page, used only as a supplement and always labelled with its level | 汕头市农业农村局, 湛江市农业农村局 |
+| D | A non-official expert source: industry association, university, extension station or NGO, labelled `非官方资料` | 行业协会技术指南, 高校研究报告, 推广站培训材料 |
 
-Tier C never substitutes for a missing provincial or national document. When the only available text is municipal, the register says so in the entry notes.
+Tier C never substitutes for a missing provincial or national document. When the only available text is municipal, the register says so in the entry notes. Tier D is background or definition only: it is never the sole support for a rule, current status, quantity or warning, and the answer labels it as non-official.
 
 ## 3. What may enter the register
 
 - A page or attachment under the publisher's own domain, reachable without login, with a stable URL.
 - The publisher, a document number (文号) when one exists, the publication date, the source class and the date on which the page itself was checked.
-- A licence the project can name. A page that states only site terms is recorded as `unknown` and held: it may be kept locally for reference but not ingested or indexed.
+- A licence the project can name. A page that states only site terms is recorded as `unknown` and held: it may be kept locally for reference but not ingested or indexed. A paid or otherwise authorised text uses `license: licensed` plus a `license_note`; its full text is never published.
+- A `provenance` block with SHA-256, byte size, MIME type and snapshot path, an `effective` period where the document has legal effect, and a `quality` block recording text layer, anchors, tables and OCR status.
+- An authority tier and level that agree: A/B national, provincial or international; C municipal only; D non-official only. D is labelled and never primary for an operational claim.
 
 ## 4. What may not
 
@@ -62,13 +65,15 @@ The proposal is reviewed as a **candidate** in [configs/candidates.yaml](../conf
 
 An open candidate is reported as due after 90 days. `scs-fkb sources check` fails when an active source is past `review_due` plus a 30-day grace, when a candidate is malformed or expired, or when an accepted candidate names a source that is not in the register. `scs-fkb sources candidates` lists the queue. Nothing is ingested automatically: acceptance still requires the decision, the download, the hash and the register entry, and only then does the source become citable.
 
-## 7. Why the answer path is not allowed to fetch
+## 7. Canonical answers and controlled web evidence
 
-Answers must be reproducible from a fixed index, citable to a specific document version and checkable against the recorded hash. A live fetch would break all three, and it would also bypass the licence check. External retrieval therefore belongs to discovery, verification and monitoring, not to answering.
+The canonical answer path does not fetch. Answers must be reproducible from a fixed index, citable to a specific document version and checkable against the recorded hash. A live fetch in that path would break all three and bypass the licence check.
+
+A separate **ephemeral** path may query the live web when the canonical answer abstains inside a supported domain, when the question carries a freshness cue, or when the operator explicitly asks. It is restricted to the allowlist, records URL, publisher, fetched time, content hash and authority tier, and is labelled `网络检索 · 未入知识库`. It never enters the canonical index and never overrides canonical law, penalty or statistics. Promotion goes through the candidate queue and a human review. The architecture is recorded in [ADR 0005](adr/0005-two-plane-evidence.md) and [ADR 0007](adr/0007-controlled-web-evidence.md).
 
 ## 8. The register schema
 
-Fields, enums and lifecycle rules are defined in [data-model.md](data-model.md). In short: level separates the national basis from provincial, municipal and international material; authority tier records whether the page is the publisher's own; source_class records what kind of source it is; currency records when it was last checked, when it must be checked again, and the cadence that bounds that date; licence and sensitivity are checked against the schema allowlist; retrieval records whether the text is actually reachable; lifecycle separates active from retired. Nothing is assumed current: the review date is the contract, and `sources check` enforces it.
+Fields, enums and lifecycle rules are defined in [data-model.md](data-model.md). Source schema v4 adds `provenance`, `effective`, `quality`, `supersedes`/`superseded_by`, `license_note`, tier D and the `non_official` level. In short: level separates the national basis from provincial, municipal, international and non-official material; authority tier records whether the page is the publisher's own; source_class records what kind of source it is; currency records when it was last checked, when it must be checked again, and the cadence that bounds that date; licence and sensitivity are checked against the schema allowlist; retrieval records whether the text is actually reachable; lifecycle separates active from retired. Nothing is assumed current: the review date is the contract, and `sources check` enforces it. Legacy v3 entries are normalised by the loader; `scripts/migrate_v4.py` writes the derivation audit.
 
 ## 9. National currency table
 
@@ -101,7 +106,7 @@ The watch report now also lists entries and cards whose review date has arrived:
 
 ## Web cards
 
-The corpus is fixed at refresh time; answers never browse. External knowledge arrives as **web cards**: a card names an allowlisted URL, a topic, a publisher and a licence, and `scs-fkb web refresh` fetches it, extracts text and writes two things:
+The canonical corpus is fixed at refresh time. A separate ephemeral web channel may browse under the controls in section 7. Curated external knowledge still arrives as **web cards**: a card names an allowlisted URL, a topic, a publisher and a licence, and `scs-fkb web refresh` fetches it, extracts text and writes two things:
 
 - the extracted text under `$SCS_FKB_DATA_ROOT/web/<CARD_ID>/text.txt` (private);
 - the card metadata in [configs/web-cards.yaml](../configs/web-cards.yaml) — URL, title, publisher, fetch time, SHA-256, content type, licence, a 300-character excerpt and a status (public).
@@ -113,6 +118,18 @@ Refresh is manual and per topic (`species`, `gear`, `environment`, `hazard`); th
 A card is indexed only when its status is ok and its cached text exists: `ingest` turns it into a synthetic document with the card id, chunks the cached text and attaches the URL and fetch date to every chunk. Its citations render as `[WEB-xxx] https://… (fetched date)`, so a web-backed answer can be checked against the exact page and the day it was read. Failed or cache-less cards are skipped, never indexed as empty evidence.
 
 The seeded cards are four WoRMS taxonomy cards for South China Sea species, one FAO ISSCFG gear-classification card, the State Council warning-signal measures page, the NASA Ocean Biology DAAC page and the EUMETSAT Sentinel-3 page, fetched on 2026-11-03. nasa.gov and eumetsat.int joined the allowlist for their own pages. Species cards are recorded as `reference` and 30-day review; the FAO card is the same. The product cards for MUR and OLCI are not seeded because their pages render through JavaScript; a later batch needs static authoritative targets.
+
+## Controlled web evidence
+
+The ephemeral channel is not a web card. A `WebEvidence` record is created at query time and cached with a TTL; it carries `url`, `publisher`, `domain`, `fetched_at`, `content_hash`, `authority_tier`, `snippet`, `search_query`, `rank` and `ttl_days`. It is never written to `corpus.yaml` or the canonical index.
+
+- **Trigger:** explicit user request, a freshness cue (`最新`, `今年`, `现在`, `台风`, `预警`), an in-scope canonical abstention, or canonical evidence older than the freshness window for the claim nature.
+- **Allowlist:** only hosts in [configs/web-sources.yaml](../configs/web-sources.yaml); https only; non-allowlisted results are dropped and logged.
+- **TTL:** warning/status 7 days, rule 30 days, statistics/history 365 days. Expired evidence is not answered from.
+- **Citation:** `[WEB:domain:hash8] URL (抓取于 YYYY-MM-DD)`; the UI adds `网络检索 · 未入知识库`.
+- **Promotion:** `web promote <evidence-id>` opens a candidate. The normal admission flow (licence, authority, hash, review) is still required. No automatic ingest.
+
+The full text stays in the local web cache; the public tree carries metadata and a short excerpt only. Web content is treated as hostile input: it is delimited in the prompt and never executed as an instruction.
 
 ## Operating rhythm
 
