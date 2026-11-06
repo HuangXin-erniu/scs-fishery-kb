@@ -376,6 +376,11 @@ terms:
     kind: glossary
     note: 渔业领域术语候选；按规范说法与语料复核
   status: draft
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 规范说法未出现在已登记语料中；作为术语候选保留，待补充来源后再审
 - id: TERM-031
   standard: 渔捞日志
   variants:
@@ -557,6 +562,11 @@ terms:
     kind: glossary
     note: 渔业领域术语候选；按规范说法与语料复核
   status: draft
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 规范说法未出现在已登记语料中；作为术语候选保留，待补充来源后再审
 - id: TERM-049
   standard: 渔业法
   variants:
@@ -667,6 +677,11 @@ terms:
     kind: glossary
     note: 渔业领域术语候选；按规范说法与语料复核
   status: draft
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 规范说法未出现在已登记语料中；作为术语候选保留，待补充来源后再审
 - id: TERM-060
   standard: 捕捞强度
   variants:
@@ -687,6 +702,11 @@ terms:
     kind: glossary
     note: 渔业领域术语候选；按规范说法与语料复核
   status: draft
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 规范说法未出现在已登记语料中；作为术语候选保留，待补充来源后再审
 - id: TERM-062
   standard: 兼捕
   variants:
@@ -697,6 +717,11 @@ terms:
     kind: glossary
     note: 渔业领域术语候选；按规范说法与语料复核
   status: draft
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 规范说法未出现在已登记语料中；作为术语候选保留，待补充来源后再审
 - id: TERM-063
   standard: 副渔获
   variants:
@@ -717,6 +742,11 @@ terms:
     kind: glossary
     note: 渔业领域术语候选；按规范说法与语料复核
   status: draft
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 规范说法未出现在已登记语料中；作为术语候选保留，待补充来源后再审
 - id: TERM-065
   standard: 最小可捕规格
   variants:
@@ -727,6 +757,11 @@ terms:
     kind: glossary
     note: 渔业领域术语候选；按规范说法与语料复核
   status: draft
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 规范说法未出现在已登记语料中；作为术语候选保留，待补充来源后再审
 - id: TERM-066
   standard: 渔具分类
   variants:
@@ -747,6 +782,11 @@ terms:
     kind: glossary
     note: 渔业领域术语候选；按规范说法与语料复核
   status: draft
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 规范说法未出现在已登记语料中；作为术语候选保留，待补充来源后再审
 - id: TERM-068
   standard: 准用渔具
   variants:
@@ -917,6 +957,11 @@ terms:
     kind: glossary
     note: 渔业领域术语候选；按规范说法与语料复核
   status: draft
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 规范说法未出现在已登记语料中；作为术语候选保留，待补充来源后再审
 - id: TERM-085
   standard: 船舶识别号
   variants:
@@ -927,6 +972,11 @@ terms:
     kind: glossary
     note: 渔业领域术语候选；按规范说法与语料复核
   status: draft
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 规范说法未出现在已登记语料中；作为术语候选保留，待补充来源后再审
 - id: TERM-086
   standard: 总吨位
   variants:
@@ -957,6 +1007,11 @@ terms:
     kind: glossary
     note: 渔业领域术语候选；按规范说法与语料复核
   status: draft
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 规范说法未出现在已登记语料中；作为术语候选保留，待补充来源后再审
 - id: TERM-089
   standard: 渔业船舶
   variants:
@@ -1017,6 +1072,11 @@ terms:
     kind: glossary
     note: 渔业领域术语候选；按规范说法与语料复核
   status: draft
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 规范说法未出现在已登记语料中；作为术语候选保留，待补充来源后再审
 - id: TERM-095
   standard: 涉渔
   variants:
@@ -1117,6 +1177,11 @@ terms:
     kind: glossary
     note: 渔业领域术语候选；按规范说法与语料复核
   status: draft
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 规范说法未出现在已登记语料中；作为术语候选保留，待补充来源后再审
 - id: TERM-105
   standard: 避风港
   variants:
@@ -1127,6 +1192,11 @@ terms:
     kind: glossary
     note: 渔业领域术语候选；按规范说法与语料复核
   status: draft
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 规范说法未出现在已登记语料中；作为术语候选保留，待补充来源后再审
 - id: TERM-106
   standard: 卸货
   variants:
@@ -1147,6 +1217,11 @@ terms:
     kind: glossary
     note: 渔业领域术语候选；按规范说法与语料复核
   status: draft
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 规范说法未出现在已登记语料中；作为术语候选保留，待补充来源后再审
 - id: TERM-108
   standard: 渔港管理章程
   variants:
@@ -1287,6 +1362,11 @@ terms:
     kind: glossary
     note: 渔业领域术语候选；按规范说法与语料复核
   status: draft
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 规范说法未出现在已登记语料中；作为术语候选保留，待补充来源后再审
 - id: TERM-122
   standard: 渔业贷款
   variants:
@@ -1297,6 +1377,11 @@ terms:
     kind: glossary
     note: 渔业领域术语候选；按规范说法与语料复核
   status: draft
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 规范说法未出现在已登记语料中；作为术语候选保留，待补充来源后再审
 - id: TERM-123
   standard: 油价补贴
   variants:
@@ -1307,6 +1392,11 @@ terms:
     kind: glossary
     note: 渔业领域术语候选；按规范说法与语料复核
   status: draft
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 规范说法未出现在已登记语料中；作为术语候选保留，待补充来源后再审
 - id: TERM-124
   standard: 休渔补贴
   variants:
@@ -1317,6 +1407,11 @@ terms:
     kind: glossary
     note: 渔业领域术语候选；按规范说法与语料复核
   status: draft
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 规范说法未出现在已登记语料中；作为术语候选保留，待补充来源后再审
 - id: TERM-125
   standard: 转产转业
   variants:
@@ -1357,6 +1452,11 @@ terms:
     kind: glossary
     note: 渔业领域术语候选；按规范说法与语料复核
   status: draft
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 规范说法未出现在已登记语料中；作为术语候选保留，待补充来源后再审
 - id: TERM-129
   standard: 渔业统计
   variants:
@@ -1377,6 +1477,11 @@ terms:
     kind: glossary
     note: 渔业领域术语候选；按规范说法与语料复核
   status: draft
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 规范说法未出现在已登记语料中；作为术语候选保留，待补充来源后再审
 - id: TERM-131
   standard: 统计范围
   variants:
@@ -1417,6 +1522,11 @@ terms:
     kind: glossary
     note: 渔业领域术语候选；按规范说法与语料复核
   status: draft
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 规范说法未出现在已登记语料中；作为术语候选保留，待补充来源后再审
 - id: TERM-135
   standard: 渔业经济总产值
   variants:
@@ -1447,6 +1557,11 @@ terms:
     kind: glossary
     note: 渔业领域术语候选；按规范说法与语料复核
   status: draft
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 规范说法未出现在已登记语料中；作为术语候选保留，待补充来源后再审
 - id: TERM-138
   standard: 元数据
   variants:
@@ -1457,6 +1572,11 @@ terms:
     kind: glossary
     note: 渔业领域术语候选；按规范说法与语料复核
   status: draft
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 规范说法未出现在已登记语料中；作为术语候选保留，待补充来源后再审
 - id: TERM-139
   standard: 数据共享
   variants:
@@ -1467,6 +1587,11 @@ terms:
     kind: glossary
     note: 渔业领域术语候选；按规范说法与语料复核
   status: draft
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 规范说法未出现在已登记语料中；作为术语候选保留，待补充来源后再审
 - id: TERM-140
   standard: 数据质量
   variants:
@@ -1487,6 +1612,11 @@ terms:
     kind: glossary
     note: 渔业领域术语候选；按规范说法与语料复核
   status: draft
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 规范说法未出现在已登记语料中；作为术语候选保留，待补充来源后再审
 - id: TERM-142
   standard: 异常值
   variants:
@@ -1497,6 +1627,11 @@ terms:
     kind: glossary
     note: 渔业领域术语候选；按规范说法与语料复核
   status: draft
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 规范说法未出现在已登记语料中；作为术语候选保留，待补充来源后再审
 - id: TERM-143
   standard: 时间分辨率
   variants:
@@ -1507,6 +1642,11 @@ terms:
     kind: glossary
     note: 渔业领域术语候选；按规范说法与语料复核
   status: draft
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 规范说法未出现在已登记语料中；作为术语候选保留，待补充来源后再审
 - id: TERM-144
   standard: 空间分辨率
   variants:
@@ -1517,6 +1657,11 @@ terms:
     kind: glossary
     note: 渔业领域术语候选；按规范说法与语料复核
   status: draft
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 规范说法未出现在已登记语料中；作为术语候选保留，待补充来源后再审
 - id: TERM-145
   standard: 海表温度
   variants:
@@ -1528,6 +1673,11 @@ terms:
     kind: glossary
     note: 渔业领域术语候选；按规范说法与语料复核
   status: draft
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 规范说法未出现在已登记语料中；作为术语候选保留，待补充来源后再审
 - id: TERM-146
   standard: 叶绿素a浓度
   variants:
@@ -1538,6 +1688,11 @@ terms:
     kind: glossary
     note: 渔业领域术语候选；按规范说法与语料复核
   status: draft
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 规范说法未出现在已登记语料中；作为术语候选保留，待补充来源后再审
 - id: TERM-147
   standard: 海面风场
   variants:
@@ -1548,6 +1703,11 @@ terms:
     kind: glossary
     note: 渔业领域术语候选；按规范说法与语料复核
   status: draft
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 规范说法未出现在已登记语料中；作为术语候选保留，待补充来源后再审
 - id: TERM-148
   standard: 有效波高
   variants:
@@ -1558,6 +1718,11 @@ terms:
     kind: glossary
     note: 渔业领域术语候选；按规范说法与语料复核
   status: draft
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 规范说法未出现在已登记语料中；作为术语候选保留，待补充来源后再审
 - id: TERM-149
   standard: 风暴潮
   variants:
@@ -1578,3 +1743,8 @@ terms:
     kind: glossary
     note: 渔业领域术语候选；按规范说法与语料复核
   status: draft
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 规范说法未出现在已登记语料中；作为术语候选保留，待补充来源后再审

@@ -186,8 +186,9 @@ approved; every source must be in the register.
 
 **Provision fact**: a reviewable section-level pointer with `kind: provision`,
 exact `evidence`, `source` hash/section, `status: draft`, `confidence` and a
-90-day review date. The first batch adds 120 draft provision facts; they are
-not approved values and do not enter the answer path until reviewed.
+90-day review date. The first batch added 120 draft provision facts; the
+2026-11-06 review promoted 20 and kept 100 as drafts. Promoted facts carry a
+`review` block; drafts do not enter the answer path.
 
 ## 4. Lifecycle
 
@@ -238,5 +239,5 @@ An `approved` fact must have an A/B public source, a matching hash and verbatim 
 
 ### Counts and validation
 
-- 200 facts (20 atomic + 180 provision; 80 approved + 120 draft), 150 terms (116 approved + 34 draft), 12 FAQs and 15 playbooks (32 steps); the v1 external store remains at 375 documents / 431 chunks and the corpus at 28 documents / 785 chunks / `20910f0964df` until the v2 answer path is cut over.
+- 200 facts (20 atomic + 180 provision; 100 approved + 100 draft), 150 terms (116 approved + 34 draft), 12 FAQs and 15 playbooks (32 steps); the v1 external store remains at 375 documents / 431 chunks and the corpus at 28 documents / 785 chunks / `20910f0964df` until the v2 answer path is cut over.
 - `scs-fkb facts check --data-root "$SCS_FKB_DATA_ROOT"` verifies evidence, hashes, effective dates, conflicts and expiry; `terms check` verifies standards and sources; `faq check` verifies claims. All three exit non-zero on errors.

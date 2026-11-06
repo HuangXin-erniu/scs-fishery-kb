@@ -19,9 +19,9 @@ def test_fact_term_faq_builders_add_expected_documents() -> None:
         ROOT / "configs" / "terms.yaml"
     )
     faq_docs, faq_chunks, _faq_entries, faq_counts = faq_documents(ROOT / "configs" / "faq.yaml")
-    assert len(fact_docs) == 80
-    assert len(fact_chunks) == 80
-    assert sum(fact_counts.values()) == 80
+    assert len(fact_docs) == 100
+    assert len(fact_chunks) == 100
+    assert sum(fact_counts.values()) == 100
     assert len(term_docs) == 116
     assert len(term_chunks) == 116
     assert sum(term_counts.values()) == 116
