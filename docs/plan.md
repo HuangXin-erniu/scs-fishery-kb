@@ -50,7 +50,7 @@ merged.
 | P10-WEB-140 | SearXNG/DDG, allowlist, WebEvidence, TTL, trigger policy and promotion | 20 freshness questions; 0 non-allowlisted; no auto-ingest |
 | P10-KB-142 | 15 playbooks, 150 terms, 200 facts, extraction/review, weekly loop | Validators green; weekly report reproducible |
 | P10-ANS-143 | Answer composer/validator, FastAPI `/v1`, Web UI and feedback | 20 scenarios; citation resolution 100%; localhost service |
-| P10-EVAL-144 | 120-question set, RAGAS-compatible metrics, regression gate, docs sync | Acceptance thresholds met; release gate clean |
+| P10-EVAL-145 | 120-question set, RAGAS-compatible metrics, regression gate, docs sync | Acceptance thresholds met; release gate clean |
 
 P10-ING-138 (re-post of the originally scoped ingestion task) is implemented as
 a parallel store: 63 sources are snapshotted, the 28 configured main documents
@@ -85,7 +85,7 @@ expected-document hits, median 22 ms. The API exposes `/v1/query`,
 `/v1/sources`, `/v1/playbooks`, `/v1/feedback` and health endpoints; the Web UI
 is server-rendered and the v1 CLI/answer path is unchanged.
 
-P10-EVAL-144 is implemented: the 120-question set has 80 dev reviewed facts, 30
+P10-EVAL-145 is implemented: the 120-question set has 80 dev reviewed facts, 30
 draft test facts and 10 test abstention cases. The dev run scores 0.8945
 correctness, 1.0000 citation resolution and 0.9875 context recall; overall
 abstention is 0.9000. The gate passes; the test split scores 0.5820 correctness

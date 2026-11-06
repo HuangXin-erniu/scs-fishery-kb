@@ -303,4 +303,4 @@ SCS_FKB_DATA_ROOT=... SCS_FKB_RUN_ROOT=... \
   PYTHONPATH=src python scripts/eval_v2.py
 ```
 
-Outputs: `$SCS_FKB_RUN_ROOT/P10-EVAL-144/metrics.json` and `report.md`.
+Outputs: `$SCS_FKB_RUN_ROOT/P10-EVAL-145/metrics.json` and `report.md`.

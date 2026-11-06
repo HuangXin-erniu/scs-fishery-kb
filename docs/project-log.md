@@ -786,7 +786,7 @@ This log records material project changes by date. It does not use release versi
 - The composer uses v2 hybrid retrieval without the reranker, the calibrated extractive answer, approved fact leads, playbook blocks and optional labelled web evidence. Citations are validated before returning; invalid citations become an abstention.
 - The service defaults to `127.0.0.1:8765`; `SCS_FKB_API_KEY` enforces `X-API-Key`. Feedback is appended to `$SCS_FKB_RUN_ROOT/feedback.jsonl`; nothing is written to the public tree.
 - Added `docs/interface.md` and `configs/interface.yaml`; added optional FastAPI/uvicorn/Jinja2/python-multipart dependencies to `requirements-rag.txt`.
-- 20-scenario report: 19 answered, 1 clarification, 19 cited answers, 16 expected-document hits, median 22 ms, 0 web calls. Private report: `runs/P10-ANS-143/scenarios.md`. The v1 CLI/answer path is unchanged. Next task: P10-EVAL-144.
+- 20-scenario report: 19 answered, 1 clarification, 19 cited answers, 16 expected-document hits, median 22 ms, 0 web calls. Private report: `runs/P10-ANS-143/scenarios.md`. The v1 CLI/answer path is unchanged. Next task: P10-EVAL-145.
 
 ## 2026-11-06 — Evaluation v2 and regression gate
 
