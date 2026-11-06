@@ -20,6 +20,11 @@ facts:
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: reject
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 统计年鉴 OCR 文本，全角字符和断行未清洗，不能直接作为事实
 - id: FACT-PROV-002
   kind: provision
   topic: stats
@@ -45,6 +50,11 @@ facts:
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: reject
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 统计年鉴 OCR 文本，全角字符和断行未清洗，不能直接作为事实
 - id: FACT-PROV-003
   kind: provision
   topic: stats
@@ -66,6 +76,11 @@ facts:
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: reject
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 统计年鉴 OCR 文本，全角字符和断行未清洗，不能直接作为事实
 - id: FACT-PROV-004
   kind: provision
   topic: stats
@@ -90,6 +105,11 @@ facts:
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: reject
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 统计年鉴 OCR 文本，全角字符和断行未清洗，不能直接作为事实
 - id: FACT-PROV-005
   kind: provision
   topic: stats
@@ -109,6 +129,11 @@ facts:
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: reject
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 统计年鉴 OCR 文本，全角字符和断行未清洗，不能直接作为事实
 - id: FACT-PROV-006
   kind: provision
   topic: policy
@@ -128,6 +153,11 @@ facts:
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: reject
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 文本过短，缺少可复核的完整规范内容
 - id: FACT-PROV-007
   kind: provision
   topic: policy
@@ -147,6 +177,11 @@ facts:
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: reject
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 文本过短，缺少可复核的完整规范内容
 - id: FACT-PROV-008
   kind: provision
   topic: policy
@@ -170,6 +205,11 @@ facts:
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 条款内容可读但未达到本次晋升标准，保留待人工复核
 - id: FACT-PROV-009
   kind: provision
   topic: policy
@@ -189,6 +229,11 @@ facts:
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 条款内容可读但未达到本次晋升标准，保留待人工复核
 - id: FACT-PROV-010
   kind: provision
   topic: policy
@@ -210,6 +255,11 @@ facts:
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 条款内容可读但未达到本次晋升标准，保留待人工复核
 - id: FACT-PROV-011
   kind: provision
   topic: policy
@@ -231,6 +281,11 @@ facts:
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 条款内容可读但未达到本次晋升标准，保留待人工复核
 - id: FACT-PROV-012
   kind: provision
   topic: policy
@@ -252,6 +307,11 @@ facts:
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 条款内容可读但未达到本次晋升标准，保留待人工复核
 - id: FACT-PROV-013
   kind: provision
   topic: policy
@@ -271,6 +331,11 @@ facts:
   jurisdiction: fujian
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: reject
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 制定目的/依据条款，对一线问答价值低
 - id: FACT-PROV-014
   kind: provision
   topic: policy
@@ -290,6 +355,11 @@ facts:
   jurisdiction: fujian
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: reject
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 文本过短，缺少可复核的完整规范内容
 - id: FACT-PROV-015
   kind: provision
   topic: policy
@@ -309,6 +379,11 @@ facts:
   jurisdiction: fujian
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 机构职责/规划类条款，需结合具体办事场景再核
 - id: FACT-PROV-016
   kind: provision
   topic: policy
@@ -328,6 +403,11 @@ facts:
   jurisdiction: fujian
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 条款内容可读但未达到本次晋升标准，保留待人工复核
 - id: FACT-PROV-017
   kind: provision
   topic: policy
@@ -349,6 +429,11 @@ facts:
   jurisdiction: fujian
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 条款内容可读但未达到本次晋升标准，保留待人工复核
 - id: FACT-PROV-018
   kind: provision
   topic: policy
@@ -368,6 +453,11 @@ facts:
   jurisdiction: fujian
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: reject
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 制定目的/依据条款，对一线问答价值低
 - id: FACT-PROV-019
   kind: provision
   topic: policy
@@ -389,6 +479,11 @@ facts:
   jurisdiction: fujian
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 条款内容可读但未达到本次晋升标准，保留待人工复核
 - id: FACT-PROV-020
   kind: provision
   topic: policy
@@ -408,6 +503,11 @@ facts:
   jurisdiction: fujian
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 条款内容可读但未达到本次晋升标准，保留待人工复核
 - id: FACT-PROV-021
   kind: provision
   topic: policy
@@ -431,6 +531,11 @@ facts:
   jurisdiction: fujian
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 条款内容可读但未达到本次晋升标准，保留待人工复核
 - id: FACT-PROV-022
   kind: provision
   topic: policy
@@ -452,6 +557,11 @@ facts:
   jurisdiction: fujian
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 条款内容可读但未达到本次晋升标准，保留待人工复核
 - id: FACT-PROV-023
   kind: provision
   topic: policy
@@ -475,6 +585,11 @@ facts:
   jurisdiction: guangdong
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: reject
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 制定目的/依据条款，对一线问答价值低
 - id: FACT-PROV-024
   kind: provision
   topic: policy
@@ -496,6 +611,11 @@ facts:
   jurisdiction: guangdong
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 条款内容可读但未达到本次晋升标准，保留待人工复核
 - id: FACT-PROV-025
   kind: provision
   topic: policy
@@ -510,13 +630,18 @@ facts:
     doc: POL-GD-021
     section: 第十七条
     sha256: 7cd26c0c5fb8db0b515ed79da1a5968b863e08d1a31615ad504043100e6b998b
-  status: draft
-  confidence: medium
+  status: approved
+  confidence: high
   as_of: '2026-11-06'
   review_due: '2027-02-04'
   jurisdiction: guangdong
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: promote
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 晋升：水产苗种生产许可的申请、审批时限和分级分类要求
 - id: FACT-PROV-026
   kind: provision
   topic: policy
@@ -540,6 +665,11 @@ facts:
   jurisdiction: guangdong
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 条款内容可读但未达到本次晋升标准，保留待人工复核
 - id: FACT-PROV-027
   kind: provision
   topic: policy
@@ -554,13 +684,18 @@ facts:
     doc: POL-GD-021
     section: 第二十一条
     sha256: 7cd26c0c5fb8db0b515ed79da1a5968b863e08d1a31615ad504043100e6b998b
-  status: draft
-  confidence: medium
+  status: approved
+  confidence: high
   as_of: '2026-11-06'
   review_due: '2027-02-04'
   jurisdiction: guangdong
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: promote
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 晋升：水产苗种进出口审批与检疫要求
 - id: FACT-PROV-028
   kind: provision
   topic: policy
@@ -580,6 +715,11 @@ facts:
   jurisdiction: guangdong
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: reject
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 制定目的/依据条款，对一线问答价值低
 - id: FACT-PROV-029
   kind: provision
   topic: policy
@@ -599,6 +739,11 @@ facts:
   jurisdiction: guangdong
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 条款内容可读但未达到本次晋升标准，保留待人工复核
 - id: FACT-PROV-030
   kind: provision
   topic: policy
@@ -620,6 +765,11 @@ facts:
   jurisdiction: guangdong
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 条款内容可读但未达到本次晋升标准，保留待人工复核
 - id: FACT-PROV-031
   kind: provision
   topic: policy
@@ -641,6 +791,11 @@ facts:
   jurisdiction: guangdong
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 条款内容可读但未达到本次晋升标准，保留待人工复核
 - id: FACT-PROV-032
   kind: provision
   topic: policy
@@ -662,6 +817,11 @@ facts:
   jurisdiction: guangdong
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 条款内容可读但未达到本次晋升标准，保留待人工复核
 - id: FACT-PROV-033
   kind: provision
   topic: policy
@@ -674,13 +834,18 @@ facts:
     doc: POL-GEAR-016
     section: 一、实行时间和范围
     sha256: 94fa54b1133ec4c9e87b7c29d1ce212747bef8b4762282d5fffce659a6fc2794
-  status: draft
-  confidence: medium
+  status: approved
+  confidence: high
   as_of: '2026-11-06'
   review_due: '2027-02-04'
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: promote
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 晋升：最小网目尺寸制度的实施时间和海区
 - id: FACT-PROV-034
   kind: provision
   topic: policy
@@ -702,6 +867,11 @@ facts:
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 条款内容可读但未达到本次晋升标准，保留待人工复核
 - id: FACT-PROV-035
   kind: provision
   topic: policy
@@ -721,6 +891,11 @@ facts:
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 条款内容可读但未达到本次晋升标准，保留待人工复核
 - id: FACT-PROV-036
   kind: provision
   topic: policy
@@ -742,6 +917,11 @@ facts:
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 条款内容可读但未达到本次晋升标准，保留待人工复核
 - id: FACT-PROV-037
   kind: provision
   topic: policy
@@ -761,6 +941,11 @@ facts:
   jurisdiction: guangxi
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: reject
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 文本过短，缺少可复核的完整规范内容
 - id: FACT-PROV-038
   kind: provision
   topic: policy
@@ -780,6 +965,11 @@ facts:
   jurisdiction: guangxi
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 条款内容可读但未达到本次晋升标准，保留待人工复核
 - id: FACT-PROV-039
   kind: provision
   topic: policy
@@ -799,6 +989,11 @@ facts:
   jurisdiction: guangxi
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 机构职责/规划类条款，需结合具体办事场景再核
 - id: FACT-PROV-040
   kind: provision
   topic: policy
@@ -818,6 +1013,11 @@ facts:
   jurisdiction: guangxi
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 条款内容可读但未达到本次晋升标准，保留待人工复核
 - id: FACT-PROV-041
   kind: provision
   topic: policy
@@ -841,6 +1041,11 @@ facts:
   jurisdiction: guangxi
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 条款内容可读但未达到本次晋升标准，保留待人工复核
 - id: FACT-PROV-042
   kind: provision
   topic: policy
@@ -860,6 +1065,11 @@ facts:
   jurisdiction: guangxi
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: reject
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 制定目的/依据条款，对一线问答价值低
 - id: FACT-PROV-043
   kind: provision
   topic: policy
@@ -879,6 +1089,11 @@ facts:
   jurisdiction: guangxi
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 条款内容可读但未达到本次晋升标准，保留待人工复核
 - id: FACT-PROV-044
   kind: provision
   topic: policy
@@ -900,6 +1115,11 @@ facts:
   jurisdiction: guangxi
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 条款内容可读但未达到本次晋升标准，保留待人工复核
 - id: FACT-PROV-045
   kind: provision
   topic: policy
@@ -923,6 +1143,11 @@ facts:
   jurisdiction: guangxi
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 条款内容可读但未达到本次晋升标准，保留待人工复核
 - id: FACT-PROV-046
   kind: provision
   topic: policy
@@ -935,13 +1160,18 @@ facts:
     doc: POL-GX-024
     section: 第五条
     sha256: 9a6239830a762cc79d45c5edd0c82622b8ad414fba877ab542bc232b635b4b31
-  status: draft
-  confidence: medium
+  status: approved
+  confidence: high
   as_of: '2026-11-06'
   review_due: '2027-02-04'
   jurisdiction: guangxi
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: promote
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 晋升：渔港港章的制定和批准程序
 - id: FACT-PROV-047
   kind: provision
   topic: policy
@@ -961,6 +1191,11 @@ facts:
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: reject
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 制定目的/依据条款，对一线问答价值低
 - id: FACT-PROV-048
   kind: provision
   topic: policy
@@ -980,6 +1215,11 @@ facts:
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 条款内容可读但未达到本次晋升标准，保留待人工复核
 - id: FACT-PROV-049
   kind: provision
   topic: policy
@@ -999,6 +1239,11 @@ facts:
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: reject
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 文本过短，缺少可复核的完整规范内容
 - id: FACT-PROV-050
   kind: provision
   topic: policy
@@ -1018,6 +1263,11 @@ facts:
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: reject
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 文本过短，缺少可复核的完整规范内容
 - id: FACT-PROV-051
   kind: provision
   topic: policy
@@ -1037,6 +1287,11 @@ facts:
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: reject
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 文本过短，缺少可复核的完整规范内容
 - id: FACT-PROV-052
   kind: provision
   topic: policy
@@ -1057,6 +1312,11 @@ facts:
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: reject
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 制定目的/依据条款，对一线问答价值低
 - id: FACT-PROV-053
   kind: provision
   topic: policy
@@ -1077,6 +1337,11 @@ facts:
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: reject
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 文本过短，缺少可复核的完整规范内容
 - id: FACT-PROV-054
   kind: provision
   topic: policy
@@ -1097,6 +1362,11 @@ facts:
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 条款内容可读但未达到本次晋升标准，保留待人工复核
 - id: FACT-PROV-055
   kind: provision
   topic: policy
@@ -1119,6 +1389,11 @@ facts:
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 机构职责/规划类条款，需结合具体办事场景再核
 - id: FACT-PROV-056
   kind: provision
   topic: policy
@@ -1139,6 +1414,11 @@ facts:
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 条款内容可读但未达到本次晋升标准，保留待人工复核
 - id: FACT-PROV-057
   kind: provision
   topic: policy
@@ -1159,6 +1439,11 @@ facts:
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: reject
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 制定目的/依据条款，对一线问答价值低
 - id: FACT-PROV-058
   kind: provision
   topic: policy
@@ -1179,6 +1464,11 @@ facts:
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 条款内容可读但未达到本次晋升标准，保留待人工复核
 - id: FACT-PROV-059
   kind: provision
   topic: policy
@@ -1199,6 +1489,11 @@ facts:
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: reject
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 文本过短，缺少可复核的完整规范内容
 - id: FACT-PROV-060
   kind: provision
   topic: policy
@@ -1212,13 +1507,18 @@ facts:
     doc: POL-PEN-078
     section: 第四条
     sha256: 42884cb595529b9f687a4442ff5a8bf8f5706c5764cbb7df57859e29923bc428
-  status: draft
-  confidence: medium
+  status: approved
+  confidence: high
   as_of: '2026-11-06'
   review_due: '2027-02-04'
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: promote
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 晋升：渔业港航行政处罚种类
 - id: FACT-PROV-061
   kind: provision
   topic: policy
@@ -1232,13 +1532,18 @@ facts:
     doc: POL-PEN-078
     section: 第五条
     sha256: 42884cb595529b9f687a4442ff5a8bf8f5706c5764cbb7df57859e29923bc428
-  status: draft
-  confidence: medium
+  status: approved
+  confidence: high
   as_of: '2026-11-06'
   review_due: '2027-02-04'
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: promote
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 晋升：渔业港航行政处罚的免予处罚情形
 - id: FACT-PROV-062
   kind: provision
   topic: policy
@@ -1258,6 +1563,11 @@ facts:
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: reject
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 制定目的/依据条款，对一线问答价值低
 - id: FACT-PROV-063
   kind: provision
   topic: policy
@@ -1270,13 +1580,18 @@ facts:
     doc: POL-PEN-080
     section: 第二条
     sha256: 57027911e2ce6b23d6e84aee6269f19623b19f927cdb31fcbad606e032756e81
-  status: draft
-  confidence: medium
+  status: approved
+  confidence: high
   as_of: '2026-11-06'
   review_due: '2027-02-04'
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: promote
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 晋升：渔业行政处罚种类
 - id: FACT-PROV-064
   kind: provision
   topic: policy
@@ -1300,6 +1615,11 @@ facts:
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 条款内容可读但未达到本次晋升标准，保留待人工复核
 - id: FACT-PROV-065
   kind: provision
   topic: policy
@@ -1314,13 +1634,18 @@ facts:
     doc: POL-PEN-080
     section: 第四条
     sha256: 57027911e2ce6b23d6e84aee6269f19623b19f927cdb31fcbad606e032756e81
-  status: draft
-  confidence: medium
+  status: approved
+  confidence: high
   as_of: '2026-11-06'
   review_due: '2027-02-04'
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: promote
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 晋升：渔业行政处罚从重情形
 - id: FACT-PROV-066
   kind: provision
   topic: policy
@@ -1335,13 +1660,18 @@ facts:
     doc: POL-PEN-080
     section: 第五条
     sha256: 57027911e2ce6b23d6e84aee6269f19623b19f927cdb31fcbad606e032756e81
-  status: draft
-  confidence: medium
+  status: approved
+  confidence: high
   as_of: '2026-11-06'
   review_due: '2027-02-04'
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: promote
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 晋升：渔业行政处罚罚款计罚单位
 - id: FACT-PROV-067
   kind: provision
   topic: policy
@@ -1361,6 +1691,11 @@ facts:
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: reject
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 文本过短，缺少可复核的完整规范内容
 - id: FACT-PROV-068
   kind: provision
   topic: policy
@@ -1380,6 +1715,11 @@ facts:
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 条款内容可读但未达到本次晋升标准，保留待人工复核
 - id: FACT-PROV-069
   kind: provision
   topic: policy
@@ -1392,13 +1732,18 @@ facts:
     doc: POL-PORT-077
     section: 第三条
     sha256: 1ff9570272738ada371f4e412c3b47ef13eaf94c68481a31640421fda6fc1fd2
-  status: draft
-  confidence: medium
+  status: approved
+  confidence: high
   as_of: '2026-11-06'
   review_due: '2027-02-04'
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: promote
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 晋升：渔港水域交通安全监督管理主管机关
 - id: FACT-PROV-070
   kind: provision
   topic: policy
@@ -1420,6 +1765,11 @@ facts:
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 条款内容可读但未达到本次晋升标准，保留待人工复核
 - id: FACT-PROV-071
   kind: provision
   topic: policy
@@ -1439,6 +1789,11 @@ facts:
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: reject
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 文本过短，缺少可复核的完整规范内容
 - id: FACT-PROV-072
   kind: provision
   topic: policy
@@ -1459,6 +1814,11 @@ facts:
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: reject
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 制定目的/依据条款，对一线问答价值低
 - id: FACT-PROV-073
   kind: provision
   topic: policy
@@ -1479,6 +1839,11 @@ facts:
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 条款内容可读但未达到本次晋升标准，保留待人工复核
 - id: FACT-PROV-074
   kind: provision
   topic: policy
@@ -1499,6 +1864,11 @@ facts:
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: reject
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 文本过短，缺少可复核的完整规范内容
 - id: FACT-PROV-075
   kind: provision
   topic: policy
@@ -1519,6 +1889,11 @@ facts:
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 机构职责/规划类条款，需结合具体办事场景再核
 - id: FACT-PROV-076
   kind: provision
   topic: policy
@@ -1532,13 +1907,18 @@ facts:
     doc: POL-RES-075
     section: 第五条
     sha256: 90abf8647b254325125ed7f79bff16a4c573aab0a773fb166fb0dc79c3ec5971
-  status: draft
-  confidence: medium
+  status: approved
+  confidence: high
   as_of: '2026-11-06'
   review_due: '2027-02-04'
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: promote
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 晋升：水生生物增殖放流投入和资金管理
 - id: FACT-PROV-077
   kind: provision
   topic: policy
@@ -1558,6 +1938,11 @@ facts:
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: reject
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 文本过短，缺少可复核的完整规范内容
 - id: FACT-PROV-078
   kind: provision
   topic: policy
@@ -1583,6 +1968,11 @@ facts:
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 条款内容可读但未达到本次晋升标准，保留待人工复核
 - id: FACT-PROV-079
   kind: provision
   topic: policy
@@ -1604,6 +1994,11 @@ facts:
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 条款内容可读但未达到本次晋升标准，保留待人工复核
 - id: FACT-PROV-080
   kind: provision
   topic: policy
@@ -1616,13 +2011,18 @@ facts:
     doc: POL-RULE-018
     section: 第四条
     sha256: 90d7e013d92361ec219a59b51ef255c70a08d5654f9a0351fd633c865028bf77
-  status: draft
-  confidence: medium
+  status: approved
+  confidence: high
   as_of: '2026-11-06'
   review_due: '2027-02-04'
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: promote
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 晋升：机动渔船底拖网禁渔区线内侧海域管理
 - id: FACT-PROV-081
   kind: provision
   topic: policy
@@ -1636,13 +2036,18 @@ facts:
     doc: POL-RULE-018
     section: 第五条
     sha256: 90d7e013d92361ec219a59b51ef255c70a08d5654f9a0351fd633c865028bf77
-  status: draft
-  confidence: medium
+  status: approved
+  confidence: high
   as_of: '2026-11-06'
   review_due: '2027-02-04'
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: promote
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 晋升：渔场渔汛生产安排原则
 - id: FACT-PROV-082
   kind: provision
   topic: policy
@@ -1662,6 +2067,11 @@ facts:
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: reject
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 制定目的/依据条款，对一线问答价值低
 - id: FACT-PROV-083
   kind: provision
   topic: policy
@@ -1681,6 +2091,11 @@ facts:
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 条款内容可读但未达到本次晋升标准，保留待人工复核
 - id: FACT-PROV-084
   kind: provision
   topic: policy
@@ -1702,6 +2117,11 @@ facts:
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 条款内容可读但未达到本次晋升标准，保留待人工复核
 - id: FACT-PROV-085
   kind: provision
   topic: policy
@@ -1721,6 +2141,11 @@ facts:
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: reject
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 文本过短，缺少可复核的完整规范内容
 - id: FACT-PROV-086
   kind: provision
   topic: policy
@@ -1740,6 +2165,11 @@ facts:
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: reject
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 文本过短，缺少可复核的完整规范内容
 - id: FACT-PROV-087
   kind: provision
   topic: policy
@@ -1759,6 +2189,11 @@ facts:
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: reject
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 文本过短，缺少可复核的完整规范内容
 - id: FACT-PROV-088
   kind: provision
   topic: policy
@@ -1778,6 +2213,11 @@ facts:
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 条款内容可读但未达到本次晋升标准，保留待人工复核
 - id: FACT-PROV-089
   kind: provision
   topic: policy
@@ -1797,6 +2237,11 @@ facts:
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: reject
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 文本过短，缺少可复核的完整规范内容
 - id: FACT-PROV-090
   kind: provision
   topic: policy
@@ -1809,13 +2254,18 @@ facts:
     doc: POL-RULE-020
     section: 第四条
     sha256: abedb250e0982b34bd66b0d00bccdfdc92c750d5f04d2f2919db858dfe4e8302
-  status: draft
-  confidence: medium
+  status: approved
+  confidence: high
   as_of: '2026-11-06'
   review_due: '2027-02-04'
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: promote
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 晋升：渔业资源费征收机关
 - id: FACT-PROV-091
   kind: provision
   topic: policy
@@ -1837,6 +2287,11 @@ facts:
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 条款内容可读但未达到本次晋升标准，保留待人工复核
 - id: FACT-PROV-092
   kind: provision
   topic: policy
@@ -1856,6 +2311,11 @@ facts:
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 条款内容可读但未达到本次晋升标准，保留待人工复核
 - id: FACT-PROV-093
   kind: provision
   topic: policy
@@ -1879,6 +2339,11 @@ facts:
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 条款内容可读但未达到本次晋升标准，保留待人工复核
 - id: FACT-PROV-094
   kind: provision
   topic: policy
@@ -1898,6 +2363,11 @@ facts:
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 条款内容可读但未达到本次晋升标准，保留待人工复核
 - id: FACT-PROV-095
   kind: provision
   topic: policy
@@ -1912,13 +2382,18 @@ facts:
     doc: POL-SPEC-041
     section: 四、专项捕捞许可申请、审批及生产要求申请从事上述专项许可作业的渔船须为纳入中国渔政管理指挥系统的渔船,证书证件齐全有效。
     sha256: b383ea35974fe85acea89f95c7c8c263a7cea382aefdc10f04733efb7118c647
-  status: draft
-  confidence: medium
+  status: approved
+  confidence: high
   as_of: '2026-11-06'
   review_due: '2027-02-04'
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: promote
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 晋升：专项捕捞许可申请条件和审批机关
 - id: FACT-PROV-096
   kind: provision
   topic: policy
@@ -1938,6 +2413,11 @@ facts:
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: reject
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 制定目的/依据条款，对一线问答价值低
 - id: FACT-PROV-097
   kind: provision
   topic: policy
@@ -1952,13 +2432,18 @@ facts:
     doc: POL-STD-010
     section: 第二条
     sha256: 35e2069db4de910494c1e6e07c435c4aca91c846e912acba2d6178776b981910
-  status: draft
-  confidence: medium
+  status: approved
+  confidence: high
   as_of: '2026-11-06'
   review_due: '2027-02-04'
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: promote
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 晋升：渔业捕捞许可规定的适用范围
 - id: FACT-PROV-098
   kind: provision
   topic: policy
@@ -1971,13 +2456,18 @@ facts:
     doc: POL-STD-010
     section: 第三条
     sha256: 35e2069db4de910494c1e6e07c435c4aca91c846e912acba2d6178776b981910
-  status: draft
-  confidence: medium
+  status: approved
+  confidence: high
   as_of: '2026-11-06'
   review_due: '2027-02-04'
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: promote
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 晋升：船网工具指标和捕捞许可证制度
 - id: FACT-PROV-099
   kind: provision
   topic: policy
@@ -1990,13 +2480,18 @@ facts:
     doc: POL-STD-010
     section: 第四条
     sha256: 35e2069db4de910494c1e6e07c435c4aca91c846e912acba2d6178776b981910
-  status: draft
-  confidence: medium
+  status: approved
+  confidence: high
   as_of: '2026-11-06'
   review_due: '2027-02-04'
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: promote
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 晋升：捕捞许可证书签发人负责制
 - id: FACT-PROV-100
   kind: provision
   topic: policy
@@ -2009,13 +2504,18 @@ facts:
     doc: POL-STD-010
     section: 第五条
     sha256: 35e2069db4de910494c1e6e07c435c4aca91c846e912acba2d6178776b981910
-  status: draft
-  confidence: medium
+  status: approved
+  confidence: high
   as_of: '2026-11-06'
   review_due: '2027-02-04'
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: promote
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 晋升：渔业捕捞许可管理职责
 - id: FACT-PROV-101
   kind: provision
   topic: gear
@@ -2035,6 +2535,11 @@ facts:
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: reject
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 制定目的/依据条款，对一线问答价值低
 - id: FACT-PROV-102
   kind: provision
   topic: gear
@@ -2058,6 +2563,11 @@ facts:
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 条款内容可读但未达到本次晋升标准，保留待人工复核
 - id: FACT-PROV-103
   kind: provision
   topic: gear
@@ -2072,13 +2582,18 @@ facts:
     doc: POL-WATCH-082
     section: 第三条
     sha256: 8eecbc9171dbc0dbc1cfc82d7e92b42bcf874c47c66a533cf8ed4b6cb6ec3bba
-  status: draft
-  confidence: medium
+  status: approved
+  confidence: high
   as_of: '2026-11-06'
   review_due: '2027-02-04'
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: promote
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 晋升：船长航行值班保证事项
 - id: FACT-PROV-104
   kind: provision
   topic: gear
@@ -2098,6 +2613,11 @@ facts:
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: reject
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 文本过短，缺少可复核的完整规范内容
 - id: FACT-PROV-105
   kind: provision
   topic: gear
@@ -2117,6 +2637,11 @@ facts:
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: keep_draft
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 条款内容可读但未达到本次晋升标准，保留待人工复核
 - id: FACT-PROV-106
   kind: provision
   topic: stats
@@ -2141,6 +2666,11 @@ facts:
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: reject
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 无章节定位的片段，不能作为可引用条款事实
 - id: FACT-PROV-107
   kind: provision
   topic: stats
@@ -2163,6 +2693,11 @@ facts:
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: reject
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 无章节定位的片段，不能作为可引用条款事实
 - id: FACT-PROV-108
   kind: provision
   topic: stats
@@ -2187,6 +2722,11 @@ facts:
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: reject
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 无章节定位的片段，不能作为可引用条款事实
 - id: FACT-PROV-109
   kind: provision
   topic: stats
@@ -2209,6 +2749,11 @@ facts:
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: reject
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 无章节定位的片段，不能作为可引用条款事实
 - id: FACT-PROV-110
   kind: provision
   topic: stats
@@ -2231,6 +2776,11 @@ facts:
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: reject
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 无章节定位的片段，不能作为可引用条款事实
 - id: FACT-PROV-111
   kind: provision
   topic: stats
@@ -2254,6 +2804,11 @@ facts:
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: reject
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 无章节定位的片段，不能作为可引用条款事实
 - id: FACT-PROV-112
   kind: provision
   topic: stats
@@ -2278,6 +2833,11 @@ facts:
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: reject
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 无章节定位的片段，不能作为可引用条款事实
 - id: FACT-PROV-113
   kind: provision
   topic: stats
@@ -2300,6 +2860,11 @@ facts:
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: reject
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 无章节定位的片段，不能作为可引用条款事实
 - id: FACT-PROV-114
   kind: provision
   topic: stats
@@ -2322,6 +2887,11 @@ facts:
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: reject
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 无章节定位的片段，不能作为可引用条款事实
 - id: FACT-PROV-115
   kind: provision
   topic: stats
@@ -2344,6 +2914,11 @@ facts:
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: reject
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 无章节定位的片段，不能作为可引用条款事实
 - id: FACT-PROV-116
   kind: provision
   topic: stats
@@ -2363,6 +2938,11 @@ facts:
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: reject
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 统计年鉴 OCR 文本，全角字符和断行未清洗，不能直接作为事实
 - id: FACT-PROV-117
   kind: provision
   topic: stats
@@ -2382,6 +2962,11 @@ facts:
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: reject
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 统计年鉴 OCR 文本，全角字符和断行未清洗，不能直接作为事实
 - id: FACT-PROV-118
   kind: provision
   topic: stats
@@ -2407,6 +2992,11 @@ facts:
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: reject
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 统计年鉴 OCR 文本，全角字符和断行未清洗，不能直接作为事实
 - id: FACT-PROV-119
   kind: provision
   topic: stats
@@ -2429,6 +3019,11 @@ facts:
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: reject
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 无章节定位的片段，不能作为可引用条款事实
 - id: FACT-PROV-120
   kind: provision
   topic: stats
@@ -2451,3 +3046,8 @@ facts:
   jurisdiction: national
   reviewer: auto:provision-v1
   extraction: section-provision-v1
+  review:
+    decision: reject
+    reviewer: agent-review
+    reviewed_at: '2026-11-06'
+    note: 无章节定位的片段，不能作为可引用条款事实

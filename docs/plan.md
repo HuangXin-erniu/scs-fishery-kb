@@ -51,6 +51,7 @@ merged.
 | P10-KB-142 | 15 playbooks, 150 terms, 200 facts, extraction/review, weekly loop | Validators green; weekly report reproducible |
 | P10-ANS-143 | Answer composer/validator, FastAPI `/v1`, Web UI and feedback | 20 scenarios; citation resolution 100%; localhost service |
 | P10-EVAL-145 | 120-question set, RAGAS-compatible metrics, regression gate, docs sync | Acceptance thresholds met; release gate clean |
+| P10-REV-146 | Review 120 draft facts, 34 draft terms and 15 playbooks | 20 promoted; 34 terms kept draft; playbooks corrected |
 
 P10-ING-138 (re-post of the originally scoped ingestion task) is implemented as
 a parallel store: 63 sources are snapshotted, the 28 configured main documents
@@ -91,6 +92,12 @@ correctness, 1.0000 citation resolution and 0.9875 context recall; overall
 abstention is 0.9000. The gate passes; the test split scores 0.5820 correctness
 and is report-only because its 30 fact questions are drafts. This completes the
 planned P10 phases; no tag or release is created.
+
+P10-REV-146 reviewed the draft knowledge layer: 20 article-level provision facts
+were promoted (facts now 100 approved / 100 draft), 34 terms stayed draft because
+none occurs in the registered corpus, and six playbook statements were corrected.
+The review is an AI-assisted first pass recorded in
+[review-2026-11-06.md](review-2026-11-06.md); owner spot-check remains.
 
 The architecture decisions are [0005](adr/0005-two-plane-evidence.md),
 [0006](adr/0006-llamaindex-lancedb-bge.md),

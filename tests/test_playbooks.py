@@ -124,3 +124,30 @@ def test_live_knowledge_counts() -> None:
     result = check_playbooks(ROOT / "configs" / "playbooks")
     assert result.errors == []
     assert result.approved == 15
+    promoted = {
+        "FACT-PROV-025",
+        "FACT-PROV-027",
+        "FACT-PROV-033",
+        "FACT-PROV-046",
+        "FACT-PROV-060",
+        "FACT-PROV-061",
+        "FACT-PROV-063",
+        "FACT-PROV-065",
+        "FACT-PROV-066",
+        "FACT-PROV-069",
+        "FACT-PROV-076",
+        "FACT-PROV-080",
+        "FACT-PROV-081",
+        "FACT-PROV-090",
+        "FACT-PROV-095",
+        "FACT-PROV-097",
+        "FACT-PROV-098",
+        "FACT-PROV-099",
+        "FACT-PROV-100",
+        "FACT-PROV-103",
+    }
+    by_id = {fact["id"]: fact for fact in facts}
+    assert all(by_id[fid]["status"] == "approved" for fid in promoted)
+    draft_terms = [term for term in terms if term["status"] == "draft"]
+    assert len(draft_terms) == 34
+    assert all(term["review"]["decision"] == "keep_draft" for term in draft_terms)

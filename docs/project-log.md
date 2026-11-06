@@ -794,3 +794,11 @@ This log records material project changes by date. It does not use release versi
 - Added `src/scs_fkb/eval_v2/`: RAGAS-compatible deterministic metrics (`faithfulness`, `answer_relevancy`, `context_precision`, `context_recall`, `answer_correctness`, `citation_resolution`, `abstention_accuracy`), per-question rows and a regression gate.
 - Real 120-question run: dev correctness 0.8945, citation resolution 1.0000, context recall 0.9875; overall abstention 0.9000; gate passes. Test correctness 0.5820 is report-only because its 30 fact questions are drafts.
 - Added `docs/evaluation.md`; the v1 evaluation set and product path are unchanged. No tag or release is created.
+
+## 2026-11-06 — Knowledge review: 20 provisions promoted, terms kept draft
+
+- Reviewed all 120 draft provision facts: 20 promoted to approved with exact evidence and a `review` block, 49 kept draft, 51 marked reject (fragments, OCR, short text, purpose clauses or generic responsibility clauses). Fact layer: 200 total, 100 approved, 100 draft; `facts check` 0 errors/0 conflicts.
+- Reviewed all 34 draft terms: none of the standard forms occurs in the registered corpus, so all remain draft with a corpus-gap review note. No term was approved without evidence.
+- Reviewed 15 playbooks / 32 steps and corrected six unsupported statements (application materials, permit-term wording, quota rule, fee range, “可以并处” wording).
+- Added `docs/review-2026-11-06.md` with the method, promotion IDs, rejection categories, term gaps and playbook corrections. This is an AI-assisted first pass; owner spot-check of the 20 promotions and six corrections is still required.
+- No answer, service, retrieval, web, index or evaluation code changed. No tag or release is created.

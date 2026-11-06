@@ -35,11 +35,11 @@ playbooks:
     facts: [FACT-POLICY-003]
   - order: 2
     action: 准备申请材料
-    detail: 按捕捞许可证申请材料清单准备申请书、身份或营业执照、检验证书、国籍证书、所有权登记证书、渔具和捕捞方法说明等。
+    detail: 按捕捞许可证申请材料清单准备申请书、户口簿或营业执照、检验证书、国籍证书、所有权登记证书、渔具和捕捞方法说明等。
     facts: [FACT-POLICY-009]
   - order: 3
     action: 核对证书有效期
-    detail: 专项许可应与捕捞许可证使用期限衔接；许可证期满前3个月内申请换发。
+    detail: 许可证期满前3个月内向原发证机关申请换发，换发时收回原证并注销。
     facts: [FACT-POLICY-005]
   sources: [POL-SPEC-041, POL-STD-010]
   status: approved
@@ -55,7 +55,7 @@ playbooks:
     facts: [FACT-POLICY-009]
   - order: 2
     action: 确认许可证期限
-    detail: 海洋渔业捕捞许可证使用期限为5年。
+    detail: 海洋和内陆渔业捕捞许可证5年；其他种类最长不超过3年。
     facts: [FACT-POLICY-004]
   sources: [POL-STD-010]
   status: approved
@@ -87,7 +87,7 @@ playbooks:
     facts: [FACT-POLICY-006]
   - order: 2
     action: 核对制造、更新改造规则
-    detail: 船数和功率不得超过被淘汰渔船；大中型与小型不得转换；大中型不得跨海区买卖。
+    detail: 本省指标内通过淘汰旧船解决；船数和功率不得超过被淘汰渔船；大中型与小型不得转换；大中型不得跨海区买卖。
     facts: [FACT-POLICY-017]
   sources: [POL-STD-010]
   status: approved
@@ -119,7 +119,7 @@ playbooks:
     facts: [FACT-POLICY-013]
   - order: 2
     action: 认识未报告后果
-    detail: 未报告可责令改正，并处警告、罚款；情节严重的扣留或者吊销船长职务证书。
+    detail: 未报告可责令改正，可以并处警告、罚款；情节严重的扣留或者吊销船长职务证书。
     facts: [FACT-POLICY-014]
   sources: [POL-RULE-018]
   status: approved
@@ -143,7 +143,7 @@ playbooks:
   steps:
   - order: 1
     action: 核对征收幅度
-    detail: 按前三年平均年总产值的1%至3%征收；具体标准按作业类型和地区执行。
+    detail: 海洋渔业按前3年平均年总产值1%至3%（不含专项品种）；专项品种3%至5%。
     facts: [FACT-POLICY-016]
   sources: [POL-RULE-020]
   status: approved
@@ -211,7 +211,7 @@ playbooks:
     facts: [FACT-POLICY-013]
   - order: 2
     action: 避免未报告处罚
-    detail: 未报告可责令改正，并处警告、罚款；情节严重的扣留或者吊销船长职务证书。
+    detail: 未报告可责令改正，可以并处警告、罚款；情节严重的扣留或者吊销船长职务证书。
     facts: [FACT-POLICY-014]
   sources: [POL-RULE-018]
   status: approved
