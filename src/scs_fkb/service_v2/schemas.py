@@ -6,6 +6,7 @@ from pydantic import BaseModel, Field
 
 Persona = Literal["captain", "owner", "enforcement", "extension", "general"]
 Mode = Literal["kb_only", "kb_plus_web", "web_only", "clarify", "abstain"]
+Answerability = Literal["answerable", "partial", "abstain"]
 
 
 class QueryRequest(BaseModel):
@@ -44,6 +45,32 @@ class PlaybookView(BaseModel):
     steps: list[PlaybookStep] = Field(default_factory=list)
 
 
+class VersionModel(BaseModel):
+    doc_id: str
+    document_no: str = ""
+    effective: str = ""
+    title: str = ""
+
+
+class AsOfModel(BaseModel):
+    declared: str
+    basis: str = ""
+    versions: list[VersionModel] = Field(default_factory=list)
+
+
+class NumericModel(BaseModel):
+    value: str
+    unit: str = ""
+    basis: str = ""
+    location: str = ""
+
+
+class ChannelModel(BaseModel):
+    name: str
+    hint: str = ""
+    doc_id: str = ""
+
+
 class QueryResponse(BaseModel):
     request_id: str
     answer: str
@@ -54,6 +81,13 @@ class QueryResponse(BaseModel):
     used_web: bool = False
     playbook: PlaybookView | None = None
     index_version: str = "v2"
+    answerability: Answerability = "answerable"
+    conclusion: str = ""
+    conditions: list[str] = Field(default_factory=list)
+    gap: list[str] = Field(default_factory=list)
+    channel: list[ChannelModel] = Field(default_factory=list)
+    as_of: AsOfModel | None = None
+    numbers: list[NumericModel] = Field(default_factory=list)
     latency_ms: int = 0
     disclaimer: str = "以官方发布文本为准；本服务不构成法律意见。"
 

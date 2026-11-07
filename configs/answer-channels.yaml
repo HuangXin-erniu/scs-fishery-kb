@@ -1,0 +1,63 @@
+# Handling channels for gaps and refusals. The composer names the office or
+# document a fisher should turn to; it never invents a value or a deadline.
+schema_version: 1
+updated_at: '2026-11-07'
+default:
+  - name: 属地渔业主管部门
+    hint: 向船籍港所在地县级以上渔业主管部门或海洋综合执法机构咨询
+  - name: 省级农业农村厅
+    hint: 省级实施细则以省农业农村厅发布的现行文件为准
+out_of_scope:
+  - name: 中国海警
+    hint: 涉外、越界或西沙南沙事项向中国海警（95110）或属地渔业主管部门报告
+  - name: 属地渔业主管部门
+    hint: 近海范围内的事项仍按船籍港属地办理
+gaps:
+  - gap: 缺少属地实施细则
+    match:
+      - 地方
+      - 省级
+      - 市级
+      - 县级
+      - 属地
+      - 本省
+      - 本市
+    channels:
+      - name: 省级农业农村厅
+        hint: 以省农业农村厅发布的现行实施方案为准
+      - name: 属地渔业主管部门
+        hint: 具体报备与受理按船籍港属地办理
+  - gap: 缺少专项附件或名单
+    match:
+      - 附件
+      - 名单
+      - 船数
+      - 限额
+      - 指标分配
+      - 名录
+    channels:
+      - name: 农业农村部
+        hint: 专项品种、船数与限额以通告附件为准，向省级渔业主管部门确认
+  - gap: 缺少可核数值
+    match:
+      - 多少
+      - 几
+      - 标准
+      - 限值
+      - 比例
+      - 尺寸
+      - 金额
+      - 罚款
+    channels:
+      - name: 属地渔业主管部门
+        hint: 数值与罚款幅度以现行条款或附表为准，可向属地渔政核实
+  - gap: 缺少船型或证书参数
+    match:
+      - 吨位
+      - 功率
+      - 船长
+      - 船型
+      - 证书
+    channels:
+      - name: 渔船检验与登记机构
+        hint: 按检验证书与船网工具指标批准书载明的参数核对

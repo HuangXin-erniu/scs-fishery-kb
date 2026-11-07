@@ -68,10 +68,34 @@ Response:
   "used_web": false,
   "playbook": null,
   "index_version": "v2",
+  "answerability": "answerable",
+  "conclusion": "（三）北纬26度30分至北纬12度的东海和南海海域为5月1日12时至8月16日12时。",
+  "conditions": [],
+  "gap": [],
+  "channel": [],
+  "as_of": {
+    "declared": "按农业农村部关于调整海洋伏季休渔制度的通告（2023年版）",
+    "basis": "question_time_cue",
+    "versions": [
+      {"doc_id": "POL-CLOS-015", "document_no": "", "effective": "2023-05-01", "title": "农业农村部关于调整海洋伏季休渔制度的通告"}
+    ]
+  },
+  "numbers": [
+    {"value": "26", "unit": "度", "basis": "南海海区", "location": ""}
+  ],
   "latency_ms": 24,
   "disclaimer": "以官方发布文本为准；本服务不构成法律意见。"
 }
 ```
+
+Answer contract (v3, default; `SCS_FKB_ANSWER_CONTRACT=v1` restores the old
+shape): `answerability` is `answerable`, `partial` or `abstain`. The answer text
+is 结论 → 适用条件 → 版本 → 数值与口径 → 缺口 → 渠道 → 依据摘录, so the first line
+is always a cited conclusion. `partial` names the gap and at least one channel;
+`abstain` carries no numeric or document-number claim. `as_of` names the
+governing version when the question says 今年/现在 or names a year. `numbers`
+lists the numeric anchors with their basis; an empty list on a numeric question
+means the value was missing from the evidence and the answer says so.
 
 Modes: `kb_only`, `kb_plus_web`, `web_only`, `clarify`, `abstain`. A `playbook`
 block is a procedure view of approved facts; it never replaces the extractive

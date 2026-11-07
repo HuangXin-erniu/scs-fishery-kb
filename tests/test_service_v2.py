@@ -166,3 +166,24 @@ def test_ui_pages(tmp_path) -> None:
     )
     assert result.status_code == 200
     assert "引用来源" in result.text
+
+
+def test_answer_contract_fields() -> None:
+    result = _service().query("2026年南海区伏季休渔从什么时候开始？", web="off")
+    assert result.answerability == "answerable"
+    assert result.conclusion
+    assert result.answer.startswith("结论：")
+    assert result.as_of is not None
+    assert "依据摘录：" in result.answer
+
+
+def test_v1_contract_remains_available() -> None:
+    service = AnswerService(
+        retriever=FakeRetriever([_hit()]),
+        playbooks=[],
+        facts=[],
+        answer_contract="v1",
+    )
+    result = service.query("2026年南海区伏季休渔从什么时候开始？", web="off")
+    assert result.conclusion == ""
+    assert not result.answer.startswith("结论：")
