@@ -26,7 +26,9 @@ endpoints:
 query:
   request: [question, persona, region, year, web]
   web_modes: [auto, on, off]
-  response: [request_id, answer, citations, abstained, reason, mode, used_web, playbook, index_version, latency_ms, disclaimer]
+  response: [request_id, answer, citations, abstained, reason, mode, used_web, playbook,
+             index_version, answerability, conclusion, conditions, gap, channel, as_of,
+             numbers, latency_ms, disclaimer]
   modes: [kb_only, kb_plus_web, web_only, clarify, abstain]
 citations:
   corpus: "[doc_id p.N §section]"

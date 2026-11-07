@@ -1,0 +1,201 @@
+from __future__ import annotations
+
+import re
+from typing import Any
+
+from .asof import detect as detect_asof
+from .channels import ChannelBook
+from .contract import AnswerContract, Channel
+from .numbers import extract as extract_numbers
+from .numbers import is_numeric_question
+from .scope import out_of_scope
+
+SENTENCE_RE = re.compile(r"(?<=[。！？；])|\n+")
+CITATION_RE = re.compile(r"\[[A-Za-z0-9][^\]]*\]")
+CONDITION_WORDS = ("应当", "须", "不得", "除外", "限于", "适用", "按照", "符合", "禁止")
+QUESTION_STOP = set("的了是在和与或及对对于这那个什么怎样如何多少几")
+
+
+def _citation_only(part: str) -> bool:
+    return bool(CITATION_RE.search(part)) and not CITATION_RE.sub("", part).strip(" 。；，：\n")
+
+
+def _sentences(text: str) -> list[str]:
+    merged: list[str] = []
+    for part in (item.strip() for item in SENTENCE_RE.split(text)):
+        if not part:
+            continue
+        if merged and _citation_only(part):
+            merged[-1] = f"{merged[-1]} {part}"
+        else:
+            merged.append(part)
+    return merged
+
+
+def _bigrams(text: str) -> set[str]:
+    clean = re.sub(r"\s+", "", text)
+    return {clean[index : index + 2] for index in range(max(0, len(clean) - 1))}
+
+
+def _score(sentence: str, question_grams: set[str]) -> int:
+    grams = _bigrams(CITATION_RE.sub("", sentence))
+    return len(grams & question_grams)
+
+
+def _pick_conclusion(sentences: list[str], question: str, *, numeric: bool = False) -> str:
+    cited = [
+        item
+        for item in sentences
+        if CITATION_RE.search(item) and len(CITATION_RE.sub("", item).strip(" 。；，")) >= 6
+    ]
+    if not cited:
+        return ""
+    grams = _bigrams(question)
+
+    def weight(sentence: str) -> int:
+        score = _score(sentence, grams)
+        if numeric and re.search(r"\d", sentence):
+            score += 2
+        return score
+
+    return max(cited, key=weight)
+
+
+def _pick_conditions(sentences: list[str], conclusion: str) -> tuple[str, ...]:
+    picked: list[str] = []
+    for sentence in sentences:
+        if sentence == conclusion or not CITATION_RE.search(sentence):
+            continue
+        if any(word in sentence for word in CONDITION_WORDS):
+            picked.append(sentence)
+        if len(picked) >= 2:
+            break
+    return tuple(picked)
+
+
+def _body(
+    *,
+    answerability: str,
+    conclusion: str,
+    conditions: tuple[str, ...],
+    as_of_line: str,
+    numbers_line: str,
+    gap: tuple[str, ...],
+    channels: tuple[Channel, ...],
+    evidence: str,
+) -> str:
+    lines: list[str] = []
+    if conclusion:
+        lines.append(f"结论：{conclusion}")
+    else:
+        lines.append("结论：无法从已登记语料给出结论。")
+    if conditions:
+        lines.append("适用条件：" + "；".join(conditions))
+    if as_of_line:
+        lines.append(f"版本：{as_of_line}")
+    if numbers_line:
+        lines.append(f"数值与口径：{numbers_line}")
+    if gap:
+        lines.append("缺口：" + "；".join(gap))
+    if channels:
+        lines.append("渠道：" + "；".join(f"{item.name}，{item.hint}" for item in channels))
+    if evidence:
+        lines.append("依据摘录：")
+        lines.append(evidence)
+    return "\n".join(lines)
+
+
+def compose(
+    question: str,
+    answer_text: str,
+    *,
+    doc_ids: list[str],
+    registry: dict[str, dict[str, Any]],
+    channels: ChannelBook,
+) -> AnswerContract:
+    """Build the contract-shaped answer from the deterministic evidence pack."""
+    scoped, scope_reason = out_of_scope(question)
+    if scoped:
+        gap, channel = channels.resolve(question, scope=True)
+        return AnswerContract(
+            answerability="abstain",
+            conclusion="",
+            gap=(scope_reason,),
+            channel=channel,
+            body=_body(
+                answerability="abstain",
+                conclusion="",
+                conditions=(),
+                as_of_line="",
+                numbers_line="",
+                gap=(scope_reason,),
+                channels=channel,
+                evidence="",
+            ),
+        )
+
+    sentences = _sentences(answer_text)
+    numeric = is_numeric_question(question)
+    conclusion = _pick_conclusion(sentences, question, numeric=numeric)
+    if not doc_ids or not answer_text.strip():
+        gap, channel = channels.resolve(question)
+        return AnswerContract(
+            answerability="abstain",
+            conclusion="",
+            gap=(gap, "已登记语料中没有可支撑该问题的依据"),
+            channel=channel,
+            body=_body(
+                answerability="abstain",
+                conclusion="",
+                conditions=(),
+                as_of_line="",
+                numbers_line="",
+                gap=(gap, "已登记语料中没有可支撑该问题的依据"),
+                channels=channel,
+                evidence="",
+            ),
+        )
+
+    as_of = detect_asof(question, doc_ids, registry)
+    conditions = _pick_conditions(sentences, conclusion)
+    anchors = extract_numbers(" ".join([conclusion, *conditions]))
+    gap: list[str] = []
+    if numeric and not anchors:
+        gap.append("缺少可核数值或口径")
+
+    answerability = "answerable"
+    if not conclusion:
+        answerability = "partial"
+        gap.append("证据不足以形成结论")
+    elif gap:
+        answerability = "partial"
+
+    channel: tuple[Channel, ...] = ()
+    if gap:
+        resolved_gap, channel = channels.resolve(question)
+        if not any(item.startswith("缺少可核数值") for item in gap):
+            gap.insert(0, resolved_gap)
+
+    gap = list(dict.fromkeys(gap))
+    numbers_line = "；".join(f"{item.value}{item.unit}（{item.basis}）" for item in anchors[:4])
+    as_of_line = as_of.declared if as_of else ""
+    body = _body(
+        answerability=answerability,
+        conclusion=conclusion,
+        conditions=conditions,
+        as_of_line=as_of_line,
+        numbers_line=numbers_line,
+        gap=tuple(gap),
+        channels=channel,
+        evidence=answer_text,
+    )
+    return AnswerContract(
+        answerability=answerability,
+        conclusion=conclusion,
+        conditions=conditions,
+        gap=tuple(gap),
+        channel=channel,
+        as_of=as_of,
+        numbers=tuple(anchors),
+        body=body,
+    )

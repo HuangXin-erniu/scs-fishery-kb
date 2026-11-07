@@ -899,3 +899,10 @@ This log records material project changes by date. It does not use release versi
 - Gates: v1 dev 19/19, test 12/12, abstention 8/11, false refusals 2; v2 dev correctness 0.8776, citation 1.0000, recall 0.9625, abstention 0.9000. Acceptance: answer rate 0.4590, point coverage 0.1766, citation accuracy 0.1706, misanswer 0.3286 (+1.43 pp against the 0.3143 baseline, inside the 2 pp tolerance).
 - Indexes: v1 `686bc13a5ddc` with 1,661 chunks; v2 `59c70969e461` with 48 documents and 1,486 chunks. Register is 91 sources (was 77).
 - Tests: 445 passed, 2 skipped. No tag or release.
+
+## 2026-11-07 — Answer contract v3
+
+- Added `src/scs_fkb/answer_v3/`: three states (`answerable` / `partial` / `abstain`), conclusion-first assembly with conditions, an as-of declaration, numeric anchors with basis, out-of-scope detection and gap-to-channel mapping (`configs/answer-channels.yaml`).
+- Responses now carry `answerability`, `conclusion`, `conditions`, `gap`, `channel`, `as_of` and `numbers`; `SCS_FKB_ANSWER_CONTRACT=v1` restores the old text for reproduction.
+- Acceptance (512, extractive): misanswer 0.3286 → 0.2571, refusal-with-channel 0.0286 → 0.5857, as-of declaration 0.0877 → 0.3509; point coverage 0.1766 → 0.1753 and citation 0.1706 → 0.1714 stay flat. v1 gate 19/19 + 12/12 + 8/11; v2 gate dev correctness 0.8776 → 0.8867, citation 1.0, recall 0.9625, abstention 0.90.
+- 10 contract unit tests plus two service tests; total 457 passed, 2 skipped. No tag or release.

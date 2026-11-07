@@ -10,6 +10,8 @@ from pathlib import Path
 from typing import Any
 
 from ..answer import answer_question, citation_text, validate_citations
+from ..answer_v3 import ChannelBook
+from ..answer_v3 import compose as compose_contract
 from ..facts import DEFAULT_FACTS_DIR, load_all
 from ..knowledge_v2 import load_playbooks
 from ..models import Citation, SearchHit
@@ -94,6 +96,7 @@ class AnswerService:
         run_root: Path | str | None = None,
         index_version: str = "v2",
         web_search: Any = None,
+        answer_contract: str = "v3",
     ) -> None:
         self.retriever = retriever
         self.playbooks = playbooks if playbooks is not None else load_playbooks()
@@ -102,7 +105,14 @@ class AnswerService:
         self.run_root = Path(run_root).expanduser().resolve() if run_root else None
         self.index_version = index_version
         self.web_search = web_search
+        self.answer_contract = answer_contract
+        self._channels: ChannelBook | None = None
         self._registry = load_registry()
+
+    def _channel_book(self) -> ChannelBook:
+        if self._channels is None:
+            self._channels = ChannelBook.load()
+        return self._channels
 
     def _search(self, question: str, filters: Any) -> list[SearchHit]:
         try:
@@ -338,6 +348,33 @@ class AnswerService:
                     reason="citation_invalid",
                 )
                 citations = []
+        contract_fields: dict[str, Any] = {}
+        if self.answer_contract == "v3":
+            contract = compose_contract(
+                question,
+                answer.text,
+                doc_ids=[item.doc_id for item in citations],
+                registry=self._registry,
+                channels=self._channel_book(),
+            )
+            if contract.answerability == "abstain":
+                scoped = bool(contract.gap) and "超出" in contract.gap[0]
+                reason = "out_of_scope" if scoped else "gap_declared"
+                answer = answer.__class__(
+                    text=contract.body,
+                    citations=[],
+                    abstained=True,
+                    reason=reason,
+                )
+                citations = []
+            else:
+                answer = answer.__class__(
+                    text=contract.body,
+                    citations=answer.citations,
+                    abstained=False,
+                    reason=answer.reason,
+                )
+            contract_fields = contract.to_dict()
         playbook = _match_playbook(question, self.playbooks)
         playbook_view = self._playbook_view(playbook) if playbook else None
         used_web = False
@@ -391,6 +428,7 @@ class AnswerService:
             index_version=self.index_version,
             latency_ms=int((time.perf_counter() - started) * 1000),
             disclaimer=DISCLAIMER,
+            **contract_fields,
         )
 
     def sources(self) -> list[dict[str, Any]]:
@@ -420,6 +458,7 @@ def build_service(
 ) -> AnswerService:
     from ..retrieve_v2 import build_retriever
 
+    answer_contract = os.environ.get("SCS_FKB_ANSWER_CONTRACT", "v3")
     configured = data_root or os.environ.get("SCS_FKB_DATA_ROOT", "")
     if not configured:
         raise RuntimeError("SCS_FKB_DATA_ROOT is required")
@@ -445,4 +484,5 @@ def build_service(
         data_root=root,
         run_root=run_root or os.environ.get("SCS_FKB_RUN_ROOT"),
         web_search=web_search,
+        answer_contract=answer_contract,
     )
