@@ -306,3 +306,114 @@ SCS_FKB_DATA_ROOT=... SCS_FKB_RUN_ROOT=... \
 ```
 
 Outputs: `$SCS_FKB_RUN_ROOT/P10-EVAL-145/metrics.json` and `report.md`.
+
+---
+
+## Acceptance instrument (2026-11-07)
+
+> **中文摘要**：新增 512 题私有验收工装：题目、判分要点与文档映射只存本地数据根，公开仓库只有
+> 判分代码、阈值与协议。基线（2026-11-07，42 文档 / 1,014 chunks）测得可答率 44.5%、
+> 要点覆盖率 0.167、引用准确率 0.166、误答率 0.314、拒答渠道率 0.029、时效声明率 0.070、
+> 口径正确率 0.026，六项均未达协议通过线。差距集中在缺失语料（325/512 题引用未入库文档）、
+> 结论式作答与拒答渠道；本工装只做度量，不参与产品路径。
+
+### 1. Instrument
+
+The acceptance workbook is a private instrument of 512 colloquial questions about
+South China Sea nearshore fishing, each with required points, numeric anchors,
+citation requirements and a graded answerability label. It is imported by
+`scripts/import_eval_xlsx.py` into `$SCS_FKB_DATA_ROOT/eval/acceptance/` as
+`dataset.jsonl` plus `manifest.json`; the manifest records the source digest and
+the split seed, and a rerun is byte-identical.
+
+| Layer | Value |
+|---|---|
+| Questions | 512 |
+| Answerability | 388 answerable, 54 partially answerable, 70 refusal tests |
+| Dimensions | 341 single fact, 64 multi-hop, 57 time conflict, 50 numeric |
+| Domains | 17 |
+| Splits | 256 dev, 256 holdout (`sha1(id + seed)`, fixed seed) |
+
+The document map (`doc-map.yaml`, private) resolves the 77 instrument document
+ids to repository documents: **21 full, 10 partial, 46 missing**. **325 of 512
+questions reference at least one document that is not in the corpus**, which is
+the largest single gap measured here.
+
+### 2. Metrics
+
+`src/scs_fkb/eval_accept/` scores every answer deterministically. Metric names
+and pass lines mirror the instrument protocol; the thresholds live in
+`configs/eval-accept.yaml`. Domain concepts come from `configs/terms.yaml` plus a
+private `domain-terms.yaml` stored next to the dataset.
+
+| Metric | Definition | Pass line |
+|---|---|---|
+| Point coverage | Hits over judgeable required points, averaged per answerable question. A point is judgeable when it carries a numeric, quoted or document-number anchor, or up to three domain concepts; other points are `needs_review` and excluded, and the judgeable share is reported. | ≥ 0.80 |
+| Citation accuracy | Cited document maps to one of the question's required documents, and the cited clause matches the instrument's location label (≥ 3 shared characters) or carries one of the question's anchors. | ≥ 0.90 |
+| Misanswer rate | Refusal-test questions answered without a refusal statement and a channel; unjudgeable rows are not counted as passes. | ≤ 0.10 |
+| Refusal-with-channel rate | Refusal tests abstained or refused explicitly, with a handling or consultation channel. | ≥ 0.90 |
+| As-of declaration rate | Time-conflict questions whose answer names the governing version (year or document number). | ≥ 0.90 |
+| Basis accuracy | Numeric questions whose answer states the required value with a basis cue (national/sea-area, annual/per-trip, table or clause). | ≥ 0.85 |
+| Latency | Mean and P95 answer latency. | recorded |
+
+A per-question band (0 / 0.5 / 1) follows the protocol: a refusal test scores 0
+when it answers with an entity claim and 1 only when it refuses with a channel;
+an answerable question scores 1 only with full point coverage and a located
+citation, and time-conflict answers without an as-of statement score 0.
+
+### 3. Baseline (2026-11-07)
+
+Corpus 42 documents / 1,014 chunks (index `d007984ae168`), `BAAI/bge-small-zh-v1.5`,
+web off, extractive arm.
+
+| Metric | Value | Rows | Pass line | Passed |
+|---|---:|---:|---:|---|
+| Point coverage | 0.1675 | 385 | 0.80 | no |
+| Citation accuracy | 0.1659 | 205 | 0.90 | no |
+| Misanswer rate | 0.3143 | 70 | 0.10 | no |
+| Refusal-with-channel rate | 0.0286 | 70 | 0.90 | no |
+| As-of declaration rate | 0.0702 | 57 | 0.90 | no |
+| Basis accuracy | 0.0263 | 19 | 0.85 | no |
+| Answer rate | 0.4453 | 512 | — | — |
+| Latency mean / P95 | 17.3 ms / 22 ms | 512 | — | — |
+
+Domain contrast follows the corpus gap: 捕捞许可 0.403 and 捕捞日志与渔业统计 0.309
+point coverage against 海洋灾害与生态, 渔情与遥感 and 保护物种 near zero, where the
+governing documents are not indexed. 553 of 1,117 required points are judgeable
+(49.5%); 373 questions carry at least one review-needed point. Only 19 numeric
+questions carry a numeric anchor in the instrument, so basis accuracy covers a
+narrow slice.
+
+The gate therefore fails on all six lines. This is the pre-change baseline; the
+report is `$SCS_FKB_RUN_ROOT/<task>/baseline.md` with per-question rows in
+`rows.csv`, and it is not used to tune retrieval before the corpus and answer
+contract work lands.
+
+### 4. Limitations
+
+- The scorer is deterministic and rule-based. It rewards anchors and citations,
+  not semantic completeness; points without anchors are reported, never guessed.
+- Location matching is a proxy: the instrument states locations as topic labels,
+  so a cited clause counts as located when it matches the label or carries the
+  question's anchors.
+- The holdout split is reported but scored with the same rules; no human review
+  of gold answers has been applied to the instrument yet, and the reference
+  answers remain review starters rather than gold.
+- Web evidence is disabled in every reported run.
+
+### 5. Reproduce
+
+```bash
+# import (private workbook; output stays under the local data root)
+python scripts/import_eval_xlsx.py --xlsx <workbook> \
+  --out-dir "$SCS_FKB_DATA_ROOT/eval/acceptance"
+
+# score (add --split dev|holdout, --dimension, --persona, --limit to narrow)
+SCS_FKB_DATA_ROOT=... SCS_FKB_RUN_ROOT=... PYTHONPATH=src \
+  python scripts/eval_accept.py --allow-fail
+```
+
+The command exits non-zero when a pass line is missed; `--allow-fail` is used
+for baselines so the report is still written. `--llm` switches to the optional
+LLM arm and falls back to the extractive arm with an explicit error when the
+endpoint is not configured.
