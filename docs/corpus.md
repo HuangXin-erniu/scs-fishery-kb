@@ -1,6 +1,6 @@
 # Corpus Inventory
 
-- Status: corpus and web layers registered and indexed for this phase. 91 sources (91 acquired, 0 open candidates), schema v4 currency, and 140 knowledge notes with 119 fetched cards; 48 public documents are indexed (1,486 chunks, index `59c70969e461`) and cards/notes live in a separate external store. The local core CSV has 3,126 rows and stays outside the public tree.
+- Status: corpus and web layers registered and indexed for this phase. 99 sources (98 acquired, 0 open candidates), schema v4 currency, and 140 knowledge notes with 119 fetched cards; 48 public documents are indexed (1,486 chunks, index `59c70969e461`) and cards/notes live in a separate external store. The local core CSV has 3,126 rows and stays outside the public tree.
 - Register: [configs/corpus.yaml](../configs/corpus.yaml)
 - Candidate register: [configs/candidates.yaml](../configs/candidates.yaml)
 - Indicator schema: [configs/statistics.yaml](../configs/statistics.yaml)
@@ -533,3 +533,24 @@ stay registered.
 Indexes: v1 `686bc13a5ddc`, 1,661 chunks; v2 `59c70969e461`, 48 documents and
 1,486 chunks. The service answer gate still uses its own 19.0/3 thresholds; the
 mismatch with the corpus gate is the next answer-contract task.
+
+
+## 5n. Batch 2 registration and deferred indexing (2026-11-07)
+
+Eight further documents were captured and registered (register 91 → 99 sources):
+the 2024 marine ecological bulletin, the sea-turtle action plan, the
+Indo-Pacific humpback dolphin action plan, the small-vessel inspection rules,
+the wildlife-crime judicial interpretation, the criminal-law text, the Guangxi
+vessel-upgrading policy explainer and the seawater-quality assessment
+regulation. Twenty-four other missing instruments were attempted and recorded:
+several have no standalone public text (the logbook and vessel-quota rules live
+inside 渔业捕捞许可管理规定; the minimum-size regime is the 2018 notice already
+indexed), several exist only as drafts (hypoxia, heatwave, inspection rules), and
+a few are policy-excluded (marine-ranch material).
+
+**The eight registered documents are not indexed.** The staging A/B showed that
+indexing the batch under the current 19.0/3 answer gate lifts the refusal
+misanswer from 0.2571 to 0.3714–0.4000 and lowers citation accuracy; the index was
+restored to the 48-document baseline and the 512 run returned to point 0.1684,
+citation 0.3810 and misanswer 0.2571. Indexing is deferred until the answer gate
+is aligned and re-tested (retrieval task).

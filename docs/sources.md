@@ -179,3 +179,13 @@ Two publishers (the Qinzhou marine bureau and a procuratorate reprint of the
 filing standard) serve no HTTPS. `--allow-http` permits plain HTTP only for
 allowlisted `.gov.cn` hosts and the entry notes record the transport; the flag is
 never used for a host that supports TLS.
+
+
+## 12. Batch 2 capture notes (2026-11-07)
+
+Eight documents were captured with `scripts/capture_source.py`. Two publishers
+serve no TLS for the local client (the criminal-law reprint on a municipal
+letters-and-visits page and the Guangxi policy PDF), so `--allow-http` was used
+and the transport is recorded in the entry notes. The wildlife-crime
+interpretation is the Supreme People's Court gazette text; the criminal law is a
+municipal reprint of the national statute. Neither is a news summary.

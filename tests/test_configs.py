@@ -33,7 +33,7 @@ def test_corpus_structure() -> None:
         "data_dictionary",
         "plan",
     }
-    assert len(data["sources"]) == 91
+    assert len(data["sources"]) == 99
 
     acquired = []
     candidates = []
@@ -46,7 +46,7 @@ def test_corpus_structure() -> None:
         else:
             candidates.append(source)
 
-    assert len(acquired) == 91
+    assert len(acquired) == 99
     assert len(candidates) == 0
     yearbooks = [source for source in acquired if source["id"].startswith("STAT-YB-")]
     assert len(yearbooks) == 9
@@ -129,6 +129,14 @@ def test_corpus_structure() -> None:
         "POL-HN-108",
         "POL-QZ-109",
         "POL-GD-110",
+        "POL-LAW-116",
+        "STD-EUTRO-119",
+        "POL-TURTLE-113",
+        "STD-SMALL-114",
+        "POL-JUD-115",
+        "POL-DOLPHIN-117",
+        "POL-GX-118",
+        "STAT-ECO-111",
         "POL-PEN-078",
         "POL-LIST-079",
         "POL-PEN-080",
@@ -237,14 +245,14 @@ def test_corpus_structure() -> None:
     }
     assert type_counts == {
         "statistical_yearbook": 10,
-        "law": 5,
+        "law": 6,
         "regulation": 23,
-        "notice": 23,
-        "standard": 19,
+        "notice": 26,
+        "standard": 21,
         "operations": 1,
         "fishery_product": 5,
         "data_dictionary": 3,
-        "plan": 2,
+        "plan": 4,
     }
 
 
@@ -767,8 +775,8 @@ def test_registry_schema_v3() -> None:
     from scs_fkb.registry import CADENCES, load_registry
 
     registry = load_registry("configs/corpus.yaml")
-    assert len(registry) == 91
-    assert sum(1 for entry in registry.values() if entry["status"] == "acquired") == 91
+    assert len(registry) == 99
+    assert sum(1 for entry in registry.values() if entry["status"] == "acquired") == 99
     for entry in registry.values():
         assert entry["lifecycle"] in {"active", "retired"}
         assert entry["currency"]["cadence"] in CADENCES
