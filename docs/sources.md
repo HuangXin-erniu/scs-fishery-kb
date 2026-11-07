@@ -166,3 +166,16 @@ The first online run after the card layer returned **22 ok and 4 changed**. Chan
 | WATCH-MOJ-OBSERVATION | changed |
 
 The four pages stay queued for manual reading; baselines are not refreshed and no corpus entry changes until a human confirms whether a new instrument appeared. The quarterly review reminder is scheduled for 2027-02-02, and the gap file holds one entry.
+
+
+## 11. Capture transport (2026-11-07)
+
+`scripts/capture_source.py` is the only writer for raw source snapshots. It
+refuses non-HTTPS URLs and hosts outside the official allowlist, keeps existing
+snapshots untouched unless `--force` is passed, and prints the provenance block
+the register expects.
+
+Two publishers (the Qinzhou marine bureau and a procuratorate reprint of the
+filing standard) serve no HTTPS. `--allow-http` permits plain HTTP only for
+allowlisted `.gov.cn` hosts and the entry notes record the transport; the flag is
+never used for a host that supports TLS.

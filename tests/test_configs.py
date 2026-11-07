@@ -33,7 +33,7 @@ def test_corpus_structure() -> None:
         "data_dictionary",
         "plan",
     }
-    assert len(data["sources"]) == 77
+    assert len(data["sources"]) == 91
 
     acquired = []
     candidates = []
@@ -46,7 +46,7 @@ def test_corpus_structure() -> None:
         else:
             candidates.append(source)
 
-    assert len(acquired) == 77
+    assert len(acquired) == 91
     assert len(candidates) == 0
     yearbooks = [source for source in acquired if source["id"].startswith("STAT-YB-")]
     assert len(yearbooks) == 9
@@ -115,6 +115,20 @@ def test_corpus_structure() -> None:
         "POL-RES-075",
         "STD-SPEC-076",
         "POL-PORT-077",
+        "POL-LAW-097",
+        "POL-LAW-098",
+        "POL-LAW-099",
+        "POL-REG-101",
+        "POL-GEAR-102",
+        "POL-PEN-103",
+        "POL-LAW-100",
+        "STD-WQ-104",
+        "PAPER-105",
+        "PAPER-106",
+        "PAPER-107",
+        "POL-HN-108",
+        "POL-QZ-109",
+        "POL-GD-110",
         "POL-PEN-078",
         "POL-LIST-079",
         "POL-PEN-080",
@@ -223,14 +237,14 @@ def test_corpus_structure() -> None:
     }
     assert type_counts == {
         "statistical_yearbook": 10,
-        "law": 1,
-        "regulation": 22,
-        "notice": 19,
-        "standard": 18,
+        "law": 5,
+        "regulation": 23,
+        "notice": 23,
+        "standard": 19,
         "operations": 1,
-        "fishery_product": 2,
+        "fishery_product": 5,
         "data_dictionary": 3,
-        "plan": 1,
+        "plan": 2,
     }
 
 
@@ -402,8 +416,8 @@ def test_pipeline_config() -> None:
     pipeline = load_yaml("configs/pipeline.yaml")
     assert pipeline["schema_version"] == 1
     documents = pipeline["documents"]
-    assert len(documents) == 42
-    assert len(set(documents)) == 42
+    assert len(documents) == 48
+    assert len(set(documents)) == 48
     assert pipeline["chunking"]["max_fallback_chars"] >= 200
 
     corpus = load_yaml("configs/corpus.yaml")
@@ -566,7 +580,7 @@ def test_retrieval_mode_config() -> None:
     assert retrieval["fusion_k"] == 60
     assert retrieval["bm25_weight"] == 2.0
     assert retrieval["dense_weight"] == 1.0
-    assert pipeline["answer"]["min_score"] == 19.0
+    assert pipeline["answer"]["min_score"] == 23.0
 
 
 def test_eval_statistics_section() -> None:
@@ -753,8 +767,8 @@ def test_registry_schema_v3() -> None:
     from scs_fkb.registry import CADENCES, load_registry
 
     registry = load_registry("configs/corpus.yaml")
-    assert len(registry) == 77
-    assert sum(1 for entry in registry.values() if entry["status"] == "acquired") == 77
+    assert len(registry) == 91
+    assert sum(1 for entry in registry.values() if entry["status"] == "acquired") == 91
     for entry in registry.values():
         assert entry["lifecycle"] in {"active", "retired"}
         assert entry["currency"]["cadence"] in CADENCES

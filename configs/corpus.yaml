@@ -2710,8 +2710,638 @@ sources:
     bytes: 1012199
     mime: application/pdf
     snapshot_path: raw/POL-OCEAN-096/fishery-remote-sensing-catalog-2020.pdf
+- id: POL-LAW-097
+  title: 中华人民共和国海上交通安全法（2021年修订）
+  title_zh: 中华人民共和国海上交通安全法（2021年修订）
+  publisher: 全国人民代表大会常务委员会
+  year: 2021
+  type: law
+  jurisdiction: national
+  format: html
+  location: raw/POL-LAW-097/maritime-traffic-safety-law.html
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P1
+  volume: 1 HTML page
+  update_freq: static
+  hash: d8c84d676f1caa0af61db97e803cd83039b3ef02c6c803aceccbaa13d75233c4
+  acquisition: Captured 2026-11-07 from https://www.sh.msa.gov.cn/hsfg/content.jspx?cid=bc74b6becf1848cd9688fe144a96576f (主席令第七十九号)
+  notes: 'Full text of the 2021 revision, captured from the Shanghai MSA official republication (海事法规 column). A provincial reprint of a national law; the text is the adopted statute. Provisions on navigation, berthing, safe operation and search and rescue.'
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: main
+    parseable: true
+    note: Registered for the acceptance corpus gap.
+  lifecycle: active
+  source_class: normative
+  currency:
+    as_of: '2026-11-07'
+    basis: publication
+    review_due: '2027-01-05'
+    cadence: monthly
+    note: Captured for the 2026-11 corpus batch.
+  watch_note: Static published text; rechecked at the quarterly review.
+  effective:
+    from: '2021-09-01'
+  provenance:
+    url: https://www.sh.msa.gov.cn/hsfg/content.jspx?cid=bc74b6becf1848cd9688fe144a96576f
+    document_no: 主席令第七十九号
+    published_at: '2021-04-29'
+    retrieved_at: '2026-11-07'
+    sha256: d8c84d676f1caa0af61db97e803cd83039b3ef02c6c803aceccbaa13d75233c4
+    bytes: 190717
+    mime: text/html
+    snapshot_path: raw/POL-LAW-097/maritime-traffic-safety-law.html
+
+- id: POL-LAW-098
+  title: 中华人民共和国海洋环境保护法（2023年修订）
+  title_zh: 中华人民共和国海洋环境保护法（2023年修订）
+  publisher: 全国人民代表大会常务委员会
+  year: 2023
+  type: law
+  jurisdiction: national
+  format: html
+  location: raw/POL-LAW-098/marine-environment-protection-law.html
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P1
+  volume: 1 HTML page
+  update_freq: static
+  hash: 858709faca5c7e6671ddd8d85b7cbbe9d518d44a923cf70ac2ec0fe714feb9b3
+  acquisition: Captured 2026-11-07 from https://www.gov.cn/yaowen/liebiao/202310/content_6911482.htm (主席令第十二号)
+  notes: 'Full text published by the State Council website after the 2023 revision. Marine dumping, vessel pollution, ecological damage compensation and penalties.'
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: main
+    parseable: true
+    note: Registered for the acceptance corpus gap.
+  lifecycle: active
+  source_class: normative
+  currency:
+    as_of: '2026-11-07'
+    basis: publication
+    review_due: '2027-01-05'
+    cadence: monthly
+    note: Captured for the 2026-11 corpus batch.
+  watch_note: Static published text; rechecked at the quarterly review.
+  effective:
+    from: '2024-01-01'
+  provenance:
+    url: https://www.gov.cn/yaowen/liebiao/202310/content_6911482.htm
+    document_no: 主席令第十二号
+    published_at: '2023-10-24'
+    retrieved_at: '2026-11-07'
+    sha256: 858709faca5c7e6671ddd8d85b7cbbe9d518d44a923cf70ac2ec0fe714feb9b3
+    bytes: 93052
+    mime: text/html
+    snapshot_path: raw/POL-LAW-098/marine-environment-protection-law.html
+
+- id: POL-LAW-099
+  title: 中华人民共和国野生动物保护法（2022年修订）
+  title_zh: 中华人民共和国野生动物保护法（2022年修订）
+  publisher: 全国人民代表大会常务委员会
+  year: 2022
+  type: law
+  jurisdiction: national
+  format: html
+  location: raw/POL-LAW-099/wildlife-protection-law.html
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P1
+  volume: 1 HTML page
+  update_freq: static
+  hash: 6ba33fb54e0425dbd9246477bbb00a1785508e76124113160eebb6b51a8d4c89
+  acquisition: Captured 2026-11-07 from http://policy.mofcom.gov.cn/claw/clawContent.shtml?id=97042 (主席令第一二六号)
+  notes: 'Full text from the MOFCOM law database. Captured over plain HTTP because the host rejects the local TLS handshake; transport recorded here because provenance keys are strict. Protected-species handling, rescue and penalties.'
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: main
+    parseable: true
+    note: Registered for the acceptance corpus gap.
+  lifecycle: active
+  source_class: normative
+  currency:
+    as_of: '2026-11-07'
+    basis: publication
+    review_due: '2027-01-05'
+    cadence: monthly
+    note: Captured for the 2026-11 corpus batch.
+  watch_note: Static published text; rechecked at the quarterly review.
+  effective:
+    from: '2023-05-01'
+  provenance:
+    url: http://policy.mofcom.gov.cn/claw/clawContent.shtml?id=97042
+    document_no: 主席令第一二六号
+    published_at: '2022-12-30'
+    retrieved_at: '2026-11-07'
+    sha256: 6ba33fb54e0425dbd9246477bbb00a1785508e76124113160eebb6b51a8d4c89
+    bytes: 54328
+    mime: text/html
+    snapshot_path: raw/POL-LAW-099/wildlife-protection-law.html
+
+- id: POL-LAW-100
+  title: 中华人民共和国行政处罚法（2021年修订）
+  title_zh: 中华人民共和国行政处罚法（2021年修订）
+  publisher: 全国人民代表大会常务委员会
+  year: 2021
+  type: law
+  jurisdiction: national
+  format: html
+  location: raw/POL-LAW-100/administrative-penalty-law.html
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P1
+  volume: 1 HTML page
+  update_freq: static
+  hash: 94d45614834b1e6b084042cc6fc705b3dd49b483f7fc83eb513c10868085ab83
+  acquisition: Captured 2026-11-07 from https://gaj.sanya.gov.cn/gajsite/fggwxx/202101/ce6accbf2948431898b214cde7b24efe.shtml (主席令第七十号)
+  notes: 'Full text republished by the Sanya Public Security Bureau (municipal reprint of a national law): penalty types, jurisdiction, hearing, mitigation and enforcement procedure.'
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: main
+    parseable: true
+    note: Registered for the acceptance corpus gap.
+  lifecycle: active
+  source_class: normative
+  currency:
+    as_of: '2026-11-07'
+    basis: publication
+    review_due: '2027-01-05'
+    cadence: monthly
+    note: Captured for the 2026-11 corpus batch.
+  watch_note: Static published text; rechecked at the quarterly review.
+  effective:
+    from: '2021-07-15'
+  provenance:
+    url: https://gaj.sanya.gov.cn/gajsite/fggwxx/202101/ce6accbf2948431898b214cde7b24efe.shtml
+    document_no: 主席令第七十号
+    published_at: '2021-01-22'
+    retrieved_at: '2026-11-07'
+    sha256: 94d45614834b1e6b084042cc6fc705b3dd49b483f7fc83eb513c10868085ab83
+    bytes: 193310
+    mime: text/html
+    snapshot_path: raw/POL-LAW-100/administrative-penalty-law.html
+
+- id: POL-REG-101
+  title: 中华人民共和国渔业船舶登记办法（2019年修订）
+  title_zh: 中华人民共和国渔业船舶登记办法（2019年修订）
+  publisher: 农业农村部
+  year: 2019
+  type: regulation
+  jurisdiction: national
+  format: html
+  location: raw/POL-REG-101/fishing-vessel-registration-rules.html
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P1
+  volume: 1 HTML page
+  update_freq: static
+  hash: 103b1cc089e59e01e8e24f19ffed026d13a46e9858b3982b4741599872e40c4c
+  acquisition: Captured 2026-11-07 from https://www.gov.cn/zhengce/2019-04/25/content_5721374.htm (农业部令2012年第8号（2019年修订）)
+  notes: 'Ownership, nationality, mortgage and cancellation registration; vessel-name numbering. The captured page is the 2019 revision notice text.'
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: main
+    parseable: true
+    note: Registered for the acceptance corpus gap.
+  lifecycle: active
+  source_class: normative
+  currency:
+    as_of: '2026-11-07'
+    basis: publication
+    review_due: '2027-01-05'
+    cadence: monthly
+    note: Captured for the 2026-11 corpus batch.
+  watch_note: Static published text; rechecked at the quarterly review.
+  effective:
+    from: '2013-01-01'
+  provenance:
+    url: https://www.gov.cn/zhengce/2019-04/25/content_5721374.htm
+    document_no: 农业部令2012年第8号（2019年修订）
+    published_at: '2019-04-25'
+    retrieved_at: '2026-11-07'
+    sha256: 103b1cc089e59e01e8e24f19ffed026d13a46e9858b3982b4741599872e40c4c
+    bytes: 78991
+    mime: text/html
+    snapshot_path: raw/POL-REG-101/fishing-vessel-registration-rules.html
+
+- id: POL-GEAR-102
+  title: 关于禁止使用双船单片多囊拖网等十三种渔具的通告
+  title_zh: 关于禁止使用双船单片多囊拖网等十三种渔具的通告
+  publisher: 原农业部
+  year: 2013
+  type: notice
+  jurisdiction: national
+  format: html
+  location: raw/POL-GEAR-102/banned-gear-notice-2013-2.html
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P2
+  volume: 1 HTML page
+  update_freq: static
+  hash: 1648b0f18141a27767ded22d7002fd7a3f533b19e1b9a4f7b408500f6d661da4
+  acquisition: Captured 2026-11-07 from https://hyyyj.fujian.gov.cn/xxgk/fgwj/201607/t20160721_1878279.htm (农业部通告〔2013〕2号)
+  notes: 'Banned-gear list and the 2014-01-01 effective date; official Fujian fisheries bureau publication of the MOA notice, including the annex table.'
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: main
+    parseable: true
+    note: Registered for the acceptance corpus gap.
+  lifecycle: active
+  source_class: normative
+  currency:
+    as_of: '2026-11-07'
+    basis: publication
+    review_due: '2027-01-05'
+    cadence: monthly
+    note: Captured for the 2026-11 corpus batch.
+  watch_note: Static published text; rechecked at the quarterly review.
+  effective:
+    from: '2014-01-01'
+  provenance:
+    url: https://hyyyj.fujian.gov.cn/xxgk/fgwj/201607/t20160721_1878279.htm
+    document_no: 农业部通告〔2013〕2号
+    published_at: '2013-11-29'
+    retrieved_at: '2026-11-07'
+    sha256: 1648b0f18141a27767ded22d7002fd7a3f533b19e1b9a4f7b408500f6d661da4
+    bytes: 94216
+    mime: text/html
+    snapshot_path: raw/POL-GEAR-102/banned-gear-notice-2013-2.html
+
+- id: POL-PEN-103
+  title: 最高人民检察院 公安部关于公安机关管辖的刑事案件立案追诉标准的规定（一）
+  title_zh: 最高人民检察院 公安部关于公安机关管辖的刑事案件立案追诉标准的规定（一）
+  publisher: 最高人民检察院、公安部
+  year: 2008
+  type: notice
+  jurisdiction: national
+  format: html
+  location: raw/POL-PEN-103/criminal-filing-standard-2008.html
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P2
+  volume: 1 HTML page
+  update_freq: static
+  hash: 3a202a40a3a98049b17aba9fbc9b8929d6e96f9d605d91875727415b44dc80ad
+  acquisition: Captured 2026-11-07 from http://www.heyutian.jcy.gov.cn/jwgk/jwzn/201806/t20180622_2242340.shtml (公通字〔2008〕36号)
+  notes: 'Full text republished by a district procuratorate over plain HTTP (transport recorded here). Article 63 sets the illegal-fishing filing thresholds; 2022 judicial interpretations interact with the value thresholds.'
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: main
+    parseable: true
+    note: Registered for the acceptance corpus gap.
+  lifecycle: active
+  source_class: normative
+  currency:
+    as_of: '2026-11-07'
+    basis: publication
+    review_due: '2027-01-05'
+    cadence: monthly
+    note: Captured for the 2026-11 corpus batch.
+  watch_note: Static published text; rechecked at the quarterly review.
+  effective:
+    from: '2008-06-25'
+  provenance:
+    url: http://www.heyutian.jcy.gov.cn/jwgk/jwzn/201806/t20180622_2242340.shtml
+    document_no: 公通字〔2008〕36号
+    published_at: '2008-06-25'
+    retrieved_at: '2026-11-07'
+    sha256: 3a202a40a3a98049b17aba9fbc9b8929d6e96f9d605d91875727415b44dc80ad
+    bytes: 238045
+    mime: text/html
+    snapshot_path: raw/POL-PEN-103/criminal-filing-standard-2008.html
+
+- id: STD-WQ-104
+  title: 海水水质标准（GB 3097-1997）
+  title_zh: 海水水质标准（GB 3097-1997）
+  publisher: 国家环境保护局（现生态环境部）
+  year: 1997
+  type: standard
+  jurisdiction: national
+  format: pdf
+  location: raw/STD-WQ-104/gb3097-1997-seawater-quality.pdf
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P1
+  volume: 1 PDF
+  update_freq: static
+  hash: ce9f0ad5cddb56fd3844f4b3d12a7ed9f0e37ff300c365fbe40c66e64f76b06f
+  acquisition: Captured 2026-11-07 from https://scsio.cas.cn/gczx/xzzx_197139/xgxyjszlk/hp/202309/P020230921577460708530.pdf (GB 3097-1997)
+  notes: 'Water-quality classes and limits (dissolved oxygen, COD, inorganic nitrogen); fishery waters use class two. Official institute-hosted standard text.'
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: main
+    parseable: true
+    note: Registered for the acceptance corpus gap.
+  lifecycle: active
+  source_class: standard
+  currency:
+    as_of: '2026-11-07'
+    basis: publication
+    review_due: '2027-02-05'
+    cadence: quarterly
+    note: Captured for the 2026-11 corpus batch.
+  watch_note: Static published text; rechecked at the quarterly review.
+  effective:
+    from: '1998-07-01'
+  provenance:
+    url: https://scsio.cas.cn/gczx/xzzx_197139/xgxyjszlk/hp/202309/P020230921577460708530.pdf
+    document_no: GB 3097-1997
+    published_at: '1997-12-03'
+    retrieved_at: '2026-11-07'
+    sha256: ce9f0ad5cddb56fd3844f4b3d12a7ed9f0e37ff300c365fbe40c66e64f76b06f
+    bytes: 600065
+    mime: application/pdf
+    snapshot_path: raw/STD-WQ-104/gb3097-1997-seawater-quality.pdf
+
+- id: PAPER-105
+  title: 南海区拖网渔业发展趋势及其对渔业资源的影响
+  title_zh: 南海区拖网渔业发展趋势及其对渔业资源的影响
+  publisher: 中国水产科学研究院南海水产研究所
+  year: 2023
+  type: fishery_product
+  jurisdiction: national
+  format: pdf
+  location: raw/PAPER-105/trawl-trends-paper-2023.pdf
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P2
+  volume: 1 PDF
+  update_freq: static
+  hash: 59e2974a1756af3ee3d7d7fdd7aace7d0cad3b20a7067c46f859e86703b89764
+  acquisition: Captured 2026-11-07 from https://www.schinafish.cn/cn/article/pdf/preview/10.12131/20230027.pdf (10.12131/20230027)
+  notes: 'Peer-reviewed paper: trawl fleet trends and juvenile-ratio benchmarks (20% threshold from 2020); not a normative document.'
+  level: national
+  authority_tier: B
+  retrieval:
+    channel: main
+    parseable: true
+    note: Registered for the acceptance corpus gap.
+  lifecycle: active
+  source_class: reference
+  currency:
+    as_of: '2026-11-07'
+    basis: publication
+    review_due: '2027-06-05'
+    cadence: semiannual
+    note: Captured for the 2026-11 corpus batch.
+  watch_note: Static published text; rechecked at the quarterly review.
+  effective:
+    from: '2023-12-31'
+  provenance:
+    url: https://www.schinafish.cn/cn/article/pdf/preview/10.12131/20230027.pdf
+    document_no: 10.12131/20230027
+    published_at: '2023-12-31'
+    retrieved_at: '2026-11-07'
+    sha256: 59e2974a1756af3ee3d7d7fdd7aace7d0cad3b20a7067c46f859e86703b89764
+    bytes: 1775243
+    mime: application/pdf
+    snapshot_path: raw/PAPER-105/trawl-trends-paper-2023.pdf
+
+- id: PAPER-106
+  title: 基于空间多尺度栖息地模型的南海北部鸢乌贼栖息地适宜性对海表温度变化的响应
+  title_zh: 基于空间多尺度栖息地模型的南海北部鸢乌贼栖息地适宜性对海表温度变化的响应
+  publisher: Biology (MDPI)
+  year: 2025
+  type: fishery_product
+  jurisdiction: international
+  format: html
+  location: raw/PAPER-106/hsi-nansha-squid-2025.html
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P2
+  volume: 1 HTML page
+  update_freq: static
+  hash: 86f02a3fe32061087fa0a983efbf1ba36e4bd7f1c397444c26238b86078e18a9
+  acquisition: Captured 2026-11-07 from https://pmc.ncbi.nlm.nih.gov/articles/PMC12190060/ (10.3390/biology14060684)
+  notes: 'Peer-reviewed paper: HSI model for purpleback flying squid in the Nansha offshore area; 0.5-degree and seasonal resolution gives the highest accuracy (84%). Captured from PubMed Central because the publisher blocks the local client.'
+  level: international
+  authority_tier: B
+  retrieval:
+    channel: main
+    parseable: true
+    note: Registered for the acceptance corpus gap.
+  lifecycle: active
+  source_class: reference
+  currency:
+    as_of: '2026-11-07'
+    basis: publication
+    review_due: '2027-06-05'
+    cadence: semiannual
+    note: Captured for the 2026-11 corpus batch.
+  watch_note: Static published text; rechecked at the quarterly review.
+  effective:
+    from: '2025-06-12'
+  provenance:
+    url: https://pmc.ncbi.nlm.nih.gov/articles/PMC12190060/
+    document_no: 10.3390/biology14060684
+    published_at: '2025-06-12'
+    retrieved_at: '2026-11-07'
+    sha256: 86f02a3fe32061087fa0a983efbf1ba36e4bd7f1c397444c26238b86078e18a9
+    bytes: 222144
+    mime: text/html
+    snapshot_path: raw/PAPER-106/hsi-nansha-squid-2025.html
+
+- id: PAPER-107
+  title: ENSO对南海北部经济鱼类丰度的种类特异性影响
+  title_zh: ENSO对南海北部经济鱼类丰度的种类特异性影响
+  publisher: PICES 2025 会议报告
+  year: 2025
+  type: fishery_product
+  jurisdiction: international
+  format: pdf
+  location: raw/PAPER-107/enso-fish-abundance-pices-2025.pdf
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P2
+  volume: 1 PDF
+  update_freq: static
+  hash: 5a61fadcf53a30f6f2b3d781edfbe9b40bf289a4937ae37018caabee21f62b92
+  acquisition: Captured 2026-11-07 from https://meetings.pices.int/publications/Presentations/PICES-2025/S02-D1-1020-Po-Yuan-Hsiao.pdf (PICES-2025-S02-D1-1020)
+  notes: 'Conference presentation: species-specific ENSO responses; warming and cooling effects differ by species and cannot be generalised.'
+  level: international
+  authority_tier: B
+  retrieval:
+    channel: main
+    parseable: true
+    note: Registered for the acceptance corpus gap.
+  lifecycle: active
+  source_class: reference
+  currency:
+    as_of: '2026-11-07'
+    basis: publication
+    review_due: '2027-06-05'
+    cadence: semiannual
+    note: Captured for the 2026-11 corpus batch.
+  watch_note: Static published text; rechecked at the quarterly review.
+  effective:
+    from: '2025-10-20'
+  provenance:
+    url: https://meetings.pices.int/publications/Presentations/PICES-2025/S02-D1-1020-Po-Yuan-Hsiao.pdf
+    document_no: PICES-2025-S02-D1-1020
+    published_at: '2025-10-20'
+    retrieved_at: '2026-11-07'
+    sha256: 5a61fadcf53a30f6f2b3d781edfbe9b40bf289a4937ae37018caabee21f62b92
+    bytes: 3746503
+    mime: application/pdf
+    snapshot_path: raw/PAPER-107/enso-fish-abundance-pices-2025.pdf
+
+- id: POL-HN-108
+  title: 海南省三沙海域2026年度鸢乌贼专项捕捞管理实施方案
+  title_zh: 海南省三沙海域2026年度鸢乌贼专项捕捞管理实施方案
+  publisher: 海南省农业农村厅
+  year: 2026
+  type: plan
+  jurisdiction: hainan
+  format: html
+  location: raw/POL-HN-108/sansha-squid-permit-plan-2026.html
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P2
+  volume: 1 HTML page
+  update_freq: static
+  hash: 35479e258f62be964d4e6eb3a5fc4f2022c7b78a8d8980969af55938aa7c37ae
+  acquisition: Captured 2026-11-07 from https://agri.hainan.gov.cn/hnsnyt/xxgk/tzgg/gggs/202605/t20260521_4079162.html (琼农字〔2026〕119号)
+  notes: 'Registered as an out-of-scope boundary reference only: the plan governs the Sansha area beyond the nearshore scope and is not added to the main index, so out-of-scope questions keep abstaining.'
+  level: provincial
+  authority_tier: A
+  retrieval:
+    channel: main
+    parseable: true
+    note: Registered for the acceptance corpus gap.
+  lifecycle: active
+  source_class: normative
+  currency:
+    as_of: '2026-11-07'
+    basis: publication
+    review_due: '2027-01-05'
+    cadence: monthly
+    note: Captured for the 2026-11 corpus batch.
+  watch_note: Static published text; rechecked at the quarterly review.
+  effective:
+    from: '2026-05-01'
+  provenance:
+    url: https://agri.hainan.gov.cn/hnsnyt/xxgk/tzgg/gggs/202605/t20260521_4079162.html
+    document_no: 琼农字〔2026〕119号
+    published_at: '2026-04-01'
+    retrieved_at: '2026-11-07'
+    sha256: 35479e258f62be964d4e6eb3a5fc4f2022c7b78a8d8980969af55938aa7c37ae
+    bytes: 24623
+    mime: text/html
+    snapshot_path: raw/POL-HN-108/sansha-squid-permit-plan-2026.html
+
+- id: POL-QZ-109
+  title: 钦州市海洋局关于实施2026年海洋伏季休渔制度的通告
+  title_zh: 钦州市海洋局关于实施2026年海洋伏季休渔制度的通告
+  publisher: 钦州市海洋局
+  year: 2026
+  type: notice
+  jurisdiction: guangxi
+  format: html
+  location: raw/POL-QZ-109/qinzhou-closure-notice-2026.html
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P2
+  volume: 1 HTML page
+  update_freq: static
+  hash: ed43f7a7be3e644900d3308903ddea5b3fe953f35ebf6de57b9ff22db050a17a
+  acquisition: Captured 2026-11-07 from http://hyj.qinzhou.gov.cn/tzgg/t27514314.shtml (钦州市海洋局通告（2026-04-29）)
+  notes: 'Municipal closure notice over plain HTTP: no cross-city berthing, no supplies to closure vessels, gear-fishing filing, departure ban after typhoon shelter. Tier C by the register rule for municipal documents.'
+  level: municipal
+  authority_tier: C
+  retrieval:
+    channel: main
+    parseable: true
+    note: Registered for the acceptance corpus gap.
+  lifecycle: active
+  source_class: normative
+  currency:
+    as_of: '2026-11-07'
+    basis: publication
+    review_due: '2027-01-05'
+    cadence: monthly
+    note: Captured for the 2026-11 corpus batch.
+  watch_note: Static published text; rechecked at the quarterly review.
+  effective:
+    from: '2026-05-01'
+  provenance:
+    url: http://hyj.qinzhou.gov.cn/tzgg/t27514314.shtml
+    document_no: 钦州市海洋局通告（2026-04-29）
+    published_at: '2026-04-29'
+    retrieved_at: '2026-11-07'
+    sha256: ed43f7a7be3e644900d3308903ddea5b3fe953f35ebf6de57b9ff22db050a17a
+    bytes: 22884
+    mime: text/html
+    snapshot_path: raw/POL-QZ-109/qinzhou-closure-notice-2026.html
+
+- id: POL-GD-110
+  title: 广东省重点保护水生野生动物名录
+  title_zh: 广东省重点保护水生野生动物名录
+  publisher: 广东省农业农村厅
+  year: 2022
+  type: notice
+  jurisdiction: guangdong
+  format: html
+  location: raw/POL-GD-110/guangdong-protected-species-list-2022.html
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P2
+  volume: 1 HTML page
+  update_freq: static
+  hash: 00491851d796ac5abe380d1399f4b6a941bf1a740d4ec0ea05adf75436822ba4
+  acquisition: Captured 2026-11-07 from https://dara.gd.gov.cn/zwgk/tzgg/content/post_3941122.html (粤农农〔2022〕141号)
+  notes: 'Provincial protected-species list (9 species after the 2022 adjustment); applies alongside the 2021 national list.'
+  level: provincial
+  authority_tier: A
+  retrieval:
+    channel: none
+    parseable: false
+    note: The published page carries navigation only; the species table is not in the captured HTML, so the source is registered but not indexed.
+  lifecycle: active
+  source_class: normative
+  currency:
+    as_of: '2026-11-07'
+    basis: publication
+    review_due: '2027-01-05'
+    cadence: monthly
+    note: Captured for the 2026-11 corpus batch; extraction failed.
+  watch_note: Static published text; rechecked at the quarterly review.
+  effective:
+    from: '2022-05-27'
+  provenance:
+    url: https://dara.gd.gov.cn/zwgk/tzgg/content/post_3941122.html
+    document_no: 粤农农〔2022〕141号
+    published_at: '2022-05-27'
+    retrieved_at: '2026-11-07'
+    sha256: 00491851d796ac5abe380d1399f4b6a941bf1a740d4ec0ea05adf75436822ba4
+    bytes: 33062
+    mime: text/html
+    snapshot_path: raw/POL-GD-110/guangdong-protected-species-list-2022.html
+
 gaps:
-- Seventy-seven sources are registered: seventy-seven acquired and no open candidates awaiting disposition.
+- Ninety-one sources are registered: ninety acquired and no open candidates awaiting disposition.
 - The yearbook coverage matrix has no values in the public repository; all values stay local.
 - The yearbook infrastructure table is missing for data years 2018 and 2019; the 2018 national port plan supplies a baseline whose port classes are close to, but not identical with, the yearbook table.
 - The vessel-length proxy is missing for data year 2024.
