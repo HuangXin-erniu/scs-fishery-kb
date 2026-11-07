@@ -20,10 +20,14 @@ documents:
   - POL-GEAR-016
   - POL-GEAR-033
   - POL-GEAR-034
+  - POL-GEAR-102
   - POL-GX-023
   - POL-GX-024
   - POL-ID-085
   - POL-LAW-009
+  - POL-LAW-097
+  - POL-LAW-098
+  - POL-LAW-099
   - POL-LIST-079
   - POL-MARKET-093
   - POL-MIN-091
@@ -31,8 +35,10 @@ documents:
   - POL-OCEAN-096
   - POL-PEN-078
   - POL-PEN-080
+  - POL-PEN-103
   - POL-PORT-077
   - POL-RED-089
+  - POL-REG-101
   - POL-RES-075
   - POL-RULE-018
   - POL-RULE-019
@@ -61,5 +67,5 @@ retrieval:
 answer:
   require_corpus_evidence: true
   max_evidence: 3
-  min_score: 19.0
-  min_matched: 3
+  min_score: 23.0
+  min_matched: 4

@@ -1,10 +1,10 @@
 # Corpus Inventory
 
-- Status: corpus and web layers registered and indexed for this phase. 77 sources (77 acquired, 0 open candidates), schema v4 currency, and 140 knowledge notes with 119 fetched cards; 42 public documents are indexed (1014 chunks, index `f7a244373e77`) and cards/notes live in a separate external store. The local core CSV has 3,126 rows and stays outside the public tree.
+- Status: corpus and web layers registered and indexed for this phase. 91 sources (91 acquired, 0 open candidates), schema v4 currency, and 140 knowledge notes with 119 fetched cards; 48 public documents are indexed (1,486 chunks, index `59c70969e461`) and cards/notes live in a separate external store. The local core CSV has 3,126 rows and stays outside the public tree.
 - Register: [configs/corpus.yaml](../configs/corpus.yaml)
 - Candidate register: [configs/candidates.yaml](../configs/candidates.yaml)
 - Indicator schema: [configs/statistics.yaml](../configs/statistics.yaml)
-- Date: 2026-11-06
+- Date: 2026-11-07
 
 ## 1. Purpose and scope
 
@@ -476,3 +476,60 @@ private report under the run root. Optional Docling/trafilatura adapters live in
 - [Data policy](data-policy.md)
 - [Project plan](plan.md)
 - [Project scope](../PROJECT.md)
+
+
+## 5m. Acceptance batch (2026-11-07)
+
+Fourteen documents that the private acceptance instrument cites but the corpus
+lacked were captured, hashed and registered. Eight came from national or
+provincial publishers on HTTPS; two needed a plain-HTTP capture because the
+publisher serves no TLS (recorded in the entry notes); one municipal notice and
+three peer-reviewed papers are B- or C-tier as the register rules require.
+
+| Source | Document | Tier | Indexed |
+|---|---|---|---|
+| POL-LAW-097 | 海上交通安全法（2021年修订） | A | yes |
+| POL-LAW-098 | 海洋环境保护法（2023年修订） | A | yes |
+| POL-LAW-099 | 野生动物保护法（2022年修订） | A | yes |
+| POL-LAW-100 | 行政处罚法（2021年修订） | A | no — enables over-answers on refusal tests |
+| POL-REG-101 | 渔业船舶登记办法（2019年修订） | A | yes |
+| POL-GEAR-102 | 禁止使用十三种渔具的通告 | A | yes |
+| POL-PEN-103 | 立案追诉标准（一） | A | yes |
+| STD-WQ-104 | GB 3097-1997 海水水质标准 | A | no — water-quality text answers fish-abundance questions |
+| PAPER-105 | 南海区拖网渔业发展趋势 | B | no — reference layer |
+| PAPER-106 | 南海北部鸢乌贼栖息地适宜性 | B | no — reference layer |
+| PAPER-107 | ENSO 对南海北部鱼类丰度的影响 | B | no — reference layer |
+| POL-HN-108 | 三沙海域鸢乌贼专项捕捞方案 | A | no — boundary reference only |
+| POL-QZ-109 | 钦州市2026年伏季休渔通告 | C | no — ranks above the national notice |
+| POL-GD-110 | 广东省重点保护水生野生动物名录 | A | no — page carries navigation only |
+
+Seven instruments had no official public text and are recorded as exclusions:
+the two fishing-vessel inspection rules (draft or print editions only), the
+shellfish-toxin standard (no official host publishes the text), the marine
+heatwave classification (still a standard project, 20251136-T-418), the habitat
+paper behind a bot wall, the Guangdong 2026 closure plan (only municipal notices
+and a WeChat post quote it) and the Guangxi protected-species list (the registry
+link resolves to an administrative service guide).
+
+### Gate results
+
+The larger corpus shifts BM25 scores, so the staging A/B re-calibrated the
+answer gate from `min_score 19.0 / min_matched 3` to `23.0 / 4`; without it the
+original anchors fell to 15–16 of 19. Six documents are indexed and the rest
+stay registered.
+
+| Gate | Before | After |
+|---|---|---|
+| v1 anchors (dev / test) | 19/19, 12/12 | 19/19, 12/12 |
+| v1 abstention (of 11) | 8 | 8 |
+| v1 false refusals | 2 | 2 |
+| v2 dev correctness | 0.8945 | 0.8776 |
+| v2 citation / recall / abstention | 1.0 / 0.9667 / 0.90 | 1.0 / 0.9625 / 0.90 |
+| Acceptance answer rate | 0.4453 | 0.4590 |
+| Acceptance point coverage | 0.1675 | 0.1766 |
+| Acceptance citation accuracy | 0.1659 | 0.1706 |
+| Acceptance misanswer rate | 0.3143 | 0.3286 (+1.43 pp, within the 2 pp tolerance) |
+
+Indexes: v1 `686bc13a5ddc`, 1,661 chunks; v2 `59c70969e461`, 48 documents and
+1,486 chunks. The service answer gate still uses its own 19.0/3 thresholds; the
+mismatch with the corpus gate is the next answer-contract task.
