@@ -55,9 +55,7 @@ def test_allow_http_only_for_gov_cn() -> None:
 def test_sha256_and_snapshot_path() -> None:
     module = load_module()
     assert module.sha256_bytes(b"abc").startswith("ba7816bf")
-    assert module.snapshot_path("POL-LAW-097", "law", ".html") == (
-        "raw/POL-LAW-097/law.html"
-    )
+    assert module.snapshot_path("POL-LAW-097", "law", ".html") == ("raw/POL-LAW-097/law.html")
 
 
 def test_provenance_block_records_transport(tmp_path: Path) -> None:
@@ -92,9 +90,7 @@ def test_capture_refuses_to_overwrite_different_bytes(tmp_path: Path, monkeypatc
     with pytest.raises(module.CaptureError):
         module.capture("https://www.gov.cn/a", "POL-X-001", tmp_path, slug="file")
 
-    capture = module.capture(
-        "https://www.gov.cn/a", "POL-X-001", tmp_path, slug="file", force=True
-    )
+    capture = module.capture("https://www.gov.cn/a", "POL-X-001", tmp_path, slug="file", force=True)
     assert capture.unchanged is False
     assert target.read_bytes() == b"new"
 
