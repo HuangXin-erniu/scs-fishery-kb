@@ -20,6 +20,7 @@ CSV_FIELDS = (
     "latency_ms",
     "citation_docs",
     "citation_sections",
+    "citation_location_source",
     "citation_hit",
     "citation_accuracy",
     "point_coverage",
@@ -174,6 +175,7 @@ def write_report(
         f"{overall.get('rows_with_unjudgeable_points')} rows carry review-needed points)",
         f"- Citation rows: {overall.get('citation_rows')}; citation coverage: "
         f"{overall.get('citation_coverage')}",
+        f"- Location match sources: {overall.get('location_sources')}",
         f"- Refusal rows: {overall.get('refusal_rows')}; as-of rows: {overall.get('asof_rows')}; "
         f"basis rows: {overall.get('basis_rows')}",
         f"- Band mean: {overall.get('band_mean')} over {overall.get('band_rows')} rows",

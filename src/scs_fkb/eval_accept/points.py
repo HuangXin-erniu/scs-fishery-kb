@@ -54,12 +54,130 @@ def normalize(text: str) -> str:
     return "".join(folded.split())
 
 
+# Typed rules score an element by the kind of statement it requires (a date
+# range, an approval level, a penalty, a ratio) when the point names no literal
+# anchor. Each rule still runs only on cited text.
+POINT_RULES: tuple[tuple[str, tuple[str, ...], str], ...] = (
+    (
+        "time",
+        ("时间", "日期", "期限", "起止", "时效", "多久", "何时"),
+        r"\d{1,2}月\d{1,2}日|\d{4}年\d{1,2}月|连续\s*\d+\s*天|\d+\s*个月|\d+\s*年",
+    ),
+    (
+        "level",
+        ("层级", "审批", "受理", "批准", "备案", "核发", "主管"),
+        r"(国家|部|省|市|县|乡镇|海警|海事|渔政).{0,12}"
+        r"(审批|受理|批准|备案|核发|主管)|"
+        r"(审批|受理|批准|备案|核发).{0,12}(国家|部|省|市|县|乡镇|海警|海事|渔政)",
+    ),
+    ("materials", ("材料", "资料", "证件", "证明", "提交"), r"申请|提交|材料|资料|证件|证书|证明"),
+    (
+        "penalty",
+        ("罚则", "处罚", "罚款", "刑罚", "立案", "追诉", "罪名"),
+        r"罚款|没收|吊销|责令|处罚|拘留|有期徒刑|立案|追诉",
+    ),
+    ("ratio", ("比例", "占比", "百分比", "幼鱼"), r"\d+(?:\.\d+)?\s*%|比例|占比|百分比"),
+    ("list", ("名录", "名单", "种类", "品种", "附件"), r"名录|名单|种类|品种|附件"),
+    (
+        "channel",
+        ("渠道", "引导", "办理", "咨询"),
+        r"咨询|办理|申请|报备|备案|主管部门|渔政|海事|海警",
+    ),
+    ("record", ("日志", "记录", "台账", "填报"), r"记录|填写|日志|台账|保存"),
+    ("inspection", ("检验", "检查", "年检", "换证"), r"检验|检查|年检|换证"),
+    (
+        "certificate",
+        ("持证", "证书", "证件", "证照"),
+        r"证书|持证|许可证|证件|证照",
+    ),
+    (
+        "condition",
+        ("条件", "前提", "资格"),
+        r"条件|前提|资格|具备|满足|不符合",
+    ),
+    (
+        "scope",
+        ("范围", "海域", "海区", "适用"),
+        r"海域|海区|范围|适用|区域|海区",
+    ),
+    (
+        "relief",
+        ("救济", "复议", "诉讼", "投诉", "申诉"),
+        r"复议|诉讼|投诉|申诉|救济",
+    ),
+    (
+        "category",
+        ("类型", "类别", "分类", "种类"),
+        r"分类|类型|类别|种类|类",
+    ),
+    (
+        "measure",
+        ("计量", "单位", "口径", "鲜重", "按重量", "按尾数"),
+        r"单位|口径|计量|鲜重|重量|尾数",
+    ),
+    (
+        "compare",
+        ("区别", "区分", "对比", "不同"),
+        r"区别|不同|区分|相比|分别",
+    ),
+    (
+        "forecast",
+        ("预报", "预测", "产品说明"),
+        r"预报|预测|说明|不提供|无法",
+    ),
+    (
+        "responsibility",
+        ("责任", "职责", "主体", "负责"),
+        r"责任|职责|负责|主体|主管",
+    ),
+    (
+        "frequency",
+        ("频次", "更新", "时效", "周期", "多久一次"),
+        r"每日|每周|每月|每季度|每年|频次|周期|更新|实时",
+    ),
+    (
+        "definition",
+        ("定义", "含义", "概念", "是指"),
+        r"是指|定义|含义|概念|即",
+    ),
+    (
+        "sampling",
+        ("取样", "抽样", "样本", "称重"),
+        r"取样|抽样|样本|称重|随机",
+    ),
+    (
+        "identification",
+        ("识别", "认定", "判定", "辨认"),
+        r"识别|认定|判定|辨认|核对",
+    ),
+    (
+        "method",
+        ("办法", "方法", "程序", "流程", "步骤", "方式"),
+        r"办法|方法|程序|流程|步骤|方式|按照",
+    ),
+)
+
+
+def rule_for(point_text: str) -> str:
+    """Return the typed rule that matches a point's element, if any."""
+    text = normalize(point_text)
+    for name, cues, _pattern in POINT_RULES:
+        if any(cue in text for cue in cues):
+            return name
+    return ""
+
+
+def rule_pattern(name: str) -> str:
+    return next((pattern for rule, _cues, pattern in POINT_RULES if rule == name), "")
+
+
 @dataclass(frozen=True)
 class PointSpec:
     terms: tuple[str, ...]
     mode: str = "section"
     skip: bool = False
     note: str = ""
+    rule: str = ""
 
 
 @dataclass
@@ -170,6 +288,9 @@ def derive_terms(
     if found:
         mode = "section" if len(found) <= 2 else "document"
         return PointSpec(terms=tuple(found), mode=mode)
+    rule = rule_for(text)
+    if rule:
+        return PointSpec(terms=(), mode="section", note=f"typed rule: {rule}", rule=rule)
     return PointSpec(terms=(), mode="section", note="no anchor derived")
 
 

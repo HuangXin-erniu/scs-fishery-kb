@@ -906,3 +906,11 @@ This log records material project changes by date. It does not use release versi
 - Responses now carry `answerability`, `conclusion`, `conditions`, `gap`, `channel`, `as_of` and `numbers`; `SCS_FKB_ANSWER_CONTRACT=v1` restores the old text for reproduction.
 - Acceptance (512, extractive): misanswer 0.3286 → 0.2571, refusal-with-channel 0.0286 → 0.5857, as-of declaration 0.0877 → 0.3509; point coverage 0.1766 → 0.1753 and citation 0.1706 → 0.1714 stay flat. v1 gate 19/19 + 12/12 + 8/11; v2 gate dev correctness 0.8776 → 0.8867, citation 1.0, recall 0.9625, abstention 0.90.
 - 10 contract unit tests plus two service tests; total 457 passed, 2 skipped. No tag or release.
+
+## 2026-11-07 — Acceptance scoring calibrated
+
+- Calibrated the acceptance scorer without touching corpus, retrieval, answers or questions: topic-token citation matching with page/table labels, 23 typed element rules for points without literal anchors, and 113 grounded point overrides checked against the cited clause or the reference answer.
+- Judgeable required points rose from 553/1,117 (49.5%) to **849/1,117 (76.0%)**; 268 points remain semantic (negations, case judgements).
+- Re-baselined 512: point coverage 0.1753 → **0.1684**, citation accuracy 0.1714 → **0.3810** (denominator grew and the newly judged points are mostly missed); misanswer 0.2571, refusal-with-channel 0.5857, as-of 0.3509 and basis 0.0263 unchanged.
+- Published the failure backlog: 171 questions still reference missing documents, 130 citation locations unmatched, 125 answered with zero coverage, 88 wrong documents, 37 missing as-of declarations, 18 refusal-test misanswers.
+- 23 scorer tests; full suite green. Private report and backlog under the run root; no tag or release.

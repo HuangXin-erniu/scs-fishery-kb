@@ -417,3 +417,33 @@ The command exits non-zero when a pass line is missed; `--allow-fail` is used
 for baselines so the report is still written. `--llm` switches to the optional
 LLM arm and falls back to the extractive arm with an explicit error when the
 endpoint is not configured.
+
+### 6. Calibrated scoring (2026-11-07)
+
+> **中文摘要**：本轮只校准判分，不改作答与语料。引用定位改为"主题词覆盖 + 页码/表号"匹配；
+> 无字面要点的要点按"要素类型"规则评分（时间、层级、材料、罚则、比例等）；113 个要点用
+> 原文/参考答案核过的短词覆盖。可判要点从 553/1,117 升到 849/1,117（76.0%）。
+> 校准后基线：要点覆盖 0.1684、引用准确 0.3810（旧规则 0.1753 / 0.1714），其余五项不变。
+
+- Location matching: the instrument location is split into topic tokens after
+  removing document numbers and generic suffixes; a citation is located when its
+  section, snippet or cited sentence covers at least half of the tokens, or when
+  a page/table label matches the citation page or snippet. LCS and required-anchor
+  fallbacks remain; unjudgeable locations stay in a separate `unmatched` bucket
+  (130 citations in the 512 run).
+- Typed rules: points that name an element without a literal anchor are scored by
+  the element type (time range, approval level, materials, penalty, ratio, list,
+  channel, record, inspection, certificate, condition, scope, relief, category,
+  measure, comparison, forecast, method, definition, sampling, identification,
+  responsibility, frequency). Rules run only on cited text.
+- Grounded overrides: 113 points received 2–4 character terms checked against the
+  cited clause or the reference answer; 2-character terms require document
+  frequency ≤ 8. The override file stays private with the dataset.
+- Point classes: 553 anchored, 183 typed-rule, 113 override, **849 judgeable
+  (76.0%)**, 268 needs review. The remaining points are negations and case
+  judgements with no deterministic anchor; coverage bounds with them are 0.109
+  (all miss) to 0.349 (all hit).
+- Calibrated baseline (same answers and corpus): point coverage **0.1684**,
+  citation accuracy **0.3810**, misanswer 0.2571, refusal-with-channel 0.5857,
+  as-of 0.3509, basis 0.0263. Downstream tasks compare against these numbers; the
+  old 0.1753 / 0.1714 pair stays as history.

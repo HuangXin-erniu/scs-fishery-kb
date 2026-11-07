@@ -11,11 +11,12 @@ from __future__ import annotations
 
 import re
 import statistics
+from collections import Counter
 from dataclasses import dataclass, field
 from typing import Any
 
 from ..coverage import point_status
-from .points import NUMBER_RE, PointOverrides, PointSpec, normalize, point_specs
+from .points import NUMBER_RE, PointOverrides, PointSpec, normalize, point_specs, rule_pattern
 
 DOCNO_RE = re.compile(r"[\u4e00-\u9fa5A-Za-z]{0,12}〔\d{4}〕\s*\d+\s*号")
 ENTITY_RE = re.compile(r"\d+(?:\.\d+)?\s*(?:万元|亿元|元|%|％|‰|天|个月|小时|公斤|千克|吨|海里|米)")
@@ -133,6 +134,44 @@ def _cited_scs(
     return found
 
 
+LOCATION_SPLIT = re.compile(r"[·、；;，,\s]+")
+DOC_NUMBER_RE = re.compile(r"〔[^〕]*〕\s*\d+\s*号")
+GENERIC_SUFFIX = re.compile(r"(规定|办法|通告|公告|通知|方案|标准|规则|细则|条例)$")
+TABLE_RE = re.compile(r"(?:表|图)\s*([0-9一二三四五六七八九十]+)")
+PAGE_RE = re.compile(r"第\s*(\d+)\s*页|p\.?\s*(\d+)")
+
+
+def _location_tokens(location: str) -> list[str]:
+    """Split a topic label into 2-4 character tokens for coverage matching."""
+    tokens: list[str] = []
+    for part in LOCATION_SPLIT.split(location):
+        cleaned = DOC_NUMBER_RE.sub("", part).strip()
+        cleaned = GENERIC_SUFFIX.sub("", cleaned).strip()
+        if not cleaned:
+            continue
+        for chunk in re.findall(r"[\u4e00-\u9fa5A-Za-z0-9]{2,}", cleaned):
+            if len(chunk) <= 4:
+                tokens.append(chunk)
+            else:
+                tokens.extend(chunk[index : index + 2] for index in range(len(chunk) - 1))
+    return list(dict.fromkeys(tokens))
+
+
+def _page_or_table_hit(location: str, citation: dict[str, Any], haystack: str) -> bool:
+    page = citation.get("page")
+    page_match = PAGE_RE.search(location)
+    if page_match:
+        wanted = page_match.group(1) or page_match.group(2)
+        if wanted and page and str(page) == wanted:
+            return True
+    table_match = TABLE_RE.search(location)
+    if table_match:
+        label = table_match.group(0).replace(" ", "")
+        if label in haystack or (page and str(page) in table_match.group(0)):
+            return True
+    return False
+
+
 def _location_ok(
     answer: str,
     citations: list[dict[str, Any]],
@@ -140,25 +179,35 @@ def _location_ok(
     docmap: Any,
     minimum: int,
     terms: list[str],
-) -> tuple[bool, list[str]]:
+) -> tuple[bool, str, list[str]]:
     locations = _requirement_locations(row)
     if not locations:
-        return True, []
+        return True, "none", []
     expected = {item for item in row.get("scs_doc_ids") or []}
     needles = [_clean(location) for location in locations]
+    groups = _cited_groups(answer, citations)
     best = 0
     for citation in citations:
         doc_id = str(citation.get("doc_id") or "")
         if not set(docmap.scs_for_doc(doc_id)) & expected:
             continue
-        section = _clean(str(citation.get("section") or ""))
-        page = citation.get("page")
+        section = str(citation.get("section") or "")
+        snippet = str(citation.get("snippet") or "")
+        group_text = " ".join(
+            text for (group_doc, _group_section), text in groups if group_doc == doc_id
+        )
+        haystack = _clean(" ".join([section, snippet, group_text]))
         for location, needle in zip(locations, needles, strict=False):
-            if page and str(page) in location:
-                return True, []
-            best = max(best, longest_common_substring(needle, section))
+            if _page_or_table_hit(location, citation, haystack):
+                return True, "page_or_table", []
+            tokens = _location_tokens(location)
+            if tokens:
+                hits = sum(1 for token in tokens if _clean(token) in haystack)
+                if hits >= 2 and hits / len(tokens) >= 0.5:
+                    return True, "tokens", []
+            best = max(best, longest_common_substring(needle, _clean(section)))
     if best >= minimum:
-        return True, []
+        return True, "lcs", []
     # The instrument states locations as topic labels ("许可证有效期"), which a
     # clause-numbered section title rarely repeats. A cited clause that carries
     # one of the question's own required anchors still counts as located.
@@ -169,8 +218,8 @@ def _location_ok(
                 continue
             haystack = normalize(text)
             if any(term in haystack for term in expected_terms):
-                return True, []
-    return False, [f"location_unmatched:{locations[0]}"]
+                return True, "anchor", []
+    return False, "unmatched", [f"location_unmatched:{locations[0]}"]
 
 
 def _entity_claim(answer: str) -> bool:
@@ -204,7 +253,17 @@ def _cited_groups(
     "二、休渔作业类型"), so they belong to the cited evidence even when the
     sentence paraphrases the label.
     """
-    sentences = [part.strip() for part in SENTENCE_SPLIT.split(answer) if part.strip()]
+    sentences = []
+    for part in (item.strip() for item in SENTENCE_SPLIT.split(answer)):
+        if not part:
+            continue
+        citation_only = CITATION_GROUP_RE.search(part) and not CITATION_GROUP_RE.sub(
+            "", part
+        ).strip(" 。；，：\n")
+        if sentences and citation_only:
+            sentences[-1] = f"{sentences[-1]} {part}"
+        else:
+            sentences.append(part)
     groups: dict[tuple[str, str], list[str]] = {}
     for sentence in sentences:
         for match in CITATION_GROUP_RE.finditer(sentence):
@@ -214,6 +273,20 @@ def _cited_groups(
         key = (str(citation.get("doc_id") or ""), str(citation.get("section") or ""))
         groups.setdefault(key, [])
     return [(key, " ".join(texts) + " " + key[1]) for key, texts in groups.items()]
+
+
+def _rule_covered(
+    answer: str,
+    citations: list[dict[str, Any]],
+    spec: PointSpec,
+) -> bool:
+    pattern = rule_pattern(spec.rule)
+    if not pattern:
+        return False
+    for _key, text in _cited_groups(answer, citations):
+        if re.search(pattern, normalize(text)):
+            return True
+    return False
 
 
 def _point_covered(
@@ -274,6 +347,7 @@ def score_row(
     if not citations:
         flags.append("citation_none")
     citation_accuracy: bool | None
+    location_source = "none"
     if not expected:
         citation_accuracy = None
         flags.append("no_expected_document")
@@ -284,7 +358,7 @@ def score_row(
         citation_accuracy = False
     else:
         doc_hit = bool(hit_ids)
-        location_ok, location_flags = _location_ok(
+        location_ok, location_source, location_flags = _location_ok(
             answer, citations, row, docmap, config.location_min_overlap, anchor_terms
         )
         flags.extend(location_flags)
@@ -302,10 +376,14 @@ def score_row(
         if spec.skip:
             skipped += 1
             continue
-        if not spec.terms:
+        if not spec.terms and not spec.rule:
             flags.append("point_needs_review")
             continue
         judgeable += 1
+        if spec.rule:
+            if _rule_covered(answer, citations, spec):
+                hits += 1
+            continue
         if _point_covered(answer, citations, spec):
             hits += 1
     point_coverage = hits / judgeable if judgeable else None
@@ -404,6 +482,7 @@ def score_row(
         "answer": answer,
         "citation_docs": [str(item.get("doc_id") or "") for item in citations],
         "citation_sections": [str(item.get("section") or "") for item in citations],
+        "citation_location_source": location_source if citations else "none",
         "citation_hit": bool(hit_ids) if expected else None,
         "citation_accuracy": citation_accuracy,
         "point_coverage": point_coverage,
@@ -479,6 +558,9 @@ def aggregate(scored: list[dict[str, Any]]) -> dict[str, Any]:
         "basis_rows": len(basis),
         "band_mean": _mean([float(value) for value in bands]),
         "band_rows": len(bands),
+        "location_sources": dict(
+            Counter(row.get("citation_location_source") or "none" for row in scored)
+        ),
         "latency_mean_ms": _mean([row["latency_ms"] for row in scored]),
         "latency_p95_ms": _p95([row["latency_ms"] for row in scored]),
     }
