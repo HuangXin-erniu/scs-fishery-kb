@@ -3340,8 +3340,369 @@ sources:
     mime: text/html
     snapshot_path: raw/POL-GD-110/guangdong-protected-species-list-2022.html
 
+- id: STAT-ECO-111
+  title: 2024年中国海洋生态预警监测公报
+  title_zh: 2024年中国海洋生态预警监测公报
+  publisher: 自然资源部
+  year: 2025
+  type: notice
+  jurisdiction: national
+  format: pdf
+  location: raw/STAT-ECO-111/bulletin-2024.pdf
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P2
+  volume: 1 PDF
+  update_freq: static
+  hash: 37b61aab92f886320156e7ee4229090c3f450785315e7f1dc779c646288da7fc
+  acquisition: Captured 2026-11-07 from https://m.mnr.gov.cn/sj/sjfw/hy/202506/P020250611636525426600.pdf
+  notes: 'Annual marine ecological early-warning bulletin for 2024: dissolved oxygen, inorganic nitrogen, red tides and hypoxia events. Official ministry PDF.'
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: main
+    parseable: true
+    note: Registered for the acceptance corpus gap (batch 2).
+  lifecycle: active
+  source_class: official_statistics
+  currency:
+    as_of: '2026-11-07'
+    basis: publication
+    review_due: '2027-12-12'
+    cadence: annual
+    note: Captured for the 2026-11 corpus batch 2.
+  watch_note: Static published text; rechecked at the quarterly review.
+  effective:
+    from: '2025-06-11'
+  provenance:
+    url: https://m.mnr.gov.cn/sj/sjfw/hy/202506/P020250611636525426600.pdf
+    document_no: 
+    published_at: '2025-06-11'
+    retrieved_at: '2026-11-07'
+    sha256: 37b61aab92f886320156e7ee4229090c3f450785315e7f1dc779c646288da7fc
+    bytes: 92228877
+    mime: application/pdf
+    snapshot_path: raw/STAT-ECO-111/bulletin-2024.pdf
+
+- id: POL-TURTLE-113
+  title: 海龟保护行动计划（2019—2033年）
+  title_zh: 海龟保护行动计划（2019—2033年）
+  publisher: 农业农村部
+  year: 2019
+  type: plan
+  jurisdiction: national
+  format: html
+  location: raw/POL-TURTLE-113/turtle-action-plan.html
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P2
+  volume: 1 HTML page
+  update_freq: static
+  hash: 97114db705502a31b8f99abfb71cbdaeb8163275ff5d54dc6f3f5a65ea384a5b
+  acquisition: Captured 2026-11-07 from https://www.moa.gov.cn/nybgb/2019/201901/201905/t20190503_6288226.htm
+  notes: 'National sea-turtle action plan: rescue, reporting and release duties, habitat protection.'
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: main
+    parseable: true
+    note: Registered for the acceptance corpus gap (batch 2).
+  lifecycle: active
+  source_class: normative
+  currency:
+    as_of: '2026-11-07'
+    basis: publication
+    review_due: '2027-01-05'
+    cadence: monthly
+    note: Captured for the 2026-11 corpus batch 2.
+  watch_note: Static published text; rechecked at the quarterly review.
+  effective:
+    from: '2019-01-20'
+  provenance:
+    url: https://www.moa.gov.cn/nybgb/2019/201901/201905/t20190503_6288226.htm
+    document_no: 
+    published_at: '2019-01-20'
+    retrieved_at: '2026-11-07'
+    sha256: 97114db705502a31b8f99abfb71cbdaeb8163275ff5d54dc6f3f5a65ea384a5b
+    bytes: 126793
+    mime: text/html
+    snapshot_path: raw/POL-TURTLE-113/turtle-action-plan.html
+
+- id: STD-SMALL-114
+  title: 国内海洋小型渔船法定检验技术规则（2019）
+  title_zh: 国内海洋小型渔船法定检验技术规则（2019）
+  publisher: 中华人民共和国海事局
+  year: 2019
+  type: standard
+  jurisdiction: national
+  format: pdf
+  location: raw/STD-SMALL-114/small-vessel-inspection-2019.pdf
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P2
+  volume: 1 PDF
+  update_freq: static
+  hash: c1367a869980d7f937d6a5dfe99e7cb079f48ac9016c2830f353ca619aaff41e
+  acquisition: Captured 2026-11-07 from https://www.msa.gov.cn/public/documents/document/mtex/mzu3/~edisp/20190419111357039.pdf
+  notes: 'Statutory inspection rules for small domestic marine fishing vessels: inspection types, certificates, safety equipment.'
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: main
+    parseable: true
+    note: Registered for the acceptance corpus gap (batch 2).
+  lifecycle: active
+  source_class: standard
+  currency:
+    as_of: '2026-11-07'
+    basis: publication
+    review_due: '2027-02-05'
+    cadence: quarterly
+    note: Captured for the 2026-11 corpus batch 2.
+  watch_note: Static published text; rechecked at the quarterly review.
+  effective:
+    from: '2019-01-15'
+  provenance:
+    url: https://www.msa.gov.cn/public/documents/document/mtex/mzu3/~edisp/20190419111357039.pdf
+    document_no: 海事局公告〔2018〕27号
+    published_at: '2018-12-28'
+    retrieved_at: '2026-11-07'
+    sha256: c1367a869980d7f937d6a5dfe99e7cb079f48ac9016c2830f353ca619aaff41e
+    bytes: 743291
+    mime: application/pdf
+    snapshot_path: raw/STD-SMALL-114/small-vessel-inspection-2019.pdf
+
+- id: POL-JUD-115
+  title: 最高人民法院 最高人民检察院关于办理破坏野生动物资源刑事案件适用法律若干问题的解释
+  title_zh: 最高人民法院 最高人民检察院关于办理破坏野生动物资源刑事案件适用法律若干问题的解释
+  publisher: 最高人民法院、最高人民检察院
+  year: 2022
+  type: notice
+  jurisdiction: national
+  format: html
+  location: raw/POL-JUD-115/wildlife-crime-interpretation.html
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P2
+  volume: 1 HTML page
+  update_freq: static
+  hash: 8e994ead16cb77ca08bd3551655787979b003e9e89d7173e1efc186fb8935937
+  acquisition: Captured 2026-11-07 from https://gxfy.gxcourt.gov.cn/article/detail/2022/04/id/6621893.shtml
+  notes: 'Judicial interpretation on wildlife-resource crimes, including illegal fishing thresholds and the value-based standard.'
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: main
+    parseable: true
+    note: Registered for the acceptance corpus gap (batch 2).
+  lifecycle: active
+  source_class: normative
+  currency:
+    as_of: '2026-11-07'
+    basis: publication
+    review_due: '2027-01-05'
+    cadence: monthly
+    note: Captured for the 2026-11 corpus batch 2.
+  watch_note: Static published text; rechecked at the quarterly review.
+  effective:
+    from: '2022-04-09'
+  provenance:
+    url: https://gxfy.gxcourt.gov.cn/article/detail/2022/04/id/6621893.shtml
+    document_no: 法释〔2022〕12号
+    published_at: '2022-04-06'
+    retrieved_at: '2026-11-07'
+    sha256: 8e994ead16cb77ca08bd3551655787979b003e9e89d7173e1efc186fb8935937
+    bytes: 56987
+    mime: text/html
+    snapshot_path: raw/POL-JUD-115/wildlife-crime-interpretation.html
+
+- id: POL-LAW-116
+  title: 中华人民共和国刑法（第三百四十条等）
+  title_zh: 中华人民共和国刑法（第三百四十条等）
+  publisher: 全国人民代表大会常务委员会
+  year: 2023
+  type: law
+  jurisdiction: national
+  format: html
+  location: raw/POL-LAW-116/criminal-law-text.html
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P2
+  volume: 1 HTML page
+  update_freq: static
+  hash: 7b8e39d535d0c6f6cc45e621e59f8d11e7bcbdfdaf31bf74a9098475cb698614
+  acquisition: Captured 2026-11-07 from http://gg.gxxf.gxzf.gov.cn/p124/41508.shtml
+  notes: 'Full criminal-law text republished by a municipal letters-and-visits bureau; article 340 is the illegal-fishing offence. National law content, municipal reprint recorded here. Captured over plain HTTP because the host serves no TLS for this client.'
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: main
+    parseable: true
+    note: Registered for the acceptance corpus gap (batch 2).
+  lifecycle: active
+  source_class: normative
+  currency:
+    as_of: '2026-11-07'
+    basis: publication
+    review_due: '2027-01-05'
+    cadence: monthly
+    note: Captured for the 2026-11 corpus batch 2.
+  watch_note: Static published text; rechecked at the quarterly review.
+  effective:
+    from: '2024-03-01'
+  provenance:
+    url: http://gg.gxxf.gxzf.gov.cn/p124/41508.shtml
+    document_no: 
+    published_at: '2023-12-29'
+    retrieved_at: '2026-11-07'
+    sha256: 7b8e39d535d0c6f6cc45e621e59f8d11e7bcbdfdaf31bf74a9098475cb698614
+    bytes: 297992
+    mime: text/html
+    snapshot_path: raw/POL-LAW-116/criminal-law-text.html
+
+- id: POL-DOLPHIN-117
+  title: 中华白海豚保护行动计划（2017—2026年）
+  title_zh: 中华白海豚保护行动计划（2017—2026年）
+  publisher: 农业部
+  year: 2017
+  type: plan
+  jurisdiction: national
+  format: html
+  location: raw/POL-DOLPHIN-117/dolphin-action-plan.html
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P2
+  volume: 1 HTML page
+  update_freq: static
+  hash: 8bc62d7d872459467027fdf58d7568f285798cd9962bfb321af2486df6032c77
+  acquisition: Captured 2026-11-07 from https://www.moa.gov.cn/nybgb/2017/201711/201802/t20180201_6136234.htm
+  notes: 'National Indo-Pacific humpback dolphin action plan; protection measures, monitoring and rescue.'
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: main
+    parseable: true
+    note: Registered for the acceptance corpus gap (batch 2).
+  lifecycle: active
+  source_class: normative
+  currency:
+    as_of: '2026-11-07'
+    basis: publication
+    review_due: '2027-01-05'
+    cadence: monthly
+    note: Captured for the 2026-11 corpus batch 2.
+  watch_note: Static published text; rechecked at the quarterly review.
+  effective:
+    from: '2017-11-20'
+  provenance:
+    url: https://www.moa.gov.cn/nybgb/2017/201711/201802/t20180201_6136234.htm
+    document_no: 
+    published_at: '2017-11-20'
+    retrieved_at: '2026-11-07'
+    sha256: 8bc62d7d872459467027fdf58d7568f285798cd9962bfb321af2486df6032c77
+    bytes: 137801
+    mime: text/html
+    snapshot_path: raw/POL-DOLPHIN-117/dolphin-action-plan.html
+
+- id: POL-GX-118
+  title: 广西壮族自治区农业农村厅惠农支企政策明白纸（渔船更新改造与减船转产）
+  title_zh: 广西壮族自治区农业农村厅惠农支企政策明白纸（渔船更新改造与减船转产）
+  publisher: 广西壮族自治区农业农村厅
+  year: 2025
+  type: notice
+  jurisdiction: guangxi
+  format: pdf
+  location: raw/POL-GX-118/guangxi-vessel-policy-2025.pdf
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P2
+  volume: 1 PDF
+  update_freq: static
+  hash: e840bfc238c96abfdc00916745a25f865d0b30bc63097e34e958af7931a301e2
+  acquisition: Captured 2026-11-07 from http://nynct.gxzf.gov.cn/xxgk/jcxxgk/tzgg/P020251030631797533387.pdf
+  notes: 'Provincial policy explainer quoting 财农〔2021〕41号 and 农办渔〔2021〕16号 with subsidy directions and standards for vessel upgrading and buy-back; reference class, not the national policy text. Captured over plain HTTP because the host serves no TLS for this client.'
+  level: provincial
+  authority_tier: B
+  retrieval:
+    channel: main
+    parseable: true
+    note: Registered for the acceptance corpus gap (batch 2).
+  lifecycle: active
+  source_class: reference
+  currency:
+    as_of: '2026-11-07'
+    basis: publication
+    review_due: '2027-06-05'
+    cadence: semiannual
+    note: Captured for the 2026-11 corpus batch 2.
+  watch_note: Static published text; rechecked at the quarterly review.
+  effective:
+    from: '2025-10-30'
+  provenance:
+    url: http://nynct.gxzf.gov.cn/xxgk/jcxxgk/tzgg/P020251030631797533387.pdf
+    document_no: 
+    published_at: '2025-10-30'
+    retrieved_at: '2026-11-07'
+    sha256: e840bfc238c96abfdc00916745a25f865d0b30bc63097e34e958af7931a301e2
+    bytes: 866737
+    mime: application/pdf
+    snapshot_path: raw/POL-GX-118/guangxi-vessel-policy-2025.pdf
+
+- id: STD-EUTRO-119
+  title: 海水质量状况评价技术规程（试行）
+  title_zh: 海水质量状况评价技术规程（试行）
+  publisher: 国家海洋局生态环境保护司
+  year: 2015
+  type: standard
+  jurisdiction: national
+  level: national
+  format: pdf
+  location: raw/STD-EUTRO-119/seawater-quality-assessment.pdf
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P2
+  volume: 1 PDF
+  update_freq: static
+  hash: 9dba1e840f91169833eb470043b39322aa204ff7a0f431e4b9b2e795aee70fb7
+  acquisition: Captured 2026-11-07 from https://f.mnr.gov.cn/201806/P020180628470906231876.pdf
+  notes: 'National technical regulation for seawater-quality assessment; section 6 defines the eutrophication index formula and the E >= 1 threshold.'
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: main
+    parseable: true
+    note: Registered for the acceptance corpus gap (batch 2).
+  lifecycle: active
+  source_class: standard
+  currency:
+    as_of: '2026-11-07'
+    basis: publication
+    review_due: '2027-02-05'
+    cadence: quarterly
+    note: Captured for the 2026-11 corpus batch 2.
+  watch_note: Static published text; rechecked at the quarterly review.
+  effective:
+    from: '2015-10-01'
+  provenance:
+    url: https://f.mnr.gov.cn/201806/P020180628470906231876.pdf
+    document_no: 海水质量状况评价技术规程（试行）
+    published_at: '2015-10-01'
+    retrieved_at: '2026-11-07'
+    sha256: 9dba1e840f91169833eb470043b39322aa204ff7a0f431e4b9b2e795aee70fb7
+    bytes: 447060
+    mime: application/pdf
+    snapshot_path: raw/STD-EUTRO-119/seawater-quality-assessment.pdf
+
 gaps:
-- Ninety-one sources are registered: ninety acquired and no open candidates awaiting disposition.
+- Ninety-nine sources are registered: ninety-eight acquired and no open candidates awaiting disposition.
 - The yearbook coverage matrix has no values in the public repository; all values stay local.
 - The yearbook infrastructure table is missing for data years 2018 and 2019; the 2018 national port plan supplies a baseline whose port classes are close to, but not identical with, the yearbook table.
 - The vessel-length proxy is missing for data year 2024.

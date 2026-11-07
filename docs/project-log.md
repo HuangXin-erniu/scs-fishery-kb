@@ -914,3 +914,11 @@ This log records material project changes by date. It does not use release versi
 - Re-baselined 512: point coverage 0.1753 → **0.1684**, citation accuracy 0.1714 → **0.3810** (denominator grew and the newly judged points are mostly missed); misanswer 0.2571, refusal-with-channel 0.5857, as-of 0.3509 and basis 0.0263 unchanged.
 - Published the failure backlog: 171 questions still reference missing documents, 130 citation locations unmatched, 125 answered with zero coverage, 88 wrong documents, 37 missing as-of declarations, 18 refusal-test misanswers.
 - 23 scorer tests; full suite green. Private report and backlog under the run root; no tag or release.
+
+
+## 2026-11-07 — Corpus batch 2: eight documents registered, indexing deferred
+
+- Attempted all 32 instruments the acceptance set still cites without a corpus document. Captured and registered eight with full provenance: the 2024 marine ecological bulletin, the sea-turtle and Indo-Pacific humpback dolphin action plans, the small-vessel statutory inspection rules, the wildlife-crime judicial interpretation (法释〔2022〕12号), the criminal-law text, the Guangxi vessel-upgrading policy explainer and the seawater-quality assessment regulation. Register 91 → 99 sources.
+- Recorded 24 exclusions with reasons: no standalone public text (logbook, vessel-quota and minimum-size rules live inside already-indexed regulations), draft-only standards (hypoxia, heatwave, large-vessel inspection), policy-excluded marine-ranch material, and sources behind bot walls or dead links.
+- Staging A/B measured a real conflict: indexing the batch under the current 19.0/3 answer gate raises refusal misanswer 0.2571 → 0.3714–0.4000 and lowers citation accuracy 0.3810 → 0.3487–0.3684. The index was restored to the 48-document baseline and the 512 run returned to 0.1684 / 0.3810 / 0.2571. Indexing is deferred to the answer-gate/retrieval task, which must re-run this A/B after aligning the gate.
+- 83 config tests pass after the register-count sync; no tag or release.
