@@ -5,12 +5,17 @@ from typing import Any
 
 from .contract import AsOf, VersionNote
 
-YEAR_CUE = re.compile(r"今年|现在|目前|最新|当年|现行|本年度|当年|20\d{2}\s*年")
+YEAR_CUE = re.compile(r"今年|现在|目前|最新|当年|现行|本年度|有效期|多久|几年|是否还|20\d{2}\s*年")
 
 
 def detect(question: str, doc_ids: list[str], registry: dict[str, dict[str, Any]]) -> AsOf | None:
     """Declare the governing version when the question depends on time."""
-    if not YEAR_CUE.search(question):
+    cue = bool(YEAR_CUE.search(question))
+    policy_cited = any(
+        (registry.get(doc_id) or {}).get("source_class") in ("normative", "standard")
+        for doc_id in doc_ids
+    )
+    if not cue and not policy_cited:
         return None
     versions: list[VersionNote] = []
     for doc_id in dict.fromkeys(doc_ids):
@@ -42,4 +47,5 @@ def detect(question: str, doc_ids: list[str], registry: dict[str, dict[str, Any]
         declared += f"（{first.effective}施行）"
     elif year.isdigit():
         declared += f"（{year}年版）"
-    return AsOf(declared=declared, basis="question_time_cue", versions=tuple(versions[:1]))
+    basis = "question_time_cue" if cue else "cited_policy"
+    return AsOf(declared=declared, basis=basis, versions=tuple(versions[:1]))

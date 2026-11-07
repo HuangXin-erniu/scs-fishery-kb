@@ -922,3 +922,10 @@ This log records material project changes by date. It does not use release versi
 - Recorded 24 exclusions with reasons: no standalone public text (logbook, vessel-quota and minimum-size rules live inside already-indexed regulations), draft-only standards (hypoxia, heatwave, large-vessel inspection), policy-excluded marine-ranch material, and sources behind bot walls or dead links.
 - Staging A/B measured a real conflict: indexing the batch under the current 19.0/3 answer gate raises refusal misanswer 0.2571 → 0.3714–0.4000 and lowers citation accuracy 0.3810 → 0.3487–0.3684. The index was restored to the 48-document baseline and the 512 run returned to 0.1684 / 0.3810 / 0.2571. Indexing is deferred to the answer-gate/retrieval task, which must re-run this A/B after aligning the gate.
 - 83 config tests pass after the register-count sync; no tag or release.
+
+## 2026-11-07 — As-of declaration widened; reranker and gate alignment rejected
+
+- The answer contract now declares the governing version whenever the answer cites a normative or standard document, not only on explicit time cues: time-conflict declaration 0.3509 → 0.5439, citation accuracy 0.3810 → 0.4048.
+- Numeric basis: unlabelled numbers in a table/attachment/article location fall back to a table/clause basis instead of "未标注口径".
+- Rejected with measurements: aligning the service gate to 23.0/4 (misanswer 0.2571 → 0.2286 but coverage 0.1684 → 0.1161, citation 0.3810 → 0.2973); cross-encoder reranking (mean latency 1,821 ms, citation 0.2973); indexing batch 2 (refusal misanswer 0.3714–0.4000 under 19.0/3, coverage 0.1515 under 23.0/4).
+- The extractive arm cannot reach the 0.80 point-coverage line; the next task is the LLM composition arm with per-sentence citations and number grounding, while this arm stays the fallback.

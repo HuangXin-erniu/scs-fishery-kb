@@ -137,3 +137,28 @@ def test_numeric_helpers() -> None:
     assert not is_numeric_question("休渔期是什么时候？")
     anchors = extract("溶解氧不得低于6毫克，南海海区按年度值执行。")
     assert anchors and anchors[0].value == "6"
+
+
+def test_asof_declares_for_cited_policy_without_time_cue() -> None:
+    from scs_fkb.answer_v3 import asof
+
+    registry = {
+        "POL-CLOS-015": {
+            "source_class": "normative",
+            "year": 2026,
+            "provenance": {"document_no": "通告〔2026〕2号", "published_at": "2026-07-30"},
+            "effective": {"from": "2026-07-30"},
+            "title_zh": "关于调整海洋伏季休渔制度的通告",
+        }
+    }
+    declared = asof.detect("拖网网囊网目最小多少？", ["POL-CLOS-015"], registry)
+    assert declared is not None
+    assert declared.basis == "cited_policy"
+    assert "2026" in declared.declared
+
+
+def test_asof_skips_non_policy_citation_without_cue() -> None:
+    from scs_fkb.answer_v3 import asof
+
+    registry = {"PAPER-105": {"source_class": "reference", "year": 2025}}
+    assert asof.detect("网目怎么量？", ["PAPER-105"], registry) is None

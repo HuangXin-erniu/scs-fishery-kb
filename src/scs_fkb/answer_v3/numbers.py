@@ -36,6 +36,8 @@ def extract(text: str, *, location: str = "") -> list[NumericAnchor]:
     for match in NUMBER_RE.finditer(text):
         window = text[max(0, match.start() - 18) : match.end() + 18]
         basis = next((label for word, label in BASIS_WORDS.items() if word in window), "")
+        if not basis and location and re.search(r"表|附件|第\d+条", location):
+            basis = "表列值" if "表" in location else "条款值"
         anchors.append(
             NumericAnchor(
                 value=match.group(1),
