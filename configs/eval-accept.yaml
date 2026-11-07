@@ -1,0 +1,32 @@
+# Acceptance scoring configuration. Thresholds only: the private question
+# instrument and its document map live under the local data root and are never
+# committed. Pass lines mirror the instrument protocol.
+schema_version: 1
+updated_at: '2026-11-07'
+counts:
+  questions: 512
+  dev: 256
+  holdout: 256
+thresholds:
+  misanswer_rate:
+    max: 0.10
+  citation_accuracy:
+    min: 0.90
+  point_coverage:
+    min: 0.80
+  refusal_channel_rate:
+    min: 0.90
+  asof_declaration_rate:
+    min: 0.90
+  basis_accuracy:
+    min: 0.85
+scoring:
+  # A point is scored when it carries a numeric, quoted or document-number
+  # anchor, or up to `max_terms` domain concepts. Points without anchors are
+  # reported as review-needed instead of being counted as miss or hit.
+  max_terms: 3
+  point_threshold_full: 0.80
+  point_threshold_partial: 0.50
+  # Longest common substring (characters) required between the instrument's
+  # location hint and a cited section before the citation counts as located.
+  location_min_overlap: 3

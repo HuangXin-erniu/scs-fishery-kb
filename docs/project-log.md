@@ -880,3 +880,12 @@ This log records material project changes by date. It does not use release versi
 - Post-batch-4 120-question run: overall 0.8017, dev 0.8945, test 0.6161 (0.6310 before), citation 1.0000, recall 0.9667, abstention 0.9000. Dev gate held; test is report-only.
 - Updated `docs/evaluation.md` and `docs/plan.md`; earlier 0.8066/0.6310 figures remain as history.
 - No code, config, eval set, facts, terms, playbooks or data changed.
+
+
+## 2026-11-07 — Acceptance instrument and baseline
+
+- Added the private 512-question acceptance instrument under the local data root (`eval/acceptance/dataset.jsonl`, `doc-map.yaml`, `manifest.json`) and a deterministic importer (`scripts/import_eval_xlsx.py`). The workbook, the questions and the document map never enter the repository; a rerun produces a byte-identical dataset (`12389b256c4f…`, 256 dev / 256 holdout).
+- Added `src/scs_fkb/eval_accept/` and `scripts/eval_accept.py`: protocol metrics (point coverage, citation accuracy, misanswer rate, refusal-with-channel rate, as-of declaration rate, basis accuracy, latency), a 0/0.5/1 band, reason-code clustering, per-question CSV and a Markdown report. Thresholds live in `configs/eval-accept.yaml`; `configs/domain-terms.yaml` supplies generic concept anchors. Points without an anchor are reported as review-needed instead of being scored.
+- Document map: 77 instrument documents resolve to 21 full, 10 partial and 46 missing repository documents. 325 of 512 questions reference at least one missing document, which is the dominant gap.
+- Baseline (42 documents, 1,014 chunks, index `d007984ae168`, web off, extractive): answer rate 0.4453, point coverage 0.1675, citation accuracy 0.1659, misanswer rate 0.3143, refusal-with-channel rate 0.0286, as-of declaration rate 0.0702, basis accuracy 0.0263, latency mean 17.3 ms / P95 22 ms. The gate fails on all six lines, as expected before the corpus and answer-contract work. 553 of 1,117 required points are judgeable (49.5%).
+- Tests: 437 passed, 2 skipped. Ruff clean; public-tree check 225 files. No corpus, index, retrieval, service or answer-path change; no tag or release.
