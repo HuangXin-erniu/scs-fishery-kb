@@ -481,3 +481,61 @@ def test_split_assignment_is_balanced() -> None:
     assignment = module._split_assignment(ids, "seed")
     assert sum(1 for value in assignment.values() if value == "dev") == 256
     assert sum(1 for value in assignment.values() if value == "holdout") == 44
+
+
+def test_location_tokens_strip_document_numbers() -> None:
+    from scs_fkb.eval_accept.scoring import _location_tokens
+
+    tokens = _location_tokens("通告〔2023〕1号·休渔海域与时间")
+    assert "休渔海域" in tokens or "休渔" in tokens
+    assert "时间" in tokens
+    assert not any("〔" in token for token in tokens)
+
+
+def test_page_or_table_hit() -> None:
+    from scs_fkb.eval_accept.scoring import _page_or_table_hit
+
+    citation = {"doc_id": "POL-TEST", "page": 3, "section": "表1 最小网目"}
+    assert _page_or_table_hit("表1", citation, "表1最小网目") is True
+    assert _page_or_table_hit("第3页", citation, "") is True
+    assert _page_or_table_hit("表2", citation, "表1最小网目") is False
+
+
+def test_typed_rule_scores_a_time_point() -> None:
+    row = make_row(required_points=["起止时间"], numeric_anchors=[], dimension="单点事实")
+    scored = score(
+        row,
+        make_result(
+            "5月1日12时至8月16日12时。 [POL-CLOS-015 §三、休渔时间]",
+            [{"doc_id": "POL-CLOS-015", "section": "三、休渔时间"}],
+        ),
+    )
+    assert scored["points_judgeable"] == 1
+    assert scored["point_coverage"] == 1.0
+
+
+def test_typed_rule_needs_cited_text() -> None:
+    row = make_row(required_points=["起止时间"], numeric_anchors=[], dimension="单点事实")
+    scored = score(row, make_result("5月1日至8月16日。", []))
+    assert scored["points_judgeable"] == 1
+    assert scored["point_coverage"] == 0.0
+
+
+def test_grounded_override_replaces_unanchored_point(tmp_path: Path) -> None:
+    row = make_row(required_points=["逾期处理"], numeric_anchors=[], dimension="单点事实")
+    result = make_result(
+        "逾期未改正的，责令改正。 [POL-CLOS-015 §三、休渔时间]",
+        [{"doc_id": "POL-CLOS-015", "section": "三、休渔时间"}],
+    )
+    without = score(row, result)
+    assert without["point_coverage"] is None
+    overrides = PointOverrides(specs={("Y-001", 0): PointSpec(terms=("责令改正",), mode="section")})
+    with_override = score_row(
+        row,
+        result,
+        docmap=make_docmap(),
+        concepts=ConceptSource.load(ROOT / "configs" / "terms.yaml"),
+        overrides=overrides,
+        config=ScoringConfig(),
+    )
+    assert with_override["point_coverage"] == 1.0
