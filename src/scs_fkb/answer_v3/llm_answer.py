@@ -230,12 +230,14 @@ def _resolve_citations(text: str, hits: list[Any]) -> tuple[bool, list[str]]:
     return not invalid, invalid
 
 
-def _abstain(reason: str) -> Answer:
-    return Answer(
-        text="证据不足：现有证据无法支持回答，已按缺口处理。",
-        abstained=True,
-        reason=reason,
-    )
+def _abstain(reason: str, question: str = "") -> Answer:
+    from .asof import fallback as fallback_asof
+
+    text = "证据不足：现有证据无法支持回答，已按缺口处理。"
+    version = fallback_asof(question)
+    if version:
+        text += f"\n版本：{version}"
+    return Answer(text=text, abstained=True, reason=reason)
 
 
 def _answer_messages(question: str, context: str) -> list[dict[str, str]]:
@@ -312,11 +314,11 @@ def answer_with_llm(
 ) -> Answer:
     """Compose a cited answer, then enforce citation, number and support checks."""
     if not hits:
-        return _abstain("no_evidence")
+        return _abstain("no_evidence", question)
     hits = _enrich(hits)
     context, by_label = _evidence(hits)
     if not context:
-        return _abstain("no_evidence")
+        return _abstain("no_evidence", question)
     messages = _answer_messages(question, context)
     try:
         value = _cached_json(
@@ -341,10 +343,10 @@ def answer_with_llm(
             max_tokens=4000,
         )
     if value.get("abstained") is True:
-        return _abstain(f"llm_abstain:{str(value.get('reason') or '')}".rstrip(":"))
+        return _abstain(f"llm_abstain:{str(value.get('reason') or '')}".rstrip(":"), question)
     text = str(value.get("answer") or "").strip()
     if not text:
-        return _abstain("llm_empty")
+        return _abstain("llm_empty", question)
 
     problems = _sentence_problems(text, by_label) + _number_problems(text, by_label)
     if problems:
@@ -356,23 +358,23 @@ def answer_with_llm(
             max_tokens=2400,
         )
         if repaired.get("abstained") is True:
-            return _abstain("llm_repair_abstain")
+            return _abstain("llm_repair_abstain", question)
         text = str(repaired.get("answer") or "").strip()
         if not text:
-            return _abstain("llm_repair_empty")
+            return _abstain("llm_repair_empty", question)
         problems = _sentence_problems(text, by_label) + _number_problems(text, by_label)
         if problems:
-            return _abstain("llm_ungrounded:" + problems[0].split(":")[0])
+            return _abstain("llm_ungrounded:" + problems[0].split(":")[0], question)
 
     valid, invalid = _resolve_citations(text, hits)
     if not valid:
-        return _abstain("llm_citation_invalid:" + ",".join(invalid[:2]))
+        return _abstain("llm_citation_invalid:" + ",".join(invalid[:2]), question)
     citations = _citations_from_text(text, hits)
     if not citations:
-        return _abstain("llm_no_citation")
+        return _abstain("llm_no_citation", question)
     supported, reason = _verify(question, text, by_label, client, cache)
     if not supported:
-        return _abstain(f"llm_unsupported:{reason}".rstrip(":"))
+        return _abstain(f"llm_unsupported:{reason}".rstrip(":"), question)
     return Answer(text=text, citations=citations, abstained=False, reason="llm_compose")
 
 

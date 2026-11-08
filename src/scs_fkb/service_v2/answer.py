@@ -145,6 +145,14 @@ class AnswerService:
         except LLMError:
             return None
 
+    def _sufficiency(self, question: str, hits: list[SearchHit]) -> str:
+        pair = self._llm_pair()
+        if pair is None:
+            return "full"
+        from ..answer_v3.sufficiency import judge
+
+        return judge(question, hits, pair[0], pair[1])
+
     def _channel_book(self) -> ChannelBook:
         if self._channels is None:
             self._channels = ChannelBook.load()
@@ -288,9 +296,17 @@ class AnswerService:
                 and not any(word in question for word in ("规定", "制度", "办法"))
             )
         ):
+            _gap, clarify_channels = self._channel_book().resolve(question)
+            clarify_line = (
+                "\n渠道：" + "；".join(f"{item.name}，{item.hint}" for item in clarify_channels)
+                if clarify_channels
+                else ""
+            )
             return QueryResponse(
                 request_id=request_id,
-                answer="请补充一个更具体的问题，例如休渔时间、许可证换发或网目尺寸。",
+                answer=(
+                    "请补充一个更具体的问题，例如休渔时间、许可证换发或网目尺寸。" + clarify_line
+                ),
                 abstained=True,
                 reason="clarify",
                 mode="clarify",
@@ -340,6 +356,14 @@ class AnswerService:
                 abstained=True,
                 reason="weak_evidence",
             )
+        if self.answer_mode != "llm" and not answer.abstained:
+            if self._sufficiency(question, hits) != "full":
+                answer = answer.__class__(
+                    text="证据不足：检索到的条款没有包含所问的具体事实，无法给出结论。",
+                    citations=[],
+                    abstained=True,
+                    reason="evidence_insufficient",
+                )
         citations = [
             CitationModel(
                 doc_id=item.doc_id,
@@ -452,6 +476,16 @@ class AnswerService:
                         reason="web_supplement" if answer.abstained else answer.reason,
                     )
                     used_web = True
+        if answer.abstained and "渠道" not in answer.text:
+            _gap, channels = self._channel_book().resolve(question)
+            if channels:
+                line = "；".join(f"{item.name}，{item.hint}" for item in channels)
+                answer = answer.__class__(
+                    text=f"{answer.text}\n渠道：{line}",
+                    citations=answer.citations,
+                    abstained=True,
+                    reason=answer.reason,
+                )
         mode = "clarify" if answer.reason == "clarify" else "abstain"
         if used_web and started_abstained:
             mode = "web_only"

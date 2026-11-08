@@ -1,11 +1,29 @@
 from __future__ import annotations
 
 import re
+from datetime import date
 from typing import Any
 
 from .contract import AsOf, VersionNote
 
-YEAR_CUE = re.compile(r"今年|现在|目前|最新|当年|现行|本年度|有效期|多久|几年|是否还|20\d{2}\s*年")
+YEAR_CUE = re.compile(
+    r"今年|现在|目前|最新|当年|现行|本年度|有效期|多久|几年|是否还|还有|近年|这两年|20\d{2}\s*年"
+)
+
+
+def _cn_date(value: str) -> str:
+    text = str(value or "").strip()
+    match = re.match(r"(\d{4})-(\d{1,2})-(\d{1,2})", text)
+    if match:
+        return f"{match.group(1)}年{int(match.group(2))}月{int(match.group(3))}日"
+    return text
+
+
+def fallback(question: str) -> str:
+    """State the knowledge-base as-of date for a time-sensitive question without a citation."""
+    if not YEAR_CUE.search(question):
+        return ""
+    return f"知识库截至{date.today().year}年版现行有效"
 
 
 def detect(question: str, doc_ids: list[str], registry: dict[str, dict[str, Any]]) -> AsOf | None:
@@ -43,8 +61,9 @@ def detect(question: str, doc_ids: list[str], registry: dict[str, dict[str, Any]
     )
     label = first.document_no or first.title or first.doc_id
     declared = f"按{label}"
-    if first.document_no and first.effective:
-        declared += f"（{first.effective}施行）"
+    effective_cn = _cn_date(first.effective)
+    if first.document_no and effective_cn:
+        declared += f"（{effective_cn}施行）"
     elif year.isdigit():
         declared += f"（{year}年版）"
     basis = "question_time_cue" if cue else "cited_policy"
