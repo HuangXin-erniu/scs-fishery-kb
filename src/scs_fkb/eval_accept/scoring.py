@@ -519,15 +519,21 @@ def aggregate(scored: list[dict[str, Any]]) -> dict[str, Any]:
     asof = [row for row in scored if row["asof_declared"] is not None]
     basis = [row for row in scored if row["basis_score"] is not None]
     points = [row for row in scored if row["point_coverage"] is not None]
+    answerable = ("可答", "部分可答")
+    answered_points = [row for row in points if row["answerability"] in answerable]
     bands = [row["band"] for row in scored if row["band"] is not None]
-    judgeable_points = sum(row["points_judgeable"] for row in scored)
+    judgeable_points = sum(
+        row["points_judgeable"] for row in scored if row["answerability"] in answerable
+    )
     review_rows = sum(1 for row in scored if "point_needs_review" in row["flags"])
     return {
         "questions": len(scored),
         "answered": len(answered),
         "answer_rate": round(len(answered) / len(scored), 4) if scored else None,
-        "point_coverage": _mean([row["point_coverage"] for row in points]),
-        "point_rows": len(points),
+        "point_coverage": _mean([row["point_coverage"] for row in answered_points]),
+        "point_coverage_all": _mean([row["point_coverage"] for row in points]),
+        "point_rows": len(answered_points),
+        "point_rows_all": len(points),
         "judgeable_points": judgeable_points,
         "rows_with_unjudgeable_points": review_rows,
         "citation_accuracy": _mean([1.0 if row["citation_accuracy"] else 0.0 for row in citations]),
