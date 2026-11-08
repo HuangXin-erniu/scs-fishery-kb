@@ -529,3 +529,12 @@ completeness.
 - Basis remains 0.0526 because the metric requires every rubric numeric anchor in
   the answer (17/19 answers omit at least one); it moves to the numeric-answer
   completeness work.
+
+
+#### Sufficiency verifier flag
+
+The runtime evidence-sufficiency judge is enabled with
+`SCS_FKB_VERIFY_ANSWERS=on` for acceptance runs and production; it is off by
+default so tests and offline use never call the model implicitly. With the flag
+on, the 512 run reproduces misanswer 0.0571, refusal-with-channel 0.9429 and
+as-of 0.9123.

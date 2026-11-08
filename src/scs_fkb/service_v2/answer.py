@@ -356,7 +356,12 @@ class AnswerService:
                 abstained=True,
                 reason="weak_evidence",
             )
-        if self.answer_mode != "llm" and not answer.abstained:
+        if (
+            self.answer_mode != "llm"
+            and os.environ.get("SCS_FKB_VERIFY_ANSWERS", "off").strip().lower()
+            in ("on", "1", "true")
+            and not answer.abstained
+        ):
             if self._sufficiency(question, hits) != "full":
                 answer = answer.__class__(
                     text="证据不足：检索到的条款没有包含所问的具体事实，无法给出结论。",
