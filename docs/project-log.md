@@ -966,3 +966,9 @@ This log records material project changes by date. It does not use release versi
 - Measured expected-document recall on the 392 answerable questions with mapped documents: dense 0.7755, BM25 0.7526, hybrid 0.8342 at k=10; weakest domains (保护物种 0.431, 气候环境 0.556, 渔情与遥感 0.580) are corpus-bound.
 - Added `label_sections` so every child chunk has an article/heading/page label; 171 section-less chunks no longer break citation resolution.
 - The embedding A/B (jina-v2-zh, e5-large) was cancelled: Hugging Face downloads stalled at ~2 KB/s and mirrors returned no throughput. bge-small-zh stays until a usable mirror is available; the 0.8342 hybrid baseline is the bar to beat.
+
+## 2026-11-08 — Query rewriting lifts recall to 0.913; reranker rejected
+
+- Rewrote colloquial questions into 2–3 normative queries (cached): hybrid expected-document recall 0.8342 → 0.9133 at both k=5 and k=10, clearing the P3 targets.
+- Rejected the cross-encoder reranker with measurements: recall@5 fell to 0.7908 and latency rose to 1.69 s because the int8 model sees only 300 characters per chunk.
+- Table chunking deferred since the target was met without changing chunk text; the 0.9133 baseline remains comparable for later changes.
