@@ -947,3 +947,9 @@ This log records material project changes by date. It does not use release versi
 - Found that 122 of the 849 judgeable points belong to the 70 refusal tests, which must abstain; the coverage denominator therefore understates coverage. With answerable points only (727), the corpus ceiling is 0.795 rather than 0.681.
 - Audited the 92 answerable questions whose expected documents are missing: 15 are answerable from an indexed clause (5 full, 10 partial, 26 points), 77 are not. Mapping would lift the ceiling to 0.831; model judgements still need a 20% spot-check.
 - Current coverage is 288 points (0.396 of answerable); reaching 0.80 needs 96% coverage of reachable points, which points to answer completeness as the main lever.
+
+## 2026-11-08 — Coverage denominator fixed; audited mappings applied
+
+- Point coverage now uses answerable questions only (727 points), with the all-points figure (849) kept as point_coverage_all; refusal points cannot be covered by design.
+- 13 of the 15 audited mappings applied as partial after a 20% clause-level spot-check; two rejected (a criminal-sentence question that cited a case report and a hypoxia question that cited closure dates).
+- Coverage 0.3395 → 0.3819; reachable answerable points 578 → 643, ceiling 0.795 → 0.8845. The 0.80 line now needs 90.5% of reachable points; the arm covers 43%.

@@ -539,3 +539,23 @@ def test_grounded_override_replaces_unanchored_point(tmp_path: Path) -> None:
         config=ScoringConfig(),
     )
     assert with_override["point_coverage"] == 1.0
+
+
+def test_point_coverage_excludes_refusal_rows() -> None:
+    answerable = make_row(id="Y-100", answerability="可答")
+    refusal = make_row(id="Y-101", answerability="应拒答")
+    scored = [
+        score(
+            answerable,
+            make_result(
+                "5月1日12时至8月16日12时。 [POL-CLOS-015 §三、休渔时间]",
+                [{"doc_id": "POL-CLOS-015", "section": "三、休渔时间"}],
+            ),
+        ),
+        score(refusal, make_result("", [])),
+    ]
+    summary = aggregate(scored)
+    assert summary["point_coverage"] == 1.0
+    assert summary["point_coverage_all"] == 0.5
+    assert summary["point_rows"] == 1
+    assert summary["point_rows_all"] == 2

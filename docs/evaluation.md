@@ -497,3 +497,18 @@ completeness.
   judgements need a 20% spot-check before mapping.
 - Ceiling (answerable denominator): 0.795 current, 0.831 with mapping. Current
   coverage 0.396; the gap needs answer completeness, not just corpus growth.
+
+### 9. Answerable coverage denominator and mappings (2026-11-08)
+
+> **中文摘要**：要点覆盖率分母改为"应答题"（可答 + 部分可答，727 点），849 点旧口径
+> 保留为 `point_coverage_all`。13 条审计映射经 20% 抽检后应用（2 条被拒），可达要点
+> 从 578 升到 643，上限 0.8845。当前覆盖 0.3819（278 点），达到 0.80 需要覆盖 90.5%
+> 的可达要点。
+
+- Coverage is measured over answerable questions; refusal points (122) are excluded
+  because those questions must abstain. Both figures are reported.
+- 15 audited mappings: 13 applied as partial, 2 rejected after reading the clause
+  (the sentence question cited a case report; the hypoxia question cited closure
+  dates). Each map entry carries the audit question, document and section.
+- Reachable answerable points 578 → 643; ceiling 0.795 → 0.8845. Current coverage
+  0.3819 (278 points), i.e. 43% of reachable points; the 0.80 line needs 90.5%.
