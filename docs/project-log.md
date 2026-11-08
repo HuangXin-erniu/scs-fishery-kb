@@ -941,3 +941,9 @@ This log records material project changes by date. It does not use release versi
 - The arm (442 answerable + 70 deterministic refusals) answered 89% of the set, doubled point coverage 0.1684 → 0.3395 and lifted as-of declarations 0.5439 → 0.8070, with zero surviving model-side failures after the citation/number/verifier checks.
 - Citation accuracy fell 0.4048 → 0.2821: multi-clause answers cite article numbers that do not repeat the instrument's topic labels. Mean latency is 30.4 s, endpoint-bound.
 - Coverage is 49% of the 0.687 corpus ceiling (583 reachable points); the 0.80 line requires both a higher ceiling (evidence mapping / batch 3) and more complete answers.
+
+## 2026-11-08 — Coverage denominator and evidence audit
+
+- Found that 122 of the 849 judgeable points belong to the 70 refusal tests, which must abstain; the coverage denominator therefore understates coverage. With answerable points only (727), the corpus ceiling is 0.795 rather than 0.681.
+- Audited the 92 answerable questions whose expected documents are missing: 15 are answerable from an indexed clause (5 full, 10 partial, 26 points), 77 are not. Mapping would lift the ceiling to 0.831; model judgements still need a 20% spot-check.
+- Current coverage is 288 points (0.396 of answerable); reaching 0.80 needs 96% coverage of reachable points, which points to answer completeness as the main lever.
