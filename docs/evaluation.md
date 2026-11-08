@@ -512,3 +512,20 @@ completeness.
   dates). Each map entry carries the audit question, document and section.
 - Reachable answerable points 578 → 643; ceiling 0.795 → 0.8845. Current coverage
   0.3819 (278 points), i.e. 43% of reachable points; the 0.80 line needs 90.5%.
+
+### 10. Three reachable lines closed; basis re-scoped (2026-11-08)
+
+> **中文摘要**：证据充分性判定器把"只沾边"的确定性回答改为拒答，误答率 0.2571 → 0.0571；
+> 所有中止/澄清都带渠道，渠道率 0.9429；时效声明扩展到中止与澄清并修正日期格式，0.9123。
+> 口径线（basis 0.0526）不在契约层可解：19 道数值题要求答案包含全部数值锚点，属于数值
+> 召回/作答完整性，移入 P4。
+
+- Deterministic answers now pass an evidence-sufficiency judge; `partial`/`none`
+  abstain with a gap. Misanswer 0.2571 → 0.0571.
+- Channels are attached to clarify, weak-evidence and refusal answers; refusal
+  channel 0.5857 → 0.9429.
+- As-of declarations cover abstains and clarify responses and use Chinese dates;
+  0.8070 → 0.9123.
+- Basis remains 0.0526 because the metric requires every rubric numeric anchor in
+  the answer (17/19 answers omit at least one); it moves to the numeric-answer
+  completeness work.

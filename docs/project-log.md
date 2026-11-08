@@ -953,3 +953,10 @@ This log records material project changes by date. It does not use release versi
 - Point coverage now uses answerable questions only (727 points), with the all-points figure (849) kept as point_coverage_all; refusal points cannot be covered by design.
 - 13 of the 15 audited mappings applied as partial after a 20% clause-level spot-check; two rejected (a criminal-sentence question that cited a case report and a hypoxia question that cited closure dates).
 - Coverage 0.3395 → 0.3819; reachable answerable points 578 → 643, ceiling 0.795 → 0.8845. The 0.80 line now needs 90.5% of reachable points; the arm covers 43%.
+
+## 2026-11-08 — Misanswer, refusal-channel and as-of lines closed
+
+- Evidence-sufficiency judge on the deterministic path turns partial matches into abstains: misanswer 0.2571 → 0.0571 on the 70 refusal tests.
+- Channels attached to clarify, weak-evidence and refusal answers: refusal-with-channel 0.5857 → 0.9429.
+- Version declarations extended to abstains and clarify responses, with Chinese date formatting: as-of 0.8070 → 0.9123.
+- Basis stays 0.0526: the metric requires every rubric numeric anchor in the answer, which is numeric recall (17/19 answers omit an anchor), so it moves to the answer-completeness phase.

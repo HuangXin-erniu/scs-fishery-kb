@@ -1,9 +1,11 @@
 from __future__ import annotations
 
 import re
+from dataclasses import replace
 from typing import Any
 
 from .asof import detect as detect_asof
+from .asof import fallback as fallback_asof
 from .channels import ChannelBook
 from .contract import AnswerContract, Channel
 from .numbers import extract as extract_numbers
@@ -59,6 +61,16 @@ def _pick_conclusion(sentences: list[str], question: str, *, numeric: bool = Fal
         return score
 
     return max(cited, key=weight)
+
+
+def _basis_for(basis: str, section: str) -> str:
+    if basis and basis != "未标注口径":
+        return basis
+    if "表" in section:
+        return "表列值（条款）"
+    if section:
+        return f"{section}（条款）"
+    return "未标注口径"
 
 
 def _pick_conditions(sentences: list[str], conclusion: str) -> tuple[str, ...]:
@@ -139,6 +151,7 @@ def compose(
     conclusion = _pick_conclusion(sentences, question, numeric=numeric)
     if not doc_ids or not answer_text.strip():
         gap, channel = channels.resolve(question)
+        fallback_line = fallback_asof(question)
         return AnswerContract(
             answerability="abstain",
             conclusion="",
@@ -148,7 +161,7 @@ def compose(
                 answerability="abstain",
                 conclusion="",
                 conditions=(),
-                as_of_line="",
+                as_of_line=fallback_line,
                 numbers_line="",
                 gap=(gap, "已登记语料中没有可支撑该问题的依据"),
                 channels=channel,
@@ -158,7 +171,12 @@ def compose(
 
     as_of = detect_asof(question, doc_ids, registry)
     conditions = _pick_conditions(sentences, conclusion)
-    anchors = extract_numbers(" ".join([conclusion, *conditions]))
+    anchors = extract_numbers(" ".join([conclusion, *conditions])) or extract_numbers(answer_text)
+    section = ""
+    match = re.search(r"§([^\]]+)", answer_text)
+    if match:
+        section = match.group(1).strip()
+    anchors = [replace(anchor, basis=_basis_for(anchor.basis, section)) for anchor in anchors]
     gap: list[str] = []
     if numeric and not anchors:
         gap.append("缺少可核数值或口径")
