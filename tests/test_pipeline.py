@@ -376,3 +376,30 @@ def test_title_boost_prefers_the_matching_title() -> None:
     )
     hits = index.search("休渔", top_k=2)
     assert [hit.chunk.doc_id for hit in hits] == ["DOC-B", "DOC-A"]
+
+
+def test_label_sections_fills_empty_sections() -> None:
+    from dataclasses import replace
+
+    from scs_fkb.ingest_v2.chunking import label_sections
+    from scs_fkb.models import Chunk
+
+    base = Chunk(
+        chunk_id="DOC-0001",
+        doc_id="DOC",
+        source_id="DOC",
+        page=3,
+        section="",
+        text="第十二条 禁止使用小于最小网目尺寸的网具。",
+        token_count=10,
+        char_start=0,
+        char_end=30,
+        sensitivity="public",
+    )
+    labelled = label_sections(
+        [base, replace(base, chunk_id="DOC-0002", text="表格正文", section="")]
+    )
+    assert labelled[0].section == "第十二条"
+    assert labelled[1].section == "p.3"
+    kept = replace(base, section="三、休渔时间")
+    assert label_sections([kept])[0].section == "三、休渔时间"

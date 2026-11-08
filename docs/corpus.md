@@ -554,3 +554,11 @@ misanswer from 0.2571 to 0.3714–0.4000 and lowers citation accuracy; the index
 restored to the 48-document baseline and the 512 run returned to point 0.1684,
 citation 0.3810 and misanswer 0.2571. Indexing is deferred until the answer gate
 is aligned and re-tested (retrieval task).
+
+## 5o. Chunk labels and recall baseline (2026-11-08)
+
+Every child chunk now carries a section label: the article number in its first 80
+characters, else the section heading, else `p.N`. This removes the 171 section-less
+chunks that made citations unresolvable. Retrieval recall@10 on the 392 answerable
+questions with mapped documents is 0.834 (hybrid), 0.776 (dense) and 0.753 (BM25);
+the measurement script and artifacts are under the run root.

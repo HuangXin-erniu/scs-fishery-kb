@@ -6,6 +6,7 @@ from dataclasses import dataclass, replace
 from ..chunking import MAX_FALLBACK_CHARS, chunk_document
 from ..models import Chunk, Document
 from ..parsers.base import Page
+from ..patterns import ARTICLE_RE, SECTION_RE
 from ..text import tokenize
 
 
@@ -32,6 +33,30 @@ def _trust(document: Document) -> str:
 def _section_path(page: int, section: str) -> str:
     prefix = f"p.{page}" if page else "document"
     return f"{prefix} / {section}" if section else prefix
+
+
+def label_sections(chunks: list[Chunk]) -> list[Chunk]:
+    """Give every chunk a section label so a citation can resolve.
+
+    The article number in the chunk wins; a section heading in the first lines is
+    next; the page label is the last resort. Chunks that already carry a section
+    are returned unchanged.
+    """
+    labelled: list[Chunk] = []
+    for chunk in chunks:
+        if chunk.section.strip():
+            labelled.append(chunk)
+            continue
+        head = chunk.text.strip()[:80]
+        match = ARTICLE_RE.search(head) or SECTION_RE.search(head)
+        if match:
+            label = match.group(1)
+        elif chunk.page:
+            label = f"p.{chunk.page}"
+        else:
+            label = "正文"
+        labelled.append(replace(chunk, section=label))
+    return labelled
 
 
 def hierarchical_chunks(
@@ -83,7 +108,7 @@ def hierarchical_chunks(
         )
 
     children: list[Chunk] = []
-    for child in base:
+    for child in label_sections(base):
         parent_id = parent_ids[(child.page, child.section)]
         children.append(
             replace(
