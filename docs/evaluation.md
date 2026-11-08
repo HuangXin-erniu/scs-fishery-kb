@@ -538,3 +538,17 @@ The runtime evidence-sufficiency judge is enabled with
 default so tests and offline use never call the model implicitly. With the flag
 on, the 512 run reproduces misanswer 0.0571, refusal-with-channel 0.9429 and
 as-of 0.9123.
+
+### 11. Retrieval recall baseline (2026-11-08)
+
+> **中文摘要**：在 392 道"期望文档已入库"的应答题上测期望文档召回：单路 dense 0.776、
+> BM25 0.753、混合 0.834（k=10）。保护物种（0.431）、气候环境（0.556）、渔情遥感（0.580）
+> 最弱，且正是缺文档的域。嵌入模型 A/B 因 Hugging Face 下载被限速（20 分钟 2MB）取消，
+> 保留 bge-small-zh，后续用查询改写/重排/表格切分继续提升。
+
+- Recall@10 over 392 answerable questions with mapped expected documents: dense
+  0.7755, BM25 0.7526, hybrid 0.8342 (RRF, equal weights).
+- Weakest domains are corpus-bound (保护物种 0.431, 气候环境 0.556, 渔情与遥感 0.580).
+- Embedding A/B (jina-v2-zh, e5-large) blocked by HF throttling; bge-small stays.
+- `label_sections` gives every chunk a section label (article → heading → page) so
+  citations resolve; retrieval text is unchanged.

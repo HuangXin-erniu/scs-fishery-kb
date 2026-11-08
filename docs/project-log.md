@@ -960,3 +960,9 @@ This log records material project changes by date. It does not use release versi
 - Channels attached to clarify, weak-evidence and refusal answers: refusal-with-channel 0.5857 → 0.9429.
 - Version declarations extended to abstains and clarify responses, with Chinese date formatting: as-of 0.8070 → 0.9123.
 - Basis stays 0.0526: the metric requires every rubric numeric anchor in the answer, which is numeric recall (17/19 answers omit an anchor), so it moves to the answer-completeness phase.
+
+## 2026-11-08 — Retrieval recall baseline and chunk labels
+
+- Measured expected-document recall on the 392 answerable questions with mapped documents: dense 0.7755, BM25 0.7526, hybrid 0.8342 at k=10; weakest domains (保护物种 0.431, 气候环境 0.556, 渔情与遥感 0.580) are corpus-bound.
+- Added `label_sections` so every child chunk has an article/heading/page label; 171 section-less chunks no longer break citation resolution.
+- The embedding A/B (jina-v2-zh, e5-large) was cancelled: Hugging Face downloads stalled at ~2 KB/s and mirrors returned no throughput. bge-small-zh stays until a usable mirror is available; the 0.8342 hybrid baseline is the bar to beat.
