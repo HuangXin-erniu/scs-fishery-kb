@@ -137,3 +137,21 @@ written to the public tree and is not used for automatic training.
 The path carries `v1`; the service identifies itself as `scs-fkb-v2`. The
 contract is local and may change with the project log; there is no semantic
 version tag or release.
+
+### LLM composition arm (2026-11-08)
+
+`SCS_FKB_ANSWER_MODE=llm` switches the answer path to the LLM composition arm; the
+default stays `extractive`. The arm retrieves up to eight clauses, asks the model
+for a conclusion-first answer with per-sentence citations, and then enforces three
+hard checks before returning anything:
+
+1. every citation resolves to a retrieved clause (document, page or section);
+2. every number in a cited sentence appears verbatim in the cited evidence;
+3. a support verifier confirms that each conclusion is backed by the cited
+   evidence.
+
+A failed check triggers one repair pass; a second failure returns the gap form
+(缺口 + 渠道) instead of an answer. If the LLM is not configured or the call
+fails, the service falls back to the extractive path. Both arms share the same v3
+response contract, so `as_of`, `numeric` and `channel` fields are still produced
+by `compose()`.

@@ -447,3 +447,36 @@ endpoint is not configured.
   citation accuracy **0.3810**, misanswer 0.2571, refusal-with-channel 0.5857,
   as-of 0.3509, basis 0.0263. Downstream tasks compare against these numbers; the
   old 0.1753 / 0.1714 pair stays as history.
+
+### 7. LLM composition arm (2026-11-08)
+
+> **中文摘要**：新增可选 LLM 组合作答臂（默认关闭）。检索 8 条证据后由模型按
+> "结论先行 + 逐句引用"作答，再硬校验：引用可解析、数字能在被引证据中找到、
+> 核验器确认结论有证据支持。任一失败先修复一次，再失败就转缺口答复；模型不可用时
+> 回退抽句式。70 道应拒答题仍走确定性路径。
+
+- Default remains the extractive arm; `SCS_FKB_ANSWER_MODE=llm` enables the arm.
+- Checks: citation resolution, number grounding in the cited evidence, and a
+  verifier call; a single repair pass, then a gap answer.
+- The arm applies to 可答/部分可答 rows in the acceptance runner
+  (`--llm-answerability`), while 应拒答 rows stay deterministic so misanswer is
+  not traded for coverage.
+- Replies are cached under the data root by prompt version, question, evidence
+  and model, so re-runs are free.
+
+#### First full arm run (2026-11-08)
+
+| Metric | Extractive | LLM arm |
+|---|---:|---:|
+| Answered | 231 | 457 |
+| Point coverage | 0.1684 | 0.3395 |
+| Citation accuracy | 0.4048 | 0.2821 |
+| As-of declaration | 0.5439 | 0.8070 |
+| Misanswer (refusal) | 0.2571 | 0.2571 |
+| Mean latency | 22 ms | 30.4 s |
+
+The arm doubles coverage and lifts as-of declarations, but citation accuracy falls
+because cited sections rarely repeat the instrument's topic labels, and latency is
+endpoint-bound. Coverage reaches 49% of the 0.687 corpus ceiling (583 reachable
+points of 849), so the 0.80 line needs both a higher ceiling and more per-answer
+completeness.

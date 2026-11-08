@@ -929,3 +929,15 @@ This log records material project changes by date. It does not use release versi
 - Numeric basis: unlabelled numbers in a table/attachment/article location fall back to a table/clause basis instead of "未标注口径".
 - Rejected with measurements: aligning the service gate to 23.0/4 (misanswer 0.2571 → 0.2286 but coverage 0.1684 → 0.1161, citation 0.3810 → 0.2973); cross-encoder reranking (mean latency 1,821 ms, citation 0.2973); indexing batch 2 (refusal misanswer 0.3714–0.4000 under 19.0/3, coverage 0.1515 under 23.0/4).
 - The extractive arm cannot reach the 0.80 point-coverage line; the next task is the LLM composition arm with per-sentence citations and number grounding, while this arm stays the fallback.
+
+## 2026-11-08 — Optional LLM composition arm with hard grounding checks
+
+- Added an opt-in LLM arm (`SCS_FKB_ANSWER_MODE=llm`): top-8 evidence, conclusion-first answer with per-sentence citations, then citation resolution, number grounding and a support verifier; one repair pass and a gap answer on failure, extractive fallback when the model is unavailable.
+- Acceptance runner gained `--llm-answerability` so 可答/部分可答 rows use the arm while the 70 应拒答 rows stay deterministic.
+- Offline tests cover the valid path, ungrounded-number rejection, verifier rejection, abstain pass-through and missing-configuration fallback; the arm is off by default.
+
+## 2026-11-08 — First full LLM arm run on the 512-question set
+
+- The arm (442 answerable + 70 deterministic refusals) answered 89% of the set, doubled point coverage 0.1684 → 0.3395 and lifted as-of declarations 0.5439 → 0.8070, with zero surviving model-side failures after the citation/number/verifier checks.
+- Citation accuracy fell 0.4048 → 0.2821: multi-clause answers cite article numbers that do not repeat the instrument's topic labels. Mean latency is 30.4 s, endpoint-bound.
+- Coverage is 49% of the 0.687 corpus ceiling (583 reachable points); the 0.80 line requires both a higher ceiling (evidence mapping / batch 3) and more complete answers.

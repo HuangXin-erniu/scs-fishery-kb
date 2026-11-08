@@ -162,3 +162,115 @@ def test_asof_skips_non_policy_citation_without_cue() -> None:
 
     registry = {"PAPER-105": {"source_class": "reference", "year": 2025}}
     assert asof.detect("网目怎么量？", ["PAPER-105"], registry) is None
+
+
+# --- LLM composition arm (offline) ---
+import json  # noqa: E402
+
+from scs_fkb.answer_v3.llm_answer import answer_with_llm  # noqa: E402
+from scs_fkb.models import Chunk, SearchHit  # noqa: E402
+
+CITED_108 = "休渔时间为5月1日12时至8月16日12时，共108天。 [POL-CLOS-015 §三、休渔时间]"
+CITED_130 = "休渔时间为5月1日12时至8月16日12时，共130天。 [POL-CLOS-015 §三、休渔时间]"
+
+
+class FakeConfig:
+    model = "fake-model"
+
+
+class FakeClient:
+    def __init__(self, replies: list[dict]) -> None:
+        self.config = FakeConfig()
+        self.replies = list(replies)
+        self.calls: list[str] = []
+
+    def chat(self, messages, *, temperature=0.0, max_tokens=1200):  # noqa: ANN001
+        system = messages[0]["content"]
+        if "修复" in system:
+            kind = "repair"
+        elif "核验" in system:
+            kind = "verify"
+        else:
+            kind = "answer"
+        self.calls.append(kind)
+        value = self.replies.pop(0)
+        return json.dumps(value, ensure_ascii=False)
+
+
+def make_hit(
+    doc_id: str = "POL-CLOS-015", section: str = "三、休渔时间", text: str = ""
+) -> SearchHit:
+    chunk = Chunk(
+        chunk_id=f"{doc_id}-1",
+        doc_id=doc_id,
+        source_id="POL-CLOS",
+        page=3,
+        section=section,
+        text=text or "休渔时间为5月1日12时至8月16日12时，共108天。",
+        token_count=20,
+        char_start=0,
+        char_end=40,
+        sensitivity="public",
+    )
+    return SearchHit(chunk=chunk, score=1.0)
+
+
+def test_valid_answer_passes_checks() -> None:
+    client = FakeClient(
+        [
+            {
+                "abstained": False,
+                "answer": CITED_108,
+                "reason": "ok",
+            },
+            {"supported": True, "reason": ""},
+        ]
+    )
+    answer = answer_with_llm("南海休渔到几号？", [make_hit()], client, cache=None)
+    assert answer.abstained is False
+    assert answer.reason == "llm_compose"
+    assert answer.citations and answer.citations[0].doc_id == "POL-CLOS-015"
+
+
+def test_ungrounded_number_after_repair_abstains() -> None:
+    client = FakeClient(
+        [
+            {
+                "abstained": False,
+                "answer": CITED_130,
+                "reason": "ok",
+            },
+            {
+                "abstained": False,
+                "answer": CITED_130,
+                "reason": "ok",
+            },
+        ]
+    )
+    answer = answer_with_llm("南海休渔到几号？", [make_hit()], client, cache=None)
+    assert answer.abstained is True
+    assert answer.reason.startswith("llm_ungrounded")
+    assert client.calls == ["answer", "repair"]
+
+
+def test_unsupported_answer_is_abstained() -> None:
+    client = FakeClient(
+        [
+            {
+                "abstained": False,
+                "answer": CITED_108,
+                "reason": "ok",
+            },
+            {"supported": False, "reason": "结论超出证据"},
+        ]
+    )
+    answer = answer_with_llm("南海休渔到几号？", [make_hit()], client, cache=None)
+    assert answer.abstained is True
+    assert answer.reason.startswith("llm_unsupported")
+
+
+def test_llm_abstain_is_passed_through() -> None:
+    client = FakeClient([{"abstained": True, "answer": "", "reason": "证据没有休渔时间"}])
+    answer = answer_with_llm("南海休渔到几号？", [make_hit()], client, cache=None)
+    assert answer.abstained is True
+    assert "llm_abstain" in answer.reason
