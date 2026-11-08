@@ -480,3 +480,20 @@ because cited sections rarely repeat the instrument's topic labels, and latency 
 endpoint-bound. Coverage reaches 49% of the 0.687 corpus ceiling (583 reachable
 points of 849), so the 0.80 line needs both a higher ceiling and more per-answer
 completeness.
+
+### 8. Coverage denominator and evidence audit (2026-11-08)
+
+> **中文摘要**：849 个可判要点里有 122 个属于 70 道应拒答题——这些题按协议必须拒答，
+> 其要点永远不可能被覆盖，因此现行要点覆盖率分母被低估。按"应答题"分母（727 点），
+> 当前上限是 0.795，而不是 0.681。92 道"期望文档不在库"的题逐题审计后仅 15 道可由
+> 现有索引回答（26 点），映射后上限 0.831；当前实际覆盖 0.396，要达到 0.80 需要覆盖
+> 96% 的可达要点。
+
+- The scorer's point-coverage denominator includes refusal-points (122 of 849).
+  Coverage will be reported over answerable points (727) in the next scorer change,
+  with the all-points number kept for continuity.
+- Evidence audit: 92 unreachable answerable questions; 15 mappable to existing
+  clauses (5 full, 10 partial, 26 points); 77 have no supporting clause. Model
+  judgements need a 20% spot-check before mapping.
+- Ceiling (answerable denominator): 0.795 current, 0.831 with mapping. Current
+  coverage 0.396; the gap needs answer completeness, not just corpus growth.
