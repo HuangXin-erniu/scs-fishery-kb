@@ -2,6 +2,7 @@
 
 from .filters import RetrievalFilters, filter_hits
 from .rerank import DEFAULT_RERANKER, Reranker
+from .rewrite import rewrite
 from .router import QueryPlan, plan_query
 from .search import HybridRetriever, build_retriever
 
@@ -14,4 +15,5 @@ __all__ = [
     "build_retriever",
     "filter_hits",
     "plan_query",
+    "rewrite",
 ]

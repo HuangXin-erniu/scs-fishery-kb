@@ -552,3 +552,15 @@ as-of 0.9123.
 - Embedding A/B (jina-v2-zh, e5-large) blocked by HF throttling; bge-small stays.
 - `label_sections` gives every chunk a section label (article → heading → page) so
   citations resolve; retrieval text is unchanged.
+
+### 12. Query rewriting lifts recall to 0.913 (2026-11-08)
+
+> **中文摘要**：把口语问题改写成 2–3 条规范检索式后，混合召回@10 从 0.8342 升到
+> 0.9133，@5 同为 0.9133，达到 P3 目标；交叉编码器重排反而降到 0.7908（只看前 300 字，
+> 截断了中文条款的操作句），且每题 1.7 秒，决定不采用。改写调用有缓存，重跑免费。
+
+- Hybrid recall with rewriting: 0.9133 at k=10 and k=5 (baseline 0.8342).
+- Reranker rejected: 0.7908 recall@5, 1.69 s per question, 300-char truncation cuts
+  the operative clause.
+- Table chunking deferred: targets met without changing chunk text, so the recall
+  baseline stays comparable.

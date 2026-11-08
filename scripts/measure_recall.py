@@ -20,14 +20,11 @@ from typing import Any
 DEFAULT_MODELS = ["BAAI/bge-small-zh-v1.5"]
 
 
-def _chunks(data_root: Path, *, label: bool = True) -> list[Any]:
+def _chunks(data_root: Path, *, label: bool = True, path: str = "") -> list[Any]:
     from scs_fkb.models import Chunk
 
-    rows = [
-        json.loads(line)
-        for line in (data_root / "v2/processed/chunks.jsonl").open(encoding="utf-8")
-        if line.strip()
-    ]
+    source = Path(path) if path else data_root / "v2/processed/chunks.jsonl"
+    rows = [json.loads(line) for line in source.open(encoding="utf-8") if line.strip()]
     chunks = [
         Chunk(
             chunk_id=row["chunk_id"],
@@ -86,11 +83,13 @@ def _embed_chunks(encoder: Any, chunks: list[Any], cache_dir: Path, tag: str) ->
     return matrix
 
 
-def _rank(matrix: Any, query: str, encoder: Any, top_k: int) -> list[int]:
+def _rank(matrix: Any, queries: list[str], encoder: Any, top_k: int) -> list[int]:
     import numpy as np
 
-    q = np.asarray(encoder.embed_query(query), dtype="float32")
-    scores = matrix @ q
+    scores = np.zeros(matrix.shape[0], dtype="float32")
+    for query in queries:
+        q = np.asarray(encoder.embed_query(query), dtype="float32")
+        scores = np.maximum(scores, matrix @ q)
     return list(np.argsort(-scores)[:top_k])
 
 
@@ -103,49 +102,65 @@ def _recall(
     bm25: Any,
     *,
     top_k: int,
+    queries_by_question: dict[str, list[str]] | None = None,
+    reranker: Any = None,
 ) -> dict[str, Any]:
     from scs_fkb.fusion import reciprocal_rank_fusion
+    from scs_fkb.models import SearchHit
 
     indexed = {chunk.doc_id for chunk in chunks}
     doc_ids = [chunk.doc_id for chunk in chunks]
-    totals = {"dense": 0, "bm25": 0, "hybrid": 0}
-    hits = {"dense": 0, "bm25": 0, "hybrid": 0}
+    hits = {"dense": 0, "bm25": 0, "hybrid": 0, "reranked": 0}
+    totals = 0
     per_domain: dict[str, list[int]] = {}
     latency = 0.0
-    # Short queries for BM25; dense ranking is computed once per question.
     for row in rows:
         expected = _expected(row, docmap, indexed)
         if not expected:
             continue
         question = str(row["question"])
+        queries = [question]
+        if queries_by_question is not None:
+            queries += [item for item in queries_by_question.get(row["id"], []) if item]
         started = time.perf_counter()
-        dense_idx = _rank(matrix, question, encoder, top_k)
-        dense_order = [doc_ids[index] for index in dense_idx]
-        lexical = bm25.search(question, top_k=top_k)
-        lexical_order = [hit.chunk.doc_id for hit in lexical]
-        latency += time.perf_counter() - started
+        dense_idx = _rank(matrix, queries, encoder, max(top_k, 20))
+        lexical = []
+        for query in queries:
+            lexical.extend(bm25.search(query, top_k=max(top_k, 20)))
+        lexical.sort(key=lambda hit: (-hit.score, hit.chunk.chunk_id))
+        lexical = lexical[: max(top_k, 20)]
         fused = reciprocal_rank_fusion(
             [
-                [type("H", (), {"chunk": chunks[index], "score": 1.0})() for index in dense_idx],
+                [SearchHit(chunk=chunks[index], score=1.0) for index in dense_idx],
                 lexical,
             ],
             [1.0, 1.0],
-            top_k=top_k,
+            top_k=max(top_k, 20),
         )
+        latency += time.perf_counter() - started
+        dense_order = [doc_ids[index] for index in dense_idx]
+        lexical_order = [hit.chunk.doc_id for hit in lexical]
         hybrid_order = [hit.chunk.doc_id for hit in fused]
+        ranked = hybrid_order
+        if reranker is not None:
+            started = time.perf_counter()
+            ranked_hits = reranker.rerank(question, fused, top_k=top_k)
+            ranked = [hit.chunk.doc_id for hit in ranked_hits]
+            latency += time.perf_counter() - started
+        totals += 1
         for mode, order in (
             ("dense", dense_order),
             ("bm25", lexical_order),
             ("hybrid", hybrid_order),
+            ("reranked", ranked),
         ):
-            totals[mode] += 1
             ok = int(bool(set(order) & expected))
             hits[mode] += ok
             per_domain.setdefault(row["domain"], []).append(ok)
-    count = max(1, totals["dense"])
+    count = max(1, totals)
     return {
         "questions": count,
-        "recall": {mode: round(hits[mode] / count, 4) for mode in hits},
+        "recall": {mode: round(value / count, 4) for mode, value in hits.items()},
         "top_k": top_k,
         "mean_latency_ms": round(1000 * latency / count, 1),
         "per_domain": {
@@ -162,6 +177,10 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--models", default=",".join(DEFAULT_MODELS))
     parser.add_argument("--top-k", type=int, default=10)
     parser.add_argument("--no-labels", action="store_true", help="keep empty sections")
+    parser.add_argument("--chunks", default="", help="chunk JSONL override")
+    parser.add_argument("--rewrite", action="store_true", help="rewrite queries with the model")
+    parser.add_argument("--rerank", action="store_true", help="rerank fused candidates")
+    parser.add_argument("--workers", type=int, default=6)
     args = parser.parse_args(argv)
     if not args.data_root:
         print("set --data-root or SCS_FKB_DATA_ROOT", file=sys.stderr)
@@ -174,11 +193,39 @@ def main(argv: list[str] | None = None) -> int:
     ]
     rows = [row for row in dataset if row["answerability"] in ("可答", "部分可答")]
     docmap = _docmap(data_root / "eval/acceptance/doc-map.yaml")
-    chunks = _chunks(data_root, label=not args.no_labels)
+    chunks = _chunks(data_root, label=not args.no_labels, path=args.chunks)
 
     from scs_fkb.bm25 import BM25Index
 
     bm25 = BM25Index(chunks)
+    queries_by_question: dict[str, list[str]] = {}
+    if args.rewrite:
+        from concurrent.futures import ThreadPoolExecutor
+
+        from scs_fkb.llm import LLMClient, LLMConfig, LLMError
+        from scs_fkb.rag import LLMCache
+        from scs_fkb.retrieve_v2.rewrite import rewrite
+
+        try:
+            config = LLMConfig.from_env()
+        except LLMError as exc:
+            print(f"rewrite unavailable: {exc}", file=sys.stderr)
+        else:
+            client = LLMClient(config)
+            cache = LLMCache(data_root / "llm-cache")
+
+            def work(row: dict[str, Any]) -> tuple[str, list[str]]:
+                return row["id"], rewrite(str(row["question"]), client, cache)
+
+            with ThreadPoolExecutor(max_workers=max(1, args.workers)) as pool:
+                for row_id, queries in pool.map(work, rows):
+                    queries_by_question[row_id] = queries
+            print(f"rewrote {len(queries_by_question)} questions", file=sys.stderr)
+    reranker = None
+    if args.rerank:
+        from scs_fkb.retrieve_v2.rerank import Reranker
+
+        reranker = Reranker(cache_dir=str(data_root / "embeddings" / "models"))
     results: dict[str, Any] = {"chunks": len(chunks), "questions": len(rows), "models": {}}
     for model in [item.strip() for item in args.models.split(",") if item.strip()]:
         from scs_fkb.embed import FastEmbedEncoder
@@ -191,7 +238,17 @@ def main(argv: list[str] | None = None) -> int:
         matrix = _embed_chunks(
             encoder, chunks, data_root / "embeddings" / "recall", model.replace("/", "-")
         )
-        per_model = _recall(rows, docmap, chunks, matrix, encoder, bm25, top_k=args.top_k)
+        per_model = _recall(
+            rows,
+            docmap,
+            chunks,
+            matrix,
+            encoder,
+            bm25,
+            top_k=args.top_k,
+            queries_by_question=queries_by_question or None,
+            reranker=reranker,
+        )
         per_model["load_seconds"] = round(load_seconds, 1)
         per_model["dim"] = int(getattr(encoder, "dim", 0))
         results["models"][model] = per_model
