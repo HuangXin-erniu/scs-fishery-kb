@@ -12,9 +12,12 @@ from typing import Any
 from ..answer import answer_question, citation_text, validate_citations
 from ..answer_v3 import ChannelBook
 from ..answer_v3 import compose as compose_contract
+from ..answer_v3.llm_answer import answer_with_llm
 from ..facts import DEFAULT_FACTS_DIR, load_all
 from ..knowledge_v2 import load_playbooks
+from ..llm import LLMClient, LLMConfig, LLMError
 from ..models import Citation, SearchHit
+from ..rag import LLMCache
 from ..registry import load_registry
 from ..retrieve_v2 import plan_query
 from .schemas import (
@@ -106,8 +109,41 @@ class AnswerService:
         self.index_version = index_version
         self.web_search = web_search
         self.answer_contract = answer_contract
+        self.answer_mode = os.environ.get("SCS_FKB_ANSWER_MODE", "extractive").strip().lower()
+        self._llm: Any = False
         self._channels: ChannelBook | None = None
         self._registry = load_registry()
+
+    def _llm_pair(self) -> tuple[LLMClient, LLMCache] | None:
+        if self._llm is False:
+            try:
+                config = LLMConfig.from_env()
+            except LLMError:
+                self._llm = None
+            else:
+                root = self.data_root or Path(".")
+                self._llm = (LLMClient(config), LLMCache(root / "llm-cache"))
+        return self._llm
+
+    def _llm_answer(self, question: str, hits: list[SearchHit], filters: Any) -> Any:
+        pair = self._llm_pair()
+        if pair is None:
+            return None
+        client, cache = pair
+        merged = list(hits)
+        seen = {hit.chunk.chunk_id for hit in merged}
+        try:
+            more = self.retriever.search(question, top_k=8, filters=filters, rerank=False)
+        except TypeError:
+            more = self.retriever.search(question, top_k=8)
+        for hit in more:
+            if hit.chunk.chunk_id not in seen:
+                merged.append(hit)
+                seen.add(hit.chunk.chunk_id)
+        try:
+            return answer_with_llm(question, merged[:8], client, cache)
+        except LLMError:
+            return None
 
     def _channel_book(self) -> ChannelBook:
         if self._channels is None:
@@ -273,7 +309,12 @@ class AnswerService:
         lead = self._fact_lead(question, hits, plan.nature)
         if lead is not None and all(item.chunk.chunk_id != lead[2].chunk.chunk_id for item in hits):
             hits.append(lead[2])
-        if gate:
+        llm_answer = (
+            self._llm_answer(question, hits, filters) if self.answer_mode == "llm" else None
+        )
+        if llm_answer is not None:
+            answer = llm_answer
+        elif gate:
             answer = answer_question(
                 question,
                 hits,

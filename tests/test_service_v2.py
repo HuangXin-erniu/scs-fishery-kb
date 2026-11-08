@@ -187,3 +187,16 @@ def test_v1_contract_remains_available() -> None:
     result = service.query("2026年南海区伏季休渔从什么时候开始？", web="off")
     assert result.conclusion == ""
     assert not result.answer.startswith("结论：")
+
+
+def test_llm_mode_falls_back_without_configuration(monkeypatch) -> None:
+    import scs_fkb.llm as llm_module
+
+    for name in ("LLM_BASE_URL", "LLM_API_KEY", "LLM_MODEL"):
+        monkeypatch.delenv(name, raising=False)
+    monkeypatch.setattr(llm_module, "load_dotenv", lambda: None)
+    monkeypatch.setenv("SCS_FKB_ANSWER_MODE", "llm")
+    service = _service()
+    result = service.query("2026年南海区伏季休渔从什么时候开始？", web="off")
+    assert result.abstained is False
+    assert result.reason != "llm_compose"

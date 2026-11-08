@@ -39,18 +39,143 @@ def _environment(data_root: Path) -> dict:
 
 
 def _build_llm(data_root: Path):
-    from scs_fkb.llm import LLMConfig, LLMError
-    from scs_fkb.rag import LLMCache, llm_answer_fn
+    from scs_fkb.answer_v3 import ChannelBook, compose
+    from scs_fkb.answer_v3.llm_answer import answer_with_llm
+    from scs_fkb.llm import LLMClient, LLMConfig, LLMError
+    from scs_fkb.models import Answer
+    from scs_fkb.rag import LLMCache
+    from scs_fkb.registry import load_registry
+    from scs_fkb.retrieve_v2 import build_retriever
 
     try:
         config = LLMConfig.from_env()
     except LLMError as exc:
         print(f"llm arm unavailable: {exc}", file=sys.stderr)
         return None, str(exc)
+    client = LLMClient(config)
     cache = LLMCache(data_root / "llm-cache")
-    from scs_fkb.llm import LLMClient
+    retriever = build_retriever(data_root, reranker=False)
+    registry = load_registry()
+    channels = ChannelBook.load()
 
-    return llm_answer_fn(LLMClient(config), cache), ""
+    from scs_fkb.answer import answer_question
+
+    def arm(question: str, _hits: list) -> Answer:
+        evidence = retriever.search(question, top_k=8)
+        try:
+            answer = answer_with_llm(question, evidence, client, cache)
+        except LLMError:
+            answer = None
+        if answer is None or answer.abstained:
+            fallback = answer_question(
+                question,
+                evidence,
+                min_score=0.0,
+                min_matched=0,
+                require_corpus=True,
+            )
+            if not fallback.abstained:
+                answer = fallback
+            elif answer is None:
+                return fallback
+        if answer.abstained:
+            return answer
+        contract = compose(
+            question,
+            answer.text,
+            doc_ids=[item.doc_id for item in answer.citations],
+            registry=registry,
+            channels=channels,
+        )
+        if contract.answerability == "abstain":
+            return Answer(
+                text=contract.body,
+                citations=[],
+                abstained=True,
+                reason="gap_declared",
+            )
+        return Answer(
+            text=contract.body,
+            citations=answer.citations,
+            abstained=False,
+            reason="llm_compose",
+        )
+
+    return arm, ""
+
+
+def _run_llm_rows(
+    rows,
+    service,
+    llm_fn,
+    *,
+    workers: int,
+    docmap,
+    concepts,
+    overrides,
+    config,
+    progress,
+):
+    """Run the network-bound arm concurrently; retrieval and scoring stay in order."""
+    from concurrent.futures import ThreadPoolExecutor
+
+    from scs_fkb.eval_accept.runner import query_service
+    from scs_fkb.eval_accept.scoring import score_row
+
+    retriever = getattr(service, "retriever", None)
+    prepared = []
+    for row in rows:
+        hits = retriever.search(str(row.get("question") or ""), top_k=8) if retriever else []
+        prepared.append((row, hits))
+
+    def call(item):
+        row, hits = item
+        try:
+            return (
+                row["id"],
+                query_service(
+                    service, str(row.get("question") or ""), llm_fn=lambda q, _h: llm_fn(q, hits)
+                ),
+                "",
+            )
+        except Exception as exc:  # noqa: BLE001 - a failing question is data
+            return (
+                row["id"],
+                {
+                    "answer": "",
+                    "citations": [],
+                    "abstained": True,
+                    "reason": "runner_error",
+                    "mode": "error",
+                    "latency_ms": 0,
+                },
+                f"{type(exc).__name__}: {exc}",
+            )
+
+    results = {}
+    done = 0
+    with ThreadPoolExecutor(max_workers=max(1, workers)) as pool:
+        for row_id, result, error in pool.map(call, prepared):
+            results[row_id] = (result, error)
+            done += 1
+            if progress is not None and done % 25 == 0:
+                progress(done, len(rows))
+
+    scored = []
+    for row in rows:
+        result, error = results[row["id"]]
+        scored_row = score_row(
+            row,
+            result,
+            docmap=docmap,
+            concepts=concepts,
+            overrides=overrides,
+            config=config,
+        )
+        scored_row["question"] = row.get("question")
+        scored_row["error"] = error
+        scored.append(scored_row)
+    return scored
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -66,6 +191,19 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--answerability", default="")
     parser.add_argument("--limit", type=int, default=None)
     parser.add_argument("--llm", action="store_true", help="also run the optional LLM arm")
+    parser.add_argument(
+        "--llm-workers",
+        type=int,
+        default=1,
+        help="concurrent LLM calls (retrieval stays sequential)",
+    )
+    parser.add_argument(
+        "--llm-answerability",
+        default="",
+        help=(
+            "comma-separated answerability labels that use the LLM arm (others stay deterministic)"
+        ),
+    )
     parser.add_argument(
         "--allow-fail",
         action="store_true",
@@ -150,16 +288,63 @@ def main(argv: list[str] | None = None) -> int:
     def progress(done: int, total: int) -> None:
         print(f"scored {done}/{total}", file=sys.stderr)
 
-    scored = run_acceptance(
-        selected,
-        service,
-        docmap=docmap,
-        concepts=concepts,
-        overrides=overrides,
-        config=scoring,
-        llm_fn=llm_fn,
-        progress=progress,
-    )
+    scope = {item.strip() for item in args.llm_answerability.split(",") if item.strip()}
+    if llm_fn is not None and scope:
+        llm_rows = [row for row in selected if row.get("answerability") in scope]
+        deterministic_rows = [row for row in selected if row.get("answerability") not in scope]
+        scored = []
+        if llm_rows:
+            if args.llm_workers > 1:
+                scored.extend(
+                    _run_llm_rows(
+                        llm_rows,
+                        service,
+                        llm_fn,
+                        workers=args.llm_workers,
+                        docmap=docmap,
+                        concepts=concepts,
+                        overrides=overrides,
+                        config=scoring,
+                        progress=progress,
+                    )
+                )
+            else:
+                scored.extend(
+                    run_acceptance(
+                        llm_rows,
+                        service,
+                        docmap=docmap,
+                        concepts=concepts,
+                        overrides=overrides,
+                        config=scoring,
+                        llm_fn=llm_fn,
+                        progress=progress,
+                    )
+                )
+        if deterministic_rows:
+            scored.extend(
+                run_acceptance(
+                    deterministic_rows,
+                    service,
+                    docmap=docmap,
+                    concepts=concepts,
+                    overrides=overrides,
+                    config=scoring,
+                    llm_fn=None,
+                    progress=progress,
+                )
+            )
+    else:
+        scored = run_acceptance(
+            selected,
+            service,
+            docmap=docmap,
+            concepts=concepts,
+            overrides=overrides,
+            config=scoring,
+            llm_fn=llm_fn,
+            progress=progress,
+        )
     overall = aggregate(scored)
     groups = group_metrics(scored)
     gate = gate_result(overall, scoring.thresholds)
