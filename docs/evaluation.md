@@ -683,3 +683,34 @@ holdout split.
 - Dev 120: baseline 0.6765 coverage; six-type 0.6723; numeric-only 0.6723; citation
   0.767 in all variants.
 - Verdict: rejected; the remaining gap is evidence-bound.
+
+### 20. Depth, window and structural ceilings (2026-11-09)
+
+> **中文摘要**：摘录窗口从 9k 到 40k 只再增 0.3pp，真正限制覆盖的是检索深度：
+> 生产检索每查询只取 10 条，三个改写融合后约 30 条，深度 10 的段级覆盖上限 0.708；
+> 深度 100 时检索段上限 0.788、文档整段上限 0.803。全语料"同段共现"结构上限
+> 590/727=0.8116，0.80 需要覆盖其中 98.6%，实际不可达。引用在深度 100 的
+> "期望文档+定位"联合上限 0.683，主题标签不回显于条款，0.90 需要标签注入，
+> 与"不用问题词刷覆盖"的纪律冲突。
+
+- Dump window sweep (512, same index): 30 hits/9,000 chars → coverage 0.6574,
+  citation 0.5606, basis 0.2105, mean answer 8,628 chars; 60/20,000 → 0.6843,
+  0.5812, 0.2632, 11,302; 120/40,000 → 0.6871, 0.5835, 0.2632, 11,747. Misanswer
+  0.0714, channel 0.9286 and as-of 0.9298 stay closed.
+- The window saturates because `HybridRetriever.depth` is 10 per query; three
+  rewrites fuse to about 30 unique hits, so `top_k=120` cannot return more.
+- Retrieval-depth ceilings (442 answerable rows, 727 judgeable points):
+  depth 10 → section 0.7084, doc blocks 0.7744; depth 30 → 0.7579 / 0.7937;
+  depth 100 → 0.7882 / 0.8033. Expected-document ceiling at depth 100 is 0.9138.
+- Corpus-wide structural ceiling: 590 of 727 points have all judging terms in one
+  document section group (0.8116). The 0.80 line needs 582 points, i.e. 98.6% of
+  those sections; a product answer cannot quote the corpus.
+- Citation: the joint "expected document and location" ceiling is 0.6830 at depth
+  100. Instrument labels such as `值班交接`, `船名号标写`, `误捕报告与救护` do not
+  occur verbatim in the clause text, so more evidence cannot lift location
+  matching. Topic-labelled lines are the only route to 0.90 and remain a policy
+  decision.
+- Basis: 10 of 19 numeric rows have every anchor anywhere in the indexed text (8
+  answerable); the rest need table-unit attachment, Chinese-numeral rendering or
+  the missing papers/standards.
+- Raw reports: `runs/P11-MEAS-185/{ceiling.md,sweep.md,decompose.md}`.

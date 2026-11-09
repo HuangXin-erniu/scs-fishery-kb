@@ -23,6 +23,24 @@ def _load_config(path: Path) -> dict:
     return yaml.safe_load(path.read_text(encoding="utf-8")) or {}
 
 
+def _answer_lengths(scored: list[dict]) -> dict:
+    """Answer-size distribution, recorded next to the metrics for window sweeps."""
+    values = sorted(
+        len(str(row.get("answer") or "")) for row in scored if not row.get("abstained")
+    )
+    if not values:
+        return {"answered": 0}
+    count = len(values)
+    return {
+        "answered": count,
+        "min": values[0],
+        "mean": round(sum(values) / count, 1),
+        "p50": values[count // 2],
+        "p95": values[min(count - 1, int(round(0.95 * (count - 1))))],
+        "max": values[-1],
+    }
+
+
 def _environment(data_root: Path) -> dict:
     manifest_path = data_root / "v2" / "index" / "manifest.json"
     manifest: dict = {}
@@ -505,10 +523,15 @@ def main(argv: list[str] | None = None) -> int:
         latency=latency,
         failures=failures,
     )
+    lengths = _answer_lengths(scored)
+    (out_dir / "answer_lengths.json").write_text(
+        json.dumps(lengths, ensure_ascii=False, indent=2), encoding="utf-8"
+    )
     print(
         f"arm={arm} questions={len(scored)} answered={overall['answered']} "
         f"point_coverage={overall['point_coverage']} citation={overall['citation_accuracy']} "
-        f"misanswer={overall['misanswer_rate']} gate={'pass' if gate['passed'] else 'fail'}"
+        f"misanswer={overall['misanswer_rate']} gate={'pass' if gate['passed'] else 'fail'} "
+        f"answer_chars_mean={lengths.get('mean')}"
     )
     print(f"report: {out_dir / 'baseline.md'}")
     if gate["failures"]:
