@@ -19,7 +19,7 @@ The project turns documents, data dictionaries, product descriptions, fishery bu
 
 ## Status
 
-**Pipeline and acceptance complete for this phase.** One hundred sources are registered: ninety-eight acquired and two held. Sixty-six documents are indexed (2,761 chunks). The service answers in clause-dump mode: verbatim sentences with `[DOC §section]` citations, the highest-overlap sentence on top and a deterministic numeric-comparison block. Under acceptance protocol v2 the private 512-question run passes all six lines: misanswer 0.0000, refusal-with-channel 1.0000, as-of 0.9474, point coverage 0.8104, citation 0.9497 and basis 0.9412. Protocol v2 judges citation location at document level, gives partial credit to point terms and measures basis over answered numeric rows; the rules and the v1 comparison are in [docs/evaluation.md](docs/evaluation.md). The code is public; the corpus, the processed store and the run reports stay local.
+**Pipeline and acceptance complete for this phase.** One hundred sources are registered: ninety-eight acquired and two held. Sixty-seven documents are indexed (2,797 chunks). The service answers in clause-dump mode: verbatim sentences with `[DOC §section]` citations, the highest-overlap sentence on top and a deterministic numeric-comparison block. Under acceptance protocol v2 the private 512-question run passes all six lines: misanswer 0.0000, refusal-with-channel 1.0000, as-of 0.9474, point coverage 0.8129, citation 0.9588 and basis 0.9412. Protocol v2 judges citation location at document level, gives partial credit to point terms and measures basis over answered numeric rows; the rules and the v1 comparison are in [docs/evaluation.md](docs/evaluation.md). The code is public; the corpus, the processed store and the run reports stay local.
 
 ### Corpus at a glance
 
@@ -31,7 +31,7 @@ The project turns documents, data dictionaries, product descriptions, fishery bu
 | Legal and technical documents | 53 — 1 law, 20 regulations, 12 notices, 17 standards, 2 data dictionaries, 1 operations reference |
 | Local core CSV | 3,126 rows, not published |
 | Documented gaps | port classes 2018–2019; vessel length 2024; 2025 sampled |
-| Indexed documents | 66 documents, 2,761 chunks |
+| Indexed documents | 67 documents, 2,797 chunks |
 | Evaluation instrument | Private 512-question acceptance set; six-line protocol |
 
 This project has no versioned releases: no tags, no GitHub Releases and no semantic versions. `main` is the latest state; cite a commit SHA. Changes are recorded in the [project log](docs/project-log.md).
@@ -107,14 +107,16 @@ The pipeline reads sources from `SCS_FKB_DATA_ROOT` and writes the processed sto
 
 ```sh
 export SCS_FKB_DATA_ROOT=/path/to/local/data
-make ingest   # parse the twenty-eight indexed documents and build the local chunks
-PYTHONPATH=src python3 -m scs_fkb embed   # build the local dense index once
-make eval     # four-arm Recall@5, MRR, abstention, citation and reference metrics
-make define TERM=上岸量   # CWP definition passages for a Chinese term
-PYTHONPATH=src python3 -m scs_fkb stats "2019年南海区海洋捕捞产量"   # local statistics rows
+PYTHONPATH=src python3 scripts/build_v2.py        # parse registered sources into the local store
+PYTHONPATH=src python3 scripts/build_index_v2.py  # build the local BM25 + dense index
+PYTHONPATH=src python3 -m scs_fkb ask "2026年南海区伏季休渔从什么时候开始？"
+PYTHONPATH=src python3 -m scs_fkb ask --full "2026年南海区伏季休渔从什么时候开始？"
+PYTHONPATH=src python3 -m scs_fkb serve
 ```
 
-`make ingest` and `make eval` need the local data root; CI runs `make check` only, so the public tree stays data-free.
+`ask` prints a short contract summary and the main citations; `--full` prints the
+full evidence text. The build commands need the local data root; CI runs
+`make check` only, so the public tree stays data-free.
 
 The default answer arm is **clause dump**: each retrieved clause is quoted sentence by sentence with its own `[DOC §section]` citation, the highest-overlap sentence is placed on top, and a deterministic numeric-comparison block renders Chinese numerals, Latin units and table-header units without inventing values. No model call is made for the answer. The arm keeps `SCS_FKB_DUMP_DEPTH=300`, `SCS_FKB_DUMP_MODE=block`, `SCS_FKB_DUMP_HITS=300` and `SCS_FKB_DUMP_CHARS=300000`; `SCS_FKB_ANSWER_MODE=extractive|llm|facet|quotes` switches arms. `SCS_FKB_DUMP_TOPIC` is a diagnostic and stays off.
 
