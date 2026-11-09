@@ -978,3 +978,9 @@ This log records material project changes by date. It does not use release versi
 - Added a facet arm (decompose, per-facet answer with citation/number checks, merge, verify) behind `SCS_FKB_ANSWER_MODE=facet`; the single answer is merged and used as fallback, so the arm cannot answer less than the single arm.
 - 512 run: coverage 0.3807 → 0.4133, citation 0.3287 → 0.3540, misanswer 0.0571 → 0.0429, channel 0.9571, as-of 0.9123; per-answer coverage 0.419.
 - Coverage is still far from 0.65: facet answers restate one clause and cannot know the rubric's elements. Per the plan's rule (<0.55), the facet arm stays opt-in and the single-pass arm remains the default.
+
+## 2026-11-09 — Quote-first arm measured; answer-strategy space exhausted
+
+- Added a quote-first arm enforcing verbatim clause fragments (normalised substring), per-entry citations and a single fallback; fabricated or reworded quotes are rejected.
+- 120-question pilot: quotes 0.5388 coverage / 0.5437 citation, below single (0.5566) and facet (0.6036). Facet remains the best arm but still short of 0.65.
+- Conclusion: coverage is bounded by retrieved evidence and enumerable rubric elements, not by answer format. Next per plan: corpus batch 3 to raise reachable points, then decide whether 0.80 stays hard.

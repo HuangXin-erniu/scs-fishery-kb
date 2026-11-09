@@ -362,3 +362,68 @@ def make_hit_hit() -> object:
         sensitivity="public",
     )
     return SearchHit(chunk=chunk, score=1.0)
+
+
+class QuotesClient:
+    def __init__(self, entries: list[dict], verified: bool = True) -> None:
+        self.entries = entries
+        self.verified = verified
+        self.config = FakeConfig()
+
+    def chat(self, messages, *, temperature=0.0, max_tokens=1200):  # noqa: ANN001
+        system = messages[0]["content"]
+        if "摘录器" in system:
+            return json.dumps({"entries": self.entries}, ensure_ascii=False)
+        if "改写" in system:
+            return json.dumps({"queries": ["休渔时间"]}, ensure_ascii=False)
+        return json.dumps({"supported": self.verified, "reason": ""}, ensure_ascii=False)
+
+
+class QuotesRetriever:
+    def __init__(self, hits: list) -> None:
+        self.hits = hits
+
+    def search_queries(self, queries, top_k=5, filters=None):  # noqa: ANN001
+        return self.hits[:top_k]
+
+
+def test_quotes_arm_keeps_verbatim_and_rejects_rewrites() -> None:
+    from scs_fkb.answer_v3.quotes_arm import answer_with_quotes
+
+    hit = make_hit_hit()
+    good = {
+        "doc_id": "POL-CLOS-015",
+        "section": "三、休渔时间",
+        "quote": "休渔时间为5月1日12时至8月16日12时",
+        "covers": "休渔时间",
+    }
+    bad = {**good, "quote": "休渔时间为5月1日至8月16日"}
+    client = QuotesClient([good, bad])
+    answer = answer_with_quotes("休渔到什么时间？", QuotesRetriever([hit]), client, cache=None)
+    assert answer.abstained is False
+    assert "5月1日12时" in answer.text
+    assert "1. " not in answer.text or answer.text.count("休渔时间") >= 1
+    assert answer.citations
+
+
+def test_quotes_arm_falls_back_when_no_entry_survives() -> None:
+    from scs_fkb.answer_v3.quotes_arm import answer_with_quotes
+
+    hit = make_hit_hit()
+    client = QuotesClient(
+        [
+            {
+                "doc_id": "POL-CLOS-015",
+                "section": "三、休渔时间",
+                "quote": "编造的引文",
+                "covers": "x",
+            }
+        ]
+    )
+    from scs_fkb.models import Answer
+
+    fallback = Answer(text="回退答案", citations=[], abstained=False, reason="fallback")
+    answer = answer_with_quotes(
+        "休渔到什么时间？", QuotesRetriever([hit]), client, cache=None, fallback=lambda: fallback
+    )
+    assert answer.text == "回退答案"
