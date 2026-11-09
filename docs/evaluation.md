@@ -606,3 +606,18 @@ as-of 0.9123.
 - Default `SCS_FKB_DUMP_HITS=30`, `SCS_FKB_DUMP_CHARS=9000`; the mode is opt-in.
 - Basis remains 0.1053: numeric rows need all rubric anchors, most of which live in
   documents outside the corpus.
+
+### 16. Indexing the registered documents; term ceiling 0.8556 (2026-11-09)
+
+> **中文摘要**：在充分性判定器守护下，把此前因拒答指标被排除的 10 份文档入索引：词级
+> 证据上限 0.8281 → 0.8556，摘录臂覆盖 0.6574、口径 0.2105、误答 0.0857（仍 ≤0.10）、
+> 渠道 0.9143、引用 0.5606。批 3 另抓到 2 份但不入索引（重复/误答升高）。结论：0.80 需要
+> 覆盖 93.5% 的可支持要点，当前摘录做到 77%，0.80 不可达。
+
+- Indexed 10 registered documents (48 → 58 docs, 1,486 → 2,412 chunks); term
+  ceiling 0.8281 → 0.8556.
+- Dump arm: coverage 0.6574, citation 0.5606, basis 0.2105, misanswer 0.0857,
+  channel 0.9143, as-of 0.9298.
+- Batch 3: two captured (trawl paper, port-fee notice), neither indexed.
+- 0.80 would need 93.5% of supported points in answers; the maximal dump reaches
+  77%. The gap is quantified for the closing report.

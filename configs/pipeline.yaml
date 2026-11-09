@@ -11,6 +11,7 @@ documents:
   - POL-CODE-084
   - POL-CONS-090
   - POL-CREW-083
+  - POL-DOLPHIN-117
   - POL-ENF-068
   - POL-FJ-025
   - POL-FJ-026
@@ -23,11 +24,15 @@ documents:
   - POL-GEAR-102
   - POL-GX-023
   - POL-GX-024
+  - POL-GX-118
   - POL-ID-085
+  - POL-JUD-115
   - POL-LAW-009
   - POL-LAW-097
   - POL-LAW-098
   - POL-LAW-099
+  - POL-LAW-100
+  - POL-LAW-116
   - POL-LIST-079
   - POL-MARKET-093
   - POL-MIN-091
@@ -48,7 +53,12 @@ documents:
   - POL-STAT-088
   - POL-STD-010
   - POL-SUB-094
+  - POL-TURTLE-113
   - POL-WATCH-082
+  - STAT-ECO-111
+  - STD-EUTRO-119
+  - STD-SMALL-114
+  - STD-WQ-104
 chunking:
   max_fallback_chars: 800
 retrieval:

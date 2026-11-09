@@ -562,3 +562,15 @@ characters, else the section heading, else `p.N`. This removes the 171 section-l
 chunks that made citations unresolvable. Retrieval recall@10 on the 392 answerable
 questions with mapped documents is 0.834 (hybrid), 0.776 (dense) and 0.753 (BM25);
 the measurement script and artifacts are under the run root.
+
+## 5p. Batch-2 documents indexed, term ceiling 0.8556 (2026-11-09)
+
+Ten previously registered documents were indexed under the current refusal path
+(the sufficiency judge keeps misanswer at 0.0857): the eight batch-2 documents plus
+行政处罚法 and GB 3097. Indexed documents 48 → 58; chunks 1,486 → 2,412; the
+term-level evidence ceiling rises 0.8281 → 0.8556. The dump arm moves
+0.6518 → 0.6574 coverage, 0.1053 → 0.2105 basis, citation within 1 pp.
+
+Batch 3 captured two more documents (a trawl paper and the Guangdong port-fee
+notice) but neither is indexed: the paper duplicates a batch-1 snapshot, and the
+port-fee notice lifts misanswer to 0.1143 for +0.4 pp coverage.
