@@ -12,6 +12,7 @@ from typing import Any
 from ..answer import answer_question, citation_text, validate_citations
 from ..answer_v3 import ChannelBook
 from ..answer_v3 import compose as compose_contract
+from ..answer_v3.dump_arm import answer_with_dump
 from ..answer_v3.facet_arm import answer_with_facets
 from ..answer_v3.llm_answer import answer_with_llm
 from ..answer_v3.quotes_arm import answer_with_quotes
@@ -126,6 +127,15 @@ class AnswerService:
                 root = self.data_root or Path(".")
                 self._llm = (LLMClient(config), LLMCache(root / "llm-cache"))
         return self._llm
+
+    def _dump_answer(self, question: str) -> Any:
+        pair = self._llm_pair()
+        rewrites: list[str] = []
+        if pair is not None:
+            from ..retrieve_v2.rewrite import rewrite
+
+            rewrites = rewrite(question, pair[0], pair[1])
+        return answer_with_dump(question, self.retriever, queries=rewrites)
 
     def _quotes_answer(self, question: str) -> Any:
         pair = self._llm_pair()
@@ -367,7 +377,9 @@ class AnswerService:
         lead = self._fact_lead(question, hits, plan.nature)
         if lead is not None and all(item.chunk.chunk_id != lead[2].chunk.chunk_id for item in hits):
             hits.append(lead[2])
-        if self.answer_mode == "quotes":
+        if self.answer_mode == "dump":
+            llm_answer = self._dump_answer(question)
+        elif self.answer_mode == "quotes":
             llm_answer = self._quotes_answer(question)
         elif self.answer_mode == "facet":
             llm_answer = self._facet_answer(question)

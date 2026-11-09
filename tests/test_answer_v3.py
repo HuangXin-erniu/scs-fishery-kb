@@ -427,3 +427,35 @@ def test_quotes_arm_falls_back_when_no_entry_survives() -> None:
         "休渔到什么时间？", QuotesRetriever([hit]), client, cache=None, fallback=lambda: fallback
     )
     assert answer.text == "回退答案"
+
+
+def test_dump_arm_quotes_sentences_with_citations() -> None:
+    from scs_fkb.answer_v3.dump_arm import answer_with_dump
+
+    class DumpRetriever:
+        def __init__(self, hits):
+            self.hits = hits
+
+        def search_queries(self, queries, top_k=12, filters=None):  # noqa: ANN001
+            return self.hits
+
+    hit = make_hit_hit()
+    answer = answer_with_dump("休渔到什么时间？", DumpRetriever([hit]))
+    assert answer.abstained is False
+    assert answer.reason == "dump_compose"
+    assert answer.text.startswith("结论：")
+    assert "[POL-CLOS-015 §三、休渔时间]" in answer.text
+    assert answer.citations
+    assert len(answer.text) <= 2500
+
+
+def test_dump_arm_abstains_without_hits() -> None:
+    from scs_fkb.answer_v3.dump_arm import answer_with_dump
+
+    class EmptyRetriever:
+        def search_queries(self, queries, top_k=12, filters=None):  # noqa: ANN001
+            return []
+
+    answer = answer_with_dump("休渔到什么时间？", EmptyRetriever())
+    assert answer.abstained is True
+    assert answer.reason == "no_evidence"

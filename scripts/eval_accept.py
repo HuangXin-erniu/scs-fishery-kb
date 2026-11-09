@@ -79,6 +79,35 @@ def _build_llm(data_root: Path, arm: str = "single"):
                 return fallback
         return answer
 
+    if arm == "dump":
+        from scs_fkb.answer_v3.dump_arm import answer_with_dump
+        from scs_fkb.retrieve_v2.rewrite import rewrite
+
+        def dump_arm(question: str, _hits: list) -> Answer:
+            rewrites = rewrite(question, client, cache)
+            answer = answer_with_dump(question, retriever, queries=rewrites)
+            if answer.abstained:
+                return answer
+            contract = compose(
+                question,
+                answer.text,
+                doc_ids=[item.doc_id for item in answer.citations],
+                registry=registry,
+                channels=channels,
+            )
+            if contract.answerability == "abstain":
+                return Answer(
+                    text=contract.body, citations=[], abstained=True, reason="gap_declared"
+                )
+            return Answer(
+                text=contract.body,
+                citations=answer.citations,
+                abstained=False,
+                reason="dump_compose",
+            )
+
+        return dump_arm, ""
+
     if arm == "quotes":
         from scs_fkb.answer_v3.quotes_arm import answer_with_quotes
 
@@ -271,7 +300,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--llm", action="store_true", help="also run the optional LLM arm")
     parser.add_argument(
         "--llm-arm",
-        choices=["single", "facet", "quotes"],
+        choices=["single", "facet", "quotes", "dump"],
         default="single",
         help="LLM arm variant: single-pass or facet answering",
     )
