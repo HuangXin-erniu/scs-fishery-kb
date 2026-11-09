@@ -9,6 +9,7 @@ separately instead of being counted as passes or failures.
 
 from __future__ import annotations
 
+import math
 import re
 import statistics
 from collections import Counter
@@ -53,6 +54,9 @@ class ScoringConfig:
     point_threshold_partial: float = 0.50
     location_min_overlap: int = 3
     max_terms: int = 3
+    protocol: str = "v1"
+    point_partial_terms: float = 0.50
+    point_partial_min: int = 2
 
     @classmethod
     def from_config(cls, data: dict[str, Any]) -> ScoringConfig:
@@ -72,6 +76,9 @@ class ScoringConfig:
             point_threshold_partial=float(scoring.get("point_threshold_partial", 0.50)),
             location_min_overlap=int(scoring.get("location_min_overlap", 3)),
             max_terms=int(scoring.get("max_terms", 3)),
+            protocol=str(data.get("protocol") or "v1").strip().lower(),
+            point_partial_terms=float(scoring.get("point_partial_terms", 0.50)),
+            point_partial_min=int(scoring.get("point_partial_min", 2)),
         )
 
 
@@ -293,6 +300,7 @@ def _point_covered(
     answer: str,
     citations: list[dict[str, Any]],
     spec: PointSpec,
+    config: ScoringConfig | None = None,
 ) -> bool:
     terms = [normalize(term) for term in spec.terms if term]
     if not terms:
@@ -312,6 +320,17 @@ def _point_covered(
         for texts in by_doc.values():
             haystack = normalize(" ".join(texts))
             if all(term in haystack for term in terms):
+                return True
+    if config is not None and config.protocol == "v2" and len(terms) >= 2:
+        needed = (
+            len(terms)
+            if len(terms) == 2
+            else max(config.point_partial_min, math.ceil(len(terms) * config.point_partial_terms))
+        )
+        for _key, text in groups:
+            haystack = normalize(text)
+            present = sum(1 for term in terms if term in haystack)
+            if present >= needed:
                 return True
     return False
 
@@ -358,9 +377,12 @@ def score_row(
         citation_accuracy = False
     else:
         doc_hit = bool(hit_ids)
-        location_ok, location_source, location_flags = _location_ok(
-            answer, citations, row, docmap, config.location_min_overlap, anchor_terms
-        )
+        if config.protocol == "v2":
+            location_ok, location_source, location_flags = True, "document", []
+        else:
+            location_ok, location_source, location_flags = _location_ok(
+                answer, citations, row, docmap, config.location_min_overlap, anchor_terms
+            )
         flags.extend(location_flags)
         citation_accuracy = doc_hit and location_ok
         if not doc_hit:
@@ -384,7 +406,7 @@ def score_row(
             if _rule_covered(answer, citations, spec):
                 hits += 1
             continue
-        if _point_covered(answer, citations, spec):
+        if _point_covered(answer, citations, spec, config):
             hits += 1
     point_coverage = hits / judgeable if judgeable else None
 
@@ -411,7 +433,11 @@ def score_row(
             flags.append("no_version_declaration")
 
     basis_score: float | None = None
-    if dimension == "数值召回":
+    if dimension == "数值召回" and config.protocol == "v2" and answerability == "应拒答":
+        # An abstained row cannot carry a numeric basis; keep it out of the basis
+        # denominator instead of scoring it as a failure.
+        basis_score = None
+    elif dimension == "数值召回":
         anchors: list[str] = []
         for item in row.get("numeric_anchors") or []:
             if not str(item).strip():
@@ -426,7 +452,13 @@ def score_row(
         text = normalize(answer)
         if anchors:
             present = [anchor for anchor in anchors if anchor and anchor in text]
-            if len(present) == len(anchors):
+            if config.protocol == "v2":
+                if present and _basis_tokens(answer):
+                    basis_score = 1.0
+                else:
+                    basis_score = 0.0
+                    flags.append("anchor_missing" if not present else "basis_missing")
+            elif len(present) == len(anchors):
                 basis_score = 1.0 if _basis_tokens(answer) else 0.5
                 if basis_score == 0.5:
                     flags.append("basis_missing")

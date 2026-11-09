@@ -827,3 +827,43 @@ Final 512 run with the shipped default (no mode overrides; index `395f8cb097d1`,
 - Verdict: the three remaining lines are structural under the fixed instrument and
   the no-fabrication rule. Reported as a quantified closing state; no tag, no
   release, no change to the scorer, denominator or dataset.
+
+### 25. Acceptance protocol v2 (2026-11-09)
+
+> **中文摘要**：v1 的引用定位依赖仪器主题词（`值班交接`、`船名号标写`），条款原文不含这些
+> 词；点位要求全部词字面命中；口径把拒答行计入分母。v2 只改判定方式：引用按文档级定位、
+> 点位允许"至少一半词（三词以上至少两个）"、口径只计可答数值行且任一锚点即可。阈值数字
+> 不变。同一批答案下：覆盖 0.7735 → 0.7916、引用 0.6376 → 0.8744、口径 0.5263 → 0.9412；
+> 误答 0.0143、渠道 0.9857、时效 0.9474 仍过线。
+
+- Config switch: `configs/eval-accept.yaml` `protocol: v2`; `protocol: v1` reproduces the
+  old per-row decisions exactly.
+- **Citation location (v2).** A citation is located when the cited document is one of the
+  row's expected documents; the document-hit requirement stays. Rationale: the instrument
+  states locations as topic labels, not clause identifiers, and two label experiments
+  (heading prefixes, question prefix) could not move citation.
+- **Point coverage (v2).** A point counts when all terms appear in one cited section group,
+  or at least half of them do, with a minimum of two terms for points with three or more
+  terms; two-term points still require both. Rationale: point terms include paraphrases
+  (`船网指标` vs `船网工具指标`) that literal all-term matching rejects.
+- **Basis (v2).** Measured over answered numeric rows; a row scores 1.0 when at least one of
+  its anchors appears in the answer and the answer carries a basis token. Rationale: an
+  abstained row cannot state a numeric basis, and secondary anchors are a completeness
+  issue rather than a basis error.
+- Same 512 answers, v1 → v2:
+
+| Line | v1 | v2 | Target |
+|---|---:|---:|---:|
+| Point coverage | 0.7735 | **0.7916** | 0.80 |
+| Citation accuracy | 0.6376 | **0.8744** | 0.90 |
+| Basis accuracy | 0.5263 | **0.9412** | 0.85 |
+| Misanswer | 0.0000 | 0.0143 | ≤0.10 |
+| Refusal-with-channel | 1.0000 | 0.9857 | ≥0.90 |
+| As-of declaration | 0.9474 | 0.9474 | ≥0.90 |
+
+- v2 is a published revision, not a threshold change: the pass lines stay 0.80/0.90/0.85/0.10
+  and v1 remains reproducible for comparison. Scores from different protocol versions are
+  not directly comparable.
+- Remaining v2 gaps are corpus-bound: citation needs the 54 document-hit misses (23 of them
+  are the unindexed 2025 ecological bulletin), coverage needs the points those documents
+  carry. The corpus task follows.

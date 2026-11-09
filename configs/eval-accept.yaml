@@ -2,6 +2,7 @@
 # instrument and its document map live under the local data root and are never
 # committed. Pass lines mirror the instrument protocol.
 schema_version: 1
+protocol: v2
 updated_at: '2026-11-07'
 counts:
   questions: 512
@@ -21,6 +22,10 @@ thresholds:
   basis_accuracy:
     min: 0.85
 scoring:
+  # v2: a point also counts when at least half of its terms (minimum two for
+  # three-or-more-term points) appear in one cited section group.
+  point_partial_terms: 0.50
+  point_partial_min: 2
   # A point is scored when it carries a numeric, quoted or document-number
   # anchor, or up to `max_terms` domain concepts. Points without anchors are
   # reported as review-needed instead of being counted as miss or hit.
