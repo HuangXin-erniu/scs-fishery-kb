@@ -79,6 +79,39 @@ def _build_llm(data_root: Path, arm: str = "single"):
                 return fallback
         return answer
 
+    if arm == "quotes":
+        from scs_fkb.answer_v3.quotes_arm import answer_with_quotes
+
+        def quotes_arm(question: str, _hits: list) -> Answer:
+            base_hits = retriever.search_queries([question], top_k=8)
+            base = single_answer(question, base_hits)
+
+            def fallback() -> Answer:
+                return base
+
+            answer = answer_with_quotes(question, retriever, client, cache, fallback=fallback)
+            if answer.abstained:
+                return answer
+            contract = compose(
+                question,
+                answer.text,
+                doc_ids=[item.doc_id for item in answer.citations],
+                registry=registry,
+                channels=channels,
+            )
+            if contract.answerability == "abstain":
+                return Answer(
+                    text=contract.body, citations=[], abstained=True, reason="gap_declared"
+                )
+            return Answer(
+                text=contract.body,
+                citations=answer.citations,
+                abstained=False,
+                reason="quotes_compose",
+            )
+
+        return quotes_arm, ""
+
     if arm == "facet":
         from scs_fkb.answer_v3.facet_arm import answer_with_facets
 
@@ -238,7 +271,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--llm", action="store_true", help="also run the optional LLM arm")
     parser.add_argument(
         "--llm-arm",
-        choices=["single", "facet"],
+        choices=["single", "facet", "quotes"],
         default="single",
         help="LLM arm variant: single-pass or facet answering",
     )
@@ -335,7 +368,11 @@ def main(argv: list[str] | None = None) -> int:
     if args.llm:
         llm_fn, llm_error = _build_llm(data_root, args.llm_arm)
         arm = (
-            ("facet" if args.llm_arm == "facet" else "llm")
+            (
+                "facet"
+                if args.llm_arm == "facet"
+                else ("quotes" if args.llm_arm == "quotes" else "llm")
+            )
             if llm_fn is not None
             else "extractive_after_llm_error"
         )

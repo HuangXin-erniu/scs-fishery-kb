@@ -579,3 +579,15 @@ as-of 0.9123.
   as-of 0.9123, basis 0.0526.
 - Coverage remains the binding gap: per-answer coverage 0.419, and the rubric's
   elements are not inferable from the question alone.
+
+### 14. Quote-first arm: accurate but not exhaustive (2026-11-09)
+
+> **中文摘要**：引用式穷举臂要求条目必须是条款原文（规范化后子串匹配），编造或改写一律
+> 拒绝；但 120 题试点覆盖 0.5388，低于单轮臂 0.5566 和 facet 臂 0.6036。三个臂都没有
+> 达到 0.65，说明瓶颈不在作答格式，而在证据内容与可枚举的要素数量。
+
+- Quote entries must be verbatim fragments of the cited clause; rejected entries are
+  counted, and each carries `[DOC §section]`.
+- Pilot: quotes 0.5388 coverage vs single 0.5566 and facet 0.6036; citation 0.5437.
+- Verdict: the answer-strategy space is exhausted; facet is the best arm (+3.3 pp on
+  the full set). Next lever is corpus batch 3.

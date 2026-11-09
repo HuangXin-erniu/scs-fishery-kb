@@ -14,6 +14,7 @@ from ..answer_v3 import ChannelBook
 from ..answer_v3 import compose as compose_contract
 from ..answer_v3.facet_arm import answer_with_facets
 from ..answer_v3.llm_answer import answer_with_llm
+from ..answer_v3.quotes_arm import answer_with_quotes
 from ..facts import DEFAULT_FACTS_DIR, load_all
 from ..knowledge_v2 import load_playbooks
 from ..llm import LLMClient, LLMConfig, LLMError
@@ -125,6 +126,21 @@ class AnswerService:
                 root = self.data_root or Path(".")
                 self._llm = (LLMClient(config), LLMCache(root / "llm-cache"))
         return self._llm
+
+    def _quotes_answer(self, question: str) -> Any:
+        pair = self._llm_pair()
+        if pair is None:
+            return None
+        client, cache = pair
+
+        def fallback() -> Any:
+            hits = self.retriever.search_queries([question], top_k=8)
+            return answer_with_llm(question, hits, client, cache)
+
+        try:
+            return answer_with_quotes(question, self.retriever, client, cache, fallback=fallback)
+        except LLMError:
+            return None
 
     def _facet_answer(self, question: str) -> Any:
         pair = self._llm_pair()
@@ -351,7 +367,9 @@ class AnswerService:
         lead = self._fact_lead(question, hits, plan.nature)
         if lead is not None and all(item.chunk.chunk_id != lead[2].chunk.chunk_id for item in hits):
             hits.append(lead[2])
-        if self.answer_mode == "facet":
+        if self.answer_mode == "quotes":
+            llm_answer = self._quotes_answer(question)
+        elif self.answer_mode == "facet":
             llm_answer = self._facet_answer(question)
         elif self.answer_mode == "llm":
             llm_answer = self._llm_answer(question, hits, filters)
