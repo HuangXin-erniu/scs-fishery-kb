@@ -23,14 +23,37 @@ def test_legacy_command_is_rejected() -> None:
         raise AssertionError("legacy command was accepted")
 
 
-def test_ask_prints_the_answer(monkeypatch, capsys) -> None:
+def _result() -> SimpleNamespace:
     citation = SimpleNamespace(doc_id="POL-CLOS-015", section="三、休渔时间", page=1, title="通告")
-    result = SimpleNamespace(answer="结论：5月1日。", citations=[citation], abstained=False)
+    return SimpleNamespace(
+        answer="结论：5月1日。\n依据摘录：\n5月1日12时起休渔。 [POL-CLOS-015 §三、休渔时间]",
+        summary="结论：5月1日。",
+        citations=[citation],
+        citations_total=1,
+        abstained=False,
+        mode="kb_only",
+    )
+
+
+def test_ask_defaults_to_the_summary(monkeypatch, capsys) -> None:
+    result = _result()
     monkeypatch.setattr(cli, "_service", lambda args: SimpleNamespace(query=lambda q: result))
     code = cli.main(["--data-root", "/tmp/data", "ask", "休渔时间"])
     assert code == 0
     out = capsys.readouterr().out
-    assert "5月1日" in out
+    assert "结论：5月1日。" in out
+    assert "依据摘录" not in out
+    assert "完整证据" in out
+    assert "POL-CLOS-015" in out
+
+
+def test_ask_full_prints_the_evidence(monkeypatch, capsys) -> None:
+    result = _result()
+    monkeypatch.setattr(cli, "_service", lambda args: SimpleNamespace(query=lambda q: result))
+    code = cli.main(["--data-root", "/tmp/data", "ask", "--full", "休渔时间"])
+    assert code == 0
+    out = capsys.readouterr().out
+    assert "依据摘录" in out
     assert "POL-CLOS-015" in out
 
 

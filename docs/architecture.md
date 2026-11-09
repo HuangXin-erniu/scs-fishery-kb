@@ -88,8 +88,8 @@ over answered numeric rows; the rules and the v1 comparison are in
 ## 6. Operating commands
 
 ```bash
-# registry and sources
-PYTHONPATH=src python -m scs_fkb sources check
+# public-tree validation
+PYTHONPATH=src python -m scs_fkb check
 
 # build store and index (local data root)
 PYTHONPATH=src python scripts/build_v2.py
@@ -102,8 +102,10 @@ PYTHONPATH=src python scripts/measure_recall.py --models BAAI/bge-small-zh-v1.5 
 SCS_FKB_VERIFY_ANSWERS=on PYTHONPATH=src python scripts/eval_accept.py \
   --task-id local --llm --llm-arm dump --llm-answerability 可答,部分可答 --llm-workers 6
 
-# service
-PYTHONPATH=src python scripts/serve_v2.py
+# service: brief answer by default, full evidence with --full
+PYTHONPATH=src python -m scs_fkb ask "2026年南海区伏季休渔从什么时候开始？"
+PYTHONPATH=src python -m scs_fkb ask --full "2026年南海区伏季休渔从什么时候开始？"
+PYTHONPATH=src python -m scs_fkb serve
 ```
 
 ## 7. Known limits
