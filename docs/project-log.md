@@ -1010,3 +1010,8 @@ This log records material project changes by date. It does not use release versi
 - Heading-prefixed chunk labels: citation 0.5561 and misanswer 0.1143 (over the line) — reverted; store and index rebuilt back.
 - Topic-prefixed conclusion sentence: citation +0.7 pp (below the 1 pp keep rule); coverage gain came from question words, not evidence — reverted.
 - Restored baseline: coverage 0.6574, citation 0.5606. Next lever: element-type retrieval for coverage.
+
+## 2026-11-09 — Element-type query expansion rejected
+
+- Added deterministic element-type queries (six types, then numeric-only) and measured the 120-row dev slice: 0.6723 coverage vs 0.6765 baseline, citation unchanged.
+- Verdict: rejected and reverted; retrieval recall is already 0.913, so the gap is evidence, not query phrasing.
