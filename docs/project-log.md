@@ -1023,3 +1023,10 @@ This log records material project changes by date. It does not use release versi
 - Depth audit (new eval-only `scripts/audit_quote_ceiling.py`): section ceiling 0.708 at depth 10, 0.758 at 30, 0.788 at 100; doc-block ceiling 0.774/0.794/0.803. Corpus-wide section co-occurrence is 590/727 = 0.8116, so 0.80 needs 98.6% of the point-bearing sections.
 - Citation decomposition: 192 failures at baseline, 110 location and 82 wrong-document; at depth 100 the joint document+location ceiling is 0.683. The instrument's topic labels are paraphrases, not clause wording.
 - Verdict: raise retrieval depth and quote at section/document granularity next; corpus work must raise the structural ceiling; citation 0.90 needs a decision on topic-labelled lines.
+
+## 2026-11-09 — Depth, block quoting and numeric rendering
+
+- Added `SCS_FKB_DUMP_DEPTH`, `SCS_FKB_DUMP_MODE=block` and a deterministic `数值对照` block (Chinese numerals, Latin units, table-header units) to the dump arm.
+- 512 variants: depth 30 sentence 0.7301/0.6339/0.2632; depth 30 block 0.7293/0.6339/0.2632; depth 100 block 120k 0.7578/0.6384/0.3158; plus rendering **0.7679/0.6384/0.4737** with misanswer 0.0714, channel 0.9286 and as-of 0.9474.
+- Block order is neutral at a fixed window; depth is the coverage lever. The numeric block lifted basis from 4/19 to 9/19, including Y-442/497 (Chinese numerals) and Y-352 (table units).
+- Kept V4c; default mode unchanged until the final task. Remaining gaps are structural: depth-100 section ceiling 0.788, citation joint ceiling 0.683, and six basis rows whose anchors are not in the index.
