@@ -997,3 +997,10 @@ This log records material project changes by date. It does not use release versi
 - Dump arm: coverage 0.6574, citation 0.5606, basis 0.1053 → 0.2105, misanswer 0.0857, channel 0.9143, as-of 0.9298.
 - Batch 3 captured a trawl paper and the Guangdong port-fee notice but indexed neither (duplicate / misanswer 0.1143); N-015, N-001, N-019, T-010 and T-002 remain unobtainable.
 - Reaching 0.80 needs 93.5% of supported points; the maximal dump reaches 77%, so the line is reported as unreachable with the corpus and instrument.
+
+## 2026-11-09 — Final documentation, sanitized samples and release
+
+- Rewrote `docs/architecture.md` for the running pipeline (registry, capture, parsing, labeled chunking, index, rewrite retrieval, four answer arms, v3 contract, service, acceptance) with the measured arm table and operating commands.
+- Added the final acceptance section to `docs/evaluation.md`: three lines met (misanswer 0.0857, channel 0.9143, as-of 0.9298), three short (coverage 0.6574, citation 0.5606, basis 0.2105), ceiling 622/727 supported and 0.80 needing 93.6% of supported points.
+- Added twenty sanitized acceptance-style samples to `docs/questions.md` and removed the zero-reference glossary bridge module and config.
+- Legacy modules still imported by the legacy CLI are listed for a dedicated CLI/test rewrite in the next phase.

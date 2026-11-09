@@ -621,3 +621,42 @@ as-of 0.9123.
 - Batch 3: two captured (trawl paper, port-fee notice), neither indexed.
 - 0.80 would need 93.5% of supported points in answers; the maximal dump reaches
   77%. The gap is quantified for the closing report.
+
+### 17. Final acceptance status (2026-11-09)
+
+> **中文摘要**：512 题验收的最终状态——误答 0.0857、拒答渠道 0.9143、时效 0.9298 已达标；
+> 覆盖 0.6574、引用 0.5606、口径 0.2105 未达标。词级证据上限 0.8556，0.80 覆盖需要支持点
+> 的 93.6%，最强臂做到 77%。剩余缺口来自公开渠道拿不到的文档与主题标签式定位，属于当前
+> 语料与验收集的结构性限制，已量化记录。
+
+| Line | Value | Target | Verdict |
+|---|---:|---:|---|
+| Misanswer (70 refusal) | 0.0857 | ≤0.10 | met |
+| Refusal-with-channel | 0.9143 | ≥0.90 | met |
+| As-of declaration (57) | 0.9298 | ≥0.90 | met |
+| Point coverage (727 answerable) | 0.6574 | 0.80 | not met |
+| Citation accuracy | 0.5606 | 0.90 | not met |
+| Basis accuracy (19 numeric) | 0.2105 | 0.85 | not met |
+
+**Ceiling arithmetic.** 622 of 727 answerable points have their judging terms
+somewhere in the indexed corpus (0.8556). The 0.80 line needs 582 points, i.e.
+93.6% of the supported points, while the strongest arm (deterministic clause dump
+at 30 hits / 9,000 characters) covers 91 more points than the single arm and still
+reaches only 0.6574 (77% of supported).
+
+**Why the remaining points are out of reach.**
+- The documents that would carry them are not publicly obtainable (渔业安全生产管理
+  规定、部分部级通告、学位论文全文).
+- The instrument's citation locations are topic labels; clauses cite article
+  numbers, so location matching fails even when the document is retrieved.
+- The 19 basis rows require every rubric anchor; most anchors live in the missing
+  documents.
+
+**Arms compared on 512.** single 0.3807 / 0.3287; facet 0.4133 / 0.3540; dump
+0.6574 / 0.5606. The dump arm is deterministic, makes no model call and cannot
+fabricate; it is the documented clause-quotation mode.
+
+**What was deliberately not done.** No changes to the instrument labels, no change
+to the coverage denominator beyond the earlier answerable-point correction, no
+acceptance of documents that break the refusal metric, and no prompt tuning on the
+holdout split.

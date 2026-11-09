@@ -107,3 +107,32 @@ The persona counts cover all 48 questions. `summary_persona` in `eval` covers th
 2. Run the deterministic and LLM evaluations; report dev and test separately and never tune on test.
 3. Any test-driven change must first become a new dev question; test stays report-only.
 4. Record each run in [evaluation.md](evaluation.md) with commit, index version and model.
+
+## Acceptance samples (sanitized, 2026-11-09)
+
+Twenty representative shapes from the acceptance instrument, with place names,
+vessel identifiers and years generalised. Each row states the evidence a complete
+answer must cite; none of these rows is used for tuning.
+
+| # | Question (sanitized) | Answer shape | Evidence needed |
+|---:|---|---|---|
+| 1 | 伏季休渔的起止时间与适用海域是什么？ | dates + sea area + citation | 农业农村部休渔通告 |
+| 2 | 休渔期哪些作业类型可以豁免或申请专项许可？ | clause + approval level | 休渔通告 + 专项许可规定 |
+| 3 | 拖网网囊的最小网目尺寸是多少，依据哪条？ | value + unit + clause | 网目尺寸标准 |
+| 4 | 幼鱼比例超过多少算违规，按重量还是尾数？ | ratio + basis + clause | 最小可捕规格通告 |
+| 5 | 捕捞许可证到期前多久换发，逾期怎么办？ | deadline + procedure + channel | 捕捞许可管理规定 |
+| 6 | 大中型渔船渔捞日志必须记录哪些内容？ | field list + clause | 捕捞许可管理规定 §50-53 |
+| 7 | 未按规定提交渔捞日志的处罚是什么？ | penalty + range + clause | 捕捞许可管理规定 |
+| 8 | 渔船进出渔港需要办理什么报告手续？ | procedure + channel | 渔港管理规定 |
+| 9 | 渔船检验分为哪几类，多久一次？ | categories + interval | 渔船检验规则 |
+| 10 | 什么情况下必须配职务船员，配几名？ | conditions + numbers | 船员管理办法 |
+| 11 | 在禁渔区线内作业的认定标准与处罚依据？ | definition + penalty | 渔业法 + 实施细则 |
+| 12 | 误捕保护物种应如何处理，能否带回？ | handling + prohibition | 野生动物保护法 + 行动计划 |
+| 13 | 渔业资源增殖保护费的征收幅度是多少？ | range + basis | 征收使用管理办法 |
+| 14 | 减船转产补助的对象、标准与申请渠道？ | eligibility + amount + channel | 渔业发展支持政策 |
+| 15 | 海洋捕捞产量按海区、渔具如何统计？ | definitions + table | 渔业统计年鉴 |
+| 16 | 渔情遥感产品的分辨率与更新频率是多少？ | values + caveat | 遥感产品说明（未入库时拒答） |
+| 17 | 台风预警分几级，渔民应如何响应？ | levels + actions | 台风预警信号规定 |
+| 18 | 涉外渔业纠纷应向哪个部门报告？ | channel + procedure | 涉外渔业管理规定 |
+| 19 | 海洋生态公报中的低氧阈值如何判定？ | value + method | 生态预警监测公报 |
+| 20 | 历史渔汛期与中心渔场如何变化？ | trend + caveat | 渔情通报/研究资料（无据时拒答） |
