@@ -779,3 +779,51 @@ holdout split.
   anchors), not evidence; rejected.
 - Verdict: the citation line is label-bound; no question-derived prefix reaches the
   instrument's topic tokens. Raw report: `runs/P11-CITE-188/topic.md`.
+
+### 24. Final status: clause dump shipped, three lines structurally blocked (2026-11-09)
+
+> **中文摘要**：定稿默认改为条文摘录（深度 100、块引用、120 条/12 万字、数值对照）。
+> 512 最终复测：误答 0.0000、拒答渠道 1.0000、时效 0.9474 过线；覆盖 0.7735、
+> 引用 0.6376、口径 0.5263 未达。三条线的缺口都能用上限解释：段级结构上限
+> 0.8116（0.80 需要其中 98.6%）、引用文档+定位联合上限 0.683、口径 9 行缺锚点。
+> 按既定收尾策略，发布量化收尾报告，不改仪器、不改分母、不造证据。
+
+Final 512 run with the shipped default (no mode overrides; index `395f8cb097d1`,
+61 documents, 2,603 chunks):
+
+| Line | Value | Target | Status |
+|---|---:|---:|---|
+| Misanswer (70 refusal) | 0.0000 | ≤0.10 | met |
+| Refusal-with-channel | 1.0000 | ≥0.90 | met |
+| As-of declaration (57) | 0.9474 | ≥0.90 | met |
+| Point coverage (727 answerable) | 0.7735 | 0.80 | not met |
+| Citation accuracy | 0.6376 | 0.90 | not met |
+| Basis accuracy (19 numeric) | 0.5263 | 0.85 | not met |
+
+- Default: dump arm, depth 100, block quoting, 120 hits / 120,000 characters,
+  numeric rendering on. 436 answered; mean answer 51,464 characters (P95 73,855,
+  max 90,294); latency P95 10.4 s (the dump reads 120 chunks and the refusal rows
+  now pass through the sufficiency judge).
+- **Coverage.** 562/727 points. Depth-100 retrieved-section ceiling 573 (0.788);
+  quote-every-section-of-retrieved-documents ceiling 584 (0.803); corpus-wide
+  section ceiling 590 (0.8116). The 0.80 line needs 582, i.e. 98.6% of the
+  section-bearing points; the shipped arm realizes 98% of the retrieved-section
+  ceiling. Closing it requires quoting nearly every section of every retrieved
+  document (a corpus dump, not an answer) or raising the structural ceiling with
+  new documents.
+- **Citation.** 279/437 rows. The depth-100 joint "expected document and location"
+  ceiling is 0.683; the instrument's topic labels (`休渔对象`, `船名号标写`,
+  `误捕报告与救护`) are not spelled out in the corpus. Heading-prefixed labels and
+  the question-topic prefix both failed (0.5561/0.1143 misanswer and
+  0.6362/0.5789 basis respectively), so 0.90 would require changing the answer to
+  inject a topic taxonomy, not quoting more evidence.
+- **Basis.** 10/19 rows. Remaining: papers (Y-302 fixed by PAPER-105; Y-336 still
+  missing), GB 5009.213 (Y-345), the PDF juvenile-ratio annex (Y-303), values
+  absent from the indexed gear tables (Y-304/305), a computed expiry date (Y-459),
+  a missing 30 m source (Y-478) and two refusal rows. Even adding every missing
+  document leaves those rows short of 17/19.
+- The yearbook batch could not be indexed: the nine sources are directories of
+  60–90 workbooks and the builder takes one snapshot per document.
+- Verdict: the three remaining lines are structural under the fixed instrument and
+  the no-fabrication rule. Reported as a quantified closing state; no tag, no
+  release, no change to the scorer, denominator or dataset.

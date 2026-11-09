@@ -1044,3 +1044,10 @@ This log records material project changes by date. It does not use release versi
 - Prefixed every cited block with the question text (`SCS_FKB_DUMP_TOPIC=on`, default off) and ran the 512 set on the 61-document index.
 - Citation stayed at 0.6362 and coverage at 0.7735; only basis moved 0.5263 → 0.5789, from numbers carried by the question itself (12厘米, 18个月, 2026年), which is question-word injection.
 - Rejected; the flag remains default-off. The citation line is confirmed label-bound: the instrument's topic tokens are not recoverable from the corpus or the question.
+
+## 2026-11-09 — Final default shipped and closing status
+
+- Shipped the clause-dump default (depth 100, block quoting, 120 hits/120k, numeric rendering; `build_service` defaults to dump, direct service constructions stay extractive for tests). README and architecture updated.
+- Final 512 with no mode overrides: misanswer 0.0000, refusal-with-channel 1.0000, as-of 0.9474 (all met); coverage 0.7735, citation 0.6376, basis 0.5263 (not met). 436 answered, mean 51.5k characters, latency P95 10.4 s.
+- Closing arithmetic: coverage needs 582 points but the depth-100 retrieved-section ceiling is 573 and the doc-block ceiling 584; citation's joint document+location ceiling is 0.683; basis needs 17/19 but nine rows miss anchors that are not in the index.
+- Three lines are structural under the fixed instrument and the no-fabrication rule. Quantified closing report published; no tag, no release, no scorer or denominator change.

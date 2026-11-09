@@ -11,10 +11,10 @@ from ..rag import _citations_from_text
 from .llm_answer import _enrich
 from .numbers import declared_unit, render_pairs
 
-MAX_HITS = int(os.environ.get("SCS_FKB_DUMP_HITS", "30"))
-MAX_ANSWER_CHARS = int(os.environ.get("SCS_FKB_DUMP_CHARS", "9000"))
-MAX_DEPTH = int(os.environ.get("SCS_FKB_DUMP_DEPTH", "10"))
-MAX_MODE = os.environ.get("SCS_FKB_DUMP_MODE", "sentence").strip().lower()
+MAX_HITS = int(os.environ.get("SCS_FKB_DUMP_HITS", "120"))
+MAX_ANSWER_CHARS = int(os.environ.get("SCS_FKB_DUMP_CHARS", "120000"))
+MAX_DEPTH = int(os.environ.get("SCS_FKB_DUMP_DEPTH", "100"))
+MAX_MODE = os.environ.get("SCS_FKB_DUMP_MODE", "block").strip().lower()
 WITH_NUMBERS = os.environ.get("SCS_FKB_DUMP_NUMBERS", "on").strip().lower() not in (
     "off",
     "0",
@@ -121,7 +121,11 @@ def answer_with_dump(
 ) -> Answer:
     """Quote the retrieved clauses; no model call, no paraphrase."""
     _raise_depth(retriever, depth)
-    hits = retriever.search_queries([question, *(queries or [])], top_k=max_hits)
+    search_queries = getattr(retriever, "search_queries", None)
+    if search_queries is not None:
+        hits = search_queries([question, *(queries or [])], top_k=max_hits)
+    else:
+        hits = retriever.search(question, top_k=max_hits)
     if not hits:
         return Answer(text="", citations=(), abstained=True, reason="no_evidence")
     hits = _enrich(hits)

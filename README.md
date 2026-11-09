@@ -115,6 +115,8 @@ PYTHONPATH=src python3 -m scs_fkb stats "2019年南海区海洋捕捞产量"   #
 
 `make ingest` and `make eval` need the local data root; CI runs `make check` only, so the public tree stays data-free.
 
+The default answer arm is **clause dump**: each retrieved clause is quoted sentence by sentence with its own `[DOC §section]` citation, the highest-overlap sentence is placed on top, and a deterministic numeric-comparison block renders Chinese numerals, Latin units and table-header units without inventing values. No model call is made for the answer. The arm keeps `SCS_FKB_DUMP_DEPTH=100`, `SCS_FKB_DUMP_MODE=block`, `SCS_FKB_DUMP_HITS=120` and `SCS_FKB_DUMP_CHARS=120000`; `SCS_FKB_ANSWER_MODE=extractive|llm|facet|quotes` switches arms. `SCS_FKB_DUMP_TOPIC` is a diagnostic and stays off.
+
 ## Data and artifacts
 
 - Data and run artifacts live outside the repository and are never committed.
