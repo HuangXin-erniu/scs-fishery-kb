@@ -1015,3 +1015,11 @@ This log records material project changes by date. It does not use release versi
 
 - Added deterministic element-type queries (six types, then numeric-only) and measured the 120-row dev slice: 0.6723 coverage vs 0.6765 baseline, citation unchanged.
 - Verdict: rejected and reverted; retrieval recall is already 0.913, so the gap is evidence, not query phrasing.
+
+## 2026-11-09 — Depth, window and structural ceilings measured
+
+- Reproduced the 512 dump baseline exactly on the three target lines (0.6574 / 0.5606 / 0.2105); misanswer and channel read 0.0714 / 0.9286, inside the recorded 0.0714–0.0857 range.
+- Window sweep: 30/9k → 60/20k adds 2.7 pp coverage and 2.1 pp citation; 60/20k → 120/40k adds only 0.3 pp. The retrieval set saturates near 30 unique hits because the retriever depth is 10 per query.
+- Depth audit (new eval-only `scripts/audit_quote_ceiling.py`): section ceiling 0.708 at depth 10, 0.758 at 30, 0.788 at 100; doc-block ceiling 0.774/0.794/0.803. Corpus-wide section co-occurrence is 590/727 = 0.8116, so 0.80 needs 98.6% of the point-bearing sections.
+- Citation decomposition: 192 failures at baseline, 110 location and 82 wrong-document; at depth 100 the joint document+location ceiling is 0.683. The instrument's topic labels are paraphrases, not clause wording.
+- Verdict: raise retrieval depth and quote at section/document granularity next; corpus work must raise the structural ceiling; citation 0.90 needs a decision on topic-labelled lines.
