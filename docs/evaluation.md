@@ -743,3 +743,22 @@ holdout split.
   basis, no closed-line regression). The default mode stays the sentence/30/9k
   path until P11-FIN-189 chooses the shipping default.
 - Raw reports: `runs/P11-EVID-186/{variants.md,basis.md}`.
+
+### 22. Corpus batches: papers kept, yearbooks blocked, standards rejected (2026-11-09)
+
+> **中文摘要**：把三篇已登记论文入索引后，口径行 Y-302 命中，口径 0.4737 → 0.5263；
+> 但误答从 0.0714 升到 0.0857（Y-224 被论文+网目文档答出），仍在 0.10 线内，保留。
+> 年鉴是 60–90 个 xlsx 的目录，v2 构建器按单快照处理，9 份全部隔离；标准批仅
+> 引用 +0.45pp，未达 1pp 保留线，已回退。最终 61 份文档、词级上限 0.8569。
+
+- B1 papers (61 docs): coverage 0.7735 (+0.56 pp), citation 0.6362 (-0.22 pp),
+  basis **0.5263** (+5.3 pp, Y-302 reaches 1.0), misanswer 0.0857 (still ≤0.10;
+  Y-224 newly answered). Kept.
+- B2 yearbooks: the nine STAT-YB-* sources are directories of 60–90 workbooks;
+  the single-snapshot builder quarantines all of them. Needs a multi-file loader,
+  not attempted in this task.
+- B3 standards (63 built docs): coverage/basis unchanged, citation +0.45 pp,
+  below the keep line; STD-SPEC-076 is quarantined by the PDF parser. Reverted.
+- Final index: 61 documents, 2,603 chunks, index `395f8cb097d1`; term ceiling
+  623/727 = 0.8569 (was 622 / 0.8556).
+- Raw report: `runs/P11-CORP-187/batches.md`.

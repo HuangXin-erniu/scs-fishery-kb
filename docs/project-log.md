@@ -1030,3 +1030,11 @@ This log records material project changes by date. It does not use release versi
 - 512 variants: depth 30 sentence 0.7301/0.6339/0.2632; depth 30 block 0.7293/0.6339/0.2632; depth 100 block 120k 0.7578/0.6384/0.3158; plus rendering **0.7679/0.6384/0.4737** with misanswer 0.0714, channel 0.9286 and as-of 0.9474.
 - Block order is neutral at a fixed window; depth is the coverage lever. The numeric block lifted basis from 4/19 to 9/19, including Y-442/497 (Chinese numerals) and Y-352 (table units).
 - Kept V4c; default mode unchanged until the final task. Remaining gaps are structural: depth-100 section ceiling 0.788, citation joint ceiling 0.683, and six basis rows whose anchors are not in the index.
+
+## 2026-11-09 — Corpus batches: papers kept, yearbooks blocked, standards rejected
+
+- Indexed PAPER-105/106/107 (61 documents): basis 0.4737 → 0.5263 because Y-302 now reaches 1.0 from PAPER-105; coverage 0.7735 (+0.56 pp), citation 0.6362 (-0.22 pp).
+- Misanswer rose 0.0714 → 0.0857 because Y-224 (out-of-scope, no expected document) is now answered from PAPER-105 plus two gear documents; still under the 0.10 line. Recorded, kept under the task rule.
+- The nine STAT-YB-* sources are directories of 60–90 xlsx tables; the single-snapshot builder quarantines all nine, so indexing them needs a multi-file loader. Not attempted.
+- Standards batch (STD-HULL-062/069/070, STD-SPEC-076) changed nothing on coverage/basis and only +0.45 pp citation; STD-SPEC-076 is quarantined by the PDF parser. Reverted; index rebuilt to 61 documents, 2,603 chunks, `395f8cb097d1`.
+- Term ceiling 623/727 = 0.8569.
