@@ -3701,8 +3701,52 @@ sources:
     mime: application/pdf
     snapshot_path: raw/STD-EUTRO-119/seawater-quality-assessment.pdf
 
+- id: POL-PORTFEE-122
+  title: 广东省交通运输厅 广东省发展和改革委员会关于修订规范我省港口收费有关问题的通知
+  title_zh: 广东省交通运输厅 广东省发展和改革委员会关于修订规范我省港口收费有关问题的通知
+  publisher: 广东省交通运输厅、广东省发展和改革委员会
+  year: 2019
+  type: notice
+  jurisdiction: guangdong
+  format: pdf
+  location: raw/POL-PORTFEE-122/guangdong-port-fee-2019.pdf
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P2
+  volume: 1 PDF
+  update_freq: static
+  hash: 6f855ec51b58b027001b1a5a16245e871c6e8d5c8c724a2ad1f72bc82324a6f3
+  acquisition: Captured 2026-11-09 from https://td.gd.gov.cn/attachment/0/374/374401/2637500.pdf
+  notes: 'Provincial port-fee rules: government-guided prices for pilotage, berthing, oil-boom and towage, with upper limits.'
+  level: provincial
+  authority_tier: A
+  retrieval:
+    channel: main
+    parseable: true
+    note: Registered for the acceptance coverage gap (batch 3).
+  lifecycle: active
+  source_class: normative
+  currency:
+    as_of: '2026-11-09'
+    basis: publication
+    review_due: '2027-01-05'
+    cadence: monthly
+    note: Captured for the 2026-11 corpus batch 3.
+  watch_note: Static published text; rechecked at the scheduled review.
+  effective:
+    from: '2019-09-15'
+  provenance:
+    url: https://td.gd.gov.cn/attachment/0/374/374401/2637500.pdf
+    document_no: 粤交〔2019〕9号
+    published_at: '2019-08-22'
+    retrieved_at: '2026-11-09'
+    sha256: 6f855ec51b58b027001b1a5a16245e871c6e8d5c8c724a2ad1f72bc82324a6f3
+    bytes: 310754
+    mime: application/pdf
+    snapshot_path: raw/POL-PORTFEE-122/guangdong-port-fee-2019.pdf
 gaps:
-- Ninety-nine sources are registered: ninety-eight acquired and no open candidates awaiting disposition.
+- One hundred sources are registered: ninety-eight acquired and no open candidates awaiting disposition.
 - The yearbook coverage matrix has no values in the public repository; all values stay local.
 - The yearbook infrastructure table is missing for data years 2018 and 2019; the 2018 national port plan supplies a baseline whose port classes are close to, but not identical with, the yearbook table.
 - The vessel-length proxy is missing for data year 2024.

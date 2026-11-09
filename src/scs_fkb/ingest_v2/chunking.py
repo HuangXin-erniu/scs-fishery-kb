@@ -76,6 +76,7 @@ def hierarchical_chunks(
     base = chunk_document(document, pages, max_fallback_chars)
     if not base:
         return Hierarchy(parents=[], children=[])
+    base = label_sections(base)
 
     groups: dict[tuple[int, str], list[Chunk]] = {}
     for child in base:
@@ -108,7 +109,7 @@ def hierarchical_chunks(
         )
 
     children: list[Chunk] = []
-    for child in label_sections(base):
+    for child in base:
         parent_id = parent_ids[(child.page, child.section)]
         children.append(
             replace(

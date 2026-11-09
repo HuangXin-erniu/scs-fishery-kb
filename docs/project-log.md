@@ -990,3 +990,10 @@ This log records material project changes by date. It does not use release versi
 - Added a deterministic clause-dump arm: top clauses with cached rewrites, every sentence quoted with its own citation, no model call.
 - Full 512 sweep: coverage 0.5466 → 0.6518 and citation 0.4679 → 0.5665 as the window grows from 12/2.5k to 30/9k; misanswer stays 0.0429.
 - The remaining ~0.15 coverage gap is evidence-bound (terms and anchors absent from indexed clauses); basis stays 0.1053 for the same reason.
+
+## 2026-11-09 — Registered documents indexed; term ceiling 0.8556
+
+- Indexed the ten registered-but-unindexed documents under the sufficiency judge: 48 → 58 documents, 1,486 → 2,412 chunks; term-level evidence ceiling 0.8281 → 0.8556.
+- Dump arm: coverage 0.6574, citation 0.5606, basis 0.1053 → 0.2105, misanswer 0.0857, channel 0.9143, as-of 0.9298.
+- Batch 3 captured a trawl paper and the Guangdong port-fee notice but indexed neither (duplicate / misanswer 0.1143); N-015, N-001, N-019, T-010 and T-002 remain unobtainable.
+- Reaching 0.80 needs 93.5% of supported points; the maximal dump reaches 77%, so the line is reported as unreachable with the corpus and instrument.

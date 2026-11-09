@@ -33,7 +33,7 @@ def test_corpus_structure() -> None:
         "data_dictionary",
         "plan",
     }
-    assert len(data["sources"]) == 99
+    assert len(data["sources"]) == 100
 
     acquired = []
     candidates = []
@@ -46,7 +46,7 @@ def test_corpus_structure() -> None:
         else:
             candidates.append(source)
 
-    assert len(acquired) == 99
+    assert len(acquired) == 100
     assert len(candidates) == 0
     yearbooks = [source for source in acquired if source["id"].startswith("STAT-YB-")]
     assert len(yearbooks) == 9
@@ -136,6 +136,7 @@ def test_corpus_structure() -> None:
         "POL-JUD-115",
         "POL-DOLPHIN-117",
         "POL-GX-118",
+        "POL-PORTFEE-122",
         "STAT-ECO-111",
         "POL-PEN-078",
         "POL-LIST-079",
@@ -247,7 +248,7 @@ def test_corpus_structure() -> None:
         "statistical_yearbook": 10,
         "law": 6,
         "regulation": 23,
-        "notice": 26,
+        "notice": 27,
         "standard": 21,
         "operations": 1,
         "fishery_product": 5,
@@ -424,8 +425,8 @@ def test_pipeline_config() -> None:
     pipeline = load_yaml("configs/pipeline.yaml")
     assert pipeline["schema_version"] == 1
     documents = pipeline["documents"]
-    assert len(documents) == 48
-    assert len(set(documents)) == 48
+    assert len(documents) == 58
+    assert len(set(documents)) == 58
     assert pipeline["chunking"]["max_fallback_chars"] >= 200
 
     corpus = load_yaml("configs/corpus.yaml")
@@ -775,8 +776,8 @@ def test_registry_schema_v3() -> None:
     from scs_fkb.registry import CADENCES, load_registry
 
     registry = load_registry("configs/corpus.yaml")
-    assert len(registry) == 99
-    assert sum(1 for entry in registry.values() if entry["status"] == "acquired") == 99
+    assert len(registry) == 100
+    assert sum(1 for entry in registry.values() if entry["status"] == "acquired") == 100
     for entry in registry.values():
         assert entry["lifecycle"] in {"active", "retired"}
         assert entry["currency"]["cadence"] in CADENCES
