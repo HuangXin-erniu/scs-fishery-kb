@@ -794,23 +794,29 @@ sources:
   publisher: 国家林业和草原局 / 农业农村部
   year: 2021
   jurisdiction: national
-  format: pdf
-  location: raw/STD-SPEC-076/
+  format: html
+  location: raw/STD-SPEC-076/wildlife-list-ocr.html
   license: public
   sensitivity: public
   status: acquired
   priority: P2
-  volume: 1 PDF
+  volume: 1 HTML (OCR of the official 38-page PDF)
   update_freq: static
-  hash: 8b45d11547577041e15c5837a3ff8f283d2dd2c2b87f83eb8026ad3feb8662c3
-  acquisition: Downloaded 2026-11-02 from the forestry and grassland administration announcement page (2021年第3号).
-  notes: Announced 2021-02-05 by 国家林业和草原局 and 农业农村部 and effective on publication; it lists 980 species and 8 groups. The PDF is image-only with no text layer, so it is provenance only and cannot answer a species-level question.
+  hash: 1b99646293da83e0c4ccba9eeec4937c7bdf0add0ca46950620347a53f6112d2
+  acquisition: Downloaded the official image-only PDF on 2026-11-02; OCR text produced on 2026-11-09 with macOS Vision (zh-Hans) page by page, original PDF retained.
+  notes: Announced 2021-02-05; lists 980 species and 8 groups. The HTML is an OCR derivative of the official image PDF, not a second official publication; species names may contain OCR errors and should be checked against the PDF before enforcement use.
   level: national
   authority_tier: A
   retrieval:
-    channel: none
-    parseable: false
-    note: Image-only PDF with no text layer; provenance only.
+    channel: main
+    parseable: true
+    note: OCR text derivative; the image PDF remains the provenance copy.
+  provenance_ocr:
+    of: raw/STD-SPEC-076/national-key-protected-wildlife-list-2021.pdf
+    sha256: 1b99646293da83e0c4ccba9eeec4937c7bdf0add0ca46950620347a53f6112d2
+    bytes: 67176
+    mime: text/html
+    method: macOS Vision zh-Hans OCR, 38 pages
   lifecycle: active
   source_class: normative
   currency:
