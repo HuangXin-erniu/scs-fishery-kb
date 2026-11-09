@@ -103,6 +103,7 @@ class AnswerService:
         index_version: str = "v2",
         web_search: Any = None,
         answer_contract: str = "v3",
+        answer_mode: str | None = None,
     ) -> None:
         self.retriever = retriever
         self.playbooks = playbooks if playbooks is not None else load_playbooks()
@@ -112,7 +113,9 @@ class AnswerService:
         self.index_version = index_version
         self.web_search = web_search
         self.answer_contract = answer_contract
-        self.answer_mode = os.environ.get("SCS_FKB_ANSWER_MODE", "extractive").strip().lower()
+        self.answer_mode = (
+            (answer_mode or os.environ.get("SCS_FKB_ANSWER_MODE", "extractive")).strip().lower()
+        )
         self._llm: Any = False
         self._channels: ChannelBook | None = None
         self._registry = load_registry()
@@ -624,4 +627,5 @@ def build_service(
         run_root=run_root or os.environ.get("SCS_FKB_RUN_ROOT"),
         web_search=web_search,
         answer_contract=answer_contract,
+        answer_mode=os.environ.get("SCS_FKB_ANSWER_MODE", "dump"),
     )

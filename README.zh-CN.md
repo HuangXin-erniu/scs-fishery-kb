@@ -110,6 +110,8 @@ PYTHONPATH=src python3 -m scs_fkb stats "2019年南海区海洋捕捞产量"   #
 
 `make ingest` 与 `make eval` 需要本地数据根；CI 只运行 `make check`，公开树因此不含数据。
 
+默认回答臂为**条文摘录**：检索到的每条条款逐句引用，每句带 `[DOC §章节]` 引用，问题重合度最高的句子置顶；另附确定性的"数值对照"块，把中文数字、拉丁单位和表头单位渲染成可核对写法，不引入原文没有的数值。回答不调用模型。默认 `SCS_FKB_DUMP_DEPTH=100`、`SCS_FKB_DUMP_MODE=block`、`SCS_FKB_DUMP_HITS=120`、`SCS_FKB_DUMP_CHARS=120000`；`SCS_FKB_ANSWER_MODE=extractive|llm|facet|quotes` 可切换其他回答臂。`SCS_FKB_DUMP_TOPIC` 仅为诊断开关，保持关闭。
+
 ## 数据与产物
 
 - 数据与运行产物放在仓库外，从不提交。

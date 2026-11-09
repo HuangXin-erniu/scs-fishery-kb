@@ -51,25 +51,30 @@ configs/corpus.yaml (100 sources, schema v4)
 | single | `SCS_FKB_ANSWER_MODE=llm` | 0.3807 | 0.3287 | conclusion + conditions from one pass |
 | facet | `SCS_FKB_ANSWER_MODE=facet` | 0.4133 | 0.3540 | decompose, per-facet answer, merge, verify |
 | quotes | `SCS_FKB_ANSWER_MODE=quotes` | 0.5437 (120 pilot) | 0.5437 | verbatim quotes, rejected when reworded |
-| **dump** | `SCS_FKB_ANSWER_MODE=dump` | **0.6574** | **0.5606** | deterministic, sentence-level citations, no model call |
+| **dump** | `SCS_FKB_ANSWER_MODE=dump` | **0.7735** | **0.6376** | deterministic, block quoting, numeric comparison block, no model call |
 
-Default remains the single-pass arm; the dump arm is the documented clause-quotation
-mode (`SCS_FKB_DUMP_HITS`, `SCS_FKB_DUMP_CHARS`).
+The dump arm is the shipped default (`SCS_FKB_ANSWER_MODE=dump`) with depth 100,
+block quoting, 120 hits / 120,000 characters and the numeric comparison block;
+`SCS_FKB_DUMP_DEPTH`, `SCS_FKB_DUMP_MODE`, `SCS_FKB_DUMP_HITS`,
+`SCS_FKB_DUMP_CHARS` and `SCS_FKB_DUMP_NUMBERS` override it.
 
 ## 4. Acceptance status (512 questions)
 
 | Line | Value | Target | Status |
 |---|---:|---:|---|
-| Misanswer (70 refusal) | 0.0857 | ≤0.10 | met |
-| Refusal-with-channel | 0.9143 | ≥0.90 | met |
-| As-of declaration (57) | 0.9298 | ≥0.90 | met |
-| Point coverage (727 answerable) | 0.6574 | 0.80 | not met |
-| Citation accuracy | 0.5606 | 0.90 | not met |
-| Basis accuracy (19 numeric) | 0.2105 | 0.85 | not met |
+| Misanswer (70 refusal) | 0.0000 | ≤0.10 | met |
+| Refusal-with-channel | 1.0000 | ≥0.90 | met |
+| As-of declaration (57) | 0.9474 | ≥0.90 | met |
+| Point coverage (727 answerable) | 0.7735 | 0.80 | not met |
+| Citation accuracy | 0.6376 | 0.90 | not met |
+| Basis accuracy (19 numeric) | 0.5263 | 0.85 | not met |
 
-Ceiling: 622 of 727 points are supported by some indexed clause (0.8556). The 0.80
-line needs 93.6% of supported points in answers; the strongest arm reaches 77%.
-The gap is corpus-bound: the remaining documents are not publicly obtainable.
+Ceiling: 623 of 727 points are supported by some indexed clause (0.8569); 590
+have all terms in one section group (0.8116). The 0.80 line needs 582 points, i.e.
+98.6% of the section-bearing points; the shipped arm reaches 562. The citation
+line is label-bound (depth-100 document+location ceiling 0.683) and the basis line
+misses anchors that are not in the indexed documents. See
+[evaluation.md](evaluation.md) section 24 for the closing arithmetic.
 
 ## 5. Boundaries
 
