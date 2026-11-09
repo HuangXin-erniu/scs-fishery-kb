@@ -1089,3 +1089,9 @@ This log records material project changes by date. It does not use release versi
 - `scs-fkb ask` prints the summary and the deduplicated citation list by default; `--full` prints the full evidence; `--json` returns both.
 - The result page shows the summary first and puts the full evidence under a details block.
 - This is a product-layer change: the acceptance runner still scores the full answer text.
+
+## 2026-11-09 — Conclusion selection fix
+
+- `_pick_conclusion` now penalises attachment/title/publication lines, gives a numeric bonus to time-intent questions and breaks ties by retrieval order.
+- Sample: Y-001 switched from a pesticide-list annex to the 休渔 clause; Y-006 from an SC/T appendix to the 渔捞日志 clause.
+- 512 A/B under protocol v2 is unchanged on every line (0.8104 / 0.9497 / 0.9412 / 0.0000 / 1.0000 / 0.9474); answer mean 128,778 → 128,754 characters.

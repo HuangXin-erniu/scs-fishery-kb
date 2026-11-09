@@ -15,6 +15,10 @@ from .scope import out_of_scope
 SENTENCE_RE = re.compile(r"(?<=[。！？；])|\n+")
 CITATION_RE = re.compile(r"\[[A-Za-z0-9][^\]]*\]")
 CONDITION_WORDS = ("应当", "须", "不得", "除外", "限于", "适用", "按照", "符合", "禁止")
+BOILERPLATE_RE = re.compile(
+    r"附件|目录|附录|见表|年第\s*期|—\s*\d+\s*—|公告|通告|令|办法（|办法\(|公布|印发|通知"
+)
+TIME_INTENT_RE = re.compile(r"什么时候|何时|几月|几号|起始|起止|开始|结束|期限|到期|有效期")
 QUESTION_STOP = set("的了是在和与或及对对于这那个什么怎样如何多少几")
 
 
@@ -53,14 +57,18 @@ def _pick_conclusion(sentences: list[str], question: str, *, numeric: bool = Fal
     if not cited:
         return ""
     grams = _bigrams(question)
+    numeric_intent = numeric or bool(TIME_INTENT_RE.search(question))
 
-    def weight(sentence: str) -> int:
+    def weight(item: tuple[int, str]) -> tuple[int, int]:
+        index, sentence = item
         score = _score(sentence, grams)
-        if numeric and re.search(r"\d", sentence):
+        if numeric_intent and re.search(r"\d", sentence):
             score += 2
-        return score
+        if BOILERPLATE_RE.search(sentence):
+            score -= 3
+        return (score, -index)
 
-    return max(cited, key=weight)
+    return max(enumerate(cited), key=weight)[1]
 
 
 def _basis_for(basis: str, section: str) -> str:

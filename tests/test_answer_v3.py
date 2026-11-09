@@ -544,3 +544,33 @@ def test_topic_prefix_is_off_by_default_and_can_be_enabled() -> None:
         "休渔到什么时间", Retriever([hit]), max_chars=2000, topic_prefix=True
     )
     assert "要点：休渔到什么时间——" in prefixed.text
+
+
+def test_conclusion_penalises_attachment_lines() -> None:
+    from scs_fkb.answer_v3.compose import _pick_conclusion
+
+    sentences = [
+        "附件：专项捕捞许可专项捕捞许可 [POL-SPEC-041 §p.3]",
+        "专项捕捞许可由省级渔业主管部门审批。 [POL-STD-010 §三]",
+    ]
+    picked = _pick_conclusion(sentences, "专项捕捞许可怎么安排？")
+    assert picked.startswith("专项捕捞许可由省级")
+
+
+def test_conclusion_prefers_numbers_for_time_questions() -> None:
+    from scs_fkb.answer_v3.compose import _pick_conclusion
+
+    sentences = [
+        "附件：休渔开始时间安排 [POL-SPEC-041 §p.3]",
+        "南海区休渔从5月1日12时开始。 [POL-CLOS-015 §三]",
+    ]
+    picked = _pick_conclusion(sentences, "休渔什么时候开始？")
+    assert "5月1日12时" in picked
+
+
+def test_conclusion_falls_back_when_all_candidates_are_titles() -> None:
+    from scs_fkb.answer_v3.compose import _pick_conclusion
+
+    sentences = ["附件：目录 [POL-X §p.1]", "公告：公布名录 [POL-Y §p.2]"]
+    picked = _pick_conclusion(sentences, "名录是什么？")
+    assert picked
