@@ -762,3 +762,20 @@ holdout split.
 - Final index: 61 documents, 2,603 chunks, index `395f8cb097d1`; term ceiling
   623/727 = 0.8569 (was 622 / 0.8556).
 - Raw report: `runs/P11-CORP-187/batches.md`.
+
+### 23. Topic-prefix diagnostic: citation does not move (2026-11-09)
+
+> **中文摘要**：把问题原文作为"要点"前缀加到每个引用块前，512 题引用仍是
+> 0.6362、覆盖仍是 0.7735；只有口径从 0.5263 升到 0.5789，而涨幅来自问题本身
+> 携带的数字（12厘米、18个月、2026年等），属于问题词注入，不能保留。引用定位
+> 依赖仪器主题词表，问题措辞最多命中一个 token，0.90 在证据与问题改写两条路径
+> 上都不可达。
+
+- `SCS_FKB_DUMP_TOPIC=on` prefixes each cited block with the question; default off.
+- 512 (61-doc index, depth 100/block/120k): coverage 0.7735 → 0.7735, citation
+  0.6362 → 0.6362, basis 0.5263 → 0.5789, misanswer 0.0857 → 0.0857, mean answer
+  51.4k → 65.1k.
+- The basis gain is question-word injection (the question text contains the missing
+  anchors), not evidence; rejected.
+- Verdict: the citation line is label-bound; no question-derived prefix reaches the
+  instrument's topic tokens. Raw report: `runs/P11-CITE-188/topic.md`.

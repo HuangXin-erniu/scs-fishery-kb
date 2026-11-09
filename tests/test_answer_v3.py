@@ -525,3 +525,22 @@ def test_table_header_unit_renders_bare_values() -> None:
     assert declared_unit(text) == "毫米"
     pairs = render_pairs("肛长 ≥230", "毫米")
     assert ("肛长 ≥230", "230毫米", "表列值，单位：毫米") in pairs
+
+
+def test_topic_prefix_is_off_by_default_and_can_be_enabled() -> None:
+    from scs_fkb.answer_v3.dump_arm import answer_with_dump
+
+    class Retriever:
+        def __init__(self, hits):
+            self.hits = hits
+
+        def search_queries(self, queries, top_k=12, filters=None):  # noqa: ANN001
+            return self.hits
+
+    hit = make_hit(section="第三条", text="第三条 休渔时间为五月一日十二时。")
+    plain = answer_with_dump("休渔到什么时间", Retriever([hit]), max_chars=2000)
+    assert "要点：" not in plain.text
+    prefixed = answer_with_dump(
+        "休渔到什么时间", Retriever([hit]), max_chars=2000, topic_prefix=True
+    )
+    assert "要点：休渔到什么时间——" in prefixed.text

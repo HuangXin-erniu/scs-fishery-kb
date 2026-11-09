@@ -1038,3 +1038,9 @@ This log records material project changes by date. It does not use release versi
 - The nine STAT-YB-* sources are directories of 60–90 xlsx tables; the single-snapshot builder quarantines all nine, so indexing them needs a multi-file loader. Not attempted.
 - Standards batch (STD-HULL-062/069/070, STD-SPEC-076) changed nothing on coverage/basis and only +0.45 pp citation; STD-SPEC-076 is quarantined by the PDF parser. Reverted; index rebuilt to 61 documents, 2,603 chunks, `395f8cb097d1`.
 - Term ceiling 623/727 = 0.8569.
+
+## 2026-11-09 — Topic-prefix diagnostic rejected
+
+- Prefixed every cited block with the question text (`SCS_FKB_DUMP_TOPIC=on`, default off) and ran the 512 set on the 61-document index.
+- Citation stayed at 0.6362 and coverage at 0.7735; only basis moved 0.5263 → 0.5789, from numbers carried by the question itself (12厘米, 18个月, 2026年), which is question-word injection.
+- Rejected; the flag remains default-off. The citation line is confirmed label-bound: the instrument's topic tokens are not recoverable from the corpus or the question.
