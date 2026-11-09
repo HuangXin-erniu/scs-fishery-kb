@@ -313,6 +313,11 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--persona", default="")
     parser.add_argument("--answerability", default="")
     parser.add_argument("--limit", type=int, default=None)
+    parser.add_argument(
+        "--answers-out",
+        default="",
+        help="write per-question answers to this JSONL for offline rescoring",
+    )
     parser.add_argument("--llm", action="store_true", help="also run the optional LLM arm")
     parser.add_argument(
         "--llm-arm",
@@ -494,6 +499,33 @@ def main(argv: list[str] | None = None) -> int:
 
     out_dir = Path(args.run_root).expanduser() / args.task_id
     out_dir.mkdir(parents=True, exist_ok=True)
+    if args.answers_out:
+        answers_path = Path(args.answers_out).expanduser()
+        answers_path.parent.mkdir(parents=True, exist_ok=True)
+        with answers_path.open("w", encoding="utf-8") as handle:
+            for item in scored:
+                docs = item.get("citation_docs") or []
+                sections = item.get("citation_sections") or []
+                handle.write(
+                    json.dumps(
+                        {
+                            "id": item.get("id"),
+                            "question": item.get("question"),
+                            "answer": item.get("answer"),
+                            "citations": [
+                                {"doc_id": doc, "section": section}
+                                for doc, section in zip(docs, sections, strict=False)
+                            ],
+                            "abstained": item.get("abstained"),
+                            "reason": item.get("reason"),
+                            "mode": item.get("mode"),
+                            "latency_ms": item.get("latency_ms"),
+                        },
+                        ensure_ascii=False,
+                    )
+                    + "\n"
+                )
+        print(f"answers: {answers_path}")
     write_rows_csv(scored, out_dir / "rows.csv")
     write_metrics(
         metrics_payload(

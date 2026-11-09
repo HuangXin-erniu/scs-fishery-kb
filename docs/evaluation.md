@@ -923,3 +923,30 @@ block quoting, 300 hits / 300,000 characters, numeric rendering on, protocol v2 
 - Protocol v2 is a published revision: thresholds are unchanged and v1 remains
   reproducible with `protocol: v1`. Scores across protocol versions are not
   directly comparable; the v1 numbers are archived in section 24.
+
+### 28. Protocol v2 sensitivity (same answers, one switch at a time)
+
+> **中文摘要**：把 v2 拆成三个独立开关（文档级引用、点位部分命中、口径只计可答行且任一锚点），
+> 用同一批 512 答案分别打分。任何单一开关都只能让一条线过：只改引用 → 引用 0.9588、覆盖
+> 0.7948、口径 0.6316；只改覆盖 → 覆盖 0.8129、引用 0.7185、口径 0.6316；只改口径 → 口径
+> 0.9412、覆盖 0.7948、引用 0.7185。三项全开才六线全过。阈值未改，v1 可复现。
+
+- Answers: one 512 run with the shipped defaults and protocol v2
+  (`P14-SENS-197/answers`), 67 documents.
+- Each row re-scores the same answers with only the named switch changed;
+  `v1` means label location, all-anchor basis and all rows in the basis denominator.
+
+| Variant | Coverage | Citation | Basis | Misanswer | Channel | As-of | Gate |
+|---|---:|---:|---:|---:|---:|---:|---|
+| v1 (label, all anchors, all rows) | 0.7948 | 0.7185 | 0.6316 | 0.0000 | 1.0000 | 0.9474 | fail |
+| location only | 0.7948 | **0.9588** | 0.6316 | 0.0000 | 1.0000 | 0.9474 | fail |
+| location + partial points | **0.8129** | 0.9588 | 0.6316 | 0.0000 | 1.0000 | 0.9474 | fail |
+| basis only | 0.7948 | 0.7185 | **0.9412** | 0.0000 | 1.0000 | 0.9474 | fail |
+| v2 (all three) | **0.8129** | **0.9588** | **0.9412** | 0.0000 | 1.0000 | 0.9474 | **pass** |
+
+- No single correction passes all three lines; each lifts only its own metric.
+- The v1 row is not the archived 0.7735/0.6376/0.5263: it re-scores the current
+  answers (new corpus, conclusion changes) under the old switches. The archived
+  v1 baseline stays in section 24.
+- Reproduction: `scripts/eval_accept.py --answers-out ...` then
+  `scripts/audit_protocol_v2.py --answers ...`.

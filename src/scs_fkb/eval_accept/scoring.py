@@ -57,6 +57,10 @@ class ScoringConfig:
     protocol: str = "v1"
     point_partial_terms: float = 0.50
     point_partial_min: int = 2
+    location_mode: str = "label"
+    point_partial: float = 0.0
+    basis_mode: str = "all_anchors"
+    basis_scope: str = "all"
 
     @classmethod
     def from_config(cls, data: dict[str, Any]) -> ScoringConfig:
@@ -79,6 +83,10 @@ class ScoringConfig:
             protocol=str(data.get("protocol") or "v1").strip().lower(),
             point_partial_terms=float(scoring.get("point_partial_terms", 0.50)),
             point_partial_min=int(scoring.get("point_partial_min", 2)),
+            location_mode=str(scoring.get("location_mode") or "label").strip().lower(),
+            point_partial=float(scoring.get("point_partial", 0.0)),
+            basis_mode=str(scoring.get("basis_mode") or "all_anchors").strip().lower(),
+            basis_scope=str(scoring.get("basis_scope") or "all").strip().lower(),
         )
 
 
@@ -321,7 +329,8 @@ def _point_covered(
             haystack = normalize(" ".join(texts))
             if all(term in haystack for term in terms):
                 return True
-    if config is not None and config.protocol == "v2" and len(terms) >= 2:
+    partial = config is not None and (config.protocol == "v2" or config.point_partial > 0)
+    if partial and len(terms) >= 2:
         needed = (
             len(terms)
             if len(terms) == 2
@@ -377,7 +386,7 @@ def score_row(
         citation_accuracy = False
     else:
         doc_hit = bool(hit_ids)
-        if config.protocol == "v2":
+        if config.protocol == "v2" or config.location_mode == "document":
             location_ok, location_source, location_flags = True, "document", []
         else:
             location_ok, location_source, location_flags = _location_ok(
@@ -433,7 +442,11 @@ def score_row(
             flags.append("no_version_declaration")
 
     basis_score: float | None = None
-    if dimension == "数值召回" and config.protocol == "v2" and answerability == "应拒答":
+    if (
+        dimension == "数值召回"
+        and (config.protocol == "v2" or config.basis_scope == "answered")
+        and answerability == "应拒答"
+    ):
         # An abstained row cannot carry a numeric basis; keep it out of the basis
         # denominator instead of scoring it as a failure.
         basis_score = None
@@ -452,7 +465,7 @@ def score_row(
         text = normalize(answer)
         if anchors:
             present = [anchor for anchor in anchors if anchor and anchor in text]
-            if config.protocol == "v2":
+            if config.protocol == "v2" or config.basis_mode == "any_anchor":
                 if present and _basis_tokens(answer):
                     basis_score = 1.0
                 else:
