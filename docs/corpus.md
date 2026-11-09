@@ -2,8 +2,8 @@
 
 - Status: corpus and web layers registered and indexed for this phase. 99 sources (98 acquired, 0 open candidates), schema v4 currency, and 140 knowledge notes with 119 fetched cards; 48 public documents are indexed (1,486 chunks, index `59c70969e461`) and cards/notes live in a separate external store. The local core CSV has 3,126 rows and stays outside the public tree.
 - Register: [configs/corpus.yaml](../configs/corpus.yaml)
-- Candidate register: [configs/candidates.yaml](../configs/candidates.yaml)
-- Indicator schema: [configs/statistics.yaml](../configs/statistics.yaml)
+- Candidate register: configs/candidates.yaml（已移除）（已移除）
+- Indicator schema: configs/statistics.yaml（已移除）（已移除）
 - Date: 2026-11-07
 
 ## 1. Purpose and scope
@@ -22,7 +22,7 @@ It does **not** include raw environmental grids, reanalysis data, forecast raste
 
 ## 2a. Registry fields
 
-Every entry carries schema v3 fields: `level` (national, provincial, municipal or international), `authority_tier` (A publisher page, B gazette or compilation, C municipal), `source_class` (normative, official_statistics, standard or reference), `license` and `sensitivity` (checked against the schema allowlist), `currency` (as-of date, basis, review date and review `cadence`), `retrieval` (channel and whether the text is parseable) and `lifecycle` (active or retired). Candidates are separate: a proposed page lives in `configs/candidates.yaml` with an `open`/`accepted`/`rejected`/`expired` status and is never ingested or cited before acceptance. The field table and the admission, retirement and deletion rules are in [data-model.md](data-model.md); `src/scs_fkb/registry.py` and `src/scs_fkb/candidates.py` enforce them, and `scs-fkb sources check` gates CI.
+Every entry carries schema v3 fields: `level` (national, provincial, municipal or international), `authority_tier` (A publisher page, B gazette or compilation, C municipal), `source_class` (normative, official_statistics, standard or reference), `license` and `sensitivity` (checked against the schema allowlist), `currency` (as-of date, basis, review date and review `cadence`), `retrieval` (channel and whether the text is parseable) and `lifecycle` (active or retired). Candidates are separate: a proposed page lives in `configs/candidates.yaml（已移除）` with an `open`/`accepted`/`rejected`/`expired` status and is never ingested or cited before acceptance. The field table and the admission, retirement and deletion rules are in [data-model.md](data-model.md); `src/scs_fkb/registry.py` and `src/scs_fkb/candidates.py` enforce them, and `scs-fkb sources check` gates CI.
 
 ## 3. Types
 
@@ -93,7 +93,7 @@ The Fisheries Law text is the owner-supplied DOCX of the official 人民日报 p
 | `OPS-STD-035` | `standard` | SC/T 9460—2025 marine capture information sampling survey | Defines marine capture information and sample vessels; sets monthly collection and quality control; cites GB/T 5147—2003 for gear classification |
 | `OPS-STD-039` | `standard` | GB/T 5147—2026 fishing-gear classification, naming and codes | The national classification that maps yearbook gear groups and permit operation types |
 
-The mesh tables are annexes 1 and 2 of the 2013 notice `POL-GEAR-016`, which entered into force on 2014-06-01 and repealed the 2003 notice. SC/T 9460—2025 was published 2025-12-09 and takes effect 2026-05-01; GB/T 5147—2026 was published 2026-02-27 and takes effect 2026-09-01, replacing the 2003 edition. The SC/T series entry was removed on 2026-11-03 together with the permit-form instruction; the seventeen image-only reference copies remain catalogued in `configs/sc-standards.yaml`. The seven in-scope standards without a public text were excluded from the project on 2026-11-01. SC/T 9460—2025 stays registered as `OPS-STD-035`; aquaculture, feed, disease, processing, hull-construction, ship-equipment and freshwater-survey series are out of scope.
+The mesh tables are annexes 1 and 2 of the 2013 notice `POL-GEAR-016`, which entered into force on 2014-06-01 and repealed the 2003 notice. SC/T 9460—2025 was published 2025-12-09 and takes effect 2026-05-01; GB/T 5147—2026 was published 2026-02-27 and takes effect 2026-09-01, replacing the 2003 edition. The SC/T series entry was removed on 2026-11-03 together with the permit-form instruction; the seventeen image-only reference copies remain catalogued in `configs/sc-standards.yaml（已移除）`. The seven in-scope standards without a public text were excluded from the project on 2026-11-01. SC/T 9460—2025 stays registered as `OPS-STD-035`; aquaculture, feed, disease, processing, hull-construction, ship-equipment and freshwater-survey series are out of scope.
 
 ## 5b. Acquired definitions
 
@@ -110,7 +110,7 @@ The two agree on the concept and differ in scope: the national note sets the hea
 |---|---|---|---|
 | `STD-CWP-043` | FAO Coordinating Working Party on Fishery Statistics | The CWP Handbook pages that define catch, landings and fishing effort, list the standard effort measures (A1-C6) and publish the ISSCFG gear classification | Not indexed: English text, and a dry run lowered abstention from 5/6 to 4/6 without improving Chinese-question recall |
 
-CWP carries the FAO open-access licence CC BY-NC-SA 3.0 IGO, so it stays local and nothing is copied into this repository. A project-authored terminology bridge in [configs/glossary-bridge.yaml](../configs/glossary-bridge.yaml) maps five Chinese statistical terms to the CWP concepts and feeds the reference channel, so a Chinese definition question can reach the English pages without joining the main index. CWP is the international counterpart of definitions the domestic yearbooks leave implicit: `DICT-STAT-013` and `DICT-STAT-040` define production, while landed weight and fishing effort only have the CWP definitions. A Chinese official definition is still missing. Per-page hashes live in [configs/cwp-handbook.yaml](../configs/cwp-handbook.yaml). The five remote product documents (MUR, OLCI, GFW, CMEMS, HY-1C/D) and the ASFIS code list were removed on 2026-11-03; the web layer replaces them with cached cards, and the two product questions Q-E08 and Q-M09 are parked until that layer lands.
+CWP carries the FAO open-access licence CC BY-NC-SA 3.0 IGO, so it stays local and nothing is copied into this repository. A project-authored terminology bridge in [configs/glossary-bridge.yaml](../configs/glossary-bridge.yaml) maps five Chinese statistical terms to the CWP concepts and feeds the reference channel, so a Chinese definition question can reach the English pages without joining the main index. CWP is the international counterpart of definitions the domestic yearbooks leave implicit: `DICT-STAT-013` and `DICT-STAT-040` define production, while landed weight and fishing effort only have the CWP definitions. A Chinese official definition is still missing. Per-page hashes live in configs/cwp-handbook.yaml（已移除）（已移除）. The five remote product documents (MUR, OLCI, GFW, CMEMS, HY-1C/D) and the ASFIS code list were removed on 2026-11-03; the web layer replaces them with cached cards, and the two product questions Q-E08 and Q-M09 are parked until that layer lands.
 
 ## 5d. Statistical governance and monitoring
 
@@ -406,7 +406,7 @@ Two international references were registered on 2026-11-01 for the definition ga
 
 ## 9. Local core CSV
 
-The local extraction has **3,126 rows**: 3,037 for 2017–2024 (capture 1,665, vessels 1,116, population 128, marine capture value 32 and coastal ports 96) plus 89 for 2025 in the same indicator families — capture by sea area and gear, capture vessels by operation type, the five coastal port classes and three population indicators, with the three derived South China Sea rows. The 2025 block is still a sample: species, power and length bands and value are not extracted. The remaining 54 transcribed 2025 values (output and aquaculture totals, the port total, breed farms and household/township/village counts) fall outside the five indicator families and are kept in a local extras file rather than the core table. Every row validates against the dimensions in `configs/statistics.yaml`. It preserves blanks, source locators and SHA-256; no values are published. Validation and coverage reports are in the local run root. The table is copied to the data root as `statistics/core-indicators-v3.csv` and is queryable on this machine through `scs-fkb stats`, which returns rows with edition and table citations; the public repository keeps only the schema and the query layer.
+The local extraction has **3,126 rows**: 3,037 for 2017–2024 (capture 1,665, vessels 1,116, population 128, marine capture value 32 and coastal ports 96) plus 89 for 2025 in the same indicator families — capture by sea area and gear, capture vessels by operation type, the five coastal port classes and three population indicators, with the three derived South China Sea rows. The 2025 block is still a sample: species, power and length bands and value are not extracted. The remaining 54 transcribed 2025 values (output and aquaculture totals, the port total, breed farms and household/township/village counts) fall outside the five indicator families and are kept in a local extras file rather than the core table. Every row validates against the dimensions in `configs/statistics.yaml（已移除）`. It preserves blanks, source locators and SHA-256; no values are published. Validation and coverage reports are in the local run root. The table is copied to the data root as `statistics/core-indicators-v3.csv` and is queryable on this machine through `scs-fkb stats`, which returns rows with edition and table citations; the public repository keeps only the schema and the query layer.
 
 The 2025 block was checked against China Statistical Yearbook 2026 table 12-15: twelve compared cells match exactly, and the national yearbook's marine capture column equals marine capture plus distant-water output in the fisheries yearbook.
 
@@ -471,7 +471,7 @@ private report under the run root. Optional Docling/trafilatura adapters live in
 ## 13. References
 
 - [Corpus register](../configs/corpus.yaml)
-- [Statistics schema](../configs/statistics.yaml)
+- Statistics schema（已移除）
 - [Data schema](../configs/schema.yaml)
 - [Data policy](data-policy.md)
 - [Project plan](plan.md)

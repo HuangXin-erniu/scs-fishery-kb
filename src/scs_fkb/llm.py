@@ -9,9 +9,29 @@ from dataclasses import dataclass
 from urllib import error, request
 
 from .config import load_dotenv
-from .web import _tls_context
 
 PROMPT_VERSION = "rag-v3"
+
+
+def _tls_context():
+    """TLS context for the model endpoint, with a certifi fallback."""
+    import ssl
+
+    try:
+        import certifi
+
+        return ssl.create_default_context(cafile=certifi.where())
+    except ImportError:
+        pass
+    try:
+        return ssl.create_default_context()
+    except ssl.SSLError:
+        from pathlib import Path
+
+        fallback = Path("/etc/ssl/cert.pem")
+        if fallback.is_file():
+            return ssl.create_default_context(cafile=str(fallback))
+        raise
 
 
 class LLMError(RuntimeError):

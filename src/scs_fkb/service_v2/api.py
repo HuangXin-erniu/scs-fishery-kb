@@ -45,7 +45,7 @@ def create_app(
     app = FastAPI(
         title="SCS-FKB answer service",
         version="v2",
-        description="Local knowledge-base answer service with citations and labelled web evidence.",
+        description="Local knowledge-base answer service with cited corpus evidence.",
     )
     app.state.service = service or build_service(run_root=run_root)
     app.state.run_root = run_root
@@ -71,7 +71,6 @@ def create_app(
             persona=payload.persona,
             region=payload.region,
             year=payload.year,
-            web=payload.web,
         )
 
     @app.get("/v1/sources", response_model=list[SourceView], dependencies=[Depends(require_key)])
@@ -115,7 +114,6 @@ def create_app(
         persona: str = Form("general"),
         region: str = Form(""),
         year: str = Form(""),
-        web: str = Form("auto"),
     ) -> HTMLResponse:
         year_value = int(year) if year.strip().isdigit() else None
         result = app.state.service.query(
@@ -123,7 +121,6 @@ def create_app(
             persona=persona,
             region=region.strip() or None,
             year=year_value,
-            web=web if web in {"auto", "on", "off"} else "auto",
         )
         return templates.TemplateResponse(
             request=request,

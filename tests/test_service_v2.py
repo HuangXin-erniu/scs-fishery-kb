@@ -1,7 +1,5 @@
 from __future__ import annotations
 
-from types import SimpleNamespace
-
 import pytest
 
 fastapi = pytest.importorskip("fastapi")
@@ -49,17 +47,16 @@ class FakeRetriever:
         return self.gate
 
 
-def _service(gate: bool = True, web_search=None) -> AnswerService:
+def _service(gate: bool = True) -> AnswerService:
     return AnswerService(
         retriever=FakeRetriever([_hit()], gate=gate),
         playbooks=[],
         facts=[],
-        web_search=web_search,
     )
 
 
 def test_answer_has_resolvable_citations() -> None:
-    result = _service().query("2026年南海区伏季休渔从什么时候开始？", web="off")
+    result = _service().query("2026年南海区伏季休渔从什么时候开始？")
     assert result.abstained is False
     assert result.mode == "kb_only"
     assert result.citations
@@ -68,29 +65,10 @@ def test_answer_has_resolvable_citations() -> None:
 
 
 def test_weak_gate_abstains() -> None:
-    result = _service(gate=False).query("某条历史规定", web="off")
+    result = _service(gate=False).query("某条历史规定")
     assert result.abstained is True
     assert result.mode == "abstain"
     assert result.citations == []
-
-
-def test_web_evidence_is_labelled_and_never_overrides() -> None:
-    evidence = SimpleNamespace(
-        evidence_id="WEBV-123",
-        url="https://www.moa.gov.cn/a",
-        title="官方通告",
-        snippet="伏季休渔时间以官方通告为准。",
-        fetched_at="2026-11-06T12:00:00+00:00",
-    )
-
-    def web(question: str, **kwargs):
-        return SimpleNamespace(evidences=[evidence])
-
-    result = _service(gate=False, web_search=web).query("2026年南海伏季休渔 最新", web="auto")
-    assert result.used_web is True
-    assert result.mode == "web_only"
-    assert "网络检索 · 未入知识库" in result.answer
-    assert any(c.source_type == "web" and c.url for c in result.citations)
 
 
 def test_playbook_block_has_steps_and_sources() -> None:
@@ -118,7 +96,7 @@ def test_playbook_block_has_steps_and_sources() -> None:
         playbooks=[playbook],
         facts=[fact],
     )
-    result = service.query("伏季休渔合规自查要做什么", web="off")
+    result = service.query("伏季休渔合规自查要做什么")
     assert result.playbook is not None
     assert result.playbook.steps[0].facts == ["FACT-POLICY-001"]
     assert result.playbook.steps[0].sources == ["POL-CLOS-015"]
@@ -169,7 +147,7 @@ def test_ui_pages(tmp_path) -> None:
 
 
 def test_answer_contract_fields() -> None:
-    result = _service().query("2026年南海区伏季休渔从什么时候开始？", web="off")
+    result = _service().query("2026年南海区伏季休渔从什么时候开始？")
     assert result.answerability == "answerable"
     assert result.conclusion
     assert result.answer.startswith("结论：")
@@ -184,7 +162,7 @@ def test_v1_contract_remains_available() -> None:
         facts=[],
         answer_contract="v1",
     )
-    result = service.query("2026年南海区伏季休渔从什么时候开始？", web="off")
+    result = service.query("2026年南海区伏季休渔从什么时候开始？")
     assert result.conclusion == ""
     assert not result.answer.startswith("结论：")
 
@@ -197,6 +175,6 @@ def test_llm_mode_falls_back_without_configuration(monkeypatch) -> None:
     monkeypatch.setattr(llm_module, "load_dotenv", lambda: None)
     monkeypatch.setenv("SCS_FKB_ANSWER_MODE", "llm")
     service = _service()
-    result = service.query("2026年南海区伏季休渔从什么时候开始？", web="off")
+    result = service.query("2026年南海区伏季休渔从什么时候开始？")
     assert result.abstained is False
     assert result.reason != "llm_compose"

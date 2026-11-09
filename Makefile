@@ -1,4 +1,4 @@
-.PHONY: validate lint format test sources-check check ci ingest retrieve eval define
+.PHONY: validate lint format test build ask serve check ci
 
 validate:
 	python3 scripts/check_public_tree.py
@@ -13,21 +13,16 @@ format:
 test:
 	pytest -q
 
-sources-check:
-	PYTHONPATH=src python3 -m scs_fkb sources check
+build:
+	PYTHONPATH=src python3 scripts/build_v2.py
+	PYTHONPATH=src python3 scripts/build_index_v2.py
 
-ingest:
-	PYTHONPATH=src python3 -m scs_fkb ingest
+ask:
+	PYTHONPATH=src python3 -m scs_fkb ask "$(Q)"
 
-retrieve:
-	PYTHONPATH=src python3 -m scs_fkb retrieve "$(Q)"
+serve:
+	PYTHONPATH=src python3 scripts/serve_v2.py
 
-eval:
-	PYTHONPATH=src python3 -m scs_fkb eval
-
-define:
-	PYTHONPATH=src python3 -m scs_fkb define "$(TERM)"
-
-check: lint test validate sources-check
+check: lint test validate
 
 ci: check

@@ -6,7 +6,7 @@
 
 - Index: v2 LanceDB table `23e933753e22`, 785 child chunks, BGE-small-zh embeddings.
 - Reranker: `BAAI/bge-reranker-v2-m3-int8` via fastembed.
-- Questions: the 31 reviewed anchor questions in `configs/eval.yaml` / `docs/questions.md`.
+- Questions: the 31 reviewed anchor questions in `configs/eval.yaml（已移除）` / `docs/questions.md`.
 - Machine: local Mac M2, 8 GB RAM, no GPU.
 - Arms:
   - `none`: hybrid RRF without reranker.

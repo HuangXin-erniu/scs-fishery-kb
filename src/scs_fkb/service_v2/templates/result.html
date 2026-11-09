@@ -11,7 +11,6 @@ main{max-width:880px;margin:0 auto;padding:28px 18px 56px}
 a{color:var(--sea)}h1{font-size:1.3rem;margin:0 0 14px}
 .card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px;margin-bottom:16px;box-shadow:0 8px 24px rgba(19,42,47,.05)}
 .badge{display:inline-block;border-radius:999px;padding:3px 9px;font-size:.78rem;font-weight:700;background:#e8f0ef;color:var(--sea);margin:0 6px 6px 0}
-.badge.web{background:#fff1dc;color:var(--warn)}
 .answer{white-space:pre-wrap;font-size:1.03rem}
 .cite{list-style:none;padding:0;margin:0}.cite li{border-top:1px solid var(--line);padding:10px 0}
 .cite small{color:var(--muted)}
@@ -28,7 +27,6 @@ button.primary{background:var(--sea);color:#fff;border-color:var(--sea)}
 <section class="card">
 <div>
 <span class="badge">{{ result.mode }}</span>
-{% if result.used_web %}<span class="badge web">网络检索 · 未入知识库</span>{% endif %}
 {% if result.abstained %}<span class="badge warn">证据不足</span>{% endif %}
 <span class="muted">{{ result.latency_ms }} ms · 索引 {{ result.index_version }}</span>
 </div>
@@ -47,7 +45,6 @@ button.primary{background:var(--sea);color:#fff;border-color:var(--sea)}
 {% for c in result.citations %}
 <li>
 <strong>{{ c.doc_id }}</strong>{% if c.page %} p.{{ c.page }}{% endif %}{% if c.section %} §{{ c.section }}{% endif %}
-{% if c.source_type == 'web' %}<span class="badge web">{{ c.label or '网络检索 · 未入知识库' }}</span>{% endif %}
 <div>{{ c.snippet }}</div>
 {% if c.url %}<small><a href="{{ c.url }}" rel="noreferrer noopener" target="_blank">{{ c.url }}</a>{% if c.retrieved_at %} · 抓取于 {{ c.retrieved_at }}{% endif %}</small>{% endif %}
 </li>

@@ -5,7 +5,7 @@ from typing import Literal
 from pydantic import BaseModel, Field
 
 Persona = Literal["captain", "owner", "enforcement", "extension", "general"]
-Mode = Literal["kb_only", "kb_plus_web", "web_only", "clarify", "abstain"]
+Mode = Literal["kb_only", "clarify", "abstain"]
 Answerability = Literal["answerable", "partial", "abstain"]
 
 
@@ -14,7 +14,6 @@ class QueryRequest(BaseModel):
     persona: Persona = "general"
     region: str | None = Field(default=None, max_length=32)
     year: int | None = Field(default=None, ge=1949, le=2100)
-    web: Literal["auto", "on", "off"] = "auto"
 
 
 class CitationModel(BaseModel):
@@ -26,7 +25,7 @@ class CitationModel(BaseModel):
     score: float = 0.0
     url: str = ""
     retrieved_at: str = ""
-    source_type: Literal["corpus", "web"] = "corpus"
+    source_type: Literal["corpus"] = "corpus"
     label: str = ""
 
 
@@ -78,7 +77,6 @@ class QueryResponse(BaseModel):
     abstained: bool = False
     reason: str = "ok"
     mode: Mode = "kb_only"
-    used_web: bool = False
     playbook: PlaybookView | None = None
     index_version: str = "v2"
     answerability: Answerability = "answerable"

@@ -69,7 +69,7 @@ Human review is authoritative for answer correctness. Automated metrics are supp
 
 ## 2. Question set
 
-The reviewed set contains 48 questions across four personas (captain/crew, owner/operator, enforcement and extension): 33 dev and 15 test. It contains 31 anchor questions, 11 abstention tests, 2 CWP reference questions, 2 statistics questions and 2 deferred web questions (Q-E08, Q-M09). Gold answer points and the `meta` persona/split mapping are in `configs/eval.yaml`; the project owner approved the 33-question dev set on 2026-11-04, and P09-EVAL-130 added the 15-question test split with the same evidence discipline. Test is report-only; a test finding must first become a new dev question before it can drive a product change.
+The reviewed set contains 48 questions across four personas (captain/crew, owner/operator, enforcement and extension): 33 dev and 15 test. It contains 31 anchor questions, 11 abstention tests, 2 CWP reference questions, 2 statistics questions and 2 deferred web questions (Q-E08, Q-M09). Gold answer points and the `meta` persona/split mapping are in `configs/eval.yaml（已移除）`; the project owner approved the 33-question dev set on 2026-11-04, and P09-EVAL-130 added the 15-question test split with the same evidence discipline. Test is report-only; a test finding must first become a new dev question before it can drive a product change.
 
 Before use:
 
@@ -110,7 +110,7 @@ The public draft is [questions.md](questions.md).
 
 - Retrieval latency, end-to-end latency, index build time and memory peak.
 
-The instrument scores anchors, not answers: a question counts as retrieved when a top-5 chunk matches one of its gold anchors in `configs/eval.yaml` (document plus section prefix, or document plus page). Answer correctness, faithfulness and completeness still need reviewed gold answers and per-answer scoring; the deterministic run scores extractive faithfulness (answer sentences must come from cited chunks) and citation coverage, while the `--llm` run uses the model judge for correctness, completeness and faithfulness. Under the deterministic gate Q-E12 is refused although its anchor is retrieved, and Q-E07 is answered although no registered source covers historical fishing seasons; under `--llm` both are corrected (Q-E12 answers, Q-E07 abstains).
+The instrument scores anchors, not answers: a question counts as retrieved when a top-5 chunk matches one of its gold anchors in `configs/eval.yaml（已移除）` (document plus section prefix, or document plus page). Answer correctness, faithfulness and completeness still need reviewed gold answers and per-answer scoring; the deterministic run scores extractive faithfulness (answer sentences must come from cited chunks) and citation coverage, while the `--llm` run uses the model judge for correctness, completeness and faithfulness. Under the deterministic gate Q-E12 is refused although its anchor is retrieved, and Q-E07 is answered although no registered source covers historical fishing seasons; under `--llm` both are corrected (Q-E12 answers, Q-E07 abstains).
 
 ## 4. Protocol
 
@@ -236,7 +236,7 @@ No question, point count (60), anchor count (31), abstention count (11), split o
 The set is generated deterministically by `scripts/build_eval_v2.py` from
 `configs/facts/`. IDs are stable (`EV2-001` … `EV2-120`), and every expected
 evidence doc/section must resolve to `configs/corpus.yaml`. The v1
-`configs/eval.yaml` is not modified.
+`configs/eval.yaml（已移除）` is not modified.
 
 The 30 draft questions and the 10 abstention cases are test-only. The test split
 is never used to tune retrieval, prompts or thresholds. Draft questions are not

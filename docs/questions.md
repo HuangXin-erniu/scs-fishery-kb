@@ -1,8 +1,8 @@
 # Evaluation Questions
 
-- Status: **48 questions reviewed**. The 33-question dev set was approved by the project owner on 2026-11-04; the 15-question test split was added by P09-EVAL-130 with the same evidence discipline.
-- Four personas: captain/crew, owner/operator, enforcement and extension. Dev 33, test 15; test is report-only and must not be used for tuning.
-- Gold answer points live in [configs/eval.yaml](../configs/eval.yaml) under `gold`; persona and split live under `meta`; the table below stays the question bank.
+- Status: **retired design samples**. The 48-question set was retired with the v1 cleanup; the working instrument is the private 512-question acceptance set. The table below is kept as sanitized question-design samples and is not scored.
+- Four personas: captain/crew, owner/operator, enforcement and extension. The samples keep their original persona labels; nothing here is scored.
+- The retired set carried gold points and persona/split metadata; neither is part of the public tree or the current instrument.
 
 ## How to use this set
 
@@ -77,7 +77,7 @@
 
 Eleven questions have no registered source and form the abstention tests: Q-E07, Q-E11, Q-M02, Q-M06, Q-M07, Q-M08, Q-M11, Q-M18, Q-C04, Q-O04 and Q-T03. Q-E08 and Q-M09 are deferred to the web channel and are not scored. The remaining 35 questions are answerable.
 
-Thirty-one questions have gold anchors in [configs/eval.yaml](../configs/eval.yaml); the twelve test anchors are Q-C01, Q-C02, Q-C03, Q-O01, Q-O02, Q-O03, Q-F01, Q-F02, Q-F03, Q-F04, Q-T01 and Q-T02. Q-E05 and Q-M04 are answered by the CWP reference collection and Q-E06 and Q-M05 by the local statistics channel. Gold answer points are recorded under `gold` in the same config; Q-C04, Q-O04 and Q-T03 carry `abstain: true` and a no-source reason.
+The retired set had thirty-one anchor questions, eleven abstention tests, two CWP reference questions, two statistics questions and two deferred web questions. None of them is scored now.
 
 ## Coverage
 
