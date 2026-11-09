@@ -1004,3 +1004,9 @@ This log records material project changes by date. It does not use release versi
 - Added the final acceptance section to `docs/evaluation.md`: three lines met (misanswer 0.0857, channel 0.9143, as-of 0.9298), three short (coverage 0.6574, citation 0.5606, basis 0.2105), ceiling 622/727 supported and 0.80 needing 93.6% of supported points.
 - Added twenty sanitized acceptance-style samples to `docs/questions.md` and removed the zero-reference glossary bridge module and config.
 - Legacy modules still imported by the legacy CLI are listed for a dedicated CLI/test rewrite in the next phase.
+
+## 2026-11-09 — Citation-label experiments rejected
+
+- Heading-prefixed chunk labels: citation 0.5561 and misanswer 0.1143 (over the line) — reverted; store and index rebuilt back.
+- Topic-prefixed conclusion sentence: citation +0.7 pp (below the 1 pp keep rule); coverage gain came from question words, not evidence — reverted.
+- Restored baseline: coverage 0.6574, citation 0.5606. Next lever: element-type retrieval for coverage.
