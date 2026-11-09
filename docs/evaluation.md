@@ -714,3 +714,32 @@ holdout split.
   answerable); the rest need table-unit attachment, Chinese-numeral rendering or
   the missing papers/standards.
 - Raw reports: `runs/P11-MEAS-185/{ceiling.md,sweep.md,decompose.md}`.
+
+### 21. Depth, block quoting and numeric rendering (2026-11-09)
+
+> **中文摘要**：把摘录臂的检索深度从 10 提到 30/100，并按检索排名整段引用
+> （block 模式），同时把中文数字、拉丁单位、表头单位做确定性渲染并单列
+> `数值对照`。最佳变体覆盖 0.6574 → 0.7679、引用 0.5606 → 0.6384、口径
+> 0.2105 → 0.4737，误答/渠道/时效不变或改善；答案均值 5.1 万字、P95 7.6 万字。
+> 仍未达线的部分见结构性上限：深度 100 的段级上限 0.788、引用联合上限 0.683、
+> 口径缺 6 行锚点（论文/GB 标准/PDF 附表/30 m 来源）。
+
+- Environment: `SCS_FKB_DUMP_DEPTH` (retriever depth per query),
+  `SCS_FKB_DUMP_MODE=sentence|block`, `SCS_FKB_DUMP_NUMBERS=on|off`.
+- 512 results: depth 30 + sentence 120/40k → 0.7301 / 0.6339 / 0.2632; depth 30 +
+  block → 0.7293 / 0.6339 (block order neutral at a fixed window); depth 100 +
+  block 120/120k → 0.7578 / 0.6384 / 0.3158; plus numeric rendering → **0.7679 /
+  0.6384 / 0.4737** (V4c). Misanswer 0.0714, channel 0.9286, as-of 0.9474.
+- Numeric rendering is deterministic and keeps the original wording: Chinese
+  numerals (二千公斤 → 2000公斤, 百分之二十 → 20%), Latin units (30 m → 30米) and
+  bare table values with the declared header unit (肛长 ≥230 + 单位:毫米 →
+  230毫米). Renderings are appended as cited `数值对照` lines; the quoted sentence
+  is unchanged. Rendering from the full chunk while quoting a whitespace-collapsed
+  sentence keeps one citation per table block.
+- Basis moved 4/19 → 9/19. Remaining rows: papers (Y-302/336), GB toxin limits
+  (Y-345), PDF annex (Y-303), 38/155 mm absent values (Y-304/305), computed 2026
+  expiry (Y-459), 30 m source (Y-478) and two refusal rows.
+- Keep decision: V4c is retained (+11.1 pp coverage, +7.8 pp citation, +26.3 pp
+  basis, no closed-line regression). The default mode stays the sentence/30/9k
+  path until P11-FIN-189 chooses the shipping default.
+- Raw reports: `runs/P11-EVID-186/{variants.md,basis.md}`.

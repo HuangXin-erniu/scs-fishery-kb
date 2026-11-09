@@ -459,3 +459,69 @@ def test_dump_arm_abstains_without_hits() -> None:
     answer = answer_with_dump("休渔到什么时间？", EmptyRetriever())
     assert answer.abstained is True
     assert answer.reason == "no_evidence"
+
+
+def test_dump_block_mode_keeps_rank_order_and_raises_depth() -> None:
+    from scs_fkb.answer_v3.dump_arm import answer_with_dump
+
+    class Retriever:
+        depth = 10
+
+        def __init__(self, hits):
+            self.hits = hits
+
+        def search_queries(self, queries, top_k=12, filters=None):  # noqa: ANN001
+            return self.hits
+
+    retriever = Retriever(
+        [
+            make_hit(section="第一条", text="第一条 甲项规定。"),
+            make_hit(section="第二条", text="第二条 乙项规定。"),
+        ]
+    )
+    answer = answer_with_dump("甲乙规定", retriever, mode="block", depth=30, max_chars=2000)
+    assert retriever.depth == 30
+    assert answer.abstained is False
+    assert answer.text.index("第一条") < answer.text.index("第二条")
+
+
+def test_dump_numeric_rendering_keeps_the_original_wording() -> None:
+    from scs_fkb.answer_v3.dump_arm import answer_with_dump
+
+    class Retriever:
+        def __init__(self, hits):
+            self.hits = hits
+
+        def search_queries(self, queries, top_k=12, filters=None):  # noqa: ANN001
+            return self.hits
+
+    hit = make_hit(
+        section="第六十三条",
+        text="在海洋水域非法捕捞水产品二千公斤以上或者价值二万元以上的，应予立案追诉。",
+    )
+    answer = answer_with_dump("非法捕捞多少公斤", Retriever([hit]), with_numbers=True)
+    assert "二千公斤" in answer.text
+    assert "2000公斤（原文：二千公斤）" in answer.text
+    assert "2万元（原文：二万元）" in answer.text
+
+
+def test_numbers_parse_chinese_values_and_units() -> None:
+    from scs_fkb.answer_v3.numbers import cn_to_int, extract, render_pairs
+
+    assert cn_to_int("二千") == 2000
+    assert cn_to_int("一万二千") == 12000
+    assert cn_to_int("百分之二十") == 20
+    assert render_pairs("三十米") == [("三十米", "30米", "原文：三十米")]
+    assert render_pairs("没有数字的句子") == []
+    values = {(item.value, item.unit) for item in extract("二千公斤以上，价值二万元")}
+    assert ("2000", "公斤") in values
+    assert ("2", "万元") in values
+
+
+def test_table_header_unit_renders_bare_values() -> None:
+    from scs_fkb.answer_v3.numbers import declared_unit, render_pairs
+
+    text = "一、15种重要经济鱼类最小可捕规格\n单位:毫米\n带鱼\n肛长 ≥230"
+    assert declared_unit(text) == "毫米"
+    pairs = render_pairs("肛长 ≥230", "毫米")
+    assert ("肛长 ≥230", "230毫米", "表列值，单位：毫米") in pairs
