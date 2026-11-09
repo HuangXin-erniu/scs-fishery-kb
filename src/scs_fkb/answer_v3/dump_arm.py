@@ -11,9 +11,9 @@ from ..rag import _citations_from_text
 from .llm_answer import _enrich
 from .numbers import declared_unit, render_pairs
 
-MAX_HITS = int(os.environ.get("SCS_FKB_DUMP_HITS", "120"))
-MAX_ANSWER_CHARS = int(os.environ.get("SCS_FKB_DUMP_CHARS", "120000"))
-MAX_DEPTH = int(os.environ.get("SCS_FKB_DUMP_DEPTH", "100"))
+MAX_HITS = int(os.environ.get("SCS_FKB_DUMP_HITS", "300"))
+MAX_ANSWER_CHARS = int(os.environ.get("SCS_FKB_DUMP_CHARS", "300000"))
+MAX_DEPTH = int(os.environ.get("SCS_FKB_DUMP_DEPTH", "300"))
 MAX_MODE = os.environ.get("SCS_FKB_DUMP_MODE", "block").strip().lower()
 WITH_NUMBERS = os.environ.get("SCS_FKB_DUMP_NUMBERS", "on").strip().lower() not in (
     "off",

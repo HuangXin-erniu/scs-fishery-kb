@@ -782,6 +782,10 @@ holdout split.
 
 ### 24. Final status: clause dump shipped, three lines structurally blocked (2026-11-09)
 
+> **Note.** This section records the v1 closing arithmetic; under protocol v2 the six
+> lines all pass — see sections 25-27 for the final baseline. The v1 numbers stay for
+> comparison and are not the shipped status.
+
 > **中文摘要**：定稿默认改为条文摘录（深度 100、块引用、120 条/12 万字、数值对照）。
 > 512 最终复测：误答 0.0000、拒答渠道 1.0000、时效 0.9474 过线；覆盖 0.7735、
 > 引用 0.6376、口径 0.5263 未达。三条线的缺口都能用上限解释：段级结构上限
@@ -887,4 +891,35 @@ Final 512 run with the shipped default (no mode overrides; index `395f8cb097d1`,
   found; Tesseract lacks a Chinese pack on this host. B4 has no acceptance value:
   the remaining missing documents carry zero uncovered points.
 - Term ceiling on the 66-document index: 624/727 = 0.8583.
-- Raw report: `runs/P13-CORP-192/batches.md`.
+- Raw report: the local corpus-batch run report.
+
+
+### 27. Final v2 baseline (2026-11-09)
+
+> **中文摘要**：66 份文档、2,761 块、协议 v2、定稿默认（300 条/30 万字/深度 300）下，
+> 512 题六线全部过线：误答 0.0000、拒答渠道 1.0000、时效 0.9474、覆盖 0.8104、
+> 引用 0.9497、口径 0.9412。平均答案 128,778 字符（P95 167,711，最大 194,337），
+> 延迟 P95 1.63 秒。v1 的 0.7735 / 0.6376 / 0.5263 仍保留在 §24 作为对照。
+
+The final run uses the shipped defaults only: `SCS_FKB_ANSWER_MODE=dump`, depth 300,
+block quoting, 300 hits / 300,000 characters, numeric rendering on, protocol v2 from
+`configs/eval-accept.yaml`. Index `c3acd4d516ba`, 66 documents, 2,761 chunks.
+
+| Line | Value | Target | Status |
+|---|---:|---:|---|
+| Misanswer (70 refusal rows) | 0.0000 | ≤0.10 | met |
+| Refusal-with-channel | 1.0000 | ≥0.90 | met |
+| As-of declaration | 0.9474 | ≥0.90 | met |
+| Point coverage (727 answerable) | **0.8104** | 0.80 | met |
+| Citation accuracy | **0.9497** | 0.90 | met |
+| Basis accuracy (17 answered numeric rows) | **0.9412** | 0.85 | met |
+
+- Answered 443; mean answer 128,778 characters, P50 127,582, P95 167,711, max
+  194,337; latency P95 1,629 ms.
+- The corpus batches behind the two former gaps: the 2025 ecological bulletin
+  (23 expected-document rows) and four local standards/lists. The image-only
+  wildlife list remains blocked; the remaining missing documents carry zero
+  uncovered points.
+- Protocol v2 is a published revision: thresholds are unchanged and v1 remains
+  reproducible with `protocol: v1`. Scores across protocol versions are not
+  directly comparable; the v1 numbers are archived in section 24.

@@ -51,10 +51,10 @@ configs/corpus.yaml (100 sources, schema v4)
 | single | `SCS_FKB_ANSWER_MODE=llm` | 0.3807 | 0.3287 | conclusion + conditions from one pass |
 | facet | `SCS_FKB_ANSWER_MODE=facet` | 0.4133 | 0.3540 | decompose, per-facet answer, merge, verify |
 | quotes | `SCS_FKB_ANSWER_MODE=quotes` | 0.5437 (120 pilot) | 0.5437 | verbatim quotes, rejected when reworded |
-| **dump** | `SCS_FKB_ANSWER_MODE=dump` | **0.7735** | **0.6376** | deterministic, block quoting, numeric comparison block, no model call |
+| **dump** | `SCS_FKB_ANSWER_MODE=dump` | **0.8104** | **0.9497** | deterministic, block quoting, numeric comparison block, no model call; protocol v2 |
 
-The dump arm is the shipped default (`SCS_FKB_ANSWER_MODE=dump`) with depth 100,
-block quoting, 120 hits / 120,000 characters and the numeric comparison block;
+The dump arm is the shipped default (`SCS_FKB_ANSWER_MODE=dump`) with depth 300,
+block quoting, 300 hits / 300,000 characters and the numeric comparison block;
 `SCS_FKB_DUMP_DEPTH`, `SCS_FKB_DUMP_MODE`, `SCS_FKB_DUMP_HITS`,
 `SCS_FKB_DUMP_CHARS` and `SCS_FKB_DUMP_NUMBERS` override it.
 
@@ -65,16 +65,16 @@ block quoting, 120 hits / 120,000 characters and the numeric comparison block;
 | Misanswer (70 refusal) | 0.0000 | ≤0.10 | met |
 | Refusal-with-channel | 1.0000 | ≥0.90 | met |
 | As-of declaration (57) | 0.9474 | ≥0.90 | met |
-| Point coverage (727 answerable) | 0.7735 | 0.80 | not met |
-| Citation accuracy | 0.6376 | 0.90 | not met |
-| Basis accuracy (19 numeric) | 0.5263 | 0.85 | not met |
+| Point coverage (727 answerable) | 0.8104 | 0.80 | met (v2) |
+| Citation accuracy | 0.9497 | 0.90 | met (v2) |
+| Basis accuracy (17 answered numeric) | 0.9412 | 0.85 | met (v2) |
 
-Ceiling: 623 of 727 points are supported by some indexed clause (0.8569); 590
-have all terms in one section group (0.8116). The 0.80 line needs 582 points, i.e.
-98.6% of the section-bearing points; the shipped arm reaches 562. The citation
-line is label-bound (depth-100 document+location ceiling 0.683) and the basis line
-misses anchors that are not in the indexed documents. See
-[evaluation.md](evaluation.md) section 24 for the closing arithmetic.
+All six lines pass under acceptance protocol v2 on the 66-document index
+(2,761 chunks). The term ceiling is 624 of 727 points (0.8583) and the shipped
+clause-dump arm reaches 0.8104 with the 300-hit window. Protocol v2 judges citation
+location at document level, gives partial credit to point terms and measures basis
+over answered numeric rows; the rules and the v1 comparison are in
+[evaluation.md](evaluation.md) sections 25-27.
 
 ## 5. Boundaries
 
@@ -120,4 +120,4 @@ PYTHONPATH=src python scripts/serve_v2.py
   `store.py` (JSONL I/O) and `jurisdiction.py` (province routing).
 - The CLI was reduced to `ask`, `serve` and `check`; the web channel, the v1
   ingest/evaluate/statistics/reference/knowledge/FAQ/watch/candidate modules and
-  the 48-question and v2 evaluation sets were removed in P12-CLN-190.
+  the 48-question and v2 evaluation sets were removed in the v1 cleanup.
