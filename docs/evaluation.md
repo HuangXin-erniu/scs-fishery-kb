@@ -673,3 +673,13 @@ holdout split.
   0.3158; reverted because the citation gain is below 1 pp and the coverage gain is
   question-driven, not evidence-driven.
 - Restored baseline re-measured: coverage 0.6574, citation 0.5606.
+
+### 19. Element-type query expansion rejected (2026-11-09)
+
+> **中文摘要**：六类要素检索式在 120 题 dev 上没有提升（覆盖 0.6723 vs 基线 0.6765，
+> 引用持平），仅数值类也相同。检索召回已达 0.913，多写的检索式只是重复同一批条款，
+> 覆盖缺口在证据而非查询措辞。已回退。
+
+- Dev 120: baseline 0.6765 coverage; six-type 0.6723; numeric-only 0.6723; citation
+  0.767 in all variants.
+- Verdict: rejected; the remaining gap is evidence-bound.
