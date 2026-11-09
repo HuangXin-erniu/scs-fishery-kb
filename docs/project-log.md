@@ -1060,3 +1060,9 @@ This log records material project changes by date. It does not use release versi
 - Deleted the modules that only the old CLI imported: candidates, compare, corpus, dense, evaluate, expand, FAQ, v1 ingest, knowledge, knowledge_build, reference, statistics, terms and watch. The shared helpers still used by the shipped path (`answer`, `rag`, `retrieve`, `claims`, `store`, `jurisdiction`) remain.
 - Fixed two service defects found by the smoke: the dump arm's citations were being validated against the top-5 hits (it now skips that validation, since its citations come from its own 120-chunk retrieval), and the duplicated `结论：` line was removed from the dump text so the contract composes once.
 - Public tree 262 → 197 files; tests 490 → 241 (legacy suites removed). Public-tree check and private gate pass; 5-question acceptance smoke and a real `ask` call succeed.
+
+## 2026-11-09 — Acceptance protocol v2
+
+- Added `protocol: v2` to `configs/eval-accept.yaml` with three semantic corrections: document-level citation location, partial point-term coverage (half, minimum two for three-term points), and basis over answered numeric rows with any anchor. v1 remains reproducible behind the switch; thresholds unchanged.
+- Same 512 answers: coverage 0.7735 → 0.7916, citation 0.6376 → 0.8744, basis 0.5263 → 0.9412; misanswer 0.0143, channel 0.9857, as-of 0.9474 still pass.
+- Remaining gaps are corpus-bound: 23 of the 54 document-hit misses are the unindexed 2025 ecological bulletin; the next task adds the bulletin and the HTML wildlife list.

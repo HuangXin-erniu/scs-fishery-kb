@@ -559,3 +559,67 @@ def test_point_coverage_excludes_refusal_rows() -> None:
     assert summary["point_coverage_all"] == 0.5
     assert summary["point_rows"] == 1
     assert summary["point_rows_all"] == 2
+
+
+def test_v2_locates_a_citation_at_document_level() -> None:
+    row = make_row(citation_requirement="SCS-N-001｜通告〔2023〕1号·休渔时间")
+    result = make_result(
+        "自2023年4月15日起施行。 [POL-CLOS-015 §四、实施时间]",
+        citations=[
+            {
+                "doc_id": "POL-CLOS-015",
+                "section": "四、实施时间",
+                "snippet": "自2023年4月15日起施行。",
+                "page": 1,
+            }
+        ],
+    )
+    v1 = score(row, result)
+    v2 = score(row, result, config=ScoringConfig(protocol="v2"))
+    assert v1["citation_accuracy"] is False
+    assert v2["citation_accuracy"] is True
+    assert v2["citation_location_source"] == "document"
+
+
+def test_v2_partial_point_coverage_requires_half_with_a_two_term_minimum() -> None:
+    from scs_fkb.eval_accept.scoring import _point_covered
+
+    citations = [
+        {
+            "doc_id": "POL-CLOS-015",
+            "section": "三、休渔时间",
+            "snippet": "甲项乙项。",
+            "page": 1,
+        }
+    ]
+    answer = "甲项乙项。 [POL-CLOS-015 §三、休渔时间]"
+    three = PointSpec(terms=("甲项", "乙项", "丙项"), mode="section")
+    two = PointSpec(terms=("甲项", "丙项"), mode="section")
+    assert _point_covered(answer, citations, three, ScoringConfig()) is False
+    assert _point_covered(answer, citations, three, ScoringConfig(protocol="v2")) is True
+    assert _point_covered(answer, citations, two, ScoringConfig(protocol="v2")) is False
+
+
+def test_v2_basis_excludes_refusal_rows_and_accepts_one_anchor() -> None:
+    refusal = make_row(
+        id="Y-900",
+        answerability="应拒答",
+        dimension="数值召回",
+        numeric_anchors=["2025年"],
+    )
+    refusal_result = make_result("2025年度公报未收录该指标。")
+    v1_refusal = score(refusal, refusal_result)
+    v2_refusal = score(refusal, refusal_result, config=ScoringConfig(protocol="v2"))
+    assert v1_refusal["basis_score"] == 1.0
+    assert v2_refusal["basis_score"] is None
+
+    answered = make_row(
+        id="Y-901",
+        dimension="数值召回",
+        numeric_anchors=["230毫米", "150毫米"],
+    )
+    answered_result = make_result("230毫米，表列值。 [POL-CLOS-015 §第三条]")
+    v1 = score(answered, answered_result)
+    v2 = score(answered, answered_result, config=ScoringConfig(protocol="v2"))
+    assert v1["basis_score"] == 0.0
+    assert v2["basis_score"] == 1.0
