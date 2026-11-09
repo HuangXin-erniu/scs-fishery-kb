@@ -1074,3 +1074,10 @@ This log records material project changes by date. It does not use release versi
 - The 300/300k arm yields coverage 0.8104, citation 0.9497, basis 0.9412, misanswer 0.0, channel 1.0, as-of 0.9474 — six lines pass for the first time.
 - Blocked: the 2021 wildlife list is image-only and Tesseract has no Chinese pack; no official text source was found. The remaining missing documents carry zero uncovered points, so no web batch was added.
 - Index 66 documents, 2,761 chunks; term ceiling 624/727 = 0.8583.
+
+## 2026-11-09 — Final v2 baseline: six lines pass
+
+- Shipped the 300 hits / 300,000 characters / depth 300 dump arm as the default; the answer stays deterministic and every clause carries its own citation.
+- Final 512 with the shipped defaults and protocol v2: misanswer 0.0000, refusal-with-channel 1.0000, as-of 0.9474, coverage 0.8104, citation 0.9497, basis 0.9412. All six lines meet target.
+- 66 documents, 2,761 chunks; answered 443; mean answer 128,778 characters, latency P95 1.63 s.
+- README, architecture and evaluation now describe protocol v2 and the shipped window; the v1 closing arithmetic remains in the evaluation document as history.
