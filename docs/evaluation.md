@@ -867,3 +867,24 @@ Final 512 run with the shipped default (no mode overrides; index `395f8cb097d1`,
 - Remaining v2 gaps are corpus-bound: citation needs the 54 document-hit misses (23 of them
   are the unindexed 2025 ecological bulletin), coverage needs the points those documents
   carry. The corpus task follows.
+
+### 26. Corpus batches under protocol v2 (2026-11-09)
+
+> **中文摘要**：协议 v2 下先补 2025 海洋生态预警公报（23 个期望文档命中行），
+> 引用 0.8744 → 0.9361、覆盖 0.7916 → 0.8008；再加入 4 份本地标准/名录，
+> 引用 0.9475、覆盖 0.8032；把摘录窗口放到 300 条/30 万字后覆盖 0.8104、
+> 引用 0.9497、口径 0.9412，六线首次全过。扫描版名录仍无文本源，其余缺失文档
+> 对覆盖点无贡献，均记录为未加入。
+
+- B1 `STAT-ECO-073` (62 docs, 200/200k): coverage 0.8008, citation 0.9361,
+  basis 0.9412, misanswer 0.0000, channel 1.0000, as-of 0.9474.
+- B3 `STD-HULL-062/069/070` + `POL-GD-110` (66 docs, 200/200k): 0.8032 /
+  0.9475 / 0.9412 / 0.0000 / 1.0000 / 0.9474.
+- Best arm (66 docs, 300 hits / 300k chars): coverage **0.8104**, citation
+  **0.9497**, basis **0.9412**, misanswer 0.0000, channel 1.0000, as-of 0.9474;
+  mean answer 128,815 characters, latency P95 1.67 s.
+- B2 is blocked: the wildlife list is image-only and no official text source was
+  found; Tesseract lacks a Chinese pack on this host. B4 has no acceptance value:
+  the remaining missing documents carry zero uncovered points.
+- Term ceiling on the 66-document index: 624/727 = 0.8583.
+- Raw report: `runs/P13-CORP-192/batches.md`.
