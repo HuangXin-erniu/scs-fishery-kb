@@ -1108,3 +1108,11 @@ This log records material project changes by date. It does not use release versi
 - Split v2 into three independent scoring switches (document-level location, partial point terms, basis mode/scope) while keeping v1/v2 presets.
 - Re-scored the same 512 answers: location only lifts citation to 0.9588 but leaves coverage 0.7948 and basis 0.6316; partial points lift coverage to 0.8129 but leave citation 0.7185 and basis 0.6316; basis only lifts basis to 0.9412 but leaves coverage 0.7948 and citation 0.7185; all three pass.
 - Added `--answers-out` to the acceptance runner and `scripts/audit_protocol_v2.py` for reproduction.
+
+## 2026-11-09 — Final v2 baseline with the product layer
+
+- Final 512 on the shipped defaults and the 67-document index (`ce3eeaf4c9b2`): misanswer 0.0000, refusal-with-channel 1.0000, as-of 0.9474, coverage 0.8129, citation 0.9588, basis 0.9412. All six lines pass.
+- The product layer is shipped: `ask` prints a summary and `--full` prints the evidence; citations are deduplicated and capped; conclusion selection penalises attachment/title lines and prefers numeric clauses.
+- The 2021 wildlife list is indexed from a macOS Vision OCR derivative; the original PDF remains the provenance copy.
+- Protocol v2 sensitivity table added: no single correction passes all three lines; the full protocol does.
+- Announcement draft written for owner confirmation; nothing published.

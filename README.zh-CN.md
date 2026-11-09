@@ -14,7 +14,7 @@
 
 ## 状态
 
-**本阶段管线与验收已完成。** 已登记 100 个来源：98 个已获取、2 个保留。索引 66 份文档（2,761 个块）。服务默认按条文摘录回答：逐句引用原文并标注 `[DOC §章节]`，问题重合度最高的句子置顶，另附确定性的数值对照块。在验收协议 v2 下，512 题私有验收六条线全部通过：误答 0.0000、拒答渠道 1.0000、时效 0.9474、要点覆盖 0.8104、引用 0.9497、口径 0.9412。v2 的引用按文档级定位、点位词给部分命中、口径只计可答数值行；规则与 v1 对照见 [docs/evaluation.md](docs/evaluation.md)。代码公开，语料、处理结果与运行报告留在本地。
+**本阶段管线与验收已完成。** 已登记 100 个来源：98 个已获取、2 个保留。索引 67 份文档（2,797 个块）。服务默认按条文摘录回答：逐句引用原文并标注 `[DOC §章节]`，问题重合度最高的句子置顶，另附确定性的数值对照块。在验收协议 v2 下，512 题私有验收六条线全部通过：误答 0.0000、拒答渠道 1.0000、时效 0.9474、要点覆盖 0.8129、引用 0.9588、口径 0.9412。v2 的引用按文档级定位、点位词给部分命中、口径只计可答数值行；规则与 v1 对照见 [docs/evaluation.md](docs/evaluation.md)。代码公开，语料、处理结果与运行报告留在本地。
 
 ### 语料一览
 
@@ -26,7 +26,7 @@
 | 法规与技术文件 | 53 份——1 部法律、20 份法规、12 份通告、17 项标准、2 部数据字典、1 份作业参考 |
 | 本地核心 CSV | 3,126 行，不公开 |
 | 已记录缺口 | 2018–2019 年渔港分类；2024 年船长；2025 年为抽样 |
-| 索引规模 | 66 份文档、2,761 个块 |
+| 索引规模 | 67 份文档、2,797 个块 |
 | 评测工具 | 私有 512 题验收集；六条协议线 |
 
 本项目不设版本号：不创建 tag、不发布 GitHub Release，也不使用语义化版本。`main` 即最新状态；引用时请使用 commit SHA。变更记录见 [项目日志](docs/project-log.md)。
@@ -102,14 +102,15 @@ make check
 
 ```sh
 export SCS_FKB_DATA_ROOT=/path/to/local/data
-make ingest   # 解析已入库的 28 份文档并生成本地分块
-PYTHONPATH=src python3 -m scs_fkb embed   # 首次运行生成本地稠密索引
-make eval     # 四臂 Recall@5、MRR、拒答、引用与参考通道指标
-make define TERM=上岸量   # 查询中文术语对应的 CWP 定义段落
-PYTHONPATH=src python3 -m scs_fkb stats "2019年南海区海洋捕捞产量"   # 本地统计行
+PYTHONPATH=src python3 scripts/build_v2.py        # 解析已登记来源，生成本地处理结果
+PYTHONPATH=src python3 scripts/build_index_v2.py  # 生成本地 BM25 + 稠密索引
+PYTHONPATH=src python3 -m scs_fkb ask "2026年南海区伏季休渔从什么时候开始？"
+PYTHONPATH=src python3 -m scs_fkb ask --full "2026年南海区伏季休渔从什么时候开始？"
+PYTHONPATH=src python3 -m scs_fkb serve
 ```
 
-`make ingest` 与 `make eval` 需要本地数据根；CI 只运行 `make check`，公开树因此不含数据。
+`ask` 默认输出合同摘要与主要引用；`--full` 输出完整依据。构建命令需要本地数据根；
+CI 只运行 `make check`，公开树因此不含数据。
 
 默认回答臂为**条文摘录**：检索到的每条条款逐句引用，每句带 `[DOC §章节]` 引用，问题重合度最高的句子置顶；另附确定性的"数值对照"块，把中文数字、拉丁单位和表头单位渲染成可核对写法，不引入原文没有的数值。回答不调用模型。默认 `SCS_FKB_DUMP_DEPTH=300`、`SCS_FKB_DUMP_MODE=block`、`SCS_FKB_DUMP_HITS=300`、`SCS_FKB_DUMP_CHARS=300000`；`SCS_FKB_ANSWER_MODE=extractive|llm|facet|quotes` 可切换其他回答臂。`SCS_FKB_DUMP_TOPIC` 仅为诊断开关，保持关闭。
 

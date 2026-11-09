@@ -877,8 +877,8 @@ Final 512 run with the shipped default (no mode overrides; index `395f8cb097d1`,
 > **中文摘要**：协议 v2 下先补 2025 海洋生态预警公报（23 个期望文档命中行），
 > 引用 0.8744 → 0.9361、覆盖 0.7916 → 0.8008；再加入 4 份本地标准/名录，
 > 引用 0.9475、覆盖 0.8032；把摘录窗口放到 300 条/30 万字后覆盖 0.8104、
-> 引用 0.9497、口径 0.9412，六线首次全过。扫描版名录仍无文本源，其余缺失文档
-> 对覆盖点无贡献，均记录为未加入。
+> 引用 0.9497、口径 0.9412，六线首次全过。扫描版名录当时无文本源（后由 OCR 批次
+> 补入，见 §27），其余缺失文档对覆盖点无贡献，均记录为未加入。
 
 - B1 `STAT-ECO-073` (62 docs, 200/200k): coverage 0.8008, citation 0.9361,
   basis 0.9412, misanswer 0.0000, channel 1.0000, as-of 0.9474.
@@ -903,23 +903,23 @@ Final 512 run with the shipped default (no mode overrides; index `395f8cb097d1`,
 
 The final run uses the shipped defaults only: `SCS_FKB_ANSWER_MODE=dump`, depth 300,
 block quoting, 300 hits / 300,000 characters, numeric rendering on, protocol v2 from
-`configs/eval-accept.yaml`. Index `c3acd4d516ba`, 66 documents, 2,761 chunks.
+`configs/eval-accept.yaml`. Index `ce3eeaf4c9b2`, 67 documents, 2,797 chunks.
 
 | Line | Value | Target | Status |
 |---|---:|---:|---|
 | Misanswer (70 refusal rows) | 0.0000 | ≤0.10 | met |
 | Refusal-with-channel | 1.0000 | ≥0.90 | met |
 | As-of declaration | 0.9474 | ≥0.90 | met |
-| Point coverage (727 answerable) | **0.8104** | 0.80 | met |
-| Citation accuracy | **0.9497** | 0.90 | met |
+| Point coverage (727 answerable) | **0.8129** | 0.80 | met |
+| Citation accuracy | **0.9588** | 0.90 | met |
 | Basis accuracy (17 answered numeric rows) | **0.9412** | 0.85 | met |
 
-- Answered 443; mean answer 128,778 characters, P50 127,582, P95 167,711, max
-  194,337; latency P95 1,629 ms.
+- Answered 443; mean answer 129,337 characters, P50 127,771, P95 170,316, max
+  194,498; latency P95 1,460 ms.
 - The corpus batches behind the two former gaps: the 2025 ecological bulletin
-  (23 expected-document rows) and four local standards/lists. The image-only
-  wildlife list remains blocked; the remaining missing documents carry zero
-  uncovered points.
+  (23 expected-document rows), four local standards/lists and the 2021 wildlife
+  list indexed from a macOS Vision OCR derivative. The remaining missing documents
+  carry zero uncovered points.
 - Protocol v2 is a published revision: thresholds are unchanged and v1 remains
   reproducible with `protocol: v1`. Scores across protocol versions are not
   directly comparable; the v1 numbers are archived in section 24.
