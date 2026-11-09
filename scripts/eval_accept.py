@@ -25,9 +25,7 @@ def _load_config(path: Path) -> dict:
 
 def _answer_lengths(scored: list[dict]) -> dict:
     """Answer-size distribution, recorded next to the metrics for window sweeps."""
-    values = sorted(
-        len(str(row.get("answer") or "")) for row in scored if not row.get("abstained")
-    )
+    values = sorted(len(str(row.get("answer") or "")) for row in scored if not row.get("abstained"))
     if not values:
         return {"answered": 0}
     count = len(values)

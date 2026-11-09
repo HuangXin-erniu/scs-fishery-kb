@@ -268,9 +268,7 @@ def _write_markdown(
     if examples:
         lines += ["", "## Uncovered point examples", ""]
         for item in examples[:20]:
-            lines.append(
-                f"- {item['id']} {item['expected']}: `{item['terms']}` — {item['point']}"
-            )
+            lines.append(f"- {item['id']} {item['expected']}: `{item['terms']}` — {item['point']}")
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
@@ -373,11 +371,7 @@ def main(argv: list[str] | None = None) -> int:
             terms = [_norm(term) for term in spec.terms if term]
             if spec.rule:
                 pattern = rule_pattern(spec.rule)
-                block = (
-                    _docblock_rule_rank(pattern, hits, section_texts)
-                    if pattern
-                    else None
-                )
+                block = _docblock_rule_rank(pattern, hits, section_texts) if pattern else None
             else:
                 block = _docblock_rank(terms, hits, section_texts) if terms else None
             block_ranks.append(block)
