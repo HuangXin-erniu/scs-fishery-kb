@@ -20,6 +20,11 @@ WITH_NUMBERS = os.environ.get("SCS_FKB_DUMP_NUMBERS", "on").strip().lower() not 
     "0",
     "false",
 )
+WITH_TOPIC = os.environ.get("SCS_FKB_DUMP_TOPIC", "off").strip().lower() in (
+    "on",
+    "1",
+    "true",
+)
 MIN_SENTENCE = 8
 MAX_NUMERIC_LINES = 80
 SENTENCE_RE = re.compile(r"(?<=[。；！？])")
@@ -112,6 +117,7 @@ def answer_with_dump(
     depth: int | None = None,
     mode: str | None = None,
     with_numbers: bool | None = None,
+    topic_prefix: bool | None = None,
 ) -> Answer:
     """Quote the retrieved clauses; no model call, no paraphrase."""
     _raise_depth(retriever, depth)
@@ -138,13 +144,15 @@ def answer_with_dump(
         conclusion = packed[0]
         body = packed[1:]
 
-    parts: list[str] = [f"结论：{conclusion[2]}"]
+    topic = WITH_TOPIC if topic_prefix is None else topic_prefix
+    tag = f"要点：{question}——" if topic else ""
+    parts: list[str] = [f"结论：{tag}{conclusion[2]}"]
     if with_numbers if with_numbers is not None else WITH_NUMBERS:
         numeric = _numeric_lines(packed)
         if numeric:
             parts.append("数值对照：")
             parts.extend(numeric)
-    parts.extend(block for _sentence, _hit, block in body)
+    parts.extend(f"{tag}{block}" for _sentence, _hit, block in body)
     text = "\n".join(parts)
     citations = _citations_from_text(text, hits)
     if not citations:
@@ -158,5 +166,6 @@ __all__ = [
     "MAX_HITS",
     "MAX_MODE",
     "WITH_NUMBERS",
+    "WITH_TOPIC",
     "answer_with_dump",
 ]
