@@ -660,3 +660,16 @@ fabricate; it is the documented clause-quotation mode.
 to the coverage denominator beyond the earlier answerable-point correction, no
 acceptance of documents that break the refusal metric, and no prompt tuning on the
 holdout split.
+
+### 18. Citation-label experiments rejected (2026-11-09)
+
+> **中文摘要**：两次引用定位实验均未达保留线。节标并入标题后引用 0.5561、误答 0.1143
+> （超线）→ 回退；主题词引导句引用 0.5675（+0.7pp，未达 1pp）且覆盖涨幅来自问题词
+> 而非证据 → 回退。引用缺口的主因是检索未命中期望文档与条款措辞不含主题标签。
+
+- Heading-prefixed labels (938/1,789 articles): coverage 0.6550, citation 0.5561,
+  misanswer 0.1143 → reverted.
+- Topic-prefixed conclusion: coverage 0.6807, citation 0.5675 (+0.7 pp), basis
+  0.3158; reverted because the citation gain is below 1 pp and the coverage gain is
+  question-driven, not evidence-driven.
+- Restored baseline re-measured: coverage 0.6574, citation 0.5606.
