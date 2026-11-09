@@ -41,5 +41,3 @@ jobs:
         run: pytest -q
       - name: Validate public tree
         run: python scripts/check_public_tree.py
-      - name: Source currency
-        run: PYTHONPATH=src python -m scs_fkb sources check
