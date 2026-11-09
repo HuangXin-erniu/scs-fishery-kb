@@ -26,8 +26,8 @@ def test_corpus_registry_is_complete() -> None:
 def test_pipeline_documents_are_registered() -> None:
     pipeline = load("pipeline.yaml")["documents"]
     registered = {source["id"] for source in load("corpus.yaml")["sources"]}
-    assert len(pipeline) == 66
-    assert len(set(pipeline)) == 66
+    assert len(pipeline) == 67
+    assert len(set(pipeline)) == 67
     assert set(pipeline) <= registered
 
 

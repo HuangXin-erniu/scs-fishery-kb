@@ -1095,3 +1095,10 @@ This log records material project changes by date. It does not use release versi
 - `_pick_conclusion` now penalises attachment/title/publication lines, gives a numeric bonus to time-intent questions and breaks ties by retrieval order.
 - Sample: Y-001 switched from a pesticide-list annex to the 休渔 clause; Y-006 from an SC/T appendix to the 渔捞日志 clause.
 - 512 A/B under protocol v2 is unchanged on every line (0.8104 / 0.9497 / 0.9412 / 0.0000 / 1.0000 / 0.9474); answer mean 128,778 → 128,754 characters.
+
+## 2026-11-09 — 2021 wildlife list indexed from an OCR derivative
+
+- The official PDF is image-only and no official text source exists; the 38 pages were OCR'd with the built-in macOS Vision `zh-Hans` recognizer after Homebrew could not install a Chinese Tesseract pack.
+- Registered `STD-SPEC-076` as an HTML OCR derivative with the original PDF retained as provenance and an explicit OCR-error warning; index 67 documents / 2,797 chunks.
+- 512 under protocol v2: coverage 0.8104 → 0.8129, citation 0.9497 → 0.9588, basis 0.9412, misanswer 0.0000, channel 1.0000, as-of 0.9474. Kept.
+- Negative results: 30 m rule (draft only), 38/155 mm (absent from the official mesh notices), remote-sensing product note (no official text), safety regulation (2022 seminar draft only).
