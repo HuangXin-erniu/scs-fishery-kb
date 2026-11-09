@@ -564,3 +564,18 @@ as-of 0.9123.
   the operative clause.
 - Table chunking deferred: targets met without changing chunk text, so the recall
   baseline stays comparable.
+
+### 13. Facet arm: every answer metric up, coverage still short (2026-11-09)
+
+> **中文摘要**：子问题分解 + 逐项作答臂在 512 题上把要点覆盖 0.3807 → 0.4133、引用
+> 0.3287 → 0.3540、误答 0.0571 → 0.0429，但距 0.65 目标仍远。原因是逐项答案仍在复述
+> 同一条款，模型不知道评分要点，无法逐条覆盖。按计划规则（覆盖 <0.55）facet 臂转为
+> 可选，默认仍用单轮臂。
+
+- Facet arm (opt-in, `SCS_FKB_ANSWER_MODE=facet`): rewrite → decompose → per-facet
+  retrieve/answer/validate → merge → verify; single answer merged as "综合" and used
+  as fallback so it cannot answer less than the single arm.
+- Full 512: coverage 0.4133, citation 0.3540, misanswer 0.0429, channel 0.9571,
+  as-of 0.9123, basis 0.0526.
+- Coverage remains the binding gap: per-answer coverage 0.419, and the rubric's
+  elements are not inferable from the question alone.

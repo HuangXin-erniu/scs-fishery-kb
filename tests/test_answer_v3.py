@@ -274,3 +274,91 @@ def test_llm_abstain_is_passed_through() -> None:
     answer = answer_with_llm("南海休渔到几号？", [make_hit()], client, cache=None)
     assert answer.abstained is True
     assert "llm_abstain" in answer.reason
+
+
+# --- facet arm (offline) ---
+class FacetClient:
+    def __init__(self, facets: list[str], answers: list[dict], verified: bool = True) -> None:
+        self.facets = facets
+        self.answers = list(answers)
+        self.verified = verified
+        self.config = FakeConfig()
+
+    def chat(self, messages, *, temperature=0.0, max_tokens=1200):  # noqa: ANN001
+        system = messages[0]["content"]
+        if "拆解" in system:
+            return json.dumps(
+                {"facets": [{"text": text, "type": "core"} for text in self.facets]},
+                ensure_ascii=False,
+            )
+        if "改写" in system:
+            return json.dumps({"queries": ["休渔时间规定"]}, ensure_ascii=False)
+        if "核验" in system:
+            return json.dumps({"supported": self.verified, "reason": ""}, ensure_ascii=False)
+        return json.dumps(self.answers.pop(0), ensure_ascii=False)
+
+
+class FacetRetriever:
+    def __init__(self, hits: list) -> None:
+        self.hits = hits
+
+    def search_queries(self, queries, top_k=5, filters=None):  # noqa: ANN001
+        return self.hits[:top_k]
+
+
+def test_decompose_parses_facets_and_caps() -> None:
+    from scs_fkb.answer_v3.decompose import decompose
+
+    client = FacetClient(["休渔时间", "休渔海域", "违规处罚", "办理渠道", "其他", "多余"], [])
+    facets = decompose("休渔有什么规定？", client, cache=None, max_facets=3)
+    assert [facet.text for facet in facets] == ["休渔时间", "休渔海域", "违规处罚"]
+
+
+def test_facet_arm_merges_answers_and_citations() -> None:
+    from scs_fkb.answer_v3.facet_arm import answer_with_facets
+
+    hits = [make_hit_hit()]
+    client = FacetClient(
+        ["休渔时间"],
+        [
+            {
+                "abstained": False,
+                "answer": (
+                    "休渔时间为5月1日12时至8月16日12时，共108天。 [POL-CLOS-015 §三、休渔时间]"
+                ),
+                "reason": "ok",
+            }
+        ],
+    )
+    answer = answer_with_facets("休渔到什么时间？", FacetRetriever(hits), client, cache=None)
+    assert answer.abstained is False
+    assert answer.reason == "facet_compose"
+    assert answer.text.startswith("结论：")
+    assert answer.citations and answer.citations[0].doc_id == "POL-CLOS-015"
+
+
+def test_facet_arm_abstains_without_facet_evidence() -> None:
+    from scs_fkb.answer_v3.facet_arm import answer_with_facets
+
+    client = FacetClient(["休渔时间"], [{"abstained": True, "answer": "", "reason": "无条款"}])
+    answer = answer_with_facets("休渔到什么时间？", FacetRetriever([]), client, cache=None)
+    assert answer.abstained is True
+    assert answer.reason == "no_facet_evidence"
+
+
+def make_hit_hit() -> object:
+    from scs_fkb.models import Chunk, SearchHit
+
+    chunk = Chunk(
+        chunk_id="POL-CLOS-015-1",
+        doc_id="POL-CLOS-015",
+        source_id="POL-CLOS",
+        page=3,
+        section="三、休渔时间",
+        text="休渔时间为5月1日12时至8月16日12时，共108天。",
+        token_count=20,
+        char_start=0,
+        char_end=40,
+        sensitivity="public",
+    )
+    return SearchHit(chunk=chunk, score=1.0)

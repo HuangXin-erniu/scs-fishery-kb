@@ -38,7 +38,7 @@ def _environment(data_root: Path) -> dict:
     }
 
 
-def _build_llm(data_root: Path):
+def _build_llm(data_root: Path, arm: str = "single"):
     from scs_fkb.answer_v3 import ChannelBook, compose
     from scs_fkb.answer_v3.llm_answer import answer_with_llm
     from scs_fkb.llm import LLMClient, LLMConfig, LLMError
@@ -60,16 +60,15 @@ def _build_llm(data_root: Path):
 
     from scs_fkb.answer import answer_question
 
-    def arm(question: str, _hits: list) -> Answer:
-        evidence = retriever.search(question, top_k=8)
+    def single_answer(question: str, hits: list) -> Answer:
         try:
-            answer = answer_with_llm(question, evidence, client, cache)
+            answer = answer_with_llm(question, hits, client, cache)
         except LLMError:
             answer = None
         if answer is None or answer.abstained:
             fallback = answer_question(
                 question,
-                evidence,
+                hits,
                 min_score=0.0,
                 min_matched=0,
                 require_corpus=True,
@@ -78,6 +77,52 @@ def _build_llm(data_root: Path):
                 answer = fallback
             elif answer is None:
                 return fallback
+        return answer
+
+    if arm == "facet":
+        from scs_fkb.answer_v3.facet_arm import answer_with_facets
+
+        def facet_arm(question: str, _hits: list) -> Answer:
+            base_hits = retriever.search_queries([question], top_k=8)
+            base = single_answer(question, base_hits)
+
+            def fallback() -> Answer:
+                return base
+
+            answer = answer_with_facets(
+                question,
+                retriever,
+                client,
+                cache,
+                fallback=fallback,
+                base_answer=base,
+                base_hits=base_hits,
+            )
+            if answer.abstained:
+                return answer
+            contract = compose(
+                question,
+                answer.text,
+                doc_ids=[item.doc_id for item in answer.citations],
+                registry=registry,
+                channels=channels,
+            )
+            if contract.answerability == "abstain":
+                return Answer(
+                    text=contract.body, citations=[], abstained=True, reason="gap_declared"
+                )
+            return Answer(
+                text=contract.body,
+                citations=answer.citations,
+                abstained=False,
+                reason="facet_compose",
+            )
+
+        return facet_arm, ""
+
+    def arm(question: str, _hits: list) -> Answer:
+        evidence = retriever.search(question, top_k=8)
+        answer = single_answer(question, evidence)
         if answer.abstained:
             return answer
         contract = compose(
@@ -192,6 +237,12 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--limit", type=int, default=None)
     parser.add_argument("--llm", action="store_true", help="also run the optional LLM arm")
     parser.add_argument(
+        "--llm-arm",
+        choices=["single", "facet"],
+        default="single",
+        help="LLM arm variant: single-pass or facet answering",
+    )
+    parser.add_argument(
         "--llm-workers",
         type=int,
         default=1,
@@ -282,8 +333,12 @@ def main(argv: list[str] | None = None) -> int:
     llm_fn = None
     llm_error = ""
     if args.llm:
-        llm_fn, llm_error = _build_llm(data_root)
-        arm = "llm" if llm_fn is not None else "extractive_after_llm_error"
+        llm_fn, llm_error = _build_llm(data_root, args.llm_arm)
+        arm = (
+            ("facet" if args.llm_arm == "facet" else "llm")
+            if llm_fn is not None
+            else "extractive_after_llm_error"
+        )
 
     def progress(done: int, total: int) -> None:
         print(f"scored {done}/{total}", file=sys.stderr)

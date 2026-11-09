@@ -89,6 +89,24 @@ class HybridRetriever:
             fused = self.reranker.rerank(question, fused, top_k=max(top_k, 5))
         return fused[:top_k]
 
+    def search_queries(
+        self,
+        queries: list[str],
+        top_k: int = 5,
+        filters: RetrievalFilters | None = None,
+    ) -> list[SearchHit]:
+        """Fuse several phrasings of the same question with RRF."""
+        unique = [item.strip() for item in dict.fromkeys(queries) if item and item.strip()]
+        if not unique:
+            return []
+        lists = [
+            self.search(query, top_k=max(top_k, 10), filters=filters, rerank=False)
+            for query in unique
+        ]
+        if len(lists) == 1:
+            return lists[0][:top_k]
+        return reciprocal_rank_fusion(lists, [1.0] * len(lists), top_k=top_k)
+
     def gate_ok(self, question: str, min_score: float, min_matched: int) -> bool:
         expanded = expand_query(question, self.lexicon) if self.lexicon else question
         top = self.bm25.search(expanded, top_k=1)

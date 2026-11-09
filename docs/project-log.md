@@ -972,3 +972,9 @@ This log records material project changes by date. It does not use release versi
 - Rewrote colloquial questions into 2–3 normative queries (cached): hybrid expected-document recall 0.8342 → 0.9133 at both k=5 and k=10, clearing the P3 targets.
 - Rejected the cross-encoder reranker with measurements: recall@5 fell to 0.7908 and latency rose to 1.69 s because the int8 model sees only 300 characters per chunk.
 - Table chunking deferred since the target was met without changing chunk text; the 0.9133 baseline remains comparable for later changes.
+
+## 2026-11-09 — Facet answering measured; default stays single-pass
+
+- Added a facet arm (decompose, per-facet answer with citation/number checks, merge, verify) behind `SCS_FKB_ANSWER_MODE=facet`; the single answer is merged and used as fallback, so the arm cannot answer less than the single arm.
+- 512 run: coverage 0.3807 → 0.4133, citation 0.3287 → 0.3540, misanswer 0.0571 → 0.0429, channel 0.9571, as-of 0.9123; per-answer coverage 0.419.
+- Coverage is still far from 0.65: facet answers restate one clause and cannot know the rubric's elements. Per the plan's rule (<0.55), the facet arm stays opt-in and the single-pass arm remains the default.
