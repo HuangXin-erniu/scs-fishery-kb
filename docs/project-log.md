@@ -1102,3 +1102,9 @@ This log records material project changes by date. It does not use release versi
 - Registered `STD-SPEC-076` as an HTML OCR derivative with the original PDF retained as provenance and an explicit OCR-error warning; index 67 documents / 2,797 chunks.
 - 512 under protocol v2: coverage 0.8104 → 0.8129, citation 0.9497 → 0.9588, basis 0.9412, misanswer 0.0000, channel 1.0000, as-of 0.9474. Kept.
 - Negative results: 30 m rule (draft only), 38/155 mm (absent from the official mesh notices), remote-sensing product note (no official text), safety regulation (2022 seminar draft only).
+
+## 2026-11-09 — Protocol v2 sensitivity table
+
+- Split v2 into three independent scoring switches (document-level location, partial point terms, basis mode/scope) while keeping v1/v2 presets.
+- Re-scored the same 512 answers: location only lifts citation to 0.9588 but leaves coverage 0.7948 and basis 0.6316; partial points lift coverage to 0.8129 but leave citation 0.7185 and basis 0.6316; basis only lifts basis to 0.9412 but leaves coverage 0.7948 and citation 0.7185; all three pass.
+- Added `--answers-out` to the acceptance runner and `scripts/audit_protocol_v2.py` for reproduction.

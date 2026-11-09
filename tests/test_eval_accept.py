@@ -623,3 +623,56 @@ def test_v2_basis_excludes_refusal_rows_and_accepts_one_anchor() -> None:
     v2 = score(answered, answered_result, config=ScoringConfig(protocol="v2"))
     assert v1["basis_score"] == 0.0
     assert v2["basis_score"] == 1.0
+
+
+def test_switches_work_without_the_v2_preset() -> None:
+    row = make_row(citation_requirement="SCS-N-001｜通告〔2023〕1号·休渔时间")
+    result = make_result(
+        "自2023年4月15日起施行。 [POL-CLOS-015 §四、实施时间]",
+        citations=[
+            {"doc_id": "POL-CLOS-015", "section": "四、实施时间", "snippet": "x", "page": 1}
+        ],
+    )
+    location_only = score(row, result, config=ScoringConfig(location_mode="document"))
+    assert location_only["citation_accuracy"] is True
+    assert score(row, result)["citation_accuracy"] is False
+
+
+def test_partial_switch_works_without_the_v2_preset() -> None:
+    from scs_fkb.eval_accept.scoring import _point_covered
+
+    citations = [
+        {"doc_id": "POL-CLOS-015", "section": "三、休渔时间", "snippet": "甲乙", "page": 1}
+    ]
+    answer = "甲项乙项。 [POL-CLOS-015 §三、休渔时间]"
+    spec = PointSpec(terms=("甲项", "乙项", "丙项"), mode="section")
+    assert _point_covered(answer, citations, spec) is False
+    assert (
+        _point_covered(
+            answer, citations, spec, ScoringConfig(point_partial=0.5, point_partial_min=2)
+        )
+        is True
+    )
+
+
+def test_basis_switch_works_without_the_v2_preset() -> None:
+    refusal = make_row(
+        id="Y-902",
+        answerability="应拒答",
+        dimension="数值召回",
+        numeric_anchors=["2025年"],
+    )
+    scored = score(
+        refusal,
+        make_result("2025年度公报未收录该指标。"),
+        config=ScoringConfig(basis_mode="any_anchor", basis_scope="answered"),
+    )
+    assert scored["basis_score"] is None
+
+    answered = make_row(id="Y-903", dimension="数值召回", numeric_anchors=["230毫米", "150毫米"])
+    scored = score(
+        answered,
+        make_result("230毫米，表列值。 [POL-CLOS-015 §第三条]"),
+        config=ScoringConfig(basis_mode="any_anchor", basis_scope="answered"),
+    )
+    assert scored["basis_score"] == 1.0
