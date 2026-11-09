@@ -12,6 +12,7 @@ from typing import Any
 from ..answer import answer_question, citation_text, validate_citations
 from ..answer_v3 import ChannelBook
 from ..answer_v3 import compose as compose_contract
+from ..answer_v3.facet_arm import answer_with_facets
 from ..answer_v3.llm_answer import answer_with_llm
 from ..facts import DEFAULT_FACTS_DIR, load_all
 from ..knowledge_v2 import load_playbooks
@@ -124,6 +125,31 @@ class AnswerService:
                 root = self.data_root or Path(".")
                 self._llm = (LLMClient(config), LLMCache(root / "llm-cache"))
         return self._llm
+
+    def _facet_answer(self, question: str) -> Any:
+        pair = self._llm_pair()
+        if pair is None:
+            return None
+        client, cache = pair
+
+        base_hits = self.retriever.search_queries([question], top_k=8)
+        base = answer_with_llm(question, base_hits, client, cache)
+
+        def fallback() -> Any:
+            return base
+
+        try:
+            return answer_with_facets(
+                question,
+                self.retriever,
+                client,
+                cache,
+                fallback=fallback,
+                base_answer=base,
+                base_hits=base_hits,
+            )
+        except LLMError:
+            return None
 
     def _llm_answer(self, question: str, hits: list[SearchHit], filters: Any) -> Any:
         pair = self._llm_pair()
@@ -325,9 +351,12 @@ class AnswerService:
         lead = self._fact_lead(question, hits, plan.nature)
         if lead is not None and all(item.chunk.chunk_id != lead[2].chunk.chunk_id for item in hits):
             hits.append(lead[2])
-        llm_answer = (
-            self._llm_answer(question, hits, filters) if self.answer_mode == "llm" else None
-        )
+        if self.answer_mode == "facet":
+            llm_answer = self._facet_answer(question)
+        elif self.answer_mode == "llm":
+            llm_answer = self._llm_answer(question, hits, filters)
+        else:
+            llm_answer = None
         if llm_answer is not None:
             answer = llm_answer
         elif gate:
