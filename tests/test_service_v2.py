@@ -11,10 +11,13 @@ from scs_fkb.service_v2 import AnswerService  # noqa: E402
 from scs_fkb.service_v2.api import create_app  # noqa: E402
 
 
-def _hit(text: str = "南海区伏季休渔时间为5月1日12时至8月16日12时。") -> SearchHit:
+def _hit(
+    text: str = "南海区伏季休渔时间为5月1日12时至8月16日12时。",
+    doc_id: str = "POL-CLOS-015",
+) -> SearchHit:
     chunk = Chunk(
         chunk_id="CH-1",
-        doc_id="POL-CLOS-015",
+        doc_id=doc_id,
         source_id="POL-CLOS-015",
         page=1,
         section="三、休渔时间",
@@ -178,3 +181,35 @@ def test_llm_mode_falls_back_without_configuration(monkeypatch) -> None:
     result = service.query("2026年南海区伏季休渔从什么时候开始？")
     assert result.abstained is False
     assert result.reason != "llm_compose"
+
+
+def test_summary_is_short_and_contract_shaped() -> None:
+    result = _service().query("2026年南海区伏季休渔从什么时候开始？")
+    assert result.summary
+    assert len(result.summary) <= 2000
+    assert "结论：" in result.summary
+    assert result.citations_total == 1
+
+
+def test_displayed_citations_are_unique_by_document_and_capped() -> None:
+    from scs_fkb.service_v2.answer import _display_citations
+    from scs_fkb.service_v2.schemas import CitationModel
+
+    citations = [
+        CitationModel(doc_id=f"POL-{index:03d}", title="t", section="s", page=1, snippet="x")
+        for index in range(25)
+    ]
+    citations.append(CitationModel(doc_id="POL-000", title="t", section="s", page=1, snippet="x"))
+    displayed, total = _display_citations(citations, 20)
+    assert len(displayed) == 20
+    assert len({item.doc_id for item in displayed}) == 20
+    assert total == 25
+
+
+def test_abstain_and_clarify_have_summaries() -> None:
+    weak = _service(gate=False).query("某条历史规定")
+    assert weak.abstained is True
+    assert weak.summary
+    clarify = _service().query("某渔场今年休渔时间？")
+    assert clarify.mode == "clarify"
+    assert clarify.summary

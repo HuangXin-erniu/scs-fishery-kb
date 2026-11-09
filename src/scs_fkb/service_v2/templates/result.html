@@ -30,7 +30,13 @@ button.primary{background:var(--sea);color:#fff;border-color:var(--sea)}
 {% if result.abstained %}<span class="badge warn">证据不足</span>{% endif %}
 <span class="muted">{{ result.latency_ms }} ms · 索引 {{ result.index_version }}</span>
 </div>
-<div class="answer">{{ result.answer }}</div>
+<div class="answer">{{ result.summary }}</div>
+{% if result.answer and result.answer != result.summary %}
+<details style="margin-top:12px">
+<summary class="muted">完整依据摘录（{{ result.citations_total }} 份文档）</summary>
+<div class="answer" style="margin-top:10px">{{ result.answer }}</div>
+</details>
+{% endif %}
 {% if result.playbook %}
 <h3>办理流程：{{ result.playbook.title }}</h3>
 <ol class="steps">

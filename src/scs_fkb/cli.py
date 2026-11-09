@@ -29,9 +29,11 @@ def _ask(args: argparse.Namespace) -> int:
     result = _service(args).query(args.question)
     if args.json:
         payload = {
+            "summary": result.summary,
             "answer": result.answer,
             "abstained": result.abstained,
             "mode": result.mode,
+            "citations_total": result.citations_total,
             "citations": [
                 {
                     "doc_id": item.doc_id,
@@ -44,12 +46,20 @@ def _ask(args: argparse.Namespace) -> int:
         }
         print(json.dumps(payload, ensure_ascii=False, indent=2))
         return 0
-    print(result.answer)
+    if args.full:
+        print(result.answer)
+    else:
+        print(result.summary)
     if result.citations:
-        print("\n引用：")
+        if args.full:
+            print(f"\n引用（前 {len(result.citations)} 条，共 {result.citations_total} 份文档）：")
+        else:
+            print(f"\n主要依据（共 {result.citations_total} 份文档）：")
         for item in result.citations:
             where = f"§{item.section}" if item.section else f"p.{item.page}"
             print(f"- [{item.doc_id} {where}] {item.title}")
+    if not args.full:
+        print("\n（完整证据请加 --full）")
     return 0
 
 
@@ -80,6 +90,7 @@ def build_parser() -> argparse.ArgumentParser:
     ask = sub.add_parser("ask", help="answer one question with cited evidence")
     ask.add_argument("question")
     ask.add_argument("--json", action="store_true", help="print a JSON payload")
+    ask.add_argument("--full", action="store_true", help="print the full evidence text")
     ask.set_defaults(func=_ask)
 
     serve = sub.add_parser("serve", help="run the local HTTP service")

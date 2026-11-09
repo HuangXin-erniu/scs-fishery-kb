@@ -1081,3 +1081,11 @@ This log records material project changes by date. It does not use release versi
 - Final 512 with the shipped defaults and protocol v2: misanswer 0.0000, refusal-with-channel 1.0000, as-of 0.9474, coverage 0.8104, citation 0.9497, basis 0.9412. All six lines meet target.
 - 66 documents, 2,761 chunks; answered 443; mean answer 128,778 characters, latency P95 1.63 s.
 - README, architecture and evaluation now describe protocol v2 and the shipped window; the v1 closing arithmetic remains in the evaluation document as history.
+
+## 2026-11-09 — Summary-first answers and brief CLI
+
+- `QueryResponse` now carries `summary` (contract-shaped, ≤2,000 characters) and `citations_total`; the full `answer` text is unchanged.
+- Displayed citations are deduplicated by document and capped at 20 (`SCS_FKB_CITATION_LIMIT`); the answer keeps every inline citation.
+- `scs-fkb ask` prints the summary and the deduplicated citation list by default; `--full` prints the full evidence; `--json` returns both.
+- The result page shows the summary first and puts the full evidence under a details block.
+- This is a product-layer change: the acceptance runner still scores the full answer text.

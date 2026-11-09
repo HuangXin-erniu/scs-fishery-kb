@@ -31,6 +31,68 @@ from .schemas import (
 )
 
 DISCLAIMER = "以官方发布文本为准；本服务不构成法律意见。"
+
+
+def _display_citations(
+    citations: list[CitationModel], limit: int
+) -> tuple[list[CitationModel], int]:
+    seen: set[str] = set()
+    unique: list[CitationModel] = []
+    for item in citations:
+        if item.doc_id in seen:
+            continue
+        seen.add(item.doc_id)
+        unique.append(item)
+    return unique[:limit], len(unique)
+
+
+def _summary_of(fields: dict[str, Any], citations: list[CitationModel], answer_text: str) -> str:
+    parts: list[str] = []
+    conclusion = str(fields.get("conclusion") or "").strip()
+    gap = fields.get("gap") or []
+    if conclusion:
+        parts.append(f"结论：{conclusion}")
+    elif gap:
+        parts.append("结论：无法从已登记语料给出结论。")
+    conditions = fields.get("conditions") or []
+    if conditions:
+        parts.append("适用条件：" + "；".join(str(item) for item in conditions))
+    as_of = fields.get("as_of") or {}
+    if isinstance(as_of, dict) and as_of.get("declared"):
+        parts.append(f"版本：{as_of['declared']}")
+    numbers = fields.get("numbers") or []
+    if numbers:
+        rendered = []
+        for item in numbers[:4]:
+            if isinstance(item, dict):
+                rendered.append(f"{item.get('value', '')}{item.get('unit', '')}")
+        if rendered:
+            parts.append("数值与口径：" + "；".join(rendered))
+    if gap:
+        parts.append("缺口：" + "；".join(str(item) for item in gap))
+    channels = fields.get("channel") or []
+    if channels:
+        rendered = []
+        for item in channels:
+            if isinstance(item, dict):
+                hint = f"，{item['hint']}" if item.get("hint") else ""
+                rendered.append(f"{item.get('name', '')}{hint}")
+        if rendered:
+            parts.append("渠道：" + "；".join(rendered))
+    if citations:
+        refs = []
+        for item in citations[:3]:
+            where = f"§{item.section}" if item.section else f"p.{item.page}"
+            refs.append(f"[{item.doc_id} {where}]")
+        parts.append("主要依据：" + "；".join(refs))
+    text = "\n".join(parts)
+    if not text:
+        text = answer_text.split("依据摘录：", 1)[0].strip()
+    if len(text) > 2000:
+        text = text[:1999] + "…"
+    return text
+
+
 YEAR_RE = re.compile(r"(20\d{2})\s*年?")
 CLARIFY_PATTERNS = ("某渔场", "某海域", "某年度", "某类", "某品种", "某一")
 WEATHER_WORDS = ("台风", "海温", "预报", "风暴潮", "赤潮", "海浪", "预警")
@@ -354,6 +416,10 @@ class AnswerService:
                 abstained=True,
                 reason="clarify",
                 mode="clarify",
+                summary=(
+                    "请补充一个更具体的问题，例如休渔时间、许可证换发或网目尺寸。" + clarify_line
+                ),
+                citations_total=0,
                 latency_ms=int((time.perf_counter() - started) * 1000),
                 disclaimer=DISCLAIMER,
                 index_version=self.index_version,
@@ -511,10 +577,15 @@ class AnswerService:
         mode = "clarify" if answer.reason == "clarify" else "abstain"
         if not answer.abstained:
             mode = "kb_only"
+        limit = int(os.environ.get("SCS_FKB_CITATION_LIMIT", "20"))
+        display_citations, citations_total = _display_citations(citations, limit)
+        summary = _summary_of(contract_fields, display_citations, answer.text)
         return QueryResponse(
             request_id=request_id,
             answer=answer.text,
-            citations=citations,
+            summary=summary,
+            citations_total=citations_total,
+            citations=display_citations,
             abstained=answer.abstained,
             reason=answer.reason,
             mode=mode,

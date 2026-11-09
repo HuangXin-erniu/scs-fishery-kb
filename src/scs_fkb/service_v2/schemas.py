@@ -73,6 +73,8 @@ class ChannelModel(BaseModel):
 class QueryResponse(BaseModel):
     request_id: str
     answer: str
+    summary: str = ""
+    citations_total: int = 0
     citations: list[CitationModel] = Field(default_factory=list)
     abstained: bool = False
     reason: str = "ok"
