@@ -8,15 +8,13 @@
 | [项目范围](../PROJECT.zh-CN.md) | 目标、范围、非目标与数据政策（中文） |
 | [Architecture](architecture.md) | Layers, components, data flow, data contracts and runtime |
 | [Project plan](plan.md) | Work packages, milestones, roles, quality gates and risks |
-| [Evaluation](evaluation.md) | Dev/test protocol, metrics, targets and split baselines |
+| [Evaluation](evaluation.md) | Acceptance protocol, metrics, final status and measured ceilings |
 | [Corpus inventory](corpus.md) | Registered sources, licences, sensitivity and coverage |
-| [Evaluation questions](questions.md) | 48-question set (33 dev + 15 test) across four personas |
+| [Evaluation questions](questions.md) | Sanitized acceptance-style samples across four personas |
 | [Data policy](data-policy.md) | What is published, what stays local, and how sensitivity is handled |
 | [Project log](project-log.md) | Dated record of material project changes |
 | [Corpus register](../configs/corpus.yaml) | Machine-readable source register |
-| [Statistics schema](../configs/statistics.yaml) | Long-table columns, indicator names and query aliases; no values |
 | [Pipeline configuration](../configs/pipeline.yaml) | Documents, chunking, retrieval and answer parameters for the local prototype |
-| [Evaluation anchors](../configs/eval.yaml) | Gold section and page anchors and the abstention tests |
 | [Terminology bridge](../configs/glossary-bridge.yaml) | Chinese statistical terms mapped to the CWP English concepts |
 | [Data schema](../configs/schema.yaml) | Document, chunk and citation fields |
 | [Citation metadata](../CITATION.cff) | How to cite the project |

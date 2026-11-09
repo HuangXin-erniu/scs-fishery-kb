@@ -31,7 +31,6 @@ from .schemas import (
 )
 
 DISCLAIMER = "以官方发布文本为准；本服务不构成法律意见。"
-WEB_LABEL = "网络检索 · 未入知识库"
 YEAR_RE = re.compile(r"(20\d{2})\s*年?")
 CLARIFY_PATTERNS = ("某渔场", "某海域", "某年度", "某类", "某品种", "某一")
 WEATHER_WORDS = ("台风", "海温", "预报", "风暴潮", "赤潮", "海浪", "预警")
@@ -90,7 +89,7 @@ def _match_playbook(question: str, playbooks: list[dict[str, Any]]) -> dict[str,
 
 
 class AnswerService:
-    """Compose v2 retrieval, playbooks and optional labelled web evidence."""
+    """Compose v2 retrieval, playbooks and the answer contract."""
 
     def __init__(
         self,
@@ -101,7 +100,6 @@ class AnswerService:
         data_root: Path | str | None = None,
         run_root: Path | str | None = None,
         index_version: str = "v2",
-        web_search: Any = None,
         answer_contract: str = "v3",
         answer_mode: str | None = None,
     ) -> None:
@@ -111,7 +109,6 @@ class AnswerService:
         self.data_root = Path(data_root).expanduser().resolve() if data_root else None
         self.run_root = Path(run_root).expanduser().resolve() if run_root else None
         self.index_version = index_version
-        self.web_search = web_search
         self.answer_contract = answer_contract
         self.answer_mode = (
             (answer_mode or os.environ.get("SCS_FKB_ANSWER_MODE", "extractive")).strip().lower()
@@ -322,14 +319,6 @@ class AnswerService:
             steps=steps,
         )
 
-    def _web_result(self, question: str, nature: str, filters: Any) -> Any:
-        if self.web_search is None:
-            return None
-        try:
-            return self.web_search(question, nature=nature, filters=filters)
-        except TypeError:
-            return self.web_search(question)
-
     def query(
         self,
         question: str,
@@ -337,7 +326,7 @@ class AnswerService:
         persona: str = "general",
         region: str | None = None,
         year: int | None = None,
-        web: str = "auto",
+        web: str = "off",  # retired channel; accepted for old callers and ignored
     ) -> QueryResponse:
         started = time.perf_counter()
         request_id = f"REQ-{uuid.uuid4().hex[:12]}"
@@ -445,7 +434,7 @@ class AnswerService:
             )
             for item in answer.citations
         ]
-        if not answer.abstained:
+        if not answer.abstained and self.answer_mode != "dump":
             lead = lead if "lead" in locals() else self._fact_lead(question, hits, plan.nature)
             if lead is not None and lead[0] not in answer.text:
                 lead_text, lead_citation, _lead_hit = lead
@@ -509,40 +498,6 @@ class AnswerService:
             contract_fields = contract.to_dict()
         playbook = _match_playbook(question, self.playbooks)
         playbook_view = self._playbook_view(playbook) if playbook else None
-        used_web = False
-        started_abstained = answer.abstained
-        should_web = web == "on" or (web == "auto" and (answer.abstained or plan.freshness))
-        if should_web:
-            web_result = self._web_result(question, plan.nature, filters)
-            evidences = list(getattr(web_result, "evidences", []) or [])
-            if evidences:
-                lines = [answer.text] if not answer.abstained else []
-                for evidence in evidences[:2]:
-                    snippet = str(getattr(evidence, "snippet", "") or "")[:300]
-                    label = f"{WEB_LABEL}：{snippet}"
-                    lines.append(label)
-                    citations.append(
-                        CitationModel(
-                            doc_id=str(getattr(evidence, "evidence_id", "WEB")),
-                            title=str(getattr(evidence, "title", "") or "网络资料"),
-                            page=None,
-                            section=None,
-                            snippet=snippet,
-                            score=0.0,
-                            url=str(getattr(evidence, "url", "")),
-                            retrieved_at=str(getattr(evidence, "fetched_at", ""))[:10],
-                            source_type="web",
-                            label=WEB_LABEL,
-                        )
-                    )
-                if lines:
-                    answer = answer.__class__(
-                        text="\n\n".join(lines),
-                        citations=answer.citations,
-                        abstained=False if answer.abstained else answer.abstained,
-                        reason="web_supplement" if answer.abstained else answer.reason,
-                    )
-                    used_web = True
         if answer.abstained and "渠道" not in answer.text:
             _gap, channels = self._channel_book().resolve(question)
             if channels:
@@ -554,10 +509,8 @@ class AnswerService:
                     reason=answer.reason,
                 )
         mode = "clarify" if answer.reason == "clarify" else "abstain"
-        if used_web and started_abstained:
-            mode = "web_only"
-        elif not answer.abstained:
-            mode = "kb_plus_web" if used_web else "kb_only"
+        if not answer.abstained:
+            mode = "kb_only"
         return QueryResponse(
             request_id=request_id,
             answer=answer.text,
@@ -565,7 +518,6 @@ class AnswerService:
             abstained=answer.abstained,
             reason=answer.reason,
             mode=mode,
-            used_web=used_web,
             playbook=playbook_view,
             index_version=self.index_version,
             latency_ms=int((time.perf_counter() - started) * 1000),
@@ -607,25 +559,10 @@ def build_service(
     root = Path(configured).expanduser()
     retriever = build_retriever(root, reranker=False)
 
-    def web_search(question: str, *, nature: str, filters: Any) -> Any:
-        from ..web_v2 import build_provider, load_allowlist, search_web
-
-        allowlist = load_allowlist()
-        provider = build_provider(os.environ.get("SEARXNG_URL", ""))
-        return search_web(
-            question,
-            nature=nature,
-            allowlist=allowlist,
-            provider=provider,
-            data_root=root,
-            max_results=2,
-        )
-
     return AnswerService(
         retriever=retriever,
         data_root=root,
         run_root=run_root or os.environ.get("SCS_FKB_RUN_ROOT"),
-        web_search=web_search,
         answer_contract=answer_contract,
         answer_mode=os.environ.get("SCS_FKB_ANSWER_MODE", "dump"),
     )

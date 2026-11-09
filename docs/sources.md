@@ -39,7 +39,7 @@ A newer version supersedes an older one but never deletes it: the register keeps
 
 ## 6. The watch and candidate workflow
 
-[configs/source-watch.yaml](../configs/source-watch.yaml) lists a curated set of authoritative pages with a tier, a publisher and an expected cadence. The national closure notice, the 2026 enforcement notice, the 2017 hull evaluation notice and the 2024 parameter-series page are seeded with recorded hashes, so their next change reports as changed. `scs-fkb watch` reads them, compares the body hash and the caching headers against the recorded baseline and writes a local report; `--offline` replays the recorded statuses without opening a socket.
+configs/source-watch.yaml（已移除）（已移除） lists a curated set of authoritative pages with a tier, a publisher and an expected cadence. The national closure notice, the 2026 enforcement notice, the 2017 hull evaluation notice and the 2024 parameter-series page are seeded with recorded hashes, so their next change reports as changed. `scs-fkb watch` reads them, compares the body hash and the caching headers against the recorded baseline and writes a local report; `--offline` replays the recorded statuses without opening a socket.
 
 The checker verifies TLS. Some networks intercept it, so the venv trust store may reject a certificate that the system keychain accepts; the checker honours `SCS_FKB_CA_BUNDLE` first, then falls back once to the system bundle on a certificate-verification error, and it never creates an unverified context. The bundle used is recorded in each result.
 
@@ -49,11 +49,11 @@ The checker is read-only by design. It never downloads a document into the regis
 
 ### 6.1 Candidate admission
 
-A change report does not become a source by itself. `scs-fkb watch --propose` turns every `changed` or `unbaselined` entry into a proposal carrying `watch_ref`, `first_seen` and an `expires_at` 180 days out. The proposal is written to the watch report only; both `configs/corpus.yaml` and `configs/candidates.yaml` stay byte-identical.
+A change report does not become a source by itself. `scs-fkb watch --propose` turns every `changed` or `unbaselined` entry into a proposal carrying `watch_ref`, `first_seen` and an `expires_at` 180 days out. The proposal is written to the watch report only; both `configs/corpus.yaml` and `configs/candidates.yaml（已移除）` stay byte-identical.
 
 The batch-1 term sources, their exact evidence and the A/B gate are recorded in [term-sources.md](term-sources.md).
 
-The proposal is reviewed as a **candidate** in [configs/candidates.yaml](../configs/candidates.yaml):
+The proposal is reviewed as a **candidate** in configs/candidates.yaml（已移除）（已移除）:
 
 | Field | Rule |
 |---|---|
@@ -71,7 +71,7 @@ An open candidate is reported as due after 90 days. `scs-fkb sources check` fail
 
 The canonical answer path does not fetch. Answers must be reproducible from a fixed index, citable to a specific document version and checkable against the recorded hash. A live fetch in that path would break all three and bypass the licence check.
 
-A separate **ephemeral** path may query the live web when the canonical answer abstains inside a supported domain, when the question carries a freshness cue, or when the operator explicitly asks. It is restricted to the allowlist, records URL, publisher, fetched time, content hash and authority tier, and is labelled `网络检索 · 未入知识库`. It never enters the canonical index and never overrides canonical law, penalty or statistics. Promotion goes through the candidate queue and a human review. The architecture is recorded in [ADR 0005](adr/0005-two-plane-evidence.md) and [ADR 0007](adr/0007-controlled-web-evidence.md).
+A separate **ephemeral** path may query the live web when the canonical answer abstains inside a supported domain, when the question carries a freshness cue, or when the operator explicitly asks. It is restricted to the allowlist, records URL, publisher, fetched time, content hash and authority tier, and is labelled `网络检索 · 未入知识库`. It never enters the canonical index and never overrides canonical law, penalty or statistics. Promotion goes through the candidate queue and a human review. The architecture is recorded in [ADR 0005](adr/0005-two-plane-evidence.md) and ADR 0007（已移除）.
 
 ## 8. The register schema
 
@@ -102,7 +102,7 @@ The watch report now also lists entries and cards whose review date has arrived:
 ## 10. References
 
 - Source register: [configs/corpus.yaml](../configs/corpus.yaml)
-- Watch list: [configs/source-watch.yaml](../configs/source-watch.yaml)
+- Watch list: configs/source-watch.yaml（已移除）（已移除）
 - Data policy: [data-policy.md](data-policy.md)
 - Corpus: [corpus.md](corpus.md)
 
@@ -111,9 +111,9 @@ The watch report now also lists entries and cards whose review date has arrived:
 The canonical corpus is fixed at refresh time. A separate ephemeral web channel may browse under the controls in section 7. Curated external knowledge still arrives as **web cards**: a card names an allowlisted URL, a topic, a publisher and a licence, and `scs-fkb web refresh` fetches it, extracts text and writes two things:
 
 - the extracted text under `$SCS_FKB_DATA_ROOT/web/<CARD_ID>/text.txt` (private);
-- the card metadata in [configs/web-cards.yaml](../configs/web-cards.yaml) — URL, title, publisher, fetch time, SHA-256, content type, licence, a 300-character excerpt and a status (public).
+- the card metadata in configs/web-cards.yaml（已移除）（已移除） — URL, title, publisher, fetch time, SHA-256, content type, licence, a 300-character excerpt and a status (public).
 
-Only hosts in [configs/web-sources.yaml](../configs/web-sources.yaml) may be fetched: the central ministries and the four provincial governments, FAO, WoRMS, FishBase, IUCN, Copernicus Marine, NOAA and NASA Earthdata. The check is exact-host or subdomain, https only; anything else fails with a recorded reason and no request.
+Only hosts in configs/web-sources.yaml（已移除）（已移除） may be fetched: the central ministries and the four provincial governments, FAO, WoRMS, FishBase, IUCN, Copernicus Marine, NOAA and NASA Earthdata. The check is exact-host or subdomain, https only; anything else fails with a recorded reason and no request.
 
 Refresh is manual and per topic (`species`, `gear`, `environment`, `hazard`); the default cadence is 30 days and the watch report lists cards whose review date has passed. Failures do not abort the batch: the card keeps its previous text and records the error. Nothing fetched is republished in full; the public tree carries metadata and a short excerpt only, so the licence of each page still governs its text.
 
@@ -123,10 +123,10 @@ The seeded cards are four WoRMS taxonomy cards for South China Sea species, one 
 
 ## Controlled web evidence
 
-The ephemeral channel is not a web card. A `SearXNG` JSON endpoint is used when configured; when it returns no results or errors, the provider falls back to the DuckDuckGo client in `requirements-rag.txt`. Neither is required by CI. The local setup is documented in [web-search.md](web-search.md). A `WebEvidence` record is created at query time and cached with a TTL; it carries `url`, `publisher`, `domain`, `fetched_at`, `content_hash`, `authority_tier`, `snippet`, `search_query`, `rank` and `ttl_days`. It is never written to `corpus.yaml` or the canonical index.
+The ephemeral channel is not a web card. A `SearXNG` JSON endpoint is used when configured; when it returns no results or errors, the provider falls back to the DuckDuckGo client in `requirements-rag.txt`. Neither is required by CI. The local setup is documented in web-search.md（已移除）. A `WebEvidence` record is created at query time and cached with a TTL; it carries `url`, `publisher`, `domain`, `fetched_at`, `content_hash`, `authority_tier`, `snippet`, `search_query`, `rank` and `ttl_days`. It is never written to `corpus.yaml` or the canonical index.
 
 - **Trigger:** explicit user request, a freshness cue (`最新`, `今年`, `现在`, `台风`, `预警`), an in-scope canonical abstention, or canonical evidence older than the freshness window for the claim nature.
-- **Allowlist:** only hosts in [configs/web-sources.yaml](../configs/web-sources.yaml); https only; non-allowlisted results are dropped and logged. Specific central and provincial domains carry tier A/B; the generic `gov.cn` fallback is tier C and is labelled `地方政府网站（层级待核）`, so a municipal page cannot be promoted to national authority by host alone.
+- **Allowlist:** only hosts in configs/web-sources.yaml（已移除）（已移除）; https only; non-allowlisted results are dropped and logged. Specific central and provincial domains carry tier A/B; the generic `gov.cn` fallback is tier C and is labelled `地方政府网站（层级待核）`, so a municipal page cannot be promoted to national authority by host alone.
 - **TTL:** warning/status 7 days, rule 30 days, definition/identification 90 days, statistics/history 365 days. Expired evidence is not answered from.
 - **Citation:** `[WEB:domain:hash8] URL (抓取于 YYYY-MM-DD)`; the UI adds `网络检索 · 未入知识库`.
 - **Promotion:** `web promote <evidence-id>` opens a candidate. The normal admission flow (licence, authority, hash, review) is still required. No automatic ingest.

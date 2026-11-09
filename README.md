@@ -19,19 +19,20 @@ The project turns documents, data dictionaries, product descriptions, fishery bu
 
 ## Status
 
-**Corpus and retrieval prototype (WP2) complete for this phase; evaluation is in progress on a draft question set.** Sixty-three sources are registered: sixty-three acquired and no candidates. The set is one law, twenty regulations, twelve notices, seventeen standards, ten statistical yearbooks (nine fishery yearbook editions for data years 2017–2025 and the China Statistical Yearbook 2026), two data dictionaries and one operations reference. Licence, sensitivity, version and SHA-256 are recorded for every source; the yearbooks are internal, local-use sources. The coverage matrix and the 3,126-row local core CSV (2017–2024 plus a harmonised 2025 sample) stay outside the public tree. Three gaps are documented: no port table for data years 2018–2019, no marine vessel-length table for 2024, and 2025 as a sample. The twenty-eight indexed public sources parse into 785 chunks with section and page anchors; the hybrid BM25 plus dense configuration reaches anchor-level Recall@5 of 11/11 (MRR 0.56) on the eleven questions with gold anchors, with abstention 3/4, two false refusals, citation resolution 1.00 and P95 19 ms. The CWP definition channel answers Q-E05 and Q-M04 (2/2), the local statistics channel answers Q-E06 and Q-M05 (2/2), the jurisdiction section scores 3/3 and the national section 2/2; Q-E08 and Q-M09 remain parked for the web channel. Cards and notes live in a separate external store and do not enter the corpus index. The evaluation question set is still a draft and has not been reviewed by domain experts. Its code is public; the corpus, the processed store and the run reports stay local.
+**Pipeline and acceptance complete for this phase.** One hundred sources are registered: ninety-eight acquired and two held. Sixty-one documents are indexed (2,603 chunks). The service answers in clause-dump mode: verbatim sentences with `[DOC §section]` citations, the highest-overlap sentence on top and a deterministic numeric-comparison block. The private 512-question acceptance run scores three of six protocol lines: misanswer 0.0000, refusal-with-channel 1.0000 and as-of 0.9474 are met; point coverage 0.7735, citation 0.6376 and basis 0.5263 are below target, with the structural ceilings documented in [docs/evaluation.md](docs/evaluation.md). The code is public; the corpus, the processed store and the run reports stay local.
 
 ### Corpus at a glance
 
 | Item | Value |
 |---|---|
-| Registered sources | 63 — 63 acquired, 0 candidates |
+| Registered sources | 100 — 98 acquired, 2 held |
 | Fishery yearbooks | 9 editions, data years 2017–2025, 838 files |
 | China Statistical Yearbook | 2026 edition |
 | Legal and technical documents | 53 — 1 law, 20 regulations, 12 notices, 17 standards, 2 data dictionaries, 1 operations reference |
 | Local core CSV | 3,126 rows, not published |
 | Documented gaps | port classes 2018–2019; vessel length 2024; 2025 sampled |
-| Evaluation instrument | 11 anchor questions, 4 abstention tests; question set still a draft |
+| Indexed documents | 61 documents, 2,603 chunks |
+| Evaluation instrument | Private 512-question acceptance set; six-line protocol |
 
 This project has no versioned releases: no tags, no GitHub Releases and no semantic versions. `main` is the latest state; cite a commit SHA. Changes are recorded in the [project log](docs/project-log.md).
 

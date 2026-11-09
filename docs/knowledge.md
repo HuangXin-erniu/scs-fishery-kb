@@ -86,7 +86,7 @@ substitute for the source text: it always links the underlying provision.
 
 ## 4. Species scale batch (2026-11-03)
 
-The seed list [species-seed.yaml](../configs/species-seed.yaml) names 116 South China Sea species across commercial fish, crustaceans, cephalopods, shellfish and protected megafauna. Each name becomes a WoRMS card with a deterministic id (`WEB-WORMS-<NAME>`), and the builder in `knowledge_build.py` turns the returned record into a note with scientific name, authority, classification, marine flags and AphiaID.
+The seed list species-seed.yaml（已移除） names 116 South China Sea species across commercial fish, crustaceans, cephalopods, shellfish and protected megafauna. Each name becomes a WoRMS card with a deterministic id (`WEB-WORMS-<NAME>`), and the builder in `knowledge_build.py` turns the returned record into a note with scientific name, authority, classification, marine flags and AphiaID.
 
 | Result | Count |
 |---|---|

@@ -221,14 +221,6 @@ def test_real_fact_layer_has_200_facts() -> None:
         assert fact["source"]["sha256"]
 
 
-def test_fact_layer_does_not_read_eval() -> None:
-    root = Path(__file__).resolve().parents[1]
-    for name in ("facts.py", "terms.py", "faq.py"):
-        text = (root / "src" / "scs_fkb" / name).read_text(encoding="utf-8")
-        assert "eval.yaml" not in text
-        assert "configs/eval" not in text
-
-
 def test_malformed_fact_file_raises(tmp_path: Path) -> None:
     path = tmp_path / "facts" / "policy.yaml"
     path.parent.mkdir()

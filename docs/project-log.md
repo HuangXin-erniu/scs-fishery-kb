@@ -12,7 +12,7 @@ This log records material project changes by date. It does not use release versi
 ## 2026-11-04 — Verified fact layer, terminology and FAQ
 
 - Added `configs/facts/{policy,gear,stats}.yaml`: 80 approved facts (20 atomic + 60 provision; 64 policy, 13 gear, 3 stats). Every fact carries a verbatim evidence quote, source document/section and register hash; atomic facts add precise values and effective dates.
-- Added `configs/terms.yaml` (24 terms from colloquial variants to standard wording) and `configs/faq.yaml` (12 public FAQs across the four personas). FAQ claims resolve to approved facts; no eval, gold or real-user question is used.
+- Added `configs/terms.yaml` (24 terms from colloquial variants to standard wording) and `configs/faq.yaml（已移除）` (12 public FAQs across the four personas). FAQ claims resolve to approved facts; no eval, gold or real-user question is used.
 - Added `facts.py`, `terms.py` and `faq.py` plus `facts check`, `terms check` and `faq check`. `facts check --data-root` verifies evidence, hashes, effective dates, conflicts and expiry; the 80 facts pass with 0 errors and 0 conflicts.
 - Rebuilt the external store with facts/terms/FAQs: **375 documents, 431 chunks, index `f3eb84266cfa`** (119 cards, 140 notes, 80 facts, 24 terms, 12 FAQs). The corpus store is unchanged at 28 documents, 785 chunks and `20910f0964df`; the answer path is unchanged.
 - Tests: 333 passed, 2 skipped.
@@ -21,7 +21,7 @@ This log records material project changes by date. It does not use release versi
 ## 2026-11-04 — Four-persona held-out evaluation split
 
 - Added 15 test questions (12 anchors, 3 abstention) across captain/crew, owner/operator, enforcement and extension: Q-C01..Q-C04, Q-O01..Q-O04, Q-F01..Q-F04 and Q-T01..Q-T03. The existing 33 questions stay unchanged as dev.
-- Added `meta` to `configs/eval.yaml` (persona/split for all 48 questions) and split/persona reporting in `eval`: `summary_split`, `summary_persona`, `coverage.by_split` and `llm.averages_by_split`.
+- Added `meta` to `configs/eval.yaml（已移除）` (persona/split for all 48 questions) and split/persona reporting in `eval`: `summary_split`, `summary_persona`, `coverage.by_split` and `llm.averages_by_split`.
 - Evidence audit: the 12 anchors point at indexed sections (POL-WATCH-082, POL-PEN-078, POL-STD-010, POL-RULE-019, POL-PEN-080, POL-ENF-068, POL-RULE-018, OPS-STD-039, OPS-STD-035); the 3 abstention questions have no supporting source. 22 new gold points each carry a deterministic check.
 - Baseline: extractive dev 19/19 anchors, 7/8 abstention, MRR 0.6816, coverage 10/38; test 12/12, 1/3, MRR 0.8542, coverage 2/22. LLM dev 19/19, 8/8, 0.7605/0.6605/0.9421, coverage 15/38; test 12/12, 3/3, 0.7125/0.7083/0.8958, coverage 10/22. Test is report-only and is not used for tuning.
 - No change to the corpus, index, retrieval or answer path; no new sources.
@@ -31,7 +31,7 @@ This log records material project changes by date. It does not use release versi
 
 - Source schema moves to v3: `currency.cadence` is required and bounds `review_due - as_of` (monthly 60 days, quarterly 150, semiannual 240, annual/edition 400, weekly 21, daily 3, irregular 180, static 550). The 63 registered sources were migrated by class — normative monthly, standard quarterly, official_statistics annual, reference semiannual — with hashes, dates, locations and statuses unchanged.
 - `license` and `sensitivity` are now checked against the allowlist in `configs/schema.yaml`; tier and level must agree (C municipal only, A/B never municipal). `cc-by-nc-sa-3.0-igo` is an accepted public licence.
-- Added `configs/candidates.yaml` and `src/scs_fkb/candidates.py`: a candidate is a proposal with `open`/`accepted`/`rejected`/`expired` status, a 90-day due mark, a 180-day expiry, a required `source_id` on acceptance, a required note on rejection and duplicate-URL rejection. Nothing is ingested automatically.
+- Added `configs/candidates.yaml（已移除）` and `src/scs_fkb/candidates.py`: a candidate is a proposal with `open`/`accepted`/`rejected`/`expired` status, a 90-day due mark, a 180-day expiry, a required `source_id` on acceptance, a required note on rejection and duplicate-URL rejection. Nothing is ingested automatically.
 - `scs-fkb watch --propose` emits proposals to the watch report and leaves both config files byte-identical. `scs-fkb sources check --today YYYY-MM-DD [--grace-days 30]` fails on overdue sources, malformed/expired candidates or an accepted candidate whose source is missing; it runs in `make check` and CI.
 - Verification: 104 focused tests pass; `sources check --today 2026-11-04` reports 63 sources, 0 overdue; `--today 2027-01-15` reports 33 overdue and exits 1. No corpus, index, card or note change.
 
@@ -60,7 +60,7 @@ This log records material project changes by date. It does not use release versi
 ## 2026-11-04 — Evaluation v1 reviewed; per-question answer metrics added
 
 - The project owner reviewed the question set in three batches; the set now has 33 questions: 19 anchors, 8 abstention tests, 2 CWP reference questions, 2 statistics questions and 2 deferred web questions.
-- Added gold answer points and evidence anchors to `configs/eval.yaml`; rewrote Q-E03, Q-E06, Q-E09, Q-E10, Q-E12 and Q-M03, and moved M02/M06/M11 to abstention tests where no dictionary exists.
+- Added gold answer points and evidence anchors to `configs/eval.yaml（已移除）`; rewrote Q-E03, Q-E06, Q-E09, Q-E10, Q-E12 and Q-M03, and moved M02/M06/M11 to abstention tests where no dictionary exists.
 - The eval report now carries per-question answer text, citations, refusal reason and deterministic citation-coverage/faithfulness scores. Hybrid baseline: 19/19 anchors, MRR 0.68, abstention 7/8, one false refusal, answer rate 18/19, citation resolution 1.00, citation coverage 0.99, faithfulness 1.00, P95 20 ms.
 - RAGAS is deferred until an LLM API key is configured; human correctness and completeness are not yet scored.
 - No corpus, card, note or index change.
@@ -141,7 +141,7 @@ This log records material project changes by date. It does not use release versi
 
 ## 2026-11-03 — Species knowledge scaled to 115 notes
 
-- Added configs/species-seed.yaml (116 species) and src/scs_fkb/knowledge_build.py; each seed becomes a WoRMS card and a note built from the returned record.
+- Added configs/species-seed.yaml（已移除） (116 species) and src/scs_fkb/knowledge_build.py; each seed becomes a WoRMS card and a note built from the returned record.
 - Fetched 115 of 116 cards; Prionace glauca failed with a TLS reset and produced no note. Species notes now total 115 (4 pilot + 111).
 - Facts cover scientific name, authority, classification, marine flags and AphiaID; distribution and protection status remain explicitly unverified.
 - No index change; adopted baseline stays 36 documents / 849 chunks.
@@ -190,11 +190,11 @@ This log records material project changes by date. It does not use release versi
 - Chunk and Citation now carry url and retrieved_at with defaults, so old records still load.
 - Ingest turns each ok, cached card into a document (doc_type web_card) and chunks its text, attaching the card URL and fetch date; failed or cache-less cards are skipped.
 - Citations render as `[WEB-xxx] https://… (fetched date)`; the manifest records web cards with parser web and kind web_card.
-- With configs/web-cards.yaml empty, the index is unchanged at 28 documents / 785 chunks / 20910f0964df.
+- With configs/web-cards.yaml（已移除） empty, the index is unchanged at 28 documents / 785 chunks / 20910f0964df.
 
 ## 2026-11-03 — Web card layer with an allowlisted refresh command
 
-- Added configs/web-sources.yaml (17 allowlisted domains, four topics, 30-day cadence, TLS/rate/size limits) and configs/web-cards.yaml (public card metadata, empty until the first refresh).
+- Added configs/web-sources.yaml（已移除） (17 allowlisted domains, four topics, 30-day cadence, TLS/rate/size limits) and configs/web-cards.yaml（已移除） (public card metadata, empty until the first refresh).
 - Added `scs-fkb web refresh` and `scs-fkb web check`: https-only, exact-host or subdomain matching, verified TLS, 4 MB cap, per-card failure isolation; text goes to the private data root, metadata stays public.
 - Added tests/test_web.py with a fake fetcher; the suite stays offline.
 - Index unchanged at 28 documents / 785 chunks / 20910f0964df.
@@ -410,7 +410,7 @@ This log records material project changes by date. It does not use release versi
 
 ## 2026-11-02 — Curated source watch and written authority rules
 
-- Added configs/source-watch.yaml with ten authoritative pages (ministry gazette index and four 2025 issues, two Guangdong announcement pages, the Guangdong notice and policy lists, the Hainan 2019 hull announcement and the national station monitoring column), each with an A/B/C tier, publisher and cadence.
+- Added configs/source-watch.yaml（已移除） with ten authoritative pages (ministry gazette index and four 2025 issues, two Guangdong announcement pages, the Guangdong notice and policy lists, the Hainan 2019 hull announcement and the national station monitoring column), each with an A/B/C tier, publisher and cadence.
 - Added src/scs_fkb/watch.py and the `scs-fkb watch` subcommand: read-only GET with a timeout and user agent, body-hash and caching-header comparison, statuses ok/changed/unbaselined/unreachable, JSON report on request, and an offline mode that never opens a socket. It never edits the register or downloads documents.
 - Added docs/sources.md: authority tiers, what may enter the register, what may not (news, reposts, aggregators, login-gated pages), version and supersession rules, and why the answer path is not allowed to fetch live.
 - Tests cover 200 changed/unchanged, 304, 404, timeout, unbaselined, offline and malformed entries; CI needs no network. Eval unchanged on every arm.
@@ -518,7 +518,7 @@ This log records material project changes by date. It does not use release versi
 ## 2026-11-01 — Terminology bridge and reference channel
 
 - Added `configs/glossary-bridge.yaml`, a project-authored mapping of five Chinese statistical terms to the CWP English concepts; it contains no CWP text.
-- Added a reference channel that reads the three registered CWP pages, verifies their hashes against `configs/cwp-handbook.yaml` and answers concept queries, so Q-E05 and Q-M04 now return a standard definition passage (2/2).
+- Added a reference channel that reads the three registered CWP pages, verifies their hashes against `configs/cwp-handbook.yaml（已移除）` and answers concept queries, so Q-E05 and Q-M04 now return a standard definition passage (2/2).
 - The main index is untouched: still twenty-nine documents, 703 chunks, anchor-level Recall@5 8/11, abstention 5/6, two false refusals and 100% citation resolution.
 - Added the `define` command, which prints the CWP passages for a Chinese term such as 上岸量.
 
@@ -532,7 +532,7 @@ This log records material project changes by date. It does not use release versi
 ## 2026-11-01 — Public corpus and anchor-level baseline
 
 - Indexed all twenty-nine public sources into 703 chunks: added PDF and legacy DOC adapters and stopped dropping table-of-contents and page-furniture lines.
-- Replaced document-level scoring with section and page anchors in `configs/eval.yaml`: eleven questions with one to three anchors and six abstention tests.
+- Replaced document-level scoring with section and page anchors in `configs/eval.yaml（已移除）`: eleven questions with one to three anchors and six abstention tests.
 - Added a title field boost to BM25 and recalibrated the evidence gate on the larger corpus: anchor-level Recall@5 8/11, abstention 5/6, two false refusals and 100% citation resolution.
 - Classified the three misses (Q-E10, Q-M10, Q-M12) as vocabulary mismatch between question and article, which is the recorded motivation for dense retrieval.
 
@@ -561,13 +561,13 @@ This log records material project changes by date. It does not use release versi
 - Rebuilt the local core table so the 2025 data year uses the same regions, sea areas, indicators, units and derived rows as 2017–2024: 3,037 rows for 2017–2024 plus 89 harmonised rows for 2025, 3,126 in total.
 - Moved the 54 transcribed 2025 values outside the five indicator families (output and aquaculture totals, the port total, breed farms, household/township/village counts and three other sea areas) into a local extras file.
 - Added the three derived South China Sea rows for 2025 (published 2,626,036; three-province subtotal 2,626,036; difference 0).
-- Added Fujian to the region values in `configs/statistics.yaml` as a background row for the published South China Sea column in data years 2017–2020.
+- Added Fujian to the region values in `configs/statistics.yaml（已移除）` as a background row for the published South China Sea column in data years 2017–2020.
 - Every row now validates against the schema dimensions; the 2017–2024 prefix is unchanged.
 
 ## 2026-11-01 — Seven undigitised SC/T standards excluded from the project
 
 - Seven in-scope standards have no public text on the national standards platform: SC/T 0002.21, 0002.22, 0002.24, 0002.25 and 0002.26 (2001 vessel coding series), SC/T 8002-2000 (vessel terminology) and SC/T 9010-2000 (port design). The only official copies found are paid publications.
-- On owner instruction they are excluded from the project: removed from `configs/sc-standards.yaml` and no longer tracked as a gap in the register note, so the series records only the seventeen standards the project holds.
+- On owner instruction they are excluded from the project: removed from `configs/sc-standards.yaml（已移除）` and no longer tracked as a gap in the register note, so the series records only the seventeen standards the project holds.
 - No other count changes: the register still holds forty-four sources, and the series still covers seventeen standards and 295 pages.
 
 ## 2026-11-01 — SC/T standards in scope acquired; out-of-scope downloads discarded
@@ -575,7 +575,7 @@ This log records material project changes by date. It does not use release versi
 - Catalogued the SC/T series from the national standards platform filing interface: 977 records, 809 current.
 - Applied the project scope (marine capture, gear and mesh, vessel management data, fishing ports, fishery statistics and surveys, resource surveys, terminology): 24 standards match, 17 have a public text and are held as image-only reference PDFs (295 pages), and 7 have no public text on the platform (vessel coding and port design, 2000-2001).
 - Deleted the out-of-scope downloads, 695 standards covering aquaculture, feed, disease, processing, hull construction, ship equipment, gear-material testing and freshwater surveys; SC/T 9460-2025 stays registered as OPS-STD-035 and is not duplicated in the series.
-- Registered `STD-SC-042` as a series entry with the public catalog `configs/sc-standards.yaml`; the register now holds forty-four sources: forty acquired and four candidates.
+- Registered `STD-SC-042` as a series entry with the public catalog `configs/sc-standards.yaml（已移除）`; the register now holds forty-four sources: forty acquired and four candidates.
 
 ## 2026-11-01 — 2026 closed-season special-permit notice registered
 
@@ -748,7 +748,7 @@ This log records material project changes by date. It does not use release versi
 - Froze `main` at `f038cbd` as the refactor baseline: 63 registered sources, 28 indexed documents, 785 chunks, index `20910f0964df`, 48 evaluation questions (33 dev + 15 test), 340 passing tests and 2 skipped tests. No tag or release was created.
 - Cancelled the paused B1 task and kept its branch and worktree at `0841f56` as reference only. The approved plan does not merge B1.
 - Adopted source schema v4: A/B/C/D authority tiers, `non_official` level, `licensed` licence with an authorisation note, and explicit `provenance`, `effective`, `quality`, `supersedes`/`superseded_by` and `license_note` records. The loader derives v4 defaults for legacy entries without changing ids or hashes; `scripts/migrate_v4.py` writes the derivation audit.
-- Adopted the [RAG standard](rag-standard.md) and ADRs [0005](adr/0005-two-plane-evidence.md), [0006](adr/0006-llamaindex-lancedb-bge.md), [0007](adr/0007-controlled-web-evidence.md) and [0008](adr/0008-playbooks-and-terms.md): canonical evidence stays versioned and reproducible, live web evidence is ephemeral, labelled and never auto-ingested, and playbooks/terms carry the internalisation layer.
+- Adopted the [RAG standard](rag-standard.md) and ADRs [0005](adr/0005-two-plane-evidence.md), [0006](adr/0006-llamaindex-lancedb-bge.md), 0007（已移除） and [0008](adr/0008-playbooks-and-terms.md): canonical evidence stays versioned and reproducible, live web evidence is ephemeral, labelled and never auto-ingested, and playbooks/terms carry the internalisation layer.
 - Recorded the P10-GOV-136 → P10-EVAL-142 sequence in [plan.md](plan.md). The next task is P10-ING-138 (originally scoped as P10-ING-137): Docling/trafilatura adapters, hierarchical chunking and incremental snapshots.
 
 ## 2026-11-06 — Ingestion v2 snapshots and hierarchical chunks
@@ -790,7 +790,7 @@ This log records material project changes by date. It does not use release versi
 
 ## 2026-11-06 — Evaluation v2 and regression gate
 
-- Added `configs/eval-v2.yaml`: 120 questions (80 dev reviewed facts, 30 draft provision test facts, 10 test abstention cases), generated deterministically by `scripts/build_eval_v2.py`.
+- Added `configs/eval-v2.yaml（已移除）`: 120 questions (80 dev reviewed facts, 30 draft provision test facts, 10 test abstention cases), generated deterministically by `scripts/build_eval_v2.py`.
 - Added `src/scs_fkb/eval_v2/`: RAGAS-compatible deterministic metrics (`faithfulness`, `answer_relevancy`, `context_precision`, `context_recall`, `answer_correctness`, `citation_resolution`, `abstention_accuracy`), per-question rows and a regression gate.
 - Real 120-question run: dev correctness 0.8945, citation resolution 1.0000, context recall 0.9875; overall abstention 0.9000; gate passes. Test correctness 0.5820 is report-only because its 30 fact questions are drafts.
 - Added `docs/evaluation.md`; the v1 evaluation set and product path are unchanged. No tag or release is created.
@@ -1051,3 +1051,12 @@ This log records material project changes by date. It does not use release versi
 - Final 512 with no mode overrides: misanswer 0.0000, refusal-with-channel 1.0000, as-of 0.9474 (all met); coverage 0.7735, citation 0.6376, basis 0.5263 (not met). 436 answered, mean 51.5k characters, latency P95 10.4 s.
 - Closing arithmetic: coverage needs 582 points but the depth-100 retrieved-section ceiling is 573 and the doc-block ceiling 584; citation's joint document+location ceiling is 0.683; basis needs 17/19 but nine rows miss anchors that are not in the index.
 - Three lines are structural under the fixed instrument and the no-fabrication rule. Quantified closing report published; no tag, no release, no scorer or denominator change.
+
+## 2026-11-09 — v1 cleanup: CLI, web channel and golden sets removed
+
+- Rewrote the CLI to `ask`, `serve` and `check`; the legacy subcommands and their imports are gone from `cli.py`.
+- Removed the web supplement end to end: `web.py`, `web_v2/`, the web configs and scripts, and the web parameter/branches in the service, schemas, API and templates.
+- Deleted the 48-question and v2 evaluation sets (`configs/eval.yaml`, `configs/eval-v2.yaml`, `eval_v2/`, their scripts and tests) and the retired configs (statistics, sc-standards, cwp-handbook, reference-collections, candidates, FAQ, source-watch, species-seed).
+- Deleted the modules that only the old CLI imported: candidates, compare, corpus, dense, evaluate, expand, FAQ, v1 ingest, knowledge, knowledge_build, reference, statistics, terms and watch. The shared helpers still used by the shipped path (`answer`, `rag`, `retrieve`, `claims`, `store`, `jurisdiction`) remain.
+- Fixed two service defects found by the smoke: the dump arm's citations were being validated against the top-5 hits (it now skips that validation, since its citations come from its own 120-chunk retrieval), and the duplicated `结论：` line was removed from the dump text so the contract composes once.
+- Public tree 262 → 197 files; tests 490 → 241 (legacy suites removed). Public-tree check and private gate pass; 5-question acceptance smoke and a real `ask` call succeed.

@@ -114,7 +114,10 @@ PYTHONPATH=src python scripts/serve_v2.py
   article numbers often fail location matching. This is the main citation gap.
 - The LLM endpoint is slow (10–30 s per answer); the deterministic dump arm is fast
   and is the recommended mode for batch use.
-- Legacy modules (`rag`, `answer`, `evaluate`, `ingest`, `web`, `knowledge`,
-  `compare`, `reference`, `candidates`, `faq`, `terms`) are still imported by the
-  legacy CLI; their removal is a dedicated follow-up so the CLI and its tests can be
-  rewritten together.
+- Shared first-generation helpers are retained because the shipped path still
+  imports them: `answer.py` (extractive answer and citation validation),
+  `rag.py` (LLM cache), `retrieve.py` (lexical gate), `claims.py` (claim routing),
+  `store.py` (JSONL I/O) and `jurisdiction.py` (province routing).
+- The CLI was reduced to `ask`, `serve` and `check`; the web channel, the v1
+  ingest/evaluate/statistics/reference/knowledge/FAQ/watch/candidate modules and
+  the 48-question and v2 evaluation sets were removed in P12-CLN-190.

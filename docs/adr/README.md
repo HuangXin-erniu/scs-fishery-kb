@@ -11,7 +11,6 @@ structure: status, date, context, decision, consequences and references.
 | [0004](0004-public-private-boundary.md) | Public/private boundary | Accepted |
 | [0005](0005-two-plane-evidence.md) | Canonical and ephemeral evidence planes | Accepted |
 | [0006](0006-llamaindex-lancedb-bge.md) | LlamaIndex, LanceDB and BGE substrate | Accepted |
-| [0007](0007-controlled-web-evidence.md) | Controlled web retrieval | Accepted |
 | [0008](0008-playbooks-and-terms.md) | Playbooks and terms internalisation | Accepted |
 
 ## Adding a record

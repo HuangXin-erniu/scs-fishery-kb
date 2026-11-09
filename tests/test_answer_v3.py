@@ -333,7 +333,7 @@ def test_facet_arm_merges_answers_and_citations() -> None:
     answer = answer_with_facets("休渔到什么时间？", FacetRetriever(hits), client, cache=None)
     assert answer.abstained is False
     assert answer.reason == "facet_compose"
-    assert answer.text.startswith("结论：")
+    assert "[POL-CLOS-015 §三、休渔时间]" in answer.text
     assert answer.citations and answer.citations[0].doc_id == "POL-CLOS-015"
 
 
@@ -443,7 +443,7 @@ def test_dump_arm_quotes_sentences_with_citations() -> None:
     answer = answer_with_dump("休渔到什么时间？", DumpRetriever([hit]))
     assert answer.abstained is False
     assert answer.reason == "dump_compose"
-    assert answer.text.startswith("结论：")
+    assert "[POL-CLOS-015 §三、休渔时间]" in answer.text
     assert "[POL-CLOS-015 §三、休渔时间]" in answer.text
     assert answer.citations
     assert len(answer.text) <= 2500

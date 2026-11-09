@@ -150,7 +150,7 @@ def answer_with_dump(
 
     topic = WITH_TOPIC if topic_prefix is None else topic_prefix
     tag = f"要点：{question}——" if topic else ""
-    parts: list[str] = [f"结论：{tag}{conclusion[2]}"]
+    parts: list[str] = [f"{tag}{conclusion[2]}"]
     if with_numbers if with_numbers is not None else WITH_NUMBERS:
         numeric = _numeric_lines(packed)
         if numeric:

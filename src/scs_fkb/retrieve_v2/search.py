@@ -7,13 +7,21 @@ from typing import Any
 
 from ..bm25 import BM25Index
 from ..config import DEFAULT_LEXICON
-from ..evaluate import title_tokens
 from ..fusion import reciprocal_rank_fusion
 from ..lexicon import expand_query, load_lexicon
 from ..models import Chunk, SearchHit
 from ..retrieve import lexical_gate
+from ..text import tokenize
 from .filters import RetrievalFilters, filter_hits
 from .rerank import DEFAULT_RERANKER, Reranker
+
+
+def _title_tokens(documents: list[dict[str, Any]]) -> dict[str, set[str]]:
+    titles: dict[str, set[str]] = {}
+    for document in documents:
+        title = document.get("title_zh") or document.get("title") or ""
+        titles[str(document["doc_id"])] = set(tokenize(title))
+    return titles
 
 
 class HybridRetriever:
@@ -138,7 +146,7 @@ def build_retriever(
     dense_index = open_index(root, encoder)
     bm25 = BM25Index(
         chunks,
-        titles=title_tokens(documents),
+        titles=_title_tokens(documents),
         title_boost=1.0,
     )
     reranker_obj = (
