@@ -984,3 +984,9 @@ This log records material project changes by date. It does not use release versi
 - Added a quote-first arm enforcing verbatim clause fragments (normalised substring), per-entry citations and a single fallback; fabricated or reworded quotes are rejected.
 - 120-question pilot: quotes 0.5388 coverage / 0.5437 citation, below single (0.5566) and facet (0.6036). Facet remains the best arm but still short of 0.65.
 - Conclusion: coverage is bounded by retrieved evidence and enumerable rubric elements, not by answer format. Next per plan: corpus batch 3 to raise reachable points, then decide whether 0.80 stays hard.
+
+## 2026-11-09 — Clause-dump arm lifts coverage to 0.652
+
+- Added a deterministic clause-dump arm: top clauses with cached rewrites, every sentence quoted with its own citation, no model call.
+- Full 512 sweep: coverage 0.5466 → 0.6518 and citation 0.4679 → 0.5665 as the window grows from 12/2.5k to 30/9k; misanswer stays 0.0429.
+- The remaining ~0.15 coverage gap is evidence-bound (terms and anchors absent from indexed clauses); basis stays 0.1053 for the same reason.

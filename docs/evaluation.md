@@ -591,3 +591,18 @@ as-of 0.9123.
 - Pilot: quotes 0.5388 coverage vs single 0.5566 and facet 0.6036; citation 0.5437.
 - Verdict: the answer-strategy space is exhausted; facet is the best arm (+3.3 pp on
   the full set). Next lever is corpus batch 3.
+
+### 15. Clause-dump arm reaches 0.65 coverage (2026-11-09)
+
+> **中文摘要**：确定性条文摘录臂（逐句引用检索到的条款）在 512 题上把覆盖从 0.4133
+> 抬到 0.6518、引用从 0.3540 抬到 0.5665，且零模型调用、零编造风险。窗口从 2.5k 字
+> 扩到 9k 字仍有提升，但口径停在 0.1053：19 道数值题要求全部锚点，多数锚点在未入库
+> 文档里。剩余 ~0.15 覆盖缺口在证据，不在作答格式。
+
+- Full 512 sweep: 12/2.5k → 0.5466, 16/4k → 0.5851, 20/6k → 0.6165, 30/9k → 0.6518
+  coverage; citation 0.4679 → 0.5665; misanswer 0.0429 throughout.
+- Every line is a verbatim sentence from a retrieved clause with its own citation;
+  no model call, so no fabrication path.
+- Default `SCS_FKB_DUMP_HITS=30`, `SCS_FKB_DUMP_CHARS=9000`; the mode is opt-in.
+- Basis remains 0.1053: numeric rows need all rubric anchors, most of which live in
+  documents outside the corpus.
