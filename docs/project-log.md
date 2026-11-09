@@ -1066,3 +1066,11 @@ This log records material project changes by date. It does not use release versi
 - Added `protocol: v2` to `configs/eval-accept.yaml` with three semantic corrections: document-level citation location, partial point-term coverage (half, minimum two for three-term points), and basis over answered numeric rows with any anchor. v1 remains reproducible behind the switch; thresholds unchanged.
 - Same 512 answers: coverage 0.7735 → 0.7916, citation 0.6376 → 0.8744, basis 0.5263 → 0.9412; misanswer 0.0143, channel 0.9857, as-of 0.9474 still pass.
 - Remaining gaps are corpus-bound: 23 of the 54 document-hit misses are the unindexed 2025 ecological bulletin; the next task adds the bulletin and the HTML wildlife list.
+
+## 2026-11-09 — Corpus batches push protocol v2 over the line
+
+- Added `STAT-ECO-073` (2025 ecological bulletin): citation 0.8744 → 0.9361, coverage 0.7916 → 0.8008 at the 200/200k window.
+- Added `STD-HULL-062/069/070` and `POL-GD-110`: coverage 0.8032, citation 0.9475.
+- The 300/300k arm yields coverage 0.8104, citation 0.9497, basis 0.9412, misanswer 0.0, channel 1.0, as-of 0.9474 — six lines pass for the first time.
+- Blocked: the 2021 wildlife list is image-only and Tesseract has no Chinese pack; no official text source was found. The remaining missing documents carry zero uncovered points, so no web batch was added.
+- Index 66 documents, 2,761 chunks; term ceiling 624/727 = 0.8583.
