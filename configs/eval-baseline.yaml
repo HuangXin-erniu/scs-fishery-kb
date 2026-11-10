@@ -1,6 +1,6 @@
 schema_version: 1
 updated_at: '2026-11-10'
-recall_at_5: 0.8
-mrr: 0.7295
+recall_at_5: 0.8298
+mrr: 0.7348
 tolerance: 0.02
-questions: 35
+questions: 47

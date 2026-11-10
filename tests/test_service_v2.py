@@ -395,3 +395,19 @@ def test_query_log_is_off_by_default(monkeypatch, tmp_path) -> None:
         json={"question": "2026年南海区伏季休渔从什么时候开始？", "web": "off"},
     )
     assert not (tmp_path / "queries").exists()
+
+
+def test_short_flag_falls_back_without_llm(monkeypatch) -> None:
+    for name in ("LLM_BASE_URL", "LLM_API_KEY", "LLM_MODEL"):
+        monkeypatch.delenv(name, raising=False)
+    result = _service().query("2026年南海区伏季休渔从什么时候开始？", short=True)
+    assert result.abstained is False
+    assert result.citations
+
+
+def test_query_request_accepts_short_and_rerank() -> None:
+    from scs_fkb.service_v2.schemas import QueryRequest
+
+    payload = QueryRequest(question="休渔时间", short=True, rerank=True)
+    assert payload.short is True
+    assert payload.rerank is True

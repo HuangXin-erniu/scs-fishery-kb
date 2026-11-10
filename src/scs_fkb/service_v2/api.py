@@ -156,6 +156,8 @@ def create_app(
             region=payload.region,
             year=payload.year,
             web=payload.web,
+            short=payload.short,
+            rerank=payload.rerank,
         )
         log_query(result, payload.question)
         return result

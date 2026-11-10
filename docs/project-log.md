@@ -1187,3 +1187,11 @@ This log records material project changes by date. It does not use release versi
 - The version manifest records `code_commit`, `pipeline_config_sha256`, embedding normalization, BM25 parameters and `reranker: null`; the reader follows the pointer with a legacy fallback.
 - Added `docs/rag-conformance.md` (12-section matrix) and `scripts/check_rag_conformance.py`; added `scripts/eval_index_v2.py` as a public Recall@5/MRR gate against `configs/eval-baseline.yaml` (0.80 / 0.7295 on 35 retrieval rows).
 - Rebuilt the real index (2,797 chunks, 464 s); the service opens the versioned table and the 512 six lines are unchanged.
+
+## 2026-11-10 — Optional short answers, judge report and rerank decision
+
+- Added the optional `short` arm (≤300 characters, cited conclusion → basis → deadline/documents, number checks, fallback); `/v1/query` accepts `short` and `rerank`, CLI has `ask --short`.
+- Public set expanded to 60 items (47 retrieval + 13 no-evidence); retrieval baseline 0.8298 recall@5 / 0.7348 MRR.
+- Rerank A/B: recall@5 0.8298 → 0.8085, MRR 0.7348 → 0.7145, p95 22 → 1947 ms; kept off by default.
+- RAGAS-compatible judge on a 12-row balanced sample: dump 0.0000/0.4292 vs short 0.5000/0.7583 (faithfulness/relevancy); report-only.
+- 512 six lines unchanged at 0.8092 / 0.9565 / 0.9412 / 0.0000 / 1.0000 / 0.9474.

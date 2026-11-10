@@ -84,3 +84,17 @@ def test_ask_passes_the_web_mode(monkeypatch, capsys) -> None:
     assert code == 0
     assert seen["web"] == "auto"
     capsys.readouterr()
+
+
+def test_ask_passes_the_short_flag(monkeypatch, capsys) -> None:
+    seen: dict[str, object] = {}
+
+    def query(question, **kwargs):
+        seen.update(kwargs)
+        return _result()
+
+    monkeypatch.setattr(cli, "_service", lambda args: SimpleNamespace(query=query))
+    code = cli.main(["--data-root", "/tmp/data", "ask", "--short", "休渔时间"])
+    assert code == 0
+    assert seen["short"] is True
+    capsys.readouterr()

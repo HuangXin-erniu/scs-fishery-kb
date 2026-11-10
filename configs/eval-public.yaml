@@ -326,3 +326,123 @@ entries:
   expected_docs: []
   expected_prefix: ''
   persona: general
+- id: Q-P01
+  question: 禁渔期出海捕捞会怎么处罚？
+  type: retrieval
+  expected_docs:
+  - POL-LAW-009
+  expected_prefix: ''
+  persona: captain
+  reference_answer: 没收渔获物、违法所得和渔具，处20万元以下罚款；情节严重处20万元以上200万元以下罚款，吊销捕捞许可证，可以没收船舶
+  fact_id: FACT-POLICY-011
+  updated_at: '2026-11-10'
+- id: Q-P02
+  question: 没有捕捞许可证捕鱼罚多少钱？
+  type: retrieval
+  expected_docs:
+  - POL-PEN-080
+  expected_prefix: ''
+  persona: owner
+  reference_answer: 海洋水域10万元以下；内陆水域5万元以下
+  fact_id: FACT-POLICY-012
+  updated_at: '2026-11-10'
+- id: Q-P03
+  question: 渔船进出渔港要报告吗？
+  type: retrieval
+  expected_docs:
+  - POL-PORT-077
+  expected_prefix: ''
+  persona: captain
+  reference_answer: 遵守渔港管理章程和国际海上避碰规则，向渔政渔港监督管理机关报告，接受安全检查
+  fact_id: FACT-POLICY-013
+  updated_at: '2026-11-10'
+- id: Q-P04
+  question: 渔船进出港不报告会怎么处罚？
+  type: retrieval
+  expected_docs:
+  - POL-PORT-077
+  expected_prefix: ''
+  persona: captain
+  reference_answer: 责令改正，可以并处警告、罚款；情节严重的扣留或者吊销船长职务证书
+  fact_id: FACT-POLICY-014
+  updated_at: '2026-11-10'
+- id: Q-P05
+  question: 渔业船舶检验分几种？
+  type: retrieval
+  expected_docs:
+  - POL-RULE-019
+  expected_prefix: ''
+  persona: owner
+  reference_answer: 强制检验分为初次检验、营运检验和临时检验
+  fact_id: FACT-POLICY-015
+  updated_at: '2026-11-10'
+- id: Q-P06
+  question: 渔业资源增殖保护费按什么标准收？
+  type: retrieval
+  expected_docs:
+  - POL-RULE-020
+  expected_prefix: ''
+  persona: owner
+  reference_answer: 海洋渔业按前3年平均年总产值1%至3%（不含专项品种）；专项品种3%至5%
+  fact_id: FACT-POLICY-016
+  updated_at: '2026-11-10'
+- id: Q-P07
+  question: 船网工具指标批准书有效期多久？
+  type: retrieval
+  expected_docs:
+  - POL-STD-010
+  expected_prefix: ''
+  persona: owner
+  reference_answer: 制造、更新改造、进口渔船18个月；购置渔船6个月；可在届满前3个月内申请延展18个月；远洋特殊渔区可再延展18个月；逾期注销并收回指标
+  fact_id: FACT-POLICY-006
+  updated_at: '2026-11-10'
+- id: Q-P08
+  question: 渔捞日志不填或填错会怎么处罚？
+  type: retrieval
+  expected_docs:
+  - POL-STD-010
+  expected_prefix: ''
+  persona: captain
+  reference_answer: 未按规定提交或填写不真实、不规范的，警告、责令改正；逾期不改正处1000元以上1万元以下罚款
+  fact_id: FACT-POLICY-008
+  updated_at: '2026-11-10'
+- id: Q-P09
+  question: 捕捞许可证年审要符合哪些条件？
+  type: retrieval
+  expected_docs:
+  - POL-STD-010
+  expected_prefix: ''
+  persona: owner
+  reference_answer: 检验证书和国籍证书有效；所有人、主尺度、主机功率、总吨位未变更；作业类型、场所、时限、渔具数量一致；日志、资源费、处罚履行
+  fact_id: FACT-POLICY-010
+  updated_at: '2026-11-10'
+- id: Q-P10
+  question: 最小网目尺寸制度什么时候开始实施？
+  type: retrieval
+  expected_docs:
+  - POL-GEAR-016
+  expected_prefix: ''
+  persona: captain
+  reference_answer: 2014年6月1日起，黄渤海、东海、南海全面实施
+  fact_id: FACT-GEAR-001
+  updated_at: '2026-11-10'
+- id: Q-P11
+  question: 渔具分类的类名称和代号是什么？
+  type: retrieval
+  expected_docs:
+  - OPS-STD-039
+  expected_prefix: ''
+  persona: captain
+  reference_answer: C刺网、W围网、T拖网、Zh张网、D钓具、Di地拉网、Ch抄网、Y掩罩、P耙刺、F敷网、X陷阱、L笼壶
+  fact_id: FACT-GEAR-002
+  updated_at: '2026-11-10'
+- id: Q-P12
+  question: 外国渔船进入中国管辖水域捕鱼需要批准吗？
+  type: retrieval
+  expected_docs:
+  - POL-LAW-009
+  expected_prefix: ''
+  persona: owner
+  reference_answer: 外国人、外国籍渔业船舶进入中华人民共和国管辖水域，从事渔业生产或者渔业资源调查活动，应当经国务院有关主管部门批准，并遵守本法和中华人民共和国其他有关法律、法规。
+  fact_id: FACT-POLICY-030
+  updated_at: '2026-11-10'

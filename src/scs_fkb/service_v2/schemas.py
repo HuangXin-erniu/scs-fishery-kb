@@ -16,6 +16,8 @@ class QueryRequest(BaseModel):
     region: str | None = Field(default=None, max_length=32)
     year: int | None = Field(default=None, ge=1949, le=2100)
     web: WebMode = "off"
+    short: bool = False
+    rerank: bool | None = None
 
 
 class CitationModel(BaseModel):

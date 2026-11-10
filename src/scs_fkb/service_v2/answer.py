@@ -17,6 +17,7 @@ from ..answer_v3.dump_arm import answer_with_dump
 from ..answer_v3.facet_arm import answer_with_facets
 from ..answer_v3.llm_answer import answer_with_llm
 from ..answer_v3.quotes_arm import answer_with_quotes
+from ..answer_v3.short_arm import answer_with_short
 from ..config import REPO_ROOT
 from ..facts import DEFAULT_FACTS_DIR, load_all
 from ..knowledge_v2 import load_playbooks
@@ -214,6 +215,12 @@ class AnswerService:
         self._registry = load_registry()
         self._web_config: Any = False
         self._web_provider: Any = None
+        self.rerank_default = os.environ.get("SCS_FKB_RERANK", "").strip().lower() in {
+            "on",
+            "1",
+            "true",
+            "yes",
+        }
 
     def _llm_pair(self) -> tuple[LLMClient, LLMCache] | None:
         if self._llm is False:
@@ -234,6 +241,61 @@ class AnswerService:
 
             rewrites = rewrite(question, pair[0], pair[1])
         return answer_with_dump(question, self.retriever, queries=rewrites)
+
+    def _short_fact_lead(self, question: str, nature: str = "") -> SearchHit | None:
+        tokens = _tokens(question)
+        if not tokens:
+            return None
+        time_words = re.compile(r"什么时候|几号|时间|起止|期限|多久|几月")
+        date_re = re.compile(r"\d+月\d+日|\d{4}年")
+        best: tuple[float, dict[str, Any]] | None = None
+        for fact in self.facts:
+            if fact.get("status") != "approved" or fact.get("kind") == "provision":
+                continue
+            value = str(fact.get("value") or "").strip()
+            if not value or len(value) > 220:
+                continue
+            subject_text = f"{fact.get('subject') or ''} {fact.get('predicate') or ''}"
+            text = " ".join(str(fact.get(key) or "") for key in ("subject", "predicate", "value"))
+            score = (
+                1.6 * len(tokens & _tokens(subject_text)) / max(1, len(tokens))
+                + 0.4 * len(tokens & _tokens(value)) / max(1, len(tokens))
+                + 0.12 * _keyword_score(question, text)
+            )
+            if nature and fact.get("question_class") == nature:
+                score += 0.05
+            if time_words.search(question) and date_re.search(value):
+                score += 0.45
+            if score >= 0.35 and (best is None or score > best[0]):
+                best = (score, fact)
+        if best is None:
+            return None
+        source = best[1].get("source") or {}
+        doc_id = str(source.get("doc") or "")
+        section = str(source.get("section") or "")
+        for chunk in getattr(self.retriever, "chunks", []) or []:
+            if chunk.doc_id != doc_id:
+                continue
+            if section and not (
+                chunk.section.startswith(section) or section.startswith(chunk.section)
+            ):
+                continue
+            return SearchHit(chunk=chunk, score=1.0)
+        return None
+
+    def _short_answer(self, question: str, extra: list[SearchHit] | None = None) -> Any:
+        pair = self._llm_pair()
+        if pair is None:
+            return None
+        client, cache = pair
+        hits = self.retriever.search_queries([question], top_k=8)
+        if extra:
+            seen = {hit.chunk.chunk_id for hit in hits}
+            hits = [hit for hit in extra if hit.chunk.chunk_id not in seen] + hits
+        try:
+            return answer_with_short(question, hits, client, cache)
+        except LLMError:
+            return None
 
     def _quotes_answer(self, question: str) -> Any:
         pair = self._llm_pair()
@@ -308,9 +370,10 @@ class AnswerService:
             self._channels = ChannelBook.load()
         return self._channels
 
-    def _search(self, question: str, filters: Any) -> list[SearchHit]:
+    def _search(self, question: str, filters: Any, rerank: bool | None = None) -> list[SearchHit]:
+        enabled = self.rerank_default if rerank is None else bool(rerank)
         try:
-            return self.retriever.search(question, top_k=5, filters=filters, rerank=False)
+            return self.retriever.search(question, top_k=5, filters=filters, rerank=enabled)
         except TypeError:
             return self.retriever.search(question, top_k=5)
 
@@ -512,6 +575,8 @@ class AnswerService:
         region: str | None = None,
         year: int | None = None,
         web: str | None = None,
+        short: bool = False,
+        rerank: bool | None = None,
     ) -> QueryResponse:
         started = time.perf_counter()
         request_id = f"REQ-{uuid.uuid4().hex[:12]}"
@@ -553,12 +618,16 @@ class AnswerService:
             filters = replace(filters, jurisdictions=(region,))
         if year:
             filters = replace(filters, as_of=f"{year}-12-31")
-        hits = self._search(question, filters)
+        hits = self._search(question, filters, rerank=rerank)
         gate = self._gate(question)
         lead = self._fact_lead(question, hits, plan.nature)
         if lead is not None and all(item.chunk.chunk_id != lead[2].chunk.chunk_id for item in hits):
             hits.append(lead[2])
-        if self.answer_mode == "dump":
+        short_mode = bool(short) or self.answer_mode == "short"
+        if short_mode:
+            short_lead = self._short_fact_lead(question, plan.nature)
+            llm_answer = self._short_answer(question, [short_lead] if short_lead else None)
+        elif self.answer_mode == "dump":
             llm_answer = self._dump_answer(question)
         elif self.answer_mode == "quotes":
             llm_answer = self._quotes_answer(question)
@@ -659,7 +728,7 @@ class AnswerService:
                 )
                 citations = []
         contract_fields: dict[str, Any] = {}
-        if self.answer_contract == "v3":
+        if self.answer_contract == "v3" and not short_mode:
             contract = compose_contract(
                 question,
                 answer.text,
@@ -714,13 +783,16 @@ class AnswerService:
             mode = "kb_only"
         limit = int(os.environ.get("SCS_FKB_CITATION_LIMIT", "20"))
         display_citations, citations_total = _display_citations(citations, limit)
-        summary = _summary_of(
-            contract_fields,
-            display_citations,
-            answer.text,
-            web_leads=web_leads,
-            abstained=answer.abstained,
-        )
+        if short_mode and not answer.abstained:
+            summary = answer.text[:2000]
+        else:
+            summary = _summary_of(
+                contract_fields,
+                display_citations,
+                answer.text,
+                web_leads=web_leads,
+                abstained=answer.abstained,
+            )
         return QueryResponse(
             request_id=request_id,
             answer=answer.text,
@@ -771,7 +843,7 @@ def build_service(
     if not configured:
         raise RuntimeError("SCS_FKB_DATA_ROOT is required")
     root = Path(configured).expanduser()
-    retriever = build_retriever(root, reranker=False)
+    retriever = build_retriever(root, reranker=True)
 
     return AnswerService(
         retriever=retriever,
