@@ -1,8 +1,14 @@
 from __future__ import annotations
 
+import sys
+from pathlib import Path
+
 import yaml
 
-from scripts.provision_impact import set_status
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "scripts"))
+
+from provision_impact import set_status  # noqa: E402
 
 
 def test_set_status_changes_only_the_named_facts(tmp_path) -> None:
