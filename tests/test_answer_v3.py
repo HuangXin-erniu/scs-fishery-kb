@@ -574,3 +574,21 @@ def test_conclusion_falls_back_when_all_candidates_are_titles() -> None:
     sentences = ["附件：目录 [POL-X §p.1]", "公告：公布名录 [POL-Y §p.2]"]
     picked = _pick_conclusion(sentences, "名录是什么？")
     assert picked
+
+
+def test_numbers_line_deduplicates_value_and_unit() -> None:
+    evidence = (
+        "南海带鱼肛长不得小于230毫米。 [POL-MIN-091 §第二条]\n"
+        "幼鱼比例按230毫米计算。 [POL-MIN-091 §第三条]"
+    )
+    contract = compose(
+        "南海带鱼最小可捕规格是多少毫米？",
+        evidence,
+        doc_ids=["POL-MIN-091"],
+        registry={},
+        channels=books(),
+    )
+    numbers_line = next(
+        line for line in contract.body.splitlines() if line.startswith("数值与口径：")
+    )
+    assert numbers_line.count("230毫米") == 1
