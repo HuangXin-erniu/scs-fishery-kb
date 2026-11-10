@@ -1116,3 +1116,10 @@ This log records material project changes by date. It does not use release versi
 - The 2021 wildlife list is indexed from a macOS Vision OCR derivative; the original PDF remains the provenance copy.
 - Protocol v2 sensitivity table added: no single correction passes all three lines; the full protocol does.
 - Announcement draft written for owner confirmation; nothing published.
+
+## 2026-11-10 — 100k evidence cap, summary dedupe, gzip
+
+- Default evidence cap lowered from 300,000 to 100,000 characters; hits/depth unchanged.
+- 512: coverage 0.8129 → 0.8092, citation 0.9588 → 0.9565, basis 0.9412, misanswer 0.0000, channel 1.0000, as-of 0.9474; all six pass.
+- Mean answer 129,337 → 101,846 characters (−21%); P95 170,316 → 104,244; latency P95 1.47 s.
+- Summary and numbers line deduplicate value+unit pairs; FastAPI compresses responses above 1KB with gzip.

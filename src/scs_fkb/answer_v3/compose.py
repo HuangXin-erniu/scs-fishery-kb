@@ -185,6 +185,15 @@ def compose(
     if match:
         section = match.group(1).strip()
     anchors = [replace(anchor, basis=_basis_for(anchor.basis, section)) for anchor in anchors]
+    unique_anchors: list[Any] = []
+    seen_anchors: set[tuple[str, str]] = set()
+    for anchor in anchors:
+        key = (anchor.value, anchor.unit)
+        if key in seen_anchors:
+            continue
+        seen_anchors.add(key)
+        unique_anchors.append(anchor)
+    anchors = unique_anchors
     gap: list[str] = []
     if numeric and not anchors:
         gap.append("缺少可核数值或口径")
