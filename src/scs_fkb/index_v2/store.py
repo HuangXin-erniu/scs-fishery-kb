@@ -11,7 +11,6 @@ from typing import Any
 
 from ..models import Chunk
 from ..store import read_json, write_json
-from .embedding import EncoderEmbedding
 
 INDEX_DIR = Path("v2") / "index" / "lancedb"
 MANIFEST = Path("v2") / "index" / "manifest.json"
@@ -256,6 +255,8 @@ def build_index_v2(
 
 def open_index(data_root: Path | str, encoder: Any) -> Any:
     from llama_index.core import VectorStoreIndex
+
+    from .embedding import EncoderEmbedding
 
     root = Path(data_root).expanduser().resolve()
     store = _store(root, mode="append")
