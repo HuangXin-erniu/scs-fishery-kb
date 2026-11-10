@@ -9,6 +9,7 @@
 | [Architecture](architecture.md) | Layers, components, data flow, data contracts and runtime |
 | [Project plan](plan.md) | Work packages, milestones, roles, quality gates and risks |
 | [Evaluation](evaluation.md) | Acceptance protocol, metrics, final status and measured ceilings |
+| [Acceptance](acceptance.md) | Task-book indicators, pass values and the review procedure |
 | [Corpus inventory](corpus.md) | Registered sources, licences, sensitivity and coverage |
 | [Evaluation questions](questions.md) | Sanitized acceptance-style samples across four personas |
 | [Data policy](data-policy.md) | What is published, what stays local, and how sensitivity is handled |
