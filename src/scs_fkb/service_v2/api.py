@@ -3,12 +3,13 @@ from __future__ import annotations
 import json
 import os
 import tempfile
+import time
 from datetime import UTC, datetime
 from pathlib import Path
 
 from fastapi import Depends, FastAPI, Form, Header, HTTPException, Request
 from fastapi.middleware.gzip import GZipMiddleware
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.templating import Jinja2Templates
 
 from .answer import AnswerService, build_service
@@ -50,6 +51,33 @@ def create_app(
     )
     app.add_middleware(GZipMiddleware, minimum_size=1024)
     app.state.service = service or build_service(run_root=run_root)
+    app.state.stats = {"started": time.time(), "requests": 0, "errors": 0, "latencies": []}
+
+    @app.middleware("http")
+    async def record_request(request: Request, call_next):
+        if request.url.path == "/metrics":
+            return await call_next(request)
+        started = time.perf_counter()
+        try:
+            response = await call_next(request)
+        except Exception:
+            app.state.stats["errors"] += 1
+            raise
+        elapsed = (time.perf_counter() - started) * 1000
+        stats = app.state.stats
+        stats["requests"] += 1
+        stats["latencies"].append(elapsed)
+        if len(stats["latencies"]) > 1000:
+            stats["latencies"] = stats["latencies"][-1000:]
+        return response
+
+    @app.exception_handler(Exception)
+    async def unhandled_error(_request: Request, _exc: Exception) -> JSONResponse:
+        return JSONResponse(
+            status_code=500,
+            content={"error": {"code": "internal_error", "message": "internal server error"}},
+        )
+
     app.state.run_root = run_root
     templates = Jinja2Templates(directory=str(Path(__file__).parent / "templates"))
     required_key = api_key if api_key is not None else os.environ.get("SCS_FKB_API_KEY", "")
@@ -66,7 +94,18 @@ def create_app(
     def readyz() -> HealthResponse:
         return HealthResponse(status="ready", index_version=app.state.service.index_version)
 
-    @app.post("/v1/query", response_model=QueryResponse, dependencies=[Depends(require_key)])
+    @app.post(
+        "/v1/query",
+        response_model=QueryResponse,
+        dependencies=[Depends(require_key)],
+        openapi_extra={
+            "requestBody": {
+                "content": {
+                    "application/json": {"example": {"question": EXAMPLES[0], "persona": "captain"}}
+                }
+            }
+        },
+    )
     def query(payload: QueryRequest) -> QueryResponse:
         return app.state.service.query(
             payload.question,
@@ -100,6 +139,55 @@ def create_app(
         with path.open("a", encoding="utf-8") as handle:
             handle.write(json.dumps(row, ensure_ascii=False) + "\n")
         return {"status": "recorded", "request_id": payload.request_id}
+
+    @app.get("/metrics")
+    def metrics() -> dict:
+        stats = app.state.stats
+        latencies = sorted(stats["latencies"])
+        if latencies:
+            p50 = latencies[len(latencies) // 2]
+            p95 = latencies[min(len(latencies) - 1, int(round(0.95 * (len(latencies) - 1))))]
+        else:
+            p50 = p95 = None
+        return {
+            "uptime_seconds": round(time.time() - stats["started"], 1),
+            "requests_total": stats["requests"],
+            "errors_total": stats["errors"],
+            "latency_ms": {
+                "p50": round(p50, 1) if p50 is not None else None,
+                "p95": round(p95, 1) if p95 is not None else None,
+            },
+            "index_version": app.state.service.index_version,
+        }
+
+    @app.get("/demo", response_class=HTMLResponse)
+    def demo(request: Request) -> HTMLResponse:
+        return templates.TemplateResponse(
+            request=request,
+            name="demo.html",
+            context={"examples": EXAMPLES, "result": None, "question": ""},
+        )
+
+    @app.post("/demo", response_class=HTMLResponse)
+    def demo_query(
+        request: Request,
+        question: str = Form(...),
+        persona: str = Form("general"),
+        region: str = Form(""),
+        year: str = Form(""),
+    ) -> HTMLResponse:
+        year_value = int(year) if year.strip().isdigit() else None
+        result = app.state.service.query(
+            question,
+            persona=persona,
+            region=region.strip() or None,
+            year=year_value,
+        )
+        return templates.TemplateResponse(
+            request=request,
+            name="demo.html",
+            context={"examples": EXAMPLES, "result": result.model_dump(), "question": question},
+        )
 
     @app.get("/", response_class=HTMLResponse)
     def index(request: Request) -> HTMLResponse:
