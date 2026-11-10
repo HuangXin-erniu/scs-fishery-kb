@@ -180,6 +180,17 @@ live under the local data root and are never committed.
 - A web result may be promoted only by creating a candidate and passing the
   normal source admission review. No automatic ingest.
 
+**Implementation status (2026-11-10).** The layer lives in
+`src/scs_fkb/web_v2/` and is off by default: `SCS_FKB_WEB=off` and the API
+default `web: "off"` make no network call. `auto` triggers on a freshness cue, a
+cited source past its review or effective date, or an in-scope abstention. The
+allowlist is `configs/web-sources.yaml` and is HTTPS-only. Leads are capped at
+two per response, snippets at 300 characters, pages at 2 MB with a 10 s timeout
+and 2 s spacing, and cache TTLs are 7/30/90/365 days by claim nature. Leads are
+returned in `web_leads`, separate from `citations` and from `answer`; they never
+decide abstention. The cache stays under the local data root and a promotion
+draft is produced for the candidate queue instead of writing the register.
+
 ## 8. Evaluation
 
 - Maintain a reviewed set of at least 120 questions across four personas:

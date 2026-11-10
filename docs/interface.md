@@ -38,9 +38,16 @@ Request:
 ```
 
 `persona` is one of `captain`, `owner`, `enforcement`, `extension`, `general`.
-`web` is `auto`, `on` or `off`; `auto` supplements only when the answer abstains
-or the question carries a freshness cue. `region` and `year` are optional
-filters. The question is limited to 500 characters.
+`region` and `year` are optional filters. The question is limited to 500
+characters.
+
+`web` is `off` (default), `auto` or `on`. `off` performs no network call and is
+the only mode used by the acceptance instrument. `on` always queries the
+allowlisted search backend. `auto` queries only when the question carries a
+freshness cue, a cited source is past its review or effective date, or the
+in-scope answer abstains. A web result is a lead, not evidence: it is returned in
+`web_leads`, never in `citations`, never in `answer`, and it never changes the
+abstention decision. Nothing is ingested automatically.
 
 Response:
 
@@ -66,6 +73,7 @@ Response:
   "reason": "ok",
   "mode": "kb_only",
   "used_web": false,
+  "web_leads": [],
   "playbook": null,
   "index_version": "v2",
   "answerability": "answerable",
@@ -97,25 +105,34 @@ governing version when the question says 今年/现在 or names a year. `numbers
 lists the numeric anchors with their basis; an empty list on a numeric question
 means the value was missing from the evidence and the answer says so.
 
-Modes: `kb_only`, `kb_plus_web`, `web_only`, `clarify`, `abstain`. A `playbook`
-block is a procedure view of approved facts; it never replaces the extractive
-citations. `abstained=true` means the service did not find enough usable
+Modes: `kb_only`, `kb_plus_web`, `clarify`, `abstain`. `kb_plus_web` means the
+canonical answer is unchanged and one or two labelled web leads were attached.
+A `playbook` block is a procedure view of approved facts; it never replaces the
+extractive citations. `abstained=true` means the service did not find enough usable
 evidence; `reason` is `weak_evidence`, `no_evidence`, `citation_invalid` or
 `clarify`.
 
 ## 4. Citations
 
 Corpus citations use `[doc_id p.N §section]` and resolve to a retrieved chunk.
-Web citations use `[WEB:domain:hash8] URL (抓取于 YYYY-MM-DD)` and carry
-`source_type: web` and the label `网络检索 · 未入知识库`. Web evidence never
-overrides a canonical law or statistic; it is appended only as a supplement or
-when the canonical layer abstains and the trigger allows it.
+They are the only entries in `citations`; `citations_total` counts deduplicated
+documents, capped at 20 displayed entries.
+
+Web leads use `[WEB:domain:hash8] URL (抓取于 YYYY-MM-DD)` in their `citation`
+field and carry the label `网络检索 · 未入知识库`. A lead is shown with its
+publisher, authority tier, fetch date and snippet. It never overrides a
+canonical law or statistic and never turns an abstention into an answer; for an
+abstained response the leads are labelled as leads that cannot support a
+conclusion.
 
 ## 5. Auth and limits
 
 If `SCS_FKB_API_KEY` is set, every `/v1` request must send `X-API-Key`. The UI is
 local and does not bypass the API key for `/v1` calls. Questions are limited to
-500 characters; the service returns at most 5 corpus hits and 2 web evidences.
+500 characters; the service returns at most 20 deduplicated corpus citations and
+2 web leads. Web fetching is restricted to the allowlist in
+`configs/web-sources.yaml` (HTTPS only, 2 MB per page, 10 s timeout, 2 s spacing,
+7/30/90/365-day cache TTLs).
 
 ## 6. Feedback
 
@@ -141,7 +158,7 @@ version tag or release.
 ### LLM composition arm (2026-11-08)
 
 `SCS_FKB_ANSWER_MODE=llm` switches the answer path to the LLM composition arm; the
-default stays `extractive`. The arm retrieves up to eight clauses, asks the model
+default is the deterministic dump arm, and `extractive` remains available. The arm retrieves up to eight clauses, asks the model
 for a conclusion-first answer with per-sentence citations, and then enforces three
 hard checks before returning anything:
 

@@ -263,3 +263,108 @@ def test_unhandled_errors_return_json(tmp_path) -> None:
     response = client.post("/v1/query", json={"question": "休渔时间"})
     assert response.status_code == 500
     assert response.json()["error"]["code"] == "internal_error"
+
+
+def _web_evidence(url: str = "https://www.moa.gov.cn/a") -> object:
+    from scs_fkb.web_v2 import WebEvidence
+
+    return WebEvidence(
+        evidence_id="WEBV-abc123",
+        url=url,
+        canonical_url=url,
+        title="2026年南海区伏季休渔通告",
+        publisher="农业农村部",
+        domain="www.moa.gov.cn",
+        authority_tier="A",
+        source_class="reference",
+        fetched_at="2026-11-10T03:00:00+00:00",
+        content_hash="b" * 64,
+        snippet="南海区休渔时间为5月1日12时至8月16日12时。",
+        text_path="web-cache/WEBV-abc123.txt",
+        search_query="2026年南海区伏季休渔",
+        rank=1,
+        ttl_days=30,
+    )
+
+
+def _web_result(evidences: list) -> object:
+    from scs_fkb.web_v2 import WebSearchResult
+
+    return WebSearchResult(
+        triggered=True,
+        reason="explicit",
+        query="2026年南海区伏季休渔",
+        provider="fake",
+        mode="on",
+        evidences=evidences,
+    )
+
+
+def test_web_off_does_not_touch_the_layer(monkeypatch, tmp_path) -> None:
+    import scs_fkb.web_v2 as web_module
+
+    calls: list[int] = []
+    monkeypatch.setattr(web_module, "search_web", lambda *args, **kwargs: calls.append(1))
+    service = AnswerService(
+        retriever=FakeRetriever([_hit()]), playbooks=[], facts=[], data_root=tmp_path
+    )
+    result = service.query("2026年南海区伏季休渔从什么时候开始？", web="off")
+    assert calls == []
+    assert result.used_web is False
+    assert result.web_leads == []
+    assert result.mode == "kb_only"
+
+
+def test_web_leads_stay_out_of_the_answer_and_citations(monkeypatch, tmp_path) -> None:
+    import scs_fkb.web_v2 as web_module
+
+    monkeypatch.setattr(
+        web_module, "search_web", lambda *args, **kwargs: _web_result([_web_evidence()])
+    )
+    service = AnswerService(
+        retriever=FakeRetriever([_hit()]), playbooks=[], facts=[], data_root=tmp_path
+    )
+    baseline = service.query("2026年南海区伏季休渔从什么时候开始？", web="off")
+    result = service.query("2026年南海区伏季休渔从什么时候开始？", web="on")
+    assert result.used_web is True
+    assert result.mode == "kb_plus_web"
+    assert len(result.web_leads) == 1
+    assert result.web_leads[0].label == "网络检索 · 未入知识库"
+    assert result.web_leads[0].tier == "A"
+    assert result.answer == baseline.answer
+    assert result.citations_total == baseline.citations_total
+    assert all(item.source_type == "corpus" for item in result.citations)
+    assert "网络补充" in result.summary
+
+
+def test_web_never_flips_an_abstention(monkeypatch, tmp_path) -> None:
+    import scs_fkb.web_v2 as web_module
+
+    monkeypatch.setattr(
+        web_module, "search_web", lambda *args, **kwargs: _web_result([_web_evidence()])
+    )
+    service = AnswerService(
+        retriever=FakeRetriever([_hit()], gate=False),
+        playbooks=[],
+        facts=[],
+        data_root=tmp_path,
+    )
+    result = service.query("某条历史规定", web="on")
+    assert result.abstained is True
+    assert result.used_web is False
+    assert result.mode == "abstain"
+    assert result.web_leads
+    assert "网络线索" in result.summary
+
+
+def test_web_auto_without_leads_keeps_the_answer_plain(monkeypatch, tmp_path) -> None:
+    import scs_fkb.web_v2 as web_module
+
+    monkeypatch.setattr(web_module, "search_web", lambda *args, **kwargs: _web_result([]))
+    service = AnswerService(
+        retriever=FakeRetriever([_hit()]), playbooks=[], facts=[], data_root=tmp_path
+    )
+    result = service.query("2026年南海区伏季休渔从什么时候开始？", web="auto")
+    assert result.used_web is False
+    assert result.web_leads == []
+    assert result.mode == "kb_only"

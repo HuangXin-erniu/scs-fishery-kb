@@ -9,6 +9,7 @@ from datetime import date
 from pathlib import Path
 from typing import Any
 
+from .. import web_v2
 from ..answer import answer_question, citation_text, validate_citations
 from ..answer_v3 import ChannelBook
 from ..answer_v3 import compose as compose_contract
@@ -16,6 +17,7 @@ from ..answer_v3.dump_arm import answer_with_dump
 from ..answer_v3.facet_arm import answer_with_facets
 from ..answer_v3.llm_answer import answer_with_llm
 from ..answer_v3.quotes_arm import answer_with_quotes
+from ..config import REPO_ROOT
 from ..facts import DEFAULT_FACTS_DIR, load_all
 from ..knowledge_v2 import load_playbooks
 from ..llm import LLMClient, LLMConfig, LLMError
@@ -28,6 +30,7 @@ from .schemas import (
     PlaybookStep,
     PlaybookView,
     QueryResponse,
+    WebLeadModel,
 )
 
 DISCLAIMER = "以官方发布文本为准；本服务不构成法律意见。"
@@ -46,7 +49,21 @@ def _display_citations(
     return unique[:limit], len(unique)
 
 
-def _summary_of(fields: dict[str, Any], citations: list[CitationModel], answer_text: str) -> str:
+def _iso_date(value: Any) -> date | None:
+    try:
+        return date.fromisoformat(str(value)[:10])
+    except (TypeError, ValueError):
+        return None
+
+
+def _summary_of(
+    fields: dict[str, Any],
+    citations: list[CitationModel],
+    answer_text: str,
+    *,
+    web_leads: list[WebLeadModel] | None = None,
+    abstained: bool = False,
+) -> str:
     parts: list[str] = []
     conclusion = str(fields.get("conclusion") or "").strip()
     gap = fields.get("gap") or []
@@ -93,6 +110,15 @@ def _summary_of(fields: dict[str, Any], citations: list[CitationModel], answer_t
             where = f"§{item.section}" if item.section else f"p.{item.page}"
             refs.append(f"[{item.doc_id} {where}]")
         parts.append("主要依据：" + "；".join(refs))
+    if web_leads:
+        rendered = "；".join(
+            f"{item.title or item.domain}（{item.domain}，抓取于 {item.fetched_at[:10]}）"
+            for item in web_leads[:2]
+        )
+        if abstained:
+            parts.append("网络线索（未入知识库，不能作为结论）：" + rendered)
+        else:
+            parts.append("网络补充（未入知识库，仅供参考）：" + rendered)
     text = "\n".join(parts)
     if not text:
         text = answer_text.split("依据摘录：", 1)[0].strip()
@@ -186,6 +212,8 @@ class AnswerService:
         self._llm: Any = False
         self._channels: ChannelBook | None = None
         self._registry = load_registry()
+        self._web_config: Any = False
+        self._web_provider: Any = None
 
     def _llm_pair(self) -> tuple[LLMClient, LLMCache] | None:
         if self._llm is False:
@@ -389,6 +417,93 @@ class AnswerService:
             steps=steps,
         )
 
+    def _web_config_or_none(self) -> Any:
+        if self._web_config is False:
+            try:
+                self._web_config = web_v2.load_web_config(
+                    REPO_ROOT / "configs" / "web-sources.yaml"
+                )
+            except Exception:  # noqa: BLE001 - the optional layer must not break the service
+                self._web_config = None
+        return self._web_config
+
+    def _web_provider_for(self, settings: dict[str, Any]) -> Any:
+        if self._web_provider is None:
+            searxng = os.environ.get("SEARXNG_URL", "").strip() or str(
+                settings.get("searxng_url") or ""
+            )
+            self._web_provider = web_v2.build_provider(
+                searxng,
+                fallback=str(settings.get("fallback") or "ddgs"),
+                timeout=float(settings.get("timeout_seconds") or 10),
+                backend=str(settings.get("backend") or "auto"),
+                engines=str(settings.get("engines") or ""),
+            )
+        return self._web_provider
+
+    def _stale_citations(self, citations: list[CitationModel]) -> bool:
+        today = date.today()
+        for item in citations:
+            entry = self._registry.get(item.doc_id) or {}
+            currency = entry.get("currency") or {}
+            review_due = _iso_date(currency.get("review_due"))
+            if review_due is not None and review_due < today:
+                return True
+            effective = entry.get("effective") or {}
+            until = _iso_date(effective.get("to"))
+            if until is not None and until < today:
+                return True
+        return False
+
+    def _collect_web(
+        self,
+        question: str,
+        plan: Any,
+        citations: list[CitationModel],
+        answer: Any,
+        mode: str,
+    ) -> list[WebLeadModel]:
+        config = self._web_config_or_none()
+        if config is None or self.data_root is None:
+            return []
+        settings = config.settings
+        try:
+            provider = self._web_provider_for(settings)
+            result = web_v2.search_web(
+                question,
+                nature=plan.nature,
+                allowlist=config.allowlist,
+                provider=provider,
+                data_root=self.data_root,
+                mode=mode,
+                local_abstained=answer.abstained and answer.reason != "out_of_scope",
+                stale_evidence=self._stale_citations(citations),
+                max_results=int(settings.get("max_results") or 5),
+                max_evidences=int(settings.get("max_evidences") or 2),
+                site_hint=str(settings.get("site_hint") or ""),
+                spacing_seconds=float(settings.get("spacing_seconds") or 2.0),
+                max_bytes=int(settings.get("max_bytes") or 2_000_000),
+                snippet_chars=int(settings.get("snippet_chars") or 300),
+                cache_entries=int(settings.get("cache_entries") or 200),
+                user_agent=str(settings.get("user_agent") or "scs-fkb-web/1.0"),
+            )
+        except Exception:  # noqa: BLE001 - web is optional and degrades quietly
+            return []
+        return [
+            WebLeadModel(
+                url=item.url,
+                title=item.title or item.domain,
+                domain=item.domain,
+                publisher=item.publisher,
+                tier=item.authority_tier,
+                fetched_at=item.fetched_at,
+                snippet=item.snippet,
+                citation=web_v2.citation(item),
+                label=web_v2.LABEL,
+            )
+            for item in result.evidences
+        ]
+
     def query(
         self,
         question: str,
@@ -396,7 +511,7 @@ class AnswerService:
         persona: str = "general",
         region: str | None = None,
         year: int | None = None,
-        web: str = "off",  # retired channel; accepted for old callers and ignored
+        web: str | None = None,
     ) -> QueryResponse:
         started = time.perf_counter()
         request_id = f"REQ-{uuid.uuid4().hex[:12]}"
@@ -582,18 +697,38 @@ class AnswerService:
                     abstained=True,
                     reason=answer.reason,
                 )
-        mode = "clarify" if answer.reason == "clarify" else "abstain"
-        if not answer.abstained:
+        web_mode = web_v2.normalize_mode(
+            web if web is not None else os.environ.get("SCS_FKB_WEB", "off")
+        )
+        web_leads: list[WebLeadModel] = []
+        if web_mode != "off" and answer.reason != "clarify":
+            web_leads = self._collect_web(question, plan, citations, answer, web_mode)
+        used_web = bool(web_leads) and not answer.abstained
+        if answer.reason == "clarify":
+            mode = "clarify"
+        elif used_web:
+            mode = "kb_plus_web"
+        elif answer.abstained:
+            mode = "abstain"
+        else:
             mode = "kb_only"
         limit = int(os.environ.get("SCS_FKB_CITATION_LIMIT", "20"))
         display_citations, citations_total = _display_citations(citations, limit)
-        summary = _summary_of(contract_fields, display_citations, answer.text)
+        summary = _summary_of(
+            contract_fields,
+            display_citations,
+            answer.text,
+            web_leads=web_leads,
+            abstained=answer.abstained,
+        )
         return QueryResponse(
             request_id=request_id,
             answer=answer.text,
             summary=summary,
             citations_total=citations_total,
             citations=display_citations,
+            used_web=used_web,
+            web_leads=web_leads,
             abstained=answer.abstained,
             reason=answer.reason,
             mode=mode,

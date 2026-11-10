@@ -26,7 +26,7 @@ def _service(args: argparse.Namespace):
 
 
 def _ask(args: argparse.Namespace) -> int:
-    result = _service(args).query(args.question)
+    result = _service(args).query(args.question, web=getattr(args, "web", None))
     if args.json:
         payload = {
             "summary": result.summary,
@@ -34,6 +34,18 @@ def _ask(args: argparse.Namespace) -> int:
             "abstained": result.abstained,
             "mode": result.mode,
             "citations_total": result.citations_total,
+            "used_web": result.used_web,
+            "web_leads": [
+                {
+                    "url": item.url,
+                    "title": item.title,
+                    "domain": item.domain,
+                    "publisher": item.publisher,
+                    "fetched_at": item.fetched_at,
+                    "citation": item.citation,
+                }
+                for item in result.web_leads
+            ],
             "citations": [
                 {
                     "doc_id": item.doc_id,
@@ -91,6 +103,12 @@ def build_parser() -> argparse.ArgumentParser:
     ask.add_argument("question")
     ask.add_argument("--json", action="store_true", help="print a JSON payload")
     ask.add_argument("--full", action="store_true", help="print the full evidence text")
+    ask.add_argument(
+        "--web",
+        choices=["off", "auto", "on"],
+        default=None,
+        help="web evidence mode; default from SCS_FKB_WEB or off",
+    )
     ask.set_defaults(func=_ask)
 
     serve = sub.add_parser("serve", help="run the local HTTP service")

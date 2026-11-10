@@ -13,6 +13,7 @@ auth:
 limits:
   question_chars: 500
   top_k: 5
+  citations_displayed: 20
   web_results: 2
   feedback_chars: 1000
 endpoints:
@@ -25,15 +26,28 @@ endpoints:
   - {method: GET, path: /, purpose: server-rendered Web UI}
 query:
   request: [question, persona, region, year, web]
-  web_modes: [auto, on, off]
-  response: [request_id, answer, citations, abstained, reason, mode, used_web, playbook,
-             index_version, answerability, conclusion, conditions, gap, channel, as_of,
-             numbers, latency_ms, disclaimer]
-  modes: [kb_only, kb_plus_web, web_only, clarify, abstain]
+  web_modes: [off, auto, on]
+  web_default: off
+  response: [request_id, answer, summary, citations_total, citations, used_web, web_leads,
+             abstained, reason, mode, playbook, index_version, answerability, conclusion,
+             conditions, gap, channel, as_of, numbers, latency_ms, disclaimer]
+  modes: [kb_only, kb_plus_web, clarify, abstain]
 citations:
   corpus: "[doc_id p.N §section]"
-  web: "[WEB:domain:hash8] URL (抓取于 YYYY-MM-DD)"
+  web_lead: "[WEB:domain:hash8] URL (抓取于 YYYY-MM-DD)"
   web_label: 网络检索 · 未入知识库
+  note: Web leads are separate from citations and never support an abstention.
+web:
+  allowlist: configs/web-sources.yaml
+  transport: https-only
+  ttl_days: {warning: 7, status: 7, rule: 30, definition: 90, identification: 90,
+             statistics: 365, history: 365}
+  max_evidences: 2
+  max_bytes: 2000000
+  spacing_seconds: 2
+  cache: "<data_root>/web-cache"
+  auto_triggers: [freshness_cue, stale_evidence, canonical_abstained]
+  ingest: never-automatic
 feedback:
   storage: run_root/feedback.jsonl
   fields: [request_id, helpful, comment, question, created_at]
