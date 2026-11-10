@@ -1213,3 +1213,11 @@ This log records material project changes by date. It does not use release versi
 - Point accounting over the same answers: of 132 uncovered points, 88 carry a term that appears nowhere in the indexed corpus, 36 have their terms in the corpus but split across passages, 3 are rule checks and 5 have no expected document. The 23 document-map entries marked `missing` carry zero scored points, so the planned source-acquisition batch was cancelled rather than measured.
 - Short arm on the 60 public items: 11 valid short answers with the verifier on; 13/13 no-evidence rows abstain with a channel and misanswer 0 only when `SCS_FKB_VERIFY_ANSWERS=on`. Widening the service-side retrieval window from 8 to 20 changed nothing because the arm truncates its context at `MAX_HITS=8`; the change was reverted.
 - Added `scripts/eval_short_public.py` to reproduce the public short-arm numbers; the 512 instrument, doc map, protocol and thresholds are untouched.
+
+## 2026-11-10 — Short-answer failure attribution
+
+- Added an opt-in diagnostic (`SCS_FKB_SHORT_DIAG=<path>`): one content-free line per short-arm failure with the reason class, and `short_invalid` now reports every problem kind. Distribution over the 60 public items: `uncited` 26 of 41 failures, `too_long` 16, `citation_invalid` 5, empty completion 3.
+- Root cause: the citation check split rendered text on `；`, so a conclusion whose citation sits at the end of the line was read as an uncited sentence. The check now works per rendered line.
+- Overlong answers that pass everything else are truncated at the last sentence boundary inside the 300-character cap and re-validated.
+- Valid short answers on the public set: 10/60 → 13/60 (line-level check) → **16/60** (plus truncation), with citation resolution 1.0, every answer ≤300 characters and 13/13 abstention on the no-evidence rows. A 10-hit evidence window was measured at 12/60 and reverted.
+- The dump path, the 512 instrument, the document map, protocol v2 and the thresholds are untouched; no 512 run was needed.

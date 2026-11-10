@@ -446,3 +446,19 @@ def test_kb_feedback_rejects_an_unknown_item(tmp_path) -> None:
     )
     assert response.status_code == 400
     assert not (tmp_path / "feedback.jsonl").exists()
+
+
+def test_short_failure_diagnostic_is_opt_in(tmp_path, monkeypatch) -> None:
+    from scs_fkb.service_v2.answer import _record_short_failure
+
+    log = tmp_path / "diag.jsonl"
+    monkeypatch.delenv("SCS_FKB_SHORT_DIAG", raising=False)
+    _record_short_failure("short_invalid:uncited")
+    assert not log.exists()
+
+    monkeypatch.setenv("SCS_FKB_SHORT_DIAG", str(log))
+    _record_short_failure("short_invalid:uncited")
+    lines = log.read_text(encoding="utf-8").splitlines()
+    assert len(lines) == 1
+    assert "uncited" in lines[0]
+    assert "question" not in lines[0]

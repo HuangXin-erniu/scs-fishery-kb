@@ -104,3 +104,59 @@ def test_short_answer_rejects_a_missing_citation() -> None:
     )
     with pytest.raises(LLMError, match="short_invalid"):
         answer_with_short("休渔时间？", [_hit()], client, None)
+
+
+def test_line_with_a_trailing_citation_covers_its_clauses() -> None:
+    client = FakeClient(
+        [
+            {
+                "conclusion": (
+                    "休渔期豁免的是钓具作业；可申请专项捕捞许可 [POL-CLOS-015 §三、休渔时间]"
+                ),
+                "basis": ["自5月1日12时起执行 [POL-CLOS-015 §三、休渔时间]"],
+                "deadline": "",
+                "documents": [],
+                "caveat": "",
+            }
+        ]
+    )
+    answer = answer_with_short("休渔时间？", [_hit()], client, None)
+    assert "钓具作业" in answer.text
+
+
+def test_line_without_any_citation_still_fails() -> None:
+    client = FakeClient(
+        [
+            {
+                "conclusion": "休渔到8月16日 [POL-CLOS-015 §三、休渔时间]",
+                "basis": ["南海区休渔时间由省级公告确定。"],
+                "deadline": "",
+                "documents": [],
+                "caveat": "",
+            },
+            {
+                "conclusion": "休渔到8月16日 [POL-CLOS-015 §三、休渔时间]",
+                "basis": ["南海区休渔时间由省级公告确定。"],
+                "deadline": "",
+                "documents": [],
+                "caveat": "",
+            },
+        ]
+    )
+    with pytest.raises(LLMError, match="short_invalid"):
+        answer_with_short("休渔时间？", [_hit()], client, None)
+
+
+def test_too_long_answer_is_truncated_at_a_sentence_boundary() -> None:
+    long_basis = "。" + "南海区休渔时间为5月1日12时至8月16日12时 [POL-CLOS-015 §三、休渔时间]" * 8
+    reply = {
+        "conclusion": "休渔到8月16日 [POL-CLOS-015 §三、休渔时间]",
+        "basis": [long_basis],
+        "deadline": "",
+        "documents": [],
+        "caveat": "",
+    }
+    client = FakeClient([reply, reply])
+    answer = answer_with_short("休渔时间？", [_hit()], client, None)
+    assert len(answer.text) <= MAX_ANSWER_CHARS
+    assert answer.citations
