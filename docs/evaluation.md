@@ -903,7 +903,8 @@ Final 512 run with the shipped default (no mode overrides; index `395f8cb097d1`,
 
 The final run uses the shipped defaults only: `SCS_FKB_ANSWER_MODE=dump`, depth 300,
 block quoting, 300 hits / 300,000 characters, numeric rendering on, protocol v2 from
-`configs/eval-accept.yaml`. Index `ce3eeaf4c9b2`, 67 documents, 2,797 chunks.
+`configs/eval-accept.yaml`. The window was later trimmed to 100,000 characters; see
+section 29 for the shipped baseline. Index `ce3eeaf4c9b2`, 67 documents, 2,797 chunks.
 
 | Line | Value | Target | Status |
 |---|---:|---:|---|
@@ -950,3 +951,29 @@ block quoting, 300 hits / 300,000 characters, numeric rendering on, protocol v2 
   v1 baseline stays in section 24.
 - Reproduction: `scripts/eval_accept.py --answers-out ...` then
   `scripts/audit_protocol_v2.py --answers ...`.
+
+
+### 29. Shipped 100k evidence cap (2026-11-10)
+
+> **中文摘要**：300k 窗口下平均答案 129,337 字符；把证据上限降到 100k 后，平均 101,846 字符
+> （P95 104,244），六线 0.8092 / 0.9565 / 0.9412 / 0.0000 / 1.0000 / 0.9474 仍全过。
+> 摘要同时做了数值去重，API 对 >1KB 响应启用 gzip。协议 v2 与阈值冻结。
+
+- Default: dump arm, depth 300, 300 hits, **100,000 characters**, numeric rendering on,
+  protocol v2.
+- Run: `P15-EFF-199/cap100`, 67 documents / 2,797 chunks.
+
+| Line | 300k arm (§27) | 100k arm | Target |
+|---|---:|---:|---:|
+| Point coverage | 0.8129 | **0.8092** | 0.80 |
+| Citation accuracy | 0.9588 | **0.9565** | 0.90 |
+| Basis accuracy | 0.9412 | **0.9412** | 0.85 |
+| Misanswer | 0.0000 | 0.0000 | ≤0.10 |
+| Refusal-with-channel | 1.0000 | 1.0000 | ≥0.90 |
+| As-of declaration | 0.9474 | 0.9474 | ≥0.90 |
+
+- Mean answer 129,337 → 101,846 characters (−21%); P95 170,316 → 104,244; latency
+  P95 1,460 → 1,467 ms.
+- The summary numeric line now deduplicates value+unit pairs; the API compresses
+  responses above 1KB with gzip.
+- Coverage margin is 0.92 pp; the next corpus batch is intended to widen it.
