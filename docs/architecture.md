@@ -124,6 +124,9 @@ PYTHONPATH=src python -m scs_fkb serve
 - The CLI was reduced to `ask`, `serve` and `check`; the v1
   ingest/evaluate/statistics/reference/knowledge/FAQ modules and the 48-question
   and v2 evaluation sets were removed in the v1 cleanup.
+- The dense index is written per version under `v2/index/versions/<id>/` and
+  switched by an atomic `v2/index/current.json`; the previous version stays for
+  rollback and the manifest records the code commit and configuration hashes.
 - The watch and candidate tooling returned as library modules plus
   `scripts/check_sources.py`, `scripts/watch_sources.py` and
   `scripts/weekly_report.py`, so the CLI stays small and the weekly cycle is

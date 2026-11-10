@@ -14,6 +14,7 @@
 | [Data policy](data-policy.md) | What is published, what stays local, and how sensitivity is handled |
 | [Operations](operations.md) | Weekly read-only checks, source admission and rollback |
 | [RAG standard](rag-standard.md) | RAG construction standard and web-evidence rules |
+| [RAG conformance](rag-conformance.md) | Per-section implementation status and remaining gaps |
 | [Project log](project-log.md) | Dated record of material project changes |
 | [Corpus register](../configs/corpus.yaml) | Machine-readable source register |
 | [Pipeline configuration](../configs/pipeline.yaml) | Documents, chunking, retrieval and answer parameters for the local prototype |
