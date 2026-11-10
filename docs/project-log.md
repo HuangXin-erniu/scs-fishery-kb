@@ -1151,3 +1151,9 @@ This log records material project changes by date. It does not use release versi
 - Unhandled exceptions now return `{"error": {"code": "internal_error", ...}}`; OpenAPI shows a query example.
 - Removed the stale "web supplementation" line from the index page; the service is local-only.
 - Smoke: the demo returns the 休渔 summary, 20 citations and the full evidence; `/metrics` counts the requests.
+
+## 2026-11-10 — Phase close: demo shipped, baseline unchanged
+
+- The local `/demo` page, `/metrics`, unified JSON errors and OpenAPI examples are shipped; smoke returns the 休渔 summary with evidence and metrics counts requests.
+- Coverage experiments were reverted (depth 400 and numeric-first packing: no margin gain), so the shipped baseline stays at coverage 0.8092, citation 0.9565, basis 0.9412, mean answer 101,846 characters.
+- Announcement draft updated for owner confirmation; nothing published; 0 tags / 0 releases.
