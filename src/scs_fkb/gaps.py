@@ -48,6 +48,7 @@ def collect_gaps(run_root: Path | str | None, *, days: int = 30) -> dict[str, An
             "queries": {"total": 0, "abstained": 0},
             "reasons": {},
             "top_questions": [],
+            "kb": {"total": 0, "unhelpful": 0, "top_items": []},
             "note": "run root is unset",
         }
     root = Path(run_root).expanduser().resolve()
@@ -55,6 +56,9 @@ def collect_gaps(run_root: Path | str | None, *, days: int = 30) -> dict[str, An
 
     feedback_rows = _rows(root / "feedback.jsonl")
     unhelpful = [row for row in feedback_rows if row.get("helpful") is False]
+    kb_rows = [row for row in feedback_rows if row.get("source") == "kb"]
+    kb_unhelpful = [row for row in kb_rows if row.get("helpful") is False]
+    kb_items = Counter(str(row.get("item_id") or "") for row in kb_unhelpful if row.get("item_id"))
 
     query_rows: list[dict[str, Any]] = []
     queries_dir = root / "queries"
@@ -89,6 +93,13 @@ def collect_gaps(run_root: Path | str | None, *, days: int = 30) -> dict[str, An
         "queries": {"total": len(query_rows), "abstained": len(abstained)},
         "reasons": dict(sorted(reasons.items())),
         "top_questions": top,
+        "kb": {
+            "total": len(kb_rows),
+            "unhelpful": len(kb_unhelpful),
+            "top_items": [
+                {"item_id": item, "count": count} for item, count in kb_items.most_common(5)
+            ],
+        },
     }
 
 

@@ -411,3 +411,38 @@ def test_query_request_accepts_short_and_rerank() -> None:
     payload = QueryRequest(question="休渔时间", short=True, rerank=True)
     assert payload.short is True
     assert payload.rerank is True
+
+
+def test_kb_feedback_is_stored_locally(tmp_path) -> None:
+    import json
+
+    client = TestClient(create_app(_service(), run_root=tmp_path))
+    response = client.post(
+        "/kb/feedback",
+        data={
+            "item_id": "PLAY-CAPTAIN-001",
+            "kind": "playbook",
+            "helpful": "0",
+            "comment": "期限不清楚",
+            "next_path": "/kb#tasks",
+        },
+        follow_redirects=False,
+    )
+    assert response.status_code == 303
+    assert response.headers["location"].startswith("/kb")
+    rows = (tmp_path / "feedback.jsonl").read_text(encoding="utf-8").splitlines()
+    row = json.loads(rows[0])
+    assert row["source"] == "kb"
+    assert row["item_id"] == "PLAY-CAPTAIN-001"
+    assert row["helpful"] is False
+    assert row["comment"] == "期限不清楚"
+
+
+def test_kb_feedback_rejects_an_unknown_item(tmp_path) -> None:
+    client = TestClient(create_app(_service(), run_root=tmp_path))
+    response = client.post(
+        "/kb/feedback",
+        data={"item_id": "bad id!", "kind": "playbook", "helpful": "1"},
+    )
+    assert response.status_code == 400
+    assert not (tmp_path / "feedback.jsonl").exists()

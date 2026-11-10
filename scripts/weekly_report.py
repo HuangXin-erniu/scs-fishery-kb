@@ -205,6 +205,13 @@ def main(argv: list[str] | None = None) -> int:
         )
     for row in gaps["top_questions"]:
         lines.append(f"- repeated: {row['question']} ({row['count']})")
+    kb = gaps.get("kb") or {}
+    lines.append(
+        f"- Knowledge-station feedback: {kb.get('total', 0)} votes; "
+        f"unhelpful: {kb.get('unhelpful', 0)}"
+    )
+    for row in kb.get("top_items") or []:
+        lines.append(f"- unhelpful item: {row['item_id']} ({row['count']})")
     if not gaps["queries"]["total"]:
         lines.append("- Query log is off by default; set `SCS_FKB_LOG_QUERIES=on` to populate it.")
     lines.append("")
