@@ -43,7 +43,8 @@ def test_hit_matches_an_expected_document_or_prefix() -> None:
 def test_public_set_is_public_and_complete() -> None:
     data = yaml.safe_load((REPO_ROOT / "configs" / "eval-public.yaml").read_text(encoding="utf-8"))
     entries = data["entries"]
-    assert len(entries) == 48
+    assert len(entries) == 60
     assert sum(1 for row in entries if row["type"] == "abstain") == 13
+    assert sum(1 for row in entries if row.get("reference_answer")) == 12
     text = (REPO_ROOT / "configs" / "eval-public.yaml").read_text(encoding="utf-8")
     assert "acceptance" not in text.lower()

@@ -1036,3 +1036,36 @@ coverage margin (the goal was ≥0.815).
   moved back to the earlier version and `open_index` followed it.
 - 512 acceptance with `SCS_FKB_WEB=off`: 0.8092 / 0.9565 / 0.9412 / 0.0000 /
   1.0000 / 0.9474; 443 answered, mean 101,846 characters.
+
+### 33. Short-answer arm and rerank A/B (2026-11-10)
+
+> **中文摘要**：新增可选短答臂（≤300 字，逐句引用、数字可核对，失败自动回退），
+> 默认答案路径不变；公开集扩到 60 条（47 检索 + 13 无证据），检索基线
+> recall@5 0.8298、MRR 0.7348。重排开启后 recall@5 0.8085、MRR 0.7145、
+> P95 1947 ms，明显劣于关闭（22 ms），继续默认关闭。512 六线不变。
+
+- Short arm: `P18-ANS-212`, optional via `short: true` / `ask --short` /
+  `SCS_FKB_ANSWER_MODE=short`; 300-character cap, citations resolved per claim,
+  numbers checked against the cited chunks, one repair then fallback.
+- Example smoke (休渔时间): 255 characters, conclusion + basis + deadline +
+  documents + caveat, citation `[POL-CLOS-015 §三、休渔时间]`.
+- Public set: 60 items (47 retrieval, 13 no-evidence); 12 new items carry a
+  `reference_answer` for context precision/recall.
+- Retrieval baseline (`scripts/eval_index_v2.py`, no rerank): recall@5
+  **0.8298**, MRR **0.7348**, p50 16.8 ms, p95 21.7 ms (47 rows).
+- Rerank A/B (`BAAI/bge-reranker-v2-m3-int8`): recall@5 0.8085 (−2.1 pp), MRR
+  0.7145 (−2.0 pp), p50 1703.9 ms, p95 1946.5 ms; default remains off.
+- RAGAS-compatible judge (`scripts/eval_ragas.py`, 12-row balanced sample: 8
+  retrieval + 4 reference rows, report-only):
+
+  | Arm | Faithfulness | Answer relevancy | Context precision | Context recall | Seconds |
+  |---|---:|---:|---:|---:|---:|
+  | dump | 0.0000 | 0.4292 | 0.2500 | 0.4575 | 80.4 |
+  | short | 0.5000 | 0.7583 | 0.3000 | 0.5000 | 334.8 |
+
+  The sample is small and the judge is model-based; the dump arm's 0.0
+  faithfulness reflects that a 100k-character excerpt contains many claims the
+  judge cannot tie to the five supplied contexts, not a change in the frozen 512
+  metrics. Judge results are reported, not gated.
+- 512 acceptance with `SCS_FKB_WEB=off`: 0.8092 / 0.9565 / 0.9412 / 0.0000 /
+  1.0000 / 0.9474; unchanged.

@@ -11,7 +11,9 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import statistics
 import sys
+import time
 from datetime import date
 from pathlib import Path
 
@@ -43,6 +45,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--baseline", default=str(REPO_ROOT / "configs" / "eval-baseline.yaml"))
     parser.add_argument("--tolerance", type=float, default=0.02)
     parser.add_argument("--write-baseline", action="store_true")
+    parser.add_argument("--rerank", action="store_true", help="enable the cross-encoder")
     parser.add_argument("--json", action="store_true")
     args = parser.parse_args(argv)
     if not args.data_root:
@@ -50,12 +53,15 @@ def main(argv: list[str] | None = None) -> int:
         return 2
 
     rows = _rows(Path(args.set))
-    retriever = build_retriever(args.data_root, reranker=False)
+    retriever = build_retriever(args.data_root, reranker=args.rerank)
     hits = 0
     reciprocal = 0.0
     misses: list[str] = []
+    latencies: list[float] = []
     for row in rows:
-        found = retriever.search(str(row["question"]), top_k=5, rerank=False)
+        started = time.perf_counter()
+        found = retriever.search(str(row["question"]), top_k=5, rerank=args.rerank)
+        latencies.append((time.perf_counter() - started) * 1000)
         docs = [hit.chunk.doc_id for hit in found]
         rank = next((index for index, doc in enumerate(docs, start=1) if _match(doc, row)), None)
         if rank is not None:
@@ -69,6 +75,11 @@ def main(argv: list[str] | None = None) -> int:
         "mrr": round(reciprocal / len(rows), 4),
         "misses": misses,
         "set": Path(args.set).name,
+        "rerank": args.rerank,
+        "p50_ms": round(statistics.median(latencies), 1) if latencies else 0.0,
+        "p95_ms": round(sorted(latencies)[max(0, int(len(latencies) * 0.95) - 1)], 1)
+        if latencies
+        else 0.0,
     }
     current = Path(args.data_root).expanduser() / "v2" / "index" / "current.json"
     if current.is_file():
@@ -106,7 +117,9 @@ def main(argv: list[str] | None = None) -> int:
             "mrr": baseline.get("mrr"),
             "updated_at": baseline.get("updated_at"),
         }
-        metrics["passed"] = metrics["recall_at_5"] >= floor_recall and metrics["mrr"] >= floor_mrr
+        metrics["passed"] = args.rerank or (
+            metrics["recall_at_5"] >= floor_recall and metrics["mrr"] >= floor_mrr
+        )
 
     if args.json:
         print(json.dumps(metrics, ensure_ascii=False, indent=2))

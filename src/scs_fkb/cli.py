@@ -26,7 +26,11 @@ def _service(args: argparse.Namespace):
 
 
 def _ask(args: argparse.Namespace) -> int:
-    result = _service(args).query(args.question, web=getattr(args, "web", None))
+    result = _service(args).query(
+        args.question,
+        web=getattr(args, "web", None),
+        short=getattr(args, "short", False),
+    )
     if args.json:
         payload = {
             "summary": result.summary,
@@ -103,6 +107,7 @@ def build_parser() -> argparse.ArgumentParser:
     ask.add_argument("question")
     ask.add_argument("--json", action="store_true", help="print a JSON payload")
     ask.add_argument("--full", action="store_true", help="print the full evidence text")
+    ask.add_argument("--short", action="store_true", help="use the short-answer arm")
     ask.add_argument(
         "--web",
         choices=["off", "auto", "on"],

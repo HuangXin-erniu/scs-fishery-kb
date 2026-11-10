@@ -33,13 +33,21 @@ Request:
   "persona": "captain",
   "region": "guangdong",
   "year": 2026,
-  "web": "auto"
+  "web": "auto",
+  "short": false,
+  "rerank": null
 }
 ```
 
 `persona` is one of `captain`, `owner`, `enforcement`, `extension`, `general`.
 `region` and `year` are optional filters. The question is limited to 500
 characters.
+
+`short` selects the optional short-answer arm (at most 300 Chinese characters,
+conclusion → basis → deadline/documents, every claim cited). It defaults to
+false; a failed validation falls back to the deterministic path. `rerank` is
+`true`, `false` or `null` (use `SCS_FKB_RERANK`, default off) and enables the
+cross-encoder for this request.
 
 `web` is `off` (default), `auto` or `on`. `off` performs no network call and is
 the only mode used by the acceptance instrument. `on` always queries the
