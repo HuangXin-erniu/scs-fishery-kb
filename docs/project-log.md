@@ -1123,3 +1123,10 @@ This log records material project changes by date. It does not use release versi
 - 512: coverage 0.8129 → 0.8092, citation 0.9588 → 0.9565, basis 0.9412, misanswer 0.0000, channel 1.0000, as-of 0.9474; all six pass.
 - Mean answer 129,337 → 101,846 characters (−21%); P95 170,316 → 104,244; latency P95 1.47 s.
 - Summary and numbers line deduplicate value+unit pairs; FastAPI compresses responses above 1KB with gzip.
+
+## 2026-11-10 — Corpus gap audit: no new batch
+
+- The 2024 ecological bulletin is already indexed as `STAT-ECO-111` (same sha256); the attempted duplicate was removed. The criminal law (`POL-LAW-116`) and the sea-turtle action plan (`POL-TURTLE-113`) are also already indexed.
+- No official published text exists for the 30 m inspection rule (drafts only), the 38/155 mm mesh values, the remote-sensing product note, the safety regulation (2022 seminar draft) or the marine-heatwave standard (still under review).
+- The binding constraint is the private doc map: several rows map to `docs: []` even though an indexed document exists, so new copies cannot move citation. Doc-map edits are an instrument change and the frozen protocol forbids them.
+- No batch kept; index unchanged at `ce3eeaf4c9b2` (67 documents / 2,797 chunks).
