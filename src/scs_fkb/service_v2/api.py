@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import tempfile
 import time
 from datetime import UTC, datetime
@@ -9,7 +10,7 @@ from pathlib import Path
 
 from fastapi import Depends, FastAPI, Form, Header, HTTPException, Request
 from fastapi.middleware.gzip import GZipMiddleware
-from fastapi.responses import HTMLResponse, JSONResponse
+from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
 
 from ..kb_v2 import build_numbers, build_updates, load_faq, load_terms_plain, search_faq
@@ -302,6 +303,30 @@ def create_app(
             name="kb_playbook.html",
             context={"playbook": playbook, "persona": playbook.get("persona") or "general"},
         )
+
+    @app.post("/kb/feedback")
+    def kb_feedback(
+        item_id: str = Form(...),
+        kind: str = Form(...),
+        helpful: str = Form(...),
+        comment: str = Form(""),
+        next_path: str = Form("/kb"),
+    ) -> RedirectResponse:
+        if not re.fullmatch(r"[A-Za-z0-9-]{3,40}", item_id) or kind not in {"playbook", "faq"}:
+            raise HTTPException(status_code=400, detail="invalid feedback item")
+        target = next_path if next_path.startswith("/kb") else "/kb"
+        flag = helpful.strip().lower() in {"1", "true", "yes", "on"}
+        row = {
+            "created_at": datetime.now(UTC).replace(microsecond=0).isoformat(),
+            "source": "kb",
+            "item_id": item_id,
+            "kind": kind,
+            "helpful": flag,
+            "comment": comment.strip()[:200],
+        }
+        with _feedback_path(app.state.run_root).open("a", encoding="utf-8") as handle:
+            handle.write(json.dumps(row, ensure_ascii=False) + "\n")
+        return RedirectResponse(url=f"{target}?feedback=ok", status_code=303)
 
     @app.get("/", response_class=HTMLResponse)
     def index(request: Request) -> HTMLResponse:

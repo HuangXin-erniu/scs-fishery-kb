@@ -2,6 +2,7 @@
 {% set page_title = "渔业知识站" %}
 {% include "_kb_head.html" %}
 <h1>给船上和岸上用的知识站</h1>
+{% if request.query_params.get("feedback") == "ok" %}<p><span class="badge">已记录，谢谢</span></p>{% endif %}
 <p class="lead">按“怎么办 → 常见问答 → 术语 → 数值 → 最近更新”组织。每条都能点回登记的官方文本；查不到就不编。</p>
 
 <form class="filter" method="get" action="/kb">
@@ -24,6 +25,14 @@
 <h3><a href="/kb/playbooks/{{ item.id }}">{{ item.title }}</a></h3>
 <p class="lead" style="margin:0 0 8px">{{ item.steps[0].action if item.steps else "" }}</p>
 <small class="muted">{{ item.steps|length }} 步 · {{ item.documents|length }} 份材料 · {{ item.sources|length }} 个依据</small>
+<form class="fb" method="post" action="/kb/feedback">
+<input type="hidden" name="item_id" value="{{ item.id }}">
+<input type="hidden" name="kind" value="playbook">
+<input type="hidden" name="next_path" value="/kb#tasks">
+<button name="helpful" value="1">有用</button>
+<button name="helpful" value="0">没用</button>
+<input name="comment" maxlength="200" placeholder="可选：一句话">
+</form>
 </div>
 {% endfor %}
 </div>
@@ -39,6 +48,14 @@
 {% for cite in item.citations %}
 <div class="src">依据：[{{ cite.doc }}{% if cite.section %} §{{ cite.section }}{% endif %}]</div>
 {% endfor %}
+<form class="fb" method="post" action="/kb/feedback">
+<input type="hidden" name="item_id" value="{{ item.id }}">
+<input type="hidden" name="kind" value="faq">
+<input type="hidden" name="next_path" value="/kb#faq">
+<button name="helpful" value="1">有用</button>
+<button name="helpful" value="0">没用</button>
+<input name="comment" maxlength="200" placeholder="可选：一句话">
+</form>
 </details>
 {% else %}
 <p class="muted">没有匹配的问答，换个关键词试试。</p>

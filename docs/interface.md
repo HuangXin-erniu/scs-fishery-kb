@@ -151,10 +151,13 @@ mobile-first:
 |---|---|
 | `/kb` | Task cards (approved playbooks), sourced FAQ, plain terms, numeric quick reference and what-changed, with `persona` and `q` filters |
 | `/kb/playbooks/{id}` | One task card: steps, documents, deadlines, penalties and sources |
+| `POST /kb/feedback` | Local vote on a task card or FAQ: `item_id`, `kind`, `helpful`, optional `comment` |
 
 Every displayed item names its document and section. These routes are
 presentation only: they do not change `/v1/query`, the answer text or the
-abstention decision.
+abstention decision. `/kb/feedback` appends one row to
+`$SCS_FKB_RUN_ROOT/feedback.jsonl` with `source: "kb"` and redirects back to
+`/kb`; it never stores an answer or citation.
 
 ## 6. Feedback
 

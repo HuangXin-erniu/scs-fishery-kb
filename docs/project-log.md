@@ -1195,3 +1195,9 @@ This log records material project changes by date. It does not use release versi
 - Rerank A/B: recall@5 0.8298 → 0.8085, MRR 0.7348 → 0.7145, p95 22 → 1947 ms; kept off by default.
 - RAGAS-compatible judge on a 12-row balanced sample: dump 0.0000/0.4292 vs short 0.5000/0.7583 (faithfulness/relevancy); report-only.
 - 512 six lines unchanged at 0.8092 / 0.9565 / 0.9412 / 0.0000 / 1.0000 / 0.9474.
+
+## 2026-11-10 — /kb feedback entry
+
+- Task cards and FAQ entries now carry a local "useful / not useful" vote plus an optional one-line comment; `POST /kb/feedback` appends `source: "kb"`, `item_id`, `kind`, `helpful` and `comment` to the run root and redirects back.
+- `collect_gaps` and the weekly report count knowledge-station votes and unhelpful items; no answer or citation is stored.
+- Presentation-only: `/v1/query`, the answer path and the 512 instrument are untouched.

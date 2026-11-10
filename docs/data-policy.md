@@ -78,6 +78,9 @@ A source with `license: unknown` or `sensitivity: unknown` is held. It must not 
   ingests a page automatically.
 - Questions are not logged by this layer. The service records only request
   counters and latency in `/metrics`.
+- `/kb` feedback is stored locally in `$SCS_FKB_RUN_ROOT/feedback.jsonl` with an
+  item id, a yes/no vote and an optional one-line comment. It never contains an
+  answer, citation, user identity or contact detail.
 
 ## 7. Run artifacts and state
 

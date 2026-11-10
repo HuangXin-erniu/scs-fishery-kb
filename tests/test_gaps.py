@@ -44,7 +44,26 @@ def test_collect_gaps_reads_feedback_and_query_logs(tmp_path: Path) -> None:
         encoding="utf-8",
     )
     (tmp_path / "feedback.jsonl").write_text(
-        json.dumps({"question": "休渔时间", "helpful": False}, ensure_ascii=False) + "\n",
+        "\n".join(
+            [
+                json.dumps({"question": "休渔时间", "helpful": False}, ensure_ascii=False),
+                json.dumps(
+                    {
+                        "source": "kb",
+                        "item_id": "FAQ-001",
+                        "kind": "faq",
+                        "helpful": False,
+                        "comment": "太短",
+                    },
+                    ensure_ascii=False,
+                ),
+                json.dumps(
+                    {"source": "kb", "item_id": "FAQ-001", "kind": "faq", "helpful": True},
+                    ensure_ascii=False,
+                ),
+            ]
+        )
+        + "\n",
         encoding="utf-8",
     )
 
@@ -52,7 +71,10 @@ def test_collect_gaps_reads_feedback_and_query_logs(tmp_path: Path) -> None:
     assert gaps["queries"]["total"] == 3
     assert gaps["queries"]["abstained"] == 2
     assert gaps["reasons"]["weak_evidence"] == 2
-    assert gaps["feedback"] == {"total": 1, "unhelpful": 1}
+    assert gaps["feedback"] == {"total": 3, "unhelpful": 2}
+    assert gaps["kb"]["total"] == 2
+    assert gaps["kb"]["unhelpful"] == 1
+    assert gaps["kb"]["top_items"] == [{"item_id": "FAQ-001", "count": 1}]
     assert gaps["top_questions"][0] == {"question": "某渔场历史渔汛？", "count": 2}
 
 
