@@ -115,6 +115,15 @@ legacy fields, but it must not silently change an id, hash or licence.
 - **Atomic build:** write to a new version, validate counts and a smoke query,
   then switch the `current` pointer. Keep the previous version for rollback.
 
+**Implementation status (2026-11-10).** Every build writes an immutable
+`v2/index/versions/<index_version>/lancedb` table and its manifest, then switches
+`v2/index/current.json` with a temporary file and an atomic rename. The previous
+version is kept for `scripts/build_index_v2.py --rollback`; `--prune` keeps the
+last two. The manifest records `code_commit`, `pipeline_config_sha256`,
+`embedding {model, dim, normalize}`, `bm25 {tokenizer, k1, b}`, `reranker: null`,
+the counts, `chunk_digest` and `snapshot_manifest_sha256`. The reader follows the
+pointer and falls back to the legacy `v2/index/lancedb` path for older data roots.
+
 The index must not contain data that the public tree may not contain. Indexes
 live under the local data root and are never committed.
 
@@ -206,6 +215,10 @@ draft is produced for the candidate queue instead of writing the register.
   is authoritative; a model judge is supporting evidence.
 - A regression gate compares the candidate index/answer path with the previous
   accepted baseline. A key metric drop above the agreed threshold blocks merge.
+  The shipped gate is `scripts/eval_index_v2.py` (public set, Recall@5/MRR,
+  `configs/eval-baseline.yaml`); the private 512 run remains the acceptance
+  measure. RAGAS-style model-judged metrics are documented as `partial` in
+  [rag-conformance.md](rag-conformance.md) and are not a merge gate.
 - No evaluation question, gold answer or real-user question is copied into the
   FAQ, playbook or corpus content.
 

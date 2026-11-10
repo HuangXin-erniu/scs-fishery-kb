@@ -1180,3 +1180,10 @@ This log records material project changes by date. It does not use release versi
 - Added `/kb` with five sections: task cards from approved playbooks, a sourced FAQ (16 entries), plain terms (26), a numeric quick reference generated from approved facts, and what-changed from registry dates; persona and keyword filters included.
 - Added `scripts/check_kb.py` (quote and citation resolution against indexed chunks) and `configs/eval-public.yaml` + `scripts/eval_public.py` (48 public samples; recall@5 0.8571, citation resolution 1.0000, playbook 15/15, FAQ 16/16, terms 26/26, numbers 15/15; no private instrument).
 - The answer path is unchanged: `/kb` is presentation-only, so the 512 baseline stays at 0.8092 / 0.9565 / 0.9412.
+
+## 2026-11-10 — Versioned index and RAG conformance
+
+- Index builds now write `v2/index/versions/<id>/lancedb`, switch `v2/index/current.json` atomically and keep the previous version; `build_index_v2 --rollback/--prune` manage it.
+- The version manifest records `code_commit`, `pipeline_config_sha256`, embedding normalization, BM25 parameters and `reranker: null`; the reader follows the pointer with a legacy fallback.
+- Added `docs/rag-conformance.md` (12-section matrix) and `scripts/check_rag_conformance.py`; added `scripts/eval_index_v2.py` as a public Recall@5/MRR gate against `configs/eval-baseline.yaml` (0.80 / 0.7295 on 35 retrieval rows).
+- Rebuilt the real index (2,797 chunks, 464 s); the service opens the versioned table and the 512 six lines are unchanged.

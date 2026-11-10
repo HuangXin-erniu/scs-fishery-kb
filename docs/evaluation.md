@@ -1017,3 +1017,22 @@ coverage margin (the goal was ≥0.815).
   number is reported as a diagnostic; the frozen 512 instrument remains the
   acceptance measure.
 - Reproduction: `PYTHONPATH=src python scripts/eval_public.py --data-root <dir>`.
+
+### 32. Versioned index and retrieval gate (2026-11-10)
+
+> **中文摘要**：索引改为按版本写入 `v2/index/versions/<id>/`，`current.json` 原子切换，
+> 保留上一版并可回滚；manifest 补齐代码提交、配置哈希、embedding 归一化、BM25 参数与
+> reranker 字段。公开检索门：recall@5 0.8000、MRR 0.7295（35 条），与基线一致；
+> 512 六线不变。
+
+- Index: `ce3eeaf4c9b2`, 2,797 chunks / 67 documents, full rebuild 464 s, pointer
+  `v2/index/current.json` → `versions/ce3eeaf4c9b2/lancedb`.
+- Manifest: schema 2 with `code_commit`, `pipeline_config_sha256`,
+  `embedding {model, dim, normalize}`, `bm25 {tokenizer, k1, b}`, `reranker: null`.
+- Retrieval gate: `scripts/eval_index_v2.py` on `configs/eval-public.yaml`
+  (35 retrieval rows), baseline `configs/eval-baseline.yaml`:
+  Recall@5 **0.8000**, MRR **0.7295**; gate passes within the 0.02 tolerance.
+- Rollback: demonstrated on a temporary data root with two versions; the pointer
+  moved back to the earlier version and `open_index` followed it.
+- 512 acceptance with `SCS_FKB_WEB=off`: 0.8092 / 0.9565 / 0.9412 / 0.0000 /
+  1.0000 / 0.9474; 443 answered, mean 101,846 characters.
