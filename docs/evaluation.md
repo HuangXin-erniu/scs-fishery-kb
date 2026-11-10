@@ -1069,3 +1069,90 @@ coverage margin (the goal was ≥0.815).
   metrics. Judge results are reported, not gated.
 - 512 acceptance with `SCS_FKB_WEB=off`: 0.8092 / 0.9565 / 0.9412 / 0.0000 /
   1.0000 / 0.9474; unchanged.
+
+
+### 34. Coverage gap accounting and the short-answer arm (2026-11-10)
+
+> **中文摘要**：复跑 512 证实口径必须带 `--llm-answerability 可答,部分可答`；漏掉时 70 道
+> 应拒答题会走 LLM 臂，引用与时效分母被改写（0.9526 / 1.0000）。点级归因显示 727 个可判点中
+> 132 个未覆盖：88 个的术语在整个语料中不存在，36 个术语存在但跨段落，3 个规则类，5 个无期望
+> 文档。doc-map 里 23 个缺失文档对应 **0 个计分点**，因此补文档不能明显抬升覆盖线。短答在
+> 公开集 60 条上只有 11 条产出有效短答；开启 `SCS_FKB_VERIFY_ANSWERS=on` 后 13 条无证据题
+> 全部弃答、误答 0。把服务层证据窗从 8 提到 20 是空操作，因为短答上下文由 `MAX_HITS=8`
+> 截断；实测结果相同，改动未保留。
+
+#### Acceptance invocation
+
+The shipped 512 run needs the scoped LLM arm:
+
+```bash
+SCS_FKB_VERIFY_ANSWERS=on SCS_FKB_WEB=off PYTHONPATH=src \
+  python scripts/eval_accept.py --llm --llm-arm dump \
+  --llm-answerability 可答,部分可答 --llm-workers 6 --answers-out <run>/answers.jsonl
+```
+
+| Run | Answered | Coverage | Citation | As-of |
+|---|---:|---:|---:|---:|
+| scoped (`可答,部分可答`) | 443 | 0.8092 | 0.9565 | 0.9474 |
+| unscoped (all 512 through the LLM arm) | 501 | 0.8092 | 0.9526 | 1.0000 |
+
+With an empty scope the 70 应拒答 rows are answered by the LLM arm with a refusal
+text that carries a channel, so they stop abstaining: the six lines still pass but
+the citation and as-of denominators are no longer the frozen protocol's. The
+scoped invocation reproduces 0.8092 / 0.9565 / 0.9412 / 0.0000 / 1.0000 / 0.9474.
+
+#### Point accounting
+
+Re-scoring the same answers with the scoring rules, then checking every point's
+terms against the whole indexed corpus and the document map:
+
+| Expected source | Term reachability | Covered | Miss |
+|---|---|---:|---:|
+| indexed | terms present in corpus | 417 | 36 |
+| indexed | terms partly present | 8 | 9 |
+| indexed | terms absent from corpus | 2 | 79 |
+| indexed | rule-based check | 151 | 3 |
+| no expected document | terms present | 11 | 2 |
+| no expected document | terms absent | 0 | 3 |
+
+- 132 uncovered points. 88 of them carry a term that appears nowhere in the
+  indexed text (79 fully absent, 9 partial), so no retrieval or citation change
+  can cover them; only text repeating the exact phrase can.
+- 36 uncovered points do have their terms in the corpus. In a sample of 38
+  records, 31 already cite the expected document; the two terms sit in different
+  passages and the section-level match cannot join them.
+- The 23 document-map entries marked `missing` carry **zero** of the 727 scored
+  points: their anchor points belong to 应拒答 rows outside the coverage
+  denominator. A new-source batch therefore cannot move the coverage line, which
+  is why the planned acquisition was cancelled after measurement.
+
+#### Short-answer arm on the public set
+
+60 public items, `short=True`, dump stays the default:
+
+| Metric | Verifier off | Verifier on |
+|---|---:|---:|
+| Valid short answers | 12/60 | 11/60 |
+| Mean characters when valid | 236.2 | 223.9 |
+| Citation resolution among valid | — | 11/11 |
+| Recall@5 among answered retrieval rows | — | 0.9211 |
+| No-evidence rows abstained | 8/13 | **13/13** |
+| No-evidence rows with a channel | 8/13 | **13/13** |
+| No-evidence rows answered as normal | 3/13 | **0/13** |
+
+The verifier is what makes the arm abstain: `SCS_FKB_VERIFY_ANSWERS=on` judges
+the answer's sufficiency and returns `evidence_insufficient` for all 13
+no-evidence items. Without it the arm answers them. The remaining defect is
+coverage of the short path itself: 49 of 60 rows fall back to the deterministic
+extractive answer, which is not capped at 300 characters.
+
+#### Evidence-window probe (negative)
+
+The arm's context is truncated at `MAX_HITS=8` in `answer_v3`, so raising the
+service-side retrieval window from 8 to 20 changed nothing: the retrieval layer
+returns at most 10 fused hits and the arm keeps 8, so contexts, cache entries and
+results were identical (11/60 valid). A 10-hit probe that overrides the arm's
+cap at runtime turned 3 of the 27 fallback rows into valid short answers, so a
+10-hit arm would give roughly 14/60 instead of 11/60. The service constant alone
+is a no-op and was reverted; shipping the wider window means editing the arm's own
+cap in `answer_v3`, which this change does not do.

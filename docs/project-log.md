@@ -1206,3 +1206,10 @@ This log records material project changes by date. It does not use release versi
 
 - Promoted 12 bounded draft provision facts (`FACT-PROV-006/007/009/014/020/029/038/048/053/058/068/071`) to approved after measuring impact: 0 fact errors, 0 conflicts, 0 playbook errors, public retrieval gate 0.8298/0.7348, fact-lead signatures changed for 6 of 512 questions, and the full 512 six lines stayed 0.8092 / 0.9565 / 0.9412 / 0.0000 / 1.0000 / 0.9474.
 - The batch stays approved; `scripts/provision_impact.py` records the lead-snapshot/compare method for the next batch.
+
+## 2026-11-10 — Coverage accounting and the short-arm evidence cap
+
+- Re-ran the 512 with the documented scoped invocation (`--llm-answerability 可答,部分可答`): 443 answered, 0.8092 / 0.9565 / 0.9412 / 0.0000 / 1.0000 / 0.9474. Without the scope the 70 应拒答 rows go through the LLM arm, which moves citation to 0.9526 and as-of to 1.0000 without failing a line; the flag is now recorded next to the reproduction command in `docs/evaluation.md` §34.
+- Point accounting over the same answers: of 132 uncovered points, 88 carry a term that appears nowhere in the indexed corpus, 36 have their terms in the corpus but split across passages, 3 are rule checks and 5 have no expected document. The 23 document-map entries marked `missing` carry zero scored points, so the planned source-acquisition batch was cancelled rather than measured.
+- Short arm on the 60 public items: 11 valid short answers with the verifier on; 13/13 no-evidence rows abstain with a channel and misanswer 0 only when `SCS_FKB_VERIFY_ANSWERS=on`. Widening the service-side retrieval window from 8 to 20 changed nothing because the arm truncates its context at `MAX_HITS=8`; the change was reverted.
+- Added `scripts/eval_short_public.py` to reproduce the public short-arm numbers; the 512 instrument, doc map, protocol and thresholds are untouched.

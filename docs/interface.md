@@ -45,7 +45,11 @@ characters.
 
 `short` selects the optional short-answer arm (at most 300 Chinese characters,
 conclusion → basis → deadline/documents, every claim cited). It defaults to
-false; a failed validation falls back to the deterministic path. `rerank` is
+false; a failed validation falls back to the deterministic path, which is not
+capped at 300 characters. The arm reads at most `MAX_HITS` (8) retrieved chunks,
+so a wider retrieval window does not change its evidence. Abstention on
+unsupported questions requires `SCS_FKB_VERIFY_ANSWERS=on`; without it the arm
+answers instead of refusing. `rerank` is
 `true`, `false` or `null` (use `SCS_FKB_RERANK`, default off) and enables the
 cross-encoder for this request.
 
