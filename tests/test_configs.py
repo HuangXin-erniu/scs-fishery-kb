@@ -71,7 +71,6 @@ def test_retired_configs_are_gone() -> None:
         "eval-v2.yaml",
         "web-cards.yaml",
         "statistics.yaml",
-        "faq.yaml",
         "species-seed.yaml",
         "cwp-handbook.yaml",
         "reference-collections.yaml",

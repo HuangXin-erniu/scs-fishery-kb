@@ -1,0 +1,328 @@
+schema_version: 1
+updated_at: '2026-11-10'
+source: docs/questions.md
+entries:
+- id: Q-E01
+  question: 南海区伏季休渔的起止日期与适用范围是什么？
+  type: retrieval
+  expected_docs:
+  - POL-LAW-009
+  expected_prefix: ''
+  persona: general
+- id: Q-E02
+  question: 哪些作业类型在休渔期可以豁免或申请特许？
+  type: retrieval
+  expected_docs:
+  - POL-LAW-009
+  - POL-STD-010
+  expected_prefix: ''
+  persona: general
+- id: Q-E03
+  question: 海洋大中型渔船渔捞日志应记录哪些内容？
+  type: retrieval
+  expected_docs:
+  - POL-STD-010
+  - POL-WATCH-082
+  expected_prefix: ''
+  persona: general
+- id: Q-E04
+  question: 捕捞日志漏填或错填会有什么管理后果？
+  type: retrieval
+  expected_docs:
+  - POL-STD-010
+  - POL-LAW-009
+  expected_prefix: ''
+  persona: general
+- id: Q-E05
+  question: CWP 统计口径如何区分捕捞产量、上岸量与捕捞努力量？
+  type: retrieval
+  expected_docs:
+  - STD-CWP-043
+  expected_prefix: ''
+  persona: general
+- id: Q-E06
+  question: 南海区海洋捕捞产量的年度趋势如何？
+  type: retrieval
+  expected_docs: []
+  expected_prefix: STAT-YB-
+  persona: general
+- id: Q-E07
+  question: 某渔场的历史渔汛期与主要经济鱼种是什么？
+  type: abstain
+  expected_docs: []
+  expected_prefix: ''
+  persona: general
+- id: Q-E08
+  question: 渔情通报里的 SST 距平、叶绿素浓度应该怎么解读？
+  type: abstain
+  expected_docs: []
+  expected_prefix: ''
+  persona: general
+- id: Q-E09
+  question: 渔业捕捞许可证有效期内，作业场所或作业方式变更应如何办理？
+  type: retrieval
+  expected_docs:
+  - POL-STD-010
+  expected_prefix: ''
+  persona: general
+- id: Q-E10
+  question: 海洋捕捞准用渔具与过渡渔具最小网目尺寸制度从何时实施、适用哪些海区？
+  type: retrieval
+  expected_docs:
+  - POL-GEAR-016
+  expected_prefix: ''
+  persona: general
+- id: Q-E11
+  question: 渔情通报与历史经验不一致时，应如何理解和使用？
+  type: abstain
+  expected_docs: []
+  expected_prefix: ''
+  persona: general
+- id: Q-E12
+  question: 休渔期违规作业的处罚依据与处罚种类是什么？
+  type: retrieval
+  expected_docs:
+  - POL-LAW-009
+  expected_prefix: ''
+  persona: general
+- id: Q-E13
+  question: 渔业捕捞许可证年审需要符合哪些条件？
+  type: retrieval
+  expected_docs:
+  - POL-STD-010
+  expected_prefix: ''
+  persona: general
+- id: Q-E14
+  question: 制造、更新改造海洋捕捞渔船应遵守哪些船网工具指标规定？
+  type: retrieval
+  expected_docs:
+  - POL-STD-010
+  expected_prefix: ''
+  persona: general
+- id: Q-E15
+  question: 渔业船舶进出渔港应当遵守哪些报告和检查要求？
+  type: retrieval
+  expected_docs:
+  - POL-PORT-077
+  expected_prefix: ''
+  persona: general
+- id: Q-M01
+  question: 南海区伏季休渔制度的现行法律依据与修订沿革是什么？
+  type: retrieval
+  expected_docs:
+  - POL-LAW-009
+  expected_prefix: ''
+  persona: general
+- id: Q-M02
+  question: 某类渔船的管理档案应包含哪些字段？
+  type: abstain
+  expected_docs: []
+  expected_prefix: ''
+  persona: general
+- id: Q-M03
+  question: 渔捞日志的提交与上报要求是什么？
+  type: retrieval
+  expected_docs:
+  - POL-STD-010
+  expected_prefix: ''
+  persona: general
+- id: Q-M04
+  question: 产量、上岸量、捕捞努力量的官方口径差异是什么？
+  type: retrieval
+  expected_docs:
+  - DICT-STAT-013
+  expected_prefix: ''
+  persona: general
+- id: Q-M05
+  question: 某年度某海域某作业类型的产量与船数统计是多少？
+  type: retrieval
+  expected_docs: []
+  expected_prefix: STAT-YB-
+  persona: general
+- id: Q-M06
+  question: 船位/航次数据中的“航次”“作业日”“停港”如何定义？
+  type: abstain
+  expected_docs: []
+  expected_prefix: ''
+  persona: general
+- id: Q-M07
+  question: 渔场/渔汛预报通报的发布机构、频次与格式是什么？
+  type: abstain
+  expected_docs: []
+  expected_prefix: ''
+  persona: general
+- id: Q-M08
+  question: 某渔场历史渔汛记录与中心渔场变化如何？
+  type: abstain
+  expected_docs: []
+  expected_prefix: ''
+  persona: general
+- id: Q-M09
+  question: 海洋环境/渔情产品的时空分辨率与适用场景是什么？
+  type: abstain
+  expected_docs: []
+  expected_prefix: ''
+  persona: general
+- id: Q-M10
+  question: 申请海洋渔业捕捞许可证应当提交哪些资料？
+  type: retrieval
+  expected_docs:
+  - POL-STD-010
+  expected_prefix: ''
+  persona: general
+- id: Q-M11
+  question: 数据共享/发布时如何标注来源、版本与许可？
+  type: abstain
+  expected_docs: []
+  expected_prefix: ''
+  persona: general
+- id: Q-M12
+  question: 休渔期管理中的例外审批与处罚依据是什么？
+  type: retrieval
+  expected_docs:
+  - POL-LAW-009
+  expected_prefix: ''
+  persona: general
+- id: Q-M13
+  question: 渔业捕捞许可证在哪些情形下应换发或重新申请？
+  type: retrieval
+  expected_docs:
+  - POL-STD-010
+  expected_prefix: ''
+  persona: general
+- id: Q-M14
+  question: 渔具如何分类、命名和编号？
+  type: retrieval
+  expected_docs:
+  - OPS-STD-039
+  expected_prefix: ''
+  persona: general
+- id: Q-M15
+  question: 海洋捕捞信息采集抽样调查如何抽取样本渔船？
+  type: retrieval
+  expected_docs:
+  - OPS-STD-035
+  expected_prefix: ''
+  persona: general
+- id: Q-M16
+  question: 海洋渔业资源增殖保护费的年征收幅度是多少？
+  type: retrieval
+  expected_docs:
+  - POL-RULE-020
+  expected_prefix: ''
+  persona: general
+- id: Q-M17
+  question: 渔业船舶检验分为哪几种？
+  type: retrieval
+  expected_docs:
+  - POL-RULE-019
+  expected_prefix: ''
+  persona: general
+- id: Q-M18
+  question: 2018–2019 年南海区沿海渔港等级分类是什么？
+  type: abstain
+  expected_docs: []
+  expected_prefix: ''
+  persona: general
+- id: Q-C01
+  question: 渔业船舶航行值班中，船长应当保证哪些事项？
+  type: retrieval
+  expected_docs:
+  - POL-WATCH-082
+  expected_prefix: ''
+  persona: general
+- id: Q-C02
+  question: 渔业船舶交接班时必须交清哪些内容？
+  type: retrieval
+  expected_docs:
+  - POL-WATCH-082
+  expected_prefix: ''
+  persona: general
+- id: Q-C03
+  question: 渔业船舶进出渔港、在港停泊期间有哪些签证和值班要求？违反如何处罚？
+  type: retrieval
+  expected_docs:
+  - POL-PEN-078
+  expected_prefix: ''
+  persona: general
+- id: Q-C04
+  question: 2026 年南海区渔船油价补贴的发放标准是多少？
+  type: abstain
+  expected_docs: []
+  expected_prefix: ''
+  persona: general
+- id: Q-O01
+  question: 渔业捕捞许可证的使用期限是多久？期满换发应在何时申请？
+  type: retrieval
+  expected_docs:
+  - POL-STD-010
+  expected_prefix: ''
+  persona: general
+- id: Q-O02
+  question: 渔业船网工具指标批准书的有效期是多久？可以延展吗？
+  type: retrieval
+  expected_docs:
+  - POL-STD-010
+  expected_prefix: ''
+  persona: general
+- id: Q-O03
+  question: 渔业船舶检验分为哪几种？分别在什么情形下申报？
+  type: retrieval
+  expected_docs:
+  - POL-RULE-019
+  expected_prefix: ''
+  persona: general
+- id: Q-O04
+  question: 渔船抵押贷款的办理流程和利率是多少？
+  type: abstain
+  expected_docs: []
+  expected_prefix: ''
+  persona: general
+- id: Q-F01
+  question: 渔业行政处罚有哪些种类？罚款的计罚单位如何确定？
+  type: retrieval
+  expected_docs:
+  - POL-PEN-080
+  expected_prefix: ''
+  persona: general
+- id: Q-F02
+  question: 在渔港内未经批准装卸危险货物、新建改建设施或从事碍航捕捞养殖，如何处罚？
+  type: retrieval
+  expected_docs:
+  - POL-PEN-078
+  expected_prefix: ''
+  persona: general
+- id: Q-F03
+  question: 2026 年伏季休渔执法行动中，船籍港休渔制度和专项捕捞作业监管分别有哪些要求？
+  type: retrieval
+  expected_docs:
+  - POL-ENF-068
+  expected_prefix: ''
+  persona: general
+- id: Q-F04
+  question: 哪些情形不得发放捕捞许可证？
+  type: retrieval
+  expected_docs:
+  - POL-RULE-018
+  expected_prefix: ''
+  persona: general
+- id: Q-T01
+  question: 渔具分类代号的书写顺序是什么？请举例说明。
+  type: retrieval
+  expected_docs:
+  - OPS-STD-039
+  expected_prefix: ''
+  persona: general
+- id: Q-T02
+  question: 海洋捕捞信息采集抽样调查如何分层？每层样本量至少多少？
+  type: retrieval
+  expected_docs:
+  - OPS-STD-035
+  expected_prefix: ''
+  persona: general
+- id: Q-T03
+  question: 2026 年南海区渔业资源增殖保护费的征收总额是多少？
+  type: abstain
+  expected_docs: []
+  expected_prefix: ''
+  persona: general

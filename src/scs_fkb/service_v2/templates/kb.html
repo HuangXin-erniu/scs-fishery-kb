@@ -1,0 +1,97 @@
+{% set persona_label = {'captain':'船长/船员','owner':'船东/经营人','enforcement':'执法/管理','extension':'推广/技术','general':'通用'} %}
+{% set page_title = "渔业知识站" %}
+{% include "_kb_head.html" %}
+<h1>给船上和岸上用的知识站</h1>
+<p class="lead">按“怎么办 → 常见问答 → 术语 → 数值 → 最近更新”组织。每条都能点回登记的官方文本；查不到就不编。</p>
+
+<form class="filter" method="get" action="/kb">
+<input name="q" value="{{ query }}" placeholder="搜问题、术语或关键词，例如：休渔、换证、网目">
+<select name="persona">
+{% for key, label in persona_label.items() %}<option value="{{ key }}"{% if persona == key %} selected{% endif %}>{{ label }}</option>{% endfor %}
+</select>
+<button type="submit">筛选</button>
+</form>
+<div class="tabs">
+{% for key, label in persona_label.items() %}<a class="{% if persona == key %}on{% endif %}" href="/kb?persona={{ key }}{% if query %}&q={{ query|urlencode }}{% endif %}">{{ label }}</a>{% endfor %}
+</div>
+
+<h2 id="tasks">办事任务卡</h2>
+<p class="lead">把“要做什么、带什么、什么时候、罚则、依据”放在一页。共 {{ playbooks|length }} 张。</p>
+<div class="grid">
+{% for item in playbooks %}
+<div class="card">
+<div><span class="badge">{{ persona_label.get(item.persona, item.persona) }}</span><span class="badge">复查 {{ item.review_due }}</span></div>
+<h3><a href="/kb/playbooks/{{ item.id }}">{{ item.title }}</a></h3>
+<p class="lead" style="margin:0 0 8px">{{ item.steps[0].action if item.steps else "" }}</p>
+<small class="muted">{{ item.steps|length }} 步 · {{ item.documents|length }} 份材料 · {{ item.sources|length }} 个依据</small>
+</div>
+{% endfor %}
+</div>
+
+<h2 id="faq">常见问答</h2>
+<p class="lead">答案取自已批准的事实条目；口语问法也列在下面。共 {{ faq|length }} 条。</p>
+<div class="card">
+{% for item in faq %}
+<details>
+<summary>{{ item.question }}</summary>
+<div class="answer">{{ item.answer }}</div>
+{% if item.variants %}<div class="src">也常问：{{ item.variants|join("、") }}</div>{% endif %}
+{% for cite in item.citations %}
+<div class="src">依据：[{{ cite.doc }}{% if cite.section %} §{{ cite.section }}{% endif %}]</div>
+{% endfor %}
+</details>
+{% else %}
+<p class="muted">没有匹配的问答，换个关键词试试。</p>
+{% endfor %}
+</div>
+
+<h2 id="terms">术语白话</h2>
+<p class="lead">官方叫法、日常叫法和一句白话；出处可核对。共 {{ terms|length }} 条。</p>
+<table>
+<thead><tr><th>官方名称</th><th>白话</th><th>日常叫法</th><th>出处</th></tr></thead>
+<tbody>
+{% for item in terms %}
+<tr>
+<td>{{ item.official }}</td>
+<td>{{ item.plain }}</td>
+<td>{{ item.variants|join("、") if item.variants else "—" }}</td>
+<td class="src">{% for cite in item.citations %}[{{ cite.doc }}{% if cite.section %} §{{ cite.section }}{% endif %}]{% endfor %}</td>
+</tr>
+{% else %}
+<tr><td colspan="4" class="muted">没有匹配的术语。</td></tr>
+{% endfor %}
+</tbody>
+</table>
+
+<h2 id="numbers">数值速查</h2>
+<p class="lead">只列已批准事实中的数字，附口径与出处；共 {{ numbers|length }} 条。</p>
+<table>
+<thead><tr><th>事项</th><th>数值</th><th>口径</th><th>出处</th></tr></thead>
+<tbody>
+{% for item in numbers %}
+<tr>
+<td>{{ item.subject }}{% if item.predicate %}<br><small class="muted">{{ item.predicate }}</small>{% endif %}</td>
+<td>{{ item.value }}{% if item.unit %} {{ item.unit }}{% endif %}</td>
+<td class="src">{{ item.topic or "—" }}{% if item.review_due %} · 复查 {{ item.review_due }}{% endif %}</td>
+<td class="src">[{{ item.doc }}{% if item.section %} §{{ item.section }}{% endif %}]</td>
+</tr>
+{% else %}
+<tr><td colspan="4" class="muted">暂无数值条目。</td></tr>
+{% endfor %}
+</tbody>
+</table>
+
+<h2 id="updates">更新提醒</h2>
+<p class="lead">来自来源登记的核验日期、版本替代和复查日期，不是手工维护的文字。</p>
+<div class="grid">
+<div class="card"><h3>最近核验</h3><ul class="plain">
+{% for item in updates.recent %}<li>[{{ item.id }}] {{ item.title }} <small class="muted">{{ item.as_of }}</small></li>{% else %}<li class="muted">暂无</li>{% endfor %}
+</ul></div>
+<div class="card"><h3>即将到期复查</h3><ul class="plain">
+{% for item in updates.upcoming %}<li>[{{ item.id }}] {{ item.title }} <small class="muted">{{ item.review_due }}</small></li>{% else %}<li class="muted">暂无</li>{% endfor %}
+</ul></div>
+<div class="card"><h3>版本替代</h3><ul class="plain">
+{% for item in updates.superseded %}<li>[{{ item.id }}] {{ item.title }} <small class="muted">替代 {{ item.supersedes }}</small></li>{% else %}<li class="muted">暂无</li>{% endfor %}
+</ul></div>
+</div>
+{% include "_kb_foot.html" %}

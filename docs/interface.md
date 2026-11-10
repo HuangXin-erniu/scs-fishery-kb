@@ -134,6 +134,20 @@ local and does not bypass the API key for `/v1` calls. Questions are limited to
 `configs/web-sources.yaml` (HTTPS only, 2 MB per page, 10 s timeout, 2 s spacing,
 7/30/90/365-day cache TTLs).
 
+## 5.1 UI routes
+
+The service also renders a worker-facing knowledge surface, server-side and
+mobile-first:
+
+| Route | Content |
+|---|---|
+| `/kb` | Task cards (approved playbooks), sourced FAQ, plain terms, numeric quick reference and what-changed, with `persona` and `q` filters |
+| `/kb/playbooks/{id}` | One task card: steps, documents, deadlines, penalties and sources |
+
+Every displayed item names its document and section. These routes are
+presentation only: they do not change `/v1/query`, the answer text or the
+abstention decision.
+
 ## 6. Feedback
 
 `POST /v1/feedback` accepts `request_id`, `helpful`, optional `comment` and

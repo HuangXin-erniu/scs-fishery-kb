@@ -1,0 +1,28 @@
+{% set persona_label = {'captain':'船长/船员','owner':'船东/经营人','enforcement':'执法/管理','extension':'推广/技术','general':'通用'} %}
+{% set page_title = playbook.title %}
+{% include "_kb_head.html" %}
+<p><a href="/kb#tasks">← 返回任务卡</a></p>
+<h1>{{ playbook.title }}</h1>
+<div><span class="badge">{{ persona_label.get(playbook.persona, playbook.persona) }}</span><span class="badge">复查 {{ playbook.review_due }}</span><span class="badge">{{ playbook.steps|length }} 步</span></div>
+<p class="lead">适用：{% for key, value in (playbook.applies_to or {}).items() %}{{ key }}={{ value }}{% if not loop.last %} · {% endif %}{% endfor %}</p>
+
+<h2>步骤</h2>
+<ol class="steps">
+{% for step in playbook.steps %}
+<li><strong>{{ step.action }}</strong><br>{{ step.detail }}
+{% if step.facts %}<div class="src">事实：{{ step.facts|join("、") }}</div>{% endif %}</li>
+{% endfor %}
+</ol>
+
+<div class="grid">
+<div class="card"><h3>要带的材料</h3><ul class="plain">{% for item in playbook.documents %}<li>{{ item }}</li>{% else %}<li class="muted">—</li>{% endfor %}</ul></div>
+<div class="card"><h3>时间节点</h3><ul class="plain">{% for item in playbook.deadlines %}<li>{{ item }}</li>{% else %}<li class="muted">—</li>{% endfor %}</ul></div>
+<div class="card"><h3>违规后果</h3><ul class="plain">{% for item in playbook.penalties %}<li>{{ item }}</li>{% else %}<li class="muted">—</li>{% endfor %}</ul></div>
+</div>
+
+<h2>依据</h2>
+<div class="card">
+<ul class="plain">{% for item in playbook.sources %}<li>{{ item }}</li>{% else %}<li class="muted">—</li>{% endfor %}</ul>
+<p class="src">内容来自已批准的任务卡；具体办理以官方文本和当地主管部门要求为准。</p>
+</div>
+{% include "_kb_foot.html" %}

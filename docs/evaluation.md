@@ -995,3 +995,25 @@ section 29 for the shipped baseline. Index `ce3eeaf4c9b2`, 67 documents, 2,797 c
 
 Both variants passed the gate; they were reverted because they did not widen the
 coverage margin (the goal was ≥0.815).
+
+
+### 31. Public regression set (2026-11-10)
+
+> **中文摘要**：新增公开回归集（48 条，来自公开样本，不依赖私有 512 仪器）：
+> 检索 recall@5 0.8571（30/35）、引用解析 1.0000、playbook 15/15、FAQ 16/16、
+> 术语 26/26、数值 15/15；13 条“无登记证据”样本只有 4 条拒答（0.3077），
+> 这是诊断值而非门槛——其中多数能从相邻条款得到有依据的回答。
+
+- Set: `configs/eval-public.yaml`, derived from the public samples in
+  [questions.md](questions.md); 35 retrieval rows and 13 rows whose expected
+  evidence is `none registered`.
+- Runner: `scripts/eval_public.py --data-root ...`; deterministic, no LLM, no
+  private instrument.
+- Result: recall@5 0.8571 (30/35), citation resolution 1.0000, abstention on the
+  13 no-evidence rows 0.3077 (4/13), playbook match 15/15, FAQ 16/16, term 26/26,
+  numeric 15/15.
+- The 13 no-evidence rows are historical or out-of-scope samples, not curated
+  abstention tests; the engine often answers them from adjacent clauses. The
+  number is reported as a diagnostic; the frozen 512 instrument remains the
+  acceptance measure.
+- Reproduction: `PYTHONPATH=src python scripts/eval_public.py --data-root <dir>`.

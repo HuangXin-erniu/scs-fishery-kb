@@ -12,6 +12,11 @@
 4. Mark unanswerable questions as abstention tests; do not invent answers.
 5. Re-check the set before using it for evaluation.
 
+These samples are also mirrored in `configs/eval-public.yaml` and measured by
+`scripts/eval_public.py` (retrieval, abstention, citation resolution, playbook,
+term and number resolution). The public set is not the private acceptance
+instrument and carries no gold answers.
+
 ## Questions for vessel operators and captains
 
 | ID | Question (English) | Original (Chinese) | Type | Expected evidence | Notes |
