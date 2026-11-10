@@ -1,0 +1,7 @@
+# Candidate queue. A candidate is a proposed page that has not been admitted to
+# configs/corpus.yaml. Open candidates expire; only a human review may accept one,
+# and acceptance is followed by the normal capture, register, rebuild and
+# regression steps in docs/operations.md. The watch run never writes this file.
+schema_version: 1
+updated_at: '2026-11-10'
+candidates: []

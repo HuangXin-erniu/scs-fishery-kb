@@ -12,6 +12,8 @@
 | [Corpus inventory](corpus.md) | Registered sources, licences, sensitivity and coverage |
 | [Evaluation questions](questions.md) | Sanitized acceptance-style samples across four personas |
 | [Data policy](data-policy.md) | What is published, what stays local, and how sensitivity is handled |
+| [Operations](operations.md) | Weekly read-only checks, source admission and rollback |
+| [RAG standard](rag-standard.md) | RAG construction standard and web-evidence rules |
 | [Project log](project-log.md) | Dated record of material project changes |
 | [Corpus register](../configs/corpus.yaml) | Machine-readable source register |
 | [Pipeline configuration](../configs/pipeline.yaml) | Documents, chunking, retrieval and answer parameters for the local prototype |

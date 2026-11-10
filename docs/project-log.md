@@ -1165,3 +1165,12 @@ This log records material project changes by date. It does not use release versi
 - Web results are leads: at most two, labelled `网络检索 · 未入知识库`, returned in `web_leads`, never in `citations`, never in the answer text and never able to flip an abstention. Nothing is ingested; `promotion_draft()` prepares a candidate for the human admission step.
 - `docs/interface.md` and `configs/interface.yaml` now match the implementation: `kb_plus_web` is the only web mode and the never-implemented `web_only` is gone.
 - Tests cover allowlist and redirect rejection, HTTPS, size and content-type limits, TTL and cache reuse, spacing, lead caps, injection/invisible-character cleaning, `off` zero-call behaviour and the abstention rule.
+
+## 2026-11-10 — Update loop restored and gated
+
+- Restored `src/scs_fkb/watch.py`, `src/scs_fkb/candidates.py`, `configs/source-watch.yaml` (26 curated pages) and `configs/candidates.yaml` (empty queue).
+- Added `scripts/check_sources.py` (registry, currency, watch coverage, candidates; offline), `scripts/watch_sources.py` (live or offline, local baseline, candidate drafts under the run root) and `scripts/weekly_report.py` (one read-only dated report).
+- Added an opt-in query log (`SCS_FKB_LOG_QUERIES=on`) under the run root and `src/scs_fkb/gaps.py` to summarise refusals and unhelpful feedback.
+- CI now runs the source-currency gate. Current run: 100 sources, 0 overdue, watch coverage ok, 0 candidates.
+- Live watch run: 26 pages, 20 ok and 6 changed; changed pages are queued for manual reading and nothing was ingested. The weekly report and `docs/operations.md` record the human admission runbook.
+- Fixed the stale watch/candidate/web references in `docs/sources.md`, `docs/corpus.md`, `docs/data-model.md`, `docs/plan.md`, `docs/architecture.md` and `docs/index.md`.

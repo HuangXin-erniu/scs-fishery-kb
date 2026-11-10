@@ -368,3 +368,30 @@ def test_web_auto_without_leads_keeps_the_answer_plain(monkeypatch, tmp_path) ->
     assert result.used_web is False
     assert result.web_leads == []
     assert result.mode == "kb_only"
+
+
+def test_query_log_is_opt_in(monkeypatch, tmp_path) -> None:
+    import json
+
+    monkeypatch.setenv("SCS_FKB_LOG_QUERIES", "on")
+    client = TestClient(create_app(_service(), run_root=tmp_path))
+    response = client.post(
+        "/v1/query",
+        json={"question": "2026年南海区伏季休渔从什么时候开始？", "web": "off"},
+    )
+    assert response.status_code == 200
+    files = list((tmp_path / "queries").glob("*.jsonl"))
+    assert files
+    row = json.loads(files[0].read_text(encoding="utf-8").splitlines()[0])
+    assert row["question"].startswith("2026年")
+    assert row["abstained"] is False
+
+
+def test_query_log_is_off_by_default(monkeypatch, tmp_path) -> None:
+    monkeypatch.delenv("SCS_FKB_LOG_QUERIES", raising=False)
+    client = TestClient(create_app(_service(), run_root=tmp_path))
+    client.post(
+        "/v1/query",
+        json={"question": "2026年南海区伏季休渔从什么时候开始？", "web": "off"},
+    )
+    assert not (tmp_path / "queries").exists()

@@ -1,0 +1,227 @@
+# Curated watch list of authoritative pages. The checker reads these pages and reports
+# changes; it never downloads a document into the register and never edits corpus.yaml.
+# Recorded hashes are the 2026-11-02 baseline. A live run may record a newer local
+# baseline under $SCS_FKB_DATA_ROOT/watch/baseline.json with `watch_sources --baseline`.
+# Authority tiers and the promotion rules live in docs/sources.md and docs/operations.md.
+schema_version: 1
+updated_at: '2026-11-10'
+defaults:
+  timeout_seconds: 15
+  user_agent: SCS-FKB-watch/1.0 (+https://github.com/HuangXin-erniu/scs-fishery-kb)
+authority_tiers:
+  A: Central ministry, provincial department or national law database page
+  B: Official gazette index or a government-information attachment
+  C: Municipal or county-level department page, used as a supplement only
+sources:
+  - id: WATCH-MOA-GAZETTE-2025
+    url: http://www.moa.gov.cn/nybgb/2025/
+    authority: B
+    publisher: 农业农村部
+    cadence: monthly
+    note: Gazette issue index for 2025; a published 2024 monitoring letter would appear here.
+    status: ok
+    sha256: 6a1c0f572ba3c8a9dea9d702452eb562568f4bd2bf518aa3e031a35fb524a8b8
+  - id: WATCH-MOA-GAZETTE-202505
+    url: http://www.moa.gov.cn/nybgb/2025/202505/
+    authority: B
+    publisher: 农业农村部
+    cadence: monthly
+    note: Issue 5 of 2025, the likeliest carrier of the April 2025 monitoring letter.
+    status: ok
+    sha256: eef7fc92927546fc7fb41f93d25946109b0a9532bfe99a36d886f524ea315098
+  - id: WATCH-MOA-GAZETTE-202504
+    url: http://www.moa.gov.cn/nybgb/2025/202504/
+    authority: B
+    publisher: 农业农村部
+    cadence: monthly
+    note: Issue 4 of 2025, the alternative carrier for the same letter.
+    status: ok
+    sha256: f39606778b211c4854cdc484be0cb6b642040d53de9d4803ea2198ad470cdc26
+  - id: WATCH-MOA-GAZETTE-202506
+    url: http://www.moa.gov.cn/nybgb/2025/202506/
+    authority: B
+    publisher: 农业农村部
+    cadence: monthly
+    note: Issue 6 of 2025.
+    status: ok
+    sha256: f4af779163661e9cb3a106e936ba13eec4ca674d44dcdde438ef4564a055ee5b
+  - id: WATCH-GD-ANNOUNCE-2020
+    url: https://dara.gd.gov.cn/zwgk/tzgg/content/post_3042147.html
+    authority: A
+    publisher: 广东省农业农村厅
+    cadence: static
+    note: Guangdong 2020 second-batch hull catalog announcement; watch for a later batch.
+    status: ok
+    sha256: d8f4b551f2b248a07d4f9a9f16d81dc9ba46b0fa0875c22630ccd21d25a65226
+  - id: WATCH-GD-ANNOUNCE-2021
+    url: https://dara.gd.gov.cn/zwgk/tzgg/content/post_3234786.html
+    authority: A
+    publisher: 广东省农业农村厅
+    cadence: static
+    note: Guangdong 2021 hull catalog announcement; watch for a later batch.
+    status: ok
+    sha256: 79878aa91c10db2962428ecd8f9f221c6b0554f8ea640ec60bb8d1269cccbe21
+  - id: WATCH-GD-NOTICES
+    url: https://dara.gd.gov.cn/zwgk/tzgg/
+    authority: A
+    publisher: 广东省农业农村厅
+    cadence: weekly
+    note: Provincial notice list; the 2026 closure work plan would be published here.
+    status: ok
+    sha256: 0e5223ecdfcac12ff23bd3e97d9ff7f1274271464af03995c2088537e1fcebe7
+  - id: WATCH-GD-POLICY
+    url: https://dara.gd.gov.cn/zwgk/zcwj/
+    authority: A
+    publisher: 广东省农业农村厅
+    cadence: weekly
+    note: Provincial policy-document list.
+    status: ok
+    sha256: 5e8ef4521bf18a0a9a8fe33d8a62e89056f3a97e562f83ea635f53555b9d6ad6
+  - id: WATCH-HN-HULL-2019
+    url: https://agri.hainan.gov.cn/hnsnyt/xxgk/tzgg/gggs/201903/t20190328_2480820.html
+    authority: A
+    publisher: 海南省农业农村厅
+    cadence: static
+    note: Hainan 2019 hull catalog announcement; the notice PDF and two xls catalogs sit here.
+    status: ok
+    sha256: d9fa5c8fe5c1f7b2efa97c16831d3ad3b7850e9a0c6c0cebdaeb6d1361547e80
+  - id: WATCH-NFTEC-MONITOR
+    url: http://www.nftec.agri.cn/yqxx/
+    authority: A
+    publisher: 全国水产技术推广总站
+    cadence: monthly
+    note: Fishery monitoring and statistics column; the 2020 circular was posted here.
+    status: ok
+    sha256: 4445e366ea38f479452741f38f2df1863a9b53c17fb351f6bbe72c044799f3e3
+  - id: WATCH-MOA-CLOSURE-2023
+    url: https://www.moa.gov.cn/govpublic/YYJ/202303/t20230314_6422986.htm
+    authority: A
+    publisher: 农业农村部
+    cadence: static
+    note: The 2023 closure adjustment notice, the system basis the provincial notices cite.
+    status: ok
+    sha256: 15660ed713803ff440da583e1d5a219ab5e488c2237f3bb33cd30e7115174bdc
+  - id: WATCH-MOA-ENFORCE-2026
+    url: https://www.moa.gov.cn/govpublic/YYJ/202605/t20260507_6483948.htm
+    authority: A
+    publisher: 农业农村部
+    cadence: static
+    note: The 2026 three-ministry closure enforcement notice.
+    status: ok
+    sha256: 174ab3e343df18e09d8340272e329d956b062ce909216eea8282e206a6bca8af
+  - id: WATCH-MOA-HULL-2017
+    url: https://www.moa.gov.cn/govpublic/YYJ/201702/t20170217_5487411.htm
+    authority: A
+    publisher: 农业农村部
+    cadence: static
+    note: The 2017 standard hull evaluation notice (农办渔〔2017〕5号).
+    status: ok
+    sha256: 822a8c089528438ad1b6cf353df94403711e86ebf6a9197443b14987bdb7a316
+  - id: WATCH-MOA-YY-2024
+    url: https://www.moa.gov.cn/govpublic/YYJ/202411/t20241119_6466464.htm
+    authority: A
+    publisher: 农业农村部
+    cadence: static
+    note: The 2024 distant-water standard hull parameter series (农办渔〔2024〕15号).
+    status: ok
+    sha256: 78fd7c3b1d6a55eb8b01a35acbe6b97a3542757911d56911828976166c223888
+  - id: WATCH-MOA-YYJ-NOTICES
+    url: https://yyj.moa.gov.cn/tzgg/
+    authority: B
+    publisher: 农业农村部渔业渔政管理局
+    cadence: weekly
+    note: Bureau notice list; a future hull-type evaluation announcement would appear here.
+    status: ok
+    sha256: ecee3ce92f8dafaf303997c5d82e83604f02403b24da9e567ffe6f3914714cc2
+  - id: WATCH-GX-NYNCT-NOTICES
+    url: http://nynct.gxzf.gov.cn/xxgk/jcxxgk/tzgg/
+    authority: B
+    publisher: 广西壮族自治区农业农村厅
+    cadence: weekly
+    note: Provincial notice list; a hull-catalog announcement would appear here. The https endpoint presents a certificate whose hostname does not match, so the monitor uses http and records that limitation.
+    status: ok
+    sha256: 229bec589b5b919d61c5a1a1eeac13f410f5861fa0d257688d1107308b4753ee
+    dynamic: true
+
+  - id: WATCH-GX-HYJ-NOTICES
+    url: http://hyj.gxzf.gov.cn/zwgk_66846/tzgg/
+    authority: B
+    publisher: 广西壮族自治区海洋局
+    cadence: weekly
+    note: Ocean bureau notice list; a hull-catalog announcement would appear here.
+    status: ok
+    sha256: aed3cee1ecc46b5ac403d34ec5fb6a6263f656e8187e32b76f084d4492fbc62c
+  - id: WATCH-MOJ-OBSERVATION
+    url: https://xzfg.moj.gov.cn/front/law/detail?LawID=1683
+    authority: B
+    publisher: 国务院
+    cadence: static
+    note: National administrative regulations database page for the ocean observation regulation.
+    status: ok
+    sha256: c61df21d74afe895d18b4349f85784bb027bcf422a021a152360e4b98508fb2c
+    dynamic: true
+
+  - id: WATCH-GOV-RES-075
+    url: https://www.gov.cn/zhengce/2009-03/24/content_5721420.htm
+    authority: B
+    publisher: 农业部
+    cadence: static
+    note: gov.cn policy-library page for the aquatic stocking regulation.
+    status: ok
+    sha256: 90abf8647b254325125ed7f79bff16a4c573aab0a773fb166fb0dc79c3ec5971
+  - id: WATCH-GOV-PORT-077
+    url: https://www.gov.cn/gongbao/content/2019/content_5468915.htm
+    authority: B
+    publisher: 国务院
+    cadence: static
+    note: State Council gazette page for the fishing-port traffic regulation.
+    status: ok
+    sha256: 1ff9570272738ada371f4e412c3b47ef13eaf94c68481a31640421fda6fc1fd2
+  - id: WATCH-NMHMS-BULLETINS
+    url: https://www.nmhms.org.cn/Maritime-bulletin___fgqgTvDzhY/1.html
+    authority: B
+    publisher: 自然资源部海洋减灾中心
+    cadence: annual
+    note: Bulletin list carrying the marine ecological and marine disaster bulletins.
+    status: ok
+    sha256: abcacc928f072e6a8e8d62bd04ab061821f3fe9673bfd80007a9df48eb8b3109
+  - id: WATCH-FORESTRY-SPECIES
+    url: https://www.forestry.gov.cn/c/www/gkgjlyjgb/43000.jhtml
+    authority: B
+    publisher: 国家林业和草原局
+    cadence: static
+    note: Announcement page carrying the 2021 national key-protected wildlife list.
+    status: ok
+    sha256: c952ba813e8062d81fc5f07eb7f2a98fdaab3725eff605a224392dc3fad1a3ff
+  - id: WATCH-YZB-PORTS
+    url: http://www.yzbzzx.agri.cn/tzgg/tzgglist/202501/P020250116600504099279.docx
+    authority: B
+    publisher: 农业农村部办公厅
+    cadence: annual
+    note: Attachment carrying the 2025 first-batch port-grade recognition list.
+    status: ok
+    sha256: fe142d1a8f9885668b6d2fb47764c50123bc52c6d60ca53703263970aa3ab44a
+  - id: WATCH-CMA-RULES
+    url: https://www.cma.gov.cn/2011zwxx/2011zflfg/2011zgfxwj/202111/t20211102_4122304.html
+    authority: B
+    publisher: 中国气象局
+    cadence: quarterly
+    note: Meteorological rules page; a text version of the 2023 warning-signal revision would appear here.
+    status: ok
+    sha256: 7850d0671659b1449d239ff709211cbb0312aa80dcda7c7f5e2d91f67c68b627
+  - id: WATCH-MNR-EMERGENCY
+    url: https://gi.mnr.gov.cn/202606/t20260626_2932773.html
+    authority: B
+    publisher: 自然资源部
+    cadence: quarterly
+    note: The 2026 marine disaster emergency plan page; a text-bearing upload would appear here.
+    status: ok
+    sha256: 39beae535a4b9adab86ecbda15b6613c187d8d79d5b6e93c3742436478c6ac4b
+  - id: WATCH-MOA-WATCH-1999
+    url: https://www.moa.gov.cn/gk/nyncbgzk/gzk/202210/t20221010_6412884.htm
+    authority: B
+    publisher: 农业农村部
+    cadence: quarterly
+    note: Ministry rule page carrying the navigation watch standards.
+    status: ok
+    sha256: 8eecbc9171dbc0dbc1cfc82d7e92b42bcf874c47c66a533cf8ed4b6cb6ec3bba

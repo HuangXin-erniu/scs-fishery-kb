@@ -66,7 +66,7 @@ currency:
   | static | no change feed | 550 |
 
 - The 63 registered sources use the class mapping: normative `monthly`, standard `quarterly`, `official_statistics` `annual`, reference `semiannual`. The mapping is fixed in `configs/corpus.yaml` and tested in `tests/test_configs.py`.
-- A `review_due` beyond the cap is a schema error, not a warning. `scs-fkb sources check --today YYYY-MM-DD` fails when an active source is more than 30 days past `review_due`; the CI job runs it with the real date. A due source is still cited, but the answer must say the source has reached its review date.
+- A `review_due` beyond the cap is a schema error, not a warning. `scripts/check_sources.py --today YYYY-MM-DD` fails when an active source is more than 30 days past `review_due`; the CI job runs it with the real date. A due source is still cited, but the answer must say the source has reached its review date.
 - `currency.note` carries the evidence sentence where one exists (an effective date, an approval number, a publication date) or a short review remark. It is optional, not a status field.
 - There is no in-force / not-applicable / unknown state. An entry that cannot be checked keeps its existing dates, and the watch report lists it as due.
 - `license` must be in the allowlist published in `configs/schema.yaml` (`public`, `internal`, `licensed`, `cc-by-nc-sa-3.0-igo`); `sensitivity` must be `public`, `internal` or `restricted`. Unknown values are rejected at registration, so an unlicensed page cannot silently enter the corpus. `licensed` requires `license_note`.
@@ -198,7 +198,7 @@ exact `evidence`, `source` hash/section, `status: draft`, `confidence` and a
 
 ## 5. Admission, candidates, supersession and the main index
 
-- **Candidate first.** A page that `watch` reports as changed, a gap found by evaluation, or a newly discovered document enters configs/candidates.yaml（已移除）（已移除） before it enters the corpus. A candidate carries `id`, `title`, `url`, `publisher`, `proposed_tier`, `proposed_class`, `reason` (`changed`/`gap`/`new`/`supersede`), `watch_ref`, `first_seen`, `expires_at`, `status` (`open`/`accepted`/`rejected`/`expired`), `decision_key`, `source_id` and a `note`. An accepted candidate must name the registered `source_id`; a rejected one must say why; a duplicate URL is rejected.
+- **Candidate first.** A page that the watch reports as changed, a gap found by evaluation, or a newly discovered document enters [configs/candidates.yaml](../configs/candidates.yaml) before it enters the corpus. A candidate carries `id`, `title`, `url`, `publisher`, `proposed_tier`, `proposed_class`, `reason` (`changed`/`gap`/`new`/`supersede`), `watch_ref`, `first_seen`, `expires_at`, `status` (`open`/`accepted`/`rejected`/`expired`), `decision_key`, `source_id` and a `note`. An accepted candidate must name the registered `source_id`; a rejected one must say why; a duplicate URL is rejected.
 - A candidate is **not** a source. It is never ingested, indexed or cited, and `watch --propose` only writes a report; it never edits the register. Open candidates are reported after 90 days and treated as expired after `expires_at` (180 days by default).
 - Admission: a publisher's own page or an official gazette attachment, a document number or publication date, a licence, a verified hash, and an accepted candidate entry.
 - Supersession: a newer text supersedes but never deletes; the older entry stays with its date, the newer entry records what it replaces.
@@ -210,7 +210,7 @@ exact `evidence`, `source` hash/section, `status: draft`, `confidence` and a
 
 ## 7. Fact, term and FAQ records
 
-The internalised layer is separate from the source register and the corpus index. It is built from indexed documents, verified against their chunks and stored under `configs/facts/`, `configs/terms.yaml` and `configs/faq.yaml（已移除）`.
+The internalised layer is separate from the source register and the corpus index. It is built from indexed documents, verified against their chunks and stored under `configs/facts/`, `configs/terms.yaml` and `configs/playbooks/`.
 
 ### Fact
 

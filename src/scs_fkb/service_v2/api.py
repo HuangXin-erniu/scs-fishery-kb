@@ -38,6 +38,16 @@ def _feedback_path(run_root: Path | str | None) -> Path:
     return base / "feedback.jsonl"
 
 
+def _query_log_path(run_root: Path | str | None, day: str | None = None) -> Path:
+    if run_root:
+        base = Path(run_root).expanduser().resolve()
+    else:
+        base = Path(tempfile.gettempdir()) / "scs-fkb-queries"
+    directory = base / "queries"
+    directory.mkdir(parents=True, exist_ok=True)
+    return directory / f"{day or datetime.now(UTC).date().isoformat()}.jsonl"
+
+
 def create_app(
     service: AnswerService | None = None,
     *,
@@ -79,6 +89,32 @@ def create_app(
         )
 
     app.state.run_root = run_root
+    log_queries = os.environ.get("SCS_FKB_LOG_QUERIES", "").strip().lower() in {
+        "on",
+        "1",
+        "true",
+        "yes",
+    }
+
+    def log_query(result: QueryResponse, question: str) -> None:
+        if not log_queries:
+            return
+        row = {
+            "request_id": result.request_id,
+            "created_at": datetime.now(UTC).replace(microsecond=0).isoformat(),
+            "question": question,
+            "mode": result.mode,
+            "reason": result.reason,
+            "abstained": result.abstained,
+            "answerability": result.answerability,
+            "latency_ms": result.latency_ms,
+        }
+        try:
+            with _query_log_path(app.state.run_root).open("a", encoding="utf-8") as handle:
+                handle.write(json.dumps(row, ensure_ascii=False) + "\n")
+        except OSError:
+            pass
+
     templates = Jinja2Templates(directory=str(Path(__file__).parent / "templates"))
     required_key = api_key if api_key is not None else os.environ.get("SCS_FKB_API_KEY", "")
 
@@ -113,13 +149,15 @@ def create_app(
         },
     )
     def query(payload: QueryRequest) -> QueryResponse:
-        return app.state.service.query(
+        result = app.state.service.query(
             payload.question,
             persona=payload.persona,
             region=payload.region,
             year=payload.year,
             web=payload.web,
         )
+        log_query(result, payload.question)
+        return result
 
     @app.get("/v1/sources", response_model=list[SourceView], dependencies=[Depends(require_key)])
     def sources() -> list[SourceView]:
@@ -192,6 +230,7 @@ def create_app(
             year=year_value,
             web=web,
         )
+        log_query(result, question)
         return templates.TemplateResponse(
             request=request,
             name="demo.html",
@@ -226,6 +265,7 @@ def create_app(
             region=region.strip() or None,
             year=year_value,
         )
+        log_query(result, question)
         return templates.TemplateResponse(
             request=request,
             name="result.html",

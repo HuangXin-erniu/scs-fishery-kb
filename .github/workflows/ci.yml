@@ -39,5 +39,7 @@ jobs:
         run: ruff format --check .
       - name: Test
         run: pytest -q
+      - name: Check source currency
+        run: python scripts/check_sources.py --today "$(date -u +%F)"
       - name: Validate public tree
         run: python scripts/check_public_tree.py
