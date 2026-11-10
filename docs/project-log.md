@@ -1201,3 +1201,8 @@ This log records material project changes by date. It does not use release versi
 - Task cards and FAQ entries now carry a local "useful / not useful" vote plus an optional one-line comment; `POST /kb/feedback` appends `source: "kb"`, `item_id`, `kind`, `helpful` and `comment` to the run root and redirects back.
 - `collect_gaps` and the weekly report count knowledge-station votes and unhelpful items; no answer or citation is stored.
 - Presentation-only: `/v1/query`, the answer path and the 512 instrument are untouched.
+
+## 2026-11-10 — Provision-fact promotion experiment
+
+- Promoted 12 bounded draft provision facts (`FACT-PROV-006/007/009/014/020/029/038/048/053/058/068/071`) to approved after measuring impact: 0 fact errors, 0 conflicts, 0 playbook errors, public retrieval gate 0.8298/0.7348, fact-lead signatures changed for 6 of 512 questions, and the full 512 six lines stayed 0.8092 / 0.9565 / 0.9412 / 0.0000 / 1.0000 / 0.9474.
+- The batch stays approved; `scripts/provision_impact.py` records the lead-snapshot/compare method for the next batch.
