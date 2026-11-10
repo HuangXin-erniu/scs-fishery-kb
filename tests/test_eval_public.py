@@ -2,10 +2,14 @@ from __future__ import annotations
 
 import importlib.util
 
+import pytest
 import yaml
 
-from scs_fkb.config import REPO_ROOT
-from scs_fkb.service_v2.schemas import CitationModel, QueryResponse
+pytest.importorskip("fastapi")
+pytest.importorskip("pydantic")
+
+from scs_fkb.config import REPO_ROOT  # noqa: E402
+from scs_fkb.service_v2.schemas import CitationModel, QueryResponse  # noqa: E402
 
 
 def _module():
