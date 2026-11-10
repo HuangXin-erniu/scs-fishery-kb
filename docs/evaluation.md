@@ -980,3 +980,18 @@ section 29 for the shipped baseline. Index `ce3eeaf4c9b2`, 67 documents, 2,797 c
 - The summary numeric line now deduplicates value+unit pairs; the API compresses
   responses above 1KB with gzip.
 - Coverage margin is 0.92 pp; the next corpus batch is intended to widen it.
+
+### 30. Coverage-margin experiments (negative, 2026-11-10)
+
+> **中文摘要**：在冻结的 v2 与 100k 上限下，深度 400 对覆盖无提升且引用降至 0.9543；
+> 数值题优先打包使覆盖降到 0.8040。两项均回退，默认保持深度 300 / 300 条 / 10 万字符，
+> 覆盖余量仍为 0.92pp。
+
+| Variant | Coverage | Citation | Basis | Misanswer | Mean chars | Decision |
+|---|---:|---:|---:|---:|---:|---|
+| baseline (300/100k) | 0.8092 | 0.9565 | 0.9412 | 0.0000 | 101,846 | shipped |
+| depth 400 / hits 400 | 0.8092 | 0.9543 | 0.9412 | 0.0000 | 103,351 | reverted |
+| numeric-first packing | 0.8040 | 0.9565 | 0.9412 | 0.0000 | 101,878 | reverted |
+
+Both variants passed the gate; they were reverted because they did not widen the
+coverage margin (the goal was ≥0.815).

@@ -1137,3 +1137,9 @@ This log records material project changes by date. It does not use release versi
 - Mean answer 101,846 characters (P95 104,244), latency P95 1.47 s; summary-first output, numeric dedupe and gzip are shipped.
 - Corpus audit closed with no new batch: the 2024 bulletin, criminal law and turtle plan are already indexed; the remaining gaps have no official published text and the frozen doc map is the binding constraint.
 - Announcement draft prepared for owner confirmation; nothing published.
+
+## 2026-11-10 — Coverage experiments reverted
+
+- Depth 400 / 400 hits: coverage unchanged at 0.8092, citation 0.9565 → 0.9543; reverted.
+- Numeric-first packing: coverage 0.8040 (−0.52 pp); switch removed.
+- Defaults stay at depth 300 / 300 hits / 100k characters; coverage margin 0.92 pp. Both variants passed the gate, so no line was broken; the experiments simply did not widen the margin.
