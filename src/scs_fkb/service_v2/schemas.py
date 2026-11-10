@@ -5,8 +5,9 @@ from typing import Literal
 from pydantic import BaseModel, Field
 
 Persona = Literal["captain", "owner", "enforcement", "extension", "general"]
-Mode = Literal["kb_only", "clarify", "abstain"]
+Mode = Literal["kb_only", "kb_plus_web", "clarify", "abstain"]
 Answerability = Literal["answerable", "partial", "abstain"]
+WebMode = Literal["off", "auto", "on"]
 
 
 class QueryRequest(BaseModel):
@@ -14,6 +15,7 @@ class QueryRequest(BaseModel):
     persona: Persona = "general"
     region: str | None = Field(default=None, max_length=32)
     year: int | None = Field(default=None, ge=1949, le=2100)
+    web: WebMode = "off"
 
 
 class CitationModel(BaseModel):
@@ -27,6 +29,20 @@ class CitationModel(BaseModel):
     retrieved_at: str = ""
     source_type: Literal["corpus"] = "corpus"
     label: str = ""
+
+
+class WebLeadModel(BaseModel):
+    """An ephemeral web result. Never a corpus citation and never auto-ingested."""
+
+    url: str
+    title: str = ""
+    domain: str = ""
+    publisher: str = ""
+    tier: str = ""
+    fetched_at: str = ""
+    snippet: str = ""
+    citation: str = ""
+    label: str = "网络检索 · 未入知识库"
 
 
 class PlaybookStep(BaseModel):
@@ -76,6 +92,8 @@ class QueryResponse(BaseModel):
     summary: str = ""
     citations_total: int = 0
     citations: list[CitationModel] = Field(default_factory=list)
+    used_web: bool = False
+    web_leads: list[WebLeadModel] = Field(default_factory=list)
     abstained: bool = False
     reason: str = "ok"
     mode: Mode = "kb_only"

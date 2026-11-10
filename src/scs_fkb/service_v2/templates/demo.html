@@ -13,7 +13,7 @@ a{color:var(--sea)}h1{font-size:1.35rem;margin:0 0 8px}
 label{display:block;font-weight:650;margin:10px 0 6px;font-size:.92rem}
 textarea,input,select{width:100%;font:inherit;padding:10px 12px;border:1px solid #b9cbc9;border-radius:8px;background:#fff}
 textarea{min-height:88px;resize:vertical}
-.row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
 button{font:inherit;font-weight:700;background:var(--sea);color:#fff;border:0;border-radius:8px;padding:10px 16px;cursor:pointer}
 .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
 .chip{border:1px solid var(--line);background:#fff;color:var(--sea);border-radius:999px;padding:5px 10px;font-size:.85rem;cursor:pointer;font-weight:600}
@@ -38,6 +38,7 @@ small.muted{color:var(--muted)}details{margin-top:12px}
 <div><label for="persona">身份</label><select id="persona" name="persona"><option value="general">通用</option><option value="captain">船长/船员</option><option value="owner">船东/经营人</option><option value="extension">推广/技术</option><option value="enforcement">执法/管理</option></select></div>
 <div><label for="region">地区</label><input id="region" name="region" placeholder="广东/广西/海南/福建"></div>
 <div><label for="year">年份</label><input id="year" name="year" inputmode="numeric" placeholder="2026"></div>
+<div><label for="web">网络检索</label><select id="web" name="web"><option value="off"{% if web != "auto" and web != "on" %} selected{% endif %}>关闭</option><option value="auto"{% if web == "auto" %} selected{% endif %}>自动（时效/缺口时）</option><option value="on"{% if web == "on" %} selected{% endif %}>强制</option></select></div>
 </div>
 <button type="submit">查询</button>
 </form>
@@ -56,6 +57,14 @@ small.muted{color:var(--muted)}details{margin-top:12px}
 <summary><small class="muted">完整依据摘录（{{ result.answer|length }} 字符）</small></summary>
 <div class="answer" style="margin-top:10px">{{ result.answer }}</div>
 </details>
+{% endif %}
+{% if result.web_leads %}
+<h3>网络线索 <small class="muted">（未入知识库，不能作为结论依据）</small></h3>
+<ul class="cite">
+{% for item in result.web_leads %}
+<li><a href="{{ item.url }}" target="_blank" rel="noreferrer noopener">{{ item.title or item.domain }}</a> <small class="muted">{{ item.publisher }}{% if item.tier %} · {{ item.tier }} 级{% endif %} · 抓取于 {{ item.fetched_at[:10] }}</small><br><small class="muted">{{ item.snippet }}</small></li>
+{% endfor %}
+</ul>
 {% endif %}
 {% if result.citations %}
 <h3>引用（前 {{ result.citations|length }} 条）</h3>

@@ -32,12 +32,14 @@ def _result() -> SimpleNamespace:
         citations_total=1,
         abstained=False,
         mode="kb_only",
+        used_web=False,
+        web_leads=[],
     )
 
 
 def test_ask_defaults_to_the_summary(monkeypatch, capsys) -> None:
     result = _result()
-    monkeypatch.setattr(cli, "_service", lambda args: SimpleNamespace(query=lambda q: result))
+    monkeypatch.setattr(cli, "_service", lambda args: SimpleNamespace(query=lambda q, **kw: result))
     code = cli.main(["--data-root", "/tmp/data", "ask", "休渔时间"])
     assert code == 0
     out = capsys.readouterr().out
@@ -49,7 +51,7 @@ def test_ask_defaults_to_the_summary(monkeypatch, capsys) -> None:
 
 def test_ask_full_prints_the_evidence(monkeypatch, capsys) -> None:
     result = _result()
-    monkeypatch.setattr(cli, "_service", lambda args: SimpleNamespace(query=lambda q: result))
+    monkeypatch.setattr(cli, "_service", lambda args: SimpleNamespace(query=lambda q, **kw: result))
     code = cli.main(["--data-root", "/tmp/data", "ask", "--full", "休渔时间"])
     assert code == 0
     out = capsys.readouterr().out
@@ -68,3 +70,17 @@ def test_check_delegates_to_the_public_tree_script(monkeypatch) -> None:
     monkeypatch.setattr(cli.subprocess, "call", fake_call)
     assert cli.main(["check"]) == 0
     assert seen["argv"][-1].endswith("check_public_tree.py")
+
+
+def test_ask_passes_the_web_mode(monkeypatch, capsys) -> None:
+    seen: dict[str, object] = {}
+
+    def query(question, **kwargs):
+        seen.update(kwargs)
+        return _result()
+
+    monkeypatch.setattr(cli, "_service", lambda args: SimpleNamespace(query=query))
+    code = cli.main(["--data-root", "/tmp/data", "ask", "--web", "auto", "休渔时间"])
+    assert code == 0
+    assert seen["web"] == "auto"
+    capsys.readouterr()

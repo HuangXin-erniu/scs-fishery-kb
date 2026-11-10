@@ -18,6 +18,7 @@ The public repository contains:
 - `$SCS_FKB_DATA_ROOT/raw/`: original documents and tables.
 - `$SCS_FKB_DATA_ROOT/processed/`: parsed chunks and metadata.
 - `$SCS_FKB_DATA_ROOT/index/`: local vector and keyword indexes.
+- `$SCS_FKB_DATA_ROOT/web-cache/`: optional web-evidence snippets and page text.
 - `$SCS_FKB_RUN_ROOT/`: local run artifacts.
 - `.env`: local credentials.
 - The source owner's original files remain under the owner's terms.
@@ -61,6 +62,22 @@ A source with `license: unknown` or `sensitivity: unknown` is held. It must not 
 - `internal` sources require owner approval and desensitisation.
 - Request metadata such as model name, timestamp and token count may be logged; sensitive source text is not copied into logs.
 - A local model may be used when a source cannot leave the machine.
+
+## 6.1 Optional web retrieval
+
+- The web layer is off by default (`SCS_FKB_WEB=off`; API default `web: "off"`).
+- When it runs, the question text is sent to the configured search backend: a
+  local SearXNG instance when `SEARXNG_URL` is set, otherwise DuckDuckGo. Fetched
+  pages are restricted to the official-host allowlist in
+  `configs/web-sources.yaml` and must use HTTPS.
+- Snippets, fetched text and the evidence index stay under
+  `$SCS_FKB_DATA_ROOT/web-cache/`. They are never committed, never published and
+  never cited as knowledge-base evidence.
+- A web result may become a source only through the candidate queue and a human
+  admission review. The service never writes to `configs/corpus.yaml` and never
+  ingests a page automatically.
+- Questions are not logged by this layer. The service records only request
+  counters and latency in `/metrics`.
 
 ## 7. Run artifacts and state
 

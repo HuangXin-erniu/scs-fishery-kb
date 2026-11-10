@@ -1,0 +1,74 @@
+schema_version: 1
+# Official-host allowlist for the optional web-evidence layer. Only these
+# domains may be searched, fetched or turned into evidence; HTTPS is required.
+# A result from any other host is dropped and recorded by the caller. The web
+# layer never writes to configs/corpus.yaml and never ingests automatically.
+allowlist:
+- domain: www.gov.cn
+  publisher: 中国政府网
+  tier: A
+- domain: moa.gov.cn
+  publisher: 农业农村部
+  tier: A
+- domain: stats.gov.cn
+  publisher: 国家统计局
+  tier: A
+- domain: cma.gov.cn
+  publisher: 中国气象局
+  tier: A
+- domain: mnr.gov.cn
+  publisher: 自然资源部
+  tier: A
+- domain: nsoas.org.cn
+  publisher: 国家卫星海洋应用中心
+  tier: A
+- domain: msa.gov.cn
+  publisher: 交通运输部海事局
+  tier: A
+- domain: npc.gov.cn
+  publisher: 全国人大
+  tier: A
+- domain: gd.gov.cn
+  publisher: 广东省人民政府
+  tier: A
+- domain: gxzf.gov.cn
+  publisher: 广西壮族自治区人民政府
+  tier: A
+- domain: hainan.gov.cn
+  publisher: 海南省人民政府
+  tier: A
+- domain: fj.gov.cn
+  publisher: 福建省人民政府
+  tier: A
+- domain: fujian.gov.cn
+  publisher: 福建省人民政府
+  tier: A
+- domain: gov.cn
+  publisher: 地方政府网站（层级待核）
+  tier: C
+
+provider:
+  # Local SearXNG JSON endpoint, for example http://127.0.0.1:8888. Empty means
+  # the DuckDuckGo backend is used directly. SEARXNG_URL overrides this value.
+  searxng_url: ""
+  fallback: ddgs
+  backend: auto
+  # The local SearXNG keeps two Chinese engines enabled on demand; without this
+  # list its default general category returns no rows.
+  engines: "sogou,360search"
+  # When the first search yields no allowlisted row, retry once with this site
+  # restriction; it narrows results to the authoritative TLD already allowlisted.
+  site_hint: "gov.cn"
+  max_results: 5
+  timeout_seconds: 10
+
+limits:
+  max_evidences: 2
+  max_bytes: 2000000
+  snippet_chars: 300
+  spacing_seconds: 2
+  cache_entries: 200
+
+refresh:
+  timeout_seconds: 10
+  user_agent: scs-fkb-web/1.0 (+https://github.com/HuangXin-erniu/scs-fishery-kb)

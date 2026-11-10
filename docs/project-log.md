@@ -1157,3 +1157,11 @@ This log records material project changes by date. It does not use release versi
 - The local `/demo` page, `/metrics`, unified JSON errors and OpenAPI examples are shipped; smoke returns the 休渔 summary with evidence and metrics counts requests.
 - Coverage experiments were reverted (depth 400 and numeric-first packing: no margin gain), so the shipped baseline stays at coverage 0.8092, citation 0.9565, basis 0.9412, mean answer 101,846 characters.
 - Announcement draft updated for owner confirmation; nothing published; 0 tags / 0 releases.
+
+## 2026-11-10 — Controlled web-evidence layer restored
+
+- Rebuilt the optional web plane that P12 removed: `src/scs_fkb/web_v2/` with an official-host allowlist, HTTPS-only fetch, redirect re-checks, 2 MB page cap, 10 s timeout, 2 s spacing, TTLs of 7/30/90/365 days and a local cache under `$SCS_FKB_DATA_ROOT/web-cache`.
+- `web` is `off|auto|on` and defaults to `off`; `auto` triggers on a freshness cue, a cited source past its review/effective date, or an in-scope abstention. The API, CLI, `/demo` and the OpenAPI example expose the switch.
+- Web results are leads: at most two, labelled `网络检索 · 未入知识库`, returned in `web_leads`, never in `citations`, never in the answer text and never able to flip an abstention. Nothing is ingested; `promotion_draft()` prepares a candidate for the human admission step.
+- `docs/interface.md` and `configs/interface.yaml` now match the implementation: `kb_plus_web` is the only web mode and the never-implemented `web_only` is gone.
+- Tests cover allowlist and redirect rejection, HTTPS, size and content-type limits, TTL and cache reuse, spacing, lead caps, injection/invisible-character cleaning, `off` zero-call behaviour and the abstention rule.

@@ -14,12 +14,12 @@ The project turns documents, data dictionaries, product descriptions, fishery bu
 
 > **中文简介**：本项目把南海近海渔船作业与渔情相关的公开文档、统计口径、法规标准与产品说明，
 > 整理成可检索、可引用、可评测的领域知识库，并提供带出处证据的检索增强问答。
-> 当前处于**数据准备与语料查找**阶段：先确认南海近海范围、来源权威性和指标覆盖，检索管线暂不实现。
+> 当前管线与 512 题私有验收已完成；可选网络证据层默认关闭，只作带标注的线索。
 > 仓库不发布任何数据或运行产物；完整中文说明见 [README.zh-CN.md](README.zh-CN.md)。
 
 ## Status
 
-**Pipeline and acceptance complete for this phase.** One hundred sources are registered: ninety-eight acquired and two held. Sixty-seven documents are indexed (2,797 chunks). The service answers in clause-dump mode: verbatim sentences with `[DOC §section]` citations, the highest-overlap sentence on top and a deterministic numeric-comparison block. Under acceptance protocol v2 the private 512-question run passes all six lines: misanswer 0.0000, refusal-with-channel 1.0000, as-of 0.9474, point coverage 0.8092, citation 0.9565 and basis 0.9412. Protocol v2 judges citation location at document level, gives partial credit to point terms and measures basis over answered numeric rows; the rules and the v1 comparison are in [docs/evaluation.md](docs/evaluation.md). The code is public; the corpus, the processed store and the run reports stay local.
+**Pipeline and acceptance complete for this phase.** One hundred sources are registered: ninety-eight acquired and two held. Sixty-seven documents are indexed (2,797 chunks). The service answers in clause-dump mode: verbatim sentences with `[DOC §section]` citations, the highest-overlap sentence on top and a deterministic numeric-comparison block. Under acceptance protocol v2 the private 512-question run passes all six lines: misanswer 0.0000, refusal-with-channel 1.0000, as-of 0.9474, point coverage 0.8092, citation 0.9565 and basis 0.9412. Protocol v2 judges citation location at document level, gives partial credit to point terms and measures basis over answered numeric rows; the rules and the v1 comparison are in [docs/evaluation.md](docs/evaluation.md). The code is public; the corpus, the processed store and the run reports stay local. An optional web-evidence layer is available but off by default (`SCS_FKB_WEB=off`): it may return up to two labelled leads from an official-host allowlist, never counts as a corpus citation, never enters the answer text and never ingests automatically.
 
 ### Corpus at a glance
 

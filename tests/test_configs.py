@@ -70,7 +70,6 @@ def test_retired_configs_are_gone() -> None:
         "eval.yaml",
         "eval-v2.yaml",
         "web-cards.yaml",
-        "web-sources.yaml",
         "statistics.yaml",
         "candidates.yaml",
         "faq.yaml",

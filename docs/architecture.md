@@ -121,6 +121,11 @@ PYTHONPATH=src python -m scs_fkb serve
   imports them: `answer.py` (extractive answer and citation validation),
   `rag.py` (LLM cache), `retrieve.py` (lexical gate), `claims.py` (claim routing),
   `store.py` (JSONL I/O) and `jurisdiction.py` (province routing).
-- The CLI was reduced to `ask`, `serve` and `check`; the web channel, the v1
+- The CLI was reduced to `ask`, `serve` and `check`; the v1
   ingest/evaluate/statistics/reference/knowledge/FAQ/watch/candidate modules and
   the 48-question and v2 evaluation sets were removed in the v1 cleanup.
+- The optional web-evidence layer was rebuilt in `src/scs_fkb/web_v2/` and is off
+  by default. It searches an official-host allowlist, fetches over HTTPS with TTL
+  caching, and returns at most two labelled leads in `web_leads`; those leads are
+  not corpus citations, do not enter the answer text and never decide abstention.
+  Nothing is auto-ingested; a promotion draft goes to the candidate queue.

@@ -101,7 +101,13 @@ def create_app(
         openapi_extra={
             "requestBody": {
                 "content": {
-                    "application/json": {"example": {"question": EXAMPLES[0], "persona": "captain"}}
+                    "application/json": {
+                        "example": {
+                            "question": EXAMPLES[0],
+                            "persona": "captain",
+                            "web": "auto",
+                        }
+                    }
                 }
             }
         },
@@ -112,6 +118,7 @@ def create_app(
             persona=payload.persona,
             region=payload.region,
             year=payload.year,
+            web=payload.web,
         )
 
     @app.get("/v1/sources", response_model=list[SourceView], dependencies=[Depends(require_key)])
@@ -165,7 +172,7 @@ def create_app(
         return templates.TemplateResponse(
             request=request,
             name="demo.html",
-            context={"examples": EXAMPLES, "result": None, "question": ""},
+            context={"examples": EXAMPLES, "result": None, "question": "", "web": "off"},
         )
 
     @app.post("/demo", response_class=HTMLResponse)
@@ -175,6 +182,7 @@ def create_app(
         persona: str = Form("general"),
         region: str = Form(""),
         year: str = Form(""),
+        web: str = Form("off"),
     ) -> HTMLResponse:
         year_value = int(year) if year.strip().isdigit() else None
         result = app.state.service.query(
@@ -182,11 +190,17 @@ def create_app(
             persona=persona,
             region=region.strip() or None,
             year=year_value,
+            web=web,
         )
         return templates.TemplateResponse(
             request=request,
             name="demo.html",
-            context={"examples": EXAMPLES, "result": result.model_dump(), "question": question},
+            context={
+                "examples": EXAMPLES,
+                "result": result.model_dump(),
+                "question": question,
+                "web": web,
+            },
         )
 
     @app.get("/", response_class=HTMLResponse)
