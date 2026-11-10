@@ -1130,3 +1130,10 @@ This log records material project changes by date. It does not use release versi
 - No official published text exists for the 30 m inspection rule (drafts only), the 38/155 mm mesh values, the remote-sensing product note, the safety regulation (2022 seminar draft) or the marine-heatwave standard (still under review).
 - The binding constraint is the private doc map: several rows map to `docs: []` even though an indexed document exists, so new copies cannot move citation. Doc-map edits are an instrument change and the frozen protocol forbids them.
 - No batch kept; index unchanged at `ce3eeaf4c9b2` (67 documents / 2,797 chunks).
+
+## 2026-11-10 — Final 100k baseline
+
+- Final 512 with the shipped defaults: misanswer 0.0000, refusal-with-channel 1.0000, as-of 0.9474, coverage 0.8092, citation 0.9565, basis 0.9412. All six lines pass.
+- Mean answer 101,846 characters (P95 104,244), latency P95 1.47 s; summary-first output, numeric dedupe and gzip are shipped.
+- Corpus audit closed with no new batch: the 2024 bulletin, criminal law and turtle plan are already indexed; the remaining gaps have no official published text and the frozen doc map is the binding constraint.
+- Announcement draft prepared for owner confirmation; nothing published.
