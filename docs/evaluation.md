@@ -896,6 +896,9 @@ Final 512 run with the shipped default (no mode overrides; index `395f8cb097d1`,
 
 ### 27. Final v2 baseline (2026-11-09)
 
+> **Note.** This section records the 300k-window baseline; the shipped window is
+> 100k, recorded in section 29. The six-line table below is kept for comparison.
+
 > **中文摘要**：66 份文档、2,761 块、协议 v2、定稿默认（300 条/30 万字/深度 300）下，
 > 512 题六线全部过线：误答 0.0000、拒答渠道 1.0000、时效 0.9474、覆盖 0.8104、
 > 引用 0.9497、口径 0.9412。平均答案 128,778 字符（P95 167,711，最大 194,337），
