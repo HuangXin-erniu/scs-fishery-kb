@@ -51,10 +51,10 @@ configs/corpus.yaml (100 sources, schema v4)
 | single | `SCS_FKB_ANSWER_MODE=llm` | 0.3807 | 0.3287 | conclusion + conditions from one pass |
 | facet | `SCS_FKB_ANSWER_MODE=facet` | 0.4133 | 0.3540 | decompose, per-facet answer, merge, verify |
 | quotes | `SCS_FKB_ANSWER_MODE=quotes` | 0.5437 (120 pilot) | 0.5437 | verbatim quotes, rejected when reworded |
-| **dump** | `SCS_FKB_ANSWER_MODE=dump` | **0.8129** | **0.9588** | deterministic, block quoting, numeric comparison block, no model call; protocol v2 |
+| **dump** | `SCS_FKB_ANSWER_MODE=dump` | **0.8092** | **0.9565** | deterministic, block quoting, numeric comparison block, no model call; protocol v2 |
 
 The dump arm is the shipped default (`SCS_FKB_ANSWER_MODE=dump`) with depth 300,
-block quoting, 300 hits / 300,000 characters and the numeric comparison block;
+block quoting, 300 hits / 100,000 characters and the numeric comparison block;
 `SCS_FKB_DUMP_DEPTH`, `SCS_FKB_DUMP_MODE`, `SCS_FKB_DUMP_HITS`,
 `SCS_FKB_DUMP_CHARS` and `SCS_FKB_DUMP_NUMBERS` override it.
 
@@ -65,13 +65,13 @@ block quoting, 300 hits / 300,000 characters and the numeric comparison block;
 | Misanswer (70 refusal) | 0.0000 | ≤0.10 | met |
 | Refusal-with-channel | 1.0000 | ≥0.90 | met |
 | As-of declaration (57) | 0.9474 | ≥0.90 | met |
-| Point coverage (727 answerable) | 0.8129 | 0.80 | met (v2) |
-| Citation accuracy | 0.9588 | 0.90 | met (v2) |
+| Point coverage (727 answerable) | 0.8092 | 0.80 | met (v2) |
+| Citation accuracy | 0.9565 | 0.90 | met (v2) |
 | Basis accuracy (17 answered numeric) | 0.9412 | 0.85 | met (v2) |
 
 All six lines pass under acceptance protocol v2 on the 67-document index
 (2,797 chunks). The term ceiling is 624 of 727 points (0.8583) and the shipped
-clause-dump arm reaches 0.8129 with the 300-hit window. Protocol v2 judges citation
+clause-dump arm reaches 0.8092 with the 300-hit and 100k-character window. Protocol v2 judges citation
 location at document level, gives partial credit to point terms and measures basis
 over answered numeric rows; the rules and the v1 comparison are in
 [evaluation.md](evaluation.md) sections 25-27.
