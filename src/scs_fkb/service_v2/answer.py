@@ -63,17 +63,9 @@ def _summary_of(fields: dict[str, Any], citations: list[CitationModel], answer_t
     numbers = fields.get("numbers") or []
     if numbers:
         rendered = []
-        seen_values: set[tuple[str, str]] = set()
-        for item in numbers:
-            if not isinstance(item, dict):
-                continue
-            key = (str(item.get("value", "")), str(item.get("unit", "")))
-            if key in seen_values:
-                continue
-            seen_values.add(key)
-            rendered.append(f"{item.get('value', '')}{item.get('unit', '')}")
-            if len(rendered) >= 4:
-                break
+        for item in numbers[:4]:
+            if isinstance(item, dict):
+                rendered.append(f"{item.get('value', '')}{item.get('unit', '')}")
         if rendered:
             parts.append("数值与口径：" + "；".join(rendered))
     if gap:

@@ -213,11 +213,3 @@ def test_abstain_and_clarify_have_summaries() -> None:
     clarify = _service().query("某渔场今年休渔时间？")
     assert clarify.mode == "clarify"
     assert clarify.summary
-
-
-def test_api_compresses_large_responses(tmp_path) -> None:
-    app = create_app(_service(), run_root=tmp_path)
-    client = TestClient(app)
-    response = client.get("/", headers={"Accept-Encoding": "gzip"})
-    assert response.status_code == 200
-    assert response.headers.get("content-encoding") == "gzip"

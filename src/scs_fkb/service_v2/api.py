@@ -7,7 +7,6 @@ from datetime import UTC, datetime
 from pathlib import Path
 
 from fastapi import Depends, FastAPI, Form, Header, HTTPException, Request
-from fastapi.middleware.gzip import GZipMiddleware
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 
@@ -48,7 +47,6 @@ def create_app(
         version="v2",
         description="Local knowledge-base answer service with cited corpus evidence.",
     )
-    app.add_middleware(GZipMiddleware, minimum_size=1024)
     app.state.service = service or build_service(run_root=run_root)
     app.state.run_root = run_root
     templates = Jinja2Templates(directory=str(Path(__file__).parent / "templates"))
