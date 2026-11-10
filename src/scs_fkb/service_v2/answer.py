@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 import os
 import re
 import time
@@ -129,6 +130,7 @@ def _summary_of(
 
 
 YEAR_RE = re.compile(r"(20\d{2})\s*年?")
+SHORT_EVIDENCE_HITS = 8
 CLARIFY_PATTERNS = ("某渔场", "某海域", "某年度", "某类", "某品种", "某一")
 WEATHER_WORDS = ("台风", "海温", "预报", "风暴潮", "赤潮", "海浪", "预警")
 KEYWORD_GROUPS = (
@@ -183,6 +185,22 @@ def _match_playbook(question: str, playbooks: list[dict[str, Any]]) -> dict[str,
         if overlap >= 2 and score >= 0.12 and (best is None or score > best[0]):
             best = (score, playbook)
     return best[1] if best else None
+
+
+def _record_short_failure(reason: str) -> None:
+    """Append the short-arm failure reason to SCS_FKB_SHORT_DIAG when set.
+
+    Opt-in and content-free: the line carries the reason class only, never the
+    question or the answer, so a diagnostic run can be shared.
+    """
+    path = os.environ.get("SCS_FKB_SHORT_DIAG", "").strip()
+    if not path:
+        return
+    try:
+        with Path(path).expanduser().open("a", encoding="utf-8") as handle:
+            handle.write(json.dumps({"reason": reason[:200]}, ensure_ascii=False) + "\n")
+    except OSError:
+        return
 
 
 class AnswerService:
@@ -288,13 +306,14 @@ class AnswerService:
         if pair is None:
             return None
         client, cache = pair
-        hits = self.retriever.search_queries([question], top_k=8)
+        hits = self.retriever.search_queries([question], top_k=SHORT_EVIDENCE_HITS)
         if extra:
             seen = {hit.chunk.chunk_id for hit in hits}
             hits = [hit for hit in extra if hit.chunk.chunk_id not in seen] + hits
         try:
             return answer_with_short(question, hits, client, cache)
-        except LLMError:
+        except LLMError as exc:
+            _record_short_failure(str(exc))
             return None
 
     def _quotes_answer(self, question: str) -> Any:

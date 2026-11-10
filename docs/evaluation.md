@@ -1156,3 +1156,63 @@ cap at runtime turned 3 of the 27 fallback rows into valid short answers, so a
 10-hit arm would give roughly 14/60 instead of 11/60. The service constant alone
 is a no-op and was reverted; shipping the wider window means editing the arm's own
 cap in `answer_v3`, which this change does not do.
+
+
+### 35. Short-answer failure attribution (2026-11-10)
+
+> **中文摘要**：给短答加了可选的失败原因记录（`SCS_FKB_SHORT_DIAG`，只写原因类、不写题面与
+> 答案），跑 60 条公开题得到失败分布：`uncited` 占 66%、`too_long` 占 39%、`citation_invalid`
+> 占 12%。据此发现引用检查按 `；` 断句，把“同一行末尾带引用”的结论误判成无引用。改成按行
+> 校验后有效短答 10 → 13；再对仅超长的答案在句末截断，升到 **16/60**，引用解析 1.0、全部
+> ≤300 字、无证据题 13/13 弃答。把证据窗从 8 提到 10 反而降到 12/60，已回退。
+
+#### Attribution
+
+The short arm's failures were invisible: the service swallowed the `LLMError` and fell
+back to the deterministic answer. An opt-in hook (`SCS_FKB_SHORT_DIAG=<path>`) now
+appends one JSON line per failure with the reason class only — no question text, no
+answer text — and `short_invalid` reports every problem kind, not just the first.
+
+Distribution over the 60 public items (41 failures, `SCS_FKB_VERIFY_ANSWERS=on`):
+
+| Failure class | Rows |
+|---|---:|
+| `uncited` | 16 |
+| `uncited+too_long` | 10 |
+| `too_long` | 6 |
+| `citation_invalid` | 5 |
+| empty completion | 3 |
+| `uncited+ungrounded` | 1 |
+
+#### What the distribution showed
+
+The citation check split the rendered text on `；`, so a conclusion written as
+"claim A；claim B [DOC §section]" was read as two sentences and the first one was
+flagged as uncited even though the line carries a citation. That is a validation
+bug, not a model failure: 26 of 41 failures carried `uncited`.
+
+#### Measurements
+
+| Variant | Valid short | Citation resolution | Within cap | Abstention |
+|---|---:|---:|---:|---:|
+| baseline, 8 hits | 10/60 | 1.0 | 10/10 | 13/13 |
+| caveat line exempt from the citation check | 10/60 | 1.0 | 10/10 | 13/13 |
+| **line-level citation check** | 13/60 | 1.0 | 13/13 | 13/13 |
+| line-level check + 10 evidence hits | 12/60 | 1.0 | 12/12 | 13/13 |
+| **line-level check + sentence-boundary truncation** | **16/60** | **1.0** | **16/16** | **13/13** |
+
+- The caveat exemption changed nothing (the flagged lines were conclusions and
+  basis lines), so it was dropped.
+- Raising the window to 10 hits cost one row: different evidence changes what the
+  model writes, and more evidence does not fix a missing citation. Reverted.
+- Truncation applies only when the sole remaining problem is length: after the
+  repair pass the text is cut at the last `。` or `；` inside the cap, then
+  re-validated. It converted 6 rows without losing a citation.
+- Remaining failures after the shipped fix (33): `uncited` 21, `citation_invalid` 7,
+  `ungrounded` 1, empty completion 2, rest mixed. The uncited rows are lines with no
+  citation at all, which needs prompt work rather than validation changes.
+
+#### Decision
+
+Ship the line-level citation check and the truncation fallback; the dump path, the
+512 instrument, the document map, protocol v2 and the thresholds are untouched.

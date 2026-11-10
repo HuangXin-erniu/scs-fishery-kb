@@ -46,10 +46,14 @@ characters.
 `short` selects the optional short-answer arm (at most 300 Chinese characters,
 conclusion → basis → deadline/documents, every claim cited). It defaults to
 false; a failed validation falls back to the deterministic path, which is not
-capped at 300 characters. The arm reads at most `MAX_HITS` (8) retrieved chunks,
-so a wider retrieval window does not change its evidence. Abstention on
-unsupported questions requires `SCS_FKB_VERIFY_ANSWERS=on`; without it the arm
-answers instead of refusing. `rerank` is
+capped at 300 characters. Citations are checked per rendered line, so one
+trailing `[DOC §section]` covers the clauses a line joins with `；`; an answer
+that is only too long is truncated at the last sentence boundary inside the cap
+and re-validated. The arm reads at most `MAX_HITS` (8) retrieved chunks, so a
+wider retrieval window does not change its evidence. Abstention on unsupported
+questions requires `SCS_FKB_VERIFY_ANSWERS=on`; without it the arm answers
+instead of refusing. `SCS_FKB_SHORT_DIAG=<path>` records one content-free line
+per short-arm failure for diagnosis. `rerank` is
 `true`, `false` or `null` (use `SCS_FKB_RERANK`, default off) and enables the
 cross-encoder for this request.
 

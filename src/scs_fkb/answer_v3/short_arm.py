@@ -98,9 +98,23 @@ def _ask(
 
 
 def _problems(text: str, by_label: dict[str, Any]) -> list[str]:
-    # A material list is a noun phrase, not a claim; every other line needs a citation.
+    # A material list is a noun phrase, not a claim; every other line needs a
+    # citation. Chinese lists join clauses with a semicolon, so the check works on
+    # the rendered line: a citation at the end of the line covers its clauses.
     claims = "\n".join(line for line in text.splitlines() if not line.startswith("材料："))
-    return _sentence_problems(claims, by_label) + _number_problems(text, by_label)
+    lines = claims.replace("；", "，")
+    return _sentence_problems(lines, by_label) + _number_problems(text, by_label)
+
+
+def _truncate(text: str) -> str:
+    """Drop trailing clauses so a too-long answer keeps whole sentences."""
+    if len(text) <= MAX_ANSWER_CHARS:
+        return text
+    window = text[:MAX_ANSWER_CHARS]
+    cut = max(window.rfind("。"), window.rfind("；"))
+    if cut <= 0:
+        return window
+    return window[: cut + 1]
 
 
 def answer_with_short(
@@ -155,8 +169,18 @@ def answer_with_short(
         problems = _problems(text, by_label) + (
             [f"too_long:{len(text)}"] if len(text) > MAX_ANSWER_CHARS else []
         )
+        if problems and all(problem.startswith("too_long") for problem in problems):
+            text = _truncate(text)
+            problems = _problems(text, by_label) + (
+                [f"too_long:{len(text)}"] if len(text) > MAX_ANSWER_CHARS else []
+            )
         if problems:
-            raise LLMError("short_invalid:" + problems[0].split(":")[0])
+            kinds: list[str] = []
+            for problem in problems:
+                kind = problem.split(":", 1)[0]
+                if kind not in kinds:
+                    kinds.append(kind)
+            raise LLMError("short_invalid:" + "+".join(kinds))
     valid, invalid = _resolve_citations(text, hits)
     if not valid:
         raise LLMError("short_citation_invalid:" + ",".join(invalid[:2]))
