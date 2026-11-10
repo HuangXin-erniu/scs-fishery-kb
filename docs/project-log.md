@@ -1143,3 +1143,11 @@ This log records material project changes by date. It does not use release versi
 - Depth 400 / 400 hits: coverage unchanged at 0.8092, citation 0.9565 → 0.9543; reverted.
 - Numeric-first packing: coverage 0.8040 (−0.52 pp); switch removed.
 - Defaults stay at depth 300 / 300 hits / 100k characters; coverage margin 0.92 pp. Both variants passed the gate, so no line was broken; the experiments simply did not widen the margin.
+
+## 2026-11-10 — Local demo page, metrics and unified errors
+
+- Added `/demo`: sample questions, a form, summary-first result with the full evidence under a details block and the deduplicated citations.
+- Added `/metrics`: uptime, requests, errors, latency p50/p95 and the index version, recorded by middleware.
+- Unhandled exceptions now return `{"error": {"code": "internal_error", ...}}`; OpenAPI shows a query example.
+- Removed the stale "web supplementation" line from the index page; the service is local-only.
+- Smoke: the demo returns the 休渔 summary, 20 citations and the full evidence; `/metrics` counts the requests.

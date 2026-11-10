@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>测试页 · 南海近岸渔业知识库</title>
+<style>
+:root{--ink:#132a2f;--muted:#587075;--line:#d7e3e2;--sea:#0f6b73;--sand:#f4f7f4;--warn:#8a4b00}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Noto Sans SC",sans-serif;color:var(--ink);background:var(--sand);line-height:1.65}
+main{max-width:880px;margin:0 auto;padding:28px 18px 56px}
+a{color:var(--sea)}h1{font-size:1.35rem;margin:0 0 8px}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px;margin-bottom:16px;box-shadow:0 8px 24px rgba(19,42,47,.05)}
+label{display:block;font-weight:650;margin:10px 0 6px;font-size:.92rem}
+textarea,input,select{width:100%;font:inherit;padding:10px 12px;border:1px solid #b9cbc9;border-radius:8px;background:#fff}
+textarea{min-height:88px;resize:vertical}
+.row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+button{font:inherit;font-weight:700;background:var(--sea);color:#fff;border:0;border-radius:8px;padding:10px 16px;cursor:pointer}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.chip{border:1px solid var(--line);background:#fff;color:var(--sea);border-radius:999px;padding:5px 10px;font-size:.85rem;cursor:pointer;font-weight:600}
+.badge{display:inline-block;border-radius:999px;padding:3px 9px;font-size:.78rem;font-weight:700;background:#e8f0ef;color:var(--sea);margin:0 6px 6px 0}
+.answer{white-space:pre-wrap;font-size:1.02rem}
+.cite{list-style:none;padding:0;margin:8px 0 0}.cite li{border-top:1px solid var(--line);padding:9px 0}
+small.muted{color:var(--muted)}details{margin-top:12px}
+@media(max-width:620px){.row{grid-template-columns:1fr}}
+</style>
+</head>
+<body><main>
+<h1>SCS-FKB 测试页</h1>
+<p><small class="muted">本地演示：摘要优先，完整证据按需展开；接口文档见 <a href="/docs">/docs</a>。</small></p>
+<section class="card">
+<form method="post" action="/demo">
+<label for="question">问题</label>
+<textarea id="question" name="question" required placeholder="例如：2026年南海区伏季休渔从什么时候开始？">{{ question }}</textarea>
+<div class="chips">
+{% for example in examples %}<button class="chip" type="button" onclick="document.getElementById('question').value={{ example|tojson }}">{{ example }}</button>{% endfor %}
+</div>
+<div class="row" style="margin-top:12px">
+<div><label for="persona">身份</label><select id="persona" name="persona"><option value="general">通用</option><option value="captain">船长/船员</option><option value="owner">船东/经营人</option><option value="extension">推广/技术</option><option value="enforcement">执法/管理</option></select></div>
+<div><label for="region">地区</label><input id="region" name="region" placeholder="广东/广西/海南/福建"></div>
+<div><label for="year">年份</label><input id="year" name="year" inputmode="numeric" placeholder="2026"></div>
+</div>
+<button type="submit">查询</button>
+</form>
+</section>
+{% if result %}
+<section class="card">
+<div>
+<span class="badge">{{ result.mode }}</span>
+{% if result.abstained %}<span class="badge" style="background:#f7e8d8;color:var(--warn)">证据不足</span>{% endif %}
+<span class="badge">{{ result.latency_ms }} ms</span>
+<span class="badge">{{ result.citations_total }} 份文档</span>
+</div>
+<div class="answer">{{ result.summary }}</div>
+{% if result.answer and result.answer != result.summary %}
+<details>
+<summary><small class="muted">完整依据摘录（{{ result.answer|length }} 字符）</small></summary>
+<div class="answer" style="margin-top:10px">{{ result.answer }}</div>
+</details>
+{% endif %}
+{% if result.citations %}
+<h3>引用（前 {{ result.citations|length }} 条）</h3>
+<ul class="cite">
+{% for item in result.citations %}
+<li><strong>[{{ item.doc_id }}{% if item.section %} §{{ item.section }}{% elif item.page %} p.{{ item.page }}{% endif %}]</strong> {{ item.title }}<br><small class="muted">{{ item.snippet }}</small></li>
+{% endfor %}
+</ul>
+{% endif %}
+</section>
+{% endif %}
+<p><a href="/">返回首页</a></p>
+</main></body></html>

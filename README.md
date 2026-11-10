@@ -111,7 +111,7 @@ PYTHONPATH=src python3 scripts/build_v2.py        # parse registered sources int
 PYTHONPATH=src python3 scripts/build_index_v2.py  # build the local BM25 + dense index
 PYTHONPATH=src python3 -m scs_fkb ask "2026年南海区伏季休渔从什么时候开始？"
 PYTHONPATH=src python3 -m scs_fkb ask --full "2026年南海区伏季休渔从什么时候开始？"
-PYTHONPATH=src python3 -m scs_fkb serve
+PYTHONPATH=src python3 -m scs_fkb serve   # UI at /, demo at /demo, OpenAPI at /docs, metrics at /metrics
 ```
 
 `ask` prints a short contract summary and the main citations; `--full` prints the

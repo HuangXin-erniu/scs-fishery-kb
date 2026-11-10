@@ -221,3 +221,45 @@ def test_api_compresses_large_responses(tmp_path) -> None:
     response = client.get("/", headers={"Accept-Encoding": "gzip"})
     assert response.status_code == 200
     assert response.headers.get("content-encoding") == "gzip"
+
+
+def test_demo_page_renders_summary_and_evidence(tmp_path) -> None:
+    app = create_app(_service(), run_root=tmp_path)
+    client = TestClient(app)
+    page = client.get("/demo")
+    assert page.status_code == 200
+    assert "测试页" in page.text
+    assert "2026年南海区伏季休渔" in page.text
+    result = client.post(
+        "/demo",
+        data={"question": "2026年南海区伏季休渔从什么时候开始？", "persona": "captain"},
+    )
+    assert result.status_code == 200
+    assert "结论：" in result.text
+    assert "完整依据摘录" in result.text
+    assert "POL-CLOS-015" in result.text
+    assert "份文档" in result.text
+
+
+def test_metrics_report_requests_and_latency(tmp_path) -> None:
+    app = create_app(_service(), run_root=tmp_path)
+    client = TestClient(app)
+    client.get("/healthz")
+    metrics = client.get("/metrics").json()
+    assert metrics["requests_total"] >= 1
+    assert metrics["errors_total"] == 0
+    assert metrics["latency_ms"]["p50"] is not None
+    assert metrics["index_version"] == "v2"
+
+
+def test_unhandled_errors_return_json(tmp_path) -> None:
+    app = create_app(_service(), run_root=tmp_path)
+
+    def boom(*_args, **_kwargs):
+        raise RuntimeError("boom")
+
+    app.state.service.query = boom
+    client = TestClient(app, raise_server_exceptions=False)
+    response = client.post("/v1/query", json={"question": "休渔时间"})
+    assert response.status_code == 500
+    assert response.json()["error"]["code"] == "internal_error"

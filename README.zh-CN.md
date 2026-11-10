@@ -106,7 +106,7 @@ PYTHONPATH=src python3 scripts/build_v2.py        # 解析已登记来源，生�
 PYTHONPATH=src python3 scripts/build_index_v2.py  # 生成本地 BM25 + 稠密索引
 PYTHONPATH=src python3 -m scs_fkb ask "2026年南海区伏季休渔从什么时候开始？"
 PYTHONPATH=src python3 -m scs_fkb ask --full "2026年南海区伏季休渔从什么时候开始？"
-PYTHONPATH=src python3 -m scs_fkb serve
+PYTHONPATH=src python3 -m scs_fkb serve   # 首页 /，测试页 /demo，接口文档 /docs，指标 /metrics
 ```
 
 `ask` 默认输出合同摘要与主要引用；`--full` 输出完整依据。构建命令需要本地数据根；

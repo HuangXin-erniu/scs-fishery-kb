@@ -106,6 +106,7 @@ SCS_FKB_VERIFY_ANSWERS=on PYTHONPATH=src python scripts/eval_accept.py \
 PYTHONPATH=src python -m scs_fkb ask "2026年南海区伏季休渔从什么时候开始？"
 PYTHONPATH=src python -m scs_fkb ask --full "2026年南海区伏季休渔从什么时候开始？"
 PYTHONPATH=src python -m scs_fkb serve
+# local: / (UI), /demo (test page), /docs (OpenAPI), /metrics (requests/latency)
 ```
 
 ## 7. Known limits
