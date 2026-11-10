@@ -146,7 +146,7 @@ facts:
     doc: POL-CLOS-015
     section: 一、休渔海域
     sha256: 15660ed713803ff440da583e1d5a219ab5e488c2237f3bb33cd30e7115174bdc
-  status: draft
+  status: approved
   confidence: medium
   as_of: '2026-11-06'
   review_due: '2027-02-04'
@@ -170,7 +170,7 @@ facts:
     doc: POL-CLOS-015
     section: 二、休渔作业类型
     sha256: 15660ed713803ff440da583e1d5a219ab5e488c2237f3bb33cd30e7115174bdc
-  status: draft
+  status: approved
   confidence: medium
   as_of: '2026-11-06'
   review_due: '2027-02-04'
@@ -222,7 +222,7 @@ facts:
     doc: POL-CLOS-015
     section: 四、实施时间
     sha256: 15660ed713803ff440da583e1d5a219ab5e488c2237f3bb33cd30e7115174bdc
-  status: draft
+  status: approved
   confidence: medium
   as_of: '2026-11-06'
   review_due: '2027-02-04'
@@ -348,7 +348,7 @@ facts:
     doc: POL-FJ-025
     section: 第二条
     sha256: 2bc7fc1382737d874bf5a5a252fa6f17bd2c038affcb95654cdcf4547127b92d
-  status: draft
+  status: approved
   confidence: medium
   as_of: '2026-11-06'
   review_due: '2027-02-04'
@@ -496,7 +496,7 @@ facts:
     doc: POL-FJ-026
     section: 第三条
     sha256: 3052385ad2009f7e0bf811b789acf12594e502ba08fa1f526c54e8e0db68daf6
-  status: draft
+  status: approved
   confidence: medium
   as_of: '2026-11-06'
   review_due: '2027-02-04'
@@ -732,7 +732,7 @@ facts:
     doc: POL-GD-022
     section: 第二条
     sha256: 6ce9089d55e911f00647639bc024e216fbd830c48c862c05342e142d01f17a2b
-  status: draft
+  status: approved
   confidence: medium
   as_of: '2026-11-06'
   review_due: '2027-02-04'
@@ -958,7 +958,7 @@ facts:
     doc: POL-GX-023
     section: 第二条
     sha256: 3f85441ad37f266b6d2675fda1d012a34e0d49f6a30501895bde093ad7505de9
-  status: draft
+  status: approved
   confidence: medium
   as_of: '2026-11-06'
   review_due: '2027-02-04'
@@ -1208,7 +1208,7 @@ facts:
     doc: POL-LAW-009
     section: 第二条
     sha256: cdeaaf75a9992bc98642fbe6c004f790506549a4afaf223e3bf2b7b5eb365fa4
-  status: draft
+  status: approved
   confidence: medium
   as_of: '2026-11-06'
   review_due: '2027-02-04'
@@ -1330,7 +1330,7 @@ facts:
     doc: POL-OBS-072
     section: 第二条
     sha256: 2ff2302e890798305958f38b1e21cbf0e6f2ddaea2d2619edd94c699c9b03af6
-  status: draft
+  status: approved
   confidence: medium
   as_of: '2026-11-06'
   review_due: '2027-02-04'
@@ -1457,7 +1457,7 @@ facts:
     doc: POL-PEN-078
     section: 第二条
     sha256: 42884cb595529b9f687a4442ff5a8bf8f5706c5764cbb7df57859e29923bc428
-  status: draft
+  status: approved
   confidence: medium
   as_of: '2026-11-06'
   review_due: '2027-02-04'
@@ -1708,7 +1708,7 @@ facts:
     doc: POL-PORT-077
     section: 第二条
     sha256: 1ff9570272738ada371f4e412c3b47ef13eaf94c68481a31640421fda6fc1fd2
-  status: draft
+  status: approved
   confidence: medium
   as_of: '2026-11-06'
   review_due: '2027-02-04'
@@ -1782,7 +1782,7 @@ facts:
     doc: POL-PORT-077
     section: 第五条
     sha256: 1ff9570272738ada371f4e412c3b47ef13eaf94c68481a31640421fda6fc1fd2
-  status: draft
+  status: approved
   confidence: medium
   as_of: '2026-11-06'
   review_due: '2027-02-04'

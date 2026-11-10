@@ -143,7 +143,7 @@ The note layer is descriptive; P09-KB-131 adds a verified fact layer and two sup
   supersedes: null
 ```
 
-The layer has **200 facts**: 100 approved and 100 draft provision facts. The approved set has 20 atomic facts with precise values/units/effective dates and 80 provision facts that tag an article or section with a `question_class`, `subject` and `predicate`. The 2026-11-06 review promoted 20 of the 120 generated provision facts; the remaining 100 stay draft. Every fact carries a verbatim `evidence` quote and a `source` with the register hash.
+The layer has **200 facts**: 112 approved and 88 draft provision facts. The approved set has 20 atomic facts with precise values/units/effective dates and 92 provision facts that tag an article or section with a `question_class`, `subject` and `predicate`. The 2026-11-06 review promoted 20 of the 120 generated provision facts; the 2026-11-10 controlled experiment promoted 12 short, question-relevant provisions after the 512 six lines and the fact-lead signatures were measured; the remaining 88 stay draft. Every fact carries a verbatim `evidence` quote and a `source` with the register hash.
 
 `scs-fkb facts check --data-root "$SCS_FKB_DATA_ROOT"` verifies that the evidence is a substring of a chunk with the same document and section, that the source hash equals the register, that approved facts use an A/B public source, that effective dates do not invert, and that facts with the same subject/predicate/jurisdiction do not overlap with different values. A `supersedes` chain resolves an intentional replacement. The check exits non-zero on any error, conflict or expired fact; facts approaching `review_due` are reported as due.
 
