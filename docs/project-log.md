@@ -1221,3 +1221,9 @@ This log records material project changes by date. It does not use release versi
 - Overlong answers that pass everything else are truncated at the last sentence boundary inside the 300-character cap and re-validated.
 - Valid short answers on the public set: 10/60 → 13/60 (line-level check) → **16/60** (plus truncation), with citation resolution 1.0, every answer ≤300 characters and 13/13 abstention on the no-evidence rows. A 10-hit evidence window was measured at 12/60 and reverted.
 - The dump path, the 512 instrument, the document map, protocol v2 and the thresholds are untouched; no 512 run was needed.
+
+## 2026-11-10 — Acceptance sheet and status alignment
+
+- Added `docs/acceptance.md`: one row per indicator with current, target and pass values, the measurement command and the evidence location; the review is materials-only with a 30-item expert spot check, and model-judged scores are labelled as such.
+- Aligned the stale status text: `PROJECT.md` and `docs/plan.md` now state 77 registered sources, 67 indexed documents, 2,797 chunks, the frozen 512 instrument and the 60-item public set instead of 63 sources / 28 documents / 42 documents / 1,014 chunks / 48 questions.
+- Linked the sheet from `PROJECT.md` and `docs/index.md`. Documentation only: no source, config, test or data change.

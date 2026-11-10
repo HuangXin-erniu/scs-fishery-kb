@@ -6,7 +6,7 @@
 |---|---|
 | Project | South China Sea Nearshore Fishery Knowledge Base (SCS-FKB) |
 | Full title | South China Sea Nearshore Fishery Knowledge Base (SCS-FKB): Construction and Retrieval-Augmented Generation Methods |
-| Status | Active development; 63 sources registered, an extractive retrieval prototype over 28 public documents, and a draft evaluation set |
+| Status | Active development; 77 registered sources, 67 indexed documents (2,797 chunks), a 512-question acceptance instrument, an optional short-answer arm, and a published acceptance sheet ([docs/acceptance.md](docs/acceptance.md)) |
 | Domain | Nearshore fisheries in the South China Sea: fishing vessel operations and fishery conditions |
 | Method | Retrieval-augmented generation with citations, abstention and evaluation |
 
@@ -55,6 +55,7 @@ The project is developed within a broader research programme on nearshore fisher
 | [Architecture](docs/architecture.md) | Layers, components, data flow, data contracts, runtime and security |
 | [Project plan](docs/plan.md) | Work packages, milestones, dependencies, roles, quality gates and risks |
 | [Evaluation](docs/evaluation.md) | Question set, metrics, protocol, targets and reporting |
+| [Acceptance](docs/acceptance.md) | Task-book indicators, pass values and the review procedure |
 | [Project log](docs/project-log.md) | Dated record of material project changes |
 | [Governance](GOVERNANCE.md) | Roles, decisions, version policy and boundaries |
 | [Glossary](docs/glossary.md) | Bilingual terminology for fishery and retrieval concepts |
