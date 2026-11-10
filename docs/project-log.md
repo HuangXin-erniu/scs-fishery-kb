@@ -1174,3 +1174,9 @@ This log records material project changes by date. It does not use release versi
 - CI now runs the source-currency gate. Current run: 100 sources, 0 overdue, watch coverage ok, 0 candidates.
 - Live watch run: 26 pages, 20 ok and 6 changed; changed pages are queued for manual reading and nothing was ingested. The weekly report and `docs/operations.md` record the human admission runbook.
 - Fixed the stale watch/candidate/web references in `docs/sources.md`, `docs/corpus.md`, `docs/data-model.md`, `docs/plan.md`, `docs/architecture.md` and `docs/index.md`.
+
+## 2026-11-10 — Worker-facing knowledge station and public regression
+
+- Added `/kb` with five sections: task cards from approved playbooks, a sourced FAQ (16 entries), plain terms (26), a numeric quick reference generated from approved facts, and what-changed from registry dates; persona and keyword filters included.
+- Added `scripts/check_kb.py` (quote and citation resolution against indexed chunks) and `configs/eval-public.yaml` + `scripts/eval_public.py` (48 public samples; recall@5 0.8571, citation resolution 1.0000, playbook 15/15, FAQ 16/16, terms 26/26, numbers 15/15; no private instrument).
+- The answer path is unchanged: `/kb` is presentation-only, so the 512 baseline stays at 0.8092 / 0.9565 / 0.9412.

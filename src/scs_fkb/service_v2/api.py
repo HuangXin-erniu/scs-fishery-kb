@@ -12,6 +12,7 @@ from fastapi.middleware.gzip import GZipMiddleware
 from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.templating import Jinja2Templates
 
+from ..kb_v2 import build_numbers, build_updates, load_faq, load_terms_plain, search_faq
 from .answer import AnswerService, build_service
 from .schemas import (
     FeedbackRequest,
@@ -240,6 +241,64 @@ def create_app(
                 "question": question,
                 "web": web,
             },
+        )
+
+    @app.get("/kb", response_class=HTMLResponse)
+    def kb(request: Request, persona: str = "general", q: str = "") -> HTMLResponse:
+        service = app.state.service
+        registry = getattr(service, "_registry", {})
+        facts = list(getattr(service, "facts", []) or [])
+        playbooks = [
+            item
+            for item in getattr(service, "playbooks", []) or []
+            if item.get("status") == "approved"
+        ]
+        selected = (
+            persona if persona in {"captain", "owner", "enforcement", "extension"} else "general"
+        )
+        if selected != "general":
+            playbooks = [item for item in playbooks if item.get("persona") == selected]
+        terms = load_terms_plain()
+        needle = q.strip().lower()
+        if needle:
+            terms = [
+                item
+                for item in terms
+                if needle
+                in " ".join(
+                    [str(item.get("official") or ""), str(item.get("plain") or "")]
+                    + [str(value) for value in item.get("variants") or []]
+                ).lower()
+            ]
+        return templates.TemplateResponse(
+            request=request,
+            name="kb.html",
+            context={
+                "persona": selected,
+                "query": q,
+                "playbooks": playbooks,
+                "faq": search_faq(load_faq(), q),
+                "terms": terms,
+                "numbers": build_numbers(facts),
+                "updates": build_updates(registry),
+            },
+        )
+
+    @app.get("/kb/playbooks/{playbook_id}", response_class=HTMLResponse)
+    def kb_playbook(request: Request, playbook_id: str) -> HTMLResponse:
+        service = app.state.service
+        playbooks = [
+            item
+            for item in getattr(service, "playbooks", []) or []
+            if item.get("status") == "approved"
+        ]
+        playbook = next((item for item in playbooks if item.get("id") == playbook_id), None)
+        if playbook is None:
+            raise HTTPException(status_code=404, detail="playbook not found")
+        return templates.TemplateResponse(
+            request=request,
+            name="kb_playbook.html",
+            context={"playbook": playbook, "persona": playbook.get("persona") or "general"},
         )
 
     @app.get("/", response_class=HTMLResponse)

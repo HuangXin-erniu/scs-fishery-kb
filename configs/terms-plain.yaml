@@ -1,0 +1,264 @@
+schema_version: 1
+updated_at: '2026-11-10'
+terms:
+- term_id: TERM-001
+  official: 渔业捕捞许可证
+  plain: 允许你合法从事捕捞生产的证件。
+  variants:
+  - 捕捞证
+  - 捕鱼证
+  - 牌照
+  citations:
+  - doc: POL-STD-010
+    section: 第二条
+  status: approved
+- term_id: TERM-002
+  official: 伏季休渔
+  plain: 每年固定一段时间禁止捕捞，让渔业资源休养。
+  variants:
+  - 休渔期
+  - 休渔季节
+  citations:
+  - doc: POL-CLOS-015
+    section: 三、休渔时间
+  status: approved
+- term_id: TERM-004
+  official: 主机功率
+  plain: 渔船发动机的功率，日常常按“马力”说。
+  variants:
+  - 马力
+  - 功率
+  citations:
+  - doc: POL-STD-010
+    section: 第八条
+  status: approved
+- term_id: TERM-005
+  official: 最小网目尺寸
+  plain: 网眼（网囊）不能小于规定尺寸，按海区和渔具分别规定。
+  variants:
+  - 网眼
+  - 网目
+  - 网眼尺寸
+  citations:
+  - doc: POL-GEAR-016
+    section: 一、实行时间和范围
+  status: approved
+- term_id: TERM-006
+  official: 专项（特许）渔业捕捞许可证
+  plain: 休渔期等特殊情况下，允许特定作业类型捕捞的许可证。
+  variants:
+  - 专项证
+  - 特许证
+  - 专项捕捞证
+  citations:
+  - doc: POL-STD-010
+    section: 第二十六条
+  status: approved
+- term_id: TERM-007
+  official: 年审
+  plain: 捕捞许可证每年要按规定审验一次。
+  variants:
+  - 年检
+  - 年度审验
+  citations:
+  - doc: POL-STD-010
+    section: 第四十一条
+  status: approved
+- term_id: TERM-008
+  official: 换发
+  plain: 证书到期前换领新证；旧证收回并注销。
+  variants:
+  - 换证
+  citations:
+  - doc: POL-STD-010
+    section: 第三十六条
+  status: approved
+- term_id: TERM-009
+  official: 船网工具指标
+  plain: 允许你拥有多大船、多少功率的船网工具控制指标。
+  variants:
+  - 船网指标
+  - 指标
+  citations:
+  - doc: POL-STD-010
+    section: 第九条
+  status: approved
+- term_id: TERM-010
+  official: 没收
+  plain: 把渔获物、违法所得和渔具收走。
+  variants:
+  - 罚没
+  - 收缴
+  citations:
+  - doc: POL-LAW-009
+    section: 第七十八条
+  status: approved
+- term_id: TERM-011
+  official: 罚款
+  plain: 按法律规定缴纳一定金额的处罚。
+  variants:
+  - 处罚款
+  - 罚款金额
+  citations:
+  - doc: POL-LAW-009
+    section: 第七十八条
+  status: approved
+- term_id: TERM-012
+  official: 渔港
+  plain: 渔船停靠、卸货、补给和避风的港口。
+  variants:
+  - 港口
+  - 码头
+  citations:
+  - doc: POL-PORT-077
+    section: 第四条
+  status: approved
+- term_id: TERM-013
+  official: 进出港报告
+  plain: 渔船进出渔港时向渔政渔港监督管理机关报告。
+  variants:
+  - 进出港签证
+  - 签证
+  - 报告
+  citations:
+  - doc: POL-PORT-077
+    section: 第六条
+  status: approved
+- term_id: TERM-014
+  official: 渔业船舶检验
+  plain: 渔业船舶按规定接受的初次、营运或临时检验。
+  variants:
+  - 船检
+  - 检验
+  citations:
+  - doc: POL-RULE-019
+    section: 第四条
+  status: approved
+- term_id: TERM-015
+  official: 职务船员
+  plain: 船上需要持证上岗的岗位船员，如船长、轮机长等。
+  variants:
+  - 持证船员
+  - 职务证书船员
+  citations:
+  - doc: POL-PEN-078
+    section: 第二十二条
+  status: approved
+- term_id: TERM-016
+  official: 普通船员
+  plain: 船上从事普通作业、不需要职务证书的船员。
+  variants:
+  - 小工
+  - 普通水手
+  citations:
+  - doc: POL-PEN-078
+    section: 第二十二条
+  status: approved
+- term_id: TERM-017
+  official: 渔业资源增殖保护费
+  plain: 按捕捞产值一定比例缴纳的渔业资源增殖保护费用。
+  variants:
+  - 资源费
+  - 增殖费
+  - 保护费
+  citations:
+  - doc: POL-RULE-020
+    section: 第五条
+  status: approved
+- term_id: TERM-018
+  official: 开渔
+  plain: 休渔结束、允许开始捕捞的时间点。
+  variants:
+  - 开捕
+  - 开海
+  citations:
+  - doc: POL-ENF-068
+    section: 二、工作要点
+  status: approved
+- term_id: TERM-030
+  official: 渔业职务船员证书
+  plain: 职务船员的上岗证书，证明可以担任相应岗位。
+  variants:
+  - 渔业船员适任证书
+  - 职务船员证书
+  - 船员证书
+  citations:
+  - doc: POL-CREW-083
+    section: 第五条
+  status: approved
+- term_id: TERM-048
+  official: 非法捕捞水产品罪
+  plain: 情节严重的非法捕捞行为，可能构成犯罪。
+  variants:
+  - 非法捕捞罪
+  citations:
+  - doc: POL-SANWU-086
+    section: 六、
+  status: approved
+- term_id: TERM-084
+  official: 渔船编码
+  plain: 渔船的唯一边号，用于管理和查询。
+  variants:
+  - 渔船编号
+  citations:
+  - doc: POL-CODE-084
+    section: 二、证书证件修订主要内容
+  status: approved
+- term_id: TERM-085
+  official: 船舶识别号
+  plain: 船舶的识别号码，用于船舶身份识别。
+  variants:
+  - 船舶ID
+  citations:
+  - doc: POL-ID-085
+    section: 第二条
+  status: approved
+- term_id: TERM-088
+  official: 型宽
+  plain: 船体最大宽度，是渔船分类和登记的尺度之一。
+  variants:
+  - 船宽
+  citations:
+  - doc: POL-CODE-084
+    section: 二、证书证件修订主要内容
+  status: approved
+- term_id: TERM-094
+  official: 涉渔“三无”船舶
+  plain: 无船名号、无船舶证书、无船籍港的涉渔船舶。
+  variants:
+  - 三无船
+  - 三无船舶
+  citations:
+  - doc: POL-SANWU-086
+    section: 五、
+  status: approved
+- term_id: TERM-123
+  official: 渔业成品油价格补助
+  plain: 按政策对渔业成品油价格给予的补助。
+  variants:
+  - 油价补贴
+  - 燃油补贴
+  citations:
+  - doc: POL-FUEL-087
+    section: 第三条
+  status: approved
+- term_id: TERM-130
+  official: 调查对象
+  plain: 统计调查覆盖的单位或个人范围。
+  variants:
+  - 统计对象
+  - 统计口径
+  citations:
+  - doc: POL-STAT-088
+    section: 二、调查对象和统计范围
+  status: approved
+- term_id: TERM-145
+  official: 海温
+  plain: 海水的温度，是渔情和气象分析常用的指标。
+  variants:
+  - 海表温度
+  - SST
+  citations:
+  - doc: POL-OBS-072
+    section: 第三十八条
+  status: approved
