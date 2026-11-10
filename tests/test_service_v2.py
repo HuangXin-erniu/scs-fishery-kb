@@ -398,9 +398,9 @@ def test_query_log_is_off_by_default(monkeypatch, tmp_path) -> None:
 
 
 def test_short_flag_falls_back_without_llm(monkeypatch) -> None:
-    for name in ("LLM_BASE_URL", "LLM_API_KEY", "LLM_MODEL"):
-        monkeypatch.delenv(name, raising=False)
-    result = _service().query("2026年南海区伏季休渔从什么时候开始？", short=True)
+    service = _service()
+    monkeypatch.setattr(service, "_llm_pair", lambda: None)
+    result = service.query("2026年南海区伏季休渔从什么时候开始？", short=True)
     assert result.abstained is False
     assert result.citations
 
