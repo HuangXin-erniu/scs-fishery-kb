@@ -47,6 +47,15 @@ for, the pass value is the bar the review applies. Coverage is structurally capp
 instrument's term anchoring (about 0.858 with the current corpus); the pass value sits below
 that cap and the report states the cap.
 
+## 2b. Material package
+
+| Item | File | Status |
+|---|---|---|
+| Metrics report | [metrics-report.md](metrics-report.md) | complete |
+| Technical report | [technical-report.md](technical-report.md) | skeleton with content; narrative sections marked |
+| Demo script | [demo-script.md](demo-script.md) | complete, five scenarios |
+| 30-item expert spot check | local worksheet under the run root | sample frozen, pending expert |
+
 ## 3. Evidence map
 
 | Claim | Evidence |
