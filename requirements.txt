@@ -1,21 +1,6 @@
-# Current phase: data preparation and corpus discovery.
+# Core runtime dependencies; the retrieval and service stacks are optional.
+#   pip install -r requirements-rag.txt     # retrieval + HTTP service
+#   pip install -r requirements-dev.txt     # tests and linting
 PyYAML>=6.0
-openpyxl>=3.1
-xlrd>=2.0
-
-# Deferred pipeline dependencies; install only when that phase starts.
-# pymupdf>=1.24
-# python-docx>=1.1
-# beautifulsoup4>=4.12
-# jieba>=0.42
-# rank-bm25>=0.2
-# lancedb>=0.13
-# sentence-transformers>=3.0
-# fastapi>=0.115
-# uvicorn>=0.30
-# openai>=1.40
-# tqdm>=4.66
-
-# Dense retrieval arm (local ONNX, ~300 MB with onnxruntime).
-# CI installs requirements-dev.txt only, so this stays optional.
-fastembed>=0.9
+pydantic>=2.6
+openai>=1.40

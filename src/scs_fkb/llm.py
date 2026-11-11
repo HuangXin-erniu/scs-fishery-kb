@@ -1,37 +1,15 @@
 from __future__ import annotations
 
-import http.client
 import json
 import os
-import time
 import uuid
 from dataclasses import dataclass
-from urllib import error, request
+
+from openai import OpenAI, OpenAIError
 
 from .config import load_dotenv
 
 PROMPT_VERSION = "rag-v3"
-
-
-def _tls_context():
-    """TLS context for the model endpoint, with a certifi fallback."""
-    import ssl
-
-    try:
-        import certifi
-
-        return ssl.create_default_context(cafile=certifi.where())
-    except ImportError:
-        pass
-    try:
-        return ssl.create_default_context()
-    except ssl.SSLError:
-        from pathlib import Path
-
-        fallback = Path("/etc/ssl/cert.pem")
-        if fallback.is_file():
-            return ssl.create_default_context(cafile=str(fallback))
-        raise
 
 
 class LLMError(RuntimeError):
@@ -102,11 +80,22 @@ def parse_json_object(text: str) -> dict:
 
 
 class LLMClient:
-    """Small OpenAI-compatible chat client with a stable OpenCode session."""
+    """OpenAI-compatible chat client built on the openai SDK."""
 
-    def __init__(self, config: LLMConfig) -> None:
+    def __init__(self, config: LLMConfig, *, http_client=None) -> None:
         self.config = config
         self.calls = 0
+        self._client = OpenAI(
+            base_url=config.base_url,
+            api_key=config.api_key,
+            timeout=config.timeout,
+            max_retries=config.max_retries,
+            default_headers={
+                "User-Agent": "scs-fkb/0.1",
+                "x-opencode-session": config.session,
+            },
+            http_client=http_client,
+        )
 
     def chat(
         self,
@@ -115,55 +104,29 @@ class LLMClient:
         temperature: float = 0.0,
         max_tokens: int = 1200,
     ) -> str:
-        payload = {
-            "model": self.config.model,
-            "messages": messages,
-            "temperature": temperature,
-            "max_tokens": max_tokens,
-            "reasoning_effort": self.config.reasoning_effort,
-        }
-        body = json.dumps(payload, ensure_ascii=False).encode("utf-8")
-        headers = {
-            "Authorization": f"Bearer {self.config.api_key}",
-            "Content-Type": "application/json",
-            "User-Agent": "scs-fkb/0.1",
-            "x-opencode-session": self.config.session,
-        }
-        last_error: Exception | None = None
-        for attempt in range(self.config.max_retries + 1):
+        extra_body = (
+            {"reasoning_effort": self.config.reasoning_effort}
+            if self.config.reasoning_effort
+            else None
+        )
+        budget = int(max_tokens)
+        for _attempt in range(2):
             try:
-                req = request.Request(
-                    f"{self.config.base_url}/chat/completions",
-                    data=body,
-                    headers=headers,
-                    method="POST",
+                response = self._client.chat.completions.create(
+                    model=self.config.model,
+                    messages=messages,
+                    temperature=temperature,
+                    max_tokens=budget,
+                    extra_body=extra_body,
                 )
-                with request.urlopen(
-                    req, timeout=self.config.timeout, context=_tls_context()
-                ) as response:
-                    raw = response.read().decode("utf-8")
-                parsed = json.loads(raw)
-                content = parsed["choices"][0]["message"]["content"]
-                if not isinstance(content, str) or not content.strip():
-                    raise LLMError("model returned an empty completion")
+            except OpenAIError as exc:
+                raise LLMError(f"LLM request failed: {type(exc).__name__}: {exc}") from exc
+            content = response.choices[0].message.content if response.choices else None
+            if isinstance(content, str) and content.strip():
                 self.calls += 1
                 return content
-            except (
-                error.HTTPError,
-                error.URLError,
-                http.client.HTTPException,
-                ConnectionError,
-                TimeoutError,
-                json.JSONDecodeError,
-                KeyError,
-                IndexError,
-            ) as exc:
-                last_error = exc
-                if attempt < self.config.max_retries:
-                    time.sleep(1.5 * (attempt + 1))
-        raise LLMError(
-            f"LLM request failed after {self.config.max_retries + 1} attempts: {last_error}"
-        )
+            budget = max(budget, 1500)
+        raise LLMError("model returned an empty completion after 2 attempts")
 
     def chat_json(
         self,
