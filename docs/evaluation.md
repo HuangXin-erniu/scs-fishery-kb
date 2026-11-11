@@ -1302,3 +1302,64 @@ the arm stays `short-v1` at **16/60**, which is published as the measured pass l
 
 The failure mode is provider throughput, not the model client: the same client completed
 the 512 instrument in 25 minutes (about 3.4 s per call) earlier the same day.
+
+### 40. What a spot check measures, and how it is made reproducible (2026-11-12)
+
+> **中文摘要**：这一节只写度量口径，不写结果。要点三条：512 仪器评的是约 10 万字的证据包，
+> 30 题抽检评的是用户可见摘要，两者不可互相替代；抽检口径从“整题对错”改为“先定位 core
+> slot，再看摘要是否直接可读”，并把 v1 的内部矛盾修掉；样本标签与语料冲突时只出勘误、不改
+> 仪器，v1 与 v2 两套数字并列公布；对外数字只来自开工前冻结、由独立评审人盲评的留出集。
+
+#### Two artifacts, two layers
+
+- The 512 acceptance run scores `Answer.text`, the evidence pack: the answerability rows go
+  through the clause-dump arm and the scorer matches point terms against the whole pack. A
+  point counts when the term appears anywhere in about 100k characters.
+- The spot check scores `QueryResponse.summary`, the five or six lines that `scs-fkb ask`
+  prints: conclusion, conditions, version, numbers, gaps and channels.
+- The two layers answer different questions. A high pack score with a low summary score means
+  the evidence is in the corpus but the reader cannot see it. Neither number substitutes for
+  the other, and the acceptance sheet states which artifact each row scores.
+
+#### Rubric v2: the core slot
+
+The first rubric judged a whole question as complete or incomplete, and two rows were scored
+`Y` while the written rule said incomplete is `N`. Rubric v2 replaces that with a locate-then-
+read rule:
+
+1. The judge writes down the **core slot** first: the single fact the first asked sub-question
+   wants (a value, a deadline, a yes/no, a document list or an office).
+2. `Y` when that fact appears in the conclusion or a key-point line, correct and cited, and
+   `N` otherwise. A partly answerable question is `Y` when the covered part is answered and
+   the uncovered part is declared as a gap in the summary.
+3. Secondary sub-questions are recorded as slot counts and observed, but they do not change
+   the verdict. This is what makes a main question answered correctly and a follow-up missed
+   both legible instead of collapsing into one ambiguous `N`.
+
+#### Label errata without editing the instrument
+
+Some sample labels contradict the corpus: a row labelled must-refuse has a clause that answers
+it, or a row labelled answerable leans on a term that is absent from every chunk. The practice
+is:
+
+- the instrument and its labels are **not** edited;
+- the conflict is documented with the document id, the section and a verbatim quote, plus the
+  proposed label and the effect on each pass line;
+- version 1 numbers stay published and version 2 numbers are published beside them; the two
+  are never averaged or mixed;
+- the corrected count is the only baseline a fix may be compared against.
+
+#### The holdout rule
+
+The failures of the first sample are used to design the fix, so that same sample cannot also
+produce the headline number. A fresh sample is drawn from the instrument before any answer
+code changes, stratified by answerability, disjoint from the first sample, with a fixed seed
+and a recorded id-list hash. It is not opened until the fix is built and its answer pack is
+sealed; a different reviewer then judges it blind. The first sample is kept as a regression
+set.
+
+#### Simulated and human
+
+AI role-play is reported as `source: simulated` and never as a signature. Only a reviewer's
+signed worksheet produces `source: human`, and only that number is compared with the pass
+lines in `docs/acceptance.md`.
