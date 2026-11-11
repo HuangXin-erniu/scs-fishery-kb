@@ -1,7 +1,7 @@
 # Handling channels for gaps and refusals. The composer names the office or
 # document a fisher should turn to; it never invents a value or a deadline.
 schema_version: 1
-updated_at: '2026-11-07'
+updated_at: '2026-11-12'
 default:
   - name: 属地渔业主管部门
     hint: 向船籍港所在地县级以上渔业主管部门或海洋综合执法机构咨询
@@ -13,6 +13,32 @@ out_of_scope:
   - name: 属地渔业主管部门
     hint: 近海范围内的事项仍按船籍港属地办理
 gaps:
+  - gap: 缺少港航收费或经营纠纷渠道
+    match:
+      - 泊位费
+      - 停靠费
+      - 港务费
+      - 码头费
+      - 装卸费
+      - 经营纠纷
+    channels:
+      - name: 市场监督管理部门
+        hint: 港口经营收费与价格投诉向属地市场监督管理部门（12315）反映
+      - name: 人民法院
+        hint: 与港方或经营方的费用争议属民事纠纷，可向有管辖权的人民法院起诉
+  - gap: 缺少兽药或病害防治渠道
+    match:
+      - 兽药
+      - 渔药
+      - 用药
+      - 病害
+      - 发病
+      - 死鱼
+    channels:
+      - name: 农业农村部门（兽医）
+        hint: 兽药经营与使用监管向属地农业农村部门兽医机构咨询
+      - name: 水产技术推广机构
+        hint: 养殖病害诊断与防治方案向属地水产技术推广机构咨询
   - gap: 缺少属地实施细则
     match:
       - 地方

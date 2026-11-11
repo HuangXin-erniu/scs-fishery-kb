@@ -76,6 +76,9 @@ def _summary_of(
     conditions = fields.get("conditions") or []
     if conditions:
         parts.append("适用条件：" + "；".join(str(item) for item in conditions))
+    for item in (fields.get("slots") or [])[1:]:
+        if isinstance(item, dict) and item.get("text"):
+            parts.append(f"要点：{item['text']}")
     as_of = fields.get("as_of") or {}
     if isinstance(as_of, dict) and as_of.get("declared"):
         parts.append(f"版本：{as_of['declared']}")
@@ -229,6 +232,7 @@ class AnswerService:
             (answer_mode or os.environ.get("SCS_FKB_ANSWER_MODE", "extractive")).strip().lower()
         )
         self._llm: Any = False
+        self._picker: Any = False
         self._channels: ChannelBook | None = None
         self._registry = load_registry()
         self._web_config: Any = False
@@ -250,6 +254,46 @@ class AnswerService:
                 root = self.data_root or Path(".")
                 self._llm = (LLMClient(config), LLMCache(root / "llm-cache"))
         return self._llm
+
+    def _summary_mode(self) -> str:
+        # The pilot reached the 8/12 gate with the model summary; off keeps the
+        # deterministic path for offline or endpoint-less runs.
+        return os.environ.get("SCS_FKB_SUMMARY_MODE", "model").strip().lower()
+
+    def _summary_draft(self, question: str, clauses: Any) -> Any:
+        """Model-written summary; any failure returns None so compose keeps the old path."""
+        if not clauses or self._summary_mode() == "off":
+            return None
+        pair = self._llm_pair()
+        if pair is None:
+            return None
+        from ..answer_v3.summary_arm import summarize
+
+        try:
+            return summarize(question, clauses, pair[0], pair[1])
+        except Exception:  # noqa: BLE001 - a summary failure must never break the answer
+            return None
+
+    def _summary_picker(self) -> Any:
+        """Closed-set section picker for the visible summary, or None."""
+        if self._picker is not False:
+            return self._picker
+        if os.environ.get("SCS_FKB_SUMMARY_PICKER", "on").strip().lower() in {
+            "off",
+            "0",
+            "false",
+            "no",
+        }:
+            self._picker = None
+            return None
+        pair = self._llm_pair()
+        if pair is None:
+            self._picker = None
+            return None
+        from ..answer_v3.select import llm_picker
+
+        self._picker = llm_picker(pair[0], pair[1])
+        return self._picker
 
     def _dump_answer(self, question: str) -> Any:
         pair = self._llm_pair()
@@ -754,6 +798,9 @@ class AnswerService:
                 doc_ids=[item.doc_id for item in citations],
                 registry=self._registry,
                 channels=self._channel_book(),
+                clauses=getattr(answer, "clauses", ()),
+                picker=self._summary_picker(),
+                draft=self._summary_draft(question, getattr(answer, "clauses", ())),
             )
             if contract.answerability == "abstain":
                 scoped = bool(contract.gap) and "超出" in contract.gap[0]
