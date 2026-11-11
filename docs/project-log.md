@@ -1227,3 +1227,8 @@ This log records material project changes by date. It does not use release versi
 - Added `docs/acceptance.md`: one row per indicator with current, target and pass values, the measurement command and the evidence location; the review is materials-only with a 30-item expert spot check, and model-judged scores are labelled as such.
 - Aligned the stale status text: `PROJECT.md` and `docs/plan.md` now state 77 registered sources, 67 indexed documents, 2,797 chunks, the frozen 512 instrument and the 60-item public set instead of 63 sources / 28 documents / 42 documents / 1,014 chunks / 48 questions.
 - Linked the sheet from `PROJECT.md` and `docs/index.md`. Documentation only: no source, config, test or data change.
+
+## 2026-11-11 — Short-answer prompt attempt reverted
+
+- Tried a `short-v2` prompt that required a citation on every rendered line and told the model to drop uncitable lines. The 60-item run was invalid: 12 DNS failures and 11 empty completions left only 6 valid short answers, so the result measures the endpoint, not the prompt.
+- Reverted the prompt and the version bump; the arm stays at 16/60 with `short-v1`. The attempt and the reason are recorded in `docs/evaluation.md` section 36.

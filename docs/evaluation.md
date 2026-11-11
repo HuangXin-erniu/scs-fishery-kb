@@ -1216,3 +1216,21 @@ bug, not a model failure: 26 of 41 failures carried `uncited`.
 
 Ship the line-level citation check and the truncation fallback; the dump path, the
 512 instrument, the document map, protocol v2 and the thresholds are untouched.
+
+
+### 36. Short-answer prompt attempt (2026-11-11)
+
+> **中文摘要**：尝试把短答提示词改成“结论行、每条依据、期限行都必须带引用，无法引用就删除整行”，
+> 目标把有效率从 16/60 提到 30/60。首轮 60 条里有 23 次端点失败（DNS 解析失败、空补全），
+> 有效短答只得到 6/60，属于**无效测量**；重跑同样受端点不稳定影响，在窗口内未完成。
+> 按证据纪律回退提示词，短答维持 16/60，等端点稳定后再测。
+
+- Change: `short-v2` prompt with per-line citation and "drop the line you cannot cite";
+  `PROMPT_VERSION` bumped so cached answers were not reused.
+- First 60-item run: 49 failures, of which 12 were `LLM request failed after 3 attempts`
+  (DNS) and 11 empty completions; only 6 valid short answers. The failure distribution is
+  therefore not a prompt effect and cannot be compared with the 16/60 baseline.
+- A clean rerun was started and stopped: the endpoint kept dropping requests, so no
+  comparable measurement was produced.
+- Decision: revert the prompt. The arm stays at 16/60 and `short-v1`; a prompt change is
+  only worth shipping after a clean run on a stable endpoint.
