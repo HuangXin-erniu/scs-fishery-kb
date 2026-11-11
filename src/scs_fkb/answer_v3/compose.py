@@ -176,14 +176,17 @@ def compose(
     clauses: Any = (),
     picker: Any = None,
     draft: Any = None,
+    draft_status: str = "",
 ) -> AnswerContract:
     """Build the contract-shaped answer from the deterministic evidence pack."""
+    summary_source = "model" if draft is not None else (draft_status or "deterministic")
     scoped, scope_reason = out_of_scope(question)
     if scoped:
         gap, channel = channels.resolve(question, scope=True)
         return AnswerContract(
             answerability="abstain",
             conclusion="",
+            summary_source="deterministic",
             gap=(scope_reason,),
             channel=channel,
             body=_body(
@@ -223,6 +226,7 @@ def compose(
         return AnswerContract(
             answerability="abstain",
             conclusion="",
+            summary_source="deterministic",
             gap=(gap, "已登记语料中没有可支撑该问题的依据"),
             channel=channel,
             body=_body(
@@ -298,4 +302,5 @@ def compose(
         numbers=tuple(anchors),
         slots=slots,
         body=body,
+        summary_source=summary_source,
     )

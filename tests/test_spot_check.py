@@ -152,3 +152,99 @@ def test_score_counts_yes_no_and_skips_na(tmp_path):
     assert result["conclusion_pass"] is False
     assert result["refusal_pass"] is False
     assert result["unfilled"] == []
+
+
+def test_worksheet_merges_the_summary_and_its_provenance(tmp_path):
+    module = _module()
+    dataset = tmp_path / "dataset.jsonl"
+    rows = _dataset(dataset)
+    ids = tmp_path / "ids.txt"
+    ids.write_text("\n".join(row["id"] for row in rows[:3]) + "\n", encoding="utf-8")
+    answers = tmp_path / "answers.jsonl"
+    answers.write_text(
+        "\n".join(
+            json.dumps(
+                {
+                    "id": row["id"],
+                    "summary": f"结论：{row['id']} 的摘要 [POL-CLOS-015 §三]",
+                    "summary_source": "model" if index else "fallback",
+                },
+                ensure_ascii=False,
+            )
+            for index, row in enumerate(rows[:3])
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+
+    assert (
+        module.main(
+            [
+                "worksheet",
+                "--dataset",
+                str(dataset),
+                "--ids",
+                str(ids),
+                "--answers",
+                str(answers),
+                "--out",
+                str(tmp_path / "ws"),
+            ]
+        )
+        == 0
+    )
+
+    header = (tmp_path / "ws" / "worksheet.csv").read_bytes().decode("utf-8-sig").splitlines()[0]
+    assert "summary" in header.split(",")
+    assert "summary_source" in header.split(",")
+    text = (tmp_path / "ws" / "worksheet.csv").read_bytes().decode("utf-8-sig")
+    assert "的摘要" in text
+    assert "fallback" in text
+
+
+def test_worksheet_refuses_to_silently_drop_a_row_without_an_answer(tmp_path):
+    module = _module()
+    dataset = tmp_path / "dataset.jsonl"
+    rows = _dataset(dataset)
+    ids = tmp_path / "ids.txt"
+    ids.write_text("\n".join(row["id"] for row in rows[:2]) + "\n", encoding="utf-8")
+    answers = tmp_path / "answers.jsonl"
+    answers.write_text(
+        json.dumps({"id": rows[0]["id"], "summary": "x", "summary_source": "model"}) + "\n",
+        encoding="utf-8",
+    )
+    code = module.main(
+        [
+            "worksheet",
+            "--dataset",
+            str(dataset),
+            "--ids",
+            str(ids),
+            "--answers",
+            str(answers),
+            "--out",
+            str(tmp_path / "ws"),
+        ]
+    )
+    assert code != 0
+
+
+def test_score_reports_the_fallback_rate(tmp_path):
+    module = _module()
+    path = tmp_path / "filled.csv"
+    lines = [
+        "id,answerability,summary_source,citation_ok,conclusion_ok,refusal_ok,asof_ok",
+        "A-1,可答,model,Y,Y,NA,NA",
+        "A-2,可答,fallback,Y,N,NA,NA",
+        "A-3,可答,model,N,N,NA,NA",
+        "A-4,部分可答,model,Y,Y,NA,NA",
+        "R-1,应拒答,model,NA,NA,Y,NA",
+        "R-2,应拒答,model,NA,NA,Y,NA",
+    ]
+    path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+    assert module.main(["score", "--worksheet", str(path), "--out", str(tmp_path / "s")]) == 0
+    result = json.loads((tmp_path / "s" / "scores.json").read_text(encoding="utf-8"))
+    assert result["summary_source"] == {"model": 5, "fallback": 1}
+    assert result["fallback_rows"] == ["A-2"]
+    assert result["fallback_rate"] == round(1 / 6, 4)

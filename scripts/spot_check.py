@@ -15,7 +15,9 @@ Three steps, each reproducible from the command line:
 ``worksheet``
     Render the sampled rows as a worksheet with the four judgement columns and
     a rubric sheet. CSV is always written; XLSX is written when ``openpyxl`` is
-    importable.
+    importable. ``--answers`` merges the system summary and its provenance
+    (``model`` / ``fallback`` / ``deterministic``) so a reviewer sees exactly
+    what the user sees, and so a silent fallback cannot pass as a model answer.
 ``score``
     Aggregate a filled worksheet into per-line pass rates. Blank or ``NA``
     cells leave the denominator; a ``refusal_ok`` verdict on an answerable row
@@ -63,6 +65,8 @@ WORKSHEET_FIELDS = (
     "answerability",
     "question",
     "expected_docs",
+    "summary",
+    "summary_source",
     *JUDGEMENT_COLUMNS,
     "note",
 )
@@ -145,6 +149,7 @@ def cmd_sample(args: argparse.Namespace) -> int:
 def _write_xlsx(path: Path, rows: list[dict[str, Any]]) -> bool:
     try:
         from openpyxl import Workbook
+        from openpyxl.styles import Alignment
         from openpyxl.worksheet.datavalidation import DataValidation
     except ImportError:
         return False
@@ -154,7 +159,19 @@ def _write_xlsx(path: Path, rows: list[dict[str, Any]]) -> bool:
     sheet.append(list(WORKSHEET_FIELDS))
     for row in rows:
         sheet.append([row.get(key, "") for key in WORKSHEET_FIELDS])
-    width = {"question": 48, "expected_docs": 36, "note": 40, "domain": 14, "dimension": 12}
+    width = {
+        "question": 48,
+        "expected_docs": 36,
+        "summary": 72,
+        "note": 40,
+        "domain": 14,
+        "dimension": 12,
+    }
+    summary_col = WORKSHEET_FIELDS.index("summary") + 1
+    for row_index in range(2, len(rows) + 2):
+        sheet.cell(row=row_index, column=summary_col).alignment = Alignment(
+            wrap_text=True, vertical="top"
+        )
     for index, key in enumerate(WORKSHEET_FIELDS, start=1):
         sheet.column_dimensions[sheet.cell(row=1, column=index).column_letter].width = width.get(
             key, 12
@@ -175,12 +192,27 @@ def _write_xlsx(path: Path, rows: list[dict[str, Any]]) -> bool:
     rubric.append([])
     rubric.append(["通过线", "引用 ≥95%、结论 ≥85%、拒答 ≥90%"])
     rubric.append(["来源", "source: human 需签字；AI 代演只能标 source: simulated"])
+    rubric.append(
+        [
+            "summary_source",
+            "不是判定列",
+            "model=模型摘要；fallback=模型草稿未过校验、已退回旧摘要；deterministic=未尝试模型。"
+            "评分时报告回退率，回退行不能当作模型摘要计分。",
+        ]
+    )
     book.save(path)
     return True
 
 
+def _answers(path: str | None) -> dict[str, dict[str, Any]]:
+    if not path:
+        return {}
+    return {str(row.get("id")): row for row in _rows(Path(path).expanduser())}
+
+
 def cmd_worksheet(args: argparse.Namespace) -> int:
     dataset = {str(row.get("id")): row for row in _rows(Path(args.dataset).expanduser())}
+    answers = _answers(args.answers)
     wanted = sorted(_ids(Path(args.ids).expanduser()))
     missing = [item for item in wanted if item not in dataset]
     if missing:
@@ -189,16 +221,27 @@ def cmd_worksheet(args: argparse.Namespace) -> int:
     for item in wanted:
         row = dict(dataset[item])
         row["expected_docs"] = _expected(row)
+        answer = answers.get(item) or {}
+        row["summary"] = str(answer.get("summary") or "")
+        row["summary_source"] = str(answer.get("summary_source") or "")
         rows.append(row)
     out = Path(args.out).expanduser()
     out.mkdir(parents=True, exist_ok=True)
+    if answers:
+        missing_answers = [item for item in wanted if item not in answers]
+        if missing_answers:
+            return _fail(f"no answer for rows: {missing_answers}")
     with (out / "worksheet.csv").open("w", encoding="utf-8-sig", newline="") as handle:
         writer = csv.DictWriter(handle, fieldnames=list(WORKSHEET_FIELDS))
         writer.writeheader()
         for row in rows:
             writer.writerow({key: row.get(key, "") for key in WORKSHEET_FIELDS})
     wrote_xlsx = _write_xlsx(out / "worksheet.xlsx", rows)
-    print(f"worksheet: {len(rows)} rows, csv=yes, xlsx={'yes' if wrote_xlsx else 'no'}")
+    provenance = dict(Counter(row.get("summary_source") or "unset" for row in rows))
+    print(
+        f"worksheet: {len(rows)} rows, csv=yes, xlsx={'yes' if wrote_xlsx else 'no'}, "
+        f"summary_source={provenance}"
+    )
     return 0
 
 
@@ -234,6 +277,7 @@ def cmd_score(args: argparse.Namespace) -> int:
         "refusal": _rate(refusal, "refusal_ok"),
         "asof": _rate(rows, "asof_ok"),
         "pass_lines": PASS_LINES,
+        "summary_source": dict(Counter(str(row.get("summary_source") or "unset") for row in rows)),
         "unfilled": [
             str(row.get("id"))
             for row in rows
@@ -243,6 +287,9 @@ def cmd_score(args: argparse.Namespace) -> int:
     for key, line in PASS_LINES.items():
         rate = result[key]["rate"]
         result[f"{key}_pass"] = bool(rate is not None and rate >= line)
+    fallbacks = [str(row.get("id")) for row in rows if str(row.get("summary_source")) == "fallback"]
+    result["fallback_rows"] = fallbacks
+    result["fallback_rate"] = round(len(fallbacks) / len(rows), 4) if rows else None
     out = Path(args.out).expanduser()
     out.mkdir(parents=True, exist_ok=True)
     (out / "scores.json").write_text(
@@ -260,6 +307,11 @@ def cmd_score(args: argparse.Namespace) -> int:
         print(f"{key:11s} {item['hits']}/{item['judged']} = {item['rate']} ({verdict})")
     if result["unfilled"]:
         print(f"unfilled rows: {len(result['unfilled'])}")
+    if result["summary_source"]:
+        print(
+            f"summary_source {result['summary_source']} "
+            f"fallback {len(fallbacks)}/{len(rows)} = {result['fallback_rate']}"
+        )
     return 0
 
 
@@ -285,6 +337,9 @@ def main(argv: list[str] | None = None) -> int:
     worksheet.add_argument("--dataset", required=True)
     worksheet.add_argument("--ids", required=True, help="file of ids, one per line")
     worksheet.add_argument("--out", required=True)
+    worksheet.add_argument(
+        "--answers", default="", help="optional JSONL with id, summary and summary_source"
+    )
     worksheet.set_defaults(func=cmd_worksheet)
 
     score = sub.add_parser("score", help="aggregate a filled worksheet")

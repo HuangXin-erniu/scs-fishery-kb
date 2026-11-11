@@ -140,6 +140,8 @@ def test_compose_renders_the_draft_as_conclusion_and_points():
     assert any("未覆盖" in item for item in contract.gap)
     assert contract.slots and contract.slots[0].doc_id == "POL-LAW-009"
     assert contract.answerability == "partial"
+    assert contract.summary_source == "model"
+    assert contract.to_dict()["summary_source"] == "model"
 
 
 def test_compose_without_a_draft_still_uses_the_text_path(monkeypatch: pytest.MonkeyPatch):
@@ -153,3 +155,18 @@ def test_compose_without_a_draft_still_uses_the_text_path(monkeypatch: pytest.Mo
     )
     assert contract.conclusion
     assert contract.slots == ()
+    assert contract.summary_source == "deterministic"
+
+
+def test_compose_records_a_dropped_draft_as_fallback():
+    """A draft that failed the checks is reported as fallback, not as a model answer."""
+    contract = compose(
+        "捕捞许可证几年有效？",
+        "捕捞许可证的有效期为5年。 [POL-STD-010 §第三十五条]",
+        doc_ids=["POL-STD-010"],
+        registry={},
+        channels=ChannelBook.load(),
+        draft=None,
+        draft_status="fallback",
+    )
+    assert contract.summary_source == "fallback"

@@ -260,19 +260,31 @@ class AnswerService:
         # deterministic path for offline or endpoint-less runs.
         return os.environ.get("SCS_FKB_SUMMARY_MODE", "model").strip().lower()
 
-    def _summary_draft(self, question: str, clauses: Any) -> Any:
-        """Model-written summary; any failure returns None so compose keeps the old path."""
-        if not clauses or self._summary_mode() == "off":
-            return None
+    def _summary_draft(self, question: str, clauses: Any) -> tuple[Any, str]:
+        """Model-written summary plus where the summary came from.
+
+        Returns ``(draft, status)``. ``status`` is ``model`` when a verified draft
+        came back, ``fallback`` when the model was asked and its draft was dropped
+        by the checks, and ``deterministic`` when no model attempt was made. The
+        spot check records the status per row: a silent fallback must never be
+        counted as a model-written answer.
+        """
+        if self._summary_mode() == "off":
+            return None, "deterministic"
+        if not clauses:
+            return None, "deterministic"
         pair = self._llm_pair()
         if pair is None:
-            return None
+            return None, "deterministic"
         from ..answer_v3.summary_arm import summarize
 
         try:
-            return summarize(question, clauses, pair[0], pair[1])
+            draft = summarize(question, clauses, pair[0], pair[1])
         except Exception:  # noqa: BLE001 - a summary failure must never break the answer
-            return None
+            return None, "fallback"
+        if draft is None:
+            return None, "fallback"
+        return draft, "model"
 
     def _summary_picker(self) -> Any:
         """Closed-set section picker for the visible summary, or None."""
@@ -792,6 +804,7 @@ class AnswerService:
                 citations = []
         contract_fields: dict[str, Any] = {}
         if self.answer_contract == "v3" and not short_mode:
+            draft, draft_status = self._summary_draft(question, getattr(answer, "clauses", ()))
             contract = compose_contract(
                 question,
                 answer.text,
@@ -800,7 +813,8 @@ class AnswerService:
                 channels=self._channel_book(),
                 clauses=getattr(answer, "clauses", ()),
                 picker=self._summary_picker(),
-                draft=self._summary_draft(question, getattr(answer, "clauses", ())),
+                draft=draft,
+                draft_status=draft_status,
             )
             if contract.answerability == "abstain":
                 scoped = bool(contract.gap) and "超出" in contract.gap[0]

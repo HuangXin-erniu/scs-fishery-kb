@@ -61,10 +61,16 @@ class AnswerContract:
     numbers: tuple[NumericAnchor, ...] = ()
     slots: tuple[SlotView, ...] = ()
     body: str = ""
+    # Where the user-facing summary came from: ``model`` (a verified model
+    # draft), ``fallback`` (the model was asked and its draft was dropped) or
+    # ``deterministic`` (no model attempt). The spot check records this per row
+    # so a silent fallback cannot be mistaken for a model-written answer.
+    summary_source: str = ""
 
     def to_dict(self) -> dict:
         return {
             "answerability": self.answerability,
+            "summary_source": self.summary_source,
             "conclusion": self.conclusion,
             "conditions": list(self.conditions),
             "gap": list(self.gap),

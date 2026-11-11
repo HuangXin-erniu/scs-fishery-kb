@@ -92,6 +92,7 @@ class QueryResponse(BaseModel):
     request_id: str
     answer: str
     summary: str = ""
+    summary_source: str = ""
     citations_total: int = 0
     citations: list[CitationModel] = Field(default_factory=list)
     used_web: bool = False
