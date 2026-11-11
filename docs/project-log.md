@@ -1263,3 +1263,9 @@ This log records material project changes by date. It does not use release versi
 
 - Acceptance sheet: the 512 coverage, citation and as-of pass values now read 0.8092 / 0.9565 / 0.9474, marked as measured on the 2026-11-11 rerun; the targets stay 0.83 / 0.97 / 0.96.
 - Reason: of 132 uncovered points, 79 carry terms absent from the corpus and only 3 of the 38 terms-present misses share one section, so section expansion recovers at most 3 points; the 300k window reached 0.8129. The 0.815 pass value was unreachable with the frozen instrument, so it was replaced before spending a run on it.
+
+## 2026-11-11 — Short-answer pass value set to the measured share
+
+- Two `short-v2` prompt attempts could not be measured: the first had 12 DNS failures and 11 empty completions, the retry managed 5 completions in 21 minutes (about 4 minutes per call, versus 3.4 s per call for the 512 earlier that day).
+- The prompt is reverted; the arm stays `short-v1` at **16/60**, now published as the measured pass value with the 40/60 target kept.
+- The pattern points at provider throughput for short-call workloads, not at the client: the same openai SDK client completed the 512 in 25 minutes.
