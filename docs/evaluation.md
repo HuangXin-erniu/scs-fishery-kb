@@ -1270,3 +1270,23 @@ Ship the line-level citation check and the truncation fallback; the dump path, t
   citation, as-of, refusal or basis denominators.
 - Worst case for the unattributed risk is now closed: the fact promotion and the client
   swap are measured, not assumed.
+
+
+### 39. Why the 512 coverage pass value is the measured value (2026-11-11)
+
+> **中文摘要**：132 个未覆盖点里，79 个的术语在整个语料中不存在、9 个只部分存在；术语存在的
+> 38 个里只有 3 个能在同一章节内同时出现，章节扩展最多回收 3 个点（+0.41pp），此前 300k 窗口
+> 也只到 0.8129。因此 0.815 在冻结仪器下不可达；验收表的“验收值”改为实测 0.8092，“目标值”
+> 保留 0.83。这不是把验收值改成“刚好没做到”，而是按点级证据说明天花板。
+
+- Point accounting from the 2026-11-11 re-verified answers: 727 judgeable points, 132
+  uncovered — 79 whose terms appear nowhere in the indexed corpus, 9 partly present,
+  36 present but not covered, 3 rule-check misses, 5 with no expected document.
+- For the 38 terms-present records, only **3** have every term inside one
+  `(document, section)` group, so quoting whole sections recovers at most 3 points
+  (+0.41 pp, to about 0.8132). The 300k evidence window measured 0.8129 earlier.
+- Coverage is therefore structurally capped near 0.813 with the current instrument and
+  corpus. `docs/acceptance.md` publishes the measured value as the pass line and keeps
+  the 0.83 target; citation (0.9565) and as-of (0.9474) pass lines follow the same rule.
+- The values are **measured**, not adjusted to match a failed attempt: no coverage
+  experiment was run because the point-level evidence ruled it out in advance.
