@@ -1269,3 +1269,10 @@ This log records material project changes by date. It does not use release versi
 - Two `short-v2` prompt attempts could not be measured: the first had 12 DNS failures and 11 empty completions, the retry managed 5 completions in 21 minutes (about 4 minutes per call, versus 3.4 s per call for the 512 earlier that day).
 - The prompt is reverted; the arm stays `short-v1` at **16/60**, now published as the measured pass value with the 40/60 target kept.
 - The pattern points at provider throughput for short-call workloads, not at the client: the same openai SDK client completed the 512 in 25 minutes.
+
+## 2026-11-11 — Acceptance material package
+
+- Added `docs/metrics-report.md`: every acceptance indicator with measured value, target, pass line, command, commit, index version and run directory, plus an explicit "measured vs targeted" note.
+- Added `docs/technical-report.md`: Chinese technical report skeleton with objectives, method, system, results, limits, data/licence and reproduction; narrative sections that still need expansion are marked.
+- Added `docs/demo-script.md`: five scenarios (closure dates, licence renewal, penalty, statistics, out-of-scope refusal) with commands, expected answer shape and required citations.
+- Froze a 30-item expert spot-check sample (10 answerable, 10 partly answerable, 10 out-of-scope; four personas) with a worksheet and judgement rules under the local run root. It stays local.

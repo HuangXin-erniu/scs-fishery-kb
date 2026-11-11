@@ -10,6 +10,9 @@
 | [Project plan](plan.md) | Work packages, milestones, roles, quality gates and risks |
 | [Evaluation](evaluation.md) | Acceptance protocol, metrics, final status and measured ceilings |
 | [Acceptance](acceptance.md) | Task-book indicators, pass values and the review procedure |
+| [Metrics report](metrics-report.md) | Every indicator with command, commit, index version and run directory |
+| [Technical report](technical-report.md) | Chinese technical report skeleton: method, system, results, limits |
+| [Demo script](demo-script.md) | Five demonstration scenarios with expected answers and citations |
 | [Corpus inventory](corpus.md) | Registered sources, licences, sensitivity and coverage |
 | [Evaluation questions](questions.md) | Sanitized acceptance-style samples across four personas |
 | [Data policy](data-policy.md) | What is published, what stays local, and how sensitivity is handled |
