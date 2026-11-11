@@ -256,9 +256,9 @@ class AnswerService:
         return self._llm
 
     def _summary_mode(self) -> str:
-        # Off by default: the pilot scored 6/12 against an 8/12 gate. Set
-        # SCS_FKB_SUMMARY_MODE=model to opt in while the candidate recall is fixed.
-        return os.environ.get("SCS_FKB_SUMMARY_MODE", "off").strip().lower()
+        # The pilot reached the 8/12 gate with the model summary; off keeps the
+        # deterministic path for offline or endpoint-less runs.
+        return os.environ.get("SCS_FKB_SUMMARY_MODE", "model").strip().lower()
 
     def _summary_draft(self, question: str, clauses: Any) -> Any:
         """Model-written summary; any failure returns None so compose keeps the old path."""

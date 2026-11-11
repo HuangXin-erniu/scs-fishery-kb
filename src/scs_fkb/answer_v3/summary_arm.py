@@ -30,12 +30,29 @@ from .llm_answer import (
     _sentence_problems,
     _verify,
 )
-from .select import Clause, _grams, _idf, _lexical, _sections, _window, split_slots
+from .select import (
+    BASIS,
+    BODY,
+    ENUM,
+    MODAL,
+    PROC,
+    Clause,
+    Slot,
+    _grams,
+    _idf,
+    _lexical,
+    _sections,
+    _window,
+    split_slots,
+)
 
 PROMPT_VERSION = "summary-model-v1"
 MAX_SECTIONS = 8
-MAX_WINDOW = 1200
-MAX_EVIDENCE_CHARS = 9000
+MAX_WINDOW = 1500
+MAX_EVIDENCE_CHARS = 11000
+TYPE_PATTERNS = {"boolean": MODAL, "enum": ENUM, "procedure": PROC, "basis": BASIS, "body": BODY}
+TYPE_BONUS = 0.05
+LEADERS_PER_SLOT = 6
 MAX_SUMMARY_CHARS = 900
 MAX_POINTS = 2
 GAP_LIMIT = 2
@@ -74,16 +91,24 @@ def _section_hits(question: str, clauses: Sequence[Clause]) -> list[SearchHit]:
         return []
     idf = _idf(clauses)
     default = math.log(len(clauses) + 1) + 1.0
-    scores: dict[tuple[str, str], float] = {}
+    # A section answers a question through several clauses (a chapeau plus its
+    # items), so score the section by the sum of its three best clauses instead of
+    # the single best one: the penalty article's chapeau alone says only
+    # "违反本法规定" and would never surface.
+    buckets: dict[tuple[str, str], list[float]] = {}
     for slot in split_slots(question):
-        grams = _grams(slot.text)
-        for value, clause in _lexical(slot, clauses, grams, idf, default):
+        relaxed = Slot(text=slot.text, kind="text", unit=slot.unit)
+        pattern = TYPE_PATTERNS.get(slot.kind)
+        for value, clause in _lexical(relaxed, clauses, _grams(slot.text), idf, default):
+            if pattern is not None and pattern.search(clause.text):
+                value = round(value + TYPE_BONUS, 6)
             key = (clause.doc_id, clause.section)
-            scores[key] = max(scores.get(key, 0.0), value)
-    ranked = sorted(
-        ((score, doc_id, section) for (doc_id, section), score in scores.items()),
-        key=lambda item: (-item[0], item[1], item[2]),
-    )
+            buckets.setdefault(key, []).append(value)
+    ranked = [
+        (sum(sorted(values, reverse=True)[:3]), doc_id, section)
+        for (doc_id, section), values in buckets.items()
+    ]
+    ranked.sort(key=lambda item: (-item[0], item[1], item[2]))
     ordered: list[tuple[str, str, list[Clause]]] = []
     seen: set[tuple[str, str]] = set()
     by_key = {(doc, section): items for doc, section, items in _sections(clauses)}
