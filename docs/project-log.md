@@ -1245,3 +1245,10 @@ This log records material project changes by date. It does not use release versi
 - Result: **146 approved / 54 draft** of 200; `facts check` reports 0 errors, 0 conflicts and 0 expired.
 - Fact-lead snapshot: 168 of 512 questions now carry a deterministic lead; 8 leads are new and all belong to answerable rows, 49 were replaced. A deterministic replay of the 70 refusal rows with the model disabled is byte-identical before and after, so the promotion does not change refusal behaviour.
 - The 512 acceptance rerun could not complete: the model endpoint hung (no cache writes for 23 minutes), so the six lines are marked "not rerun after this batch" rather than reported.
+
+## 2026-11-11 — Packaging truth and openai SDK client
+
+- `pyproject.toml` gained a PEP 621 `[project]` table: core dependencies (PyYAML, pydantic, openai) plus `rag`, `service` and `dev` extras, and a `scs-fkb` console script. `requirements.txt`, `requirements-rag.txt` and `requirements-dev.txt` now mirror that split instead of describing deferred packages.
+- `src/scs_fkb/llm.py` now uses the `openai` SDK: the session header is a default header, `reasoning_effort` goes through `extra_body`, `LLM_TIMEOUT` and `SCS_FKB_LLM_SESSION` are honoured, HTTP errors map to `LLMError`, and one empty completion is retried with a larger token budget.
+- `tests/test_llm.py` runs on `httpx.MockTransport` and covers success, empty-completion retry, HTTP error mapping and the session header; the suite is 334 passed / 2 skipped.
+- Public retrieval regression unchanged at 0.8864 / 0.7848; a live smoke through the SDK returned a cited answer in 9 s. No retrieval, answer-arm, config or instrument change.

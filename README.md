@@ -103,7 +103,7 @@ pip install -r requirements-dev.txt
 make check
 ```
 
-`make check` runs lint, format check, tests and the public-tree validation. `requirements.txt` carries the readers used for the register (PyYAML, openpyxl, xlrd) plus the optional fastembed ONNX encoder for the dense arm; CI installs `requirements-dev.txt` and runs the public checks without a model download.
+`make check` runs lint, format check, tests and the public-tree validation. Dependencies are declared in `pyproject.toml` as a core set plus `rag`, `service` and `dev` extras; the plain requirements files mirror them (`requirements.txt` core, `requirements-rag.txt` retrieval and HTTP service, `requirements-dev.txt` tests and linting). CI installs only `requirements-dev.txt` and runs the public checks without a model download. Installable as `pip install -e ".[rag,service]"`; the model client is the `openai` SDK and reads `LLM_BASE_URL`, `LLM_API_KEY`, `LLM_MODEL`, `LLM_TIMEOUT` and `SCS_FKB_LLM_SESSION`.
 
 The pipeline reads sources from `SCS_FKB_DATA_ROOT` and writes the processed store there; no data and no index enter the repository:
 
