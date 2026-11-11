@@ -214,8 +214,8 @@ def test_real_fact_layer_has_200_facts() -> None:
     assert len(facts) == 200
     assert sum(1 for fact in facts if fact["kind"] == "atomic") == 20
     assert sum(1 for fact in facts if fact["kind"] == "provision") == 180
-    assert sum(1 for fact in facts if fact["status"] == "approved") == 112
-    assert sum(1 for fact in facts if fact["status"] == "draft") == 88
+    assert sum(1 for fact in facts if fact["status"] == "approved") == 146
+    assert sum(1 for fact in facts if fact["status"] == "draft") == 54
     for fact in facts:
         assert fact["evidence"]
         assert fact["source"]["sha256"]
