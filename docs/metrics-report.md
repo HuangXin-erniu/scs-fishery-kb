@@ -27,7 +27,7 @@
 | 12 | Approved terms | 136/150 | hold | ≥136 | `terms check` | `P22` |
 | 13 | Registered sources | 77 | hold | ≥77 | `scripts/check_sources.py` | CI |
 | 14 | Indexed documents / chunks | 67 / 2,797 | hold | ≥67 / ≥2,797 | index manifest | `P24-EVL-223` |
-| 15 | Expert spot check | not run | 30 items | citation ≥95%, conclusion ≥85%, refusal ≥90% | worksheet | pending |
+| 15 | Expert spot check (simulated) | citation 16/20, conclusion 5/20, refusal 7/10, as-of 3/4 | 30 items | citation ≥95%, conclusion ≥85%, refusal ≥90% | worksheet | `P24-ACC-227` |
 | 16 | Test suite | 334 passed / 2 skipped | — | no regression | `pytest -q` | CI |
 
 ## 2. Runs behind the numbers
@@ -70,6 +70,19 @@ SCS_FKB_VERIFY_ANSWERS=on SCS_FKB_WEB=off PYTHONPATH=src \
 - Two attempts to raise the share with a stricter prompt were invalidated by endpoint
   throughput, not by the prompt; the arm stays `short-v1`.
 
+### Expert spot check (row 15, simulated)
+
+- `P24-ACC-227` ran the frozen 30 items on the P24-EVL-223 answer paths (dump arm for
+  answerable rows, service for refusals) and judged citation, conclusion, refusal and
+  as-of against the worksheet rules.
+- As labeled: citation **16/20 (80.0%)**, conclusion **5/20 (25.0%)**, refusal
+  **7/10 (70.0%)**, as-of **3/4 (75.0%)** — all three pass lines are missed.
+- `source: simulated` (AI multi-persona role-play, not a human signature). Of the 15
+  conclusion failures, 14 carry the decisive clause in the full dump but not in the
+  user-facing summary; six sample labels conflict with the corpus (`Y-004`, `Y-042`,
+  `Y-061`, `Y-062`, `Y-117`, `Y-226`). Details are in the run's `scores.md` and
+  `calibration.md`.
+
 ### Knowledge layer (rows 11–14)
 
 ```bash
@@ -86,8 +99,10 @@ PY
   higher targets.
 - **Targets kept:** 0.83 coverage, 0.97 citation, 0.96 as-of, 40/60 short. They describe the
   ambition and the remaining work.
-- **Not yet measured:** the 30-item expert spot check. Its worksheet is frozen and waits for a
-  domain expert; no result is reported before it is filled.
+- **Not yet human-reviewed:** the 30-item spot check now has an AI role-play result (row 15).
+  It does not satisfy the acceptance requirement for a signed human review; the worksheet stays
+  frozen and a domain expert still has to fill and sign it. The simulated result is reported as
+  measured and failing, not as a pass.
 
 ## 4. Reproduction notes
 
