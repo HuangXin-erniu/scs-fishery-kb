@@ -48,3 +48,10 @@ def test_public_set_is_public_and_complete() -> None:
     assert sum(1 for row in entries if row.get("reference_answer")) == 12
     text = (REPO_ROOT / "configs" / "eval-public.yaml").read_text(encoding="utf-8")
     assert "acceptance" not in text.lower()
+
+
+def test_reachable_uses_the_indexed_document_set() -> None:
+    module = _module()
+    assert module._reachable({"expected_docs": ["POL-CLOS-015"]}, {"POL-CLOS-015"})
+    assert module._reachable({"expected_docs": [], "expected_prefix": "STAT-YB-"}, {"STAT-YB-2024"})
+    assert not module._reachable({"expected_docs": ["STD-CWP-043"]}, {"POL-CLOS-015"})
