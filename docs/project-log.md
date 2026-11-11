@@ -1252,3 +1252,9 @@ This log records material project changes by date. It does not use release versi
 - `src/scs_fkb/llm.py` now uses the `openai` SDK: the session header is a default header, `reasoning_effort` goes through `extra_body`, `LLM_TIMEOUT` and `SCS_FKB_LLM_SESSION` are honoured, HTTP errors map to `LLMError`, and one empty completion is retried with a larger token budget.
 - `tests/test_llm.py` runs on `httpx.MockTransport` and covers success, empty-completion retry, HTTP error mapping and the session header; the suite is 334 passed / 2 skipped.
 - Public retrieval regression unchanged at 0.8864 / 0.7848; a live smoke through the SDK returned a cited answer in 9 s. No retrieval, answer-arm, config or instrument change.
+
+## 2026-11-11 — 512 re-verification after facts and SDK
+
+- Reran the frozen 512 with the documented scoped invocation, 2 workers, 240 s timeout and a fixed session: 444 answered (was 443), mean 101,825.3 characters, six lines **0.8092 / 0.9565 / 0.9412 / 0.0000 / 1.0000 / 0.9474** — identical to the frozen baseline.
+- The extra answer is a fact-lead answer and moves no denominator. The fact promotion (112 → 146 approved) and the openai SDK client are now measured rather than assumed.
+- Run directory `P24-EVL-223`, index `ce3eeaf4c9b2`, about 25 minutes.

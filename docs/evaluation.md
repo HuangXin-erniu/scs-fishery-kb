@@ -1251,3 +1251,22 @@ Ship the line-level citation check and the truncation fallback; the dump path, t
 - The baseline file records both denominators with a dated note.
 - Channel rows: `Q-E05` (CWP definitions), `Q-E06` and `Q-M05` (yearbook tables). They are
   covered by the reference and statistics channels, not by corpus retrieval.
+
+
+### 38. 512 re-verification after the fact layer and SDK swap (2026-11-11)
+
+> **中文摘要**：事实层从 112 条提升到 146 条、模型客户端换成 openai SDK 之后，完整复跑 512 确认
+> 六线未动：误答 0.0000、引用 0.9565、覆盖 0.8092、拒答渠道 1.0000、时效 0.9474、口径 0.9412。
+> 作答从 443 变为 444（多出的一题由事实引导作答，未影响任何线）。两次跑批都用 2 并发、
+> 240 秒超时、固定会话；本轮回跑约 25 分钟。
+
+- Invocation: `--llm --llm-arm dump --llm-answerability 可答,部分可答 --llm-workers 2`
+  with `SCS_FKB_VERIFY_ANSWERS=on`, `SCS_FKB_WEB=off`, `LLM_TIMEOUT=240`,
+  `SCS_FKB_LLM_SESSION=scs-fkb-p24`.
+- Index `ce3eeaf4c9b2`; 67 documents / 2,797 chunks; run directory `P24-EVL-223`.
+- Result: 444 answered, mean answer 101,825.3 characters, six lines
+  0.8092 / 0.9565 / 0.9412 / 0.0000 / 1.0000 / 0.9474 — identical to the frozen baseline.
+- The one extra answer comes from the promoted fact lead and does not move coverage,
+  citation, as-of, refusal or basis denominators.
+- Worst case for the unattributed risk is now closed: the fact promotion and the client
+  swap are measured, not assumed.
