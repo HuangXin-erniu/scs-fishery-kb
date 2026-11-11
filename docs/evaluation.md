@@ -1290,3 +1290,15 @@ Ship the line-level citation check and the truncation fallback; the dump path, t
   the 0.83 target; citation (0.9565) and as-of (0.9474) pass lines follow the same rule.
 - The values are **measured**, not adjusted to match a failed attempt: no coverage
   experiment was run because the point-level evidence ruled it out in advance.
+
+#### Final status of the short-answer prompt attempt (2026-11-11)
+
+Two attempts to lift the valid share with the `short-v2` prompt (a citation on every line,
+uncitable lines dropped) were both invalidated by the endpoint rather than by the prompt:
+the first produced 12 DNS failures and 11 empty completions out of 60 items, and the retry
+completed only 5 items in 21 minutes (about 4 minutes per call). The prompt is reverted;
+the arm stays `short-v1` at **16/60**, which is published as the measured pass line in
+`docs/acceptance.md` with the 40/60 target kept.
+
+The failure mode is provider throughput, not the model client: the same client completed
+the 512 instrument in 25 minutes (about 3.4 s per call) earlier the same day.

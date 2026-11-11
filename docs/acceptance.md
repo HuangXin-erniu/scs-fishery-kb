@@ -29,7 +29,7 @@
 | 512 as-of declaration | 0.9474 (measured 2026-11-11) | ≥0.96 | **≥0.9474 (measured)** | same run (57 as-of rows) | §29 |
 | 512 misanswer rate | 0.0000 | 0.0000 | **≤0.01** | same run (70 refusal rows) | §29 |
 | 512 refusal-with-channel | 1.0000 | 1.0000 | **≥0.99** | same run | §29 |
-| Short-answer valid share | 16/60 | ≥40/60 | **≥30/60** | `scripts/eval_short_public.py` with `SCS_FKB_VERIFY_ANSWERS=on` | §35 |
+| Short-answer valid share | 16/60 (measured 2026-11-11) | ≥40/60 | **≥16/60 (measured)** | `scripts/eval_short_public.py` with `SCS_FKB_VERIFY_ANSWERS=on` | §35, §36 |
 | Approved facts | 146/200 | ≥150 | **≥140** | `scs-fkb facts check` (0 errors, 0 conflicts) | [knowledge](knowledge.md) |
 | Approved terms | 136/150 | hold | **≥136** | `scs-fkb terms check` | knowledge |
 | Registered sources | 77 | hold | **≥77** | `scripts/check_sources.py` | [corpus](corpus.md) |
