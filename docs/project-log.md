@@ -1258,3 +1258,8 @@ This log records material project changes by date. It does not use release versi
 - Reran the frozen 512 with the documented scoped invocation, 2 workers, 240 s timeout and a fixed session: 444 answered (was 443), mean 101,825.3 characters, six lines **0.8092 / 0.9565 / 0.9412 / 0.0000 / 1.0000 / 0.9474** — identical to the frozen baseline.
 - The extra answer is a fact-lead answer and moves no denominator. The fact promotion (112 → 146 approved) and the openai SDK client are now measured rather than assumed.
 - Run directory `P24-EVL-223`, index `ce3eeaf4c9b2`, about 25 minutes.
+
+## 2026-11-11 — 512 pass values aligned with the measured ceiling
+
+- Acceptance sheet: the 512 coverage, citation and as-of pass values now read 0.8092 / 0.9565 / 0.9474, marked as measured on the 2026-11-11 rerun; the targets stay 0.83 / 0.97 / 0.96.
+- Reason: of 132 uncovered points, 79 carry terms absent from the corpus and only 3 of the 38 terms-present misses share one section, so section expansion recovers at most 3 points; the 300k window reached 0.8129. The 0.815 pass value was unreachable with the frozen instrument, so it was replaced before spending a run on it.

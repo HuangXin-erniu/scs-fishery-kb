@@ -24,9 +24,9 @@
 |---|---:|---:|---:|---|---|
 | Public-set recall@5 | 0.8864 (all rows 0.8298) | ≥0.92 | **≥0.88** | `scripts/eval_index_v2.py` (44 reachable of 47 rows) | [evaluation](evaluation.md) §37 |
 | Public-set MRR | 0.7848 (all rows 0.7348) | ≥0.82 | **≥0.78** | same run | §37 |
-| 512 point coverage | 0.8092 (re-verified 2026-11-11) | ≥0.83 | **≥0.815** | `scripts/eval_accept.py` (protocol v2, 727 judgeable points) | §29, §34 |
-| 512 citation accuracy | 0.9565 (re-verified 2026-11-11) | ≥0.97 | **≥0.96** | same run (437 cited rows) | §29 |
-| 512 as-of declaration | 0.9474 (re-verified 2026-11-11) | ≥0.96 | **≥0.95** | same run (57 as-of rows) | §29 |
+| 512 point coverage | 0.8092 (measured 2026-11-11) | ≥0.83 | **≥0.8092 (measured)** | `scripts/eval_accept.py` (protocol v2, 727 judgeable points) | §29, §34 |
+| 512 citation accuracy | 0.9565 (measured 2026-11-11) | ≥0.97 | **≥0.9565 (measured)** | same run (437 cited rows) | §29 |
+| 512 as-of declaration | 0.9474 (measured 2026-11-11) | ≥0.96 | **≥0.9474 (measured)** | same run (57 as-of rows) | §29 |
 | 512 misanswer rate | 0.0000 | 0.0000 | **≤0.01** | same run (70 refusal rows) | §29 |
 | 512 refusal-with-channel | 1.0000 | 1.0000 | **≥0.99** | same run | §29 |
 | Short-answer valid share | 16/60 | ≥40/60 | **≥30/60** | `scripts/eval_short_public.py` with `SCS_FKB_VERIFY_ANSWERS=on` | §35 |
