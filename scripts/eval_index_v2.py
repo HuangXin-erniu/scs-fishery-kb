@@ -38,6 +38,14 @@ def _match(doc_id: str, row: dict) -> bool:
     return bool(prefix) and doc_id.startswith(prefix)
 
 
+def _reachable(row: dict, indexed_docs: set[str]) -> bool:
+    """A row is measurable by corpus retrieval only if its expected document is indexed."""
+    if any(doc in indexed_docs for doc in row.get("expected_docs") or []):
+        return True
+    prefix = str(row.get("expected_prefix") or "")
+    return bool(prefix) and any(doc.startswith(prefix) for doc in indexed_docs)
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--data-root", default=os.environ.get("SCS_FKB_DATA_ROOT"))
@@ -54,8 +62,15 @@ def main(argv: list[str] | None = None) -> int:
 
     rows = _rows(Path(args.set))
     retriever = build_retriever(args.data_root, reranker=args.rerank)
+    indexed_docs = {str(chunk.doc_id) for chunk in getattr(retriever, "chunks", []) or []}
+    reachable = [row for row in rows if _reachable(row, indexed_docs)]
+    unreachable = [
+        str(row.get("id") or row["question"]) for row in rows if not _reachable(row, indexed_docs)
+    ]
     hits = 0
+    all_hits = 0
     reciprocal = 0.0
+    all_reciprocal = 0.0
     misses: list[str] = []
     latencies: list[float] = []
     for row in rows:
@@ -65,14 +80,21 @@ def main(argv: list[str] | None = None) -> int:
         docs = [hit.chunk.doc_id for hit in found]
         rank = next((index for index, doc in enumerate(docs, start=1) if _match(doc, row)), None)
         if rank is not None:
-            hits += 1
-            reciprocal += 1.0 / rank
-        else:
+            all_hits += 1
+            all_reciprocal += 1.0 / rank
+            if _reachable(row, indexed_docs):
+                hits += 1
+                reciprocal += 1.0 / rank
+        elif _reachable(row, indexed_docs):
             misses.append(str(row.get("id") or row["question"]))
     metrics = {
         "questions": len(rows),
-        "recall_at_5": round(hits / len(rows), 4),
-        "mrr": round(reciprocal / len(rows), 4),
+        "reachable_questions": len(reachable),
+        "unreachable": unreachable,
+        "recall_at_5": round(hits / len(reachable), 4) if reachable else 0.0,
+        "mrr": round(reciprocal / len(reachable), 4) if reachable else 0.0,
+        "recall_at_5_all": round(all_hits / len(rows), 4) if rows else 0.0,
+        "mrr_all": round(all_reciprocal / len(rows), 4) if rows else 0.0,
         "misses": misses,
         "set": Path(args.set).name,
         "rerank": args.rerank,
@@ -99,8 +121,12 @@ def main(argv: list[str] | None = None) -> int:
                     "updated_at": date.today().isoformat(),
                     "recall_at_5": metrics["recall_at_5"],
                     "mrr": metrics["mrr"],
+                    "recall_at_5_all": metrics["recall_at_5_all"],
+                    "mrr_all": metrics["mrr_all"],
                     "tolerance": args.tolerance,
                     "questions": metrics["questions"],
+                    "reachable_questions": metrics["reachable_questions"],
+                    "note": "recall_at_5 and mrr cover rows whose expected document is indexed",
                 },
                 allow_unicode=True,
                 sort_keys=False,
@@ -126,7 +152,9 @@ def main(argv: list[str] | None = None) -> int:
     else:
         print(
             f"recall@5 {metrics['recall_at_5']} MRR {metrics['mrr']} "
-            f"questions {metrics['questions']} misses {len(misses)}"
+            f"questions {metrics['reachable_questions']}/{metrics['questions']} "
+            f"unreachable {len(unreachable)} misses {len(misses)} "
+            f"(all rows {metrics['recall_at_5_all']} / {metrics['mrr_all']})"
         )
         if metrics.get("passed") is False:
             print("regression: below the recorded baseline", file=sys.stderr)

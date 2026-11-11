@@ -1234,3 +1234,20 @@ Ship the line-level citation check and the truncation fallback; the dump path, t
   comparable measurement was produced.
 - Decision: revert the prompt. The arm stays at 16/60 and `short-v1`; a prompt change is
   only worth shipping after a clean run on a stable endpoint.
+
+
+### 37. Public recall denominator (2026-11-11)
+
+> **中文摘要**：开源回归集里有 3 题的期望文档（CWP 定义、年鉴表）不在 67 份语料索引里，
+> 语料检索本来就不可能命中。现在把它们单列为“通道题”，召回与 MRR 只在可达的 44 题上计算，
+> 同时保留 47 题口径。可达口径：recall@5 **0.8864**、MRR **0.7848**；全量口径 0.8298 / 0.7348。
+
+- `scripts/eval_index_v2.py` gains `_reachable`: a row is measurable by corpus retrieval only
+  when its expected document or prefix exists in the index. `recall_at_5` and `mrr` use the
+  reachable denominator; `recall_at_5_all` and `mrr_all` keep the previous numbers.
+- `scripts/eval_public.py` applies the same split against the service's indexed document set
+  and prints `channel_rows`; its own recall (0.9545 reachable) counts answer citations rather
+  than top-5 retrieval, so it is a different measure and is labelled as such.
+- The baseline file records both denominators with a dated note.
+- Channel rows: `Q-E05` (CWP definitions), `Q-E06` and `Q-M05` (yearbook tables). They are
+  covered by the reference and statistics channels, not by corpus retrieval.

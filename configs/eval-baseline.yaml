@@ -1,6 +1,13 @@
 schema_version: 1
-updated_at: '2026-11-10'
-recall_at_5: 0.8298
-mrr: 0.7348
+updated_at: '2026-11-11'
+# Reachable rows: the expected document exists in the corpus index. Three public
+# rows (CWP definitions, yearbook tables) are served by the reference and
+# statistics channels and are reported separately, so they are not counted here.
+recall_at_5: 0.8864
+mrr: 0.7848
+recall_at_5_all: 0.8298
+mrr_all: 0.7348
 tolerance: 0.02
 questions: 47
+reachable_questions: 44
+note: recall_at_5 and mrr cover rows whose expected document is indexed

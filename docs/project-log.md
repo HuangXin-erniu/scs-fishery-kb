@@ -1232,3 +1232,9 @@ This log records material project changes by date. It does not use release versi
 
 - Tried a `short-v2` prompt that required a citation on every rendered line and told the model to drop uncitable lines. The 60-item run was invalid: 12 DNS failures and 11 empty completions left only 6 valid short answers, so the result measures the endpoint, not the prompt.
 - Reverted the prompt and the version bump; the arm stays at 16/60 with `short-v1`. The attempt and the reason are recorded in `docs/evaluation.md` section 36.
+
+## 2026-11-11 — Public recall denominator split
+
+- `eval_index_v2.py` now separates rows whose expected document is not in the corpus index and computes recall@5 / MRR over the reachable rows: **44 of 47**, recall **0.8864**, MRR **0.7848** (all-row values 0.8298 / 0.7348 kept as `*_all`).
+- `eval_public.py` reports the same channel rows against the indexed document set.
+- `configs/eval-baseline.yaml` records both denominators with a dated note; `docs/acceptance.md` and `docs/evaluation.md` section 37 explain the split. No retrieval behaviour change.
