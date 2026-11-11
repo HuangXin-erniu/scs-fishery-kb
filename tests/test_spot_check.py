@@ -248,3 +248,45 @@ def test_score_reports_the_fallback_rate(tmp_path):
     assert result["summary_source"] == {"model": 5, "fallback": 1}
     assert result["fallback_rows"] == ["A-2"]
     assert result["fallback_rate"] == round(1 / 6, 4)
+
+
+def test_worksheet_resolves_instrument_document_ids_through_the_doc_map(tmp_path):
+    module = _module()
+    dataset = tmp_path / "dataset.jsonl"
+    rows = _dataset(dataset)
+    ids = tmp_path / "ids.txt"
+    ids.write_text(rows[0]["id"] + "\n", encoding="utf-8")
+    doc_map = tmp_path / "doc-map.yaml"
+    doc_map.write_text(
+        "mapping:\n"
+        "  SCS-L-002:\n"
+        "    title: 海上交通安全法\n"
+        "    registry_status: 已核验\n"
+        "    docs: [POL-LAW-097]\n"
+        "    covers: full\n",
+        encoding="utf-8",
+    )
+    # Rewrite the row so its expected document is the instrument id, not a doc id.
+    row = dict(rows[0])
+    row["scs_doc_ids"] = ["SCS-L-002"]
+    dataset.write_text(json.dumps(row, ensure_ascii=False) + "\n", encoding="utf-8")
+
+    assert (
+        module.main(
+            [
+                "worksheet",
+                "--dataset",
+                str(dataset),
+                "--ids",
+                str(ids),
+                "--doc-map",
+                str(doc_map),
+                "--out",
+                str(tmp_path / "ws"),
+            ]
+        )
+        == 0
+    )
+    text = (tmp_path / "ws" / "worksheet.csv").read_bytes().decode("utf-8-sig")
+    assert "海上交通安全法" in text
+    assert "POL-LAW-097" in text

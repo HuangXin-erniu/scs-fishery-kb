@@ -18,6 +18,8 @@ Three steps, each reproducible from the command line:
     importable. ``--answers`` merges the system summary and its provenance
     (``model`` / ``fallback`` / ``deterministic``) so a reviewer sees exactly
     what the user sees, and so a silent fallback cannot pass as a model answer.
+    ``--doc-map`` resolves the instrument's ``SCS-*`` ids to repository document
+    ids and titles, so a reviewer reads "海上交通安全法" rather than "SCS-L-002".
 ``score``
     Aggregate a filled worksheet into per-line pass rates. Blank or ``NA``
     cells leave the denominator; a ``refusal_ok`` verdict on an answerable row
@@ -95,9 +97,19 @@ def _ids(path: Path | None) -> set[str]:
     return {line.strip() for line in text.splitlines() if line.strip() and not line.startswith("#")}
 
 
-def _expected(row: dict[str, Any]) -> str:
+def _expected(row: dict[str, Any], docmap: Any = None) -> str:
     docs = [str(item) for item in row.get("scs_doc_ids") or []]
-    return ";".join(docs)
+    if docmap is None:
+        return ";".join(docs)
+    rendered: list[str] = []
+    for item in docs:
+        entry = docmap.entry(item)
+        if entry is None:
+            rendered.append(item)
+            continue
+        target = "/".join(entry.docs) if entry.docs else entry.covers
+        rendered.append(f"{item}（{entry.title}；{target}）")
+    return ";".join(rendered)
 
 
 def _digest(rows: list[dict[str, Any]]) -> str:
@@ -213,6 +225,11 @@ def _answers(path: str | None) -> dict[str, dict[str, Any]]:
 def cmd_worksheet(args: argparse.Namespace) -> int:
     dataset = {str(row.get("id")): row for row in _rows(Path(args.dataset).expanduser())}
     answers = _answers(args.answers)
+    docmap = None
+    if getattr(args, "doc_map", ""):
+        from scs_fkb.eval_accept import load_docmap
+
+        docmap = load_docmap(args.doc_map)
     wanted = sorted(_ids(Path(args.ids).expanduser()))
     missing = [item for item in wanted if item not in dataset]
     if missing:
@@ -220,7 +237,7 @@ def cmd_worksheet(args: argparse.Namespace) -> int:
     rows: list[dict[str, Any]] = []
     for item in wanted:
         row = dict(dataset[item])
-        row["expected_docs"] = _expected(row)
+        row["expected_docs"] = _expected(row, docmap)
         answer = answers.get(item) or {}
         row["summary"] = str(answer.get("summary") or "")
         row["summary_source"] = str(answer.get("summary_source") or "")
@@ -339,6 +356,9 @@ def main(argv: list[str] | None = None) -> int:
     worksheet.add_argument("--out", required=True)
     worksheet.add_argument(
         "--answers", default="", help="optional JSONL with id, summary and summary_source"
+    )
+    worksheet.add_argument(
+        "--doc-map", default="", help="optional doc-map.yaml resolving SCS-* ids to documents"
     )
     worksheet.set_defaults(func=cmd_worksheet)
 
