@@ -1238,3 +1238,10 @@ This log records material project changes by date. It does not use release versi
 - `eval_index_v2.py` now separates rows whose expected document is not in the corpus index and computes recall@5 / MRR over the reachable rows: **44 of 47**, recall **0.8864**, MRR **0.7848** (all-row values 0.8298 / 0.7348 kept as `*_all`).
 - `eval_public.py` reports the same channel rows against the indexed document set.
 - `configs/eval-baseline.yaml` records both denominators with a dated note; `docs/acceptance.md` and `docs/evaluation.md` section 37 explain the split. No retrieval behaviour change.
+
+## 2026-11-11 — Fact layer review to 146 approved
+
+- Reviewed the 42 eligible draft provision facts with the existing validator only. 35 passed the verbatim-evidence, completeness and duplicate checks and were promoted; one of them (`FACT-PROV-034`, the gear-size notice) was put back to draft because it gave a fact lead to an out-of-scope question.
+- Result: **146 approved / 54 draft** of 200; `facts check` reports 0 errors, 0 conflicts and 0 expired.
+- Fact-lead snapshot: 168 of 512 questions now carry a deterministic lead; 8 leads are new and all belong to answerable rows, 49 were replaced. A deterministic replay of the 70 refusal rows with the model disabled is byte-identical before and after, so the promotion does not change refusal behaviour.
+- The 512 acceptance rerun could not complete: the model endpoint hung (no cache writes for 23 minutes), so the six lines are marked "not rerun after this batch" rather than reported.

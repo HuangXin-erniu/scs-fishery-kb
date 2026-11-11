@@ -30,7 +30,7 @@
 | 512 misanswer rate | 0.0000 | 0.0000 | **≤0.01** | same run (70 refusal rows) | §29 |
 | 512 refusal-with-channel | 1.0000 | 1.0000 | **≥0.99** | same run | §29 |
 | Short-answer valid share | 16/60 | ≥40/60 | **≥30/60** | `scripts/eval_short_public.py` with `SCS_FKB_VERIFY_ANSWERS=on` | §35 |
-| Approved facts | 112/200 | ≥150 | **≥140** | `scs-fkb facts check` (0 errors, 0 conflicts) | [knowledge](knowledge.md) |
+| Approved facts | 146/200 | ≥150 | **≥140** | `scs-fkb facts check` (0 errors, 0 conflicts) | [knowledge](knowledge.md) |
 | Approved terms | 136/150 | hold | **≥136** | `scs-fkb terms check` | knowledge |
 | Registered sources | 77 | hold | **≥77** | `scripts/check_sources.py` | [corpus](corpus.md) |
 | Indexed documents and chunks | 67 / 2,797 | hold | **≥67 / ≥2,797** | index manifest | `v2/index/versions/<id>/manifest.json` |
