@@ -95,6 +95,16 @@ def _pick_conditions(sentences: list[str], conclusion: str) -> tuple[str, ...]:
     return tuple(picked)
 
 
+def _view_of(sentence: str) -> SlotView:
+    match = re.search(r"\[([A-Za-z0-9][^\]]*?)\s*§([^\]]+)\]", sentence)
+    return SlotView(
+        text=sentence,
+        doc_id=match.group(1).strip() if match else "",
+        section=match.group(2).strip() if match else "",
+        kind="model",
+    )
+
+
 def _selector_on() -> bool:
     return os.environ.get("SCS_FKB_SUMMARY_SELECT", "off").strip().lower() in {
         "on",
@@ -165,6 +175,7 @@ def compose(
     channels: ChannelBook,
     clauses: Any = (),
     picker: Any = None,
+    draft: Any = None,
 ) -> AnswerContract:
     """Build the contract-shaped answer from the deterministic evidence pack."""
     scoped, scope_reason = out_of_scope(question)
@@ -192,7 +203,12 @@ def compose(
     slot_gaps: tuple[str, ...] = ()
     points: tuple[str, ...] = ()
     conditions: tuple[str, ...] = ()
-    if clauses and _selector_on():
+    if draft is not None:
+        slots = tuple(
+            _view_of(item) for item in [draft.conclusion, *draft.points] if str(item).strip()
+        )
+        slot_gaps = tuple(draft.gaps)
+    elif clauses and _selector_on():
         slots, slot_gaps = _slot_view(question, clauses, picker)
     if slots:
         conclusion = slots[0].text

@@ -1,0 +1,282 @@
+"""Model-written summary over the dump arm's clause set.
+
+The dump arm already retrieves a large evidence pack. This module picks the
+sections that can answer the question, lets the model compose a short summary
+from exactly those sections, and then runs the same citation, number and support
+checks the LLM answer arm uses. A draft that fails a check is repaired once and
+otherwise dropped, so the caller falls back to the deterministic summary.
+
+Nothing here changes the evidence text: the pack stays the dump arm's output.
+"""
+
+from __future__ import annotations
+
+import math
+import re
+from collections.abc import Sequence
+from dataclasses import dataclass
+from typing import Any
+
+from ..llm import LLMClient, LLMError
+from ..models import Chunk, SearchHit
+from ..rag import LLMCache, _citations_from_text
+from .llm_answer import (
+    _cached_json,
+    _key,
+    _label,
+    _number_problems,
+    _repair_messages,
+    _resolve_citations,
+    _sentence_problems,
+    _verify,
+)
+from .select import Clause, _grams, _idf, _lexical, _sections, _window, split_slots
+
+PROMPT_VERSION = "summary-model-v1"
+MAX_SECTIONS = 8
+MAX_WINDOW = 1200
+MAX_EVIDENCE_CHARS = 9000
+MAX_SUMMARY_CHARS = 900
+MAX_POINTS = 2
+GAP_LIMIT = 2
+
+SUMMARY_SYSTEM = (
+    "你是南海近海渔业知识库的摘要器，只能使用给出的证据清单，禁止外推。\n"
+    "输出三部分：\n"
+    "1. conclusion：一句话直接回答问题的第一问（数值、是否、期限、材料或受理层级），不要铺垫。\n"
+    "2. points：0 到 2 句，回答其余的每一问；每句只讲一件事。\n"
+    "3. gaps：证据清单确实没有覆盖的部分，写成“缺什么”，最多两条；都覆盖了就给空数组。\n"
+    "硬性要求：每个陈述句都必须带引用，格式 [DOC_ID §章节]，必须与证据清单里的标签完全一致；"
+    "数字必须逐字来自证据并带单位；证据没有的数值不要写；不要写“根据证据”之类的空话。\n"
+    '只输出 JSON：{"conclusion": "……", "points": ["……"], "gaps": ["……"]}'
+)
+
+CITATION_RE = re.compile(r"\[([A-Za-z0-9][A-Za-z0-9_.-]*)\s*§([^\]]+)\]")
+
+
+@dataclass(frozen=True)
+class SummaryDraft:
+    """A verified model summary; never returned unless every check passed."""
+
+    conclusion: str
+    points: tuple[str, ...]
+    gaps: tuple[str, ...]
+    citations: tuple[Any, ...]
+    repaired: bool = False
+
+    def text(self) -> str:
+        return " ".join([self.conclusion, *self.points])
+
+
+def _section_hits(question: str, clauses: Sequence[Clause]) -> list[SearchHit]:
+    """Rank sections by the questions they can answer, then keep the best ones."""
+    if not clauses:
+        return []
+    idf = _idf(clauses)
+    default = math.log(len(clauses) + 1) + 1.0
+    scores: dict[tuple[str, str], float] = {}
+    for slot in split_slots(question):
+        grams = _grams(slot.text)
+        for value, clause in _lexical(slot, clauses, grams, idf, default):
+            key = (clause.doc_id, clause.section)
+            scores[key] = max(scores.get(key, 0.0), value)
+    ranked = sorted(
+        ((score, doc_id, section) for (doc_id, section), score in scores.items()),
+        key=lambda item: (-item[0], item[1], item[2]),
+    )
+    ordered: list[tuple[str, str, list[Clause]]] = []
+    seen: set[tuple[str, str]] = set()
+    by_key = {(doc, section): items for doc, section, items in _sections(clauses)}
+    for _score, doc_id, section in ranked:
+        key = (doc_id, section)
+        if key in seen or key not in by_key:
+            continue
+        seen.add(key)
+        ordered.append((doc_id, section, by_key[key]))
+        if len(ordered) >= MAX_SECTIONS:
+            break
+    hits: list[SearchHit] = []
+    for doc_id, section, items in ordered:
+        text = _window(items, MAX_WINDOW)
+        if not text.strip():
+            continue
+        chunk = Chunk(
+            chunk_id=f"{doc_id}|{section}"[:80],
+            doc_id=doc_id,
+            source_id=items[0].chunk_id or "section",
+            page=items[0].page,
+            section=section,
+            text=text,
+            token_count=len(text),
+            char_start=0,
+            char_end=len(text),
+            sensitivity="public",
+            source_class=items[0].source_class,
+        )
+        hits.append(SearchHit(chunk=chunk, score=1.0))
+    return hits
+
+
+def _render(hits: Sequence[SearchHit]) -> tuple[str, dict[str, Any]]:
+    """Render the section windows with the same labels the verifiers expect."""
+    parts: list[str] = []
+    by_label: dict[str, Any] = {}
+    used = 0
+    for hit in hits:
+        block = f"[{_label(hit.chunk)}] {' '.join(hit.chunk.text.split())}"
+        if used + len(block) > MAX_EVIDENCE_CHARS:
+            break
+        parts.append(block)
+        by_label[_label(hit.chunk)] = hit
+        used += len(block)
+    return "\n\n".join(parts), by_label
+
+
+def _clean(value: Any, limit: int) -> str:
+    text = " ".join(str(value or "").split())
+    return text[:limit].strip()
+
+
+def _points(value: Any) -> tuple[str, ...]:
+    if isinstance(value, str):
+        items = [value]
+    elif isinstance(value, list):
+        items = [str(item) for item in value]
+    else:
+        items = []
+    cleaned = [_clean(item, 300) for item in items if _clean(item, 300)]
+    return tuple(cleaned[:MAX_POINTS])
+
+
+def _gaps(value: Any) -> tuple[str, ...]:
+    if isinstance(value, str):
+        items = [value]
+    elif isinstance(value, list):
+        items = [str(item) for item in value]
+    else:
+        items = []
+    cleaned = [_clean(item, 120) for item in items if _clean(item, 120)]
+    return tuple(cleaned[:GAP_LIMIT])
+
+
+def _checks(text: str, by_label: dict[str, Any], hits: list[Any]) -> list[str]:
+    problems = _sentence_problems(text, by_label)
+    problems += _number_problems(text, by_label)
+    valid, invalid = _resolve_citations(text, hits)
+    if not valid:
+        problems += [f"unresolved:{item}" for item in invalid]
+    return problems
+
+
+def _request(client: LLMClient, cache: LLMCache | None, question: str, context: str) -> dict:
+    messages = [
+        {"role": "system", "content": SUMMARY_SYSTEM},
+        {
+            "role": "user",
+            "content": f"问题：\n{question}\n\n证据清单：\n{context}\n\n按 JSON 输出。",
+        },
+    ]
+    return _cached_json(
+        cache,
+        _key(PROMPT_VERSION, question, context, client.config.model),
+        client,
+        messages,
+        max_tokens=2500,
+    )
+
+
+def _repair(
+    client: LLMClient,
+    cache: LLMCache | None,
+    question: str,
+    context: str,
+    text: str,
+    problems: list[str],
+) -> str:
+    messages = _repair_messages(question, context, text, problems)
+    try:
+        value = _cached_json(
+            cache,
+            _key(PROMPT_VERSION + ":repair", question, context + text, client.config.model),
+            client,
+            messages,
+            max_tokens=2000,
+        )
+    except LLMError:
+        return ""
+    return _clean(value.get("answer"), MAX_SUMMARY_CHARS)
+
+
+def summarize(
+    question: str,
+    clauses: Sequence[Clause],
+    client: LLMClient | None,
+    cache: LLMCache | None = None,
+) -> SummaryDraft | None:
+    """Return a verified draft, or None so the caller keeps the deterministic summary."""
+    if client is None or not clauses:
+        return None
+    hits = _section_hits(question, clauses)
+    if not hits:
+        return None
+    context, by_label = _render(hits)
+    if not context:
+        return None
+    try:
+        value = _request(client, cache, question, context)
+    except LLMError:
+        return None
+    if value.get("abstained") is True:
+        return None
+    conclusion = _clean(value.get("conclusion"), 400)
+    points = _points(value.get("points"))
+    gaps = _gaps(value.get("gaps"))
+    if not conclusion:
+        return None
+    text = " ".join([conclusion, *points])
+    if len(text) > MAX_SUMMARY_CHARS:
+        return None
+    problems = _checks(text, by_label, hits)
+    repaired = False
+    if problems:
+        fixed = _repair(client, cache, question, context, text, problems)
+        if not fixed:
+            return None
+        repaired = True
+        text = fixed
+        conclusion, points = _resplit(text, points)
+        if not conclusion:
+            return None
+        problems = _checks(text, by_label, hits)
+        if problems:
+            return None
+    supported, _reason = _verify(question, text, by_label, client, cache)
+    if not supported:
+        fixed = _repair(client, cache, question, context, text, ["结论未被所引证据支持"])
+        if not fixed:
+            return None
+        text = fixed
+        conclusion, points = _resplit(text, points)
+        if not conclusion or _checks(text, by_label, hits):
+            return None
+        supported, _reason = _verify(question, text, by_label, client, cache)
+        if not supported:
+            return None
+        repaired = True
+    citations = tuple(_citations_from_text(text, hits))
+    if not citations:
+        return None
+    return SummaryDraft(
+        conclusion=conclusion, points=points, gaps=gaps, citations=citations, repaired=repaired
+    )
+
+
+def _resplit(text: str, fallback_points: tuple[str, ...]) -> tuple[str, tuple[str, ...]]:
+    """Rebuild conclusion and points from a repaired single-string answer."""
+    sentences = [item.strip() for item in re.split(r"(?<=[。！？；])", text) if item.strip()]
+    if not sentences:
+        return "", fallback_points
+    return sentences[0], tuple(sentences[1 : 1 + MAX_POINTS])
+
+
+__all__ = ["SummaryDraft", "summarize", "PROMPT_VERSION"]
