@@ -13,7 +13,8 @@
 - **30-item expert spot check.** A domain expert samples 30 questions from the reviewed
   instrument across the four personas and judges citation correctness, conclusion
   correctness, refusal appropriateness and as-of declaration. The worksheet is signed and
-  attached to the metrics report.
+  attached to the metrics report. A simulated run (AI role-play, `P24-ACC-227`) is recorded
+  separately; it is not a signature and does not replace this step.
 - **Two layers of evidence.** Deterministic and model-judged metrics come from the
   reproducible runs below; the spot check is the only human-judged layer. A model score is
   never reported as human review.
@@ -34,7 +35,7 @@
 | Approved terms | 136/150 | hold | **≥136** | `scs-fkb terms check` | knowledge |
 | Registered sources | 77 | hold | **≥77** | `scripts/check_sources.py` | [corpus](corpus.md) |
 | Indexed documents and chunks | 67 / 2,797 | hold | **≥67 / ≥2,797** | index manifest | `v2/index/versions/<id>/manifest.json` |
-| Expert spot check | not run | 30 items | **citation ≥95%, conclusion ≥85%, refusal ≥90%** | review worksheet | attached to the metrics report |
+| Expert spot check | simulated 2026-11-11 (AI role-play, not human) | 30 items | **citation ≥95%, conclusion ≥85%, refusal ≥90%** | review worksheet | `P24-ACC-227`, [metrics report](metrics-report.md) §2 |
 | Reproducibility | available | one command | **one command + commit + index hash** | `docs/plan.md` §8 | run artifacts |
 
 Three public rows (CWP definitions, yearbook tables) expect documents that are not in the
@@ -54,7 +55,7 @@ that cap and the report states the cap.
 | Metrics report | [metrics-report.md](metrics-report.md) | complete |
 | Technical report | [technical-report.md](technical-report.md) | skeleton with content; narrative sections marked |
 | Demo script | [demo-script.md](demo-script.md) | complete, five scenarios |
-| 30-item expert spot check | local worksheet under the run root | sample frozen, pending expert |
+| 30-item expert spot check | local worksheet under the run root | sample frozen; simulated run complete (`P24-ACC-227`); human signature pending |
 
 ## 3. Evidence map
 

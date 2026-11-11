@@ -1276,3 +1276,17 @@ This log records material project changes by date. It does not use release versi
 - Added `docs/technical-report.md`: Chinese technical report skeleton with objectives, method, system, results, limits, data/licence and reproduction; narrative sections that still need expansion are marked.
 - Added `docs/demo-script.md`: five scenarios (closure dates, licence renewal, penalty, statistics, out-of-scope refusal) with commands, expected answer shape and required citations.
 - Froze a 30-item expert spot-check sample (10 answerable, 10 partly answerable, 10 out-of-scope; four personas) with a worksheet and judgement rules under the local run root. It stays local.
+
+## 2026-11-11 — 30-item simulated expert spot check
+
+- Ran the frozen 30-item sample (`P24-ACC-226`) through the `P24-EVL-223` answer paths and
+  judged it double-track (blind reference first, then the system answer) as an AI
+  multi-persona reviewer. Run directory `P24-ACC-227` stays local.
+- `source: simulated`: citation **16/20**, conclusion **5/20**, refusal **7/10**, as-of
+  **3/4** — all three pass lines missed. The dominant cause is the dump arm's summary
+  extraction: 14 of the 15 conclusion failures carry the decisive clause in the full
+  100k-character answer but not in the user-facing summary. Six sample labels conflict with
+  the corpus (`Y-004`, `Y-042`, `Y-061`, `Y-062`, `Y-117`, `Y-226`).
+- 28 of 30 citation lists reproduce `P24-EVL-223` exactly; `Y-004` and `Y-265` flip on the
+  LLM refusal boundary. The acceptance sheet keeps the human sign-off pending and nothing is
+  marked passed.
