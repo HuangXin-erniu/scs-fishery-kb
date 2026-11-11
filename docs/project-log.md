@@ -1290,3 +1290,43 @@ This log records material project changes by date. It does not use release versi
 - 28 of 30 citation lists reproduce `P24-EVL-223` exactly; `Y-004` and `Y-265` flip on the
   LLM refusal boundary. The acceptance sheet keeps the human sign-off pending and nothing is
   marked passed.
+
+## 2026-11-11 — Spot-check harness, rubric v2 and the frozen holdout
+
+- Recorded the previous round's rubric repair (`P25-ACC-228`): v1 said "incomplete but not
+  wrong is N" yet scored two such rows Y, so v2 judges the first question's core slot
+  against the user-facing summary instead of an overall completeness call. The first round
+  rescores to citation 18/23, conclusion 5/23, refusal 6/7 under v2 and is kept as the
+  regression baseline.
+- Added `scripts/spot_check.py` with `sample` (seeded, stratified, refuses overlap),
+  `worksheet` and `score`; the private dataset, ids and run roots are passed by path and
+  never copied into the repository.
+- Froze a fresh 30-item holdout at `6abeda2`, before any answer-code change, so the headline
+  number is not scored on the sample the summary work was tuned against.
+
+## 2026-11-11 — Holdout review of the model-written summary
+
+- The summary work (`P25-ANS-230`) replaced single-sentence selection with a model-written
+  conclusion over the eight best-scored sections, behind verification and one repair pass.
+- Opened the frozen holdout 30 items (`P25-ACC-228`, seed `20261112`, zero overlap with the
+  first round) only after the summary build merged (`4c6d166`), and reviewed it
+  double-track: corpus-derived core-slot answers sealed at `reference.md` before the answer
+  pack was opened. Run directory `P25-ACC-231` stays local.
+- `source: simulated`: citation **7/14**, conclusion **9/20**, refusal **2/10**, as-of
+  **2/2** — all three pass lines missed. Rows labelled answerable, scored per label.
+- The average hides the split: model-written summaries were judgeable on 11 rows and correct
+  on 9 (81.8%), while the 11 rows that silently fell back to the deterministic summary were
+  correct on 0 of 7 judgeable conclusions. Fallback rate 36.7%; the fallback conclusion is
+  routinely a raw OCR block, a paper fragment or an adjacent clause.
+- Five rows never reached the summary: the clarify gate fires on 台风/赤潮/预报 and asks the
+  user to rephrase a clear question.
+- Configuration sensitivity, kept as a separate answer set: with `SCS_FKB_VERIFY_ANSWERS=on`
+  the same build abstains on 25 of 30 rows, because the sufficiency judge reads five
+  retrieval hits while the dump arm composes from 100k characters. Refusal 5/10 there,
+  conclusion capped at 5/20 — the flag trades one line for the other rather than fixing
+  either.
+- Harness changes that made the review auditable: `summary_source` on the contract and query
+  response (`model` / `fallback` / `deterministic`), `worksheet --answers` to merge the
+  summary and its provenance, `worksheet --doc-map` to resolve `SCS-*` instrument ids to
+  repository documents, and `score` reporting the fallback rate. 368 tests pass; the
+  dump-arm evidence hash is unchanged.

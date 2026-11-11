@@ -93,6 +93,7 @@ Response:
   "playbook": null,
   "index_version": "v2",
   "answerability": "answerable",
+  "summary_source": "model",
   "conclusion": "（三）北纬26度30分至北纬12度的东海和南海海域为5月1日12时至8月16日12时。",
   "conditions": [],
   "gap": [],
@@ -120,6 +121,14 @@ is always a cited conclusion. `partial` names the gap and at least one channel;
 governing version when the question says 今年/现在 or names a year. `numbers`
 lists the numeric anchors with their basis; an empty list on a numeric question
 means the value was missing from the evidence and the answer says so.
+
+`summary_source` says where the conclusion and points came from: `model` is a
+model-written summary that passed the citation, number and support checks,
+`fallback` is the deterministic path because a model draft was dropped by those
+checks, and `deterministic` means no model was attempted
+(`SCS_FKB_SUMMARY_MODE=off`, no endpoint, or no clauses). It is reported so a
+silent fallback is never counted as a model answer; the spot-check worksheet
+carries it per row and `score` reports the fallback rate.
 
 Modes: `kb_only`, `kb_plus_web`, `clarify`, `abstain`. `kb_plus_web` means the
 canonical answer is unchanged and one or two labelled web leads were attached.
