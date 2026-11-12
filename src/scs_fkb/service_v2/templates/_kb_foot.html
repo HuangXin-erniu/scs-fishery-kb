@@ -1,3 +1,8 @@
 </main>
-<footer>以官方发布文本为准；本站不构成法律意见。答案与条目均标注出处，证据不足时不作结论。<a href="/">返回首页</a></footer>
+<footer>以官方发布文本为准；本站不构成法律意见。答案与条目均标注出处，证据不足时不作结论。安装到主屏后可离线打开最近一次任务卡与标准问答，在线时自动更新。<a href="/">返回首页</a></footer>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => navigator.serviceWorker.register('/kb/sw.js').catch(() => {}));
+}
+</script>
 </body></html>

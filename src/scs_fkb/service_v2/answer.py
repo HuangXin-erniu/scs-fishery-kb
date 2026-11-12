@@ -130,6 +130,19 @@ def _citation_from_payload(rows: list[dict[str, Any]]) -> list[Citation]:
     ]
 
 
+def _prefer_national(hits: list[SearchHit]) -> list[SearchHit]:
+    """Put national/international evidence first when no province was named."""
+    national = [
+        hit
+        for hit in hits
+        if str(getattr(hit.chunk, "level", "") or "") in {"national", "international"}
+    ]
+    if len(national) < 3:
+        return hits
+    rest = [hit for hit in hits if hit not in national]
+    return national + rest
+
+
 def _freshness_of(plan: Any, pack: EvidencePack) -> FreshnessModel:
     from ..web_v2.policy import TTL_DAYS
 
@@ -547,13 +560,15 @@ class AnswerService:
             self._channels = ChannelBook.load()
         return self._channels
 
-    def _standard_hits(self, question: str, filters: Any) -> list[SearchHit]:
+    def _standard_hits(
+        self, question: str, filters: Any, *, region_named: bool = True
+    ) -> list[SearchHit]:
         # The cross-encoder is opt-in: on the public 12-row subset it lowered
         # recall@5 (0.90 -> 0.80), MRR (0.753 -> 0.683) and nDCG@10
         # (0.789 -> 0.749) while raising p95 from 32 ms to 2.2 s.
         try:
             if self.rerank_default:
-                return self.retriever.search(
+                hits = self.retriever.search(
                     question,
                     top_k=8,
                     filters=filters,
@@ -561,7 +576,9 @@ class AnswerService:
                     depth=50,
                     rerank_candidates=50,
                 )
-            return self.retriever.search(question, top_k=8, filters=filters, rerank=False)
+            else:
+                hits = self.retriever.search(question, top_k=8, filters=filters, rerank=False)
+            return hits if region_named else _prefer_national(hits)
         except TypeError:
             try:
                 return self.retriever.search(question, top_k=8, filters=filters)
@@ -643,7 +660,7 @@ class AnswerService:
         if pair is None or self.data_root is None:
             return None
         client, llm_cache = pair
-        hits = self._standard_hits(question, filters)
+        hits = self._standard_hits(question, filters, region_named=region_named)
         if not hits:
             return None
         pack = build_evidence_pack(

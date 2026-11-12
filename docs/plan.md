@@ -307,3 +307,12 @@ Dates are not commitments. Milestone exit conditions and quality gates take prec
 - [Data policy](data-policy.md)
 - [Corpus register](../configs/corpus.yaml)
 - [Data schema](../configs/schema.yaml)
+
+**Phase 3 status (2026-11-12).** The crew knowledge station now exposes task
+cards and canonical answers, a PWA/offline shell and task/answer feedback; the
+candidate review tool writes provisional review packages without network or
+register writes. Practical-source admission itself remains human-gated: the 30
+surveyed candidates are still open, and no candidate was auto-ingested. The
+province-slot fix is a national-first evidence preference when no province is
+named; it reduces, but does not remove, the coverage gap exposed by the Track B
+smoke.

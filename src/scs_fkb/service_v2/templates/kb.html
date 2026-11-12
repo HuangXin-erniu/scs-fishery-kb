@@ -3,7 +3,7 @@
 {% include "_kb_head.html" %}
 <h1>给船上和岸上用的知识站</h1>
 {% if request.query_params.get("feedback") == "ok" %}<p><span class="badge">已记录，谢谢</span></p>{% endif %}
-<p class="lead">按“怎么办 → 常见问答 → 术语 → 数值 → 最近更新”组织。每条都能点回登记的官方文本；查不到就不编。</p>
+<p class="lead">按“任务卡 → 标准问答 → 办事流程 → 术语 → 数值 → 最近更新”组织。每条都能点回登记的官方文本；查不到就不编。</p>
 
 <form class="filter" method="get" action="/kb">
 <input name="q" value="{{ query }}" placeholder="搜问题、术语或关键词，例如：休渔、换证、网目">
@@ -16,7 +16,59 @@
 {% for key, label in persona_label.items() %}<a class="{% if persona == key %}on{% endif %}" href="/kb?persona={{ key }}{% if query %}&q={{ query|urlencode }}{% endif %}">{{ label }}</a>{% endfor %}
 </div>
 
-<h2 id="tasks">办事任务卡</h2>
+<h2 id="taskcards">任务卡（速查）</h2>
+<p class="lead">先看“要做什么、带什么、什么时候”；点开是分步做法和事实依据。共 {{ task_cards|length }} 张；标注“待复核”的条目仍在人工审阅中。</p>
+<div class="grid">
+{% for item in task_cards %}
+<div class="card">
+<div>
+<span class="badge">{{ persona_label.get(item.persona, item.persona) }}</span>
+{% if item.status == 'draft' %}<span class="badge warn">待复核</span>{% endif %}
+{% if item.when %}<span class="badge">{{ item.when }}</span>{% endif %}
+</div>
+<h3><a href="/kb/tasks/{{ item.id }}">{{ item.title }}</a></h3>
+<p class="lead" style="margin:0 0 8px">{{ item.steps[0].text if item.steps else "" }}</p>
+<small class="muted">{{ item.steps|length }} 步 · {{ item.documents|length }} 份材料{% if item.deadline %} · {{ item.deadline }}{% endif %}</small>
+<form class="fb" method="post" action="/kb/feedback">
+<input type="hidden" name="item_id" value="{{ item.id }}">
+<input type="hidden" name="kind" value="task">
+<input type="hidden" name="next_path" value="/kb#taskcards">
+<button name="helpful" value="1">有用</button>
+<button name="helpful" value="0">没用</button>
+<input name="comment" maxlength="200" placeholder="可选：一句话">
+</form>
+</div>
+{% else %}
+<p class="muted">没有匹配的任务卡，换个关键词或人员筛选试试。</p>
+{% endfor %}
+</div>
+
+<h2 id="answers">标准问答</h2>
+<p class="lead">已审核的常用问答；每条都带可核对的登记文本出处。共 {{ answers|length }} 条。</p>
+<div class="card">
+{% for item in answers %}
+<details>
+<summary>{{ item.question }}</summary>
+<div class="answer">{{ item.answer }}</div>
+{% if item.aliases %}<div class="src">也常问：{{ item.aliases|join("、") }}</div>{% endif %}
+{% for cite in item.evidence %}
+<div class="src">依据：[{{ cite.doc }}{% if cite.section %} §{{ cite.section }}{% endif %}] {{ cite.quote[:140] }}{% if cite.quote|length > 140 %}…{% endif %}</div>
+{% endfor %}
+<form class="fb" method="post" action="/kb/feedback">
+<input type="hidden" name="item_id" value="{{ item.id }}">
+<input type="hidden" name="kind" value="answer">
+<input type="hidden" name="next_path" value="/kb#answers">
+<button name="helpful" value="1">有用</button>
+<button name="helpful" value="0">没用</button>
+<input name="comment" maxlength="200" placeholder="可选：一句话">
+</form>
+</details>
+{% else %}
+<p class="muted">没有匹配的标准问答，换个关键词试试。</p>
+{% endfor %}
+</div>
+
+<h2 id="playbooks">办事流程（详解）</h2>
 <p class="lead">把“要做什么、带什么、什么时候、罚则、依据”放在一页。共 {{ playbooks|length }} 张。</p>
 <div class="grid">
 {% for item in playbooks %}
@@ -28,7 +80,7 @@
 <form class="fb" method="post" action="/kb/feedback">
 <input type="hidden" name="item_id" value="{{ item.id }}">
 <input type="hidden" name="kind" value="playbook">
-<input type="hidden" name="next_path" value="/kb#tasks">
+<input type="hidden" name="next_path" value="/kb#playbooks">
 <button name="helpful" value="1">有用</button>
 <button name="helpful" value="0">没用</button>
 <input name="comment" maxlength="200" placeholder="可选：一句话">

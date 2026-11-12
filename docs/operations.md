@@ -158,3 +158,23 @@ launchctl bootstrap gui/$(id -u) "$SCS_FKB_RUN_ROOT/scheduler/com.scs-fkb.weekly
 The wrapper runs `update_cycle.py --live` and `weekly_report.py`, writes logs
 under the run root and relies on the same environment variables as the manual
 cycle. A failed run leaves the previous index in place.
+
+## 8. Knowledge-station feedback and offline use
+
+`/kb` now exposes four item kinds: task cards (`TASK-*`), canonical answers
+(`ANS-*`), playbooks (`PLAY-*`) and FAQ (`FAQ-*`). Each renders a useful /
+not-useful form; `POST /kb/feedback` appends one JSON line with `source: "kb"`,
+`item_id`, `kind`, `helpful` and an optional comment to
+`$SCS_FKB_RUN_ROOT/feedback.jsonl`. The weekly report counts the votes and the
+unhelpful items; it never stores an answer or a citation.
+
+The knowledge station is a PWA: `/kb/manifest.webmanifest`, `/kb/sw.js` and
+`/kb/icon.svg` are served by the local service, and `_kb_head.html` registers the
+worker. The worker caches `/kb` and the shell assets with a network-first policy;
+an installed shortcut can reopen the last view offline, while an online visit
+refreshes the content. Nothing is cached from `/v1` responses or private data.
+
+Practical-source candidates are reviewed with `scripts/review_candidate.py`: the
+operator supplies the observed text length, hash, licence and sensitivity, and
+the script writes a provisional review package under
+`$SCS_FKB_RUN_ROOT/candidates/<CAND-ID>/`. It does not fetch, register or promote.

@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0f6b73">
+<link rel="manifest" href="/kb/manifest.webmanifest">
 <title>{{ page_title or "渔业知识站" }} · 南海近岸渔业知识库</title>
 <style>
 :root{--ink:#132a2f;--muted:#587075;--line:#d7e3e2;--sea:#0f6b73;--sand:#f4f7f4;--warn:#8a4b00;--card:#fff}
@@ -40,12 +42,15 @@ th{background:#eef4f3;font-size:.84rem;color:var(--muted)}
 ul.plain{padding-left:18px;margin:6px 0}
 ol.steps{padding-left:22px}
 footer{max-width:960px;margin:0 auto;padding:18px 16px 40px;color:var(--muted);font-size:.85rem}
+.fb{margin:6px 0 0;display:flex;gap:6px;flex-wrap:wrap}
+.fb button{padding:4px 10px;font-size:.8rem}
+.fb input{font:inherit;padding:4px 8px;border:1px solid #b9cbc9;border-radius:7px;max-width:180px}
 @media(max-width:540px){th,td{font-size:.86rem;padding:7px 8px}main{padding:14px 12px 44px}}
 </style>
 </head>
 <body>
 <header class="top"><div class="wrap">
 <strong><a href="/kb" style="text-decoration:none">南海渔业知识站</a></strong>
-<nav><a href="/kb#tasks">办事卡</a><a href="/kb#faq">问答</a><a href="/kb#terms">术语</a><a href="/kb#numbers">数值</a><a href="/kb#updates">更新</a><a href="/demo">证据测试</a></nav>
+<nav><a href="/kb#taskcards">任务卡</a><a href="/kb#answers">标准问答</a><a href="/kb#playbooks">办事流程</a><a href="/kb#terms">术语</a><a href="/kb#numbers">数值</a><a href="/kb#updates">更新</a><a href="/demo">证据测试</a></nav>
 </div></header>
 <main>

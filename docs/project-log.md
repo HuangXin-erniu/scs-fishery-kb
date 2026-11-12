@@ -1426,3 +1426,25 @@ This log records material project changes by date. It does not use release versi
   0 overdue, 26 watch entries, 30 open candidates. The offline update cycle
   reports 0 changes (recorded watch statuses are `ok`); live runs remain an
   explicit operator action.
+
+## 2026-11-12 — Second-stage Phase 3: crew knowledge station, PWA and candidate review
+
+- `/kb` now shows 15 task cards and 16 canonical answers in addition to the
+  playbooks, FAQ, terms, numbers and source updates. Task cards are marked
+  `待复核` while draft; every step links to its approved fact and the detail page
+  shows the fact value and document/section. Canonical answers show their
+  document/quote evidence.
+- Feedback accepts `task` and `answer` kinds in addition to `playbook` and
+  `faq`; votes are written to the run root and summarised by the weekly report.
+- The knowledge station is a PWA: a manifest, an SVG icon and a service worker
+  cache the `/kb` shell with a network-first policy; installed shortcuts can
+  reopen the last view offline. No `/v1` response or private data is cached.
+- Added `scripts/review_candidate.py` and `update/review.py`: an operator can
+  turn a candidate into a provisional review package with text length, hash,
+  licence and sensitivity; it never fetches, registers or promotes.
+- Added national-first evidence ordering for questions that name no province
+  (three or more national/international hits move ahead of provincial hits), so
+  the standard arm does not silently lead with another province's rule.
+- Tests: KB sections/task detail/PWA/feedback, candidate review and national
+  preference added; suite green. No practical source was auto-admitted: the 30
+  candidates still need a licence/authority decision before Phase 3 ingestion.
