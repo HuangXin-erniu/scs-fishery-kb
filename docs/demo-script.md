@@ -14,7 +14,7 @@ export SCS_FKB_RUN_ROOT=/path/to/local/runs
 export SCS_FKB_WEB=off
 export SCS_FKB_SUMMARY_MODE=model
 
-# 索引版本（应为 67 份文档 / 2,797 块）
+# 索引版本（应为 70 份文档 / 2,929 块）
 python - <<'PY'
 import json, os
 p = os.path.join(os.environ["SCS_FKB_DATA_ROOT"], "v2", "index", "current.json")
