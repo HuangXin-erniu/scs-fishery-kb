@@ -181,6 +181,24 @@ the RAGAS, retrieval, citation, abstention and human spot-check suite (product
 gate). The two numbers are never averaged. Track B targets and pass lines are
 published only after the Phase 0 baseline.
 
+**Phase 1 status (2026-11-12).** The standard RAG answer arm is the product
+default: bounded evidence pack, structured JSON, citation/number/support
+validation, optional self-check, semantic cache and a jurisdiction caveat when a
+province is not named. The public retrieval gate is unchanged (recall@5 0.8864,
+MRR 0.7848, nDCG@10 0.8107); the cross-encoder lowered all three on a 12-row
+subset while raising p95 to 2.2 s, so it stays off by default. A one-row Track B
+RAGAS smoke failed the targets (context recall 0.0000, answer correctness 0.1999)
+because the question depended on a Guangdong rule that the retrieved pack did not
+contain; the practical-coverage and province-slot work is carried forward.
+
+**Phase 2 status (2026-11-12).** Source schema v5 is an additive upgrade with
+provisional/canonical ingestion, licence evidence, TTL and practical tags; v3/v4
+registers still load. The semi-automatic cycle (`scripts/update_cycle.py`) turns
+a changed watch row into a provisional plan and never writes the canonical
+register or index; promotion remains human-gated. Task cards (15 drafts) and
+canonical answers (16 approved) are validated in CI. The Track B gate is not
+armed; the next work is practical-source coverage and the full Track B run.
+
 ### Source gate and candidate queue (2026-11-04)
 
 - Schema v3 adds `currency.cadence` with a per-cadence cap on `review_due - as_of` (monthly 60 days, quarterly 150, annual 400, semiannual 240, static 550). The 63 sources were migrated by class: normative `monthly`, standard `quarterly`, `official_statistics` `annual`, reference `semiannual`; hashes, dates, locations and statuses are unchanged.

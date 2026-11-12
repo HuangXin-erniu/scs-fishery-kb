@@ -111,3 +111,50 @@ Nothing in steps 1–8 happens automatically.
 - **Agent executor:** runs the read-only checks, prepares candidate drafts,
   captures after a decision, rebuilds and runs the gates. Never promotes on its
   own.
+
+## 2a. Semi-automatic update cycle (2026-11-12)
+
+The read-only weekly cycle stays the invariant. A separate **semi-automatic
+cycle** turns a changed watch row into a provisional plan for review; it never
+writes the canonical register, processed store or index.
+
+```bash
+export SCS_FKB_DATA_ROOT=/path/to/data
+export SCS_FKB_RUN_ROOT=/path/to/runs
+export PYTHONPATH=src
+
+# Offline: replay the recorded watch statuses and write a dated plan/report.
+python scripts/update_cycle.py --today "$(date +%F)"
+
+# Live: explicit operator action; fetches the watched pages only.
+python scripts/update_cycle.py --today "$(date +%F)" --live
+```
+
+The cycle:
+
+1. runs the source gate (currency, watch coverage, candidates);
+2. diffs the watch hashes against `$SCS_FKB_DATA_ROOT/watch/baseline.json`;
+3. matches a changed page to an open candidate by URL;
+4. applies the provisional quality gate (`parseable`, text length, licence,
+   sensitivity, duplicate content, text coverage);
+5. writes a provisional entry plan plus rejected/needs-fetch rows to
+   `$SCS_FKB_RUN_ROOT/update/YYYY-MM-DD.{md,json}`;
+6. leaves canonical promotion to a human: `promotion_draft` produces the entry
+   and the follow-up actions (capture, register, rebuild, regression, log).
+
+Nothing is auto-promoted. A provisional source may answer only with a visible
+label and cannot alone support a rule, status, quantity or warning. The index
+pointer and register are untouched by the cycle.
+
+### Scheduling
+
+`scripts/install_scheduler.sh` generates (does not install) a macOS launchd user
+agent that runs `scripts/run_weekly.sh` on Sunday 02:00. Install it explicitly:
+
+```bash
+launchctl bootstrap gui/$(id -u) "$SCS_FKB_RUN_ROOT/scheduler/com.scs-fkb.weekly.plist"
+```
+
+The wrapper runs `update_cycle.py --live` and `weekly_report.py`, writes logs
+under the run root and relies on the same environment variables as the manual
+cycle. A failed run leaves the previous index in place.

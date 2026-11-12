@@ -11,11 +11,55 @@ import yaml
 
 from .config import DEFAULT_CONFIG
 
-SOURCE_RECORD_SCHEMA = 4
+SOURCE_RECORD_SCHEMA = 5
 LEGACY_SOURCE_RECORD_SCHEMA = 3
+V4_SOURCE_RECORD_SCHEMA = 4
 LEVELS = frozenset({"national", "provincial", "municipal", "international", "non_official"})
 TIERS = frozenset({"A", "B", "C", "D"})
-SOURCE_CLASSES = frozenset({"normative", "official_statistics", "standard", "reference"})
+SOURCE_CLASSES = frozenset(
+    {
+        "normative",
+        "official_statistics",
+        "standard",
+        "reference",
+        "practical_guide",
+        "forecast_bulletin",
+        "market_data",
+        "training_material",
+        "port_service",
+    }
+)
+INGEST_TIERS = frozenset({"canonical", "provisional"})
+PRACTICAL_DOMAINS = frozenset(
+    {
+        "policy",
+        "gear",
+        "species",
+        "weather",
+        "hazard",
+        "market",
+        "subsidy",
+        "port_service",
+        "safety",
+        "training",
+        "statistics",
+        "environment",
+        "other",
+    }
+)
+PRACTICAL_PERSONAS = frozenset({"captain", "crew", "owner", "enforcement", "extension", "general"})
+AUTHORITY_SCORE = {"A": 5, "B": 4, "C": 2, "D": 1}
+TTL_BY_CADENCE = {
+    "daily": 7,
+    "weekly": 14,
+    "monthly": 30,
+    "quarterly": 90,
+    "semiannual": 180,
+    "annual": 365,
+    "edition": 365,
+    "irregular": 90,
+    "static": 365,
+}
 BASES = frozenset({"publication", "edition", "announcement", "retrieval"})
 CADENCES = frozenset(
     {
@@ -58,7 +102,19 @@ PROVENANCE_KEYS = frozenset(
     }
 )
 EFFECTIVE_KEYS = frozenset({"from", "to"})
-QUALITY_KEYS = frozenset({"text_layer", "anchors", "tables", "ocr", "quarantine_reason"})
+QUALITY_KEYS = frozenset(
+    {
+        "text_layer",
+        "anchors",
+        "tables",
+        "ocr",
+        "quarantine_reason",
+        "text_coverage",
+        "anchor_coverage",
+        "table_count",
+        "ocr_confidence",
+    }
+)
 HASH_RE = re.compile(r"[0-9a-f]{64}")
 REQUIRED = (
     "level",
@@ -85,7 +141,7 @@ def normalize_entry(entry: dict[str, Any]) -> dict[str, Any]:
     """
     source = copy.deepcopy(entry)
     schema = source.get("source_record_schema", LEGACY_SOURCE_RECORD_SCHEMA)
-    if schema in {LEGACY_SOURCE_RECORD_SCHEMA, SOURCE_RECORD_SCHEMA}:
+    if schema in {LEGACY_SOURCE_RECORD_SCHEMA, V4_SOURCE_RECORD_SCHEMA, SOURCE_RECORD_SCHEMA}:
         source["source_record_schema"] = SOURCE_RECORD_SCHEMA
 
     provenance = source.get("provenance")
@@ -127,6 +183,57 @@ def normalize_entry(entry: dict[str, Any]) -> dict[str, Any]:
     source.setdefault("license_note", None)
     source.setdefault("supersedes", None)
     source.setdefault("superseded_by", None)
+
+    # v5 additive fields: derived defaults never overwrite an explicit value.
+    tier = str(source.get("authority_tier") or "")
+    authority = source.get("authority")
+    if not isinstance(authority, dict):
+        authority = {}
+    authority.setdefault("score", AUTHORITY_SCORE.get(tier, 0))
+    provenance_for_url = source.get("provenance")
+    if not isinstance(provenance_for_url, dict):
+        provenance_for_url = {}
+    authority.setdefault("evidence_url", provenance_for_url.get("url"))
+    source["authority"] = authority
+
+    currency = source.get("currency")
+    if isinstance(currency, dict):
+        currency.setdefault("ttl_days", TTL_BY_CADENCE.get(str(currency.get("cadence")), 90))
+    license_evidence = source.get("license_evidence")
+    if not isinstance(license_evidence, dict):
+        license_evidence = {}
+    license_evidence.setdefault("url", provenance_for_url.get("url"))
+    license_evidence.setdefault("text", source.get("license_note"))
+    currency_for_evidence = source.get("currency")
+    if not isinstance(currency_for_evidence, dict):
+        currency_for_evidence = {}
+    license_evidence.setdefault("checked_at", currency_for_evidence.get("as_of"))
+    source["license_evidence"] = license_evidence
+
+    ingest = source.get("ingest")
+    if not isinstance(ingest, dict):
+        ingest = {}
+    ingest.setdefault("tier", "canonical")
+    ingest.setdefault("reviewed_by", None)
+    ingest.setdefault("reviewed_at", None)
+    ingest.setdefault("review_note", "derived from v4")
+    source["ingest"] = ingest
+
+    practical = source.get("practical")
+    if not isinstance(practical, dict):
+        practical = {}
+    practical.setdefault("domain", "")
+    practical.setdefault("personas", [])
+    practical.setdefault("task_tags", [])
+    practical.setdefault("seasonal", False)
+    source["practical"] = practical
+
+    quality = source.get("quality")
+    if isinstance(quality, dict):
+        quality.setdefault("text_coverage", None)
+        quality.setdefault("anchor_coverage", None)
+        quality.setdefault("table_count", None)
+        quality.setdefault("ocr_confidence", None)
     return source
 
 
@@ -146,6 +253,7 @@ def validate_registry(sources: Iterable[Any] | None, path: Path | None = None) -
         raise RegistryError(f"registry has no sources{where}")
     errors: list[str] = []
     seen: set[str] = set()
+    by_id: dict[str, dict[str, Any]] = {}
     for index, entry in enumerate(sources):
         if not isinstance(entry, dict):
             errors.append(f"entry #{index} is not a mapping")
@@ -154,7 +262,27 @@ def validate_registry(sources: Iterable[Any] | None, path: Path | None = None) -
         if source_id in seen:
             errors.append(f"{source_id}: duplicate id")
         seen.add(source_id)
+        by_id[source_id] = entry
         errors.extend(validate_entry(entry))
+    for source_id, entry in by_id.items():
+        target = entry.get("superseded_by")
+        if target and str(target) not in by_id:
+            errors.append(f"{source_id}: superseded_by {target!r} is not registered")
+        elif target:
+            superseder = by_id[str(target)]
+            if superseder.get("supersedes") != source_id:
+                errors.append(
+                    f"{source_id}: superseded_by {target!r} does not point back via supersedes"
+                )
+        replaced = entry.get("supersedes")
+        if replaced and str(replaced) not in by_id:
+            errors.append(f"{source_id}: supersedes {replaced!r} is not registered")
+        elif replaced:
+            older = by_id[str(replaced)]
+            if older.get("superseded_by") != source_id:
+                errors.append(
+                    f"{source_id}: supersedes {replaced!r} does not point back via superseded_by"
+                )
     if errors:
         raise RegistryError("; ".join(errors))
 
@@ -205,6 +333,10 @@ def validate_entry(entry: dict[str, Any]) -> list[str]:
     errors.extend(_validate_effective(source_id, entry.get("effective")))
     errors.extend(_validate_quality(source_id, entry.get("quality")))
     errors.extend(_validate_supersession(source_id, entry))
+    errors.extend(_validate_authority(source_id, entry.get("authority")))
+    errors.extend(_validate_license_evidence(source_id, entry.get("license_evidence")))
+    errors.extend(_validate_ingest(source_id, entry))
+    errors.extend(_validate_practical(source_id, entry.get("practical")))
     lifecycle = entry.get("lifecycle")
     if lifecycle is not None and lifecycle not in LIFECYCLES:
         errors.append(f"{source_id}: lifecycle {lifecycle!r} not in {sorted(LIFECYCLES)}")
@@ -216,6 +348,94 @@ def validate_entry(entry: dict[str, Any]) -> list[str]:
             for key in ("date", "reason", "decision_key"):
                 if not retirement.get(key):
                     errors.append(f"{source_id}: retirement missing {key}")
+    return errors
+
+
+def _validate_authority(source_id: str, authority: Any) -> list[str]:
+    if not isinstance(authority, dict):
+        return [f"{source_id}: authority is not a mapping"]
+    errors: list[str] = []
+    score = authority.get("score")
+    if score is not None and (
+        isinstance(score, bool) or not isinstance(score, int) or not 0 <= score <= 5
+    ):
+        errors.append(f"{source_id}: authority.score must be an integer 0-5")
+    url = authority.get("evidence_url")
+    if url is not None and not str(url).startswith(("http://", "https://")):
+        errors.append(f"{source_id}: authority.evidence_url must start with http:// or https://")
+    return errors
+
+
+def _validate_license_evidence(source_id: str, evidence: Any) -> list[str]:
+    if not isinstance(evidence, dict):
+        return [f"{source_id}: license_evidence is not a mapping"]
+    errors: list[str] = []
+    url = evidence.get("url")
+    if url is not None and not str(url).startswith(("http://", "https://")):
+        errors.append(f"{source_id}: license_evidence.url must start with http:// or https://")
+    text = evidence.get("text")
+    if text is not None and not str(text).strip():
+        errors.append(f"{source_id}: license_evidence.text is empty")
+    checked_at = evidence.get("checked_at")
+    if (
+        checked_at is not None
+        and _iso_date(source_id, "license_evidence.checked_at", checked_at) is None
+    ):
+        errors.append(f"{source_id}: license_evidence.checked_at is not an ISO date")
+    return errors
+
+
+def _validate_ingest(source_id: str, entry: dict[str, Any]) -> list[str]:
+    ingest = entry.get("ingest")
+    if not isinstance(ingest, dict):
+        return [f"{source_id}: ingest is not a mapping"]
+    errors: list[str] = []
+    tier = ingest.get("tier")
+    if tier not in INGEST_TIERS:
+        errors.append(f"{source_id}: ingest.tier {tier!r} not in {sorted(INGEST_TIERS)}")
+    if tier == "provisional" and not str(ingest.get("review_note") or "").strip():
+        errors.append(f"{source_id}: provisional source needs ingest.review_note")
+    reviewed_at = ingest.get("reviewed_at")
+    if reviewed_at is not None and _iso_date(source_id, "ingest.reviewed_at", reviewed_at) is None:
+        errors.append(f"{source_id}: ingest.reviewed_at is not an ISO date")
+    practical = entry.get("practical") or {}
+    domain = str(practical.get("domain") or "")
+    if domain and tier == "canonical":
+        evidence = entry.get("license_evidence") or {}
+        if not (str(evidence.get("url") or "").strip() or str(evidence.get("text") or "").strip()):
+            errors.append(
+                f"{source_id}: canonical practical source needs license_evidence.url or text"
+            )
+    return errors
+
+
+def _validate_practical(source_id: str, practical: Any) -> list[str]:
+    if not isinstance(practical, dict):
+        return [f"{source_id}: practical is not a mapping"]
+    errors: list[str] = []
+    domain = practical.get("domain")
+    if domain not in (None, "") and domain not in PRACTICAL_DOMAINS:
+        errors.append(
+            f"{source_id}: practical.domain {domain!r} not in {sorted(PRACTICAL_DOMAINS)}"
+        )
+    personas = practical.get("personas")
+    if personas is not None:
+        if not isinstance(personas, list):
+            errors.append(f"{source_id}: practical.personas is not a list")
+        else:
+            for persona in personas:
+                if persona not in PRACTICAL_PERSONAS:
+                    errors.append(
+                        f"{source_id}: practical.persona {persona!r} not in "
+                        f"{sorted(PRACTICAL_PERSONAS)}"
+                    )
+    tags = practical.get("task_tags")
+    if tags is not None:
+        if not isinstance(tags, list) or any(not str(tag).strip() for tag in tags):
+            errors.append(f"{source_id}: practical.task_tags must be non-empty strings")
+    seasonal = practical.get("seasonal")
+    if seasonal is not None and not isinstance(seasonal, bool):
+        errors.append(f"{source_id}: practical.seasonal must be a boolean")
     return errors
 
 
@@ -251,6 +471,9 @@ def _validate_currency(source_id: str, currency: Any) -> list[str]:
                 f"{source_id}: review_due is {span} days after as_of, "
                 f"beyond the {cap}-day cap for cadence {cadence}"
             )
+    ttl = currency.get("ttl_days")
+    if ttl is not None and (isinstance(ttl, bool) or not isinstance(ttl, int) or ttl <= 0):
+        errors.append(f"{source_id}: currency.ttl_days must be a positive integer or null")
     note = currency.get("note")
     if note is not None and not str(note).strip():
         errors.append(f"{source_id}: currency.note is empty")
@@ -348,6 +571,18 @@ def _validate_quality(source_id: str, quality: Any) -> list[str]:
             isinstance(value, bool) or not isinstance(value, int) or value < 0
         ):
             errors.append(f"{source_id}: quality.{key} must be a non-negative integer or null")
+    for key in ("text_coverage", "anchor_coverage", "ocr_confidence"):
+        value = quality.get(key)
+        if value is not None:
+            if isinstance(value, bool) or not isinstance(value, (int, float)):
+                errors.append(f"{source_id}: quality.{key} must be a number 0-1 or null")
+            elif not 0.0 <= float(value) <= 1.0:
+                errors.append(f"{source_id}: quality.{key} must be between 0 and 1")
+    table_count = quality.get("table_count")
+    if table_count is not None and (
+        isinstance(table_count, bool) or not isinstance(table_count, int) or table_count < 0
+    ):
+        errors.append(f"{source_id}: quality.table_count must be a non-negative integer or null")
     note = quality.get("quarantine_reason")
     if note is not None and not str(note).strip():
         errors.append(f"{source_id}: quality.quarantine_reason is empty")

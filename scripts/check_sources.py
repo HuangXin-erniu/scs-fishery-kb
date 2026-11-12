@@ -80,10 +80,16 @@ def main(argv: list[str] | None = None) -> int:
         candidates = []
 
     active = sum(1 for item in registry.values() if item.get("lifecycle") == "active")
+    provisional = [
+        source_id
+        for source_id, item in registry.items()
+        if (item.get("ingest") or {}).get("tier") == "provisional"
+    ]
     result = {
         "today": today.isoformat(),
         "sources": len(registry),
         "active": active,
+        "provisional": provisional,
         "overdue": overdue,
         "watch_entries": len(watch_ids),
         "watch_coverage": "ok" if not watch_error else "failed",
@@ -98,7 +104,8 @@ def main(argv: list[str] | None = None) -> int:
         print(json.dumps(result, ensure_ascii=False, indent=2))
     else:
         print(
-            f"sources {result['sources']} active {active} overdue {len(overdue)} "
+            f"sources {result['sources']} active {active} provisional {len(provisional)} "
+            f"overdue {len(overdue)} "
             f"watch {result['watch_entries']} ({result['watch_coverage']}) "
             f"candidates {result['candidates']} errors {len(errors)}"
         )

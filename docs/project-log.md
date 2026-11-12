@@ -1400,3 +1400,29 @@ This log records material project changes by date. It does not use release versi
   the arm cited a Fujian regulation. The arm now adds a jurisdiction caveat when
   the question names no province but the evidence is provincial; the practical
   coverage gap remains Phase 3 work. The full Track B run is deferred to Phase 4.
+
+## 2026-11-12 — Second-stage Phase 2: schema v5, semi-automatic cycle and knowledge internalisation
+
+- Added source schema v5 as an additive upgrade: `authority.score`/`evidence_url`,
+  `currency.ttl_days`, `license_evidence`, `ingest.tier` (canonical/provisional),
+  parse-quality scores and `practical` tags. v3/v4 entries are upgraded in memory;
+  `configs/corpus.yaml` now declares schema 5 and `scripts/migrate_v5.py` audits
+  the derivation without rewriting the 106 entries. New validations cover the
+  provisional review note, licence evidence for canonical practical sources,
+  tier/level agreement, TTL, quality ranges and supersession symmetry.
+- Added `src/scs_fkb/update/`: watch diff, provisional quality gate, provisional
+  entry builder, canonical promotion draft and the offline-safe `run_cycle`.
+  `scripts/update_cycle.py` writes a dated plan/report under the run root and
+  never writes the register or index; `--live` is an explicit operator action.
+  `scripts/run_weekly.sh` and `scripts/install_scheduler.sh` provide a macOS
+  launchd weekly agent without installing it.
+- Added task cards and canonical answers: `configs/knowledge/task-cards.yaml`
+  (15 draft cards generated from approved playbooks, every step bound to an
+  approved fact) and `configs/knowledge/answers.yaml` (16 approved answers from
+  the FAQ with document/quote evidence). `scripts/check_task_cards.py` and
+  `scripts/check_answers.py` run locally and in CI; `scripts/build_knowledge.py`
+  reports gap clusters under the run root.
+- Tests: 443 passed / 2 skipped; ruff and format clean. Source gate: 106 active,
+  0 overdue, 26 watch entries, 30 open candidates. The offline update cycle
+  reports 0 changes (recorded watch statuses are `ok`); live runs remain an
+  explicit operator action.

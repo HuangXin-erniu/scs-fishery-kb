@@ -3,7 +3,7 @@
 # Local data root: $SCS_FKB_DATA_ROOT. The public tree contains no payload.
 
 schema_version: 1
-source_record_schema: 4
+source_record_schema: 5
 updated_at: '2026-11-12'
 data_root: null
 data_root_env: SCS_FKB_DATA_ROOT
