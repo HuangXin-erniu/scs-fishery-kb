@@ -1369,3 +1369,49 @@ set.
 AI role-play is reported as `source: simulated` and never as a signature. Only a reviewer's
 signed worksheet produces `source: human`, and only that number is compared with the pass
 lines in `docs/acceptance.md`.
+
+### 41. Corpus expansion: what three added documents did and did not move (2026-11-12)
+
+> **中文摘要**：留出集暴露的 7 个语料缺口里，3 个有公开官方文件可补（避碰让路、渔船拆解、
+> 罚没处置），补进去并重建索引后，在同一批 30 题上重测：结论线 8/20 → **7/20**，引用线
+> 4/11 → **2/11**，拒答线不变。补语料**没有抬线**，原因有三个：短条款在章节打分里吃亏、
+> 补的文件和仪器期望文档不对齐、新文件成了检索干扰项。
+
+#### What was added
+
+- `POL-NAV-119` 1972 collision-avoidance rules (MOFCOM treaty library): rules 1-37, including
+  article 15 (crossing: give way to the vessel on your starboard side).
+- `POL-BOAT-120` marine fishing-vessel dismantling procedure (MARA 2021).
+- `POL-FIN-121` forfeited-property management rules (Ministry of Finance 2020).
+
+Register 103 sources; build 70 documents / 2,929 chunks; index `6e9dc9b9d8b9`. The public
+retrieval regression is unchanged.
+
+#### What moved on the burned holdout
+
+| Line | Before | After | Change |
+|---|---:|---:|---:|
+| Citation (strict, expected document) | 4/11 | 2/11 | -2 |
+| Conclusion | 8/20 | 7/20 | -1 |
+| Refusal | 7/10 | 7/10 | 0 |
+
+- One row improved: the forfeiture question stopped abstaining and now answers from
+  `POL-FIN-121 §18` while declaring the gap for gear, but it cites a document the instrument
+  does not expect.
+- The collision row did not move: its exact rule (article 15) never reached the candidate set,
+  because section scoring sums the three best clauses and a one-clause article loses to a
+  multi-clause article. The scorer therefore prefers long sections over short exact ones.
+- The write-off row did not move: the dismantling procedure covers dismantling, not the ledger
+  write-off the question asks about.
+- Two unrelated rows fell back (their retrieval changed) and one now cites the new collision
+  document instead of the expected law: new documents can act as distractors.
+
+#### What this means
+
+Adding sources is necessary but not sufficient. Two conditions have to hold together: the
+added text must be the document the instrument expects, and the section scorer must not prefer
+long sections. The scoring bias is a code defect (best clause plus a discounted share of the
+next two would remove it); the alignment issue is a corpus-governance question.
+
+The headline number still comes only from the frozen fourth holdout and a human reviewer. This
+sample is spent and its numbers stay in the regression column.
