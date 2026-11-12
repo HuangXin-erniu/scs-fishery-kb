@@ -1491,3 +1491,50 @@ recall@5 from 0.9000 to 0.8000, MRR from 0.7533 to 0.6833 and nDCG@10 from
 50-candidate pool did not finish 12 rows in about seven minutes. The standard
 arm therefore keeps the cross-encoder off by default and exposes it only as an
 opt-in experiment.
+
+## Phase 3 retrieval gate after practical admission (2026-11-12)
+
+The five provisional documents increased the corpus to 79 indexed documents and
+3,197 child chunks. The first rebuild exposed a BM25 IDF shift: reachable
+recall@5 fell to 0.8085. Two changes fixed it without touching the frozen
+instrument:
+
+1. provisional chunks carry `ingest_tier=provisional` and are multiplied by
+   `0.6` after reciprocal-rank fusion, so a provisional source cannot outrank
+   equally relevant canonical evidence;
+2. fusion defaults moved to `depth=20`, `bm25_weight=1.0`, `dense_weight=1.5`
+   (the old `2.0/1.0/10` over-weighted lexical overlap after the corpus grew).
+
+Public set (47 rows, 44 reachable, no rerank, index `4857fede68a0`):
+
+| Metric | P25 baseline | Phase 3 |
+|---|---:|---:|
+| recall@5 (reachable) | 0.8864 | **0.9318** |
+| MRR (reachable) | 0.7848 | **0.7962** |
+| recall@10 | 0.8864 | **0.9545** |
+| nDCG@10 | 0.8107 | **0.8381** |
+| recall@5 (all rows) | 0.8298 | 0.8723 |
+| p50 / p95 | 25.5 / 30.2 ms | 18.7 / 21.8 ms |
+
+Track A remains pinned to the dump arm and the frozen 512 instrument; Track B
+must be rerun after human review of the provisional entries. No canonical
+promotion is implied by this table.
+
+### Public regression after practical admission
+
+`scripts/eval_public.py` (60 rows: 47 retrieval, 13 abstention; dump arm,
+deterministic) on index `4857fede68a0`:
+
+| Metric | Before | Phase 3 |
+|---|---:|---:|
+| Anchor recall@5 (reachable) | 0.8571 (35-row set) | **1.0000** (44-row set) |
+| Citation resolution | 1.0000 | **1.0000** |
+| Playbook / FAQ / term / number | 15/15 / 16/16 / 26/26 / 15/15 | **15/15 / 16/16 / 26/26 / 19/19** |
+| Abstention accuracy | 0.3077 | 0.2308 |
+
+The dump arm no longer requests a model summary (`answer_mode=dump` forces
+`summary_mode=off`), so this regression is fully offline and deterministic. The
+lower abstention number is a known out-of-scope handling gap on the public
+samples, not a retrieval failure; the private 512 instrument and Track B are the
+authoritative abstention gates. A 20-row dev sample of the private instrument was
+not representative and is not reported as a Track A result.

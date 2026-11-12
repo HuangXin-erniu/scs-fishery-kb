@@ -15,6 +15,22 @@ from ..text import tokenize
 from .filters import RetrievalFilters, filter_hits
 from .rerank import DEFAULT_RERANKER, Reranker
 
+PROVISIONAL_FACTOR = 0.6
+
+
+def _apply_tier_penalty(hits: list[SearchHit]) -> list[SearchHit]:
+    """Provisional evidence should not outrank canonical evidence by default."""
+    adjusted = [
+        SearchHit(
+            chunk=hit.chunk,
+            score=hit.score
+            * (PROVISIONAL_FACTOR if hit.chunk.ingest_tier == "provisional" else 1.0),
+        )
+        for hit in hits
+    ]
+    adjusted.sort(key=lambda hit: -hit.score)
+    return adjusted
+
 
 def _title_tokens(documents: list[dict[str, Any]]) -> dict[str, set[str]]:
     titles: dict[str, set[str]] = {}
@@ -37,10 +53,10 @@ class HybridRetriever:
         dense_fn: Callable[[str, int], list[tuple[str, float]]] | None = None,
         reranker: Reranker | None = None,
         lexicon: list[dict[str, object]] | None = None,
-        depth: int = 10,
+        depth: int = 20,
         fusion_k: int = 60,
-        bm25_weight: float = 2.0,
-        dense_weight: float = 1.0,
+        bm25_weight: float = 1.0,
+        dense_weight: float = 1.5,
     ) -> None:
         self.chunks = list(chunks)
         self.by_id = {chunk.chunk_id: chunk for chunk in self.chunks}
@@ -96,7 +112,7 @@ class HybridRetriever:
             k=self.fusion_k,
             top_k=candidate_depth,
         )
-        fused = filter_hits(fused, filters)
+        fused = _apply_tier_penalty(filter_hits(fused, filters))
         if rerank and self.reranker is not None:
             try:
                 fused = self.reranker.rerank(

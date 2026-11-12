@@ -1,5 +1,5 @@
 schema_version: 1
-updated_at: 2026-11-01
+updated_at: 2026-11-12
 documents:
   - POL-MAMMAL-123
   - POL-PORTFEE-122
@@ -75,6 +75,11 @@ documents:
   - STD-SPEC-076
   - STD-SMALL-114
   - STD-WQ-104
+  - POL-PORTREP-201
+  - POL-COLLISION-202
+  - STAT-DISASTER-203
+  - STAT-ECO-205
+  - POL-GD-SUBSIDY-204
 chunking:
   max_fallback_chars: 800
 retrieval:

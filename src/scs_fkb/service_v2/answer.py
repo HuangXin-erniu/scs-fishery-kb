@@ -371,6 +371,10 @@ class AnswerService:
         return self._llm
 
     def _summary_mode(self) -> str:
+        # The dump arm is the deterministic regression baseline; never let it
+        # call the summary model. The product standard arm has its own path.
+        if getattr(self, "answer_mode", "") == "dump":
+            return "off"
         # The pilot reached the 8/12 gate with the model summary; off keeps the
         # deterministic path for offline or endpoint-less runs.
         return os.environ.get("SCS_FKB_SUMMARY_MODE", "model").strip().lower()
@@ -1243,7 +1247,13 @@ def build_service(
     if not configured:
         raise RuntimeError("SCS_FKB_DATA_ROOT is required")
     root = Path(configured).expanduser()
-    retriever = build_retriever(root, reranker=True)
+    use_reranker = os.environ.get("SCS_FKB_RERANK", "").strip().lower() in {
+        "on",
+        "1",
+        "true",
+        "yes",
+    }
+    retriever = build_retriever(root, reranker=use_reranker)
     index_version = "v2"
     try:
         current = json.loads((root / "v2" / "index" / "current.json").read_text(encoding="utf-8"))

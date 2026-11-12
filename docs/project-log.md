@@ -1474,3 +1474,43 @@ This log records material project changes by date. It does not use release versi
   an actual bulletin/notice document.
 - Tests: discovery link extraction, configured capture domains, and the existing
   suite; 453 passed / 2 skipped.
+
+## 2026-11-12 — Second-stage Phase 3: five practical sources admitted to the provisional tier
+
+- Admitted five official documents with the admission loop (capture, parse,
+  quality gate, provisional entry, rebuild): `POL-PORTREP-201` (农业农村部
+  2026 渔船进出渔港报告通告), `POL-COLLISION-202` (海事局商渔船碰撞防范通告),
+  `STAT-DISASTER-203` (2023 中国海洋灾害公报, 13 MB PDF), `STAT-ECO-205`
+  (2025 中国海洋生态预警监测公报, 34 MB PDF) and `POL-GD-SUBSIDY-204`
+  (广东省渔业资源养护补贴政策实施方案). All five are `ingest.tier: provisional`
+  with public licence evidence and a human-review note; none was promoted to
+  canonical.
+- Snapshot hashes: `POL-PORTREP-201` 7179c963, `POL-COLLISION-202` 72d6083c,
+  `STAT-DISASTER-203` d280c286, `STAT-ECO-205` 13175586, `POL-GD-SUBSIDY-204`
+  3584b836 (first 8 hex). Source gate: 111 active, 5 provisional, 0 overdue,
+  0 errors.
+- Rebuilt v2: 79 documents, 3,197 child chunks; index `4857fede68a0`.
+- Retrieval regression after corpus growth initially fell to recall@5 0.8085
+  because BM25 IDF changed. Added an explicit `ingest_tier` penalty for
+  provisional chunks (0.6x) and moved the fusion defaults to
+  `depth=20, bm25_weight=1.0, dense_weight=1.5`; public gate is now recall@5
+  0.9318, MRR 0.7962, recall@10 0.9545, nDCG@10 0.8381, p95 21.8 ms (all above
+  the P25 baseline).
+- Fixed two operational blockers found during admission: `capture_source.fetch`
+  now uses the project TLS helper (system-CA fallback, `SCS_FKB_CAPTURE_TIMEOUT`)
+  and the HTML section parser no longer truncates a notice when a body paragraph
+  mentions the publisher and a date. Added a system-bundle fallback to
+  `web_v2.net.open_url` after unwrapping `URLError` reasons.
+- Candidate triage remains 0/30 ready for admission without a document-level
+  URL/licence decision; the five above were selected manually from official
+  document pages.
+- Public regression on the new index: anchor recall@5 1.0000 (44 reachable),
+  citation resolution 1.0000, playbook 15/15, FAQ 16/16, term 26/26, number
+  19/19, abstention 0.2308 (was 0.3077; known out-of-scope handling gap). The
+  dump arm is now forced to `summary_mode=off`, so the public regression never
+  calls a model; `build_service` also constructs the cross-encoder only when
+  `SCS_FKB_RERANK` is explicitly on.
+- A 20-row private-instrument dev sample failed several gates (point coverage
+  0.3438, citation 0.8182); it is a small, non-representative slice, so it is
+  recorded as a warning, not as a Track A result. The full 512 run stays in
+  Phase 4.

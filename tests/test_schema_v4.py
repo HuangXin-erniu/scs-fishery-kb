@@ -50,7 +50,11 @@ def _write(tmp_path: Path, entries: list[dict]) -> Path:
 
 def test_live_register_loads_all_sources_as_v5() -> None:
     registry = load_registry(ROOT / "configs" / "corpus.yaml")
-    assert len(registry) == 106
+    assert len(registry) == 111
+    provisional = [
+        source for source in registry.values() if source["ingest"]["tier"] == "provisional"
+    ]
+    assert len(provisional) == 5
     for source in registry.values():
         assert source["source_record_schema"] == 5
         assert source["provenance"]["sha256"] == source["hash"]
@@ -67,7 +71,7 @@ def test_live_register_loads_all_sources_as_v5() -> None:
             "table_count",
             "ocr_confidence",
         } <= set(source["quality"])
-        assert source["ingest"]["tier"] == "canonical"
+        assert source["ingest"]["tier"] in {"canonical", "provisional"}
         assert 0 <= int(source["authority"]["score"]) <= 5
         assert "practical" in source
         assert isinstance(source["currency"].get("ttl_days"), int)

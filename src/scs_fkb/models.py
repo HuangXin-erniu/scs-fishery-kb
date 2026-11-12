@@ -45,6 +45,7 @@ class Document:
     effective_to: str = ""
     url: str = ""
     retrieved_at: str = ""
+    ingest_tier: str = "canonical"
 
 
 @dataclass(frozen=True)
@@ -76,6 +77,7 @@ class Chunk:
     license: str = ""
     effective_from: str = ""
     effective_to: str = ""
+    ingest_tier: str = "canonical"
 
 
 @dataclass(frozen=True)

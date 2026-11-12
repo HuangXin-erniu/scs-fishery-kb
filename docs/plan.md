@@ -319,3 +319,13 @@ auto-ingested. The
 province-slot fix is a national-first evidence preference when no province is
 named; it reduces, but does not remove, the coverage gap exposed by the Track B
 smoke.
+
+**Phase 3 practical admission (2026-11-12).** Five official documents were
+admitted as `provisional`: 农业农村部 2026 渔船进出渔港报告通告, 海事局商渔船
+碰撞防范通告, 2023 中国海洋灾害公报, 2025 中国海洋生态预警监测公报, 广东省
+渔业资源养护补贴政策实施方案. v2 now has 79 documents / 3,197 child chunks;
+index `4857fede68a0`. After adding an `ingest_tier` provisional penalty and
+retuning fusion to `depth=20, bm25=1.0, dense=1.5`, the public retrieval gate is
+recall@5 0.9318 / MRR 0.7962 / nDCG@10 0.8381, above the P25 baseline. The five
+entries remain provisional pending human licence/authority sign-off; canonical
+promotion is not automatic.

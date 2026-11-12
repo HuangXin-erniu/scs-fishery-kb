@@ -156,5 +156,7 @@ def test_live_register_loads_as_v5() -> None:
     registry = load_registry(ROOT / "configs" / "corpus.yaml")
     assert registry
     assert all(source["source_record_schema"] == 5 for source in registry.values())
-    assert all(source["ingest"]["tier"] == "canonical" for source in registry.values())
+    tiers = [source["ingest"]["tier"] for source in registry.values()]
+    assert tiers.count("canonical") == 106
+    assert tiers.count("provisional") == 5
     assert all(isinstance(source["currency"]["ttl_days"], int) for source in registry.values())

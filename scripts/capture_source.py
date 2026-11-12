@@ -158,11 +158,24 @@ class Capture:
         return "\n".join(lines)
 
 
+def _open(request, timeout: float):
+    """Use the project TLS helper when available (system-bundle fallback)."""
+    try:
+        from scs_fkb.web_v2.net import open_url
+
+        return open_url(request, timeout)
+    except ImportError:
+        import urllib.request
+
+        return urllib.request.urlopen(request, timeout=timeout)  # noqa: S310
+
+
 def fetch(url: str, *, allow_http: bool = False) -> tuple[bytes, str]:
     import urllib.error
     import urllib.request
 
     check_url(url, allow_http=allow_http)
+    timeout = float(os.environ.get("SCS_FKB_CAPTURE_TIMEOUT", "120"))
     request = urllib.request.Request(
         url,
         headers={
@@ -171,7 +184,7 @@ def fetch(url: str, *, allow_http: bool = False) -> tuple[bytes, str]:
         },
     )
     try:
-        with urllib.request.urlopen(request, timeout=60) as response:  # noqa: S310
+        with _open(request, timeout) as response:
             return response.read(), str(response.headers.get("Content-Type") or "")
     except urllib.error.HTTPError as exc:
         raise CaptureError(f"HTTP {exc.code} for {url}") from exc

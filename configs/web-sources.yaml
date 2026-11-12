@@ -53,6 +53,9 @@ allowlist:
 - domain: nmdis.org.cn
   publisher: 国家海洋信息中心
   tier: A
+- domain: nmhms.org.cn
+  publisher: 自然资源部海洋减灾中心
+  tier: A
 - domain: nmc.cn
   publisher: 中央气象台
   tier: A
