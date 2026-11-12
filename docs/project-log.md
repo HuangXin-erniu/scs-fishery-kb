@@ -1586,3 +1586,11 @@ This log records material project changes by date. It does not use release versi
 - Track B query-rewriting experiments: PRF best offline recall@10 0.810, title
   boost 0.76–0.77; neither reaches 0.92 and the effect is not stable enough to
   ship. No product default or evaluation profile change.
+- Rerank A/B on 20 Track B rows: baseline recall@10 0.750; rerank-20 0.850
+  (3.3 s p50); rerank-50 0.900 (9.3 s p50). Still below 0.92 and too slow to
+  ship; product default remains no-rerank.
+- Attempted canonical promotion of the 19 A-level provisional sources. Track A
+  stayed green, but public retrieval MRR fell to 0.742 (<0.7848) and no
+  weight/depth sweep recovered it. Rolled back the promotion; rebuilt v2/index to
+  `e1c31e8fed19`; public gate restored to recall@5 0.9318 / MRR 0.7962 / pass.
+  Review packages remain ready; promotion needs a retrieval fix or narrower set.

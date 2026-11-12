@@ -1636,3 +1636,24 @@ Neither reaches the 0.92 target, and the PRF harness itself did not reproduce th
 best offline number consistently, so no product or evaluation-profile change was
 made. The next retrieval work needs a stronger reranker or query rewriting than
 simple PRF; the shipped default remains unchanged.
+
+### Rerank A/B and canonical-promotion rollback (2026-11-12)
+
+**Rerank A/B (20 Track B rows):**
+
+| Arm | recall@10 | p50 / p95 |
+|---|---:|---:|
+| no rerank | 0.750 | 18 / 154 ms |
+| rerank 20 candidates | 0.850 | 3.3 / 3.9 s |
+| rerank 50 candidates | 0.900 | 9.3 / 24.8 s |
+
+Rerank improves ranking but is still below the 0.92 target and adds seconds per
+query; it stays evaluation-only. The shipped default remains no-rerank.
+
+**Canonical promotion attempt.** The 19 A-level provisional sources were promoted
+to canonical, rebuilt and measured. Track A still passed, but the public retrieval
+gate failed on MRR (0.742 < 0.7848); a weight/depth sweep found no configuration
+that recovered both recall and MRR. The promotion was rolled back, the v2 store and
+index were rebuilt to the provisional state (`e1c31e8fed19`), and the public gate
+is back to recall@5 0.9318 / MRR 0.7962 / passed. The 19 review packages remain
+ready; canonical promotion needs a retrieval fix or a narrower promotion set first.
