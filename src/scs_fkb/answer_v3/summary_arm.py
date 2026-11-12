@@ -48,7 +48,7 @@ from .select import (
     split_slots,
 )
 
-PROMPT_VERSION = "summary-model-v1"
+PROMPT_VERSION = "summary-model-v3"
 MAX_SECTIONS = 8
 MAX_WINDOW = 1500
 MAX_EVIDENCE_CHARS = 11000
@@ -65,9 +65,12 @@ SUMMARY_SYSTEM = (
     "1. conclusion：一句话直接回答问题的第一问（数值、是否、期限、材料或受理层级），不要铺垫。\n"
     "2. points：0 到 2 句，回答其余的每一问；每句只讲一件事。\n"
     "3. gaps：证据清单确实没有覆盖的部分，写成“缺什么”，最多两条；都覆盖了就给空数组。\n"
+    "4. coverage：证据对问题的覆盖程度，只能填 full / partial / none。full = 问题所问的事实"
+    "都有条款；partial = 只覆盖一部分，其余要在 gaps 里写明；none = 没有任何段落包含所问事实，"
+    "此时 conclusion 写成“证据未覆盖……”。\n"
     "硬性要求：每个陈述句都必须带引用，格式 [DOC_ID §章节]，必须与证据清单里的标签完全一致；"
     "数字必须逐字来自证据并带单位；证据没有的数值不要写；不要写“根据证据”之类的空话。\n"
-    '只输出 JSON：{"conclusion": "……", "points": ["……"], "gaps": ["……"]}'
+    '只输出 JSON：{"conclusion": "……", "points": ["……"], "gaps": ["……"], "coverage": "full"}'
 )
 
 CITATION_RE = re.compile(r"\[([A-Za-z0-9][A-Za-z0-9_.-]*)\s*§([^\]]+)\]")
@@ -82,6 +85,11 @@ class SummaryDraft:
     gaps: tuple[str, ...]
     citations: tuple[Any, ...]
     repaired: bool = False
+    coverage: str = "full"
+
+    @property
+    def answerable(self) -> bool:
+        return self.coverage != "none"
 
     def text(self) -> str:
         return " ".join([self.conclusion, *self.points])
@@ -234,6 +242,17 @@ def _repair(
     return _clean(value.get("answer"), MAX_SUMMARY_CHARS)
 
 
+def _coverage_of(value: dict[str, Any]) -> str:
+    """Read the three-level coverage, tolerating an older boolean reply."""
+    raw = str(value.get("coverage") or "").strip().lower()
+    if raw in {"full", "partial", "none"}:
+        return raw
+    answerable = value.get("answerable")
+    if answerable is False:
+        return "none"
+    return "full"
+
+
 def _mark(diagnostics: dict[str, Any] | None, stage: str, detail: str = "") -> None:
     """Record why a draft was dropped, so the next round measures instead of guessing."""
     if diagnostics is None:
@@ -274,10 +293,20 @@ def summarize(
     if value.get("abstained") is True:
         _mark(diagnostics, "abstained")
         return None
+    coverage = _coverage_of(value)
     conclusion = _clean(value.get("conclusion"), 400)
     points = _points(value.get("points"))
     gaps = _gaps(value.get("gaps"))
     if not conclusion:
+        if coverage == "none":
+            _mark(diagnostics, "not_answerable")
+            return SummaryDraft(
+                conclusion="已登记语料未覆盖该问题",
+                points=(),
+                gaps=gaps,
+                citations=(),
+                coverage="none",
+            )
         _mark(diagnostics, "empty_conclusion")
         return None
     text = " ".join([conclusion, *points])
@@ -304,11 +333,22 @@ def summarize(
     citations = tuple(_citations_from_text(text, hits))
     sentences = [item for item in _sentences(text) if len(item.strip()) >= 4]
     gap_only = bool(sentences) and all(GAP_SENTENCE.search(item) for item in sentences)
+    if coverage == "none" and not gap_only:
+        # A draft that answers with citations is at least partly covering the question.
+        coverage = "partial"
+    if coverage == "partial" and not gaps:
+        # Partial coverage without a declared gap is indistinguishable from a full answer.
+        coverage = "full"
     if gap_only:
         # Nothing to verify: the draft says the evidence does not cover the question.
         _mark(diagnostics, "gap_only")
         return SummaryDraft(
-            conclusion=conclusion, points=points, gaps=gaps, citations=(), repaired=repaired
+            conclusion=conclusion,
+            points=points,
+            gaps=gaps,
+            citations=(),
+            repaired=repaired,
+            coverage=coverage,
         )
     if not citations:
         _mark(diagnostics, "citations")
@@ -335,7 +375,12 @@ def summarize(
         repaired = True
     _mark(diagnostics, "ok")
     return SummaryDraft(
-        conclusion=conclusion, points=points, gaps=gaps, citations=citations, repaired=repaired
+        conclusion=conclusion,
+        points=points,
+        gaps=gaps,
+        citations=citations,
+        repaired=repaired,
+        coverage=coverage,
     )
 
 

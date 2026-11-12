@@ -41,7 +41,7 @@ configs/corpus.yaml (100 sources, schema v4)
 | Retrieval | `retrieve_v2/` | rewrite (cached, 2–3 normative queries), RRF fusion, optional cross-encoder (measured and disabled) |
 | Answering | `answer_v3/` | `llm_answer` (single pass), `facet_arm`, `quotes_arm`, `dump_arm`; all pass through citation/number/support checks |
 | Contract | `answer_v3/compose.py` | three states, conclusion first, as-of, numeric basis, gap and channel |
-| Service | `service_v2/` | `/v1` query API, v3 response fields; deterministic fallback with evidence-sufficiency judge (`SCS_FKB_VERIFY_ANSWERS=on`) |
+| Service | `service_v2/` | `/v1` query API, v3 response fields; the dump arm decides answerability from the summary's candidate set, other arms may use the evidence-sufficiency judge (`SCS_FKB_VERIFY_ANSWERS=on`) |
 | Evaluation | `eval_accept/`, `scripts/eval_accept.py` | 512-question acceptance instrument, deterministic scoring, per-domain report |
 
 ## 3. Answer arms (measured on 512)
