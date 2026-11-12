@@ -117,9 +117,7 @@ def main(argv: list[str] | None = None) -> int:
             derived_totals[key] += value
 
     v4_count = sum(
-        1
-        for entry in registry.values()
-        if entry.get("source_record_schema") == TARGET_SCHEMA
+        1 for entry in registry.values() if entry.get("source_record_schema") == TARGET_SCHEMA
     )
     lines.extend(
         [
