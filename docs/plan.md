@@ -8,6 +8,7 @@
 - Status: active plan; WP1 is closed with 77 registered sources and no open candidates; WP2 indexes 67 public documents (2,797 chunks, index `ce3eeaf4c9b2`); WP3 and WP4 are implemented with hybrid retrieval and a dump answer arm; WP5 evaluation runs the frozen 512-question acceptance instrument, the 48-question reviewed set and the 60-item public regression set; WP6 is implemented with the `/v1` contract, the `/kb` layer and the feedback loop. P21 is the acceptance programme: indicators are published in [acceptance.md](acceptance.md). The P10 refactor is tracked in section 3a.
 - No versioned releases are published. Milestones describe work stages, not release numbers.
 - Architecture: [architecture.md](architecture.md); evaluation: [evaluation.md](evaluation.md); scope: [../PROJECT.md](../PROJECT.md).
+- P26 (2026-11-12) starts the second-stage refactor: a standard RAG answer pipeline, a dual-track industry-standard evaluation, a semi-automatic update loop and crew-facing practical sources; see section 3b and ADR 0009–0013.
 
 ## 1. Purpose
 
@@ -152,6 +153,33 @@ The architecture decisions are [0005](adr/0005-two-plane-evidence.md),
 [0008](adr/0008-playbooks-and-terms.md). The construction standard is
 [rag-standard.md](rag-standard.md). Sources, data, indexes and run artifacts stay
 outside the public tree; no tag or release is created.
+
+### SCS-FKB second-stage refactor programme (2026-11-12)
+
+The owner approved a second-stage refactor after the fourth holdout showed the
+binding constraint is corpus coverage and the default clause-dump arm is not a
+standard RAG pipeline. The 512 instrument, its labels, the source register and
+the public/private boundary are kept; the answer path, the update loop, the
+evaluation and the content mix change. The decisions are ADR
+[0009](adr/0009-standard-rag-answer-pipeline.md),
+[0010](adr/0010-dual-track-evaluation.md),
+[0011](adr/0011-semi-automatic-update-loop.md),
+[0012](adr/0012-practical-sources-and-freshness.md) and
+[0013](adr/0013-source-schema-v5.md).
+
+| Phase | Scope | Exit condition |
+|---|---|---|
+| Phase 0 | Baseline freeze, RAGAS isolation, Track B dataset skeleton, practical-source survey, ADRs | Baseline numbers/commands/commits recorded; RAGAS run works; dataset skeleton frozen; candidate survey written |
+| Phase 1 | Standard RAG answer pipeline, reranker calibration, citation validator, semantic cache, API additions | Track B generation/citation targets met; Track A does not regress; tests green |
+| Phase 2 | Source schema v5, semi-automatic update cycle, provisional tier, light structured internalisation | One real cycle completes; provisional to canonical review works; facts/cards/answers enter the draft queue |
+| Phase 3 | Crew-facing practical sources, `/kb` task cards, PWA/offline, feedback-to-gap loop | At least 20 practical sources are retrievable; 20 crew scenarios work; feedback closes the loop |
+| Phase 4 | Full Track B run, human spot check, docs and release gates | Dual-track report published; public tree and private gate clean; no tag or release |
+
+The evaluation design keeps two tracks: Track A is the frozen 512 instrument
+and the dump arm (internal regression and materials-review evidence); Track B is
+the RAGAS, retrieval, citation, abstention and human spot-check suite (product
+gate). The two numbers are never averaged. Track B targets and pass lines are
+published only after the Phase 0 baseline.
 
 ### Source gate and candidate queue (2026-11-04)
 
