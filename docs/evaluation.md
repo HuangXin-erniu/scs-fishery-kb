@@ -1458,3 +1458,36 @@ tier" clause may score six or seven of ten, but the strict count is three.
 These numbers are AI judgements and stay out of `acceptance.md` until a human reviewer signs the
 worksheet. The answer pack, the blind worksheet and the AI pre-filled verdicts are kept under
 the local run root; the public tree carries this summary only.
+
+
+### 43. Standard RAG arm (P26 Phase 1, 2026-11-12)
+
+The product default is now `answer_v3/standard_arm.py`: top-50 hybrid retrieval,
+cross-encoder rerank to 8, a bounded 8-item / 12k-character evidence pack,
+structured JSON (conclusion, applicability, steps, documents, deadline, basis,
+caveat, soft gap, missing slots, citations), citation/number/support validation,
+an optional faithfulness self-check and a semantic answer cache. The clause-dump
+arm remains the Track A instrument arm.
+
+The 512 instrument and its labels are untouched; `scripts/eval_accept.py` pins
+the deterministic path, and the public regression pins the dump arm for
+comparability. Track B is the standard-arm gate.
+
+A one-row standard-arm smoke on Track B generation row IG-002 produced
+faithfulness 0.5000, answer relevancy 0.8385, context precision 0.3333, context
+recall 0.0000 and answer correctness 0.1999 (0 judge errors). The row depends on
+a Guangdong implementation rule ("携带休渔作业渔具进入休渔海域" / "网入库");
+the arm answered from a Fujian regulation and the retrieved contexts did not
+contain the Guangdong rule. This is recorded as a failed smoke, not a pass. The
+next iteration must handle the missing-province slot (clarify or prefer the
+national basis) and improve practical coverage. The 8-row pilot was stopped on
+endpoint throughput; a full Track B run remains Phase 4 work.
+
+Retrieval on the public set (47 rows, 44 reachable, no rerank) reports recall@5
+0.8864, MRR 0.7848, recall@10 0.8864 and nDCG@10 0.8107 at p50 25.5 ms / p95
+30.2 ms. On a 12-row subset the 10-candidate cross-encoder rerank lowered
+recall@5 from 0.9000 to 0.8000, MRR from 0.7533 to 0.6833 and nDCG@10 from
+0.7887 to 0.7487, while raising p50/p95 from 19.7/31.6 ms to 1794/2201 ms; the
+50-candidate pool did not finish 12 rows in about seven minutes. The standard
+arm therefore keeps the cross-encoder off by default and exposes it only as an
+opt-in experiment.

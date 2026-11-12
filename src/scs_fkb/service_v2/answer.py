@@ -548,18 +548,23 @@ class AnswerService:
         return self._channels
 
     def _standard_hits(self, question: str, filters: Any) -> list[SearchHit]:
+        # The cross-encoder is opt-in: on the public 12-row subset it lowered
+        # recall@5 (0.90 -> 0.80), MRR (0.753 -> 0.683) and nDCG@10
+        # (0.789 -> 0.749) while raising p95 from 32 ms to 2.2 s.
         try:
-            return self.retriever.search(
-                question,
-                top_k=8,
-                filters=filters,
-                rerank=True,
-                depth=50,
-                rerank_candidates=50,
-            )
+            if self.rerank_default:
+                return self.retriever.search(
+                    question,
+                    top_k=8,
+                    filters=filters,
+                    rerank=True,
+                    depth=50,
+                    rerank_candidates=50,
+                )
+            return self.retriever.search(question, top_k=8, filters=filters, rerank=False)
         except TypeError:
             try:
-                return self.retriever.search(question, top_k=8, filters=filters, rerank=True)
+                return self.retriever.search(question, top_k=8, filters=filters)
             except TypeError:
                 return self.retriever.search(question, top_k=8)
 

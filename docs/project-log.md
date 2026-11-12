@@ -1390,3 +1390,13 @@ This log records material project changes by date. It does not use release versi
   returned `standard_refuse` with a channel.
 - Track B RAGAS and the reranker A/B are in progress; the numbers will be added
   to the evaluation report when the endpoint completes.
+- Phase 1 measurement: the public retrieval gate is unchanged (recall@5 0.8864,
+  MRR 0.7848, nDCG@10 0.8107, p95 30 ms). The 10-candidate cross-encoder rerank
+  lowered recall@5 to 0.8000, MRR to 0.6833 and nDCG@10 to 0.7487 on a 12-row
+  subset while raising p95 to 2.2 s, so the standard arm keeps rerank off by
+  default. A one-row Track B RAGAS smoke scored faithfulness 0.5000, answer
+  relevancy 0.8385, context precision 0.3333, context recall 0.0000 and answer
+  correctness 0.1999; the row depends on a Guangdong implementation rule while
+  the arm cited a Fujian regulation. The arm now adds a jurisdiction caveat when
+  the question names no province but the evidence is provincial; the practical
+  coverage gap remains Phase 3 work. The full Track B run is deferred to Phase 4.

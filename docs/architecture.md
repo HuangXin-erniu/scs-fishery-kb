@@ -55,7 +55,7 @@ configs/corpus.yaml (100 sources, schema v4)
 | **standard** | `SCS_FKB_ANSWER_MODE=standard` | Track B (see evaluation) | Track B (see evaluation) | top-50 → rerank top-8 → 12k evidence pack → structured JSON → citation/number/support checks → cache; product default |
 
 The **standard arm is the product default** (`SCS_FKB_ANSWER_MODE=standard`, P26 Phase 1):
-it retrieves a 50-candidate pool, reranks to 8, builds a bounded 12k-character
+it retrieves the hybrid pool (a 50-candidate rerank pool is opt-in), builds a bounded 12k-character
 evidence pack, asks for structured JSON, validates every citation/number/claim
 and writes a validated answer to the semantic cache. The clause-dump arm is kept
 for the Track A instrument only (`SCS_FKB_ANSWER_MODE=dump`), with depth 300,
