@@ -95,17 +95,25 @@ class SummaryDraft:
         return " ".join([self.conclusion, *self.points])
 
 
+def _section_score(values: dict[int, float]) -> float:
+    """Rank a section by its best clause; the next two only break ties, once per clause."""
+    top = sorted(values.values(), reverse=True)
+    return round(top[0] + 0.001 * sum(top[1:3]), 6)
+
+
 def _section_hits(question: str, clauses: Sequence[Clause]) -> list[SearchHit]:
     """Rank sections by the questions they can answer, then keep the best ones."""
     if not clauses:
         return []
     idf = _idf(clauses)
     default = math.log(len(clauses) + 1) + 1.0
-    # A section answers a question through several clauses (a chapeau plus its
-    # items), so score the section by the sum of its three best clauses instead of
-    # the single best one: the penalty article's chapeau alone says only
-    # "违反本法规定" and would never surface.
-    buckets: dict[tuple[str, str], list[float]] = {}
+    # A section is ranked by its single best clause. Summing the three best clauses
+    # made long articles beat short exact ones: the give-way rule is one clause,
+    # while the stand-on article has several, so the exact rule never reached the
+    # shortlist. The next two clauses only break ties, at one-thousandth of their
+    # weight, so a section whose several clauses all match slightly outranks a tie
+    # without letting breadth substitute for precision.
+    buckets: dict[tuple[str, str], dict[int, float]] = {}
     for slot in split_slots(question):
         relaxed = Slot(text=slot.text, kind="text", unit=slot.unit)
         pattern = TYPE_PATTERNS.get(slot.kind)
@@ -113,10 +121,12 @@ def _section_hits(question: str, clauses: Sequence[Clause]) -> list[SearchHit]:
             if pattern is not None and pattern.search(clause.text):
                 value = round(value + TYPE_BONUS, 6)
             key = (clause.doc_id, clause.section)
-            buckets.setdefault(key, []).append(value)
+            per_clause = buckets.setdefault(key, {})
+            current = per_clause.get(id(clause))
+            if current is None or value > current:
+                per_clause[id(clause)] = value
     ranked = [
-        (sum(sorted(values, reverse=True)[:3]), doc_id, section)
-        for (doc_id, section), values in buckets.items()
+        (_section_score(values), doc_id, section) for (doc_id, section), values in buckets.items()
     ]
     ranked.sort(key=lambda item: (-item[0], item[1], item[2]))
     ordered: list[tuple[str, str, list[Clause]]] = []
