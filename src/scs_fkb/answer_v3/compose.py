@@ -14,6 +14,8 @@ from .numbers import is_numeric_question
 from .scope import out_of_scope
 from .select import gaps_of, select_slots
 
+FALLBACK_NOTE = "未能生成结论（摘要校验未通过，见依据摘录）"
+
 SENTENCE_RE = re.compile(r"(?<=[。！？；])|\n+")
 CITATION_RE = re.compile(r"\[[A-Za-z0-9][^\]]*\]")
 CONDITION_WORDS = ("应当", "须", "不得", "除外", "限于", "适用", "按照", "符合", "禁止")
@@ -206,16 +208,22 @@ def compose(
     slot_gaps: tuple[str, ...] = ()
     points: tuple[str, ...] = ()
     conditions: tuple[str, ...] = ()
+    fell_back = draft is None and draft_status == "fallback"
     if draft is not None:
         slots = tuple(
             _view_of(item) for item in [draft.conclusion, *draft.points] if str(item).strip()
         )
         slot_gaps = tuple(draft.gaps)
-    elif clauses and _selector_on():
+    elif not fell_back and clauses and _selector_on():
         slots, slot_gaps = _slot_view(question, clauses, picker)
     if slots:
         conclusion = slots[0].text
         points = tuple(item.text for item in slots[1:])
+    elif fell_back:
+        # A dropped draft must not leave raw OCR text in the conclusion slot.
+        conclusion = FALLBACK_NOTE
+        points = ()
+        conditions = ()
     else:
         sentences = _sentences(answer_text)
         conclusion = _pick_conclusion(sentences, question, numeric=numeric)
@@ -262,10 +270,12 @@ def compose(
         unique_anchors.append(anchor)
     anchors = unique_anchors
     gap: list[str] = list(slot_gaps)
+    if fell_back:
+        gap.append("摘要未通过校验，未生成结论；原文见依据摘录")
     if numeric and not anchors and "缺少可核数值或口径" not in gap:
         gap.append("缺少可核数值或口径")
 
-    answerability = "answerable"
+    answerability = "partial" if fell_back else "answerable"
     if not conclusion:
         answerability = "partial"
         gap.append("证据不足以形成结论")
