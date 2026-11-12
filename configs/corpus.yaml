@@ -4,7 +4,7 @@
 
 schema_version: 1
 source_record_schema: 4
-updated_at: '2026-11-06'
+updated_at: '2026-11-12'
 data_root: null
 data_root_env: SCS_FKB_DATA_ROOT
 policy:
@@ -3751,6 +3751,133 @@ sources:
     bytes: 310754
     mime: application/pdf
     snapshot_path: raw/POL-PORTFEE-122/guangdong-port-fee-2019.pdf
+- id: POL-NAV-119
+  title: 1972年国际海上避碰规则
+  title_zh: 1972年国际海上避碰规则
+  publisher: 国际海事组织（商务部条约法律司转载）
+  year: 1972
+  type: regulation
+  jurisdiction: international
+  format: html
+  location: raw/POL-NAV-119/colregs-1972.html
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P1
+  volume: 1 HTML file; five parts, 38 rules
+  update_freq: static
+  hash: f924f38dc7a18e4a45a1a9f01ab87bbf588f2d0462a02f2a053a5f3f1b04d9d9
+  acquisition: Fetched 2026-11-12 from the Ministry of Commerce treaty library copy of the 1972 Convention on the International Regulations for Preventing Collisions at Sea, as amended through A.1085(28).
+  notes: Supplies the give-way rules the corpus lacked (rules 13-18 covering overtaking, head-on, crossing, the give-way vessel and the stand-on vessel). The Chinese text is a translation; cite it as the convention, not as a domestic regulation.
+  level: international
+  authority_tier: A
+  retrieval:
+    channel: main
+    parseable: true
+    note: Registered in the main index.
+  lifecycle: active
+  source_class: normative
+  currency:
+    as_of: '2026-11-12'
+    basis: publication
+    review_due: '2026-12-12'
+    cadence: monthly
+    note: Consolidated convention text; amendments are published by IMO and would arrive through a new capture.
+  watch_note: Static treaty text; rechecked at the scheduled review.
+  provenance:
+    url: https://tfs.mofcom.gov.cn/fgsjk/gjjmgyygl/gjysf/art/1972/art_722e352950644f73bf3d6004b996bb44.html
+    retrieved_at: '2026-11-12'
+    sha256: f924f38dc7a18e4a45a1a9f01ab87bbf588f2d0462a02f2a053a5f3f1b04d9d9
+    bytes: 469516
+    mime: text/html
+    snapshot_path: raw/POL-NAV-119/colregs-1972.html
+    transport: https
+    fetched_by: scripts/capture_source.py
+- id: POL-BOAT-120
+  title: 海洋捕捞渔船拆解操作规程
+  title_zh: 海洋捕捞渔船拆解操作规程
+  publisher: 农业农村部办公厅
+  year: 2021
+  type: notice
+  jurisdiction: national
+  format: html
+  location: raw/POL-BOAT-120/vessel-dismantle.html
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P1
+  volume: 1 HTML file; five chapters
+  update_freq: static
+  hash: 8efcb1cfd4f45e5891fe27ec4f1630f9206bb107e8864d789d7ba3d76728dd76
+  acquisition: Fetched 2026-11-12 from the Ministry of Agriculture and Rural Affairs (农办渔〔2021〕13号, issued 2021-08-05).
+  notes: "Covers the dismantling chain for scrapping, replacement and fleet-reduction: where a vessel may be dismantled, what the yard must hold, the on-site supervision and the documents issued. It supplies the procedure the corpus lacked for 拆解/减船 questions, but it is not a write-off (销号) rule by itself."
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: main
+    parseable: true
+    note: Registered in the main index.
+  lifecycle: active
+  source_class: normative
+  currency:
+    as_of: '2026-11-12'
+    basis: publication
+    review_due: '2026-12-12'
+    cadence: monthly
+    note: Current procedure, replacing the 2012 trial version.
+  watch_note: Static notice; rechecked at the scheduled review.
+  provenance:
+    url: https://www.moa.gov.cn/govpublic/YYJ/202108/t20210810_6373806.htm
+    retrieved_at: '2026-11-12'
+    sha256: 8efcb1cfd4f45e5891fe27ec4f1630f9206bb107e8864d789d7ba3d76728dd76
+    bytes: 129064
+    mime: text/html
+    snapshot_path: raw/POL-BOAT-120/vessel-dismantle.html
+    transport: https
+    fetched_by: scripts/capture_source.py
+- id: POL-FIN-121
+  title: 罚没财物管理办法
+  title_zh: 罚没财物管理办法
+  publisher: 财政部
+  year: 2020
+  type: regulation
+  jurisdiction: national
+  format: html
+  location: raw/POL-FIN-121/fine-forfeiture.html
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P1
+  volume: 1 HTML file; six chapters, 42 articles
+  update_freq: static
+  hash: 1621ebc7cf400da2ef570b7df7d7d25331e6d8da9c45c11ce0ab15876247f08d
+  acquisition: Fetched 2026-11-12 from the State Council policy library (财税〔2020〕54号, issued 2020-12-17).
+  notes: Covers custody, handover, disposal, proceeds and supervision of forfeited property, including the disposal of confiscated vessels and gear. It answers the disposal procedure the corpus lacked, while the penalty that produces the forfeiture stays in the fisheries penalty rules.
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: main
+    parseable: true
+    note: Registered in the main index.
+  lifecycle: active
+  source_class: normative
+  currency:
+    as_of: '2026-11-12'
+    basis: publication
+    review_due: '2026-12-12'
+    cadence: monthly
+    note: Ministry of Finance rule; no later revision found.
+  watch_note: Static rule text; rechecked at the scheduled review.
+  provenance:
+    url: https://www.gov.cn/zhengce/zhengceku/2020-12/31/content_5575777.htm
+    retrieved_at: '2026-11-12'
+    sha256: 1621ebc7cf400da2ef570b7df7d7d25331e6d8da9c45c11ce0ab15876247f08d
+    bytes: 68423
+    mime: text/html
+    snapshot_path: raw/POL-FIN-121/fine-forfeiture.html
+    transport: https
+    fetched_by: scripts/capture_source.py
+
 gaps:
 - One hundred sources are registered: ninety-eight acquired and no open candidates awaiting disposition.
 - The yearbook coverage matrix has no values in the public repository; all values stay local.

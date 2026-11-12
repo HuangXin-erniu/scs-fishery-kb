@@ -1,6 +1,9 @@
 schema_version: 1
 updated_at: 2026-11-01
 documents:
+  - POL-BOAT-120
+  - POL-FIN-121
+  - POL-NAV-119
   - DICT-STAT-013
   - DICT-STAT-040
   - INT-MSY-095
