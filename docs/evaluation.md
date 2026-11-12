@@ -1583,3 +1583,23 @@ recall@5 0.6700, recall@10 0.7650, MRR 0.5337, nDCG@10 0.5983, against targets
 judge errors. These are diagnostic numbers, not a Track B pass. The 300/200/100
 suite must be run in full after fixing the generation/abstention path; the human
 spot check remains authoritative.
+
+### Track B root-cause pass (2026-11-12)
+
+**Retrieval.** A parameter sweep on the 200 reachable Track B retrieval rows found
+that `depth=50, bm25=1.0, dense=1.0` raises recall@10 from 0.7650 to 0.8100 and
+MRR from 0.5337 to 0.5620, but the public gate's recall@5 falls from 0.9318 to
+0.8720. The global product default therefore stays at `depth=20, bm25=1.0,
+dense=1.5`; Track B still misses the 0.92 recall@10 target.
+
+**Generation.** Gold-document ranks for the first failed rows: IG-001 rank 8,
+IG-002 rank 4, IG-003 rank 16, IG-004 absent from the top 50. The standard arm
+takes the top 8 hits and a bounded evidence pack; for IG-001/003/004 the gold
+clause is outside the pack, and for IG-002 the model/self-check path returned a
+gap. This is an evidence-selection and retrieval problem, not a single threshold
+bug. The 5-row sample's 4/5 refusals are consistent with that diagnosis.
+
+**Provisional review.** Review packages for all 20 provisional sources were
+generated: 19 `approve-candidate`, 1 `hold-review` (municipal C). The 19 still
+require a human licence/authority sign-off before `promotion_draft`; no
+canonical promotion was applied.

@@ -1571,3 +1571,10 @@ This log records material project changes by date. It does not use release versi
   are written under the run root; no canonical promotion was applied.
 - Phase 4 is therefore partially green: Track A passes; Track B and the human
   sign-off on the 20 provisional sources remain open.
+- Track B root-cause pass: a `depth=50, bm25=1.0, dense=1.0` retrieval profile
+  lifts Track B recall@10 from 0.7650 to 0.8100 but drops public recall@5 from
+  0.9318 to 0.8720, so it is not adopted. Generation failures trace to gold
+  clauses at ranks 8/4/16/absent and a top-8 evidence pack; this needs evidence
+  selection/query rewriting work before a full Track B run.
+- Provisional review packages: 19 approve-candidate, 1 hold-review (municipal C);
+  human sign-off and canonical promotion are still pending.
