@@ -1558,3 +1558,28 @@ rerank, no web) scored: answered 312; point coverage 0.2482; citation accuracy
 rate 0.7895; basis accuracy 0.4706. This arm is **not** the frozen acceptance arm
 (dump/LLM), so the numbers are diagnostic only. The dump-arm 512 run and Track B
 RAGAS/human spot check are the remaining Phase 4 work.
+
+### Phase 4 Track A result and Track B diagnostics (2026-11-12)
+
+**Track A, full 512, dump arm (acceptance arm), index `e1c31e8fed19`:**
+
+| Gate | Value | Pass line | Result |
+|---|---:|---:|---|
+| point coverage | 0.8249 (415 rows) | 0.80 | pass |
+| citation accuracy | 0.9436 (443 rows) | 0.90 | pass |
+| misanswer rate | 0.0571 (70 rows) | ≤0.10 | pass |
+| refusal-channel rate | 0.9429 (70 rows) | 0.90 | pass |
+| as-of declaration rate | 1.0000 (57 rows) | 0.90 | pass |
+| basis accuracy | 0.9412 (17 rows) | 0.85 | pass |
+
+Answered 501/512; mean latency 258 ms, P95 327 ms. This is the Track A
+acceptance result for the current corpus.
+
+**Track B is not passing yet.** Retrieval on 300 industry rows (200 reachable):
+recall@5 0.6700, recall@10 0.7650, MRR 0.5337, nDCG@10 0.5983, against targets
+0.92/0.80/0.82. A 5-row generation sample with the standard arm abstained on
+4/5 rows; RAGAS could not score faithfulness and returned answer relevancy
+0.3708, context recall 0.2500 (n=1), answer correctness 0.2043 (n=4), with 14
+judge errors. These are diagnostic numbers, not a Track B pass. The 300/200/100
+suite must be run in full after fixing the generation/abstention path; the human
+spot check remains authoritative.

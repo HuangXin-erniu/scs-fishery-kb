@@ -344,3 +344,12 @@ over the full 512 rows as a diagnostic (point coverage 0.2482, citation 0.6825,
 misanswer 0.5143); it is not the acceptance arm, which is the dump/LLM arm. The
 full dump-arm run, Track B RAGAS suite and human spot check remain. All 20
 practical sources stay provisional until human licence/authority review.
+
+**Phase 4 status (2026-11-12, Track A pass).** The full 512-row dump-arm run
+passes all six acceptance gates on index `e1c31e8fed19`: point coverage 0.8249,
+citation accuracy 0.9436, misanswer rate 0.0571, refusal-channel rate 0.9429,
+as-of declaration 1.0000, basis accuracy 0.9412. Track B is **not** passing:
+retrieval recall@10 0.7650 vs 0.92 target, and the 5-row generation sample had
+4/5 abstentions with incomplete RAGAS scores. The 20 provisional sources have
+review packages (19 approve-candidate, 1 hold-review) but await human
+licence/authority sign-off; no canonical promotion was made.

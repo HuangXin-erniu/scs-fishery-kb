@@ -1548,3 +1548,26 @@ This log records material project changes by date. It does not use release versi
   remote endpoint and is the next long-running job. Track B RAGAS and the human
   spot check follow after that. The 20 practical sources remain provisional and
   have not been promoted.
+
+## 2026-11-12 — Phase 4: Track A 512 dump arm passes; Track B diagnostics
+
+- Ran the full 512-row Track A acceptance instrument with the dump arm on the
+  current index (`e1c31e8fed19`, 94 documents, 3,861 chunks): **gate passed**.
+  Metrics: point coverage 0.8249 (415 rows), citation accuracy 0.9436 (443),
+  misanswer rate 0.0571 (70), refusal-channel rate 0.9429 (70), as-of
+  declaration rate 1.0000 (57), basis accuracy 0.9412 (17). Answered 501/512;
+  mean latency 258 ms, P95 327 ms.
+- Track B diagnostics on the private industry set:
+  - retrieval: 300 rows, 200 reachable; recall@5 0.6700, recall@10 0.7650,
+    MRR 0.5337, nDCG@10 0.5983 vs targets 0.92/0.80/0.82 — **not met**;
+  - abstention (dump arm, frozen rows only): 5/70 abstained (0.0714) — this is
+    the wrong arm for Track B and is recorded only as a diagnostic;
+  - generation sample (5 rows, standard arm): 4/5 abstained, RAGAS faithfulness
+    unscored (no claims), answer relevancy 0.3708, context recall 0.2500
+    (n=1), answer correctness 0.2043 (n=4), 14 judge errors — **not a Track B
+    result**.
+- Generated provisional-review packages for all 20 provisional sources:
+  19 `approve-candidate`, 1 `hold-review` (吴川市 municipal C). Promotion drafts
+  are written under the run root; no canonical promotion was applied.
+- Phase 4 is therefore partially green: Track A passes; Track B and the human
+  sign-off on the 20 provisional sources remain open.
