@@ -3877,6 +3877,135 @@ sources:
     snapshot_path: raw/POL-FIN-121/fine-forfeiture.html
     transport: https
     fetched_by: scripts/capture_source.py
+- id: POL-MAMMAL-123
+  title: 农业农村部办公厅关于加强海洋哺乳动物保护管理工作的通知
+  title_zh: 农业农村部办公厅关于加强海洋哺乳动物保护管理工作的通知
+  publisher: 农业农村部办公厅
+  year: 2021
+  type: notice
+  jurisdiction: national
+  format: html
+  location: raw/POL-MAMMAL-123/marine-mammal-bycatch.html
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P1
+  volume: 1 HTML file; five sections
+  update_freq: static
+  hash: 06c60e9bde7fd8e70079108edc0de6cf892930f52f1b4bef93bc683187c7c0a5
+  acquisition: Fetched 2026-11-12 from the Ministry of Agriculture and Rural Affairs (农办渔〔2021〕12号, issued 2021-07-28).
+  notes: "Requires a vessel that bycatches a marine mammal to report to the local fisheries authority and to record species, quantity, position and condition in detail, and to file the bycatch, injury and death record in the port-entry system. It supplies the bycatch reporting content the corpus lacked, but not a national form template."
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: main
+    parseable: true
+    note: Registered in the main index.
+  lifecycle: active
+  source_class: normative
+  currency:
+    as_of: '2026-11-12'
+    basis: publication
+    review_due: '2026-12-12'
+    cadence: monthly
+    note: Current notice; no later revision found.
+  watch_note: Static notice text; rechecked at the scheduled review.
+  provenance:
+    url: https://www.moa.gov.cn/govpublic/YYJ/202108/t20210802_6373391.htm
+    document_no: 农办渔〔2021〕12号
+    retrieved_at: '2026-11-12'
+    sha256: 06c60e9bde7fd8e70079108edc0de6cf892930f52f1b4bef93bc683187c7c0a5
+    bytes: 66045
+    mime: text/html
+    snapshot_path: raw/POL-MAMMAL-123/marine-mammal-bycatch.html
+    transport: https
+    fetched_by: scripts/capture_source.py
+- id: POL-WILD-124
+  title: 农业农村部关于进一步加强珍贵濒危水生野生动物保护管理工作的通知
+  title_zh: 农业农村部关于进一步加强珍贵濒危水生野生动物保护管理工作的通知
+  publisher: 农业农村部
+  year: 2023
+  type: notice
+  jurisdiction: national
+  format: html
+  location: raw/POL-WILD-124/protected-wildlife-2023.html
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P1
+  volume: 1 HTML file; six sections
+  update_freq: static
+  hash: 20162fd1e76b842fbf86a3958af2047647c25af93948b9b65dd1c24f9bf0742f
+  acquisition: Fetched 2026-11-12 from the Ministry of Agriculture and Rural Affairs (农渔发〔2023〕22号, issued 2023-08-08).
+  notes: Covers treatment of bycaught, injured, stranded and confiscated aquatic wildlife (rescue, temporary holding, release), release of confiscated animals and products, and the referral of criminal cases. It gives the disposal chain the corpus lacked around the wildlife protection law.
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: main
+    parseable: true
+    note: Registered in the main index.
+  lifecycle: active
+  source_class: normative
+  currency:
+    as_of: '2026-11-12'
+    basis: publication
+    review_due: '2026-12-12'
+    cadence: monthly
+    note: Current notice; the 2022 wildlife protection law is its basis.
+  watch_note: Static notice text; rechecked at the scheduled review.
+  provenance:
+    url: https://www.moa.gov.cn/govpublic/YYJ/202308/t20230822_6434835.htm
+    document_no: 农渔发〔2023〕22号
+    retrieved_at: '2026-11-12'
+    sha256: 20162fd1e76b842fbf86a3958af2047647c25af93948b9b65dd1c24f9bf0742f
+    bytes: 55382
+    mime: text/html
+    snapshot_path: raw/POL-WILD-124/protected-wildlife-2023.html
+    transport: https
+    fetched_by: scripts/capture_source.py
+- id: POL-SUPPORT-125
+  title: 农业农村部 财政部关于实施“十五五”时期渔业发展支持政策加快渔业现代化建设的通知
+  title_zh: 农业农村部 财政部关于实施“十五五”时期渔业发展支持政策加快渔业现代化建设的通知
+  publisher: 农业农村部、财政部
+  year: 2026
+  type: notice
+  jurisdiction: national
+  format: html
+  location: raw/POL-SUPPORT-125/fishery-support-2026.html
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P1
+  volume: 1 HTML file; four sections
+  update_freq: static
+  hash: 8ddd1708153b34713287f73e9a6a8ee965352e30322ebbfde7a80c978d4b91dc
+  acquisition: Fetched 2026-11-12 from the Ministry of Agriculture and Rural Affairs (农渔发〔2026〕15号, issued 2026-08-14).
+  notes: The 2026-2030 support policy that succeeds the 14th five-year arrangement. It states the funding channels and the subsidy directions for fuel-price adjustment and resource-conservation subsidies, which is what the 2026 fuel-subsidy question needs.
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: main
+    parseable: true
+    note: Registered in the main index.
+  lifecycle: active
+  source_class: normative
+  currency:
+    as_of: '2026-11-12'
+    basis: publication
+    review_due: '2026-12-12'
+    cadence: monthly
+    note: Current five-year policy, issued 2026-08-14.
+  watch_note: Static policy text; rechecked at the scheduled review.
+  provenance:
+    url: https://www.moa.gov.cn/govpublic/YYJ/202609/t20260928_6488146.htm
+    document_no: 农渔发〔2026〕15号
+    retrieved_at: '2026-11-12'
+    sha256: 8ddd1708153b34713287f73e9a6a8ee965352e30322ebbfde7a80c978d4b91dc
+    bytes: 75951
+    mime: text/html
+    snapshot_path: raw/POL-SUPPORT-125/fishery-support-2026.html
+    transport: https
+    fetched_by: scripts/capture_source.py
 
 gaps:
 - One hundred sources are registered: ninety-eight acquired and no open candidates awaiting disposition.
