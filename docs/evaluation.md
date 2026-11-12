@@ -1415,3 +1415,46 @@ next two would remove it); the alignment issue is a corpus-governance question.
 
 The headline number still comes only from the frozen fourth holdout and a human reviewer. This
 sample is spent and its numbers stay in the regression column.
+
+### 42. The fourth holdout: opened and sealed (2026-11-12)
+
+> **中文摘要**：第四批留出集（seed `20261113`，30 题，与前 60 题零重叠）在构建 `a5471a0`、
+> 索引 `6e9dc9b9d8b9` 上跑完，答案包已封存。AI 预检（`source: simulated`）三条线为
+> 引用 3/10、结论 9/20、拒答 8/10，均未达标；**9 个作答行全对，10 个弃答行全错**，
+> 说明瓶颈是语料覆盖而不是摘要能力。人工签字前 `acceptance.md` 不改。
+
+#### Sample and build
+
+- Sample: seed `20261113`, 30 items (10 answerable, 10 partly answerable, 10 must-refuse),
+  id list sha256 `aece47de2a12585a0f102747888288d08fbfacd64fe4aff4b9949afe67cd8a0c`,
+  disjoint from the first 60 ids.
+- Build: `a5471a0`, index `6e9dc9b9d8b9` (70 documents, 2,929 chunks), dump arm with the
+  summary judge.
+- Provenance: 13 model summaries, 14 `model_gap` abstentions, 3 fallbacks (10%).
+
+#### AI pre-check (simulated, not a signature)
+
+| Line | Result | Target |
+|---|---:|---:|
+| Citation | 3/10 | ≥95% |
+| Conclusion | 9/20 | ≥85% |
+| Refusal | 8/10 | ≥90% |
+
+Every answered row was judged correct and every abstention or fallback was judged wrong. Ten of
+the twenty answerable rows ask for facts the corpus does not carry (protection-fee basis, sea
+temperature map colours, logbook fish names, interest-subsidy application, bycatch report form,
+commercial sea-temperature data, referral to police, berth-fee publication, 2026 fuel-subsidy
+standard, whether a vessel in a yard must stay at its home port). On this sample the conclusion
+line measures how many rows the system dares to answer, and that is capped by coverage at about
+nine of twenty.
+
+The citation line is low for a different reason: the instrument expects the institutional
+document (for example the closure enforcement notice) while the model cites the most specific
+rule (a provincial implementation measure). A human reviewer applying the "same topic, same
+tier" clause may score six or seven of ten, but the strict count is three.
+
+#### Boundary
+
+These numbers are AI judgements and stay out of `acceptance.md` until a human reviewer signs the
+worksheet. The answer pack, the blind worksheet and the AI pre-filled verdicts are kept under
+the local run root; the public tree carries this summary only.
