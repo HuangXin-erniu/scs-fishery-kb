@@ -1583,3 +1583,6 @@ This log records material project changes by date. It does not use release versi
   recall@5 drops 0.9318→0.8720 so it is not shipped. A top-8→top-12 evidence
   check did not improve gold coverage (16/20 both), so the generation refusal
   is not fixed by widening the pack.
+- Track B query-rewriting experiments: PRF best offline recall@10 0.810, title
+  boost 0.76–0.77; neither reaches 0.92 and the effect is not stable enough to
+  ship. No product default or evaluation profile change.

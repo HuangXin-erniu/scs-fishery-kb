@@ -1622,3 +1622,17 @@ A 20-row generation evidence check found gold documents in the top-8 for 16/20
 rows and in the top-12 for 16/20, so merely widening the evidence pack does not
 fix the generation refusals; the remaining failures need query rewriting or
 retrieval changes.
+
+### Track B query-rewriting experiments (2026-11-12)
+
+Pseudo-relevance feedback (PRF) and title boosting were tested offline on the 200
+reachable Track B retrieval rows:
+
+- baseline: recall@10 0.765;
+- PRF (top-3 docs, 12 expansion bigrams, RRF fusion): best offline run 0.810;
+- title boost 0.5–3.0: 0.76–0.77, no material change.
+
+Neither reaches the 0.92 target, and the PRF harness itself did not reproduce the
+best offline number consistently, so no product or evaluation-profile change was
+made. The next retrieval work needs a stronger reranker or query rewriting than
+simple PRF; the shipped default remains unchanged.
