@@ -312,7 +312,10 @@ Dates are not commitments. Milestone exit conditions and quality gates take prec
 cards and canonical answers, a PWA/offline shell and task/answer feedback; the
 candidate review tool writes provisional review packages without network or
 register writes. Practical-source admission itself remains human-gated: the 30
-surveyed candidates are still open, and no candidate was auto-ingested. The
+surveyed candidates are still open, and the triage report finds that all 30 need
+a document-level hash, an explicit licence/sensitivity decision and a parseable
+document URL before a provisional review package can be built. No candidate was
+auto-ingested. The
 province-slot fix is a national-first evidence preference when no province is
 named; it reduces, but does not remove, the coverage gap exposed by the Track B
 smoke.

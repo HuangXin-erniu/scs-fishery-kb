@@ -1448,3 +1448,9 @@ This log records material project changes by date. It does not use release versi
 - Tests: KB sections/task detail/PWA/feedback, candidate review and national
   preference added; suite green. No practical source was auto-admitted: the 30
   candidates still need a licence/authority decision before Phase 3 ingestion.
+
+- Added `scripts/review_batch.py` and generated the Phase 3 candidate triage under
+  the run root: all 30 candidates still need a document-level sha256, an explicit
+  licence and sensitivity value, and a parseable document URL; none is ready for a
+  provisional review package yet. This is the human licence/authority gate, not a
+  code gap.
