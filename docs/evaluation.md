@@ -1538,3 +1538,14 @@ lower abstention number is a known out-of-scope handling gap on the public
 samples, not a retrieval failure; the private 512 instrument and Track B are the
 authoritative abstention gates. A 20-row dev sample of the private instrument was
 not representative and is not reported as a Track A result.
+
+### After the 20-source practical batch
+
+Index `e1c31e8fed19` (94 documents, 3,861 child chunks; 20 provisional). The
+public retrieval gate is unchanged from the 5-source measurement
+(recall@5 0.9318, MRR 0.7962, recall@10 0.9545, nDCG@10 0.8373, p95 21.3 ms);
+the provisional `0.6` penalty and `depth=20 / bm25=1.0 / dense=1.5` fusion keep
+the added documents from displacing canonical anchors. Public regression remains
+anchor recall@5 1.0000 and citation resolution 1.0000; abstention stays 0.2308 on
+the public out-of-scope samples. These are retrieval/public-regression numbers,
+not Track A or Track B acceptance results.

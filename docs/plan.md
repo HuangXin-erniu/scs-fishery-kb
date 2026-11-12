@@ -329,3 +329,12 @@ retuning fusion to `depth=20, bm25=1.0, dense=1.5`, the public retrieval gate is
 recall@5 0.9318 / MRR 0.7962 / nDCG@10 0.8381, above the P25 baseline. The five
 entries remain provisional pending human licence/authority sign-off; canonical
 promotion is not automatic.
+
+**Phase 3 admission complete (2026-11-12).** The practical-source target of 20
+provisional documents is met: 5 national/provincial safety, subsidy and bulletin
+documents from the first batch plus 15 closure, disaster, ecosystem and
+sea-level bulletins from batches 2/3. v2 has 94 documents / 3,861 child chunks;
+index `e1c31e8fed19`. The public retrieval gate remains recall@5 0.9318 /
+MRR 0.7962 / nDCG@10 0.8373 and public-regression citation resolution is 1.0000.
+All 20 remain `provisional` pending human licence/authority review; Phase 4
+(Track A 512 full run, Track B RAGAS and human spot check) is next.

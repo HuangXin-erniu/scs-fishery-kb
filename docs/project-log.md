@@ -1514,3 +1514,24 @@ This log records material project changes by date. It does not use release versi
   0.3438, citation 0.8182); it is a small, non-representative slice, so it is
   recorded as a warning, not as a Track A result. The full 512 run stays in
   Phase 4.
+
+## 2026-11-12 — Second-stage Phase 3: practical-source batch 2/3, 20 provisional sources
+
+- Added 15 more official documents, reaching the Phase 3 target of 20 practical
+  sources (all provisional):
+  - provincial closure management: 广西 2026 伏季休渔通知, 海南 2026 伏季休渔
+    告知书, 农业农村部/公安部/中国海警局 2026 专项执法通知, 吴川市 2026 休渔通告;
+  - hazard statistics: 2022/2021/2020/2019/2018 中国海洋灾害公报;
+  - ecosystem bulletins: 2024/2023 中国海洋生态预警监测公报;
+  - sea-level bulletins: 2023/2022/2021/2020 中国海平面公报.
+- Every entry is `ingest.tier: provisional`, has a public licence-evidence URL,
+  a captured snapshot hash and a human-review note; no canonical promotion was
+  made.
+- v2 now has 94 documents and 3,861 child chunks; index `e1c31e8fed19`.
+  Source gate: 126 active, 20 provisional, 0 overdue, 0 errors.
+- Retrieval gate stayed above baseline after all 20 additions: recall@5 0.9318,
+  MRR 0.7962, recall@10 0.9545, nDCG@10 0.8373, p95 21.3 ms. Public regression:
+  anchor recall@5 1.0000, citation 1.0000, playbook/FAQ/term/number all
+  resolved; abstention remains 0.2308 on the public out-of-scope samples.
+- Tests: 456 passed / 2 skipped. The 20 sources are still provisional and need
+  a human licence/authority sign-off before `promotion_draft`.
