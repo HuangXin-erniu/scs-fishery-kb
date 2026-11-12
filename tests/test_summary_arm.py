@@ -427,3 +427,45 @@ def test_a_none_reply_without_points_stays_none():
         draft=draft,
     )
     assert contract.answerability == "abstain"
+
+
+def test_a_rejected_draft_abstains_with_the_reason(monkeypatch):
+    import json
+
+    good = json.dumps(
+        {
+            "conclusion": "违反禁渔期规定捕捞的，并处5万元以下罚款 [POL-LAW-009 §第七十八条]。",
+            "points": [],
+            "gaps": [],
+            "coverage": "full",
+        },
+        ensure_ascii=False,
+    )
+    rejected = json.dumps(
+        {"supported": False, "reason": "证据只规定罚款，未规定没收渔船"}, ensure_ascii=False
+    )
+    repaired = json.dumps(
+        {"answer": "违反禁渔期规定捕捞的，并处5万元以下罚款 [POL-LAW-009 §第七十八条]。"},
+        ensure_ascii=False,
+    )
+    client = FakeClient([good, rejected, repaired, rejected])
+    draft = summarize(QUESTION, CLAUSES, client)
+    assert draft is not None
+    assert draft.coverage == "none"
+    assert draft.conclusion == "证据不足以支持结论"
+    assert any("未规定没收渔船" in item for item in draft.gaps)
+    contract = compose(
+        QUESTION,
+        "",
+        doc_ids=["POL-LAW-009"],
+        registry={},
+        channels=ChannelBook.load(),
+        draft=draft,
+    )
+    assert contract.answerability == "abstain"
+    assert contract.channel
+
+
+def test_a_transport_error_still_falls_back():
+    client = FakeClient([LLMError("empty completion")])
+    assert summarize(QUESTION, CLAUSES, client) is None

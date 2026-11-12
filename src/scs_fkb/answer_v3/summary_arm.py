@@ -255,6 +255,23 @@ def _repair(
     return _clean(value.get("answer"), MAX_SUMMARY_CHARS)
 
 
+def _unsupported(reason: str, *, repaired: bool = False) -> SummaryDraft:
+    """A verifier rejection is a no-answer, not a transport failure.
+
+    Returning None would make compose fall back to a raw excerpt with no channel;
+    instead keep the reason as the gap so the answer abstains with a channel.
+    """
+    gap = (reason or "所引证据不足以支持结论").strip()[:160]
+    return SummaryDraft(
+        conclusion="证据不足以支持结论",
+        points=(),
+        gaps=(gap,),
+        citations=(),
+        repaired=repaired,
+        coverage="none",
+    )
+
+
 def _coverage_of(value: dict[str, Any]) -> str:
     """Read the three-level coverage, tolerating an older boolean reply."""
     raw = str(value.get("coverage") or "").strip().lower()
@@ -377,11 +394,11 @@ def summarize(
         conclusion, points = _resplit(text, points)
         if not conclusion or _checks(text, by_label, hits):
             _mark(diagnostics, "verify_checks", reason[:80])
-            return None
+            return _unsupported(reason, repaired=True)
         supported, reason = _verify(question, text, by_label, client, cache)
         if not supported:
             _mark(diagnostics, "verify", reason[:80])
-            return None
+            return _unsupported(reason, repaired=True)
         citations = tuple(_citations_from_text(text, hits))
         if not citations:
             _mark(diagnostics, "citations_after_repair")
