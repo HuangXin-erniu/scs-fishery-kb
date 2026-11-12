@@ -1535,3 +1535,16 @@ This log records material project changes by date. It does not use release versi
   resolved; abstention remains 0.2308 on the public out-of-scope samples.
 - Tests: 456 passed / 2 skipped. The 20 sources are still provisional and need
   a human licence/authority sign-off before `promotion_draft`.
+
+## 2026-11-12 — Phase 4 start: Track A deterministic diagnostic
+
+- Ran the full 512-row Track A instrument with the deterministic extractive arm
+  (not the acceptance dump/LLM arm) as a diagnostic: 312 answered,
+  point_coverage 0.2482, citation_accuracy 0.6825, misanswer_rate 0.5143,
+  refusal_channel_rate 0.4857, asof_declaration_rate 0.7895, basis_accuracy
+  0.4706. The run fails the acceptance gates, as expected for the extractive arm;
+  it is recorded as a diagnostic, not as a Track A result.
+- The acceptance Track A arm remains the dump/LLM arm; its full 512 run needs the
+  remote endpoint and is the next long-running job. Track B RAGAS and the human
+  spot check follow after that. The 20 practical sources remain provisional and
+  have not been promoted.

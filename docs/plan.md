@@ -338,3 +338,9 @@ index `e1c31e8fed19`. The public retrieval gate remains recall@5 0.9318 /
 MRR 0.7962 / nDCG@10 0.8373 and public-regression citation resolution is 1.0000.
 All 20 remain `provisional` pending human licence/authority review; Phase 4
 (Track A 512 full run, Track B RAGAS and human spot check) is next.
+
+**Phase 4 status (2026-11-12, start).** The deterministic extractive arm was run
+over the full 512 rows as a diagnostic (point coverage 0.2482, citation 0.6825,
+misanswer 0.5143); it is not the acceptance arm, which is the dump/LLM arm. The
+full dump-arm run, Track B RAGAS suite and human spot check remain. All 20
+practical sources stay provisional until human licence/authority review.

@@ -1549,3 +1549,12 @@ the added documents from displacing canonical anchors. Public regression remains
 anchor recall@5 1.0000 and citation resolution 1.0000; abstention stays 0.2308 on
 the public out-of-scope samples. These are retrieval/public-regression numbers,
 not Track A or Track B acceptance results.
+
+### Phase 4 Track A diagnostic (2026-11-12)
+
+The deterministic extractive arm over all 512 rows (index `e1c31e8fed19`, no
+rerank, no web) scored: answered 312; point coverage 0.2482; citation accuracy
+0.6825; misanswer rate 0.5143; refusal-channel rate 0.4857; as-of declaration
+rate 0.7895; basis accuracy 0.4706. This arm is **not** the frozen acceptance arm
+(dump/LLM), so the numbers are diagnostic only. The dump-arm 512 run and Track B
+RAGAS/human spot check are the remaining Phase 4 work.
