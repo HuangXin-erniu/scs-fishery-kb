@@ -14,7 +14,7 @@ def load(name: str):
 def test_corpus_registry_is_complete() -> None:
     data = load("corpus.yaml")
     sources = data["sources"]
-    assert len(sources) == 103
+    assert len(sources) == 106
     ids = [source["id"] for source in sources]
     assert len(ids) == len(set(ids))
     for source in sources:
@@ -26,8 +26,8 @@ def test_corpus_registry_is_complete() -> None:
 def test_pipeline_documents_are_registered() -> None:
     pipeline = load("pipeline.yaml")["documents"]
     registered = {source["id"] for source in load("corpus.yaml")["sources"]}
-    assert len(pipeline) == 70
-    assert len(set(pipeline)) == 70
+    assert len(pipeline) == 74
+    assert len(set(pipeline)) == 74
     assert set(pipeline) <= registered
 
 
