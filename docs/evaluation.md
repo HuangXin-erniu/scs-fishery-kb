@@ -1603,3 +1603,22 @@ bug. The 5-row sample's 4/5 refusals are consistent with that diagnosis.
 generated: 19 `approve-candidate`, 1 `hold-review` (municipal C). The 19 still
 require a human licence/authority sign-off before `promotion_draft`; no
 canonical promotion was applied.
+
+### Track B profile harness (2026-11-12)
+
+`configs/eval-trackb.yaml` and `scripts/eval_trackb.py` make the retrieval
+comparison reproducible:
+
+| Profile | recall@5 | recall@10 | MRR@10 | nDCG@10 | p95 |
+|---|---:|---:|---:|---:|---:|
+| default (`depth=20, bm25=1.0, dense=1.5`) | 0.6700 | 0.7650 | 0.5337 | 0.5983 | 22.5 ms |
+| deep (`depth=50, bm25=1.0, dense=1.0`) | 0.7300 | 0.8100 | 0.5616 | 0.6297 | 24.9 ms |
+
+The deep profile improves Track B but lowers public recall@5 from 0.9318 to
+0.8720, so it is evaluation-only and the shipped default is unchanged. Neither
+profile reaches the 0.92 recall@10 target.
+
+A 20-row generation evidence check found gold documents in the top-8 for 16/20
+rows and in the top-12 for 16/20, so merely widening the evidence pack does not
+fix the generation refusals; the remaining failures need query rewriting or
+retrieval changes.

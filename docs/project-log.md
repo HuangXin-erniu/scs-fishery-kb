@@ -1578,3 +1578,8 @@ This log records material project changes by date. It does not use release versi
   selection/query rewriting work before a full Track B run.
 - Provisional review packages: 19 approve-candidate, 1 hold-review (municipal C);
   human sign-off and canonical promotion are still pending.
+- Added `configs/eval-trackb.yaml` and `scripts/eval_trackb.py`: default Track B
+  retrieval recall@10 0.7650; evaluation-only deep profile 0.8100, but public
+  recall@5 drops 0.9318→0.8720 so it is not shipped. A top-8→top-12 evidence
+  check did not improve gold coverage (16/20 both), so the generation refusal
+  is not fixed by widening the pack.

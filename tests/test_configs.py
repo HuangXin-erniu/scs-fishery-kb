@@ -31,6 +31,12 @@ def test_pipeline_documents_are_registered() -> None:
     assert set(pipeline) <= registered
 
 
+def test_trackb_profile_config_loads() -> None:
+    config = load("eval-trackb.yaml")
+    assert config["profiles"]["default"]["depth"] == 20
+    assert config["dataset"]["target_recall_at_10"] == 0.92
+
+
 def test_schema_and_acceptance_configs_load() -> None:
     assert load("schema.yaml")["schema_version"] == 1
     accept = load("eval-accept.yaml")
