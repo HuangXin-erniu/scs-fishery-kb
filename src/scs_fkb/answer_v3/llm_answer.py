@@ -9,7 +9,7 @@ from typing import Any
 
 from ..llm import LLMClient, LLMError, parse_json_object
 from ..models import Answer
-from ..rag import CITATION_RE, LLMCache, _citations_from_text
+from ..rag import CITATION_RE, LLMCache, _citations_from_text, split_label
 
 PROMPT_VERSION = "contract-v2"
 MAX_HITS = 8
@@ -148,27 +148,54 @@ def _citation_labels(text: str) -> list[str]:
 def _cited_hits(text: str, by_label: dict[str, Any]) -> list[Any]:
     found: list[Any] = []
     for doc_id, page, section in CITATION_RE.findall(text):
+        page, section = split_label(page, section)
         for hit in by_label.values():
             chunk = hit.chunk
             if chunk.doc_id != doc_id:
                 continue
             if page and chunk.page != int(page):
                 continue
-            if section and not chunk.section.startswith(section):
+            if section and not (
+                chunk.section.startswith(section) or section.startswith(chunk.section)
+            ):
                 continue
             if hit not in found:
                 found.append(hit)
     return found
 
 
-def _sentence_problems(text: str, by_label: dict[str, Any]) -> list[str]:
-    """Sentences that state facts without a resolvable citation."""
+GAP_SENTENCE = re.compile(
+    r"未(?:规定|覆盖|给出|提供|收录|明确|涉及|载明)|无法(?:回答|判断|给出|确定)|证据不足"
+    r"|没有(?:直接)?(?:规定|条款|说明)"
+)
+
+
+def _sentence_problems(
+    text: str,
+    by_label: dict[str, Any],
+    *,
+    allow_gap: bool = False,
+    allow_next_citation: bool = False,
+) -> list[str]:
+    """Sentences that state facts without a resolvable citation.
+
+    A gap declaration is not a factual claim: "existing evidence does not set a
+    deadline" has nothing to cite and must not be rejected as uncited.
+    """
     problems: list[str] = []
-    for sentence in _sentences(text):
+    sentences = _sentences(text)
+    for index, sentence in enumerate(sentences):
         if len(sentence) < 8:
             continue
-        if not CITATION_RE.search(sentence):
-            problems.append(f"uncited:{sentence[:24]}")
+        if CITATION_RE.search(sentence):
+            continue
+        if allow_gap and GAP_SENTENCE.search(sentence):
+            continue
+        if allow_next_citation and index + 1 < len(sentences):
+            # One claim written across a semicolon carries its citation at the end.
+            if CITATION_RE.search(sentences[index + 1]):
+                continue
+        problems.append(f"uncited:{sentence[:24]}")
     return problems
 
 
@@ -216,12 +243,16 @@ def _resolve_citations(text: str, hits: list[Any]) -> tuple[bool, list[str]]:
     """A citation resolves when it names a retrieved document and, if given, a page or section."""
     invalid: list[str] = []
     for doc_id, page, section in CITATION_RE.findall(text):
+        page, section = split_label(page, section)
         candidates = [hit for hit in hits if hit.chunk.doc_id == doc_id]
         if page:
             candidates = [hit for hit in candidates if hit.chunk.page == int(page)]
         if section:
+            wanted = section.strip()
             candidates = [
-                hit for hit in candidates if hit.chunk.section.startswith(section.strip())
+                hit
+                for hit in candidates
+                if hit.chunk.section.startswith(wanted) or wanted.startswith(hit.chunk.section)
             ]
         if not candidates:
             invalid.append(

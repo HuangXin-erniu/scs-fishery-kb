@@ -21,6 +21,7 @@ from ..llm import LLMClient, LLMError
 from ..models import Chunk, SearchHit
 from ..rag import LLMCache, _citations_from_text
 from .llm_answer import (
+    GAP_SENTENCE,
     _cached_json,
     _key,
     _label,
@@ -28,6 +29,7 @@ from .llm_answer import (
     _repair_messages,
     _resolve_citations,
     _sentence_problems,
+    _sentences,
     _verify,
 )
 from .select import (
@@ -185,7 +187,7 @@ def _gaps(value: Any) -> tuple[str, ...]:
 
 
 def _checks(text: str, by_label: dict[str, Any], hits: list[Any]) -> list[str]:
-    problems = _sentence_problems(text, by_label)
+    problems = _sentence_problems(text, by_label, allow_gap=True, allow_next_citation=True)
     problems += _number_problems(text, by_label)
     valid, invalid = _resolve_citations(text, hits)
     if not valid:
@@ -232,65 +234,106 @@ def _repair(
     return _clean(value.get("answer"), MAX_SUMMARY_CHARS)
 
 
+def _mark(diagnostics: dict[str, Any] | None, stage: str, detail: str = "") -> None:
+    """Record why a draft was dropped, so the next round measures instead of guessing."""
+    if diagnostics is None:
+        return
+    diagnostics["stage"] = stage
+    if detail:
+        diagnostics["detail"] = detail
+
+
 def summarize(
     question: str,
     clauses: Sequence[Clause],
     client: LLMClient | None,
     cache: LLMCache | None = None,
+    *,
+    diagnostics: dict[str, Any] | None = None,
 ) -> SummaryDraft | None:
     """Return a verified draft, or None so the caller keeps the deterministic summary."""
-    if client is None or not clauses:
+    if client is None:
+        _mark(diagnostics, "no_client")
+        return None
+    if not clauses:
+        _mark(diagnostics, "no_clauses")
         return None
     hits = _section_hits(question, clauses)
     if not hits:
+        _mark(diagnostics, "no_sections")
         return None
     context, by_label = _render(hits)
     if not context:
+        _mark(diagnostics, "no_context")
         return None
     try:
         value = _request(client, cache, question, context)
-    except LLMError:
+    except LLMError as exc:
+        _mark(diagnostics, "llm_error", str(exc)[:120])
         return None
     if value.get("abstained") is True:
+        _mark(diagnostics, "abstained")
         return None
     conclusion = _clean(value.get("conclusion"), 400)
     points = _points(value.get("points"))
     gaps = _gaps(value.get("gaps"))
     if not conclusion:
+        _mark(diagnostics, "empty_conclusion")
         return None
     text = " ".join([conclusion, *points])
     if len(text) > MAX_SUMMARY_CHARS:
+        _mark(diagnostics, "too_long", str(len(text)))
         return None
     problems = _checks(text, by_label, hits)
     repaired = False
     if problems:
         fixed = _repair(client, cache, question, context, text, problems)
         if not fixed:
+            _mark(diagnostics, "repair_empty", problems[0])
             return None
         repaired = True
         text = fixed
         conclusion, points = _resplit(text, points)
         if not conclusion:
+            _mark(diagnostics, "repair_empty_conclusion")
             return None
         problems = _checks(text, by_label, hits)
         if problems:
+            _mark(diagnostics, "checks", problems[0])
             return None
-    supported, _reason = _verify(question, text, by_label, client, cache)
+    citations = tuple(_citations_from_text(text, hits))
+    sentences = [item for item in _sentences(text) if len(item.strip()) >= 4]
+    gap_only = bool(sentences) and all(GAP_SENTENCE.search(item) for item in sentences)
+    if gap_only:
+        # Nothing to verify: the draft says the evidence does not cover the question.
+        _mark(diagnostics, "gap_only")
+        return SummaryDraft(
+            conclusion=conclusion, points=points, gaps=gaps, citations=(), repaired=repaired
+        )
+    if not citations:
+        _mark(diagnostics, "citations")
+        return None
+    supported, reason = _verify(question, text, by_label, client, cache)
     if not supported:
         fixed = _repair(client, cache, question, context, text, ["结论未被所引证据支持"])
         if not fixed:
+            _mark(diagnostics, "verify_repair_empty", reason[:80])
             return None
         text = fixed
         conclusion, points = _resplit(text, points)
         if not conclusion or _checks(text, by_label, hits):
+            _mark(diagnostics, "verify_checks", reason[:80])
             return None
-        supported, _reason = _verify(question, text, by_label, client, cache)
+        supported, reason = _verify(question, text, by_label, client, cache)
         if not supported:
+            _mark(diagnostics, "verify", reason[:80])
+            return None
+        citations = tuple(_citations_from_text(text, hits))
+        if not citations:
+            _mark(diagnostics, "citations_after_repair")
             return None
         repaired = True
-    citations = tuple(_citations_from_text(text, hits))
-    if not citations:
-        return None
+    _mark(diagnostics, "ok")
     return SummaryDraft(
         conclusion=conclusion, points=points, gaps=gaps, citations=citations, repaired=repaired
     )

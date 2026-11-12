@@ -170,3 +170,90 @@ def test_compose_records_a_dropped_draft_as_fallback():
         draft_status="fallback",
     )
     assert contract.summary_source == "fallback"
+
+
+PAGE_CLAUSES = (
+    Clause(
+        text="本文件适用于卫星遥感远洋渔场环境监测产品的制作与分发。",
+        doc_id="POL-OCEAN-096",
+        section="",
+        page=7,
+        rank=0,
+        source_class="normative",
+    ),
+)
+
+
+def test_a_page_written_as_a_section_still_resolves():
+    client = FakeClient(
+        [
+            _summary("监测产品适用于远洋渔业生产与科研 [POL-OCEAN-096 §p.7]。"),
+            '{"supported": true, "reason": "ok"}',
+        ]
+    )
+    draft = summarize("监测产品适用哪些单位？", PAGE_CLAUSES, client)
+    assert draft is not None
+    assert draft.citations
+    assert client.calls >= 2
+
+
+def test_a_gap_sentence_is_not_an_uncited_claim():
+    client = FakeClient(
+        [
+            _summary("休渔期不出海是否发放油补，目前证据未规定 [POL-OCEAN-096 §p.7]。"),
+        ]
+    )
+    draft = summarize("休渔期不出海发不发油补？", PAGE_CLAUSES, client)
+    assert draft is not None
+    assert "未规定" in draft.conclusion
+    # The verifier is skipped for a pure gap draft, so only one call was made.
+    assert client.calls == 1
+
+
+def test_a_factual_uncited_sentence_is_still_rejected():
+    client = FakeClient(
+        [
+            _summary("休渔期不出海可以领取油补，金额为每年两万元。"),
+            '{"answer": "休渔期不出海能否领取油补，目前证据未规定 [POL-OCEAN-096 §p.7]。"}',
+            '{"supported": true, "reason": "ok"}',
+        ]
+    )
+    draft = summarize("休渔期不出海发不发油补？", PAGE_CLAUSES, client)
+    assert draft is not None
+    assert "未规定" in draft.conclusion
+
+
+def test_diagnostics_record_the_failing_stage():
+    trace: dict[str, str] = {}
+    summarize("休渔期下网怎么罚？", CLAUSES, None, diagnostics=trace)
+    assert trace["stage"] == "no_client"
+
+    trace = {}
+    client = FakeClient([LLMError("timeout")])
+    summarize("休渔期下网怎么罚？", CLAUSES, client, diagnostics=trace)
+    assert trace["stage"] == "llm_error"
+
+    trace = {}
+    client = FakeClient([_summary("")])
+    summarize("休渔期下网怎么罚？", CLAUSES, client, diagnostics=trace)
+    assert trace["stage"] == "empty_conclusion"
+
+
+def test_a_fallback_never_puts_raw_text_in_the_conclusion(monkeypatch: pytest.MonkeyPatch):
+    monkeypatch.setenv("SCS_FKB_SUMMARY_SELECT", "off")
+    raw = "二 内陆渔业资源养 护 补 贴 补贴对象为我省合法内陆捕捞渔船的船舶所有 人"
+    contract = compose(
+        "休渔期不出海发不发油补？",
+        raw + " [POL-OCEAN-096 p.7]",
+        doc_ids=["POL-OCEAN-096"],
+        registry={},
+        channels=ChannelBook.load(),
+        draft=None,
+        draft_status="fallback",
+    )
+    from scs_fkb.answer_v3.compose import FALLBACK_NOTE
+
+    assert contract.conclusion == FALLBACK_NOTE
+    assert "补贴对象" not in contract.body.split("依据摘录：")[0]
+    assert contract.answerability == "partial"
+    assert any("未通过校验" in item for item in contract.gap)
