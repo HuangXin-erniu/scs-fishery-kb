@@ -48,7 +48,7 @@ from .select import (
     split_slots,
 )
 
-PROMPT_VERSION = "summary-model-v3"
+PROMPT_VERSION = "summary-model-v4"
 MAX_SECTIONS = 8
 MAX_WINDOW = 1500
 MAX_EVIDENCE_CHARS = 11000
@@ -65,9 +65,12 @@ SUMMARY_SYSTEM = (
     "1. conclusion：一句话直接回答问题的第一问（数值、是否、期限、材料或受理层级），不要铺垫。\n"
     "2. points：0 到 2 句，回答其余的每一问；每句只讲一件事。\n"
     "3. gaps：证据清单确实没有覆盖的部分，写成“缺什么”，最多两条；都覆盖了就给空数组。\n"
-    "4. coverage：证据对问题的覆盖程度，只能填 full / partial / none。full = 问题所问的事实"
-    "都有条款；partial = 只覆盖一部分，其余要在 gaps 里写明；none = 没有任何段落包含所问事实，"
-    "此时 conclusion 写成“证据未覆盖……”。\n"
+    "4. coverage：三档，按“证据里有没有一句能写进结论的话”判断。\n"
+    "   - full：问题问到的每一项都有条款。\n"
+    "   - partial：至少有一句能直接写进 conclusion（哪怕只是一个定义、一条原则、一个办理主体），"
+    "但关键数值、具体程序或分级标准缺失。此时必须填 partial：把能写的那句写进 conclusion，"
+    "缺的写进 gaps。**缺具体数值、缺具体程序、缺分级标准都不是 none。**\n"
+    "   - none：所有候选段落都与问题无关，一句都用不上；此时 conclusion 写成“证据未覆盖……”。\n"
     "硬性要求：每个陈述句都必须带引用，格式 [DOC_ID §章节]，必须与证据清单里的标签完全一致；"
     "数字必须逐字来自证据并带单位；证据没有的数值不要写；不要写“根据证据”之类的空话。\n"
     '只输出 JSON：{"conclusion": "……", "points": ["……"], "gaps": ["……"], "coverage": "full"}'
@@ -343,8 +346,9 @@ def summarize(
     citations = tuple(_citations_from_text(text, hits))
     sentences = [item for item in _sentences(text) if len(item.strip()) >= 4]
     gap_only = bool(sentences) and all(GAP_SENTENCE.search(item) for item in sentences)
-    if coverage == "none" and not gap_only:
-        # A draft that answers with citations is at least partly covering the question.
+    if coverage == "none" and (points or not gap_only):
+        # Bullet points or a non-gap conclusion mean the draft did use the evidence,
+        # so the question is at least partly covered whatever the flag says.
         coverage = "partial"
     if coverage == "partial" and not gaps:
         # Partial coverage without a declared gap is indistinguishable from a full answer.

@@ -381,3 +381,49 @@ def test_breadth_only_breaks_ties():
 
     # Three matching clauses must not add up to more than a single precise clause.
     assert _section_score({1: 10.0, 2: 10.0, 3: 10.0}) < _section_score({1: 10.1})
+
+
+def test_a_none_reply_with_points_is_partial():
+    import json
+
+    reply = json.dumps(
+        {
+            "conclusion": "证据未覆盖放流尾数的具体数值。",
+            "points": ["规模标准由县级以上地方渔业行政主管部门确定 [POL-LAW-009 §第七十八条]。"],
+            "gaps": ["缺具体放流尾数"],
+            "coverage": "none",
+        },
+        ensure_ascii=False,
+    )
+    client = FakeClient([reply, '{"supported": true, "reason": "ok"}'])
+    draft = summarize("增殖放流的具体尾数是多少？", CLAUSES, client)
+    assert draft is not None
+    assert draft.coverage == "partial"
+    assert draft.gaps
+
+
+def test_a_none_reply_without_points_stays_none():
+    import json
+
+    reply = json.dumps(
+        {
+            "conclusion": "证据未覆盖放流尾数的具体数值。",
+            "points": [],
+            "gaps": ["缺具体放流尾数"],
+            "coverage": "none",
+        },
+        ensure_ascii=False,
+    )
+    client = FakeClient([reply])
+    draft = summarize("增殖放流的具体尾数是多少？", CLAUSES, client)
+    assert draft is not None
+    assert draft.coverage == "none"
+    contract = compose(
+        "增殖放流的具体尾数是多少？",
+        "",
+        doc_ids=["POL-LAW-009"],
+        registry={},
+        channels=ChannelBook.load(),
+        draft=draft,
+    )
+    assert contract.answerability == "abstain"
