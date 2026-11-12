@@ -12,7 +12,7 @@ from scs_fkb.service_v2 import AnswerService
 CITATION = "[POL-CLOS-015 §三、休渔时间]"
 
 
-def _hit() -> SearchHit:
+def _hit(level: str = "national") -> SearchHit:
     chunk = Chunk(
         chunk_id="CH-1",
         doc_id="POL-CLOS-015",
@@ -25,8 +25,8 @@ def _hit() -> SearchHit:
         char_end=50,
         sensitivity="public",
         authority_tier="A",
-        level="national",
-        jurisdiction="national",
+        level=level,
+        jurisdiction=level if level == "national" else "Guangdong",
     )
     return SearchHit(chunk=chunk, score=1.0)
 
@@ -131,6 +131,30 @@ def test_standard_mode_uses_cache_on_second_call(tmp_path) -> None:
     assert client.calls == calls_after_first
     assert second.evidence
     assert second.citations
+
+
+def test_standard_mode_adds_jurisdiction_caveat(tmp_path) -> None:
+    class ProvincialRetriever(FakeRetriever):
+        def search(
+            self,
+            question: str,
+            top_k: int = 5,
+            filters=None,
+            rerank: bool = True,
+            depth: int | None = None,
+            rerank_candidates: int | None = None,
+        ):
+            return [_hit(level="provincial")]
+
+    client = FakeClient()
+    service = _service(tmp_path, client, ProvincialRetriever())
+    result = service.query(
+        "休渔期查到船在港里、网也在船上，能不能直接认定违规？", mode="standard", web="off"
+    )
+    assert result.abstained is False
+    assert "未说明省份" in result.answer
+    assert "未说明省份" in "；".join(result.gap)
+    assert result.answerability in {"partial", "answerable"}
 
 
 def test_default_mode_can_still_be_dump(tmp_path) -> None:

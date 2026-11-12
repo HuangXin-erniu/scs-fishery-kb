@@ -603,6 +603,7 @@ class AnswerService:
         persona: str = "general",
         region: str | None = None,
         year: int | None = None,
+        region_named: bool = False,
     ) -> StandardResult | None:
         cache_obj = self._answer_cache_obj()
         key = self._standard_cache_key(
@@ -647,6 +648,29 @@ class AnswerService:
             index_version=self.index_version,
         )
         result = answer_with_standard(question, pack, client, llm_cache)
+        if (
+            not result.answer.abstained
+            and not region_named
+            and any(item.level in {"provincial", "municipal"} for item in pack.items)
+        ):
+            caveat = "注意：问题未说明省份；以上为省级规定，其他省份以属地规定为准。"
+            fields = dict(result.contract_fields)
+            gap = list(fields.get("gap") or [])
+            gap.append("未说明省份")
+            fields["gap"] = gap
+            fields["answerability"] = "partial"
+            result = replace(
+                result,
+                answer=Answer(
+                    text=f"{result.answer.text}\n{caveat}",
+                    citations=result.answer.citations,
+                    abstained=False,
+                    reason=result.answer.reason,
+                ),
+                confidence=max(0.0, result.confidence - 0.1),
+                missing=tuple(list(result.missing) + ["省份"]),
+                contract_fields=fields,
+            )
         if cache_obj is not None and not result.answer.abstained and result.answer.citations:
             payload = {
                 "answer": result.answer.text,
@@ -934,6 +958,9 @@ class AnswerService:
                 persona=persona,
                 region=region,
                 year=year,
+                region_named=bool(
+                    region or (plan.jurisdiction and plan.jurisdiction != "national")
+                ),
             )
             llm_answer = standard.answer if standard is not None else None
             if standard is not None and standard.pack.items:

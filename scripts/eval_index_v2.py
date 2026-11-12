@@ -60,12 +60,15 @@ def main(argv: list[str] | None = None) -> int:
         "--rerank-candidates", type=int, default=0, help="candidates passed to the reranker"
     )
     parser.add_argument("--json", action="store_true")
+    parser.add_argument("--limit", type=int, default=0, help="evaluate the first N rows only")
     args = parser.parse_args(argv)
     if not args.data_root:
         print("error: set SCS_FKB_DATA_ROOT or pass --data-root", file=sys.stderr)
         return 2
 
     rows = _rows(Path(args.set))
+    if args.limit:
+        rows = rows[: args.limit]
     retriever = build_retriever(args.data_root, reranker=args.rerank)
     indexed_docs = {str(chunk.doc_id) for chunk in getattr(retriever, "chunks", []) or []}
     reachable = [row for row in rows if _reachable(row, indexed_docs)]
