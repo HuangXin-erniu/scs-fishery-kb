@@ -5,7 +5,7 @@ import os
 import re
 import time
 import uuid
-from dataclasses import replace
+from dataclasses import asdict, replace
 from datetime import date
 from pathlib import Path
 from typing import Any
@@ -14,26 +14,128 @@ from .. import web_v2
 from ..answer import answer_question, citation_text, validate_citations
 from ..answer_v3 import ChannelBook
 from ..answer_v3 import compose as compose_contract
+from ..answer_v3.cache import AnswerCache, config_hash, question_key
 from ..answer_v3.dump_arm import answer_with_dump
+from ..answer_v3.evidence import (
+    DEFAULT_MAX_CHARS,
+    EvidenceItem,
+    EvidencePack,
+    build_evidence_pack,
+)
 from ..answer_v3.facet_arm import answer_with_facets
 from ..answer_v3.llm_answer import answer_with_llm
 from ..answer_v3.quotes_arm import answer_with_quotes
 from ..answer_v3.short_arm import answer_with_short
+from ..answer_v3.standard_arm import PROMPT_VERSION as STANDARD_PROMPT_VERSION
+from ..answer_v3.standard_arm import StandardResult, answer_with_standard
 from ..config import REPO_ROOT
 from ..facts import DEFAULT_FACTS_DIR, load_all
 from ..knowledge_v2 import load_playbooks
 from ..llm import LLMClient, LLMConfig, LLMError
-from ..models import Citation, SearchHit
+from ..models import Answer, Chunk, Citation, SearchHit
 from ..rag import LLMCache
 from ..registry import load_registry
 from ..retrieve_v2 import plan_query
 from .schemas import (
+    CacheInfoModel,
     CitationModel,
+    ConfidenceModel,
+    EvidenceModel,
+    FreshnessModel,
+    JudgeModel,
     PlaybookStep,
     PlaybookView,
     QueryResponse,
     WebLeadModel,
 )
+
+
+def _pack_payload(pack: EvidencePack) -> list[dict[str, Any]]:
+    return [
+        {
+            "chunk": asdict(item.chunk),
+            "quote": item.quote,
+            "score": item.score,
+            "rank": item.rank,
+            "title": item.title,
+            "trust": item.trust,
+            "authority_tier": item.authority_tier,
+            "level": item.level,
+            "as_of": item.as_of,
+            "review_due": item.review_due,
+            "stale": item.stale,
+            "provisional": item.provisional,
+        }
+        for item in pack.items
+    ]
+
+
+def _pack_from_payload(rows: list[dict[str, Any]], index_version: str = "") -> EvidencePack:
+    items = tuple(
+        EvidenceItem(
+            chunk=Chunk(**row["chunk"]),
+            quote=str(row.get("quote") or ""),
+            score=float(row.get("score") or 0.0),
+            rank=int(row.get("rank") or 0),
+            title=str(row.get("title") or ""),
+            trust=str(row.get("trust") or ""),
+            authority_tier=str(row.get("authority_tier") or ""),
+            level=str(row.get("level") or ""),
+            as_of=str(row.get("as_of") or ""),
+            review_due=str(row.get("review_due") or ""),
+            stale=bool(row.get("stale")),
+            provisional=bool(row.get("provisional")),
+        )
+        for row in rows
+    )
+    text = "\n\n".join(f"[{item.label}] {item.quote}" for item in items)
+    return EvidencePack(
+        items=items,
+        text=text,
+        chars=len(text),
+        truncated=False,
+        index_version=index_version,
+    )
+
+
+def _citation_payload(citations: list[Citation]) -> list[dict[str, Any]]:
+    return [
+        {
+            "doc_id": item.doc_id,
+            "title": item.title,
+            "page": item.page,
+            "section": item.section,
+            "snippet": item.snippet,
+            "score": item.score,
+            "url": item.url,
+            "retrieved_at": item.retrieved_at,
+        }
+        for item in citations
+    ]
+
+
+def _citation_from_payload(rows: list[dict[str, Any]]) -> list[Citation]:
+    return [
+        Citation(
+            doc_id=str(row.get("doc_id") or ""),
+            title=str(row.get("title") or ""),
+            page=int(row.get("page") or 0),
+            section=str(row.get("section") or ""),
+            snippet=str(row.get("snippet") or ""),
+            score=float(row.get("score") or 0.0),
+            url=str(row.get("url") or ""),
+            retrieved_at=str(row.get("retrieved_at") or ""),
+        )
+        for row in rows
+    ]
+
+
+def _freshness_of(plan: Any, pack: EvidencePack) -> FreshnessModel:
+    from ..web_v2.policy import TTL_DAYS
+
+    ttl = TTL_DAYS.get(str(getattr(plan, "nature", "") or ""), 30)
+    return FreshnessModel(as_of=pack.as_of, ttl_days=ttl, stale_sources=pack.stale_docs)
+
 
 DISCLAIMER = "以官方发布文本为准；本服务不构成法律意见。"
 
@@ -242,6 +344,7 @@ class AnswerService:
             "true",
             "yes",
         }
+        self._answer_cache: AnswerCache | None = None
 
     def _llm_pair(self) -> tuple[LLMClient, LLMCache] | None:
         if self._llm is False:
@@ -443,6 +546,128 @@ class AnswerService:
         if self._channels is None:
             self._channels = ChannelBook.load()
         return self._channels
+
+    def _standard_hits(self, question: str, filters: Any) -> list[SearchHit]:
+        try:
+            return self.retriever.search(
+                question,
+                top_k=8,
+                filters=filters,
+                rerank=True,
+                depth=50,
+                rerank_candidates=50,
+            )
+        except TypeError:
+            try:
+                return self.retriever.search(question, top_k=8, filters=filters, rerank=True)
+            except TypeError:
+                return self.retriever.search(question, top_k=8)
+
+    def _answer_cache_obj(self) -> AnswerCache | None:
+        if self._answer_cache is None and self.data_root is not None:
+            self._answer_cache = AnswerCache(
+                self.data_root,
+                encoder=getattr(self.retriever, "encoder", None),
+            )
+        return self._answer_cache
+
+    def _standard_cache_key(
+        self,
+        question: str,
+        *,
+        persona: str,
+        region: str | None,
+        year: int | None,
+        max_chars: int | None,
+    ) -> str:
+        return question_key(
+            question,
+            persona=persona,
+            region=region,
+            year=year,
+            index_version=self.index_version,
+            mode="standard",
+            prompt_version=STANDARD_PROMPT_VERSION,
+            config=config_hash(
+                max_chars=max_chars or DEFAULT_MAX_CHARS,
+                selfcheck=os.environ.get("SCS_FKB_STANDARD_SELFCHECK", "on"),
+            ),
+        )
+
+    def _standard_answer(
+        self,
+        question: str,
+        filters: Any,
+        *,
+        max_chars: int | None = None,
+        persona: str = "general",
+        region: str | None = None,
+        year: int | None = None,
+    ) -> StandardResult | None:
+        cache_obj = self._answer_cache_obj()
+        key = self._standard_cache_key(
+            question, persona=persona, region=region, year=year, max_chars=max_chars
+        )
+        if cache_obj is not None:
+            cached = cache_obj.get(key, question=question, index_version=self.index_version)
+            if cached:
+                pack = _pack_from_payload(list(cached.get("evidence") or []), self.index_version)
+                answer = Answer(
+                    text=str(cached.get("answer") or ""),
+                    citations=_citation_from_payload(list(cached.get("citations") or [])),
+                    abstained=False,
+                    reason="standard_cache",
+                )
+                cache_info = cached.get("cache") or {}
+                return StandardResult(
+                    answer=answer,
+                    pack=pack,
+                    confidence=float(cached.get("confidence") or 0.0),
+                    cached=True,
+                    cache_type=str(cache_info.get("type") or "exact"),
+                    answerability=str(cached.get("answerability") or "answerable"),
+                    conclusion=str(cached.get("conclusion") or ""),
+                    conditions=tuple(cached.get("conditions") or []),
+                    missing=tuple(cached.get("missing") or []),
+                    judge_supported=cached.get("judge_supported"),
+                    judge_reason=str(cached.get("judge_reason") or ""),
+                    contract_fields=dict(cached.get("contract_fields") or {}),
+                )
+        pair = self._llm_pair()
+        if pair is None or self.data_root is None:
+            return None
+        client, llm_cache = pair
+        hits = self._standard_hits(question, filters)
+        if not hits:
+            return None
+        pack = build_evidence_pack(
+            hits,
+            max_chars=max_chars or DEFAULT_MAX_CHARS,
+            registry=self._registry,
+            index_version=self.index_version,
+        )
+        result = answer_with_standard(question, pack, client, llm_cache)
+        if cache_obj is not None and not result.answer.abstained and result.answer.citations:
+            payload = {
+                "answer": result.answer.text,
+                "citations": _citation_payload(result.answer.citations),
+                "evidence": _pack_payload(pack),
+                "contract_fields": result.contract_fields,
+                "confidence": result.confidence,
+                "answerability": result.answerability,
+                "conclusion": result.conclusion,
+                "conditions": list(result.conditions),
+                "missing": list(result.missing),
+                "judge_supported": result.judge_supported,
+                "judge_reason": result.judge_reason,
+            }
+            cache_obj.put(
+                key,
+                payload,
+                question=question,
+                index_version=self.index_version,
+            )
+        return result
 
     def _search(self, question: str, filters: Any, rerank: bool | None = None) -> list[SearchHit]:
         enabled = self.rerank_default if rerank is None else bool(rerank)
@@ -651,9 +876,12 @@ class AnswerService:
         web: str | None = None,
         short: bool = False,
         rerank: bool | None = None,
+        mode: str | None = None,
+        max_chars: int | None = None,
     ) -> QueryResponse:
         started = time.perf_counter()
         request_id = f"REQ-{uuid.uuid4().hex[:12]}"
+        effective_mode = (mode or self.answer_mode).strip().lower()
         future_year = any(int(value) > date.today().year for value in YEAR_RE.findall(question))
         if (
             len(question.strip()) < 2
@@ -693,17 +921,31 @@ class AnswerService:
         lead = self._fact_lead(question, hits, plan.nature)
         if lead is not None and all(item.chunk.chunk_id != lead[2].chunk.chunk_id for item in hits):
             hits.append(lead[2])
-        short_mode = bool(short) or self.answer_mode == "short"
+        standard: StandardResult | None = None
+        short_mode = bool(short) or effective_mode == "short"
         if short_mode:
             short_lead = self._short_fact_lead(question, plan.nature)
             llm_answer = self._short_answer(question, [short_lead] if short_lead else None)
-        elif self.answer_mode == "dump":
+        elif effective_mode == "standard":
+            standard = self._standard_answer(
+                question,
+                filters,
+                max_chars=max_chars,
+                persona=persona,
+                region=region,
+                year=year,
+            )
+            llm_answer = standard.answer if standard is not None else None
+            if standard is not None and standard.pack.items:
+                hits = standard.pack.hits
+                lead = None
+        elif effective_mode == "dump":
             llm_answer = self._dump_answer(question)
-        elif self.answer_mode == "quotes":
+        elif effective_mode == "quotes":
             llm_answer = self._quotes_answer(question)
-        elif self.answer_mode == "facet":
+        elif effective_mode == "facet":
             llm_answer = self._facet_answer(question)
-        elif self.answer_mode == "llm":
+        elif effective_mode == "llm":
             llm_answer = self._llm_answer(question, hits, filters)
         else:
             llm_answer = None
@@ -736,7 +978,7 @@ class AnswerService:
                 reason="weak_evidence",
             )
         if (
-            self.answer_mode not in ("llm", "dump")
+            effective_mode not in ("llm", "dump", "standard")
             and os.environ.get("SCS_FKB_VERIFY_ANSWERS", "off").strip().lower()
             in ("on", "1", "true")
             and not answer.abstained
@@ -762,7 +1004,7 @@ class AnswerService:
             )
             for item in answer.citations
         ]
-        if not answer.abstained and self.answer_mode != "dump":
+        if not answer.abstained and effective_mode not in ("dump", "standard"):
             lead = lead if "lead" in locals() else self._fact_lead(question, hits, plan.nature)
             if lead is not None and lead[0] not in answer.text:
                 lead_text, lead_citation, _lead_hit = lead
@@ -798,7 +1040,9 @@ class AnswerService:
                 )
                 citations = []
         contract_fields: dict[str, Any] = {}
-        if self.answer_contract == "v3" and not short_mode:
+        if standard is not None:
+            contract_fields = standard.contract_fields
+        elif self.answer_contract == "v3" and not short_mode:
             draft, draft_status = self._summary_draft(question, getattr(answer, "clauses", ()))
             contract = compose_contract(
                 question,
@@ -881,6 +1125,38 @@ class AnswerService:
             mode=mode,
             playbook=playbook_view,
             index_version=self.index_version,
+            answer_mode=effective_mode,
+            evidence=(
+                [EvidenceModel(**row) for row in standard.pack.to_models()]
+                if standard is not None
+                else []
+            ),
+            freshness=(_freshness_of(plan, standard.pack) if standard is not None else None),
+            confidence=(
+                ConfidenceModel(score=standard.confidence, basis="standard-arm")
+                if standard is not None
+                else None
+            ),
+            cache=(
+                CacheInfoModel(hit=True, type=standard.cache_type)
+                if standard is not None and standard.cached
+                else None
+            ),
+            judge=(
+                JudgeModel(
+                    supported=standard.judge_supported,
+                    reason=standard.judge_reason,
+                )
+                if standard is not None
+                and (standard.judge_supported is not None or standard.judge_reason)
+                else None
+            ),
+            provisional=(bool(standard.pack.provisional) if standard is not None else False),
+            clarify_slots=(
+                list(standard.missing)
+                if standard is not None and standard.answerability == "clarify"
+                else []
+            ),
             latency_ms=int((time.perf_counter() - started) * 1000),
             disclaimer=DISCLAIMER,
             **contract_fields,
@@ -919,11 +1195,18 @@ def build_service(
         raise RuntimeError("SCS_FKB_DATA_ROOT is required")
     root = Path(configured).expanduser()
     retriever = build_retriever(root, reranker=True)
+    index_version = "v2"
+    try:
+        current = json.loads((root / "v2" / "index" / "current.json").read_text(encoding="utf-8"))
+        index_version = str(current.get("index_version") or "v2")
+    except (OSError, json.JSONDecodeError, TypeError):
+        pass
 
     return AnswerService(
         retriever=retriever,
         data_root=root,
         run_root=run_root or os.environ.get("SCS_FKB_RUN_ROOT"),
+        index_version=index_version,
         answer_contract=answer_contract,
-        answer_mode=os.environ.get("SCS_FKB_ANSWER_MODE", "dump"),
+        answer_mode=os.environ.get("SCS_FKB_ANSWER_MODE", "standard"),
     )

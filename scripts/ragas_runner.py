@@ -168,7 +168,7 @@ async def _run(args: argparse.Namespace, rows: list[dict[str, Any]]) -> dict[str
         from ragas.cache import DiskCacheBackend
 
         cache = DiskCacheBackend(Path(args.cache_dir).expanduser())
-    llm = llm_factory(model, client=client, cache=cache)
+    llm = llm_factory(model, client=client, cache=cache, max_tokens=4096, temperature=0)
     embeddings = FastEmbedAdapter(
         args.embedding_model,
         cache_dir=args.embedding_cache_dir,

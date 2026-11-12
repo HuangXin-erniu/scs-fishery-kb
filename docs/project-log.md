@@ -1359,3 +1359,34 @@ This log records material project changes by date. It does not use release versi
 - Surveyed 30 practical-source candidates (sea state/weather, safety, gear, species, subsidy, market, port services): 23 responded with HTTP 200, 17 had parseable HTML, 15 carried an ICP filing only; provincial sites for Guangdong, Guangxi and Hainan were unreachable from this network. The candidates are open in `configs/candidates.yaml`; nothing was ingested.
 - Added ADR 0009–0013 (standard RAG answer pipeline, dual-track evaluation, semi-automatic update loop, practical sources and freshness, source schema v5) and the P26 programme section in `docs/plan.md`.
 - No data payload, index, run artifact or private question entered the public tree; no tag or release was created. Phase 0 is recorded on branch `p26-phase0` and is not pushed.
+
+## 2026-11-12 — Second-stage Phase 1: standard RAG answer arm
+
+- Added `answer_v3/evidence.py` (bounded 8-item / 12k-character evidence pack with
+  citation labels and authority/as-of/stale/provisional metadata),
+  `answer_v3/standard_arm.py` (structured JSON answer, citation/number/support
+  validation, repair/prune, optional faithfulness self-check, refuse/clarify
+  states) and `answer_v3/cache.py` (exact and semantic answer cache keyed by
+  question, persona, region/year, index version, prompt and config hashes, with
+  TTL and index-version invalidation).
+- The standard arm is the product default (`SCS_FKB_ANSWER_MODE=standard`). It
+  retrieves a 50-candidate hybrid pool, reranks to 8 with the BGE cross-encoder,
+  expands to parent sections and asks for structured JSON
+  (conclusion/applicability/steps/documents/deadline/basis/caveat/soft-gap/
+  missing-slots/citations). Unsupported sentences are removed; a failed
+  conclusion abstains with a gap and a channel.
+- `service_v2` gains `mode` and `max_chars`, `answer_mode`, `evidence`,
+  `freshness`, `confidence`, `cache`, `judge`, `provisional` and `clarify_slots`
+  fields; `build_service` now records the live index version from
+  `v2/index/current.json` so the cache invalidates when the index changes.
+- Track A (`scripts/eval_accept.py`) pins the deterministic `extractive` path;
+  the public regression and service scenarios pin the dump arm for
+  comparability. The 512 instrument, labels and doc map are untouched.
+- Added 19 tests (evidence pack, standard arm, cache, standard service mode);
+  the suite is 414 passed / 2 skipped, ruff and format clean, public tree OK.
+- A live standard query on the real index answered the 2026 closure question
+  with `[POL-CLOS-015 §三、休渔时间]`, 8 evidence items, freshness and
+  confidence; the second call hit the exact cache; a no-evidence question
+  returned `standard_refuse` with a channel.
+- Track B RAGAS and the reranker A/B are in progress; the numbers will be added
+  to the evaluation report when the endpoint completes.

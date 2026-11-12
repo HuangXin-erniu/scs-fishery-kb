@@ -39,7 +39,7 @@ configs/corpus.yaml (100 sources, schema v4)
 | Chunking | `ingest_v2/chunking.py`, `chunking.py` | article → section → fallback groups; `label_sections` gives every chunk an article/heading/page label; parent blocks per section |
 | Index | `index_v2/` | LanceDB table over child chunks; model bge-small-zh-v1.5 (ONNX); model and chunk digest recorded in the manifest |
 | Retrieval | `retrieve_v2/` | rewrite (cached, 2–3 normative queries), RRF fusion, optional cross-encoder (measured and disabled) |
-| Answering | `answer_v3/` | `llm_answer` (single pass), `facet_arm`, `quotes_arm`, `dump_arm`; all pass through citation/number/support checks |
+| Answering | `answer_v3/` | **`standard_arm`** (default: bounded evidence pack, structured JSON, citation/number/support checks, cache), `llm_answer`, `facet_arm`, `quotes_arm`, `dump_arm` (Track A) |
 | Contract | `answer_v3/compose.py` | three states, conclusion first, as-of, numeric basis, gap and channel |
 | Service | `service_v2/` | `/v1` query API, v3 response fields; the dump arm decides answerability from the summary's candidate set, other arms may use the evidence-sufficiency judge (`SCS_FKB_VERIFY_ANSWERS=on`) |
 | Evaluation | `eval_accept/`, `scripts/eval_accept.py` | 512-question acceptance instrument, deterministic scoring, per-domain report |
@@ -51,9 +51,14 @@ configs/corpus.yaml (100 sources, schema v4)
 | single | `SCS_FKB_ANSWER_MODE=llm` | 0.3807 | 0.3287 | conclusion + conditions from one pass |
 | facet | `SCS_FKB_ANSWER_MODE=facet` | 0.4133 | 0.3540 | decompose, per-facet answer, merge, verify |
 | quotes | `SCS_FKB_ANSWER_MODE=quotes` | 0.5437 (120 pilot) | 0.5437 | verbatim quotes, rejected when reworded |
-| **dump** | `SCS_FKB_ANSWER_MODE=dump` | **0.8092** | **0.9565** | deterministic, block quoting, numeric comparison block, no model call; protocol v2 |
+| dump | `SCS_FKB_ANSWER_MODE=dump` | **0.8092** | **0.9565** | deterministic, block quoting, numeric comparison block, no model call; Track A instrument only |
+| **standard** | `SCS_FKB_ANSWER_MODE=standard` | Track B (see evaluation) | Track B (see evaluation) | top-50 → rerank top-8 → 12k evidence pack → structured JSON → citation/number/support checks → cache; product default |
 
-The dump arm is the shipped default (`SCS_FKB_ANSWER_MODE=dump`) with depth 300,
+The **standard arm is the product default** (`SCS_FKB_ANSWER_MODE=standard`, P26 Phase 1):
+it retrieves a 50-candidate pool, reranks to 8, builds a bounded 12k-character
+evidence pack, asks for structured JSON, validates every citation/number/claim
+and writes a validated answer to the semantic cache. The clause-dump arm is kept
+for the Track A instrument only (`SCS_FKB_ANSWER_MODE=dump`), with depth 300,
 block quoting, 300 hits / 100,000 characters and the numeric comparison block;
 `SCS_FKB_DUMP_DEPTH`, `SCS_FKB_DUMP_MODE`, `SCS_FKB_DUMP_HITS`,
 `SCS_FKB_DUMP_CHARS` and `SCS_FKB_DUMP_NUMBERS` override it.
@@ -131,6 +136,10 @@ PYTHONPATH=src python -m scs_fkb serve
   `scripts/check_sources.py`, `scripts/watch_sources.py` and
   `scripts/weekly_report.py`, so the CLI stays small and the weekly cycle is
   documented in [operations.md](operations.md).
+- The standard arm uses a bounded evidence pack (8–12 items, 12k characters) and
+  a semantic answer cache under the local data root; a cache hit is invalidated
+  when the index version changes or the entry passes its TTL. Aborted Track A
+  reruns on the dump arm are a throughput finding, not a retrieval regression.
 - The optional web-evidence layer was rebuilt in `src/scs_fkb/web_v2/` and is off
   by default. It searches an official-host allowlist, fetches over HTTPS with TTL
   caching, and returns at most two labelled leads in `web_leads`; those leads are

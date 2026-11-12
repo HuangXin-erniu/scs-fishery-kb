@@ -55,13 +55,14 @@ class HybridRetriever:
         self.bm25_weight = bm25_weight
         self.dense_weight = dense_weight
 
-    def _dense_hits(self, query: str, ceiling: str) -> list[SearchHit]:
+    def _dense_hits(self, query: str, ceiling: str, *, depth: int | None = None) -> list[SearchHit]:
+        limit = depth or self.depth
         if self.dense_fn is not None:
-            pairs = self.dense_fn(query, self.depth)
+            pairs = self.dense_fn(query, limit)
         elif self.dense_index is not None and self.encoder is not None:
             from ..index_v2 import dense_search
 
-            pairs = dense_search(self.dense_index, query, top_k=self.depth)
+            pairs = dense_search(self.dense_index, query, top_k=limit)
         else:
             return []
         hits: list[SearchHit] = []
@@ -81,20 +82,31 @@ class HybridRetriever:
         filters: RetrievalFilters | None = None,
         *,
         rerank: bool = True,
+        depth: int | None = None,
+        rerank_candidates: int | None = None,
     ) -> list[SearchHit]:
         ceiling = (filters or RetrievalFilters()).sensitivity_ceiling
+        candidate_depth = max(self.depth, int(depth or 0))
         expanded = expand_query(question, self.lexicon) if self.lexicon else question
-        lexical = self.bm25.search(expanded, top_k=self.depth, sensitivity_ceiling=ceiling)
-        dense = self._dense_hits(expanded, ceiling)
+        lexical = self.bm25.search(expanded, top_k=candidate_depth, sensitivity_ceiling=ceiling)
+        dense = self._dense_hits(expanded, ceiling, depth=candidate_depth)
         fused = reciprocal_rank_fusion(
             [lexical, dense],
             [self.bm25_weight, self.dense_weight],
             k=self.fusion_k,
-            top_k=self.depth,
+            top_k=candidate_depth,
         )
         fused = filter_hits(fused, filters)
         if rerank and self.reranker is not None:
-            fused = self.reranker.rerank(question, fused, top_k=max(top_k, 5))
+            try:
+                fused = self.reranker.rerank(
+                    question,
+                    fused,
+                    top_k=max(top_k, 5),
+                    max_candidates=rerank_candidates,
+                )
+            except TypeError:
+                fused = self.reranker.rerank(question, fused, top_k=max(top_k, 5))
         return fused[:top_k]
 
     def search_queries(

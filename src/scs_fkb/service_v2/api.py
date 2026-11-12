@@ -159,6 +159,8 @@ def create_app(
             web=payload.web,
             short=payload.short,
             rerank=payload.rerank,
+            mode=payload.mode,
+            max_chars=payload.max_chars,
         )
         log_query(result, payload.question)
         return result

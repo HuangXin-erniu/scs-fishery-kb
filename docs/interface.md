@@ -35,13 +35,18 @@ Request:
   "year": 2026,
   "web": "auto",
   "short": false,
-  "rerank": null
+  "rerank": null,
+  "mode": "standard",
+  "max_chars": 12000
 }
 ```
 
 `persona` is one of `captain`, `owner`, `enforcement`, `extension`, `general`.
 `region` and `year` are optional filters. The question is limited to 500
-characters.
+characters. `mode` overrides the configured answer arm for one request
+(`standard` is the product default; `short`, `full`, `dump`, `llm`, `quotes`,
+`facet`, `extractive` remain available). `max_chars` bounds the standard arm's
+evidence pack (1000–20000, default 12000).
 
 `short` selects the optional short-answer arm (at most 300 Chinese characters,
 conclusion → basis → deadline/documents, every claim cited). It defaults to

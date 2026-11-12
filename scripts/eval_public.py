@@ -60,6 +60,9 @@ def main(argv: list[str] | None = None) -> int:
         return 2
 
     os.environ.setdefault("SCS_FKB_WEB", "off")
+    # The public regression is the historical dump-arm baseline; the standard
+    # arm is measured by Track B, not here.
+    os.environ.setdefault("SCS_FKB_ANSWER_MODE", "dump")
     service = build_service(data_root=args.data_root)
     rows = _load_set(Path(args.set))
 

@@ -18,6 +18,10 @@ class QueryRequest(BaseModel):
     web: WebMode = "off"
     short: bool = False
     rerank: bool | None = None
+    mode: (
+        Literal["standard", "short", "full", "dump", "llm", "quotes", "facet", "extractive"] | None
+    ) = None
+    max_chars: int | None = Field(default=None, ge=1000, le=20000)
 
 
 class CitationModel(BaseModel):
@@ -88,6 +92,46 @@ class ChannelModel(BaseModel):
     doc_id: str = ""
 
 
+class EvidenceModel(BaseModel):
+    chunk_id: str = ""
+    doc_id: str
+    title: str = ""
+    section: str = ""
+    page: int | None = None
+    quote: str = ""
+    score: float = 0.0
+    trust: str = ""
+    authority_tier: str = ""
+    level: str = ""
+    as_of: str = ""
+    stale: bool = False
+    provisional: bool = False
+
+
+class FreshnessModel(BaseModel):
+    as_of: str = ""
+    ttl_days: int | None = None
+    stale_sources: list[str] = Field(default_factory=list)
+
+
+class ConfidenceModel(BaseModel):
+    score: float = 0.0
+    basis: str = ""
+
+
+class CacheInfoModel(BaseModel):
+    hit: bool = False
+    type: str = ""
+    created_at: str = ""
+    similarity: float | None = None
+
+
+class JudgeModel(BaseModel):
+    supported: bool | None = None
+    faithfulness: float | None = None
+    reason: str = ""
+
+
 class QueryResponse(BaseModel):
     request_id: str
     answer: str
@@ -109,6 +153,14 @@ class QueryResponse(BaseModel):
     channel: list[ChannelModel] = Field(default_factory=list)
     as_of: AsOfModel | None = None
     numbers: list[NumericModel] = Field(default_factory=list)
+    answer_mode: str = ""
+    evidence: list[EvidenceModel] = Field(default_factory=list)
+    freshness: FreshnessModel | None = None
+    confidence: ConfidenceModel | None = None
+    cache: CacheInfoModel | None = None
+    judge: JudgeModel | None = None
+    provisional: bool = False
+    clarify_slots: list[str] = Field(default_factory=list)
     latency_ms: int = 0
     disclaimer: str = "以官方发布文本为准；本服务不构成法律意见。"
 
