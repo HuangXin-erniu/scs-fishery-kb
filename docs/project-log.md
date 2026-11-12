@@ -1330,3 +1330,21 @@ This log records material project changes by date. It does not use release versi
   summary and its provenance, `worksheet --doc-map` to resolve `SCS-*` instrument ids to
   repository documents, and `score` reporting the fallback rate. 368 tests pass; the
   dump-arm evidence hash is unchanged.
+
+## 2026-11-12 — Corpus expansion and the 512 re-measured
+
+- Registered and ingested three public documents to close gaps the holdout exposed: `POL-NAV-119`
+  (1972 collision-avoidance rules, MOFCOM treaty library, rules 1-37), `POL-BOAT-120`
+  (fishing-vessel dismantling procedure, MARA 2021) and `POL-FIN-121` (forfeited-property
+  management rules, 财税 2020/54). The register is at 103 sources; the build parses all three
+  with `html.v1` and no quarantine.
+- Index rebuilt as `6e9dc9b9d8b9`: 70 documents, 2,929 chunks (from 67 / 2,797). The public
+  regression is unchanged (recall@5 0.8864, MRR 0.7848).
+- 512 re-measured on the new index with the shipped default configuration: coverage 0.8129,
+  citation 0.9544, as-of 0.9123, misanswer 0.0000, refusal-with-channel 1.0000, basis 0.9412,
+  457 answered (`P25-EVL-235`). The pass values stay "measured", the targets stay 0.83 / 0.97 /
+  0.96.
+- As-of moved down from 0.9474: the dump path now answers 21 of the 70 must-refuse rows because
+  the summary judge abstains on 49, and the answered rows carry wider version lists. Coverage
+  and citation moved by less than one point.
+- The 30-item spot check still awaits a human signature; no model run is reported as a pass.
