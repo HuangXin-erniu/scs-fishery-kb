@@ -135,7 +135,6 @@ def _summary_of(
 YEAR_RE = re.compile(r"(20\d{2})\s*年?")
 SHORT_EVIDENCE_HITS = 8
 CLARIFY_PATTERNS = ("某渔场", "某海域", "某年度", "某类", "某品种", "某一")
-WEATHER_WORDS = ("台风", "海温", "预报", "风暴潮", "赤潮", "海浪", "预警")
 KEYWORD_GROUPS = (
     ("休渔", "禁渔"),
     ("处罚", "罚款"),
@@ -660,10 +659,6 @@ class AnswerService:
             len(question.strip()) < 2
             or any(word in question for word in CLARIFY_PATTERNS)
             or future_year
-            or (
-                any(word in question for word in WEATHER_WORDS)
-                and not any(word in question for word in ("规定", "制度", "办法"))
-            )
         ):
             _gap, clarify_channels = self._channel_book().resolve(question)
             clarify_line = (
@@ -741,7 +736,7 @@ class AnswerService:
                 reason="weak_evidence",
             )
         if (
-            self.answer_mode != "llm"
+            self.answer_mode not in ("llm", "dump")
             and os.environ.get("SCS_FKB_VERIFY_ANSWERS", "off").strip().lower()
             in ("on", "1", "true")
             and not answer.abstained

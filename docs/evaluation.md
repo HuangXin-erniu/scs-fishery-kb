@@ -534,10 +534,16 @@ completeness.
 #### Sufficiency verifier flag
 
 The runtime evidence-sufficiency judge is enabled with
-`SCS_FKB_VERIFY_ANSWERS=on` for acceptance runs and production; it is off by
-default so tests and offline use never call the model implicitly. With the flag
-on, the 512 run reproduces misanswer 0.0571, refusal-with-channel 0.9429 and
-as-of 0.9123.
+`SCS_FKB_VERIFY_ANSWERS=on`; it is off by default so tests and offline use never
+call the model implicitly. With the flag on, the 512 run reproduces misanswer
+0.0571, refusal-with-channel 0.9429 and as-of 0.9123.
+
+The flag applies to the extractive and single-pass LLM arms only. The dump arm,
+which composes the visible summary from its own retrieved clause set, decides
+answerability from that same set: the summary model marks a question unanswerable
+only when no candidate section contains the asked fact, and that mark becomes an
+abstention with channels. Running the five-hit judge over a 100k-character answer
+is what made one flag trade the conclusion line for the refusal line (section 41).
 
 ### 11. Retrieval recall baseline (2026-11-08)
 

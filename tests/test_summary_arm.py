@@ -257,3 +257,83 @@ def test_a_fallback_never_puts_raw_text_in_the_conclusion(monkeypatch: pytest.Mo
     assert "补贴对象" not in contract.body.split("依据摘录：")[0]
     assert contract.answerability == "partial"
     assert any("未通过校验" in item for item in contract.gap)
+
+
+def test_a_not_answerable_draft_becomes_an_abstention_with_channels(monkeypatch):
+    import json
+
+    monkeypatch.setenv("SCS_FKB_SUMMARY_SELECT", "off")
+    reply = json.dumps(
+        {
+            "conclusion": "证据未覆盖泊位费纠纷的受理规定。",
+            "points": [],
+            "gaps": ["缺泊位费纠纷的受理层级"],
+            "coverage": "none",
+        },
+        ensure_ascii=False,
+    )
+    client = FakeClient([reply])
+    draft = summarize("渔港泊位费纠纷归渔政管吗？", CLAUSES, client)
+    assert draft is not None
+    assert draft.coverage == "none"
+    contract = compose(
+        "渔港泊位费纠纷归渔政管吗？",
+        "",
+        doc_ids=["POL-LAW-009"],
+        registry={},
+        channels=ChannelBook.load(),
+        draft=draft,
+    )
+    assert contract.answerability == "abstain"
+    assert contract.summary_source == "model_gap"
+    assert contract.conclusion == ""
+    assert any("泊位费" in item for item in contract.gap)
+    assert contract.channel
+
+
+def test_a_contradictory_not_answerable_flag_is_ignored():
+    import json
+
+    reply = json.dumps(
+        {
+            "conclusion": "违反禁渔期规定捕捞的，并处5万元以下罚款 [POL-LAW-009 §第七十八条]。",
+            "points": [],
+            "gaps": [],
+            "coverage": "none",
+        },
+        ensure_ascii=False,
+    )
+    client = FakeClient([reply, '{"supported": true, "reason": "ok"}'])
+    draft = summarize(QUESTION, CLAUSES, client)
+    assert draft is not None
+    assert draft.coverage == "full"
+
+
+def test_partial_coverage_keeps_the_covered_answer():
+    import json
+
+    reply = json.dumps(
+        {
+            "conclusion": "违反禁渔期规定捕捞的，并处5万元以下罚款 [POL-LAW-009 §第七十八条]。",
+            "points": [],
+            "gaps": ["缺没收渔船的具体程序"],
+            "coverage": "partial",
+        },
+        ensure_ascii=False,
+    )
+    client = FakeClient([reply, '{"supported": true, "reason": "ok"}'])
+    draft = summarize(QUESTION, CLAUSES, client)
+    assert draft is not None
+    assert draft.coverage == "partial"
+    contract = compose(
+        QUESTION,
+        "违反禁渔期规定进行捕捞的，没收渔获物和违法所得，并处5万元以下的罚款。"
+        " [POL-LAW-009 §第七十八条]",
+        doc_ids=["POL-LAW-009"],
+        registry={},
+        channels=ChannelBook.load(),
+        draft=draft,
+    )
+    assert contract.answerability == "partial"
+    assert contract.conclusion
+    assert any("没收渔船" in item for item in contract.gap)

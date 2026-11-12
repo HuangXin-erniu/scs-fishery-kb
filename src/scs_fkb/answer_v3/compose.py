@@ -203,6 +203,28 @@ def compose(
             ),
         )
 
+    if draft is not None and getattr(draft, "coverage", "full") == "none":
+        gaps = tuple(draft.gaps) or ("已登记语料未覆盖该问题",)
+        resolved_gap, channel = channels.resolve(question)
+        gap = (resolved_gap, *gaps)
+        return AnswerContract(
+            answerability="abstain",
+            conclusion="",
+            summary_source="model_gap",
+            gap=gap,
+            channel=channel,
+            body=_body(
+                answerability="abstain",
+                conclusion="",
+                conditions=(),
+                as_of_line="",
+                numbers_line="",
+                gap=gap,
+                channels=channel,
+                evidence="",
+            ),
+        )
+
     numeric = is_numeric_question(question)
     slots: tuple[SlotView, ...] = ()
     slot_gaps: tuple[str, ...] = ()
