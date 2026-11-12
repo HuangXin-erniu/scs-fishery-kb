@@ -337,3 +337,47 @@ def test_partial_coverage_keeps_the_covered_answer():
     assert contract.answerability == "partial"
     assert contract.conclusion
     assert any("没收渔船" in item for item in contract.gap)
+
+
+def test_a_short_exact_clause_outranks_a_long_weaker_article():
+    from scs_fkb.answer_v3.summary_arm import _section_score
+
+    short_exact = _section_score({1: 10.0})
+    long_weak = _section_score({1: 5.0, 2: 4.0, 3: 3.0})
+    # The old formula summed the three best clauses and gave the long article 12 > 10.
+    assert short_exact > long_weak
+
+
+def test_a_clause_matched_by_two_slots_is_counted_once(monkeypatch):
+    import scs_fkb.answer_v3.summary_arm as arm
+
+    clause = Clause(
+        text="伏季休渔时间为5月1日12时至8月16日12时。",
+        doc_id="POL-CLOS-015",
+        section="三、休渔时间",
+        page=1,
+        rank=0,
+    )
+
+    def _lexical(slot, clauses, grams, idf, default):  # noqa: ANN001, ARG001
+        return [(7.0, clause)]
+
+    monkeypatch.setattr(arm, "_lexical", _lexical)
+    captured: dict[int, float] = {}
+    real = arm._section_score
+
+    def _spy(values):  # noqa: ANN001
+        captured.update(values)
+        return real(values)
+
+    monkeypatch.setattr(arm, "_section_score", _spy)
+    hits = arm._section_hits("伏季休渔从什么时候开始？休渔到什么时候结束？", [clause])
+    assert hits
+    assert len(captured) == 1
+
+
+def test_breadth_only_breaks_ties():
+    from scs_fkb.answer_v3.summary_arm import _section_score
+
+    # Three matching clauses must not add up to more than a single precise clause.
+    assert _section_score({1: 10.0, 2: 10.0, 3: 10.0}) < _section_score({1: 10.1})
