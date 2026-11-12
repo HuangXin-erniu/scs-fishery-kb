@@ -1454,3 +1454,23 @@ This log records material project changes by date. It does not use release versi
   licence and sensitivity value, and a parseable document URL; none is ready for a
   provisional review package yet. This is the human licence/authority gate, not a
   code gap.
+
+## 2026-11-12 — Second-stage Phase 3: admission tooling and official-domain allowlist
+
+- `configs/web-sources.yaml` now carries the official practical domains
+  (ocean forecast, marine information, meteorological, emergency, standards,
+  fisheries research, coastal agriculture departments, FishBase/WoRMS and the
+  fishery association). `scripts/capture_source.py` loads that allowlist
+  dynamically; the old hardcoded list remains as a fallback.
+- Added `scripts/discover_candidates.py`: same-site link discovery with a
+  practical keyword score and a dated-word boost; it writes a shortlist per
+  candidate and never captures.
+- Added `scripts/admit_candidate.py`: one command captures a chosen document,
+  parses its text, runs the provisional quality gate and writes an admission
+  review package plus the provisional YAML block. It never edits the register or
+  index. A live discovery run on three candidates returned 12 links each for the
+  marine-information and meteorological portals and 0 for the standards portal;
+  the shortlist is still dominated by news/training pages, so a human must pick
+  an actual bulletin/notice document.
+- Tests: discovery link extraction, configured capture domains, and the existing
+  suite; 453 passed / 2 skipped.

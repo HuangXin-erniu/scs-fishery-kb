@@ -178,3 +178,48 @@ Practical-source candidates are reviewed with `scripts/review_candidate.py`: the
 operator supplies the observed text length, hash, licence and sensitivity, and
 the script writes a provisional review package under
 `$SCS_FKB_RUN_ROOT/candidates/<CAND-ID>/`. It does not fetch, register or promote.
+
+## 4a. Practical-source admission, one document at a time (2026-11-12)
+
+The candidate queue holds homepages, not citable documents. The admission loop
+turns one homepage into a shortlist of document URLs, then one chosen document
+into a review package:
+
+```bash
+export SCS_FKB_DATA_ROOT=/path/to/data
+export SCS_FKB_RUN_ROOT=/path/to/runs
+export PYTHONPATH=src
+
+# 1. Discover same-site document links (read-only; no capture).
+python scripts/discover_candidates.py \
+  --candidate-id CAND-2026-004 --run-root "$SCS_FKB_RUN_ROOT" --limit 20
+# -> $SCS_FKB_RUN_ROOT/discovery/CAND-2026-004.jsonl
+
+# 2. The operator picks a document URL and decides licence/sensitivity/authority.
+#    Then capture + parse + provisional review package in one command:
+python scripts/admit_candidate.py \
+  --candidate-id CAND-2026-004 \
+  --url "https://www.example.gov.cn/notice/2026/xiuyu.html" \
+  --source-id POL-PRAC-201 \
+  --license public --sensitivity public \
+  --tier A --class practical_guide --level national \
+  --practical-domain safety \
+  --document-no "农渔发〔2026〕1号" --published-at 2026-05-01
+# -> snapshot under the data root, admission.json review package, provisional YAML
+
+# 3. Human review: read admission.json and the snapshot. If accepted, add the
+#    printed provisional entry to configs/corpus.yaml with ingest.tier:
+#    provisional, then rebuild and run the gates.
+PYTHONPATH=src python scripts/build_v2.py
+PYTHONPATH=src python scripts/build_index_v2.py
+PYTHONPATH=src python scripts/check_sources.py --today "$(date +%F)"
+PYTHONPATH=src python scripts/eval_index_v2.py
+```
+
+`discover_candidates.py` only lists links; it does not decide that a page is a
+document. News items, reposts and aggregation pages remain ineligible under
+`docs/sources.md`. `admit_candidate.py` never edits the register or the index; it
+prints the provisional entry and the follow-up commands. Canonical promotion is
+a separate human decision (`promotion_draft`). The capture allowlist is loaded
+from `configs/web-sources.yaml`, so an official domain must be on that list
+before it can be captured.

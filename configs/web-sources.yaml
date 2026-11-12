@@ -47,6 +47,67 @@ allowlist:
   publisher: 地方政府网站（层级待核）
   tier: C
 
+- domain: nmefc.cn
+  publisher: 国家海洋环境预报中心
+  tier: A
+- domain: nmdis.org.cn
+  publisher: 国家海洋信息中心
+  tier: A
+- domain: nmc.cn
+  publisher: 中央气象台
+  tier: A
+- domain: cma.gov.cn
+  publisher: 中国气象局
+  tier: A
+- domain: mnr.gov.cn
+  publisher: 自然资源部
+  tier: A
+- domain: mem.gov.cn
+  publisher: 应急管理部
+  tier: A
+- domain: samr.gov.cn
+  publisher: 国家市场监督管理总局
+  tier: A
+- domain: std.samr.gov.cn
+  publisher: 全国标准信息公共服务平台
+  tier: A
+- domain: openstd.samr.gov.cn
+  publisher: 国家标准全文公开系统
+  tier: A
+- domain: cafs.ac.cn
+  publisher: 中国水产科学研究院
+  tier: A
+- domain: ccg.gov.cn
+  publisher: 中国海警局
+  tier: A
+- domain: mot.gov.cn
+  publisher: 交通运输部
+  tier: A
+- domain: nynct.fujian.gov.cn
+  publisher: 福建省农业农村厅
+  tier: A
+- domain: nynct.gd.gov.cn
+  publisher: 广东省农业农村厅
+  tier: A
+- domain: nynct.gxzf.gov.cn
+  publisher: 广西壮族自治区农业农村厅
+  tier: A
+- domain: hnny.hainan.gov.cn
+  publisher: 海南省农业农村厅
+  tier: A
+- domain: fishbase.se
+  publisher: FishBase
+  tier: B
+- domain: marinespecies.org
+  publisher: World Register of Marine Species
+  tier: B
+- domain: cfmi.org.cn
+  publisher: 中国渔业互保协会
+  tier: B
+- domain: nftec.org.cn
+  publisher: 全国水产技术推广总站
+  tier: B
+
 provider:
   # Local SearXNG JSON endpoint, for example http://127.0.0.1:8888. Empty means
   # the DuckDuckGo backend is used directly. SEARXNG_URL overrides this value.

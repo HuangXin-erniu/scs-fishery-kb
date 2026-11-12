@@ -25,7 +25,9 @@ from datetime import date
 from pathlib import Path
 from urllib.parse import unquote, urlparse
 
-ALLOWED_HOSTS = (
+REPO_ROOT = Path(__file__).resolve().parents[1]
+DEFAULT_ALLOWLIST = REPO_ROOT / "configs" / "web-sources.yaml"
+FALLBACK_HOSTS = (
     "gov.cn",
     "moa.gov.cn",
     "msa.gov.cn",
@@ -39,6 +41,29 @@ ALLOWED_HOSTS = (
     "mdpi.com",
     "nih.gov",
 )
+
+
+def _configured_hosts(path: Path = DEFAULT_ALLOWLIST) -> tuple[str, ...]:
+    """Load the official-host allowlist from configs/web-sources.yaml."""
+    if not path.is_file():
+        return ()
+    try:
+        import yaml
+
+        data = yaml.safe_load(path.read_text(encoding="utf-8"))
+    except Exception:  # noqa: BLE001 - capture must still work with the fallback
+        return ()
+    entries = data.get("allowlist") if isinstance(data, dict) else None
+    hosts: list[str] = []
+    for entry in entries or []:
+        if isinstance(entry, dict):
+            domain = str(entry.get("domain") or "").strip().lower()
+            if domain:
+                hosts.append(domain)
+    return tuple(hosts)
+
+
+ALLOWED_HOSTS = tuple(dict.fromkeys(FALLBACK_HOSTS + _configured_hosts()))
 EXTENSIONS = {
     "text/html": ".html",
     "application/xhtml+xml": ".html",
