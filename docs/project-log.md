@@ -1642,3 +1642,6 @@ This log records material project changes by date. It does not use release versi
   relevancy 0.7757, context precision 0.5867, context recall 0.4352, answer
   correctness 0.3277; 7 incomplete-output errors. Recall improves from 0.15
   (citation-only) but remains below target. No release gate.
+- Tested opt-in neighbor expansion + clause ranking on 10 RAGAS rows: context
+  precision 0.5867→0.2390, recall 0.4352→0.4074, correctness unchanged. Negative
+  result; switches stay off by default.

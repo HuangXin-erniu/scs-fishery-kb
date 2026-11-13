@@ -1823,3 +1823,21 @@ below the 0.85 target; answer correctness 0.3277 vs 0.75. Seven
 `IncompleteOutputException` errors show the endpoint is truncating judge output,
 so even these means are partial. The next work is evidence coverage of the gold
 clauses (section-level expansion / clause-type ranking), not refusal tuning.
+
+### Neighbor expansion / clause ranking (2026-11-13)
+
+Added an opt-in neighbor expansion (`SCS_FKB_PACK_NEIGHBORS`) and clause-type
+prior (`SCS_FKB_CLAUSE_RANK`) that add adjacent chunks from the same document and
+put operative/legal clauses first. Tested on the same 10 RAGAS rows with the
+existing answers and expanded contexts:
+
+| Metric | Pack-only | Expanded |
+|---|---:|---:|
+| context precision | 0.5867 | **0.2390** |
+| context recall | 0.4352 | **0.4074** |
+| answer correctness | 0.3277 | 0.3277 |
+
+Neighbor expansion diluted precision and did not raise recall; clause ranking did
+not recover it. Both switches remain **off by default** and are not part of the
+shipped profile. The next attempt should change retrieval/index granularity
+(section-aware chunks or a reranker for Track B), not post-hoc expansion.

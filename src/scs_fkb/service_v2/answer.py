@@ -36,6 +36,7 @@ from ..models import Answer, Chunk, Citation, SearchHit
 from ..rag import LLMCache
 from ..registry import load_registry
 from ..retrieve_v2 import plan_query
+from ..retrieve_v2.expand import expand_neighbors
 from ..retrieve_v2.rewrite_rules import rewrite_question
 from .schemas import (
     CacheInfoModel,
@@ -686,6 +687,16 @@ class AnswerService:
         hits = self._standard_hits(question, filters, region_named=region_named)
         if not hits:
             return None
+        neighbors = int(os.environ.get("SCS_FKB_PACK_NEIGHBORS", "0"))
+        clause_rank = os.environ.get("SCS_FKB_CLAUSE_RANK", "off").strip().lower() in {
+            "on",
+            "1",
+            "true",
+            "yes",
+        }
+        if neighbors or clause_rank:
+            chunks = list(getattr(self.retriever, "chunks", []) or [])
+            hits = expand_neighbors(hits, chunks, neighbors=neighbors, clause_rank=clause_rank)
         pack = build_evidence_pack(
             hits,
             max_chars=max_chars or DEFAULT_MAX_CHARS,
