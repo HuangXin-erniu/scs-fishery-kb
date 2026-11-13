@@ -1669,3 +1669,27 @@ rolled back, v2/index rebuilt to `e1c31e8fed19`, and the gate is back at
 recall@5 0.9318 / MRR 0.7962 / passed. Canonical promotion needs a ranking prior
 or an updated anchor set before retrying; `scripts/promote_provisional.py`
 remains available for a bounded batch once that is fixed.
+
+### Canonical promotion completed with metadata prior (2026-11-13)
+
+Added a post-fusion metadata prior in `HybridRetriever`: P1 sources are
+multiplied by 1.8 and law/regulation/standard by 1.0 (the law factor is kept
+neutral). The prior is loaded from the source register at retriever build time,
+so no index rebuild is needed for a priority change.
+
+The 19 A-level provisional sources were promoted in four bounded batches, each
+rebuilt and gated:
+
+| Batch | Sources | Public recall@5 | Public MRR | Gate |
+|---|---:|---:|---:|---|
+| 1 | 5 policy notices | 0.9545 | 0.8163 | pass |
+| 2 | 5 bulletins/subsidy | 0.9545 | 0.8163 | pass |
+| 3 | 5 disaster/eco bulletins | 0.9545 | 0.8163 | pass |
+| 4 | 4 sea-level bulletins | 0.9545 | 0.8163 | pass |
+
+Final state: 126 sources, 125 canonical, 1 provisional (吴川市 municipal C),
+index `2cad79cfec7c`. Track A dump arm still passes: point coverage 0.8181,
+citation accuracy 0.9413, misanswer 0.0571; public retrieval gate recall@5
+0.9545, MRR 0.8163, nDCG@10 0.8512. A post-promotion generation evidence check
+still found gold documents in the top-8 for 15/20 rows (top-12 16/20), so the
+Track B generation refusal path is not yet resolved.

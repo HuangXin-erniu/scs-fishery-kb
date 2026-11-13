@@ -1599,3 +1599,12 @@ This log records material project changes by date. It does not use release versi
   (recall@5 0.9091, MRR 0.7420 < 0.7848); rolled back and rebuilt to
   `e1c31e8fed19`. Canonical promotion is blocked on canonical ranking, not on
   licence evidence or batch size.
+- Added a P1 metadata prior (`P1_PRIOR=1.8`, neutral law/type factor) to the
+  retriever; it is loaded from the source register and requires no index rebuild.
+- Promoted the 19 A-level provisional sources in four bounded batches with a
+  rebuild + public gate after each: all four batches passed at recall@5 0.9545,
+  MRR 0.8163. Final index `2cad79cfec7c`; 125 canonical, 1 provisional (吴川市
+  municipal C). Track A dump arm still passes (point 0.8181, citation 0.9413,
+  misanswer 0.0571); tests 457 passed.
+- Track B generation evidence coverage after promotion is still 15/20 at top-8
+  (16/20 at top-12), so the full 200 generation/RAGAS run stays pending.

@@ -16,6 +16,31 @@ from .filters import RetrievalFilters, filter_hits
 from .rerank import DEFAULT_RERANKER, Reranker
 
 PROVISIONAL_FACTOR = 0.6
+P1_PRIOR = 1.80
+LAW_TYPE_PRIOR = 1.00
+
+
+def _apply_metadata_prior(
+    hits: list[SearchHit],
+    priorities: dict[str, str],
+    doc_types: dict[str, str],
+) -> list[SearchHit]:
+    """Prefer P1 and law/regulation/standard anchors after fusion.
+
+    The practical-source batches are P2 notices; without this prior they can
+    outrank the frozen legal anchors purely on lexical overlap.
+    """
+    adjusted: list[SearchHit] = []
+    for hit in hits:
+        source_id = hit.chunk.source_id or hit.chunk.doc_id
+        factor = 1.0
+        if priorities.get(source_id) == "P1":
+            factor *= P1_PRIOR
+        if doc_types.get(source_id) in {"law", "regulation", "standard"}:
+            factor *= LAW_TYPE_PRIOR
+        adjusted.append(SearchHit(chunk=hit.chunk, score=hit.score * factor))
+    adjusted.sort(key=lambda hit: -hit.score)
+    return adjusted
 
 
 def _apply_tier_penalty(hits: list[SearchHit]) -> list[SearchHit]:
@@ -57,6 +82,8 @@ class HybridRetriever:
         fusion_k: int = 60,
         bm25_weight: float = 1.0,
         dense_weight: float = 1.5,
+        priorities: dict[str, str] | None = None,
+        doc_types: dict[str, str] | None = None,
     ) -> None:
         self.chunks = list(chunks)
         self.by_id = {chunk.chunk_id: chunk for chunk in self.chunks}
@@ -70,6 +97,8 @@ class HybridRetriever:
         self.fusion_k = fusion_k
         self.bm25_weight = bm25_weight
         self.dense_weight = dense_weight
+        self.priorities = dict(priorities or {})
+        self.doc_types = dict(doc_types or {})
 
     def _dense_hits(self, query: str, ceiling: str, *, depth: int | None = None) -> list[SearchHit]:
         limit = depth or self.depth
@@ -113,6 +142,7 @@ class HybridRetriever:
             top_k=candidate_depth,
         )
         fused = _apply_tier_penalty(filter_hits(fused, filters))
+        fused = _apply_metadata_prior(fused, self.priorities, self.doc_types)
         if rerank and self.reranker is not None:
             try:
                 fused = self.reranker.rerank(
@@ -166,6 +196,7 @@ def build_retriever(
 ) -> HybridRetriever:
     from ..embed import FastEmbedEncoder
     from ..index_v2 import load_chunks_v2, open_index
+    from ..registry import load_registry
 
     root = Path(data_root).expanduser().resolve()
     chunks = load_chunks_v2(root)
@@ -183,6 +214,9 @@ def build_retriever(
         else None
     )
     lexicon = load_lexicon(DEFAULT_LEXICON) if DEFAULT_LEXICON.is_file() else []
+    registry = load_registry()
+    priorities = {sid: str(entry.get("priority") or "") for sid, entry in registry.items()}
+    doc_types = {sid: str(entry.get("type") or "") for sid, entry in registry.items()}
     return HybridRetriever(
         chunks,
         bm25,
@@ -190,6 +224,8 @@ def build_retriever(
         encoder=encoder,
         reranker=reranker_obj,
         lexicon=lexicon,
+        priorities=priorities,
+        doc_types=doc_types,
     )
 
 

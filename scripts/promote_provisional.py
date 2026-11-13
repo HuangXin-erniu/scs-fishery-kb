@@ -20,7 +20,7 @@ DEFAULT_CORPUS = Path("configs/corpus.yaml")
 
 
 def _block(text: str, source_id: str) -> tuple[int, int] | None:
-    pattern = re.compile(rf"(?ms)^- id: {re.escape(source_id)}\n.*?(?=^- id: |\Z)")
+    pattern = re.compile(rf"(?ms)^- id: {re.escape(source_id)}\n.*?(?=^- id: |^gaps:|\Z)")
     match = pattern.search(text)
     return (match.start(), match.end()) if match else None
 

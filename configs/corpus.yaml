@@ -4020,11 +4020,11 @@ sources:
     review_due: '2027-02-12'
     cadence: quarterly
     ttl_days: 90
-    note: Stage 3 practical-source admission; provisional.
+    note: canonical practical source after human review
   retrieval:
     channel: main
     parseable: true
-    note: provisional candidate; review before canonical promotion
+    note: canonical practical source; main index
   lifecycle: active
   license: public
   sensitivity: public
@@ -4060,10 +4060,10 @@ sources:
     text: 政府网站公开信息；用于知识库引用与检索。
     checked_at: '2026-11-12'
   ingest:
-    tier: provisional
-    reviewed_by: null
-    reviewed_at: null
-    review_note: Stage 3 practical admission; human review pending
+    tier: canonical
+    reviewed_by: owner
+    reviewed_at: '2026-11-13'
+    review_note: human review confirmed 2026-11-13
   practical:
     domain: port_service
     personas:
@@ -4088,7 +4088,6 @@ sources:
   volume: 1 html file
   update_freq: static
   watch_note: 静态公开文本；季度复查时重新核验发布页与许可状态。
-
 - id: POL-COLLISION-202
   source_record_schema: 5
   title: 中华人民共和国海事局关于加强中国沿海商渔船碰撞事故防范的通告
@@ -4102,11 +4101,11 @@ sources:
     review_due: '2027-02-12'
     cadence: quarterly
     ttl_days: 90
-    note: Stage 3 practical-source admission; provisional.
+    note: canonical practical source after human review
   retrieval:
     channel: main
     parseable: true
-    note: provisional candidate; review before canonical promotion
+    note: canonical practical source; main index
   lifecycle: active
   license: public
   sensitivity: public
@@ -4142,10 +4141,10 @@ sources:
     text: 政府网站公开信息；用于知识库引用与检索。
     checked_at: '2026-11-12'
   ingest:
-    tier: provisional
-    reviewed_by: null
-    reviewed_at: null
-    review_note: Stage 3 practical admission; human review pending
+    tier: canonical
+    reviewed_by: owner
+    reviewed_at: '2026-11-13'
+    review_note: human review confirmed 2026-11-13
   practical:
     domain: safety
     personas:
@@ -4170,7 +4169,6 @@ sources:
   volume: 1 html file
   update_freq: static
   watch_note: 静态公开文本；季度复查时重新核验发布页与许可状态。
-
 - id: STAT-DISASTER-203
   source_record_schema: 5
   title: 2023年中国海洋灾害公报
@@ -4184,11 +4182,11 @@ sources:
     review_due: '2027-12-12'
     cadence: annual
     ttl_days: 365
-    note: Stage 3 practical-source admission; provisional.
+    note: canonical practical source after human review
   retrieval:
     channel: main
     parseable: true
-    note: provisional candidate; review before canonical promotion
+    note: canonical practical source; main index
   lifecycle: active
   license: public
   sensitivity: public
@@ -4224,10 +4222,10 @@ sources:
     text: 政府网站公开信息；用于知识库引用与检索。
     checked_at: '2026-11-12'
   ingest:
-    tier: provisional
-    reviewed_by: null
-    reviewed_at: null
-    review_note: Stage 3 practical admission; human review pending
+    tier: canonical
+    reviewed_by: owner
+    reviewed_at: '2026-11-13'
+    review_note: human review confirmed 2026-11-13
   practical:
     domain: hazard
     personas:
@@ -4254,7 +4252,6 @@ sources:
   volume: 1 pdf file
   update_freq: static
   watch_note: 静态公开文本；季度复查时重新核验发布页与许可状态。
-
 - id: STAT-ECO-205
   source_record_schema: 5
   title: 2025年中国海洋生态预警监测公报
@@ -4268,11 +4265,11 @@ sources:
     review_due: '2027-12-12'
     cadence: annual
     ttl_days: 365
-    note: Stage 3 practical-source admission; provisional.
+    note: canonical practical source after human review
   retrieval:
     channel: main
     parseable: true
-    note: provisional candidate; review before canonical promotion
+    note: canonical practical source; main index
   lifecycle: active
   license: public
   sensitivity: public
@@ -4308,10 +4305,10 @@ sources:
     text: 政府网站公开信息；用于知识库引用与检索。
     checked_at: '2026-11-12'
   ingest:
-    tier: provisional
-    reviewed_by: null
-    reviewed_at: null
-    review_note: Stage 3 practical admission; human review pending
+    tier: canonical
+    reviewed_by: owner
+    reviewed_at: '2026-11-13'
+    review_note: human review confirmed 2026-11-13
   practical:
     domain: environment
     personas:
@@ -4338,7 +4335,6 @@ sources:
   volume: 1 pdf file
   update_freq: static
   watch_note: 静态公开文本；季度复查时重新核验发布页与许可状态。
-
 - id: POL-GD-SUBSIDY-204
   source_record_schema: 5
   title: 广东省农业农村厅 广东省财政厅关于印发《广东省渔业资源养护补贴政策实施方案》的通知
@@ -4352,11 +4348,11 @@ sources:
     review_due: '2027-02-12'
     cadence: quarterly
     ttl_days: 90
-    note: Stage 3 practical-source admission; provisional.
+    note: canonical practical source after human review
   retrieval:
     channel: main
     parseable: true
-    note: provisional candidate; review before canonical promotion
+    note: canonical practical source; main index
   lifecycle: active
   license: public
   sensitivity: public
@@ -4392,10 +4388,10 @@ sources:
     text: 政府网站公开信息；用于知识库引用与检索。
     checked_at: '2026-11-12'
   ingest:
-    tier: provisional
-    reviewed_by: null
-    reviewed_at: null
-    review_note: Stage 3 practical admission; human review pending
+    tier: canonical
+    reviewed_by: owner
+    reviewed_at: '2026-11-13'
+    review_note: human review confirmed 2026-11-13
   practical:
     domain: subsidy
     personas:
@@ -4419,7 +4415,6 @@ sources:
   volume: 1 html file
   update_freq: static
   watch_note: 静态公开文本；季度复查时重新核验发布页与许可状态。
-
 - id: POL-GX-CLOSURE-206
   source_record_schema: 5
   title: 自治区农业农村厅办公室关于做好2026年海洋伏季休渔管理工作的通知
@@ -4433,11 +4428,11 @@ sources:
     review_due: '2027-02-12'
     cadence: quarterly
     ttl_days: 90
-    note: Stage 3 practical-source batch 2; provisional.
+    note: canonical practical source after human review
   retrieval:
     channel: main
     parseable: true
-    note: provisional candidate; review before canonical promotion
+    note: canonical practical source; main index
   lifecycle: active
   license: public
   sensitivity: public
@@ -4473,10 +4468,10 @@ sources:
     text: 政府网站公开信息；用于知识库引用与检索。
     checked_at: '2026-11-12'
   ingest:
-    tier: provisional
-    reviewed_by: null
-    reviewed_at: null
-    review_note: Stage 3 practical admission batch 2; human review pending
+    tier: canonical
+    reviewed_by: owner
+    reviewed_at: '2026-11-13'
+    review_note: human review confirmed 2026-11-13
   practical:
     domain: policy
     personas:
@@ -4501,7 +4496,6 @@ sources:
   volume: 1 html file
   update_freq: static
   watch_note: 静态公开文本；季度复查时重新核验发布页与许可状态。
-
 - id: POL-HN-CLOSURE-207
   source_record_schema: 5
   title: 海南省2026年伏季休渔告知书
@@ -4515,11 +4509,11 @@ sources:
     review_due: '2027-02-12'
     cadence: quarterly
     ttl_days: 90
-    note: Stage 3 practical-source batch 2; provisional.
+    note: canonical practical source after human review
   retrieval:
     channel: main
     parseable: true
-    note: provisional candidate; review before canonical promotion
+    note: canonical practical source; main index
   lifecycle: active
   license: public
   sensitivity: public
@@ -4555,10 +4549,10 @@ sources:
     text: 政府网站公开信息；用于知识库引用与检索。
     checked_at: '2026-11-12'
   ingest:
-    tier: provisional
-    reviewed_by: null
-    reviewed_at: null
-    review_note: Stage 3 practical admission batch 2; human review pending
+    tier: canonical
+    reviewed_by: owner
+    reviewed_at: '2026-11-13'
+    review_note: human review confirmed 2026-11-13
   practical:
     domain: policy
     personas:
@@ -4583,7 +4577,6 @@ sources:
   volume: 1 html file
   update_freq: static
   watch_note: 静态公开文本；季度复查时重新核验发布页与许可状态。
-
 - id: POL-CN-ENFORCE-208
   source_record_schema: 5
   title: 农业农村部、公安部、中国海警局关于开展2026年海洋伏季休渔专项执法行动的通知
@@ -4597,11 +4590,11 @@ sources:
     review_due: '2027-02-12'
     cadence: quarterly
     ttl_days: 90
-    note: Stage 3 practical-source batch 2; provisional.
+    note: canonical practical source after human review
   retrieval:
     channel: main
     parseable: true
-    note: provisional candidate; review before canonical promotion
+    note: canonical practical source; main index
   lifecycle: active
   license: public
   sensitivity: public
@@ -4637,10 +4630,10 @@ sources:
     text: 政府网站公开信息；用于知识库引用与检索。
     checked_at: '2026-11-12'
   ingest:
-    tier: provisional
-    reviewed_by: null
-    reviewed_at: null
-    review_note: Stage 3 practical admission batch 2; human review pending
+    tier: canonical
+    reviewed_by: owner
+    reviewed_at: '2026-11-13'
+    review_note: human review confirmed 2026-11-13
   practical:
     domain: policy
     personas:
@@ -4665,7 +4658,6 @@ sources:
   volume: 1 html file
   update_freq: static
   watch_note: 静态公开文本；季度复查时重新核验发布页与许可状态。
-
 - id: POL-GD-WUCHUAN-209
   source_record_schema: 5
   title: 吴川市农业农村局关于2026年海洋伏季休渔的通告
@@ -4761,11 +4753,11 @@ sources:
     review_due: '2027-12-12'
     cadence: annual
     ttl_days: 365
-    note: Stage 3 practical-source batch 2; provisional.
+    note: canonical practical source after human review
   retrieval:
     channel: main
     parseable: true
-    note: provisional candidate; review before canonical promotion
+    note: canonical practical source; main index
   lifecycle: active
   license: public
   sensitivity: public
@@ -4801,10 +4793,10 @@ sources:
     text: 政府网站公开信息；用于知识库引用与检索。
     checked_at: '2026-11-12'
   ingest:
-    tier: provisional
-    reviewed_by: null
-    reviewed_at: null
-    review_note: Stage 3 practical admission batch 2; human review pending
+    tier: canonical
+    reviewed_by: owner
+    reviewed_at: '2026-11-13'
+    review_note: human review confirmed 2026-11-13
   practical:
     domain: hazard
     personas:
@@ -4831,7 +4823,6 @@ sources:
   volume: 1 pdf file
   update_freq: static
   watch_note: 静态公开文本；季度复查时重新核验发布页与许可状态。
-
 - id: STAT-DISASTER-211
   source_record_schema: 5
   title: 2021年中国海洋灾害公报
@@ -4845,11 +4836,11 @@ sources:
     review_due: '2027-12-12'
     cadence: annual
     ttl_days: 365
-    note: Stage 3 practical-source batch 2; provisional.
+    note: canonical practical source after human review
   retrieval:
     channel: main
     parseable: true
-    note: provisional candidate; review before canonical promotion
+    note: canonical practical source; main index
   lifecycle: active
   license: public
   sensitivity: public
@@ -4885,10 +4876,10 @@ sources:
     text: 政府网站公开信息；用于知识库引用与检索。
     checked_at: '2026-11-12'
   ingest:
-    tier: provisional
-    reviewed_by: null
-    reviewed_at: null
-    review_note: Stage 3 practical admission batch 2; human review pending
+    tier: canonical
+    reviewed_by: owner
+    reviewed_at: '2026-11-13'
+    review_note: human review confirmed 2026-11-13
   practical:
     domain: hazard
     personas:
@@ -4915,7 +4906,6 @@ sources:
   volume: 1 pdf file
   update_freq: static
   watch_note: 静态公开文本；季度复查时重新核验发布页与许可状态。
-
 - id: STAT-DISASTER-212
   source_record_schema: 5
   title: 2020年中国海洋灾害公报
@@ -4929,11 +4919,11 @@ sources:
     review_due: '2027-12-12'
     cadence: annual
     ttl_days: 365
-    note: Stage 3 practical-source batch 2; provisional.
+    note: canonical practical source after human review
   retrieval:
     channel: main
     parseable: true
-    note: provisional candidate; review before canonical promotion
+    note: canonical practical source; main index
   lifecycle: active
   license: public
   sensitivity: public
@@ -4969,10 +4959,10 @@ sources:
     text: 政府网站公开信息；用于知识库引用与检索。
     checked_at: '2026-11-12'
   ingest:
-    tier: provisional
-    reviewed_by: null
-    reviewed_at: null
-    review_note: Stage 3 practical admission batch 2; human review pending
+    tier: canonical
+    reviewed_by: owner
+    reviewed_at: '2026-11-13'
+    review_note: human review confirmed 2026-11-13
   practical:
     domain: hazard
     personas:
@@ -4999,7 +4989,6 @@ sources:
   volume: 1 pdf file
   update_freq: static
   watch_note: 静态公开文本；季度复查时重新核验发布页与许可状态。
-
 - id: STAT-DISASTER-213
   source_record_schema: 5
   title: 2019年中国海洋灾害公报
@@ -5013,11 +5002,11 @@ sources:
     review_due: '2027-12-12'
     cadence: annual
     ttl_days: 365
-    note: Stage 3 practical-source batch 2; provisional.
+    note: canonical practical source after human review
   retrieval:
     channel: main
     parseable: true
-    note: provisional candidate; review before canonical promotion
+    note: canonical practical source; main index
   lifecycle: active
   license: public
   sensitivity: public
@@ -5053,10 +5042,10 @@ sources:
     text: 政府网站公开信息；用于知识库引用与检索。
     checked_at: '2026-11-12'
   ingest:
-    tier: provisional
-    reviewed_by: null
-    reviewed_at: null
-    review_note: Stage 3 practical admission batch 2; human review pending
+    tier: canonical
+    reviewed_by: owner
+    reviewed_at: '2026-11-13'
+    review_note: human review confirmed 2026-11-13
   practical:
     domain: hazard
     personas:
@@ -5083,7 +5072,6 @@ sources:
   volume: 1 pdf file
   update_freq: static
   watch_note: 静态公开文本；季度复查时重新核验发布页与许可状态。
-
 - id: STAT-DISASTER-214
   source_record_schema: 5
   title: 2018年中国海洋灾害公报
@@ -5097,11 +5085,11 @@ sources:
     review_due: '2027-12-12'
     cadence: annual
     ttl_days: 365
-    note: Stage 3 practical-source batch 2; provisional.
+    note: canonical practical source after human review
   retrieval:
     channel: main
     parseable: true
-    note: provisional candidate; review before canonical promotion
+    note: canonical practical source; main index
   lifecycle: active
   license: public
   sensitivity: public
@@ -5137,10 +5125,10 @@ sources:
     text: 政府网站公开信息；用于知识库引用与检索。
     checked_at: '2026-11-12'
   ingest:
-    tier: provisional
-    reviewed_by: null
-    reviewed_at: null
-    review_note: Stage 3 practical admission batch 2; human review pending
+    tier: canonical
+    reviewed_by: owner
+    reviewed_at: '2026-11-13'
+    review_note: human review confirmed 2026-11-13
   practical:
     domain: hazard
     personas:
@@ -5167,7 +5155,6 @@ sources:
   volume: 1 pdf file
   update_freq: static
   watch_note: 静态公开文本；季度复查时重新核验发布页与许可状态。
-
 - id: STAT-ECO-215
   source_record_schema: 5
   title: 2024年中国海洋生态预警监测公报
@@ -5181,11 +5168,11 @@ sources:
     review_due: '2027-12-12'
     cadence: annual
     ttl_days: 365
-    note: Stage 3 practical-source batch 2; provisional.
+    note: canonical practical source after human review
   retrieval:
     channel: main
     parseable: true
-    note: provisional candidate; review before canonical promotion
+    note: canonical practical source; main index
   lifecycle: active
   license: public
   sensitivity: public
@@ -5221,10 +5208,10 @@ sources:
     text: 政府网站公开信息；用于知识库引用与检索。
     checked_at: '2026-11-12'
   ingest:
-    tier: provisional
-    reviewed_by: null
-    reviewed_at: null
-    review_note: Stage 3 practical admission batch 2; human review pending
+    tier: canonical
+    reviewed_by: owner
+    reviewed_at: '2026-11-13'
+    review_note: human review confirmed 2026-11-13
   practical:
     domain: environment
     personas:
@@ -5251,7 +5238,6 @@ sources:
   volume: 1 pdf file
   update_freq: static
   watch_note: 静态公开文本；季度复查时重新核验发布页与许可状态。
-
 - id: STAT-ECO-216
   source_record_schema: 5
   title: 2023年中国海洋生态预警监测公报
@@ -5265,11 +5251,11 @@ sources:
     review_due: '2027-12-12'
     cadence: annual
     ttl_days: 365
-    note: Stage 3 practical-source batch 2; provisional.
+    note: canonical practical source after human review
   retrieval:
     channel: main
     parseable: true
-    note: provisional candidate; review before canonical promotion
+    note: canonical practical source; main index
   lifecycle: active
   license: public
   sensitivity: public
@@ -5305,10 +5291,10 @@ sources:
     text: 政府网站公开信息；用于知识库引用与检索。
     checked_at: '2026-11-12'
   ingest:
-    tier: provisional
-    reviewed_by: null
-    reviewed_at: null
-    review_note: Stage 3 practical admission batch 2; human review pending
+    tier: canonical
+    reviewed_by: owner
+    reviewed_at: '2026-11-13'
+    review_note: human review confirmed 2026-11-13
   practical:
     domain: environment
     personas:
@@ -5335,7 +5321,6 @@ sources:
   volume: 1 pdf file
   update_freq: static
   watch_note: 静态公开文本；季度复查时重新核验发布页与许可状态。
-
 - id: STAT-SEALEVEL-217
   source_record_schema: 5
   title: 2023年中国海平面公报
@@ -5349,11 +5334,11 @@ sources:
     review_due: '2027-12-12'
     cadence: annual
     ttl_days: 365
-    note: Stage 3 practical-source batch 3; provisional.
+    note: canonical practical source after human review
   retrieval:
     channel: main
     parseable: true
-    note: provisional candidate; review before canonical promotion
+    note: canonical practical source; main index
   lifecycle: active
   license: public
   sensitivity: public
@@ -5389,10 +5374,10 @@ sources:
     text: 政府网站公开信息；用于知识库引用与检索。
     checked_at: '2026-11-12'
   ingest:
-    tier: provisional
-    reviewed_by: null
-    reviewed_at: null
-    review_note: Stage 3 practical admission batch 3; human review pending
+    tier: canonical
+    reviewed_by: owner
+    reviewed_at: '2026-11-13'
+    review_note: human review confirmed 2026-11-13
   practical:
     domain: hazard
     personas:
@@ -5419,7 +5404,6 @@ sources:
   volume: 1 pdf file
   update_freq: static
   watch_note: 静态公开文本；季度复查时重新核验发布页与许可状态。
-
 - id: STAT-SEALEVEL-218
   source_record_schema: 5
   title: 2022年中国海平面公报
@@ -5433,11 +5417,11 @@ sources:
     review_due: '2027-12-12'
     cadence: annual
     ttl_days: 365
-    note: Stage 3 practical-source batch 3; provisional.
+    note: canonical practical source after human review
   retrieval:
     channel: main
     parseable: true
-    note: provisional candidate; review before canonical promotion
+    note: canonical practical source; main index
   lifecycle: active
   license: public
   sensitivity: public
@@ -5473,10 +5457,10 @@ sources:
     text: 政府网站公开信息；用于知识库引用与检索。
     checked_at: '2026-11-12'
   ingest:
-    tier: provisional
-    reviewed_by: null
-    reviewed_at: null
-    review_note: Stage 3 practical admission batch 3; human review pending
+    tier: canonical
+    reviewed_by: owner
+    reviewed_at: '2026-11-13'
+    review_note: human review confirmed 2026-11-13
   practical:
     domain: hazard
     personas:
@@ -5503,7 +5487,6 @@ sources:
   volume: 1 pdf file
   update_freq: static
   watch_note: 静态公开文本；季度复查时重新核验发布页与许可状态。
-
 - id: STAT-SEALEVEL-219
   source_record_schema: 5
   title: 2021年中国海平面公报
@@ -5517,11 +5500,11 @@ sources:
     review_due: '2027-12-12'
     cadence: annual
     ttl_days: 365
-    note: Stage 3 practical-source batch 3; provisional.
+    note: canonical practical source after human review
   retrieval:
     channel: main
     parseable: true
-    note: provisional candidate; review before canonical promotion
+    note: canonical practical source; main index
   lifecycle: active
   license: public
   sensitivity: public
@@ -5557,10 +5540,10 @@ sources:
     text: 政府网站公开信息；用于知识库引用与检索。
     checked_at: '2026-11-12'
   ingest:
-    tier: provisional
-    reviewed_by: null
-    reviewed_at: null
-    review_note: Stage 3 practical admission batch 3; human review pending
+    tier: canonical
+    reviewed_by: owner
+    reviewed_at: '2026-11-13'
+    review_note: human review confirmed 2026-11-13
   practical:
     domain: hazard
     personas:
@@ -5587,7 +5570,6 @@ sources:
   volume: 1 pdf file
   update_freq: static
   watch_note: 静态公开文本；季度复查时重新核验发布页与许可状态。
-
 - id: STAT-SEALEVEL-220
   source_record_schema: 5
   title: 2020年中国海平面公报
@@ -5601,11 +5583,11 @@ sources:
     review_due: '2027-12-12'
     cadence: annual
     ttl_days: 365
-    note: Stage 3 practical-source batch 3; provisional.
+    note: canonical practical source after human review
   retrieval:
     channel: main
     parseable: true
-    note: provisional candidate; review before canonical promotion
+    note: canonical practical source; main index
   lifecycle: active
   license: public
   sensitivity: public
@@ -5641,10 +5623,10 @@ sources:
     text: 政府网站公开信息；用于知识库引用与检索。
     checked_at: '2026-11-12'
   ingest:
-    tier: provisional
-    reviewed_by: null
-    reviewed_at: null
-    review_note: Stage 3 practical admission batch 3; human review pending
+    tier: canonical
+    reviewed_by: owner
+    reviewed_at: '2026-11-13'
+    review_note: human review confirmed 2026-11-13
   practical:
     domain: hazard
     personas:
@@ -5671,7 +5653,6 @@ sources:
   volume: 1 pdf file
   update_freq: static
   watch_note: 静态公开文本；季度复查时重新核验发布页与许可状态。
-
 gaps:
 - One hundred sources are registered: ninety-eight acquired and no open candidates awaiting disposition.
 - The yearbook coverage matrix has no values in the public repository; all values stay local.

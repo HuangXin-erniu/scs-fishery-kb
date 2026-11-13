@@ -54,7 +54,7 @@ def test_live_register_loads_all_sources_as_v5() -> None:
     provisional = [
         source for source in registry.values() if source["ingest"]["tier"] == "provisional"
     ]
-    assert len(provisional) == 20
+    assert len(provisional) == 1
     for source in registry.values():
         assert source["source_record_schema"] == 5
         assert source["provenance"]["sha256"] == source["hash"]
