@@ -1612,3 +1612,9 @@ This log records material project changes by date. It does not use release versi
   lifted gold coverage 15/20→18/20 but made the 5-row standard sample refuse 5/5
   (baseline 4/5). Reverted; product stays at 8 hits/8 pack items. Track B
   generation still blocked on query rewriting/evidence ranking.
+- Found the standard-arm generation refusals were caused by the long system
+  prompt returning empty completions. Replaced it with a compact JSON prompt:
+  5-row refusals dropped 4/5→1/5; 20-row sample 8 answered/12 refused.
+- Added `retrieve_v2/rewrite_rules.py` (deterministic domain rewrite) used only by
+  the standard arm; generation gold top-8 coverage 15/20→17/20. The original LLM
+  `rewrite.py` is preserved. Track B full 200/RAGAS remains pending.

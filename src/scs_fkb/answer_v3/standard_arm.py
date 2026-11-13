@@ -39,29 +39,11 @@ GAP_SENTENCE = (
 )
 
 STANDARD_SYSTEM = (
-    "你是南海近海渔业知识库的作答器，只能使用证据清单中的内容，禁止使用外部知识。\n"
-    "输出一个 JSON 对象，字段：\n"
-    '{"answerability":"answerable|partial|refuse|clarify",'
-    '"conclusion":"一句话结论",'
-    '"applicability":"适用条件/对象",'
-    '"steps":["步骤1","步骤2"],'
-    '"documents":["材料"],'
-    '"deadline":"时限",'
-    '"basis":["依据条款"],'
-    '"caveat":"例外或风险",'
-    '"soft_gap":["未覆盖的部分"],'
-    '"missing_slots":["地区/年份/船型等"],'
-    '"citations":["[DOC_ID §章节]"]}\n'
-    "规则：\n"
-    "1. answerability：证据能直接支撑核心问题用 answerable；只覆盖部分用 partial；"
-    "证据完全不覆盖用 refuse；缺关键地区/年份/船型且答案会随其变化用 clarify。\n"
-    "2. conclusion 第一句直接回答数值、是否、时限或办理路径；每个事实句必须带引用，"
-    "格式 [DOC_ID §章节] 或 [DOC_ID p.页码]，必须与证据清单标签完全一致。\n"
-    "3. 数字、日期、单位必须逐字来自证据，不得换算或改写；证据给出海区、年度或表列口径时"
-    "在数字后写口径。\n"
-    "4. steps/documents/deadline/basis 没有证据就留空，不得编造。\n"
-    "5. 证据只覆盖部分子问题时，在 soft_gap 写缺口；完全无证据时 answerability=refuse。\n"
-    "只输出 JSON，不要代码块或解释。"
+    "你是南海近海渔业知识库作答器。只能使用证据清单，不得使用外部知识。"
+    '只输出 JSON：{"answerability":"answerable|partial|refuse|clarify",'
+    '"conclusion":"一句话结论","citations":["[DOC_ID §章节]"],'
+    '"soft_gap":[],"missing_slots":[]}。'
+    "每个事实句必须带与证据标签完全一致的引用；证据不足时 answerability=refuse。"
 )
 
 REPAIR_SYSTEM = (

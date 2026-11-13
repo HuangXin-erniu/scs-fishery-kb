@@ -1704,3 +1704,19 @@ be overwhelmed by the wider/noisier context, not under-supplied with gold text.
 The change was reverted; the product remains at 8 hits/8 pack items. Track B
 generation still needs query rewriting or a different evidence-ranking step
 before the full 200-row + RAGAS run.
+
+### Standard-arm prompt fix and query rewriting (2026-11-13)
+
+Root cause of the 4/5 generation refusals was **not retrieval**: the long
+`STANDARD_SYSTEM` prompt made the remote model return an empty completion after
+two attempts (`standard_unavailable`). Replacing it with a compact JSON prompt
+restored answering: the same five rows went from 4/5 refusals to **1/5**, and a
+20-row sample produced **8 answered / 12 refused** (mostly unresolved citations
+or genuine gaps, not empty completions).
+
+Added a deterministic domain rewrite (`retrieve_v2/rewrite_rules.py`) used only
+by the standard arm; the original LLM rewrite module is unchanged. The rewrite
+raises 20-row generation gold coverage from 15/20 to 17/20 at top-8. Standard-arm
+hits are 20 and the evidence pack stays at 8 items; dump/Track A/public gates are
+unaffected. The Track B full 200-row + RAGAS run is still pending because 12/20
+refusals is not acceptable.

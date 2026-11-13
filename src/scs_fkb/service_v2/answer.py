@@ -36,6 +36,7 @@ from ..models import Answer, Chunk, Citation, SearchHit
 from ..rag import LLMCache
 from ..registry import load_registry
 from ..retrieve_v2 import plan_query
+from ..retrieve_v2.rewrite_rules import rewrite_question
 from .schemas import (
     CacheInfoModel,
     CitationModel,
@@ -567,27 +568,38 @@ class AnswerService:
     def _standard_hits(
         self, question: str, filters: Any, *, region_named: bool = True
     ) -> list[SearchHit]:
+        # The standard arm gets a deterministic domain rewrite; the dump/public
+        # arms do not, so their frozen behaviour is unchanged.
+        standard_hits = int(os.environ.get("SCS_FKB_STANDARD_HITS", "20"))
+        search_question = (
+            rewrite_question(question)
+            if os.environ.get("SCS_FKB_STANDARD_REWRITE", "on").strip().lower()
+            not in {"off", "0", "false", "no"}
+            else question
+        )
         # The cross-encoder is opt-in: on the public 12-row subset it lowered
         # recall@5 (0.90 -> 0.80), MRR (0.753 -> 0.683) and nDCG@10
         # (0.789 -> 0.749) while raising p95 from 32 ms to 2.2 s.
         try:
             if self.rerank_default:
                 hits = self.retriever.search(
-                    question,
-                    top_k=8,
+                    search_question,
+                    top_k=standard_hits,
                     filters=filters,
                     rerank=True,
                     depth=50,
                     rerank_candidates=50,
                 )
             else:
-                hits = self.retriever.search(question, top_k=8, filters=filters, rerank=False)
+                hits = self.retriever.search(
+                    search_question, top_k=standard_hits, filters=filters, rerank=False
+                )
             return hits if region_named else _prefer_national(hits)
         except TypeError:
             try:
-                return self.retriever.search(question, top_k=8, filters=filters)
+                return self.retriever.search(search_question, top_k=standard_hits, filters=filters)
             except TypeError:
-                return self.retriever.search(question, top_k=8)
+                return self.retriever.search(search_question, top_k=standard_hits)
 
     def _answer_cache_obj(self) -> AnswerCache | None:
         if self._answer_cache is None and self.data_root is not None:
