@@ -1720,3 +1720,19 @@ raises 20-row generation gold coverage from 15/20 to 17/20 at top-8. Standard-ar
 hits are 20 and the evidence pack stays at 8 items; dump/Track A/public gates are
 unaffected. The Track B full 200-row + RAGAS run is still pending because 12/20
 refusals is not acceptable.
+
+### Citation tolerance and conclusion citation attachment (2026-11-13)
+
+Two changes reduced the standard-arm false refusals on the 20-row generation
+sample from 12/20 to 5/20:
+
+1. `_resolve_citations` / `_citations_from_text` accept a **tolerant** mode that
+   keeps a citation when the document id is in the evidence pack but the section
+   label is paraphrased; the standard arm enables it.
+2. `standard_arm._body` appends the model's structured `citations` list to the
+   conclusion when the conclusion has no inline citation.
+
+Of the remaining five refusals, four are genuine corpus gaps (heat-wave
+pollution attribution, red-tide harvesting, gear identification procedure,
+fishery-forecast evidence) and one is a citation case. The full 200-row
+generation run was started after this fix; RAGAS still has to be run on it.

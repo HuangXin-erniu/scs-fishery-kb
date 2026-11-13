@@ -86,6 +86,9 @@ def _as_list(value: Any) -> list[str]:
 def _body(value: dict[str, Any]) -> str:
     lines: list[str] = []
     conclusion = str(value.get("conclusion") or "").strip()
+    citations = _as_list(value.get("citations"))
+    if conclusion and citations and "[" not in conclusion:
+        conclusion = conclusion.rstrip("。") + " " + " ".join(citations)
     if conclusion:
         lines.append(conclusion)
     applicability = str(value.get("applicability") or "").strip()
@@ -336,7 +339,7 @@ def answer_with_standard(
                 )
             text = pruned
 
-    valid, invalid = _resolve_citations(text, pack.hits)
+    valid, invalid = _resolve_citations(text, pack.hits, tolerant=True)
     if not valid:
         return StandardResult(
             answer=Answer(
@@ -352,7 +355,7 @@ def answer_with_standard(
                 "gap": ["引用无法解析：" + ",".join(invalid[:2])],
             },
         )
-    citations = _citations_from_text(text, pack.hits)
+    citations = _citations_from_text(text, pack.hits, tolerant=True)
     if not citations:
         return StandardResult(
             answer=Answer(

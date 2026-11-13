@@ -1618,3 +1618,7 @@ This log records material project changes by date. It does not use release versi
 - Added `retrieve_v2/rewrite_rules.py` (deterministic domain rewrite) used only by
   the standard arm; generation gold top-8 coverage 15/20→17/20. The original LLM
   `rewrite.py` is preserved. Track B full 200/RAGAS remains pending.
+- Added tolerant citation resolution (same doc_id, paraphrased section) and
+  attached structured `citations` to conclusions without inline labels. The
+  20-row generation sample improved from 12/20 refusals to 5/20 (four genuine
+  gaps). Full 200-row generation started.

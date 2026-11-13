@@ -239,22 +239,35 @@ def _number_problems(text: str, by_label: dict[str, Any]) -> list[str]:
     return problems
 
 
-def _resolve_citations(text: str, hits: list[Any]) -> tuple[bool, list[str]]:
-    """A citation resolves when it names a retrieved document and, if given, a page or section."""
+def _resolve_citations(
+    text: str, hits: list[Any], *, tolerant: bool = False
+) -> tuple[bool, list[str]]:
+    """A citation resolves when it names a retrieved document and, if given, a page or section.
+
+    ``tolerant`` accepts a citation that names a retrieved document but has a
+    mismatched page/section label; the standard arm uses this because models often
+    copy the document id but paraphrase the section.
+    """
     invalid: list[str] = []
     for doc_id, page, section in CITATION_RE.findall(text):
         page, section = split_label(page, section)
         candidates = [hit for hit in hits if hit.chunk.doc_id == doc_id]
+        if not candidates:
+            invalid.append(
+                f"{doc_id}{(' p.' + page) if page else ''}{(' §' + section) if section else ''}"
+            )
+            continue
+        narrowed = candidates
         if page:
-            candidates = [hit for hit in candidates if hit.chunk.page == int(page)]
+            narrowed = [hit for hit in narrowed if hit.chunk.page == int(page)]
         if section:
             wanted = section.strip()
-            candidates = [
+            narrowed = [
                 hit
-                for hit in candidates
+                for hit in narrowed
                 if hit.chunk.section.startswith(wanted) or wanted.startswith(hit.chunk.section)
             ]
-        if not candidates:
+        if not narrowed and not tolerant:
             invalid.append(
                 f"{doc_id}{(' p.' + page) if page else ''}{(' §' + section) if section else ''}"
             )

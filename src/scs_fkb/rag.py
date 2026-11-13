@@ -146,21 +146,25 @@ def split_label(page: str | None, section: str | None) -> tuple[str, str]:
     return (page, section)
 
 
-def _citations_from_text(text: str, hits: list[Any]) -> list[Any]:
+def _citations_from_text(text: str, hits: list[Any], *, tolerant: bool = False) -> list[Any]:
     citations = []
     seen: set[tuple[str, int, str]] = set()
     for doc_id, page, section in CITATION_RE.findall(text):
         page, section = split_label(page, section)
-        for hit in hits:
+        narrowed = [hit for hit in hits if hit.chunk.doc_id == doc_id]
+        if not narrowed:
+            continue
+        exact = narrowed
+        if page:
+            exact = [hit for hit in exact if hit.chunk.page == int(page)]
+        if section:
+            exact = [
+                hit
+                for hit in exact
+                if hit.chunk.section.startswith(section) or section.startswith(hit.chunk.section)
+            ]
+        for hit in exact or (narrowed if tolerant else []):
             chunk = hit.chunk
-            if chunk.doc_id != doc_id:
-                continue
-            if page and chunk.page != int(page):
-                continue
-            if section and not (
-                chunk.section.startswith(section) or section.startswith(chunk.section)
-            ):
-                continue
             key = (chunk.doc_id, chunk.page, chunk.section)
             if key in seen:
                 continue
