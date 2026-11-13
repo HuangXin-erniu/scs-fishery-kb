@@ -1,15 +1,15 @@
 # Optional RAG adapters for the P10 refactor.
 # CI installs requirements-dev.txt only; these stay optional so the public
 # checks do not download models or require a vector database.
-docling>=2.0,<3
-trafilatura>=2.0,<3
+docling>=2.149.0,<3
+trafilatura>=2.3.1,<3
 lancedb>=0.13,<1
 fastembed>=0.9,<1
 llama-index-core>=0.12,<1
 llama-index-vector-stores-lancedb>=0.3,<1
-pandas>=2.0,<4
-ddgs>=9,<10
+pandas>=3.1.1,<4
+ddgs>=9.16.1,<10
 fastapi>=0.110,<1
 uvicorn>=0.30,<1
 jinja2>=3.1,<4
-python-multipart>=0.0.9,<1
+python-multipart>=0.0.33,<1
