@@ -1648,3 +1648,5 @@ This log records material project changes by date. It does not use release versi
 - Tested reranker evidence for Track B (10 rows): context precision 0.5867→0.7035,
   recall 0.4352→0.4583, correctness 0.3123; ~10.6 s/row retrieval, 6 judge errors.
   Precision improves, recall target 0.70 not met; evaluation-only.
+- Section-level parent contexts for Track B (10 rows): precision 0.5867→0.6681,
+  recall 0.4352→0.3000, correctness 0.3123. Negative; not adopted.

@@ -1861,3 +1861,21 @@ The reranker improves precision but barely moves recall, and the 0.70 recall
 target is not reached. It remains evaluation-only; the shipped profile is
 unchanged. The next attempt should change index granularity (section-level
 chunks / clause units) rather than reranking the same chunks.
+
+### Section-level parent contexts for Track B (2026-11-13)
+
+Mapped each retrieved child to its parent section chunk and used up to 12 parent
+sections as RAGAS contexts (same 10 rows and answers):
+
+| Metric | Pack-only | Section parents |
+|---|---:|---:|
+| context precision | 0.5867 | 0.6681 |
+| context recall | 0.4352 | **0.3000** |
+| answer correctness | 0.3277 | 0.3123 |
+| faithfulness | 0.6806 | 0.6616 |
+| errors | 7 | 4 |
+
+Section-level parents improve precision slightly but reduce recall; the retrieved
+parents do not contain the reference points RAGAS expects. This is another
+negative result: a real clause-level index/annotation is needed, not a parent
+mapping. The product path and Track B profile are unchanged.
