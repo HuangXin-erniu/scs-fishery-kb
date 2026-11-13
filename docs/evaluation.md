@@ -1841,3 +1841,23 @@ Neighbor expansion diluted precision and did not raise recall; clause ranking di
 not recover it. Both switches remain **off by default** and are not part of the
 shipped profile. The next attempt should change retrieval/index granularity
 (section-aware chunks or a reranker for Track B), not post-hoc expansion.
+
+### Reranker evidence for Track B (2026-11-13)
+
+Built the same 10 RAGAS rows with a cross-encoder reranker (`depth=50`,
+`rerank_candidates=50`) and pack20/per-doc2 contexts:
+
+| Metric | Pack-only | Reranker |
+|---|---:|---:|
+| context precision | 0.5867 | **0.7035** |
+| context recall | 0.4352 | **0.4583** |
+| answer correctness | 0.3277 | 0.3123 |
+| faithfulness | 0.6806 | 0.7250 (5/10) |
+| answer relevancy | 0.7757 | 0.7757 |
+| errors | 7 | 6 |
+| retrieval time | ~2 s/10 rows | ~10.6 s/row |
+
+The reranker improves precision but barely moves recall, and the 0.70 recall
+target is not reached. It remains evaluation-only; the shipped profile is
+unchanged. The next attempt should change index granularity (section-level
+chunks / clause units) rather than reranking the same chunks.
