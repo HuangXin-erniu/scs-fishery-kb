@@ -1794,3 +1794,12 @@ The retry converted three of the fourteen refusals; the other 109 answers are
 unaffected because the retry path only executes on failure. This meets the 10%
 false-refusal target on the frozen generation core. Product defaults remain
 `PACK_ITEMS=8`, `PACK_PER_DOC=0`; the evaluation profile uses 20/2.
+
+### Track B RAGAS 5-row sample after refusal fixes (2026-11-13)
+
+Small-sample RAGAS (5 answered rows, isolated venv, 463 s): faithfulness 0.3122
+(3 scored), answer relevancy 0.7487, context precision 0.6333, context recall
+0.1500, answer correctness 0.2389 (3 scored), 4 incomplete-output errors. The
+sample is too small for a gate and the endpoint is slow, but it shows the next
+bottleneck is **context recall/answer correctness**, not only false refusal. The
+Track B generation refusal target is met at 11/120 (9.2%); RAGAS targets are not.

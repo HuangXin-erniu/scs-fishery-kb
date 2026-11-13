@@ -1634,3 +1634,7 @@ This log records material project changes by date. It does not use release versi
   completions. Cache-off Track B generation: 14/120 (11.7%) with diversity,
   then 11/120 (9.2%) after retrying the 14 refusals (3 converted). This meets the
   10% false-refusal target; product defaults are unchanged.
+- RAGAS 5-row sample after the refusal fixes: faithfulness 0.3122, answer
+  relevancy 0.7487, context precision 0.6333, context recall 0.1500, answer
+  correctness 0.2389, 4 incomplete-output errors. Refusal target met (11/120,
+  9.2%) but RAGAS/context recall remains far below target.
