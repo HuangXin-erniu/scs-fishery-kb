@@ -1693,3 +1693,14 @@ citation accuracy 0.9413, misanswer 0.0571; public retrieval gate recall@5
 0.9545, MRR 0.8163, nDCG@10 0.8512. A post-promotion generation evidence check
 still found gold documents in the top-8 for 15/20 rows (top-12 16/20), so the
 Track B generation refusal path is not yet resolved.
+
+### Evidence-expansion experiment (2026-11-13)
+
+After promotion, the 20-row generation sample had gold documents in the top-8 for
+15/20 rows and top-20 for 18/20. Raising the standard-arm hit pool to 20 and the
+evidence-pack cap from 8 to 16 lifted pack coverage to 18/20, but the 5-row
+standard-arm sample then refused **5/5** (baseline was 4/5). The model appears to
+be overwhelmed by the wider/noisier context, not under-supplied with gold text.
+The change was reverted; the product remains at 8 hits/8 pack items. Track B
+generation still needs query rewriting or a different evidence-ranking step
+before the full 200-row + RAGAS run.

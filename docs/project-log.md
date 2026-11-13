@@ -1608,3 +1608,7 @@ This log records material project changes by date. It does not use release versi
   misanswer 0.0571); tests 457 passed.
 - Track B generation evidence coverage after promotion is still 15/20 at top-8
   (16/20 at top-12), so the full 200 generation/RAGAS run stays pending.
+- Evidence-expansion experiment: raising standard hits to 20 and pack cap to 16
+  lifted gold coverage 15/20→18/20 but made the 5-row standard sample refuse 5/5
+  (baseline 4/5). Reverted; product stays at 8 hits/8 pack items. Track B
+  generation still blocked on query rewriting/evidence ranking.
