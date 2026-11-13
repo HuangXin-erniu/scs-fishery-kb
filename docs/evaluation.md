@@ -1916,3 +1916,27 @@ Precision reaches the best value so far, but context recall is flat around
 the **gold clauses/reference points or the RAGAS context-recall definition**, not
 another retrieval channel. A 10-row human spot check is needed to decide whether
 to adjust retrieval or the metric before any further engineering.
+
+### Track B reference audit (2026-11-13)
+
+A 10-row expert audit compared each reference point with gold docs, retrieved
+contexts and the full corpus. Result: **2 supported, 5 partially supported, 3
+unsupported**. Typical problems:
+
+- reference contained synthesized conclusions ("并列适用", "全部收入", "空白属未
+  按规定填写") not stated verbatim in the corpus;
+- reference described procedures absent from the corpus (dolphin death handling);
+- gold docs were incomplete for some rows, while retrieval itself often found the
+  relevant law.
+
+Rewriting the same 10 references to be directly evidence-grounded (keeping the
+retrieved contexts and answers) changed RAGAS context recall from **0.43 to
+1.00** (10/10 scored), with context precision 0.6045 and answer correctness
+0.4012 (9 endpoint errors). A full-120 numeric check found only one reference
+number absent from the corpus, so the main issue is **claim synthesis in
+references**, not missing numbers or retrieval.
+
+Conclusion: the Track B bottleneck is the **reference/gold construction**, not
+another retrieval channel. Track B references must be generated or audited with
+claim-level attribution (RAGAS testset generation / RAGChecker-style entailment)
+before further retrieval work. Row-level audit stays in the private run root.

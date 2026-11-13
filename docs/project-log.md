@@ -1657,3 +1657,7 @@ This log records material project changes by date. It does not use release versi
   0.7279, recall 0.4259, correctness 0.3123; recall remains flat at ~0.43 across
   all variants. Recommendation: validate 10 rows with a human before more
   retrieval work.
+- 10-row Track B reference audit: 2 supported / 5 partial / 3 unsupported;
+  synthesized conclusions and procedures not in corpus. Rewriting references to
+  be evidence-grounded raised RAGAS context recall 0.43→1.00 (10/10). The
+  bottleneck is reference/gold construction, not retrieval. No release gate.
