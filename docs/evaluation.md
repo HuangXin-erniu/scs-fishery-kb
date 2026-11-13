@@ -1769,3 +1769,28 @@ The prompt now requires `partial` when evidence covers part of the question;
 `refuse` is reserved for completely unrelated evidence. RAGAS remains a small
 sample/supporting metric because the endpoint produced only a few judge results
 in ~20 minutes.
+
+### Evidence diversity and compact retry (2026-11-13)
+
+Refusal attribution on the 120 frozen generation rows: 31/51 refused rows already
+had a gold document in the 8-item pack (model over-conservative or wrong clause);
+20/51 missed the gold document (retrieval). Added two changes:
+
+1. `max_per_doc` in `build_evidence_pack` reserves first-pass slots for document
+   diversity (evaluation: `PACK_ITEMS=20`, `PACK_PER_DOC=2`);
+2. `answer_with_standard` retries once with a compact JSON prompt when the model
+   returns an empty completion. The retry only runs on failure, so successful
+   calls are unchanged.
+
+Results (cache disabled):
+
+| Config | Refusals |
+|---|---:|
+| pack16 + partial rule | 14/120 (11.7%) |
+| pack20 + diversity + partial | 14/120 (11.7%) |
+| pack20 + diversity + compact retry, retesting the 14 refusals | **11/120 (9.2%)** |
+
+The retry converted three of the fourteen refusals; the other 109 answers are
+unaffected because the retry path only executes on failure. This meets the 10%
+false-refusal target on the frozen generation core. Product defaults remain
+`PACK_ITEMS=8`, `PACK_PER_DOC=0`; the evaluation profile uses 20/2.

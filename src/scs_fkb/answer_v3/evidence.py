@@ -16,6 +16,7 @@ from ..models import Chunk, SearchHit
 
 DEFAULT_MAX_CHARS = 12_000
 DEFAULT_MAX_ITEMS = 8
+DEFAULT_MAX_PER_DOC = 2
 DEFAULT_QUOTE_CHARS = 1_200
 
 
@@ -135,13 +136,30 @@ def build_evidence_pack(
     *,
     max_chars: int = DEFAULT_MAX_CHARS,
     max_items: int = DEFAULT_MAX_ITEMS,
+    max_per_doc: int = 0,
     quote_chars: int = DEFAULT_QUOTE_CHARS,
     registry: dict[str, dict[str, Any]] | None = None,
     index_version: str = "",
     today: date | None = None,
 ) -> EvidencePack:
-    """Deduplicate hits, cap the pack and render the citation-labelled context."""
+    """Deduplicate hits, cap the pack and render the citation-labelled context.
+
+    ``max_per_doc`` reserves first-pass slots for document diversity; remaining
+    chunks fill the pack only after every document has had its chance.
+    """
     current = today or date.today()
+    if max_per_doc > 0:
+        counts: dict[str, int] = {}
+        preferred: list[SearchHit] = []
+        deferred: list[SearchHit] = []
+        for hit in hits:
+            doc_id = hit.chunk.doc_id
+            if counts.get(doc_id, 0) < max_per_doc:
+                preferred.append(hit)
+                counts[doc_id] = counts.get(doc_id, 0) + 1
+            else:
+                deferred.append(hit)
+        hits = preferred + deferred
     items: list[EvidenceItem] = []
     seen: set[tuple[str, str, str]] = set()
     used = 0
@@ -192,6 +210,7 @@ def build_evidence_pack(
 __all__ = [
     "DEFAULT_MAX_CHARS",
     "DEFAULT_MAX_ITEMS",
+    "DEFAULT_MAX_PER_DOC",
     "DEFAULT_QUOTE_CHARS",
     "EvidenceItem",
     "EvidencePack",

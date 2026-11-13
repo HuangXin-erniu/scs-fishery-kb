@@ -117,3 +117,29 @@ def test_evidence_item_serializes_for_cache() -> None:
         rank=0,
     )
     assert item.to_dict()["chunk_id"] == "CH-1"
+
+
+def test_max_per_doc_reserves_slots_for_other_documents() -> None:
+    def hit(chunk_id: str, doc_id: str, section: str) -> object:
+        chunk = Chunk(
+            chunk_id=chunk_id,
+            doc_id=doc_id,
+            source_id=doc_id,
+            page=1,
+            section=section,
+            text="测试条款内容足够长。",
+            token_count=8,
+            char_start=0,
+            char_end=8,
+            sensitivity="public",
+        )
+        return SearchHit(chunk=chunk, score=1.0)
+
+    hits = [
+        hit("A1", "DOC-A", "一"),
+        hit("A2", "DOC-A", "二"),
+        hit("A3", "DOC-A", "三"),
+        hit("B1", "DOC-B", "一"),
+    ]
+    pack = build_evidence_pack(hits, max_items=3, max_per_doc=1)
+    assert [item.chunk.doc_id for item in pack.items] == ["DOC-A", "DOC-B", "DOC-A"]

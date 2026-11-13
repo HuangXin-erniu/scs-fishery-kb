@@ -690,6 +690,7 @@ class AnswerService:
             hits,
             max_chars=max_chars or DEFAULT_MAX_CHARS,
             max_items=int(os.environ.get("SCS_FKB_PACK_ITEMS", "8")),
+            max_per_doc=int(os.environ.get("SCS_FKB_PACK_PER_DOC", "0")),
             registry=self._registry,
             index_version=self.index_version,
         )

@@ -1630,3 +1630,7 @@ This log records material project changes by date. It does not use release versi
 - Added `SCS_FKB_ANSWER_CACHE=off` for evaluation. Cache-off full Track B
   generation: 17/120 refusals (14.2%); the earlier 6/120 result was semantic-cache
   reuse, not fresh answers. Target ≤10% not met; pack20 does not beat pack16.
+- Added `max_per_doc` evidence diversity and a compact-prompt retry for empty
+  completions. Cache-off Track B generation: 14/120 (11.7%) with diversity,
+  then 11/120 (9.2%) after retrying the 14 refusals (3 converted). This meets the
+  10% false-refusal target; product defaults are unchanged.

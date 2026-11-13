@@ -231,16 +231,45 @@ def answer_with_standard(
             max_tokens=2400,
         )
     except LLMError:
-        return StandardResult(
-            answer=Answer(
-                text="证据不足：作答器不可用，已按缺口处理。",
-                abstained=True,
-                reason="standard_unavailable",
-            ),
-            pack=pack,
-            answerability="refuse",
-            contract_fields={"answerability": "abstain", "conclusion": "", "gap": ["作答器不可用"]},
-        )
+        # One compact retry: the remote model occasionally returns an empty
+        # completion for the full schema prompt. The retry is only attempted on
+        # failure, so successful calls are unchanged.
+        retry_messages = [
+            {
+                "role": "system",
+                "content": (
+                    '只输出 JSON：{"answerability":"answerable|partial|refuse",'
+                    '"conclusion":"一句话结论","citations":["…"]}。'
+                ),
+            },
+            {
+                "role": "user",
+                "content": f"问题：{question}\n证据：\n{pack.text}\n按 JSON 输出。",
+            },
+        ]
+        try:
+            value = _cached_json(
+                cache,
+                _key(f"{PROMPT_VERSION}-retry", question, pack.text, client.config.model),
+                client,
+                retry_messages,
+                max_tokens=800,
+            )
+        except LLMError:
+            return StandardResult(
+                answer=Answer(
+                    text="证据不足：作答器不可用，已按缺口处理。",
+                    abstained=True,
+                    reason="standard_unavailable",
+                ),
+                pack=pack,
+                answerability="refuse",
+                contract_fields={
+                    "answerability": "abstain",
+                    "conclusion": "",
+                    "gap": ["作答器不可用"],
+                },
+            )
 
     answerability = str(value.get("answerability") or "answerable").strip().lower()
     if answerability not in ANSWERABILITY:
