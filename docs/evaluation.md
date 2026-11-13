@@ -1879,3 +1879,20 @@ Section-level parents improve precision slightly but reduce recall; the retrieve
 parents do not contain the reference points RAGAS expects. This is another
 negative result: a real clause-level index/annotation is needed, not a parent
 mapping. The product path and Track B profile are unchanged.
+
+### Clause-level BM25 index for Track B (2026-11-13)
+
+Built a Track B-only clause index by splitting parent text at `第X条` boundaries
+(3,432 clauses, doc/section labels retained) and retrieving with BM25. 10-row
+RAGAS with clause contexts:
+
+| Metric | Pack-only | Clause BM25 |
+|---|---:|---:|
+| context precision | 0.5867 | 0.6267 |
+| context recall | 0.4352 | **0.2870** |
+| answer correctness | 0.3277 | 0.3123 |
+| errors | 7 | 4 |
+
+Clause splitting without a hybrid/dense retriever loses context and reduces
+recall. The Track B-only index is not adopted. Next: hybrid clause retrieval
+(BM25 + dense + reranker) or human clause annotation; naive BM25 is insufficient.

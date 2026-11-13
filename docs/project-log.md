@@ -1650,3 +1650,6 @@ This log records material project changes by date. It does not use release versi
   Precision improves, recall target 0.70 not met; evaluation-only.
 - Section-level parent contexts for Track B (10 rows): precision 0.5867→0.6681,
   recall 0.4352→0.3000, correctness 0.3123. Negative; not adopted.
+- Built a Track B-only clause-level BM25 index (3,432 clauses): context precision
+  0.6267, recall 0.2870, correctness 0.3123 (10 rows). Negative; not adopted.
+  Naive clause BM25 loses context; need hybrid/dense retrieval or annotation.
