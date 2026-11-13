@@ -1594,3 +1594,8 @@ This log records material project changes by date. It does not use release versi
   weight/depth sweep recovered it. Rolled back the promotion; rebuilt v2/index to
   `e1c31e8fed19`; public gate restored to recall@5 0.9318 / MRR 0.7962 / pass.
   Review packages remain ready; promotion needs a retrieval fix or narrower set.
+- Tested a minimal promotion batch of five core A-level policy sources with
+  `scripts/promote_provisional.py`. Even this batch failed the public gate
+  (recall@5 0.9091, MRR 0.7420 < 0.7848); rolled back and rebuilt to
+  `e1c31e8fed19`. Canonical promotion is blocked on canonical ranking, not on
+  licence evidence or batch size.

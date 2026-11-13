@@ -1657,3 +1657,15 @@ that recovered both recall and MRR. The promotion was rolled back, the v2 store 
 index were rebuilt to the provisional state (`e1c31e8fed19`), and the public gate
 is back to recall@5 0.9318 / MRR 0.7962 / passed. The 19 review packages remain
 ready; canonical promotion needs a retrieval fix or a narrower promotion set first.
+
+### Minimal promotion batch test (2026-11-13)
+
+Promoting only the five most central policy sources (port-report notice,
+collision-prevention notice, Guangxi/Hainan closure notices, national enforcement
+notice) still broke the public retrieval MRR: recall@5 0.9091, MRR 0.7420
+(threshold 0.7848). The failure is not batch size; it is the canonical ranking
+once these practical notices compete with the frozen legal anchors. The batch was
+rolled back, v2/index rebuilt to `e1c31e8fed19`, and the gate is back at
+recall@5 0.9318 / MRR 0.7962 / passed. Canonical promotion needs a ranking prior
+or an updated anchor set before retrying; `scripts/promote_provisional.py`
+remains available for a bounded batch once that is fixed.
