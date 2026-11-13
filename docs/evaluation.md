@@ -1803,3 +1803,23 @@ Small-sample RAGAS (5 answered rows, isolated venv, 463 s): faithfulness 0.3122
 sample is too small for a gate and the endpoint is slow, but it shows the next
 bottleneck is **context recall/answer correctness**, not only false refusal. The
 Track B generation refusal target is met at 11/120 (9.2%); RAGAS targets are not.
+
+### RAGAS with retrieved-pack contexts (2026-11-13)
+
+The earlier RAGAS sample used only cited snippets as contexts, which understated
+context recall. Rebuilt the sample with the actual retrieved evidence pack
+(20 hits, max 2 per document) and reran 10 answered rows:
+
+| Metric | Value | Scored |
+|---|---:|---:|
+| faithfulness | 0.6806 | 6/10 |
+| answer relevancy | 0.7757 | 10/10 |
+| context precision | 0.5867 | 10/10 |
+| context recall | 0.4352 | 9/10 |
+| answer correctness | 0.3277 | 8/10 |
+
+Context recall improves from 0.1500 (citations-only) to 0.4352, but remains far
+below the 0.85 target; answer correctness 0.3277 vs 0.75. Seven
+`IncompleteOutputException` errors show the endpoint is truncating judge output,
+so even these means are partial. The next work is evidence coverage of the gold
+clauses (section-level expansion / clause-type ranking), not refusal tuning.

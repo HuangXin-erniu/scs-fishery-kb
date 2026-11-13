@@ -1638,3 +1638,7 @@ This log records material project changes by date. It does not use release versi
   relevancy 0.7487, context precision 0.6333, context recall 0.1500, answer
   correctness 0.2389, 4 incomplete-output errors. Refusal target met (11/120,
   9.2%) but RAGAS/context recall remains far below target.
+- RAGAS 10-row sample with retrieved-pack contexts: faithfulness 0.6806,
+  relevancy 0.7757, context precision 0.5867, context recall 0.4352, answer
+  correctness 0.3277; 7 incomplete-output errors. Recall improves from 0.15
+  (citation-only) but remains below target. No release gate.
