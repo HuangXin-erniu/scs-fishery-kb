@@ -1940,3 +1940,24 @@ Conclusion: the Track B bottleneck is the **reference/gold construction**, not
 another retrieval channel. Track B references must be generated or audited with
 claim-level attribution (RAGAS testset generation / RAGChecker-style entailment)
 before further retrieval work. Row-level audit stays in the private run root.
+
+### Claim-level reference audit batch (2026-11-13)
+
+Controlled-LLM reference rewriting was run over the 120 frozen generation rows
+(with the retrieved pack as evidence): **75/120 rewrites succeeded**, 45 fell back
+to the original reference because the endpoint returned empty completions. The
+rewriter was required to cite `[DOC_ID §section]` per sentence and drop
+unsupported content; gold_docs were backfilled from cited/retrieved documents.
+
+RAGAS on the audited subset:
+
+| Rows | context recall | context precision | faithfulness | answer correctness |
+|---:|---:|---:|---:|---:|
+| 10 | 0.7458 | 0.9000 | 0.5916 | 0.3702 (6/10) |
+| 20 | **0.5983** | 0.8750 | 0.5670 | 0.3546 (15/20) |
+
+The 10-row result met 0.70 but did not hold at 20 rows; 20-row RAGAS had 7
+endpoint errors. This confirms the reference-audit direction (recall improved
+from 0.435 to 0.60–0.75) but **audit coverage and stability are insufficient for
+a Track B gate**. The full 120-row audited RAGAS run was not attempted because
+only 75 rewrites succeeded and the endpoint throughput is too low.

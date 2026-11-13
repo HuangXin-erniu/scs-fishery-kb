@@ -1661,3 +1661,7 @@ This log records material project changes by date. It does not use release versi
   synthesized conclusions and procedures not in corpus. Rewriting references to
   be evidence-grounded raised RAGAS context recall 0.43→1.00 (10/10). The
   bottleneck is reference/gold construction, not retrieval. No release gate.
+- Claim-level reference audit over 120 rows: 75/120 LLM rewrites succeeded, 45
+  endpoint fallbacks. RAGAS audited subset: 10 rows recall 0.7458/precision 0.90,
+  20 rows recall 0.5983/precision 0.875. Direction validated, stability/coverage
+  insufficient; Track B gate not reached.
