@@ -1665,3 +1665,6 @@ This log records material project changes by date. It does not use release versi
   endpoint fallbacks. RAGAS audited subset: 10 rows recall 0.7458/precision 0.90,
   20 rows recall 0.5983/precision 0.875. Direction validated, stability/coverage
   insufficient; Track B gate not reached.
+- Completed 120/120 controlled-LLM reference rewrites (short-prompt retry).
+  20-row RAGAS: context recall 0.6205, precision 0.8458, faithfulness 0.4956,
+  correctness 0.3934, 15 endpoint errors. Target 0.70 still not met; no gate.

@@ -1961,3 +1961,23 @@ endpoint errors. This confirms the reference-audit direction (recall improved
 from 0.435 to 0.60–0.75) but **audit coverage and stability are insufficient for
 a Track B gate**. The full 120-row audited RAGAS run was not attempted because
 only 75 rewrites succeeded and the endpoint throughput is too low.
+
+### Full 120-row reference audit and 20-row RAGAS (2026-11-13)
+
+Retried the 45 failed rewrites with shorter evidence/prompt slices: **120/120
+references now have controlled-LLM, evidence-cited rewrites** (no extractive
+fallback). RAGAS on 20 answered rows with the audited references:
+
+| Metric | Value | Scored |
+|---|---:|---:|
+| context recall | **0.6205** | 18/20 |
+| context precision | 0.8458 | 20/20 |
+| answer relevancy | 0.7877 | 20/20 |
+| faithfulness | 0.4956 | 17/20 |
+| answer correctness | 0.3934 | 10/20 |
+| errors | 15 | — |
+
+Recall improves from 0.435 (original references) to 0.62, but the 0.70 target is
+still not met at 20 rows and 15 judge calls errored. The 10-row 0.746 was an
+optimistic sample. A full 120-row RAGAS run is not practical on this endpoint
+(~17 minutes for 20 rows with high error rate), so no Track B gate is claimed.
