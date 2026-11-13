@@ -1653,3 +1653,7 @@ This log records material project changes by date. It does not use release versi
 - Built a Track B-only clause-level BM25 index (3,432 clauses): context precision
   0.6267, recall 0.2870, correctness 0.3123 (10 rows). Negative; not adopted.
   Naive clause BM25 loses context; need hybrid/dense retrieval or annotation.
+- Hybrid clause retrieval (BM25+dense+RRF+reranker, 3,432 clauses): precision
+  0.7279, recall 0.4259, correctness 0.3123; recall remains flat at ~0.43 across
+  all variants. Recommendation: validate 10 rows with a human before more
+  retrieval work.

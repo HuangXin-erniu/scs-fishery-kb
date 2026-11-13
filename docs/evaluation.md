@@ -1896,3 +1896,23 @@ RAGAS with clause contexts:
 Clause splitting without a hybrid/dense retriever loses context and reduces
 recall. The Track B-only index is not adopted. Next: hybrid clause retrieval
 (BM25 + dense + reranker) or human clause annotation; naive BM25 is insufficient.
+
+### Hybrid clause retrieval for Track B (2026-11-13)
+
+Built a Track B-only hybrid clause index (3,432 clauses): BM25 + bge-small dense
+vectors, RRF fusion, then cross-encoder reranking of the top 20. Same 10 rows and
+answers:
+
+| Metric | Pack-only | Hybrid clause |
+|---|---:|---:|
+| context precision | 0.5867 | **0.7279** |
+| context recall | 0.4352 | **0.4259** |
+| answer correctness | 0.3277 | 0.3123 |
+| faithfulness | 0.6806 | 0.6042 |
+| errors | 7 | 6 |
+
+Precision reaches the best value so far, but context recall is flat around
+0.43 across all retrieval variants. This strongly suggests the bottleneck is now
+the **gold clauses/reference points or the RAGAS context-recall definition**, not
+another retrieval channel. A 10-row human spot check is needed to decide whether
+to adjust retrieval or the metric before any further engineering.
