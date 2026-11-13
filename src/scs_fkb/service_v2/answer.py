@@ -602,6 +602,13 @@ class AnswerService:
                 return self.retriever.search(search_question, top_k=standard_hits)
 
     def _answer_cache_obj(self) -> AnswerCache | None:
+        if os.environ.get("SCS_FKB_ANSWER_CACHE", "").strip().lower() in {
+            "off",
+            "0",
+            "false",
+            "no",
+        }:
+            return None
         if self._answer_cache is None and self.data_root is not None:
             self._answer_cache = AnswerCache(
                 self.data_root,

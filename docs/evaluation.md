@@ -1752,3 +1752,20 @@ remote endpoint produced only three judge results in 22 minutes, so a 69-row ×
 five-metric run would not complete in a useful time. RAGAS remains a small
 sample/supporting metric; deterministic false-refusal/answer/citation metrics are
 reported for the full frozen core.
+
+### Track B generation cache-off result (2026-11-13)
+
+A pack20 run appeared to reach 6/120 refusals, but 107/120 answers were identical
+to the previous pack16 run and it finished in 4 seconds: the semantic answer
+cache had reused old answers. Added `SCS_FKB_ANSWER_CACHE=off` and reran the full
+120 frozen rows without cache:
+
+- **17/120 refusals = 14.2% false-refusal rate** (all rows are answerable/partial);
+- pack16 had 14/120 (11.7%) in the earlier run; pack20 is not uniformly better;
+- the 10% target is **not met**; more evidence-ranking work is needed, not a
+  larger pack.
+
+The prompt now requires `partial` when evidence covers part of the question;
+`refuse` is reserved for completely unrelated evidence. RAGAS remains a small
+sample/supporting metric because the endpoint produced only a few judge results
+in ~20 minutes.

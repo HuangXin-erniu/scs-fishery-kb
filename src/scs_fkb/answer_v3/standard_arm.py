@@ -43,7 +43,9 @@ STANDARD_SYSTEM = (
     '只输出 JSON：{"answerability":"answerable|partial|refuse|clarify",'
     '"conclusion":"一句话结论","citations":["[DOC_ID §章节]"],'
     '"soft_gap":[],"missing_slots":[]}。'
-    "每个事实句必须带与证据标签完全一致的引用；证据不足时 answerability=refuse。"
+    "每个事实句必须带与证据标签完全一致的引用。"
+    "证据只覆盖部分子问题时必须用 answerability=partial，并在 soft_gap 说明未覆盖部分；"
+    "只有证据清单与问题完全无关时才用 refuse，不要因为缺少细节直接拒绝回答。"
 )
 
 REPAIR_SYSTEM = (

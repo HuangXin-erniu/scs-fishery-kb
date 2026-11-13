@@ -1627,3 +1627,6 @@ This log records material project changes by date. It does not use release versi
   reduces a 20-row probe from 5 to 4 refusals but does not fix the rate. Full
   RAGAS aborted after 22 minutes produced only three judge results (endpoint
   throughput); RAGAS remains supporting evidence.
+- Added `SCS_FKB_ANSWER_CACHE=off` for evaluation. Cache-off full Track B
+  generation: 17/120 refusals (14.2%); the earlier 6/120 result was semantic-cache
+  reuse, not fresh answers. Target ≤10% not met; pack20 does not beat pack16.
