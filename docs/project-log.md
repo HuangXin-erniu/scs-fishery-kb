@@ -1622,3 +1622,8 @@ This log records material project changes by date. It does not use release versi
   attached structured `citations` to conclusions without inline labels. The
   20-row generation sample improved from 12/20 refusals to 5/20 (four genuine
   gaps). Full 200-row generation started.
+- Full frozen Track B generation (120 rows): 69 answered / 51 refused; all
+  refusals are answerable/partial, a 53.7% false-refusal rate. `PACK_ITEMS=16`
+  reduces a 20-row probe from 5 to 4 refusals but does not fix the rate. Full
+  RAGAS aborted after 22 minutes produced only three judge results (endpoint
+  throughput); RAGAS remains supporting evidence.

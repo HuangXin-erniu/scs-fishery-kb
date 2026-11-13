@@ -1736,3 +1736,19 @@ Of the remaining five refusals, four are genuine corpus gaps (heat-wave
 pollution attribution, red-tide harvesting, gear identification procedure,
 fishery-forecast evidence) and one is a citation case. The full 200-row
 generation run was started after this fix; RAGAS still has to be run on it.
+
+### Track B generation full frozen core (2026-11-13)
+
+The frozen generation core has 120 rows (the other 80 rows are pending-source
+placeholders without references). With the fixed prompt, tolerant citations and
+rewrite, the run produced **69 answered / 51 refused**; all 51 refusals are on
+rows labelled answerable or partially answerable, i.e. a **53.7% false-refusal
+rate** (51/95). This is far above the Track B target and not releasable.
+
+The 20-row probe showed `SCS_FKB_PACK_ITEMS=16` reduces refusals 5/20→4/20, so
+the pack size is now an evaluation switch (default remains 8); widening alone
+does not fix the 53.7% false-refusal rate. The RAGAS full run was stopped: the
+remote endpoint produced only three judge results in 22 minutes, so a 69-row ×
+five-metric run would not complete in a useful time. RAGAS remains a small
+sample/supporting metric; deterministic false-refusal/answer/citation metrics are
+reported for the full frozen core.

@@ -682,6 +682,7 @@ class AnswerService:
         pack = build_evidence_pack(
             hits,
             max_chars=max_chars or DEFAULT_MAX_CHARS,
+            max_items=int(os.environ.get("SCS_FKB_PACK_ITEMS", "8")),
             registry=self._registry,
             index_version=self.index_version,
         )
