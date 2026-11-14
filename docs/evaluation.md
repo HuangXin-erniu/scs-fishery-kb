@@ -2141,3 +2141,21 @@ A 30-row answer spot check used the **pack20 contexts that generated the answers
 
 Track B retrieval gate passes; the generation/answer-quality gate (19/30) and the
 release gate remain closed. Independent human review is still required.
+
+### Answer-quality prompt iteration (2026-11-14)
+
+Strengthened the standard-arm prompt: sub-question decomposition into `steps`,
+per-subquestion coverage, verbatim numbers/article numbers, and no source-level
+inference ("以上为省级规定" only if evidence supports it). 30-row spot check with
+the same pack20 contexts:
+
+| Iteration | PASS | FAIL |
+|---|---:|---:|
+| previous prompt | 19 | 11 |
+| coverage/number rules | 20 | 8 |
+| + steps/hierarchy rules | **21** | **7** |
+
+Two rows abstained (not counted). Remaining failures: incomplete sub-question
+coverage, missing amounts, and unsupported level claims. Track B retrieval gate
+(0.8039/0.9047) still passes, but answer quality (21/30) and the release gate
+remain below target.

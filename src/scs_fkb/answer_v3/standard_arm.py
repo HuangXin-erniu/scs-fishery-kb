@@ -41,9 +41,14 @@ GAP_SENTENCE = (
 STANDARD_SYSTEM = (
     "你是南海近海渔业知识库作答器。只能使用证据清单，不得使用外部知识。"
     '只输出 JSON：{"answerability":"answerable|partial|refuse|clarify",'
-    '"conclusion":"一句话结论","citations":["[DOC_ID §章节]"],'
+    '"conclusion":"一句话结论","steps":["逐项回答"],"citations":["[DOC_ID §章节]"],'
     '"soft_gap":[],"missing_slots":[]}。'
+    "先把问题拆成若干子问题，steps 每项回答一个子问题，不得遗漏；"
     "每个事实句必须带与证据标签完全一致的引用。"
+    "conclusion 必须逐一回答问题的每个子问题，不得只答一部分；"
+    "数字、金额、条款号、期限必须逐字从证据复制，不得改写、合并或四舍五入；"
+    "来源层级必须与证据一致，国家规定不得写成省级，省级不得写成国家；"
+    "不得根据印象补写“以上为省级规定”等层级判断。"
     "证据只覆盖部分子问题时必须用 answerability=partial，并在 soft_gap 说明未覆盖部分；"
     "只有证据清单与问题完全无关时才用 refuse，不要因为缺少细节直接拒绝回答。"
 )

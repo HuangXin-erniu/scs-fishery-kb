@@ -1696,3 +1696,6 @@ This log records material project changes by date. It does not use release versi
 - Full Track B retrieval gate passes: claim-aligned precision 0.8039, recall
   0.9047. 30-row answer spot check with pack contexts: 19 PASS / 11 FAIL; answer
   completeness/citation accuracy still below release quality.
+- Strengthened answer prompt (subquestions, exact numbers/citations, no level
+  inference). 30-row spot check improved 19→20→21 PASS (7 FAIL); release gate
+  still closed.
