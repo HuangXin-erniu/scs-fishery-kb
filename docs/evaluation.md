@@ -2183,3 +2183,17 @@ the single-pass 21/30. The per-subquestion prompt was too conservative and wrote
 "未覆盖" for cases the evidence did cover (e.g. IG-001, IG-029, IG-049), losing
 answer completeness. This pipeline is not adopted; answer quality remains the
 release blocker.
+
+### Targeted repair and judge instability (2026-11-14)
+
+Targeted repair of the 7 failed rows (detect missing sub-questions, add evidence,
+keep correct content) did not improve the score: the 30-row check moved from
+21/30 to **16/30**, with previously passed rows also flipping. Repeating the LLM
+judge on near-identical answers therefore shows substantial judge variance; the
+automated 21/30 and 16/30 are not reliable release gates.
+
+A 30-row human-review sheet was generated in the private run root
+(`human-review-30.csv`, columns: question/reference/answer/evidence/machine
+verdict/machine reason/human verdict/human note). Independent human review is now
+required before any further answer-quality tuning; Track B retrieval passes, but
+the answer/release gate stays closed.

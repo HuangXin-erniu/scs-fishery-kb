@@ -1705,3 +1705,6 @@ This log records material project changes by date. It does not use release versi
 - Structured sub-question generation: decompose → per-subquestion answer → number
   filter. 30 rows: 17 PASS / 11 FAIL (worse than 21/30); over-conservative
   "未覆盖". Not adopted; release still blocked on answer quality.
+- Targeted repair of 7 failed answers: 30-row check 21/30→16/30; LLM judge
+  instability confirmed. Generated private human-review-30.csv; independent human
+  review requested. Release gate closed.
