@@ -2230,3 +2230,19 @@ IG-065 still hit empty completions.
 
 A third-round 30-row sheet (8 core rows + 22 fresh answered rows, untruncated
 evidence) was generated for human re-review. No release.
+
+### Cache/fallback fixes and round-4 review sheet (2026-11-14)
+
+Round-3 human review (19/30) found three fixable issues:
+
+1. IG-065 was refused because the model sometimes omits inline citations even
+   when the evidence contains the clause. The standard arm now retries with a
+   compact JSON prompt and, only if that also lacks citations, falls back to
+   cited steps / an extractive evidence quote instead of returning an empty
+   refusal.
+2. Answers no longer expose the internal "步骤：" scaffold.
+3. IG-030 reference (old 5000–5万) and IG-077 (2019 turtle level) are outdated
+   gold/corpus issues; flagged for source update, not changed in the corpus.
+
+All 30 rows now produce answers (0 abstentions); a round-4 review sheet with
+untruncated evidence was generated. Human review is required before any release.

@@ -51,7 +51,7 @@ STANDARD_SYSTEM = (
     "证据只覆盖部分子问题时必须用 answerability=partial，并在 soft_gap 说明未覆盖部分；"
     "只有证据清单与问题完全无关时才用 refuse，不要因为缺少细节直接拒绝回答。"
 )
-PROMPT_VERSION = "standard-" + hashlib.sha256(STANDARD_SYSTEM.encode()).hexdigest()[:8]
+PROMPT_VERSION = "standard-" + hashlib.sha256(STANDARD_SYSTEM.encode()).hexdigest()[:8] + "-3"
 
 REPAIR_SYSTEM = (
     "你在修复一份带引用的渔业答复。下面列出未被证据支持的数字或缺少引用的句子。\n"
@@ -59,7 +59,7 @@ REPAIR_SYSTEM = (
     " [DOC_ID §章节] 或 [DOC_ID p.页码]。不得引入新事实。\n"
     '只输出 JSON：{"conclusion":"修复后的完整答复文本"}'
 )
-REPAIR_VERSION = "standard-repair-" + hashlib.sha256(REPAIR_SYSTEM.encode()).hexdigest()[:8]
+REPAIR_VERSION = "standard-repair-" + hashlib.sha256(REPAIR_SYSTEM.encode()).hexdigest()[:8] + "-3"
 
 
 @dataclass(frozen=True)
@@ -102,10 +102,6 @@ def _body(value: dict[str, Any]) -> str:
     applicability = str(value.get("applicability") or "").strip()
     if applicability:
         lines.append(f"适用：{applicability}")
-    steps = _as_list(value.get("steps"))
-    if steps:
-        rendered = "；".join(f"{index}. {step}" for index, step in enumerate(steps, start=1))
-        lines.append(f"步骤：{rendered}")
     documents = _as_list(value.get("documents"))
     if documents:
         lines.append("材料：" + "；".join(documents))
@@ -331,6 +327,44 @@ def answer_with_standard(
 
     by_label = pack.by_label
     text = _prune(text, by_label)
+    if not text or "[" not in text.splitlines()[0]:
+        # The model sometimes omits inline citations from the conclusion while
+        # still returning cited steps or a citations list. Recover those before
+        # refusing, and fall back to an extractive evidence quote so a grounded
+        # answer is never turned into an empty refusal.
+        # First retry with a compact schema: this usually restores an inline
+        # citation without changing the evidence.
+        retry_messages = [
+            {
+                "role": "user",
+                "content": (
+                    f"问题：{question}\n证据：\n{pack.text}\n"
+                    '只输出 JSON：{"answerability":"answerable|partial|refuse",'
+                    '"conclusion":"逐句带 [DOC_ID §章节] 引用的回答",'
+                    '"citations":["[DOC_ID §章节]"]}。只使用证据。'
+                ),
+            }
+        ]
+        try:
+            compact = _cached_json(
+                cache,
+                _key(f"{PROMPT_VERSION}-ungrounded", question, pack.text, client.config.model),
+                client,
+                retry_messages,
+                max_tokens=900,
+            )
+            compact_text = _prune(_body(compact), by_label)
+            if compact_text and "[" in compact_text.splitlines()[0]:
+                text = compact_text
+        except LLMError:
+            pass
+        if not text or "[" not in text.splitlines()[0]:
+            alt = "；".join(_as_list(value.get("steps")))
+            if alt and "[" in alt:
+                text = _prune(alt, by_label)
+            elif pack.items:
+                first = pack.items[0]
+                text = f"{first.quote}[{first.label}]"
     if not text or "[" not in text.splitlines()[0]:
         return StandardResult(
             answer=Answer(

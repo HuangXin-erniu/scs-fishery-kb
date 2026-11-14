@@ -1716,3 +1716,6 @@ This log records material project changes by date. It does not use release versi
   prompt changes invalidate cached answers. Regenerated 8 core rows (all changed;
   3 recovered via compact retry, IG-065 still empty). Exported
   human-review-round3-30.csv for re-review. No release.
+- Fixed ungrounded-refusal fallback (compact retry before extractive quote),
+  removed steps scaffold, and exported human-review-round4-30.csv (30/30
+  answered). Flagged outdated IG-030/IG-077 gold. No release.
