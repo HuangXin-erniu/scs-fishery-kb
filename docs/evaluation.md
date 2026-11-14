@@ -2197,3 +2197,20 @@ A 30-row human-review sheet was generated in the private run root
 verdict/machine reason/human verdict/human note). Independent human review is now
 required before any further answer-quality tuning; Track B retrieval passes, but
 the answer/release gate stays closed.
+
+### Human review result and jurisdiction-caveat fix (2026-11-14)
+
+Independent human review of the 30-row sheet (28 answered) returned **13 PASS /
+15 FAIL**; 7 of the 15 were the same template bug: "以上为省级规定" was appended
+whenever any provincial chunk was retrieved, even if every cited document was
+national. The caveat now depends on the **cited** documents only:
+
+- all cited documents national → no province caveat;
+- all cited documents provincial/municipal → "以上为属地规定";
+- mixed → "其中涉及属地执行的部分，以当地规定为准".
+
+Page anchors are also de-duplicated (`§p.7 p.7` → `§p.7`). Tests pass.
+The human review also identified 8 substantive answer issues (missing
+sub-questions, wrong duty attribution at IG-065, missing penalty amount at
+IG-113); a second-round 30-row sheet containing those 8 plus 22 fresh answered
+rows was generated for re-review. No release.

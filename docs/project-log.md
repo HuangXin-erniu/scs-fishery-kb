@@ -1708,3 +1708,7 @@ This log records material project changes by date. It does not use release versi
 - Targeted repair of 7 failed answers: 30-row check 21/30→16/30; LLM judge
   instability confirmed. Generated private human-review-30.csv; independent human
   review requested. Release gate closed.
+- Human review: 13 PASS / 15 FAIL; 7 failures were the "以上为省级规定" template
+  bug. Fixed caveat to use cited-document levels (national/mixed/local) and
+  de-duplicated page anchors. Generated human-review-round2-30.csv (8 core
+  failures + 22 fresh rows) for re-review. No release.

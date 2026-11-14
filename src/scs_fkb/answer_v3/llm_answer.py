@@ -87,8 +87,11 @@ def _cached_json(
 
 
 def _label(chunk: Any) -> str:
-    section = f" §{chunk.section}" if chunk.section else ""
-    page = f" p.{chunk.page}" if getattr(chunk, "page", 0) else ""
+    section_text = str(chunk.section or "").strip()
+    section = f" §{section_text}" if section_text else ""
+    has_page_section = section_text.startswith("p.") or section_text.startswith("p")
+    page_number = getattr(chunk, "page", 0)
+    page = f" p.{page_number}" if page_number and not has_page_section else ""
     return f"{chunk.doc_id}{section}{page}"
 
 

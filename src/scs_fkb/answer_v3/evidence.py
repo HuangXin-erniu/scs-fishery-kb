@@ -126,8 +126,10 @@ def _provisional(entry: dict[str, Any], chunk: Chunk) -> bool:
 
 
 def _label(chunk: Chunk) -> str:
-    section = f" §{chunk.section}" if chunk.section else ""
-    page = f" p.{chunk.page}" if chunk.page else ""
+    section_text = str(chunk.section or "").strip()
+    section = f" §{section_text}" if section_text else ""
+    has_page_section = section_text.startswith("p.") or section_text.startswith("p")
+    page = f" p.{chunk.page}" if chunk.page and not has_page_section else ""
     return f"{chunk.doc_id}{section}{page}"
 
 

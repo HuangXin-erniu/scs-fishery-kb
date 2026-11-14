@@ -706,29 +706,45 @@ class AnswerService:
             index_version=self.index_version,
         )
         result = answer_with_standard(question, pack, client, llm_cache)
-        if (
-            not result.answer.abstained
-            and not region_named
-            and any(item.level in {"provincial", "municipal"} for item in pack.items)
-        ):
-            caveat = "注意：问题未说明省份；以上为省级规定，其他省份以属地规定为准。"
-            fields = dict(result.contract_fields)
-            gap = list(fields.get("gap") or [])
-            gap.append("未说明省份")
-            fields["gap"] = gap
-            fields["answerability"] = "partial"
-            result = replace(
-                result,
-                answer=Answer(
-                    text=f"{result.answer.text}\n{caveat}",
-                    citations=result.answer.citations,
-                    abstained=False,
-                    reason=result.answer.reason,
-                ),
-                confidence=max(0.0, result.confidence - 0.1),
-                missing=tuple(list(result.missing) + ["省份"]),
-                contract_fields=fields,
-            )
+        if not result.answer.abstained and not region_named:
+            # Only warn about local applicability when a *cited* document is
+            # actually local. The previous check looked at the whole pack, which
+            # mislabelled national laws as "省级规定" whenever a provincial
+            # chunk happened to be retrieved.
+            cited_docs = {citation.doc_id for citation in result.answer.citations}
+            cited_levels = {
+                str(item.level or "")
+                for item in pack.items
+                if item.chunk.doc_id in cited_docs and item.level
+            }
+            if not cited_levels:
+                cited_levels = {
+                    str(self._registry.get(doc_id, {}).get("level") or "") for doc_id in cited_docs
+                }
+            local_levels = cited_levels & {"provincial", "municipal"}
+            caveat = ""
+            if local_levels and cited_levels <= {"provincial", "municipal"}:
+                caveat = "注意：问题未说明省份；以上为属地规定，其他省份以属地规定为准。"
+            elif local_levels:
+                caveat = "注意：问题未说明省份；其中涉及属地执行的部分，以当地规定为准。"
+            if caveat:
+                fields = dict(result.contract_fields)
+                gap = list(fields.get("gap") or [])
+                gap.append("未说明省份")
+                fields["gap"] = gap
+                fields["answerability"] = "partial"
+                result = replace(
+                    result,
+                    answer=Answer(
+                        text=f"{result.answer.text}\n{caveat}",
+                        citations=result.answer.citations,
+                        abstained=False,
+                        reason=result.answer.reason,
+                    ),
+                    confidence=max(0.0, result.confidence - 0.1),
+                    missing=tuple(list(result.missing) + ["省份"]),
+                    contract_fields=fields,
+                )
         if cache_obj is not None and not result.answer.abstained and result.answer.citations:
             payload = {
                 "answer": result.answer.text,
