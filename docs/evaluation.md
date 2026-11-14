@@ -2173,3 +2173,13 @@ unchanged: **21 PASS / 7 FAIL**. Remaining failures are substantive:
 
 The repair pass does not fix these; Track B retrieval gate (0.8039/0.9047) passes,
 but answer quality and the release gate remain below target. No release.
+
+### Structured sub-question generation (2026-11-14)
+
+Tested a two-stage pipeline: decompose the question into 2–4 sub-questions, answer
+each against the pack20 evidence, compose, then drop sentences whose numbers are
+not verbatim in the evidence. Result on 30 rows: **17 PASS / 11 FAIL**, worse than
+the single-pass 21/30. The per-subquestion prompt was too conservative and wrote
+"未覆盖" for cases the evidence did cover (e.g. IG-001, IG-029, IG-049), losing
+answer completeness. This pipeline is not adopted; answer quality remains the
+release blocker.

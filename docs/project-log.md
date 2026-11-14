@@ -1702,3 +1702,6 @@ This log records material project changes by date. It does not use release versi
 - Second-pass answer repair on 30 rows: no change, 21 PASS / 7 FAIL. Remaining
   failures are answer completeness, missing amounts and unsupported level
   statements; release gate stays closed.
+- Structured sub-question generation: decompose → per-subquestion answer → number
+  filter. 30 rows: 17 PASS / 11 FAIL (worse than 21/30); over-conservative
+  "未覆盖". Not adopted; release still blocked on answer quality.
