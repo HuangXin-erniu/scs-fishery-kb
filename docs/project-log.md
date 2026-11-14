@@ -1693,3 +1693,6 @@ This log records material project changes by date. It does not use release versi
 - Claim-aligned evidence (one best pack context per reference claim): full 106
   context precision 0.8039, recall 0.9047 (13 errors). Track B retrieval gate
   passes both targets; generation metrics/release still open.
+- Full Track B retrieval gate passes: claim-aligned precision 0.8039, recall
+  0.9047. 30-row answer spot check with pack contexts: 19 PASS / 11 FAIL; answer
+  completeness/citation accuracy still below release quality.

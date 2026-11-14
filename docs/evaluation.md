@@ -2121,3 +2121,23 @@ The full Track B **retrieval** gate now passes both targets (0.80 precision,
 0.85 recall). Generation metrics (faithfulness/answer correctness) were only
 sampled at 20 rows and remain below target, so Track B overall and the release
 gate are still not complete.
+
+### Track B retrieval gate pass and 30-row answer spot check (2026-11-14)
+
+Full retrieval gate (claim-aligned evidence, 106 rows):
+
+| Metric | Value | Target |
+|---|---:|---:|
+| context precision | 0.8039 | ≥0.80 ✅ |
+| context recall | 0.9047 | ≥0.85 ✅ |
+
+A 30-row answer spot check used the **pack20 contexts that generated the answers**
+(not the claim-aligned evaluation contexts):
+
+- **19 PASS / 11 FAIL** (63.3%);
+- failure modes: incomplete answers (missing sub-questions), mis-cited article
+  numbers, national/provincial level errors, and unsupported additions;
+- citation resolution was not the dominant failure.
+
+Track B retrieval gate passes; the generation/answer-quality gate (19/30) and the
+release gate remain closed. Independent human review is still required.
