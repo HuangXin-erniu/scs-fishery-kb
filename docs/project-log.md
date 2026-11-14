@@ -1685,3 +1685,6 @@ This log records material project changes by date. It does not use release versi
 - Sentence-level evidence variants: all sentences 0.5025/0.8306, top8 0.7132/
   0.7699, doc-dedup 0.7864/0.7192; none beat clause cap6 (0.7827/0.8280). Track B
   gate remains closed.
+- Track B optimized evidence pipeline (reranker top20 → LLM clause selection →
+  claim-support filter → top1 + 2 pack contexts): 20-row 0.8061/0.8512, 30-row
+  0.8261/0.8994 precision/recall. Both targets pass on 30 rows; full 106 pending.

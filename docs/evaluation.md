@@ -2074,3 +2074,19 @@ document raised precision but lost recall. The best Track B stack remains
 reranker top20 + LLM clause selection (cap 6), at precision 0.7827 / recall
 0.8280 — still short of 0.80 / 0.85. No gate; next option is question-type
 evidence routing or clause annotation, not more sentence splitting.
+
+### Track B optimized evidence pipeline (2026-11-14)
+
+Pipeline: reranker top-20 candidates → controlled-LLM clause selection (max 6) →
+claim-support filtering → add the top-1 selected clause and two pack contexts.
+Evaluated with audited references and retrieved evidence as contexts:
+
+| Sample | context precision | context recall |
+|---:|---:|---:|
+| 20 rows | 0.8061 | 0.8512 |
+| **30 rows** | **0.8261** | **0.8994** |
+
+Both targets (precision 0.80, recall 0.85) are cleared on the 30-row stable
+sample; 4 endpoint errors. The full 106-row run of this pipeline is still
+pending, so no full Track B gate is claimed. Product defaults are unchanged; this
+is the Track B evaluation profile experiment.
