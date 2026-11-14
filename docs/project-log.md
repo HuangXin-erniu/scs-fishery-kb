@@ -1712,3 +1712,7 @@ This log records material project changes by date. It does not use release versi
   bug. Fixed caveat to use cited-document levels (national/mixed/local) and
   de-duplicated page anchors. Generated human-review-round2-30.csv (8 core
   failures + 22 fresh rows) for re-review. No release.
+- Fixed LLM cache-key bug: prompt version is now a hash of the prompt text, so
+  prompt changes invalidate cached answers. Regenerated 8 core rows (all changed;
+  3 recovered via compact retry, IG-065 still empty). Exported
+  human-review-round3-30.csv for re-review. No release.

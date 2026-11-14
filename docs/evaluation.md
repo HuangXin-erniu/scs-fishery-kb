@@ -2214,3 +2214,19 @@ The human review also identified 8 substantive answer issues (missing
 sub-questions, wrong duty attribution at IG-065, missing penalty amount at
 IG-113); a second-round 30-row sheet containing those 8 plus 22 fresh answered
 rows was generated for re-review. No release.
+
+### LLM cache-key bug and round-3 review sheet (2026-11-14)
+
+Human review of round 2 (16/30) found that 4 answers were byte-identical to round
+1 and 4 had only the closing template changed. Root cause: `standard_arm` used a
+static `PROMPT_VERSION = "standard-v1"` as the LLM-cache key component, so prompt
+changes did not invalidate cached answers.
+
+Fix: `PROMPT_VERSION` / `REPAIR_VERSION` are now derived from a SHA-256 hash of
+the actual system prompt, so any prompt edit invalidates the cache. After the
+fix, all 8 core failure answers changed text. Four returned "ungrounded" because
+the model omitted inline citations; a compact retry recovered 3 of them, while
+IG-065 still hit empty completions.
+
+A third-round 30-row sheet (8 core rows + 22 fresh answered rows, untruncated
+evidence) was generated for human re-review. No release.

@@ -26,8 +26,6 @@ from .llm_answer import (
     _verify,
 )
 
-PROMPT_VERSION = "standard-v1"
-REPAIR_VERSION = "standard-repair-v1"
 MAX_ANSWER_CHARS = 4000
 ANSWERABILITY = frozenset({"answerable", "partial", "refuse", "clarify"})
 GAP_SENTENCE = (
@@ -49,11 +47,11 @@ STANDARD_SYSTEM = (
     "数字、金额、条款号、期限必须逐字从证据复制，不得改写、合并或四舍五入；"
     "来源层级必须与证据一致，国家规定不得写成省级，省级不得写成国家；"
     "不得根据印象补写“以上为省级规定”等层级判断。"
-    "涉及职责、权限归属时，先逐字摘录证据原文再下结论，结论方向必须与原文一致，不得读反；"
     "涉及罚则时必须写明证据中的罚款数额或幅度，原文有则摘出，不得省略。"
     "证据只覆盖部分子问题时必须用 answerability=partial，并在 soft_gap 说明未覆盖部分；"
     "只有证据清单与问题完全无关时才用 refuse，不要因为缺少细节直接拒绝回答。"
 )
+PROMPT_VERSION = "standard-" + hashlib.sha256(STANDARD_SYSTEM.encode()).hexdigest()[:8]
 
 REPAIR_SYSTEM = (
     "你在修复一份带引用的渔业答复。下面列出未被证据支持的数字或缺少引用的句子。\n"
@@ -61,6 +59,7 @@ REPAIR_SYSTEM = (
     " [DOC_ID §章节] 或 [DOC_ID p.页码]。不得引入新事实。\n"
     '只输出 JSON：{"conclusion":"修复后的完整答复文本"}'
 )
+REPAIR_VERSION = "standard-repair-" + hashlib.sha256(REPAIR_SYSTEM.encode()).hexdigest()[:8]
 
 
 @dataclass(frozen=True)
