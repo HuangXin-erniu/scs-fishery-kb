@@ -1679,3 +1679,6 @@ This log records material project changes by date. It does not use release versi
   14 PASS / 16 FAIL, mean recall 0.9167, precision 0.5169; failure mode is weak
   pack precision, not fabricated citations. Track B precision gate fails; no
   release.
+- LLM evidence selection on reranked top20: best 20-row precision 0.7827,
+  recall 0.8280 (cap6); strict prompt 0.6961/0.6651. Near targets but not passing;
+  Track B gate remains closed.

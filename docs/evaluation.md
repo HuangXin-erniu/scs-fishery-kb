@@ -2039,3 +2039,21 @@ reviewer) used the full per-row RAGAS recall/precision and citation resolution:
 Track B gate status: **context recall 0.9356 pass; context precision 0.4493 fail**
 (target 0.80). The release gate therefore stays closed; an independent 30–50
 question human review is still required.
+
+### LLM evidence selection for Track B precision (2026-11-14)
+
+To raise context precision without losing recall, reranked top-20 candidates were
+passed to a controlled LLM selector; only selected clauses became RAGAS contexts.
+20-row results:
+
+| Selection | context precision | context recall |
+|---|---:|---:|
+| LLM selected, 3–8 clauses | 0.7787 | 0.8260 |
+| same, cap 6 | **0.7827** | **0.8280** |
+| stricter prompt, cap 5 | 0.6961 | 0.6651 |
+
+The best configuration is close to both targets (0.80 / 0.85) but does not clear
+them; the stricter prompt over-pruned and lost recall. Full-set precision with
+pack20 was 0.4493, so selection is directionally useful but not sufficient.
+Track B gate remains closed; next step is sentence-level evidence units rather
+than whole chunks.
