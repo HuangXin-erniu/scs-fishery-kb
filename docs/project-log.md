@@ -1675,3 +1675,7 @@ This log records material project changes by date. It does not use release versi
 - Full Track B context recall (106 answered rows, audited refs, pack contexts):
   0.9356 (102/106 scored), 4 errors, 493 s. Recall target passed; precision and
   correctness still pending.
+- Full Track B context precision: 0.4493 (106/106). 30-row agent spot check:
+  14 PASS / 16 FAIL, mean recall 0.9167, precision 0.5169; failure mode is weak
+  pack precision, not fabricated citations. Track B precision gate fails; no
+  release.

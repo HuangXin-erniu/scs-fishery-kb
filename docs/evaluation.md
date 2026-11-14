@@ -2016,3 +2016,26 @@ references and retrieved-pack contexts:
 This clears the 0.70 (and 0.85) recall target for the full answered set. Precision
 and answer correctness on the full set are still pending; the 20-row sample had
 precision 0.4923 and correctness 0.4428, so Track B is not yet releasable.
+
+### Full Track B precision and 30-row expert spot check (2026-11-14)
+
+Full context precision on the 106 answered rows:
+
+| Metric | Value | Scored |
+|---|---:|---:|
+| context precision | **0.4493** | 106/106 |
+| errors | 0 | — |
+| elapsed | 1925 s | — |
+
+A 30-row stratified expert spot check (agent-executed, not an independent human
+reviewer) used the full per-row RAGAS recall/precision and citation resolution:
+
+- **14 PASS / 16 FAIL**;
+- mean context recall 0.9167, mean context precision 0.5169;
+- all cited documents resolved to retrieved contexts (no fabricated citations);
+- failures were dominated by low context precision (many weakly relevant pack
+  chunks), not missing evidence.
+
+Track B gate status: **context recall 0.9356 pass; context precision 0.4493 fail**
+(target 0.80). The release gate therefore stays closed; an independent 30–50
+question human review is still required.
