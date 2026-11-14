@@ -10,6 +10,7 @@ from ..models import Answer
 from ..rag import _citations_from_text
 from .llm_answer import _enrich
 from .numbers import declared_unit, render_pairs
+from .select import Clause
 
 MAX_HITS = int(os.environ.get("SCS_FKB_DUMP_HITS", "300"))
 MAX_ANSWER_CHARS = int(os.environ.get("SCS_FKB_DUMP_CHARS", "100000"))
@@ -132,6 +133,18 @@ def answer_with_dump(
     rows = _sentences(hits)
     if not rows:
         return Answer(text="", citations=(), abstained=True, reason="no_sentences")
+    clauses = tuple(
+        Clause(
+            text=sentence,
+            doc_id=hit.chunk.doc_id,
+            section=hit.chunk.section,
+            page=hit.chunk.page,
+            rank=index,
+            source_class=getattr(hit.chunk, "source_class", ""),
+            chunk_id=hit.chunk.chunk_id,
+        )
+        for index, (sentence, hit) in enumerate(rows)
+    )
 
     chosen = (mode or MAX_MODE).strip().lower()
     if chosen == "block":
@@ -160,8 +173,12 @@ def answer_with_dump(
     text = "\n".join(parts)
     citations = _citations_from_text(text, hits)
     if not citations:
-        return Answer(text=text, citations=(), abstained=False, reason="dump_no_citation")
-    return Answer(text=text, citations=citations, abstained=False, reason="dump_compose")
+        return Answer(
+            text=text, citations=(), abstained=False, reason="dump_no_citation", clauses=clauses
+        )
+    return Answer(
+        text=text, citations=citations, abstained=False, reason="dump_compose", clauses=clauses
+    )
 
 
 __all__ = [

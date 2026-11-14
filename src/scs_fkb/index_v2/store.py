@@ -91,6 +91,7 @@ def _node(chunk: Chunk, embedding: list[float]) -> Any:
         "parent_id": chunk.parent_id,
         "sensitivity": chunk.sensitivity,
         "authority_tier": chunk.authority_tier,
+        "ingest_tier": chunk.ingest_tier,
         "level": chunk.level,
         "source_class": chunk.source_class,
         "trust": chunk.trust,

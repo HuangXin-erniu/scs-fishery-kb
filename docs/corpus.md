@@ -1,6 +1,6 @@
 # Corpus Inventory
 
-- Status: 100 registered sources (all acquired; 0 open candidates), schema v4 currency, 67 indexed documents (2,797 chunks, index `ce3eeaf4c9b2`). The local core CSV has 3,126 rows and stays outside the public tree.
+- Status: 103 registered sources (all acquired; 0 open candidates), schema v4 currency, 70 indexed documents (2,929 chunks, index `6e9dc9b9d8b9`). Three documents were added on 2026-11-12 to close holdout gaps: the 1972 collision-avoidance rules (`POL-NAV-119`), the fishing-vessel dismantling procedure (`POL-BOAT-120`) and the forfeited-property management rules (`POL-FIN-121`). The local core CSV has 3,126 rows and stays outside the public tree.
 - Register: [configs/corpus.yaml](../configs/corpus.yaml)
 - Candidate register: [configs/candidates.yaml](../configs/candidates.yaml)
 - Watch list: [configs/source-watch.yaml](../configs/source-watch.yaml)

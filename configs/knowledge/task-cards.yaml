@@ -1,0 +1,343 @@
+schema_version: 1
+updated_at: '2026-11-12'
+cards:
+- id: TASK-CAPTAIN-001
+  persona: captain
+  title: 南海伏季休渔合规自查
+  when: 2026年，全国
+  steps:
+  - text: 确认作业类型是否属于休渔范围：除钓具外的所有作业类型，以及为捕捞渔船配套服务的捕捞辅助船，均纳入休渔管理。
+    facts:
+    - FACT-POLICY-002
+  - text: 核对休渔时间与海域：南海区休渔时间为5月1日12时至8月16日12时，海域为北纬26度30分至北纬12度。
+    facts:
+    - FACT-POLICY-001
+  - text: 识别违规后果：违反禁渔区、禁渔期规定捕捞的，面临没收渔获物、违法所得和渔具及罚款；情节严重的吊销捕捞许可证，可以没收船舶。
+    facts:
+    - FACT-POLICY-011
+  documents:
+  - 捕捞许可证
+  - 船舶国籍证书
+  deadline: 5月1日12时前完成休渔准备
+  facts:
+  - FACT-POLICY-001
+  - FACT-POLICY-002
+  - FACT-POLICY-011
+  source:
+    kind: playbook
+    id: PLAY-CAPTAIN-001
+  status: draft
+  review_due: '2027-02-02'
+  note: generated from an approved playbook; wording review pending
+- id: TASK-OWNER-001
+  persona: owner
+  title: 2026年专项（特许）捕捞申请
+  when: 2026年，全国
+  steps:
+  - text: 判断可申请的作业类型：桁杆拖虾、笼壶类、刺网、灯光围（敷）网4种作业类型，在指定海域和船籍港条件下可申请专项捕捞。
+    facts:
+    - FACT-POLICY-003
+  - text: 准备申请材料：按捕捞许可证申请材料清单准备申请书、户口簿或营业执照、检验证书、国籍证书、所有权登记证书、渔具和捕捞方法说明等。
+    facts:
+    - FACT-POLICY-009
+  - text: 核对证书有效期：许可证期满前3个月内向原发证机关申请换发，换发时收回原证并注销。
+    facts:
+    - FACT-POLICY-005
+  documents: []
+  deadline: ''
+  facts:
+  - FACT-POLICY-003
+  - FACT-POLICY-005
+  - FACT-POLICY-009
+  source:
+    kind: playbook
+    id: PLAY-OWNER-002
+  status: draft
+  review_due: '2027-02-02'
+  note: generated from an approved playbook; wording review pending
+- id: TASK-OWNER-002
+  persona: owner
+  title: 海洋渔业捕捞许可证申请
+  when: 2026年，全国
+  steps:
+  - text: 准备申请材料：申请书、户口簿或营业执照、检验证书、国籍证书、所有权登记证书、渔具和捕捞方法说明；海洋许可另需组织意见、指标批准书或原证。
+    facts:
+    - FACT-POLICY-009
+  - text: 确认许可证期限：海洋和内陆渔业捕捞许可证5年；其他种类最长不超过3年。
+    facts:
+    - FACT-POLICY-004
+  documents: []
+  deadline: ''
+  facts:
+  - FACT-POLICY-004
+  - FACT-POLICY-009
+  source:
+    kind: playbook
+    id: PLAY-OWNER-003
+  status: draft
+  review_due: '2027-02-02'
+  note: generated from an approved playbook; wording review pending
+- id: TASK-OWNER-003
+  persona: owner
+  title: 捕捞许可证换发与年审
+  when: 2026年，全国
+  steps:
+  - text: 在期满前3个月内申请换发：使用期届满前3个月内向原发证机关申请换发；换发时收回原证并注销。
+    facts:
+    - FACT-POLICY-005
+  - text: 核对年审条件：检验证书和国籍证书有效；所有人、主尺度、主机功率、总吨位未变更；作业类型、场所、时限、渔具数量一致；日志、资源费、处罚履行。
+    facts:
+    - FACT-POLICY-010
+  documents: []
+  deadline: ''
+  facts:
+  - FACT-POLICY-005
+  - FACT-POLICY-010
+  source:
+    kind: playbook
+    id: PLAY-OWNER-004
+  status: draft
+  review_due: '2027-02-02'
+  note: generated from an approved playbook; wording review pending
+- id: TASK-OWNER-004
+  persona: owner
+  title: 船网工具指标申请与使用
+  when: 2026年，全国
+  steps:
+  - text: 核对指标批准书有效期：制造、更新改造、进口渔船18个月；购置渔船6个月；可在届满前3个月内申请延展18个月；远洋特殊渔区可再延展18个月；逾期注销并收回指标。
+    facts:
+    - FACT-POLICY-006
+  - text: 核对制造、更新改造规则：本省指标内通过淘汰旧船解决；船数和功率不得超过被淘汰渔船；大中型与小型不得转换；大中型不得跨海区买卖。
+    facts:
+    - FACT-POLICY-017
+  documents: []
+  deadline: ''
+  facts:
+  - FACT-POLICY-006
+  - FACT-POLICY-017
+  source:
+    kind: playbook
+    id: PLAY-OWNER-005
+  status: draft
+  review_due: '2027-02-02'
+  note: generated from an approved playbook; wording review pending
+- id: TASK-CAPTAIN-002
+  persona: captain
+  title: 渔捞日志填报
+  when: 2026年，全国
+  steps:
+  - text: 记录规定事项：记载捕捞作业、进港卸载渔获物、水上收购或转运渔获物等情况。
+    facts:
+    - FACT-POLICY-007
+  - text: 避免违规：未按规定提交或填写不真实、不规范的，警告、责令改正；逾期不改正处1000元以上1万元以下罚款。
+    facts:
+    - FACT-POLICY-008
+  documents: []
+  deadline: ''
+  facts:
+  - FACT-POLICY-007
+  - FACT-POLICY-008
+  source:
+    kind: playbook
+    id: PLAY-CAPTAIN-006
+  status: draft
+  review_due: '2027-02-02'
+  note: generated from an approved playbook; wording review pending
+- id: TASK-CAPTAIN-003
+  persona: captain
+  title: 渔船进出渔港报告
+  when: 2026年，全国
+  steps:
+  - text: 遵守渔港管理章程和避碰规则：进出渔港应遵守渔港管理章程和国际海上避碰规则，向渔政渔港监督管理机关报告，接受安全检查。
+    facts:
+    - FACT-POLICY-013
+  - text: 认识未报告后果：未报告可责令改正，可以并处警告、罚款；情节严重的扣留或者吊销船长职务证书。
+    facts:
+    - FACT-POLICY-014
+  documents: []
+  deadline: ''
+  facts:
+  - FACT-POLICY-013
+  - FACT-POLICY-014
+  source:
+    kind: playbook
+    id: PLAY-CAPTAIN-007
+  status: draft
+  review_due: '2027-02-02'
+  note: generated from an approved playbook; wording review pending
+- id: TASK-OWNER-005
+  persona: owner
+  title: 渔业船舶检验安排
+  when: 2026年，全国
+  steps:
+  - text: 确认检验种类：强制检验分为初次检验、营运检验和临时检验。
+    facts:
+    - FACT-POLICY-015
+  documents: []
+  deadline: ''
+  facts:
+  - FACT-POLICY-015
+  source:
+    kind: playbook
+    id: PLAY-OWNER-008
+  status: draft
+  review_due: '2027-02-02'
+  note: generated from an approved playbook; wording review pending
+- id: TASK-OWNER-006
+  persona: owner
+  title: 渔业资源增殖保护费
+  when: 2026年，全国
+  steps:
+  - text: 核对征收幅度：海洋渔业按前3年平均年总产值1%至3%（不含专项品种）；专项品种3%至5%。
+    facts:
+    - FACT-POLICY-016
+  documents: []
+  deadline: ''
+  facts:
+  - FACT-POLICY-016
+  source:
+    kind: playbook
+    id: PLAY-OWNER-009
+  status: draft
+  review_due: '2027-02-02'
+  note: generated from an approved playbook; wording review pending
+- id: TASK-CAPTAIN-004
+  persona: captain
+  title: 渔具最小网目与准用/过渡渔具自查
+  when: 2026年，全国
+  steps:
+  - text: 确认制度实施范围：2014年6月1日起，黄渤海、东海、南海全面实施最小网目尺寸制度。
+    facts:
+    - FACT-GEAR-001
+  - text: 区分准用渔具与过渡渔具：准用渔具是国家允许使用的海洋捕捞渔具；过渡渔具按附件标准执行。
+    facts:
+    - FACT-GEAR-004
+  - text: 按规定方法测量网目：按GB/T 6964—2010规定，采用扁平楔形网目内径测量仪测量，网目沿纵向或长轴方向充分拉直。
+    facts:
+    - FACT-GEAR-005
+  documents: []
+  deadline: ''
+  facts:
+  - FACT-GEAR-001
+  - FACT-GEAR-004
+  - FACT-GEAR-005
+  source:
+    kind: playbook
+    id: PLAY-CAPTAIN-010
+  status: draft
+  review_due: '2027-02-02'
+  note: generated from an approved playbook; wording review pending
+- id: TASK-EXTENSION-001
+  persona: extension
+  title: 渔具分类、命名与代号
+  when: 2026年，全国
+  steps:
+  - text: 使用规范分类：按GB/T 5147—2026的类、型、式分类和代号书写；名称按式+型+类书写，代号按类·型·式书写。
+    facts:
+    - FACT-GEAR-011
+  - text: 使用标准类名称与代号：C刺网、W围网、T拖网、Zh张网、D钓具、Di地拉网、Ch抄网、Y掩罩、P耙刺、F敷网、X陷阱、L笼壶。
+    facts:
+    - FACT-GEAR-002
+  documents: []
+  deadline: ''
+  facts:
+  - FACT-GEAR-002
+  - FACT-GEAR-011
+  source:
+    kind: playbook
+    id: PLAY-EXTENSION-011
+  status: draft
+  review_due: '2027-02-02'
+  note: generated from an approved playbook; wording review pending
+- id: TASK-CAPTAIN-005
+  persona: captain
+  title: 渔业行政处罚应对
+  when: 2026年，全国
+  steps:
+  - text: 了解禁渔区、禁渔期违规后果：没收渔获物、违法所得和渔具，处20万元以下罚款；情节严重处20万元以上200万元以下罚款，吊销捕捞许可证，可以没收船舶。
+    facts:
+    - FACT-POLICY-011
+  - text: 了解无证捕捞罚款：海洋水域10万元以下；内陆水域5万元以下。
+    facts:
+    - FACT-POLICY-012
+  documents: []
+  deadline: ''
+  facts:
+  - FACT-POLICY-011
+  - FACT-POLICY-012
+  source:
+    kind: playbook
+    id: PLAY-CAPTAIN-012
+  status: draft
+  review_due: '2027-02-02'
+  note: generated from an approved playbook; wording review pending
+- id: TASK-CAPTAIN-006
+  persona: captain
+  title: 渔港停泊与安全检查
+  when: 2026年，全国
+  steps:
+  - text: 进出港报告并接受安全检查：向渔政渔港监督管理机关报告，接受安全检查。
+    facts:
+    - FACT-POLICY-013
+  - text: 避免未报告处罚：未报告可责令改正，可以并处警告、罚款；情节严重的扣留或者吊销船长职务证书。
+    facts:
+    - FACT-POLICY-014
+  documents: []
+  deadline: ''
+  facts:
+  - FACT-POLICY-013
+  - FACT-POLICY-014
+  source:
+    kind: playbook
+    id: PLAY-CAPTAIN-013
+  status: draft
+  review_due: '2027-02-02'
+  note: generated from an approved playbook; wording review pending
+- id: TASK-EXTENSION-002
+  persona: extension
+  title: 海洋捕捞统计口径说明
+  when: 2026年，全国
+  steps:
+  - text: 说明海区口径：海洋捕捞产量按捕捞海域分为渤海、黄海、东海和南海区。
+    facts:
+    - FACT-STATS-001
+  - text: 说明渔船分类口径：机动渔业船舶指依靠本船主机动力推进的渔业船舶，分为渔业生产船和渔业辅助船；捕捞船按主机功率、船长和作业方式分类。
+    facts:
+    - FACT-STATS-002
+  documents: []
+  deadline: ''
+  facts:
+  - FACT-STATS-001
+  - FACT-STATS-002
+  source:
+    kind: playbook
+    id: PLAY-EXTENSION-014
+  status: draft
+  review_due: '2027-02-02'
+  note: generated from an approved playbook; wording review pending
+- id: TASK-CAPTAIN-007
+  persona: captain
+  title: 渔业法基本义务与法律责任
+  when: 2026年，全国
+  steps:
+  - text: 遵守捕捞许可证制度：国家对捕捞业实行捕捞许可证制度，捕捞许可证由县级以上人民政府渔业渔政主管部门批准发放。
+    facts:
+    - FACT-POLICY-035
+  - text: 遵守捕捞限额制度：国家根据捕捞量低于渔业资源增长量的原则确定总可捕捞量，实行捕捞限额制度。
+    facts:
+    - FACT-POLICY-033
+  - text: 按许可内容作业并填写日志：按许可证规定的作业类型、场所、时限、渔具数量和捕捞限额作业；海洋大中型渔业船舶应如实填写作业日志并至少保存二年。
+    facts:
+    - FACT-POLICY-037
+  documents: []
+  deadline: ''
+  facts:
+  - FACT-POLICY-033
+  - FACT-POLICY-035
+  - FACT-POLICY-037
+  source:
+    kind: playbook
+    id: PLAY-CAPTAIN-015
+  status: draft
+  review_due: '2027-02-02'
+  note: generated from an approved playbook; wording review pending

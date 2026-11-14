@@ -184,3 +184,28 @@ scs-fkb embed --data-root "$SCS_FKB_DATA_ROOT/external"
 ```
 
 The rebuilt external store now has **507 documents and 563 chunks** (119 cards, 140 notes, 100 approved facts, 136 approved terms, 12 FAQs), chunk index `458aad366fe1` and dense index `91e8ec609611dccb`. The pre-review store was 375 documents / 431 chunks / `3259a7694499`; the corpus store is now 42 documents, 1014 chunks and `f7a244373e77`.
+
+## 8. Task cards and canonical answers (2026-11-12)
+
+Two light-weight internalisation layers sit on top of the fact layer. Both are
+validated in CI and both keep their citations.
+
+**Task cards** (`configs/knowledge/task-cards.yaml`) are short, persona-specific
+procedures generated from approved playbooks. Each step names at least one
+approved fact; a card whose step names an unknown, draft or retired fact fails
+`scripts/check_task_cards.py`. The first batch has 15 draft cards covering
+closure compliance, permits, gear, logbook and enforcement-response procedures.
+They are drafts until a human reviews the wording; the fact binding is already
+enforced.
+
+**Canonical answers** (`configs/knowledge/answers.yaml`) are reviewed
+question/answer pairs for recurring questions, generated from approved FAQ
+entries. Every entry carries the document and quote that supports it;
+`scripts/check_answers.py` rejects an unregistered document or missing evidence.
+The first batch has 16 approved answers. The answer bank is a fast path, not a
+replacement for retrieval: the standard arm still resolves the citation and the
+abstention decision is unchanged.
+
+`scripts/build_knowledge.py` rebuilds both layers from the approved playbooks
+and FAQ, writes a gap-cluster report under the run root and only updates the
+public configs with `--write-configs` after validation passes.

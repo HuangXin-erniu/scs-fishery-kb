@@ -120,6 +120,7 @@ def hierarchical_chunks(
                 version_id=document.version_id,
                 snapshot_hash=document.snapshot_hash,
                 authority_tier=document.authority_tier,
+                ingest_tier=document.ingest_tier,
                 level=document.level,
                 jurisdiction=document.jurisdiction,
                 license=document.license,

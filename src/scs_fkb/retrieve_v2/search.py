@@ -15,6 +15,47 @@ from ..text import tokenize
 from .filters import RetrievalFilters, filter_hits
 from .rerank import DEFAULT_RERANKER, Reranker
 
+PROVISIONAL_FACTOR = 0.6
+P1_PRIOR = 1.80
+LAW_TYPE_PRIOR = 1.00
+
+
+def _apply_metadata_prior(
+    hits: list[SearchHit],
+    priorities: dict[str, str],
+    doc_types: dict[str, str],
+) -> list[SearchHit]:
+    """Prefer P1 and law/regulation/standard anchors after fusion.
+
+    The practical-source batches are P2 notices; without this prior they can
+    outrank the frozen legal anchors purely on lexical overlap.
+    """
+    adjusted: list[SearchHit] = []
+    for hit in hits:
+        source_id = hit.chunk.source_id or hit.chunk.doc_id
+        factor = 1.0
+        if priorities.get(source_id) == "P1":
+            factor *= P1_PRIOR
+        if doc_types.get(source_id) in {"law", "regulation", "standard"}:
+            factor *= LAW_TYPE_PRIOR
+        adjusted.append(SearchHit(chunk=hit.chunk, score=hit.score * factor))
+    adjusted.sort(key=lambda hit: -hit.score)
+    return adjusted
+
+
+def _apply_tier_penalty(hits: list[SearchHit]) -> list[SearchHit]:
+    """Provisional evidence should not outrank canonical evidence by default."""
+    adjusted = [
+        SearchHit(
+            chunk=hit.chunk,
+            score=hit.score
+            * (PROVISIONAL_FACTOR if hit.chunk.ingest_tier == "provisional" else 1.0),
+        )
+        for hit in hits
+    ]
+    adjusted.sort(key=lambda hit: -hit.score)
+    return adjusted
+
 
 def _title_tokens(documents: list[dict[str, Any]]) -> dict[str, set[str]]:
     titles: dict[str, set[str]] = {}
@@ -37,10 +78,12 @@ class HybridRetriever:
         dense_fn: Callable[[str, int], list[tuple[str, float]]] | None = None,
         reranker: Reranker | None = None,
         lexicon: list[dict[str, object]] | None = None,
-        depth: int = 10,
+        depth: int = 20,
         fusion_k: int = 60,
-        bm25_weight: float = 2.0,
-        dense_weight: float = 1.0,
+        bm25_weight: float = 1.0,
+        dense_weight: float = 1.5,
+        priorities: dict[str, str] | None = None,
+        doc_types: dict[str, str] | None = None,
     ) -> None:
         self.chunks = list(chunks)
         self.by_id = {chunk.chunk_id: chunk for chunk in self.chunks}
@@ -54,14 +97,17 @@ class HybridRetriever:
         self.fusion_k = fusion_k
         self.bm25_weight = bm25_weight
         self.dense_weight = dense_weight
+        self.priorities = dict(priorities or {})
+        self.doc_types = dict(doc_types or {})
 
-    def _dense_hits(self, query: str, ceiling: str) -> list[SearchHit]:
+    def _dense_hits(self, query: str, ceiling: str, *, depth: int | None = None) -> list[SearchHit]:
+        limit = depth or self.depth
         if self.dense_fn is not None:
-            pairs = self.dense_fn(query, self.depth)
+            pairs = self.dense_fn(query, limit)
         elif self.dense_index is not None and self.encoder is not None:
             from ..index_v2 import dense_search
 
-            pairs = dense_search(self.dense_index, query, top_k=self.depth)
+            pairs = dense_search(self.dense_index, query, top_k=limit)
         else:
             return []
         hits: list[SearchHit] = []
@@ -81,20 +127,32 @@ class HybridRetriever:
         filters: RetrievalFilters | None = None,
         *,
         rerank: bool = True,
+        depth: int | None = None,
+        rerank_candidates: int | None = None,
     ) -> list[SearchHit]:
         ceiling = (filters or RetrievalFilters()).sensitivity_ceiling
+        candidate_depth = max(self.depth, int(depth or 0))
         expanded = expand_query(question, self.lexicon) if self.lexicon else question
-        lexical = self.bm25.search(expanded, top_k=self.depth, sensitivity_ceiling=ceiling)
-        dense = self._dense_hits(expanded, ceiling)
+        lexical = self.bm25.search(expanded, top_k=candidate_depth, sensitivity_ceiling=ceiling)
+        dense = self._dense_hits(expanded, ceiling, depth=candidate_depth)
         fused = reciprocal_rank_fusion(
             [lexical, dense],
             [self.bm25_weight, self.dense_weight],
             k=self.fusion_k,
-            top_k=self.depth,
+            top_k=candidate_depth,
         )
-        fused = filter_hits(fused, filters)
+        fused = _apply_tier_penalty(filter_hits(fused, filters))
+        fused = _apply_metadata_prior(fused, self.priorities, self.doc_types)
         if rerank and self.reranker is not None:
-            fused = self.reranker.rerank(question, fused, top_k=max(top_k, 5))
+            try:
+                fused = self.reranker.rerank(
+                    question,
+                    fused,
+                    top_k=max(top_k, 5),
+                    max_candidates=rerank_candidates,
+                )
+            except TypeError:
+                fused = self.reranker.rerank(question, fused, top_k=max(top_k, 5))
         return fused[:top_k]
 
     def search_queries(
@@ -138,6 +196,7 @@ def build_retriever(
 ) -> HybridRetriever:
     from ..embed import FastEmbedEncoder
     from ..index_v2 import load_chunks_v2, open_index
+    from ..registry import load_registry
 
     root = Path(data_root).expanduser().resolve()
     chunks = load_chunks_v2(root)
@@ -155,6 +214,9 @@ def build_retriever(
         else None
     )
     lexicon = load_lexicon(DEFAULT_LEXICON) if DEFAULT_LEXICON.is_file() else []
+    registry = load_registry()
+    priorities = {sid: str(entry.get("priority") or "") for sid, entry in registry.items()}
+    doc_types = {sid: str(entry.get("type") or "") for sid, entry in registry.items()}
     return HybridRetriever(
         chunks,
         bm25,
@@ -162,6 +224,8 @@ def build_retriever(
         encoder=encoder,
         reranker=reranker_obj,
         lexicon=lexicon,
+        priorities=priorities,
+        doc_types=doc_types,
     )
 
 

@@ -141,13 +141,20 @@ def extract_main_text(html: str) -> str:
     section_positions = [index for index, block in enumerate(blocks) if SECTION_RE.match(block)]
     if section_positions:
         start = section_positions[0]
-        end = len(blocks) - 1
-        for index in range(len(blocks) - 1, start, -1):
-            has_publisher = "农业农村部" in blocks[index]
-            has_date = re.search(r"20\d{2}年\d{1,2}月\d{1,2}日", blocks[index])
-            if has_publisher and has_date:
-                end = index
+        end = max(section_positions)
+        # Include the short trailing publisher/date blocks, but stop at the
+        # attachment or related-news footer. A body paragraph can mention both
+        # the publisher and a date, so the last section is the reliable anchor.
+        for index in range(end + 1, min(len(blocks), end + 8)):
+            block = blocks[index]
+            if block.startswith("附件") or block.startswith("相关新闻"):
                 break
+            if re.search(r"20\d{2}年\d{1,2}月\d{1,2}日", block) or block in {
+                "农业农村部",
+                "自然资源部",
+                "中华人民共和国海事局",
+            }:
+                end = index
         return "\n".join(blocks[start : end + 1])
 
     return "\n".join(blocks)

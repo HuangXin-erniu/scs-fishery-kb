@@ -12,6 +12,11 @@ structure: status, date, context, decision, consequences and references.
 | [0005](0005-two-plane-evidence.md) | Canonical and ephemeral evidence planes | Accepted |
 | [0006](0006-llamaindex-lancedb-bge.md) | LlamaIndex, LanceDB and BGE substrate | Accepted |
 | [0008](0008-playbooks-and-terms.md) | Playbooks and terms internalisation | Accepted |
+| [0009](0009-standard-rag-answer-pipeline.md) | Standard RAG answer pipeline as the default | Proposed |
+| [0010](0010-dual-track-evaluation.md) | Dual-track evaluation with industry-standard metrics | Proposed |
+| [0011](0011-semi-automatic-update-loop.md) | Semi-automatic update loop with a provisional tier | Proposed |
+| [0012](0012-practical-sources-and-freshness.md) | Practical sources and freshness for crew-facing knowledge | Proposed |
+| [0013](0013-source-schema-v5.md) | Source schema v5 | Proposed |
 
 ## Adding a record
 

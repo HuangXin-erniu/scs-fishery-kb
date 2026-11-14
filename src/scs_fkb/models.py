@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
+from typing import Any
 
 
 @dataclass(frozen=True)
@@ -44,6 +45,7 @@ class Document:
     effective_to: str = ""
     url: str = ""
     retrieved_at: str = ""
+    ingest_tier: str = "canonical"
 
 
 @dataclass(frozen=True)
@@ -75,6 +77,7 @@ class Chunk:
     license: str = ""
     effective_from: str = ""
     effective_to: str = ""
+    ingest_tier: str = "canonical"
 
 
 @dataclass(frozen=True)
@@ -111,6 +114,9 @@ class Answer:
     citations: list[Citation] = field(default_factory=list)
     abstained: bool = False
     reason: str = "ok"
+    # Structured clauses for the summary selector; never serialized and never
+    # part of the evidence text, so the acceptance run sees the same answer.
+    clauses: tuple[Any, ...] = ()
 
     def to_dict(self) -> dict:
         return {

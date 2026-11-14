@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 import os
 import statistics
 import sys
@@ -54,13 +55,20 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--tolerance", type=float, default=0.02)
     parser.add_argument("--write-baseline", action="store_true")
     parser.add_argument("--rerank", action="store_true", help="enable the cross-encoder")
+    parser.add_argument("--depth", type=int, default=0, help="candidate pool depth")
+    parser.add_argument(
+        "--rerank-candidates", type=int, default=0, help="candidates passed to the reranker"
+    )
     parser.add_argument("--json", action="store_true")
+    parser.add_argument("--limit", type=int, default=0, help="evaluate the first N rows only")
     args = parser.parse_args(argv)
     if not args.data_root:
         print("error: set SCS_FKB_DATA_ROOT or pass --data-root", file=sys.stderr)
         return 2
 
     rows = _rows(Path(args.set))
+    if args.limit:
+        rows = rows[: args.limit]
     retriever = build_retriever(args.data_root, reranker=args.rerank)
     indexed_docs = {str(chunk.doc_id) for chunk in getattr(retriever, "chunks", []) or []}
     reachable = [row for row in rows if _reachable(row, indexed_docs)]
@@ -71,14 +79,29 @@ def main(argv: list[str] | None = None) -> int:
     all_hits = 0
     reciprocal = 0.0
     all_reciprocal = 0.0
+    hits10 = 0
+    reciprocal10 = 0.0
+    ndcg10 = 0.0
+    ndcg_rows = 0
     misses: list[str] = []
     latencies: list[float] = []
+    search_kwargs: dict[str, int] = {}
+    if args.depth:
+        search_kwargs["depth"] = args.depth
+    if args.rerank_candidates:
+        search_kwargs["rerank_candidates"] = args.rerank_candidates
     for row in rows:
         started = time.perf_counter()
-        found = retriever.search(str(row["question"]), top_k=5, rerank=args.rerank)
+        found = retriever.search(
+            str(row["question"]), top_k=10, rerank=args.rerank, **search_kwargs
+        )
         latencies.append((time.perf_counter() - started) * 1000)
-        docs = [hit.chunk.doc_id for hit in found]
+        docs10 = [hit.chunk.doc_id for hit in found]
+        docs = docs10[:5]
         rank = next((index for index, doc in enumerate(docs, start=1) if _match(doc, row)), None)
+        rank10 = next(
+            (index for index, doc in enumerate(docs10, start=1) if _match(doc, row)), None
+        )
         if rank is not None:
             all_hits += 1
             all_reciprocal += 1.0 / rank
@@ -87,6 +110,13 @@ def main(argv: list[str] | None = None) -> int:
                 reciprocal += 1.0 / rank
         elif _reachable(row, indexed_docs):
             misses.append(str(row.get("id") or row["question"]))
+        if rank10 is not None and _reachable(row, indexed_docs):
+            hits10 += 1
+            reciprocal10 += 1.0 / rank10
+        if _reachable(row, indexed_docs):
+            ndcg_rows += 1
+            dcg = 1.0 / math.log2(rank10 + 1) if rank10 is not None else 0.0
+            ndcg10 += dcg  # ideal DCG is 1.0 at rank 1
     metrics = {
         "questions": len(rows),
         "reachable_questions": len(reachable),
@@ -95,6 +125,9 @@ def main(argv: list[str] | None = None) -> int:
         "mrr": round(reciprocal / len(reachable), 4) if reachable else 0.0,
         "recall_at_5_all": round(all_hits / len(rows), 4) if rows else 0.0,
         "mrr_all": round(all_reciprocal / len(rows), 4) if rows else 0.0,
+        "recall_at_10": round(hits10 / len(reachable), 4) if reachable else 0.0,
+        "mrr_at_10": round(reciprocal10 / len(reachable), 4) if reachable else 0.0,
+        "ndcg_at_10": round(ndcg10 / ndcg_rows, 4) if ndcg_rows else 0.0,
         "misses": misses,
         "set": Path(args.set).name,
         "rerank": args.rerank,

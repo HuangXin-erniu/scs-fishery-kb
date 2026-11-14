@@ -48,32 +48,54 @@ def _write(tmp_path: Path, entries: list[dict]) -> Path:
     return path
 
 
-def test_live_register_loads_all_sources_as_v4() -> None:
+def test_live_register_loads_all_sources_as_v5() -> None:
     registry = load_registry(ROOT / "configs" / "corpus.yaml")
-    assert len(registry) == 100
+    assert len(registry) == 126
+    provisional = [
+        source for source in registry.values() if source["ingest"]["tier"] == "provisional"
+    ]
+    assert len(provisional) == 1
     for source in registry.values():
-        assert source["source_record_schema"] == 4
+        assert source["source_record_schema"] == 5
         assert source["provenance"]["sha256"] == source["hash"]
         assert source["provenance"]["snapshot_path"] == source["location"]
         assert set(source["effective"]) == {"from", "to"}
-        assert set(source["quality"]) == {
+        assert {
             "text_layer",
             "anchors",
             "tables",
             "ocr",
             "quarantine_reason",
-        }
+            "text_coverage",
+            "anchor_coverage",
+            "table_count",
+            "ocr_confidence",
+        } <= set(source["quality"])
+        assert source["ingest"]["tier"] in {"canonical", "provisional"}
+        assert 0 <= int(source["authority"]["score"]) <= 5
+        assert "practical" in source
+        assert isinstance(source["currency"].get("ttl_days"), int)
 
 
-def test_v3_fixture_gets_derived_v4_defaults(tmp_path: Path) -> None:
+def test_v3_fixture_gets_derived_v5_defaults(tmp_path: Path) -> None:
     registry = load_registry(_write(tmp_path, [_entry()]))
     source = registry["POL-TEST-001"]
-    assert source["source_record_schema"] == 4
+    assert source["source_record_schema"] == 5
     assert source["provenance"]["sha256"] == HASH
     assert source["provenance"]["snapshot_path"] == "raw/POL-TEST-001/test.html"
     assert source["effective"] == {"from": None, "to": None}
     assert source["quality"]["anchors"] is None
     assert source["license_note"] is None
+    assert source["authority"]["score"] == 5
+    assert source["ingest"]["tier"] == "canonical"
+    assert source["practical"] == {
+        "domain": "",
+        "personas": [],
+        "task_tags": [],
+        "seasonal": False,
+    }
+    assert source["currency"]["ttl_days"] == 30
+    assert source["license_evidence"]["checked_at"] == "2026-11-03"
 
 
 def test_tier_d_non_official_is_accepted(tmp_path: Path) -> None:
@@ -191,7 +213,7 @@ def test_supersedes_self_is_rejected(tmp_path: Path) -> None:
 
 def test_unknown_source_record_schema_is_rejected(tmp_path: Path) -> None:
     with pytest.raises(RegistryError, match="source_record_schema"):
-        load_registry(_write(tmp_path, [_entry(source_record_schema=5)]))
+        load_registry(_write(tmp_path, [_entry(source_record_schema=6)]))
 
 
 def test_provenance_must_be_a_mapping(tmp_path: Path) -> None:
@@ -209,9 +231,9 @@ def test_quality_must_be_a_mapping(tmp_path: Path) -> None:
         load_registry(_write(tmp_path, [_entry(quality=[1, 2])]))
 
 
-def test_schema_yaml_publishes_v4_surface() -> None:
+def test_schema_yaml_publishes_v5_surface() -> None:
     schema = yaml.safe_load((ROOT / "configs" / "schema.yaml").read_text(encoding="utf-8"))
-    assert schema["source_record_schema"] == 4
+    assert schema["source_record_schema"] == 5
     source = schema["source"]
     assert source["levels"] == [
         "national",
@@ -226,3 +248,6 @@ def test_schema_yaml_publishes_v4_surface() -> None:
     assert "provenance_fields" in source
     assert "effective_fields" in source
     assert "quality_fields" in source
+    assert "practical_guide" in source["source_classes"]
+    assert source["ingest_tiers"] == ["canonical", "provisional"]
+    assert source["authority_score"] == {"min": 0, "max": 5}

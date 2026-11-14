@@ -18,11 +18,9 @@ from pathlib import Path
 
 import yaml
 
-from scs_fkb.registry import (
-    SOURCE_RECORD_SCHEMA,
-    RegistryError,
-    load_registry,
-)
+from scs_fkb.registry import RegistryError, load_registry
+
+TARGET_SCHEMA = 4  # this script audits the historical v3 -> v4 step
 
 
 def _counter(registry: dict[str, dict], key: str) -> Counter:
@@ -86,7 +84,7 @@ def main(argv: list[str] | None = None) -> int:
         "",
         f"- Generated at: {datetime.now(UTC).replace(microsecond=0).isoformat()}",
         f"- Register: `{config.as_posix()}`",
-        f"- Target record schema: {SOURCE_RECORD_SCHEMA}",
+        f"- Target record schema: {TARGET_SCHEMA}",
         f"- Sources read: {len(raw_sources or [])}",
         f"- Sources loaded: {len(registry)}",
         f"- Validation errors: {len(errors)}",
@@ -119,9 +117,7 @@ def main(argv: list[str] | None = None) -> int:
             derived_totals[key] += value
 
     v4_count = sum(
-        1
-        for entry in registry.values()
-        if entry.get("source_record_schema") == SOURCE_RECORD_SCHEMA
+        1 for entry in registry.values() if entry.get("source_record_schema") == TARGET_SCHEMA
     )
     lines.extend(
         [

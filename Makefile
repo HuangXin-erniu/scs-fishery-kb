@@ -2,6 +2,8 @@
 
 validate:
 	python3 scripts/check_public_tree.py
+	PYTHONPATH=src python3 scripts/check_task_cards.py
+	PYTHONPATH=src python3 scripts/check_answers.py
 
 lint:
 	ruff check .

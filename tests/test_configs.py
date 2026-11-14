@@ -14,7 +14,7 @@ def load(name: str):
 def test_corpus_registry_is_complete() -> None:
     data = load("corpus.yaml")
     sources = data["sources"]
-    assert len(sources) == 100
+    assert len(sources) == 126
     ids = [source["id"] for source in sources]
     assert len(ids) == len(set(ids))
     for source in sources:
@@ -26,9 +26,15 @@ def test_corpus_registry_is_complete() -> None:
 def test_pipeline_documents_are_registered() -> None:
     pipeline = load("pipeline.yaml")["documents"]
     registered = {source["id"] for source in load("corpus.yaml")["sources"]}
-    assert len(pipeline) == 67
-    assert len(set(pipeline)) == 67
+    assert len(pipeline) == 94
+    assert len(set(pipeline)) == 94
     assert set(pipeline) <= registered
+
+
+def test_trackb_profile_config_loads() -> None:
+    config = load("eval-trackb.yaml")
+    assert config["profiles"]["default"]["depth"] == 20
+    assert config["dataset"]["target_recall_at_10"] == 0.92
 
 
 def test_schema_and_acceptance_configs_load() -> None:

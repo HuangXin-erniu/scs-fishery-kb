@@ -13,7 +13,9 @@
 - **30-item expert spot check.** A domain expert samples 30 questions from the reviewed
   instrument across the four personas and judges citation correctness, conclusion
   correctness, refusal appropriateness and as-of declaration. The worksheet is signed and
-  attached to the metrics report.
+  attached to the metrics report. Two simulated runs (AI role-play, `P24-ACC-227` and the
+  held-out `P25-ACC-231`) are recorded separately; neither is a signature and neither
+  replaces this step.
 - **Two layers of evidence.** Deterministic and model-judged metrics come from the
   reproducible runs below; the spot check is the only human-judged layer. A model score is
   never reported as human review.
@@ -24,17 +26,17 @@
 |---|---:|---:|---:|---|---|
 | Public-set recall@5 | 0.8864 (all rows 0.8298) | ≥0.92 | **≥0.88** | `scripts/eval_index_v2.py` (44 reachable of 47 rows) | [evaluation](evaluation.md) §37 |
 | Public-set MRR | 0.7848 (all rows 0.7348) | ≥0.82 | **≥0.78** | same run | §37 |
-| 512 point coverage | 0.8092 (measured 2026-11-11) | ≥0.83 | **≥0.8092 (measured)** | `scripts/eval_accept.py` (protocol v2, 727 judgeable points) | §29, §34 |
-| 512 citation accuracy | 0.9565 (measured 2026-11-11) | ≥0.97 | **≥0.9565 (measured)** | same run (437 cited rows) | §29 |
-| 512 as-of declaration | 0.9474 (measured 2026-11-11) | ≥0.96 | **≥0.9474 (measured)** | same run (57 as-of rows) | §29 |
+| 512 point coverage | 0.8129 (measured 2026-11-12) | ≥0.83 | **≥0.8129 (measured)** | `scripts/eval_accept.py` (protocol v2, 727 judgeable points, `P25-EVL-235`) | §29, §34 |
+| 512 citation accuracy | 0.9544 (measured 2026-11-12) | ≥0.97 | **≥0.9544 (measured)** | same run (439 cited rows) | §29 |
+| 512 as-of declaration | 0.9123 (measured 2026-11-12) | ≥0.96 | **≥0.9123 (measured)** | same run (57 as-of rows) | §29 |
 | 512 misanswer rate | 0.0000 | 0.0000 | **≤0.01** | same run (70 refusal rows) | §29 |
 | 512 refusal-with-channel | 1.0000 | 1.0000 | **≥0.99** | same run | §29 |
 | Short-answer valid share | 16/60 (measured 2026-11-11) | ≥40/60 | **≥16/60 (measured)** | `scripts/eval_short_public.py` with `SCS_FKB_VERIFY_ANSWERS=on` | §35, §36 |
 | Approved facts | 146/200 | ≥150 | **≥140** | `scs-fkb facts check` (0 errors, 0 conflicts) | [knowledge](knowledge.md) |
 | Approved terms | 136/150 | hold | **≥136** | `scs-fkb terms check` | knowledge |
-| Registered sources | 77 | hold | **≥77** | `scripts/check_sources.py` | [corpus](corpus.md) |
-| Indexed documents and chunks | 67 / 2,797 | hold | **≥67 / ≥2,797** | index manifest | `v2/index/versions/<id>/manifest.json` |
-| Expert spot check | not run | 30 items | **citation ≥95%, conclusion ≥85%, refusal ≥90%** | review worksheet | attached to the metrics report |
+| Registered sources | 103 | hold | **≥103** | `scripts/check_sources.py` | [corpus](corpus.md) |
+| Indexed documents and chunks | 70 / 2,929 | hold | **≥70 / ≥2,929** | index manifest (`6e9dc9b9d8b9`) | `v2/index/versions/<id>/manifest.json` |
+| Expert spot check | simulated 2026-11-11 (AI role-play, not human): holdout citation 50.0%, conclusion 45.0%, refusal 20.0% — **below all three lines** | 30 items | **citation ≥95%, conclusion ≥85%, refusal ≥90%** | review worksheet | `P25-ACC-231`, [metrics report](metrics-report.md) §2 |
 | Reproducibility | available | one command | **one command + commit + index hash** | `docs/plan.md` §8 | run artifacts |
 
 Three public rows (CWP definitions, yearbook tables) expect documents that are not in the
@@ -54,7 +56,7 @@ that cap and the report states the cap.
 | Metrics report | [metrics-report.md](metrics-report.md) | complete |
 | Technical report | [technical-report.md](technical-report.md) | skeleton with content; narrative sections marked |
 | Demo script | [demo-script.md](demo-script.md) | complete, five scenarios |
-| 30-item expert spot check | local worksheet under the run root | sample frozen, pending expert |
+| 30-item expert spot check | local worksheet under the run root | holdout sample frozen; simulated reviews complete (`P24-ACC-227` regression, `P25-ACC-231` holdout, both below the lines); human signature pending |
 
 ## 3. Evidence map
 
