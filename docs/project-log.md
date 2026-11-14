@@ -1668,3 +1668,7 @@ This log records material project changes by date. It does not use release versi
 - Completed 120/120 controlled-LLM reference rewrites (short-prompt retry).
   20-row RAGAS: context recall 0.6205, precision 0.8458, faithfulness 0.4956,
   correctness 0.3934, 15 endpoint errors. Target 0.70 still not met; no gate.
+- Corrected Track B RAGAS context: use retrieved pack, not answer citations.
+  20 audited rows: context recall 0.9298 (19/20), precision 0.4923,
+  faithfulness 0.6496, correctness 0.4428, 12 errors. Recall target met; full
+  context-recall run started.

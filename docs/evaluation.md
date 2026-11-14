@@ -1981,3 +1981,23 @@ Recall improves from 0.435 (original references) to 0.62, but the 0.70 target is
 still not met at 20 rows and 15 judge calls errored. The 10-row 0.746 was an
 optimistic sample. A full 120-row RAGAS run is not practical on this endpoint
 (~17 minutes for 20 rows with high error rate), so no Track B gate is claimed.
+
+### Corrected Track B RAGAS context construction (2026-11-14)
+
+The previous 20-row audited run used the **answer citations** (1–4 snippets) as
+RAGAS contexts, which undercounted context recall. Rebuilt the same 20 rows with
+the actual retrieved pack (20 hits, max 2 per document) and the v2 audited
+references:
+
+| Metric | Citations-only | Pack20 (correct) |
+|---|---:|---:|
+| context recall | 0.6205 | **0.9298** (19/20) |
+| context precision | 0.8458 | 0.4923 |
+| faithfulness | 0.4956 | 0.6496 (16/20) |
+| answer correctness | 0.3934 | 0.4428 (13/20) |
+| errors | 15 | 12 |
+
+Context recall now clears the 0.70 target. Context precision (0.49) and answer
+correctness (0.44) remain below their targets, and 12 judge calls errored, so
+this is not yet a full Track B pass. Track B RAGAS must always use retrieved-pack
+contexts, not answer citations.
