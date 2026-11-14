@@ -2159,3 +2159,17 @@ Two rows abstained (not counted). Remaining failures: incomplete sub-question
 coverage, missing amounts, and unsupported level claims. Track B retrieval gate
 (0.8039/0.9047) still passes, but answer quality (21/30) and the release gate
 remain below target.
+
+### Second-pass answer repair (2026-11-14)
+
+A controlled-LLM repair pass re-read the question, the original answer and the
+pack20 evidence (reference not shown to the repairer), then rewrote for
+sub-question coverage and verbatim numbers/citations. The 30-row spot check was
+unchanged: **21 PASS / 7 FAIL**. Remaining failures are substantive:
+
+- incomplete answers to multi-part questions (IG-005, IG-049, IG-053, IG-113);
+- unsupported source-level statements ("以上为省级规定", IG-077);
+- missing specific amounts/penalties.
+
+The repair pass does not fix these; Track B retrieval gate (0.8039/0.9047) passes,
+but answer quality and the release gate remain below target. No release.

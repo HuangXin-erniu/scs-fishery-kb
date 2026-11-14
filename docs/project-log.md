@@ -1699,3 +1699,6 @@ This log records material project changes by date. It does not use release versi
 - Strengthened answer prompt (subquestions, exact numbers/citations, no level
   inference). 30-row spot check improved 19→20→21 PASS (7 FAIL); release gate
   still closed.
+- Second-pass answer repair on 30 rows: no change, 21 PASS / 7 FAIL. Remaining
+  failures are answer completeness, missing amounts and unsupported level
+  statements; release gate stays closed.
