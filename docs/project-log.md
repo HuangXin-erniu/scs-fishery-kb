@@ -1682,3 +1682,6 @@ This log records material project changes by date. It does not use release versi
 - LLM evidence selection on reranked top20: best 20-row precision 0.7827,
   recall 0.8280 (cap6); strict prompt 0.6961/0.6651. Near targets but not passing;
   Track B gate remains closed.
+- Sentence-level evidence variants: all sentences 0.5025/0.8306, top8 0.7132/
+  0.7699, doc-dedup 0.7864/0.7192; none beat clause cap6 (0.7827/0.8280). Track B
+  gate remains closed.

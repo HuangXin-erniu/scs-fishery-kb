@@ -2057,3 +2057,20 @@ them; the stricter prompt over-pruned and lost recall. Full-set precision with
 pack20 was 0.4493, so selection is directionally useful but not sufficient.
 Track B gate remains closed; next step is sentence-level evidence units rather
 than whole chunks.
+
+### Sentence-level evidence variants (2026-11-14)
+
+Tested sentence-level contexts built from the LLM-selected clauses:
+
+| Variant | context precision | context recall |
+|---|---:|---:|
+| all sentences from selected clauses | 0.5025 | 0.8306 |
+| top-8 sentences by lexical overlap | 0.7132 | 0.7699 |
+| selected clauses deduped by document | 0.7864 | 0.7192 |
+| **selected clauses, cap6 (best)** | **0.7827** | **0.8280** |
+
+Sentence-level contexts did not beat clause-level selection; deduplicating by
+document raised precision but lost recall. The best Track B stack remains
+reranker top20 + LLM clause selection (cap 6), at precision 0.7827 / recall
+0.8280 — still short of 0.80 / 0.85. No gate; next option is question-type
+evidence routing or clause annotation, not more sentence splitting.
