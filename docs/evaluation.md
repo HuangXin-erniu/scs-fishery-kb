@@ -2246,3 +2246,18 @@ Round-3 human review (19/30) found three fixable issues:
 
 All 30 rows now produce answers (0 abstentions); a round-4 review sheet with
 untruncated evidence was generated. Human review is required before any release.
+
+### Round-4 human review and fallback regression (2026-11-14)
+
+Round-4 human review: **18/30**. The new "compact retry / extractive fallback"
+recovered IG-065 but produced 6 fragment answers (001/005/009/033/061/113) that
+read like answers without actually answering; human called these worse than an
+honest refusal. A follow-up prompt with "first sentence must be direct / contrast
+must be explicit" plus removing the extractive fallback produced **8/30
+abstentions**, so it was reverted.
+
+Kept fixes: prompt-hash cache keys, no extractive-quote fallback (refuse instead
+of a misleading fragment), compact retry before refusal, jurisdiction caveat by
+cited-document level, page-anchor de-duplication. The direct-conclusion/contrast
+prompt lines were reverted. Round-4 gold issues (IG-030 obsolete 5000–5万,
+IG-077 2019 turtle level) remain corpus/gold updates. No release.

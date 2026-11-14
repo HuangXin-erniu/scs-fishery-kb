@@ -1719,3 +1719,6 @@ This log records material project changes by date. It does not use release versi
 - Fixed ungrounded-refusal fallback (compact retry before extractive quote),
   removed steps scaffold, and exported human-review-round4-30.csv (30/30
   answered). Flagged outdated IG-030/IG-077 gold. No release.
+- Round-4 human review 18/30; fallback produced fragments, then over-constrained
+  prompt produced 8/30 abstentions. Reverted direct-conclusion prompt; kept
+  hash cache keys, honest refusal, compact retry, caveat fixes. No release.

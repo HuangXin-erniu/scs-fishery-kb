@@ -131,7 +131,7 @@ def test_standard_abstains_on_invalid_citation() -> None:
     assert result.answer.reason == "standard_citation_invalid"
 
 
-def test_standard_falls_back_to_extractive_evidence_when_no_citation() -> None:
+def test_standard_abstains_instead_of_returning_quote_fragment() -> None:
     client = FakeClient(
         [
             {
@@ -151,8 +151,8 @@ def test_standard_falls_back_to_extractive_evidence_when_no_citation() -> None:
         ]
     )
     result = answer_with_standard("休渔时间？", _pack(), client)
-    assert result.answer.abstained is False
-    assert "[" in result.answer.text
+    assert result.answer.abstained is True
+    assert result.answer.reason in {"standard_ungrounded", "standard_no_citation"}
 
 
 def test_empty_pack_abstains_without_model_call() -> None:

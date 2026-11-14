@@ -51,7 +51,7 @@ STANDARD_SYSTEM = (
     "证据只覆盖部分子问题时必须用 answerability=partial，并在 soft_gap 说明未覆盖部分；"
     "只有证据清单与问题完全无关时才用 refuse，不要因为缺少细节直接拒绝回答。"
 )
-PROMPT_VERSION = "standard-" + hashlib.sha256(STANDARD_SYSTEM.encode()).hexdigest()[:8] + "-3"
+PROMPT_VERSION = "standard-" + hashlib.sha256(STANDARD_SYSTEM.encode()).hexdigest()[:8] + "-5"
 
 REPAIR_SYSTEM = (
     "你在修复一份带引用的渔业答复。下面列出未被证据支持的数字或缺少引用的句子。\n"
@@ -59,7 +59,7 @@ REPAIR_SYSTEM = (
     " [DOC_ID §章节] 或 [DOC_ID p.页码]。不得引入新事实。\n"
     '只输出 JSON：{"conclusion":"修复后的完整答复文本"}'
 )
-REPAIR_VERSION = "standard-repair-" + hashlib.sha256(REPAIR_SYSTEM.encode()).hexdigest()[:8] + "-3"
+REPAIR_VERSION = "standard-repair-" + hashlib.sha256(REPAIR_SYSTEM.encode()).hexdigest()[:8] + "-5"
 
 
 @dataclass(frozen=True)
@@ -362,9 +362,9 @@ def answer_with_standard(
             alt = "；".join(_as_list(value.get("steps")))
             if alt and "[" in alt:
                 text = _prune(alt, by_label)
-            elif pack.items:
-                first = pack.items[0]
-                text = f"{first.quote}[{first.label}]"
+            # No extractive-quote fallback: a bare quote fragment reads like an
+            # answer but usually does not answer the question. Prefer an honest
+            # refusal over a misleading fragment.
     if not text or "[" not in text.splitlines()[0]:
         return StandardResult(
             answer=Answer(
