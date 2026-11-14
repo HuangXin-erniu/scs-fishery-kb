@@ -2001,3 +2001,18 @@ Context recall now clears the 0.70 target. Context precision (0.49) and answer
 correctness (0.44) remain below their targets, and 12 judge calls errored, so
 this is not yet a full Track B pass. Track B RAGAS must always use retrieved-pack
 contexts, not answer citations.
+
+### Full Track B context recall (2026-11-14)
+
+Ran context recall on all 106 answered frozen generation rows with audited
+references and retrieved-pack contexts:
+
+| Metric | Value | Scored |
+|---|---:|---:|
+| context recall | **0.9356** | 102/106 |
+| errors | 4 | — |
+| elapsed | 493 s | — |
+
+This clears the 0.70 (and 0.85) recall target for the full answered set. Precision
+and answer correctness on the full set are still pending; the 20-row sample had
+precision 0.4923 and correctness 0.4428, so Track B is not yet releasable.

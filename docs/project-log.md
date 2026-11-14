@@ -1672,3 +1672,6 @@ This log records material project changes by date. It does not use release versi
   20 audited rows: context recall 0.9298 (19/20), precision 0.4923,
   faithfulness 0.6496, correctness 0.4428, 12 errors. Recall target met; full
   context-recall run started.
+- Full Track B context recall (106 answered rows, audited refs, pack contexts):
+  0.9356 (102/106 scored), 4 errors, 493 s. Recall target passed; precision and
+  correctness still pending.
