@@ -1690,3 +1690,6 @@ This log records material project changes by date. It does not use release versi
   0.8261/0.8994 precision/recall. Both targets pass on 30 rows; full 106 pending.
 - Full 106 optimized pipeline: context precision 0.6626, recall 0.7708 (9 errors).
   30-row 0.8261/0.8994 did not hold; both full targets missed. Track B gate closed.
+- Claim-aligned evidence (one best pack context per reference claim): full 106
+  context precision 0.8039, recall 0.9047 (13 errors). Track B retrieval gate
+  passes both targets; generation metrics/release still open.

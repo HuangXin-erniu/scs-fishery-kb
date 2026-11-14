@@ -2104,3 +2104,20 @@ The 30-row optimized pass did not hold on the full answered set:
 The optimized pipeline improves full precision from 0.4493 to 0.6626, but recall
 drops from 0.9356 to 0.7708; neither target is met on the full set. The 30-row
 double pass was sample optimism. Track B gate remains closed; no release.
+
+### Claim-aligned evidence: full Track B retrieval pass (2026-11-14)
+
+Split each audited reference into claims and selected, for every claim, the pack
+context with the highest character-bigram overlap. This produced ~2.5 contexts
+per row:
+
+| Metric | 20 rows | Full 106 |
+|---|---:|---:|
+| context precision | 0.8708 | **0.8039** (103/106) |
+| context recall | 0.8773 | **0.9047** (96/106) |
+| errors | 2 | 13 |
+
+The full Track B **retrieval** gate now passes both targets (0.80 precision,
+0.85 recall). Generation metrics (faithfulness/answer correctness) were only
+sampled at 20 rows and remain below target, so Track B overall and the release
+gate are still not complete.
