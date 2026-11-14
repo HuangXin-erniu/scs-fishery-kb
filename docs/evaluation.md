@@ -2090,3 +2090,17 @@ Both targets (precision 0.80, recall 0.85) are cleared on the 30-row stable
 sample; 4 endpoint errors. The full 106-row run of this pipeline is still
 pending, so no full Track B gate is claimed. Product defaults are unchanged; this
 is the Track B evaluation profile experiment.
+
+### Full 106-row optimized pipeline result (2026-11-14)
+
+The 30-row optimized pass did not hold on the full answered set:
+
+| Metric | 30-row sample | Full 106 |
+|---|---:|---:|
+| context precision | 0.8261 | **0.6626** |
+| context recall | 0.8994 | **0.7708** |
+| errors | 4 | 9 |
+
+The optimized pipeline improves full precision from 0.4493 to 0.6626, but recall
+drops from 0.9356 to 0.7708; neither target is met on the full set. The 30-row
+double pass was sample optimism. Track B gate remains closed; no release.

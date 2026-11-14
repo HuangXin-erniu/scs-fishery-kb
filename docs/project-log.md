@@ -1688,3 +1688,5 @@ This log records material project changes by date. It does not use release versi
 - Track B optimized evidence pipeline (reranker top20 → LLM clause selection →
   claim-support filter → top1 + 2 pack contexts): 20-row 0.8061/0.8512, 30-row
   0.8261/0.8994 precision/recall. Both targets pass on 30 rows; full 106 pending.
+- Full 106 optimized pipeline: context precision 0.6626, recall 0.7708 (9 errors).
+  30-row 0.8261/0.8994 did not hold; both full targets missed. Track B gate closed.
