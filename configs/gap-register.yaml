@@ -6,10 +6,15 @@ gaps:
     question_terms: [厄尔尼诺, ENSO, 南海, 鱼类资源]
     target_issuers: [国家气候中心, 自然资源部, 农业农村部]
     acceptance: 官方 ENSO 监测/预测或南海渔业资源影响评估，带发布时间与发布机构
+    candidate_urls:
+      - https://www.cma.gov.cn/2011xwzx/2011xqxxw/2011xqxyw/202606/t20260623_7877746.html
   - id: SHELLFISH_TOXIN
     question_terms: [贝毒, 麻痹性贝毒, 赤潮, 采捕禁令]
     target_issuers: [农业农村部, 沿海省级渔业主管部门, 自然资源部]
     acceptance: 官方贝毒监测/采捕禁令或应急预案，明确适用海域与解除条件
+    candidate_urls:
+      - https://cdcp.gd.gov.cn/jkjy/jkzt/yyyspaq/content/post_4857122.html
+      - https://yyj.moa.gov.cn/yqxx/201904/t20190428_6219931.htm
   - id: FORECAST_PRODUCT_ACCESS
     question_terms: [渔情产品, 渔场预报, 权限, 分发]
     target_issuers: [农业农村部, 中国水产科学研究院南海水产研究所, 国家海洋环境预报中心]
@@ -22,3 +27,5 @@ gaps:
     question_terms: [编组生产, 渔船编组, 强制, 处罚]
     target_issuers: [农业农村部, 沿海省级渔业主管部门]
     acceptance: 官方编组生产管理规定或执法依据，明确强制性与罚则
+    candidate_urls:
+      - https://www.haimen.gov.cn/hmsrmzf/nlst/content/35c21029-1564-4e6a-9069-abf46d2bd7d7.html

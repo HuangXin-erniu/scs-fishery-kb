@@ -2392,3 +2392,19 @@ forecast-product access, SSTa definition, and group-fishing rules. They are
 recorded in `configs/gap-register.yaml` for official-source acquisition; no
 answer should be fabricated to fill them. Release gate stays closed pending a
 fresh blind test on ids never yet reviewed.
+
+### Fresh blind test 2 (2026-11-15)
+
+Selected 30 ids that never appeared in any previous review sheet and generated
+with the current standard arm (conditional-answer retry included):
+
+- **25 answered / 5 abstained** (previous blind: 13 answered / 17 abstained);
+- 84 citations; after normalising duplicated page labels (`§p.65 p.65` →
+  `§p.65`) and allowing visibly truncated section titles, the strict validator
+  reports **0 missing**;
+- the 5 abstentions are IG-072, IG-076, IG-080, IG-104, IG-110 (to be classified
+  by human review as legitimate gap vs over-conservative).
+
+The duplicate-page normalisation is now applied in `standard_arm._body`; the
+validator accepts `...`-truncated section titles but still rejects a different
+article title. A `human-review-blind2-30.csv` sheet was generated.

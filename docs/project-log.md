@@ -1745,3 +1745,6 @@ This log records material project changes by date. It does not use release versi
 - Round-8 six-row review: 6/6 PASS; IG-044/030/062 final wording fixed; strict
   citation check 0 missing. Added configs/gap-register.yaml for the 5 remaining
   corpus gaps. Release still gated on a fresh blind test.
+- Fresh blind test 2: 25 answered / 5 abstained (previous 13/17). 84 citations,
+  0 missing after page-label normalisation. Exported human-review-blind2-30.csv;
+  gap register now carries official candidate URLs. No release.

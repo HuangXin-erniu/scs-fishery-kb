@@ -25,8 +25,10 @@ def _section_matches(cited: str, context: str) -> bool:
     context_n = _norm(context)
     if cited_n.startswith("p.") or context_n.startswith("p."):
         return cited_n == context_n
-    # A citation may be a shorter article prefix (§三 vs §三、处罚措施), but
-    # a different article title (§五、报告要求 vs §五、报告内容) must fail.
+    # A citation may be a shorter article prefix (§三 vs §三、处罚措施), or a
+    # visibly truncated title ending in "..."; a different title must fail.
+    if cited_n.endswith("...") or cited_n.endswith("…"):
+        cited_n = cited_n.rstrip(".…")
     return bool(cited_n) and context_n.startswith(cited_n)
 
 

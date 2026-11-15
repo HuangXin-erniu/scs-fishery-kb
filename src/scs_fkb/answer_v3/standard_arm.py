@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import hashlib
 import os
+import re
 from dataclasses import dataclass, field
 from datetime import date
 from typing import Any
@@ -52,7 +53,7 @@ STANDARD_SYSTEM = (
     "只有证据清单与问题完全无关时才用 refuse，不要因为缺少细节直接拒绝回答。"
     "引用证据之外的通识时必须明确标注“语料未收录”，并说明不能作为唯一依据。"
 )
-PROMPT_VERSION = "standard-" + hashlib.sha256(STANDARD_SYSTEM.encode()).hexdigest()[:8] + "-5"
+PROMPT_VERSION = "standard-" + hashlib.sha256(STANDARD_SYSTEM.encode()).hexdigest()[:8] + "-6"
 
 REPAIR_SYSTEM = (
     "你在修复一份带引用的渔业答复。下面列出未被证据支持的数字或缺少引用的句子。\n"
@@ -60,7 +61,7 @@ REPAIR_SYSTEM = (
     " [DOC_ID §章节] 或 [DOC_ID p.页码]。不得引入新事实。\n"
     '只输出 JSON：{"conclusion":"修复后的完整答复文本"}'
 )
-REPAIR_VERSION = "standard-repair-" + hashlib.sha256(REPAIR_SYSTEM.encode()).hexdigest()[:8] + "-5"
+REPAIR_VERSION = "standard-repair-" + hashlib.sha256(REPAIR_SYSTEM.encode()).hexdigest()[:8] + "-6"
 
 CONDITIONAL_SYSTEM = (
     "你是南海近海渔业知识库作答器。证据清单中只要有与问题相关的条款，就必须给出"
@@ -127,6 +128,8 @@ def _body(value: dict[str, Any]) -> str:
     if soft_gap:
         lines.append("缺口：" + "；".join(soft_gap))
     text = "\n".join(lines).strip()
+    # Normalise duplicated page labels emitted by the model: §p.65 p.65 -> §p.65
+    text = re.sub(r"§(p\.\d+)\s+p\.\d+", r"§\1", text)
     return text[:MAX_ANSWER_CHARS]
 
 
