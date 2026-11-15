@@ -1763,3 +1763,5 @@ This log records material project changes by date. It does not use release versi
 - Unscoped Track A 512 dump reconfirmed baseline: 501 answered, point 0.8181,
   citation 0.9413, misanswer 0.0571, gate pass. Scoped 0.0857 was a denominator
   difference, not a regression.
+- PR #14 merged to main by explicit user authorization: merge commit 1fca1c0;
+  main CI success, public/private gates and 464 tests pass. No tag/Release.

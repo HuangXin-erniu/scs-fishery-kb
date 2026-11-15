@@ -2472,3 +2472,13 @@ unscoped 512 dump arm:
 
 The unscoped run is identical to the frozen baseline, confirming **Track A has
 not regressed**; the 0.0857 figure came from excluding the 70 refusal rows.
+
+### Merge to main (2026-11-15)
+
+PR #14 (`p26-phase0` → `main`) was merged after explicit user authorization:
+
+- merge commit: `1fca1c0`;
+- main CI: **success**;
+- main checks: public tree OK, private gate OK, **464 passed / 2 skipped**;
+- 0 tags, 0 GitHub Releases (project policy);
+- remaining corpus gaps stay registered in `configs/gap-register.yaml`.
