@@ -2261,3 +2261,18 @@ of a misleading fragment), compact retry before refusal, jurisdiction caveat by
 cited-document level, page-anchor de-duplication. The direct-conclusion/contrast
 prompt lines were reverted. Round-4 gold issues (IG-030 obsolete 5000–5万,
 IG-077 2019 turtle level) remain corpus/gold updates. No release.
+
+### Round-5 targeted repair (2026-11-15)
+
+Per human round-4 notes:
+
+- 6 fragment/off-topic answers (001/005/009/033/113/101) were rewritten manually
+  from the cited evidence rather than by another global prompt; IG-033 uses the
+  third-round approved text.
+- 4 pass-with-missing-sentence rows (013/017/053/093) got the requested closing
+  sentence.
+- IG-030 and IG-077 references were corrected in the private evaluation set
+  (IG-030 to 3万–15万 after the 2022 amendment; IG-077 to "action plan does not
+  change protection level; 2021 list = national first class"). Corpus updates for
+  the 2021 list and 2022 amendment remain pending.
+- A round-5 30-row sheet was generated for human review.

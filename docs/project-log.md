@@ -1722,3 +1722,6 @@ This log records material project changes by date. It does not use release versi
 - Round-4 human review 18/30; fallback produced fragments, then over-constrained
   prompt produced 8/30 abstentions. Reverted direct-conclusion prompt; kept
   hash cache keys, honest refusal, compact retry, caveat fixes. No release.
+- Round-5 targeted repair: manually rewrote 6 fragment/off-topic answers, added
+  the 4 requested PASS sentences, corrected IG-030/IG-077 references. Exported
+  human-review-round5-30.csv for human review. No release.
