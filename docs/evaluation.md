@@ -2373,3 +2373,22 @@ three further real mismatches (IG-050 duplicate page label, IG-064 §31→§35,
 IG-044 §69) which were fixed; the 17 rows now report 0 bad citations under the
 strict check. IG-030 reference wording also dropped the unsupported "拒不改正的"
 precondition (the article orders correction and a 3万–15万 fine).
+
+### Round-8 six-row review: 6/6 PASS (2026-11-15)
+
+Human review of the six fixed rows: **6/6 PASS**. Final wording adjustments:
+
+- IG-044: added "有指标不等于有证";
+- IG-030: reference now matches the article text (no unsupported "拒不改正"
+  precondition; 3万–15万);
+- IG-062: visa wording aligned with the source (办理签证并接受安全检查).
+
+Strict citation validation (document + article prefix, page exact) on these rows:
+**0 missing**. The 12 real blind abstentions plus the 4 weak answers are now all
+positive under human review.
+
+Remaining gaps are corpus gaps, not generation: ENSO, shellfish toxin/closure,
+forecast-product access, SSTa definition, and group-fishing rules. They are
+recorded in `configs/gap-register.yaml` for official-source acquisition; no
+answer should be fabricated to fill them. Release gate stays closed pending a
+fresh blind test on ids never yet reviewed.

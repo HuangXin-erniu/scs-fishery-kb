@@ -1742,3 +1742,6 @@ This log records material project changes by date. It does not use release versi
   validator to document+article-prefix matching. Found/fixed 3 more real citation
   mismatches; 17 rows now 0 bad under strict check. Exported
   human-review-round8-fixes.csv (6 rows) for re-review. No release.
+- Round-8 six-row review: 6/6 PASS; IG-044/030/062 final wording fixed; strict
+  citation check 0 missing. Added configs/gap-register.yaml for the 5 remaining
+  corpus gaps. Release still gated on a fresh blind test.

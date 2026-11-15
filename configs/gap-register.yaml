@@ -1,0 +1,24 @@
+# Track B known corpus gaps. Each item is an official-source acquisition task;
+# do not ingest an unverified web page just to make an answer pass.
+version: 1
+gaps:
+  - id: ENSO
+    question_terms: [厄尔尼诺, ENSO, 南海, 鱼类资源]
+    target_issuers: [国家气候中心, 自然资源部, 农业农村部]
+    acceptance: 官方 ENSO 监测/预测或南海渔业资源影响评估，带发布时间与发布机构
+  - id: SHELLFISH_TOXIN
+    question_terms: [贝毒, 麻痹性贝毒, 赤潮, 采捕禁令]
+    target_issuers: [农业农村部, 沿海省级渔业主管部门, 自然资源部]
+    acceptance: 官方贝毒监测/采捕禁令或应急预案，明确适用海域与解除条件
+  - id: FORECAST_PRODUCT_ACCESS
+    question_terms: [渔情产品, 渔场预报, 权限, 分发]
+    target_issuers: [农业农村部, 中国水产科学研究院南海水产研究所, 国家海洋环境预报中心]
+    acceptance: 官方产品说明/分发管理办法，说明发布主体、权限与使用边界
+  - id: SSTA_DEFINITION
+    question_terms: [SSTa, 海表温度异常, 定义]
+    target_issuers: [国家海洋环境预报中心, 自然资源部, 国家气候中心]
+    acceptance: 官方术语定义/产品文档，给出基线期与计算方法
+  - id: GROUP_FISHING
+    question_terms: [编组生产, 渔船编组, 强制, 处罚]
+    target_issuers: [农业农村部, 沿海省级渔业主管部门]
+    acceptance: 官方编组生产管理规定或执法依据，明确强制性与罚则
