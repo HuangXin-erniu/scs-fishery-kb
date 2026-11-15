@@ -1735,3 +1735,6 @@ This log records material project changes by date. It does not use release versi
   over-conservative (the answer was already in evidence) and 5 legitimate; 4 of
   13 answered rows were weak. IG-030 row still leads with the old 200-1000 range.
   Gate stays closed.
+- Added conditional-answer retry for over-conservative refusals. 13 blind
+  over-abstentions: 11 auto-recovered, 1 plain retry, 1 manual; generated
+  human-review-round7-recovery.csv (17 rows, 0 bad citations). No release.

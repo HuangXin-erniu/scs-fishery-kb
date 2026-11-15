@@ -27,7 +27,11 @@ from ..answer_v3.llm_answer import answer_with_llm
 from ..answer_v3.quotes_arm import answer_with_quotes
 from ..answer_v3.short_arm import answer_with_short
 from ..answer_v3.standard_arm import PROMPT_VERSION as STANDARD_PROMPT_VERSION
-from ..answer_v3.standard_arm import StandardResult, answer_with_standard
+from ..answer_v3.standard_arm import (
+    StandardResult,
+    answer_with_conditional,
+    answer_with_standard,
+)
 from ..config import REPO_ROOT
 from ..facts import DEFAULT_FACTS_DIR, load_all
 from ..knowledge_v2 import load_playbooks
@@ -706,6 +710,10 @@ class AnswerService:
             index_version=self.index_version,
         )
         result = answer_with_standard(question, pack, client, llm_cache)
+        if result.answer.abstained and result.answerability == "refuse":
+            conditional = answer_with_conditional(question, pack, client, llm_cache)
+            if conditional is not None:
+                result = conditional
         if not result.answer.abstained and not region_named:
             # Only warn about local applicability when a *cited* document is
             # actually local. The previous check looked at the whole pack, which

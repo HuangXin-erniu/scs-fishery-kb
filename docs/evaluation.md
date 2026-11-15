@@ -2339,3 +2339,19 @@ the answer still lists three conflicting amounts with the old 200-1000 range
 first, so it reads as a 200-1000 fine. Marked FAIL - the national clause should
 lead, with the Fujian article marked local and the old general rule marked
 superseded.
+
+### Conditional-answer retry for over-abstention (2026-11-15)
+
+Blind review found 12–13 over-conservative abstentions where the pack already
+contained the answer. Added `answer_with_conditional`: when the standard arm
+returns `answerability=refuse`, retry once with a prompt that requires a
+conditional/partial answer (conditions and boundaries first, "未覆盖" for truly
+missing parts) and a citation for every factual sentence.
+
+Re-ran the 13 over-conservative ids: **11 answered automatically**, IG-056
+answered via a plain retry, IG-062 written manually from the two applicable
+procedures. A 17-row recovery sheet (13 recovered + IG-030/031/038/044 fixes) was
+generated; all citations were checked against the row's evidence (0 missing).
+Human review remains required; the five genuine corpus gaps (ENSO, shellfish
+toxicity, forecast-product access, SSTa definition, group fishing) remain
+unanswered by design.

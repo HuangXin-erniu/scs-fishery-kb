@@ -62,6 +62,14 @@ REPAIR_SYSTEM = (
 )
 REPAIR_VERSION = "standard-repair-" + hashlib.sha256(REPAIR_SYSTEM.encode()).hexdigest()[:8] + "-5"
 
+CONDITIONAL_SYSTEM = (
+    "你是南海近海渔业知识库作答器。证据清单中只要有与问题相关的条款，就必须给出"
+    "有条件的答案，不得直接拒绝。先用一句话说明适用条件/边界，再给证据支持的结论；"
+    "某一部分确实没有证据时，在末尾写“未覆盖：……”。只输出 JSON："
+    '{"answerability":"partial","conclusion":"逐句带 [DOC_ID §章节] 引用的回答",'
+    '"citations":["[DOC_ID §章节]"],"soft_gap":[]}。只使用证据。'
+)
+
 
 @dataclass(frozen=True)
 class StandardResult:
@@ -195,6 +203,55 @@ def _contract_fields(
         "numbers": [],
         "channel": [],
     }
+
+
+def answer_with_conditional(
+    question: str,
+    pack: EvidencePack,
+    client: LLMClient,
+    cache: LLMCache | None = None,
+) -> StandardResult | None:
+    """One conditional-answer retry for an over-conservative refusal."""
+    if not pack.items:
+        return None
+    messages = [
+        {"role": "system", "content": CONDITIONAL_SYSTEM},
+        {
+            "role": "user",
+            "content": (
+                f"问题（请回答所有子问题）：\n{question}\n\n"
+                f"证据清单：\n{pack.text}\n\n按 JSON 输出。"
+            ),
+        },
+    ]
+    try:
+        value = _cached_json(
+            cache,
+            _key(f"conditional-{PROMPT_VERSION}", question, pack.text, client.config.model),
+            client,
+            messages,
+            max_tokens=1400,
+        )
+    except LLMError:
+        return None
+    text = _prune(_body(value), pack.by_label)
+    if not text:
+        return None
+    valid, _ = _resolve_citations(text, pack.hits, tolerant=True)
+    if not valid:
+        return None
+    citations = _citations_from_text(text, pack.hits, tolerant=True)
+    if not citations:
+        return None
+    return StandardResult(
+        answer=Answer(
+            text=text, citations=citations, abstained=False, reason="standard_conditional"
+        ),
+        pack=pack,
+        confidence=0.4,
+        answerability="partial",
+        contract_fields={"answerability": "partial", "conclusion": text, "gap": []},
+    )
 
 
 def answer_with_standard(
