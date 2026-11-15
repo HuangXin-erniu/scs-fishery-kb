@@ -2355,3 +2355,21 @@ generated; all citations were checked against the row's evidence (0 missing).
 Human review remains required; the five genuine corpus gaps (ENSO, shellfish
 toxicity, forecast-product access, SSTa definition, group fishing) remain
 unanswered by design.
+
+### Tightened citation validator and final four fixes (2026-11-15)
+
+Human review of the 17-row recovery sheet: **13 PASS / 4 FAIL** (the true
+recovery count is 12; IG-035 was a weak answer, not an abstention). Four failures
+were fixed:
+
+- IG-035: added the benefits half (voluntary gear-boat closure subsidy);
+- IG-040: conditional CPUE conclusion (effort fields must be complete);
+- IG-064: three-level standard-boat evaluation, 8 coefficients, score bands;
+- IG-044: removed the non-existent `POL-LAW-009 §第六十九条` citation.
+
+The citation validator now requires the **document id + article prefix** to match
+a real evidence label (page labels exact), not merely the document id. It found
+three further real mismatches (IG-050 duplicate page label, IG-064 §31→§35,
+IG-044 §69) which were fixed; the 17 rows now report 0 bad citations under the
+strict check. IG-030 reference wording also dropped the unsupported "拒不改正的"
+precondition (the article orders correction and a 3万–15万 fine).

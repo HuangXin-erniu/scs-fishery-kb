@@ -16,12 +16,32 @@ from pathlib import Path
 CITATION_RE = re.compile(r"\[([A-Za-z0-9-]+)\s*§([^\]]+)\]")
 
 
+def _norm(value: str) -> str:
+    return re.sub(r"[\s、，,。；;]", "", value.strip())
+
+
+def _section_matches(cited: str, context: str) -> bool:
+    cited_n = _norm(cited)
+    context_n = _norm(context)
+    if cited_n.startswith("p.") or context_n.startswith("p."):
+        return cited_n == context_n
+    # A citation may be a shorter article prefix (§三 vs §三、处罚措施), but
+    # a different article title (§五、报告要求 vs §五、报告内容) must fail.
+    return bool(cited_n) and context_n.startswith(cited_n)
+
+
 def validate(row: dict) -> list[str]:
     contexts = row.get("contexts") or []
     answer = str(row.get("answer") or "")
+    labels: dict[str, list[str]] = {}
+    for context in contexts:
+        match = re.match(r"\[([A-Za-z0-9-]+)\s*§([^\]]+)\]", context)
+        if match:
+            labels.setdefault(match.group(1), []).append(match.group(2))
     bad: list[str] = []
     for doc_id, section in CITATION_RE.findall(answer):
-        if f"[{doc_id} §" not in "\n".join(contexts):
+        sections = labels.get(doc_id, [])
+        if not any(_section_matches(section.strip(), item) for item in sections):
             bad.append(f"{doc_id} §{section.strip()}")
     return bad
 

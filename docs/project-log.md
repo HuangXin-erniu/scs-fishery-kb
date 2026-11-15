@@ -1738,3 +1738,7 @@ This log records material project changes by date. It does not use release versi
 - Added conditional-answer retry for over-conservative refusals. 13 blind
   over-abstentions: 11 auto-recovered, 1 plain retry, 1 manual; generated
   human-review-round7-recovery.csv (17 rows, 0 bad citations). No release.
+- Human recovery review 13/17; fixed 035/040/044/064 and tightened citation
+  validator to document+article-prefix matching. Found/fixed 3 more real citation
+  mismatches; 17 rows now 0 bad under strict check. Exported
+  human-review-round8-fixes.csv (6 rows) for re-review. No release.
