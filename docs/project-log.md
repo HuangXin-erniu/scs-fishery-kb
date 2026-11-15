@@ -1760,3 +1760,6 @@ This log records material project changes by date. It does not use release versi
   misanswer 0.0857 pass, Track B retrieval 0.8039/0.9047, blind review 30/30,
   strict citations 0 missing. Five corpus gaps remain registered. No merge/tag/
   Release; PR #14 stays draft.
+- Unscoped Track A 512 dump reconfirmed baseline: 501 answered, point 0.8181,
+  citation 0.9413, misanswer 0.0571, gate pass. Scoped 0.0857 was a denominator
+  difference, not a regression.

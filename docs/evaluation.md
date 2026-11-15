@@ -2458,3 +2458,17 @@ Known residual limitation: five corpus gaps remain registered in
 access, SSTa definition, group fishing). They are honest abstentions, not
 fabricated answers. No merge, tag or release was created; PR #14 remains draft
 per project policy.
+
+### Track A no-regression confirmation (2026-11-15)
+
+The scoped dump run (可答/部分可答, 442 answered) reported misanswer 0.0857,
+which is not comparable to the frozen unscoped baseline. Re-ran the full
+unscoped 512 dump arm:
+
+| Run | Answered | Point coverage | Citation | Misanswer | Gate |
+|---|---:|---:|---:|---:|---|
+| Unscoped 512 (final) | 501 | 0.8181 | 0.9413 | **0.0571** | pass |
+| Frozen baseline | 501 | 0.8181 | 0.9413 | 0.0571 | pass |
+
+The unscoped run is identical to the frozen baseline, confirming **Track A has
+not regressed**; the 0.0857 figure came from excluding the 70 refusal rows.
