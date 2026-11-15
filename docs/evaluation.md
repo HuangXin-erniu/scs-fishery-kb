@@ -2276,3 +2276,19 @@ Per human round-4 notes:
   change protection level; 2021 list = national first class"). Corpus updates for
   the 2021 list and 2022 amendment remain pending.
 - A round-5 30-row sheet was generated for human review.
+
+### Round-6 final targeted fixes (2026-11-15)
+
+Round-5 human review: **23/30**. Remaining 4 rows (021/061/073/089) were rewritten
+manually from the cited evidence, not by global prompting; three citation errors
+were corrected:
+
+- IG-013: replaced the fabricated wildlife-law citation with the pollution
+  penalty clause actually in the pack;
+- IG-093: `POL-RULE-020 §第十五条` → `§第十二条` plus `POL-GX-023 §第二十六条`;
+- IG-113: `POL-FJ-026 §第五十条` → `POL-FJ-025 §第五十条`.
+
+IG-001's 2026-05-01 effective date is annotated as public knowledge not present in
+the corpus. IG-030 reference was corrected in the private dataset. A round-6
+30-row sheet was generated; all citations were machine-checked against that row's
+evidence. Human review remains required.

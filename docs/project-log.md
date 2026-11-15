@@ -1725,3 +1725,6 @@ This log records material project changes by date. It does not use release versi
 - Round-5 targeted repair: manually rewrote 6 fragment/off-topic answers, added
   the 4 requested PASS sentences, corrected IG-030/IG-077 references. Exported
   human-review-round5-30.csv for human review. No release.
+- Round-6 targeted fixes: rewrote 4 remaining rows, corrected 3 citation errors,
+  annotated IG-001 date, verified all citations against evidence, exported
+  human-review-round6-30.csv. No release.
