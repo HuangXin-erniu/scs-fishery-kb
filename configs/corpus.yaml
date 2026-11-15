@@ -5653,6 +5653,322 @@ sources:
   volume: 1 pdf file
   update_freq: static
   watch_note: 静态公开文本；季度复查时重新核验发布页与许可状态。
+- id: POL-CMA-ENSO-221
+  source_record_schema: 5
+  title: 厄尔尼诺“进行时”：看清风险 拿稳“应对工具包”
+  status: acquired
+  level: national
+  authority_tier: A
+  source_class: normative
+  currency:
+    as_of: '2026-11-15'
+    basis: retrieval
+    review_due: '2026-12-15'
+    cadence: monthly
+    ttl_days: 30
+    note: provisional watch diff
+  retrieval:
+    channel: main
+    parseable: true
+    note: provisional candidate; review before canonical promotion
+  lifecycle: active
+  license: public
+  sensitivity: public
+  hash: 793a594a72172250869dccc826cb8af0f6d8c25c0d7fdf9ce0df08e6d921dc3f
+  location: raw/POL-CMA-ENSO-221/article.txt
+  provenance:
+    url: https://www.cma.gov.cn/2011xwzx/2011xqxxw/2011xqxyw/202606/t20260623_7877746.html
+    document_no: null
+    published_at: null
+    retrieved_at: '2026-11-15'
+    sha256: 793a594a72172250869dccc826cb8af0f6d8c25c0d7fdf9ce0df08e6d921dc3f
+    bytes: 8262
+    mime: text/plain
+    snapshot_path: raw/POL-CMA-ENSO-221/article.txt
+  effective:
+    from: null
+    to: null
+  quality:
+    text_layer: true
+    anchors: 0
+    tables: 0
+    ocr: false
+    quarantine_reason: null
+    text_coverage: 1.0
+    anchor_coverage: 0.0
+    table_count: 0
+    ocr_confidence: null
+  authority:
+    score: 5
+    evidence_url: https://www.cma.gov.cn/2011xwzx/2011xqxxw/2011xqxyw/202606/t20260623_7877746.html
+  license_evidence:
+    url: https://www.cma.gov.cn/2011xwzx/2011xqxxw/2011xqxyw/202606/t20260623_7877746.html
+    text: null
+    checked_at: '2026-11-15'
+  ingest:
+    tier: provisional
+    reviewed_by: null
+    reviewed_at: null
+    review_note: watch diff; provisional until human review
+  practical:
+    domain: hazard
+    personas:
+    - captain
+    - owner
+    - enforcement
+    - extension
+    task_tags:
+    - 厄尔尼诺
+    seasonal: false
+  license_note: null
+  supersedes: null
+  superseded_by: null
+  publisher: 中国气象局
+  year: 2026
+  type: notice
+  jurisdiction: national
+  format: txt
+  priority: P1
+  update_freq: monthly
+  watch_note: ENSO 监测/预测与风险解读
+
+- id: POL-GD-SHELLFISH-222
+  source_record_schema: 5
+  title: 预防麻痹性贝类毒素中毒的风险提示
+  status: acquired
+  level: provincial
+  authority_tier: A
+  source_class: normative
+  currency:
+    as_of: '2026-11-15'
+    basis: retrieval
+    review_due: '2026-12-15'
+    cadence: monthly
+    ttl_days: 30
+    note: provisional watch diff
+  retrieval:
+    channel: main
+    parseable: true
+    note: provisional candidate; review before canonical promotion
+  lifecycle: active
+  license: public
+  sensitivity: public
+  hash: 17a34da11ae5430f02b7ecfe5d19b4ad371d69beb464f1737ae322fa72ec1d7c
+  location: raw/POL-GD-SHELLFISH-222/article.txt
+  provenance:
+    url: https://cdcp.gd.gov.cn/jkjy/jkzt/yyyspaq/content/post_4857122.html
+    document_no: null
+    published_at: null
+    retrieved_at: '2026-11-15'
+    sha256: 17a34da11ae5430f02b7ecfe5d19b4ad371d69beb464f1737ae322fa72ec1d7c
+    bytes: 2225
+    mime: text/plain
+    snapshot_path: raw/POL-GD-SHELLFISH-222/article.txt
+  effective:
+    from: null
+    to: null
+  quality:
+    text_layer: true
+    anchors: 0
+    tables: 0
+    ocr: false
+    quarantine_reason: null
+    text_coverage: 0.902
+    anchor_coverage: 0.0
+    table_count: 0
+    ocr_confidence: null
+  authority:
+    score: 5
+    evidence_url: https://cdcp.gd.gov.cn/jkjy/jkzt/yyyspaq/content/post_4857122.html
+  license_evidence:
+    url: https://cdcp.gd.gov.cn/jkjy/jkzt/yyyspaq/content/post_4857122.html
+    text: null
+    checked_at: '2026-11-15'
+  ingest:
+    tier: provisional
+    reviewed_by: null
+    reviewed_at: null
+    review_note: watch diff; provisional until human review
+  practical:
+    domain: hazard
+    personas:
+    - captain
+    - owner
+    - enforcement
+    - extension
+    task_tags:
+    - 贝毒
+    seasonal: false
+  license_note: null
+  supersedes: null
+  superseded_by: null
+  publisher: 广东省疾病预防控制中心
+  year: 2026
+  type: notice
+  jurisdiction: provincial
+  format: txt
+  priority: P1
+  update_freq: monthly
+  watch_note: 贝毒风险提示与采捕/食用建议
+
+- id: POL-MOA-SHELLFISH-223
+  source_record_schema: 5
+  title: 福建省海洋与渔业厅加强贝类质量安全监管工作
+  status: acquired
+  level: national
+  authority_tier: A
+  source_class: normative
+  currency:
+    as_of: '2026-11-15'
+    basis: retrieval
+    review_due: '2026-12-15'
+    cadence: monthly
+    ttl_days: 30
+    note: provisional watch diff
+  retrieval:
+    channel: main
+    parseable: true
+    note: provisional candidate; review before canonical promotion
+  lifecycle: active
+  license: public
+  sensitivity: public
+  hash: 830ba3a57669a09bb0db077305ffcb9da5aca1dfb9ea831bcdf63c205b663000
+  location: raw/POL-MOA-SHELLFISH-223/article.txt
+  provenance:
+    url: https://yyj.moa.gov.cn/yqxx/201904/t20190428_6219931.htm
+    document_no: null
+    published_at: null
+    retrieved_at: '2026-11-15'
+    sha256: 830ba3a57669a09bb0db077305ffcb9da5aca1dfb9ea831bcdf63c205b663000
+    bytes: 1765
+    mime: text/plain
+    snapshot_path: raw/POL-MOA-SHELLFISH-223/article.txt
+  effective:
+    from: null
+    to: null
+  quality:
+    text_layer: true
+    anchors: 0
+    tables: 0
+    ocr: false
+    quarantine_reason: null
+    text_coverage: 1.0
+    anchor_coverage: 0.0
+    table_count: 0
+    ocr_confidence: null
+  authority:
+    score: 5
+    evidence_url: https://yyj.moa.gov.cn/yqxx/201904/t20190428_6219931.htm
+  license_evidence:
+    url: https://yyj.moa.gov.cn/yqxx/201904/t20190428_6219931.htm
+    text: null
+    checked_at: '2026-11-15'
+  ingest:
+    tier: provisional
+    reviewed_by: null
+    reviewed_at: null
+    review_note: watch diff; provisional until human review
+  practical:
+    domain: hazard
+    personas:
+    - captain
+    - owner
+    - enforcement
+    - extension
+    task_tags:
+    - 贝毒
+    seasonal: false
+  license_note: null
+  supersedes: null
+  superseded_by: null
+  publisher: 农业农村部渔业渔政管理局
+  year: 2015
+  type: notice
+  jurisdiction: national
+  format: txt
+  priority: P1
+  update_freq: static
+  watch_note: 贝类毒素监测与海区关闭/解除
+
+- id: POL-MOA-GROUP-225
+  source_record_schema: 5
+  title: 浙江省农业农村厅印制手册指导渔民规范海上捕捞行为
+  status: acquired
+  level: national
+  authority_tier: A
+  source_class: normative
+  currency:
+    as_of: '2026-11-15'
+    basis: retrieval
+    review_due: '2026-12-15'
+    cadence: monthly
+    ttl_days: 30
+    note: provisional watch diff
+  retrieval:
+    channel: main
+    parseable: true
+    note: provisional candidate; review before canonical promotion
+  lifecycle: active
+  license: public
+  sensitivity: public
+  hash: ab2df80b929c44de689b7cc16164686441467c1367762828b1943b0c2f1c0b3d
+  location: raw/POL-MOA-GROUP-225/article.txt
+  provenance:
+    url: https://www.moa.gov.cn/xw/qg/202108/t20210817_6374287.htm
+    document_no: null
+    published_at: null
+    retrieved_at: '2026-11-15'
+    sha256: ab2df80b929c44de689b7cc16164686441467c1367762828b1943b0c2f1c0b3d
+    bytes: 2230
+    mime: text/plain
+    snapshot_path: raw/POL-MOA-GROUP-225/article.txt
+  effective:
+    from: null
+    to: null
+  quality:
+    text_layer: true
+    anchors: 0
+    tables: 0
+    ocr: false
+    quarantine_reason: null
+    text_coverage: 1.0
+    anchor_coverage: 0.0
+    table_count: 0
+    ocr_confidence: null
+  authority:
+    score: 5
+    evidence_url: https://www.moa.gov.cn/xw/qg/202108/t20210817_6374287.htm
+  license_evidence:
+    url: https://www.moa.gov.cn/xw/qg/202108/t20210817_6374287.htm
+    text: null
+    checked_at: '2026-11-15'
+  ingest:
+    tier: provisional
+    reviewed_by: null
+    reviewed_at: null
+    review_note: watch diff; provisional until human review
+  practical:
+    domain: other
+    personas:
+    - captain
+    - owner
+    - enforcement
+    - extension
+    task_tags:
+    - 编组生产
+    seasonal: false
+  license_note: null
+  supersedes: null
+  superseded_by: null
+  publisher: 农业农村部
+  year: 2021
+  type: notice
+  jurisdiction: national
+  format: txt
+  priority: P1
+  update_freq: static
+  watch_note: 渔船编组生产要求
+
 gaps:
 - One hundred sources are registered: ninety-eight acquired and no open candidates awaiting disposition.
 - The yearbook coverage matrix has no values in the public repository; all values stay local.

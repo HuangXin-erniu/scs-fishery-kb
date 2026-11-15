@@ -95,6 +95,10 @@ documents:
   - STAT-SEALEVEL-218
   - STAT-SEALEVEL-219
   - STAT-SEALEVEL-220
+  - POL-CMA-ENSO-221
+  - POL-GD-SHELLFISH-222
+  - POL-MOA-SHELLFISH-223
+  - POL-MOA-GROUP-225
 chunking:
   max_fallback_chars: 800
 retrieval:

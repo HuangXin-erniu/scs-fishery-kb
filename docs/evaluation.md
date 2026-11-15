@@ -2482,3 +2482,23 @@ PR #14 (`p26-phase0` → `main`) was merged after explicit user authorization:
 - main checks: public tree OK, private gate OK, **464 passed / 2 skipped**;
 - 0 tags, 0 GitHub Releases (project policy);
 - remaining corpus gaps stay registered in `configs/gap-register.yaml`.
+
+### P1 corpus-gap acquisition (2026-11-15)
+
+Captured and admitted four official sources as provisional entries, all parsed
+from cleaned article text (not navigation):
+
+| Gap | Source | Chunks | Result |
+|---|---|---:|---|
+| ENSO | `POL-CMA-ENSO-221` (CMA/National Climate Center) | 1 | partial; answers the indicator and refuses the "fish must decline" inference |
+| Shellfish toxin | `POL-GD-SHELLFISH-222`, `POL-MOA-SHELLFISH-223` | 2 | partial; closure/reopening and toxin advice retrievable |
+| Group fishing | `POL-MOA-GROUP-225` (MOA) | 1 | partial; "must form groups / no single-vessel operation" retrievable, penalty still missing |
+| Forecast product access | — | 0 | **open**, no qualified official document found |
+| SSTa definition | — | 0 | **open**, no qualified official document found |
+
+The provisional tier normally carries a 0.6 retrieval penalty; the four
+gap-closing P1 sources are exempt, and the retriever reserves a lexical slot for
+P1 hits so dense neighbours cannot crowd them out. Public gates are unchanged:
+public retrieval 0.9545/0.8163/0.8512 and public regression all pass; 464 tests
+pass. The two open gaps stay in `configs/gap-register.yaml`; no fabricated answer
+was added.

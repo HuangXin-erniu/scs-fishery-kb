@@ -43,16 +43,24 @@ def _apply_metadata_prior(
     return adjusted
 
 
-def _apply_tier_penalty(hits: list[SearchHit]) -> list[SearchHit]:
-    """Provisional evidence should not outrank canonical evidence by default."""
-    adjusted = [
-        SearchHit(
-            chunk=hit.chunk,
-            score=hit.score
-            * (PROVISIONAL_FACTOR if hit.chunk.ingest_tier == "provisional" else 1.0),
+def _apply_tier_penalty(
+    hits: list[SearchHit], priorities: dict[str, str] | None = None
+) -> list[SearchHit]:
+    """Provisional evidence should not outrank canonical evidence by default.
+
+    P1 official sources are exempt: they are acquired specifically to close a
+    known corpus gap and are already quality-gated, so the provisional penalty
+    would keep them out of the pack until a human promotes them.
+    """
+    adjusted = []
+    for hit in hits:
+        source_id = hit.chunk.source_id or hit.chunk.doc_id
+        penalise = (
+            hit.chunk.ingest_tier == "provisional" and (priorities or {}).get(source_id) != "P1"
         )
-        for hit in hits
-    ]
+        adjusted.append(
+            SearchHit(chunk=hit.chunk, score=hit.score * (PROVISIONAL_FACTOR if penalise else 1.0))
+        )
     adjusted.sort(key=lambda hit: -hit.score)
     return adjusted
 
@@ -141,8 +149,24 @@ class HybridRetriever:
             k=self.fusion_k,
             top_k=candidate_depth,
         )
-        fused = _apply_tier_penalty(filter_hits(fused, filters))
+        fused = _apply_tier_penalty(filter_hits(fused, filters), self.priorities)
         fused = _apply_metadata_prior(fused, self.priorities, self.doc_types)
+        # Reserve a slot for P1 official gap sources that win lexically but are
+        # crowded out by dense neighbours in RRF.
+        seen = {hit.chunk.chunk_id for hit in fused}
+        reserved = []
+        for rank, hit in enumerate(lexical[:5], start=1):
+            source_id = hit.chunk.source_id or hit.chunk.doc_id
+            if self.priorities.get(source_id) != "P1" or hit.chunk.chunk_id in seen:
+                continue
+            reserved.append(
+                SearchHit(
+                    chunk=hit.chunk,
+                    score=self.bm25_weight / (self.fusion_k + rank) * P1_PRIOR,
+                )
+            )
+        if reserved:
+            fused = sorted(fused + reserved, key=lambda hit: -hit.score)
         if rerank and self.reranker is not None:
             try:
                 fused = self.reranker.rerank(

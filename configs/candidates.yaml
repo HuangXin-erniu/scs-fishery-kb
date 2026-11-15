@@ -383,3 +383,58 @@ candidates:
   note: 'survey 2026-11-12: http=200; text_chars=8849; license_hint=ICP备; freshness=[''2024年09'',
     ''2025-03'', ''2025年4'']; intended v5 class=normative; authority/licence review
     pending'
+- id: CAND-2026-101
+  title: 厄尔尼诺“进行时”：看清风险 拿稳“应对工具包”
+  url: https://www.cma.gov.cn/2011xwzx/2011xqxxw/2011xqxyw/202606/t20260623_7877746.html
+  publisher: 中国气象局/国家气候中心
+  proposed_tier: A
+  proposed_class: normative
+  reason: gap
+  first_seen: '2026-11-15'
+  expires_at: '2027-05-14'
+  status: open
+  note: 'gap-register ENSO; official CMA article with ENSO definition and monitoring indicator'
+- id: CAND-2026-102
+  title: 预防麻痹性贝类毒素中毒的风险提示
+  url: https://cdcp.gd.gov.cn/jkjy/jkzt/yyyspaq/content/post_4857122.html
+  publisher: 广东省疾病预防控制中心
+  proposed_tier: B
+  proposed_class: normative
+  reason: gap
+  first_seen: '2026-11-15'
+  expires_at: '2027-05-14'
+  status: open
+  note: 'gap-register shellfish toxin; official risk notice with closure/collection advice'
+- id: CAND-2026-103
+  title: 福建省海洋与渔业厅加强贝类质量安全监管工作
+  url: https://yyj.moa.gov.cn/yqxx/201904/t20190428_6219931.htm
+  publisher: 农业农村部渔业渔政管理局
+  proposed_tier: A
+  proposed_class: normative
+  reason: gap
+  first_seen: '2026-11-15'
+  expires_at: '2027-05-14'
+  status: open
+  note: 'gap-register shellfish closure; official fisheries page on area closure and reopening'
+- id: CAND-2026-104
+  title: 海洋渔船出海需要符合的“十个必须”的具体内容是什么？
+  url: https://www.haimen.gov.cn/hmsrmzf/nlst/content/35c21029-1564-4e6a-9069-abf46d2bd7d7.html
+  publisher: 南通市海门区农业农村局
+  proposed_tier: B
+  proposed_class: normative
+  reason: gap
+  first_seen: '2026-11-15'
+  expires_at: '2027-05-14'
+  status: open
+  note: 'gap-register group fishing; local official Q&A requiring group production'
+- id: CAND-2026-105
+  title: 浙江省农业农村厅印制手册指导渔民规范海上捕捞行为
+  url: https://www.moa.gov.cn/xw/qg/202108/t20210817_6374287.htm
+  publisher: 农业农村部
+  proposed_tier: A
+  proposed_class: normative
+  reason: gap
+  first_seen: '2026-11-15'
+  expires_at: '2027-05-14'
+  status: open
+  note: 'gap-register group fishing; official MOA article requiring group production and no single-vessel operation'

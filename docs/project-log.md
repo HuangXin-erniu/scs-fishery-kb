@@ -1765,3 +1765,8 @@ This log records material project changes by date. It does not use release versi
   difference, not a regression.
 - PR #14 merged to main by explicit user authorization: merge commit 1fca1c0;
   main CI success, public/private gates and 464 tests pass. No tag/Release.
+- P1 gap acquisition: added four official provisional sources (CMA ENSO, two
+  shellfish-toxin/closure pages, MOA group-fishing), cleaned article text and
+  rebuilt the index; P1 provisional sources exempt from the retrieval penalty and
+  given a lexical reserve slot. Public gates unchanged, 464 tests pass. Forecast
+  product access and SSTa definition remain open gaps.
