@@ -2308,3 +2308,34 @@ never appeared in any review sheet was generated with the current standard arm:
 An `IG-030` single-row review sheet was also generated to confirm the updated
 reference (3万–15万). The release gate stays closed until a blind human review
 is done; no release.
+
+### Blind human review result (2026-11-15)
+
+Human review of the blind 30 (ids that never appeared in a review sheet):
+**14/30 PASS, 16/30 FAIL**. The 17 abstentions split unevenly:
+
+- **12/17 were over-conservative, not evidence gaps** - the pack already held the
+  answer (IG-055's thirteen prohibited gears, IG-052's clawback and permanent
+  disqualification clause, IG-050's four-colour alert ranking, IG-068's
+  collision-avoidance points, IG-032's juvenile-ratio penalties, and so on).
+- **5/17 were legitimate abstentions** (IG-048 ENSO, IG-051 shellfish toxicity,
+  IG-058 forecast-product access, IG-060 SSTa definition, IG-067 group fishing):
+  the corpus has zero hits on the subject.
+- Of the 13 answered rows, 9 were usable; 4 were weak (IG-031 answered only the
+  effective date, IG-035 dropped the benefits half, IG-038 gave a general rule
+  instead of the Guangxi list, IG-044 emitted citations without body text).
+
+Citation validation was re-run independently: 27/27 anchors exist in the row's
+evidence, 0 missing, matching the validator. It checks existence only, not
+relevance - IG-059 cites a seasonal-closure enforcement notice when asked about
+weekly forecast bulletins.
+
+The 30/30 on the repaired set was set-specific overfit; blind quality is 14/30,
+and the dominant failure mode has moved from fabrication to over-abstention.
+Release gate stays closed.
+
+IG-030 single row: the reference now reads 3万-15万 and matches the cited clause;
+the answer still lists three conflicting amounts with the old 200-1000 range
+first, so it reads as a 200-1000 fine. Marked FAIL - the national clause should
+lead, with the Fujian article marked local and the old general rule marked
+superseded.

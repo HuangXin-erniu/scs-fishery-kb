@@ -1731,3 +1731,7 @@ This log records material project changes by date. It does not use release versi
 - Added citation validator and blind test. Blind 30 unused ids: 17 abstained /
   13 answered, 0 bad citations. The 30/30 on the repeatedly repaired set is
   overfit; release gate stays closed. Exported blind-30 review + IG-030 row.
+- Blind human review: 14/30 PASS. Of the 17 abstentions, 12 were
+  over-conservative (the answer was already in evidence) and 5 legitimate; 4 of
+  13 answered rows were weak. IG-030 row still leads with the old 200-1000 range.
+  Gate stays closed.
