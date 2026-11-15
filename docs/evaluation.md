@@ -2421,3 +2421,20 @@ reconsideration authority as not in corpus.
 The 4-row fix sheet has 0 missing citations under the strict validator. If human
 review accepts these, blind-2 reaches 30/30; the release gate is still pending a
 final pass.
+
+### Blind-2 28/30 and final two path fixes (2026-11-15)
+
+Human review of the four blind-2 fixes: **2 PASS / 2 FAIL**, so blind-2 reaches
+**28/30 (93.3%)**, above the ≥27 threshold. The two failures were substantive:
+
+- **IG-110** used "变更登记" for a vessel sale; the correct path is original
+  owner cancellation (§36) → new owner ownership/nationality registration (§17)
+  → fishing-licence re-application (§37). Note §33 excludes ownership transfer
+  from change registration. Rewritten accordingly.
+- **IG-076** omitted the decisive §28 paragraph for special/seasonal permits
+  (marine/inland licence + operation reason and plan for closed-season work).
+  Rewritten to include it.
+
+The two-row fix sheet reports 0 missing citations under the strict validator.
+These two are process-critical (users would follow the wrong registration path),
+so the release gate stays closed until they are human-confirmed.

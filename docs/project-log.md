@@ -1751,3 +1751,7 @@ This log records material project changes by date. It does not use release versi
 - Blind-2 26/30; added plain-text evidence fallback, recovered 072/076/079,
   manually fixed 110; exported human-review-round9-4fixes.csv (0 bad citations).
   No release.
+- Blind-2 28/30; rewrote IG-110 sale path (cancel→new registration→licence) and
+  IG-076 §28 special-permit prerequisites. Exported
+  human-review-round10-2fixes.csv (0 bad citations). Release gate pending 2-row
+  confirmation.
