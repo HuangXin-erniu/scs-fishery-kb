@@ -172,6 +172,18 @@ live under the local data root and are never committed.
 - The prompt version, model id, temperature, evidence hashes and output schema
   are recorded with the run.
 
+**Implementation status (2026-11-12).** The product default is
+`answer_v3/standard_arm.py`: it retrieves a 50-candidate hybrid pool, reranks to
+8 with the BGE cross-encoder, expands to parent sections, builds a bounded
+8-item / 12k-character evidence pack, asks for structured JSON (conclusion,
+applicability, steps, documents, deadline, basis, caveat, soft gap, missing
+slots, citations), then runs the citation/number/support validator and an
+optional faithfulness self-check. Unsupported sentences are removed; a failed
+conclusion abstains with a gap and a channel. Validated answers are cached by
+question, persona, region/year, index version, prompt and config hashes, with an
+optional embedding-similarity lookup; the cache is invalidated on index change
+or TTL. The clause-dump arm remains for the Track A instrument and diagnostics.
+
 ## 7. Web evidence
 
 - Web retrieval is triggered only by an explicit request, a freshness cue, an

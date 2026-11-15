@@ -139,6 +139,7 @@ def main(argv: list[str] | None = None) -> int:
     client = LLMClient(config)
     cache = LLMCache(Path(args.data_root) / "llm-cache")
     dump = build_service(data_root=args.data_root)
+    dump.answer_mode = "dump"
     dump._llm = None  # deterministic dump, no rewrite
     short = build_service(data_root=args.data_root)
     short.answer_mode = "short"

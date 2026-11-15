@@ -1,0 +1,110 @@
+# Track B (industry-standard) evaluation schema and targets.
+# The dataset itself is private and lives under SCS_FKB_DATA_ROOT/eval/industry;
+# this file contains no questions, answers or gold labels.
+schema_version: 1
+updated_at: '2026-11-12'
+status: skeleton
+purpose: >-
+  Measure the shipped RAG pipeline against industry-standard metrics without
+  replacing the frozen 512-question acceptance instrument (Track A). The
+  frozen core is drawn from the private instrument; the pending rows are filled
+  from the practical-source batches in Phase 3.
+data_root_env: SCS_FKB_DATA_ROOT
+dataset_dir: eval/industry
+splits:
+  retrieval:
+    file: retrieval.jsonl
+    frozen_core: 200
+    pending_source: 100
+    purpose: Recall@k, MRR and nDCG@10 against gold documents.
+  generation:
+    file: generation.jsonl
+    frozen_core: 120
+    pending_source: 80
+    purpose: RAGAS faithfulness/relevancy/context precision/context recall/correctness.
+  abstention:
+    file: abstention.jsonl
+    frozen_core: 70
+    pending_source: 30
+    purpose: False-answer, false-refusal, refusal-accuracy and channel metrics.
+metrics:
+  retrieval:
+    - name: recall_at_1
+      definition: relevant documents found in the top 1 / all gold documents
+    - name: recall_at_5
+      definition: relevant documents found in the top 5 / all gold documents
+    - name: recall_at_10
+      definition: relevant documents found in the top 10 / all gold documents
+    - name: mrr
+      definition: mean reciprocal rank of the first relevant document
+    - name: ndcg_at_10
+      definition: normalised discounted cumulative gain at 10 with binary relevance
+    - name: hit_rate
+      definition: share of questions with at least one relevant document in the top 10
+  generation:
+    - name: faithfulness
+      definition: RAGAS faithfulness - share of answer statements supported by the context
+    - name: answer_relevancy
+      definition: RAGAS answer relevancy - how directly the answer addresses the question
+    - name: context_precision
+      definition: RAGAS context precision with reference
+    - name: context_recall
+      definition: RAGAS context recall
+    - name: answer_correctness
+      definition: RAGAS answer correctness against the reference answer
+  citation:
+    - name: citation_resolution
+      definition: share of citations that resolve to a retrieved chunk
+    - name: citation_precision
+      definition: share of cited claims supported by the cited evidence
+    - name: unsupported_claim_rate
+      definition: share of answer claims without a valid citation
+  abstention:
+    - name: false_answer_rate
+      definition: share of must-refuse questions answered anyway
+    - name: false_refusal_rate
+      definition: share of answerable questions refused
+    - name: refusal_accuracy
+      definition: share of questions whose answer/refuse decision is correct
+    - name: channel_coverage
+      definition: share of refusals that name a channel or next step
+targets:
+  # Targets are ambitions; pass lines are frozen after the Phase 0 baseline and
+  # recorded next to the measured values, never mixed with them.
+  retrieval:
+    recall_at_10: 0.92
+    ndcg_at_10: 0.82
+    mrr: 0.80
+  generation:
+    faithfulness: 0.90
+    answer_relevancy: 0.85
+    context_precision: 0.80
+    context_recall: 0.85
+    answer_correctness: 0.75
+  citation:
+    citation_resolution: 1.00
+    citation_precision: 0.95
+    unsupported_claim_rate_max: 0.03
+  abstention:
+    false_answer_rate_max: 0.05
+    false_refusal_rate_max: 0.10
+    refusal_accuracy: 0.90
+    channel_coverage: 0.99
+gates:
+  ci:
+    - deterministic retrieval fixture
+    - citation validator fixture
+    - abstention fixture
+  local:
+    - full Track B run
+    - absolute targets
+    - no regression greater than 2 percentage points against the previous accepted baseline
+judge:
+  engine: ragas
+  version: 0.4.3
+  isolation: >-
+    RAGAS is installed in a separate virtual environment because it pins an older
+    langchain/openai stack. See requirements-ragas.txt and scripts/ragas_runner.py.
+  note: >-
+    Model-judged scores are supporting evidence. A human spot check is the
+    authoritative layer and is reported separately as source human.

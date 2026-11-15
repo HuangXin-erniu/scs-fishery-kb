@@ -111,3 +111,115 @@ Nothing in steps 1–8 happens automatically.
 - **Agent executor:** runs the read-only checks, prepares candidate drafts,
   captures after a decision, rebuilds and runs the gates. Never promotes on its
   own.
+
+## 2a. Semi-automatic update cycle (2026-11-12)
+
+The read-only weekly cycle stays the invariant. A separate **semi-automatic
+cycle** turns a changed watch row into a provisional plan for review; it never
+writes the canonical register, processed store or index.
+
+```bash
+export SCS_FKB_DATA_ROOT=/path/to/data
+export SCS_FKB_RUN_ROOT=/path/to/runs
+export PYTHONPATH=src
+
+# Offline: replay the recorded watch statuses and write a dated plan/report.
+python scripts/update_cycle.py --today "$(date +%F)"
+
+# Live: explicit operator action; fetches the watched pages only.
+python scripts/update_cycle.py --today "$(date +%F)" --live
+```
+
+The cycle:
+
+1. runs the source gate (currency, watch coverage, candidates);
+2. diffs the watch hashes against `$SCS_FKB_DATA_ROOT/watch/baseline.json`;
+3. matches a changed page to an open candidate by URL;
+4. applies the provisional quality gate (`parseable`, text length, licence,
+   sensitivity, duplicate content, text coverage);
+5. writes a provisional entry plan plus rejected/needs-fetch rows to
+   `$SCS_FKB_RUN_ROOT/update/YYYY-MM-DD.{md,json}`;
+6. leaves canonical promotion to a human: `promotion_draft` produces the entry
+   and the follow-up actions (capture, register, rebuild, regression, log).
+
+Nothing is auto-promoted. A provisional source may answer only with a visible
+label and cannot alone support a rule, status, quantity or warning. The index
+pointer and register are untouched by the cycle.
+
+### Scheduling
+
+`scripts/install_scheduler.sh` generates (does not install) a macOS launchd user
+agent that runs `scripts/run_weekly.sh` on Sunday 02:00. Install it explicitly:
+
+```bash
+launchctl bootstrap gui/$(id -u) "$SCS_FKB_RUN_ROOT/scheduler/com.scs-fkb.weekly.plist"
+```
+
+The wrapper runs `update_cycle.py --live` and `weekly_report.py`, writes logs
+under the run root and relies on the same environment variables as the manual
+cycle. A failed run leaves the previous index in place.
+
+## 8. Knowledge-station feedback and offline use
+
+`/kb` now exposes four item kinds: task cards (`TASK-*`), canonical answers
+(`ANS-*`), playbooks (`PLAY-*`) and FAQ (`FAQ-*`). Each renders a useful /
+not-useful form; `POST /kb/feedback` appends one JSON line with `source: "kb"`,
+`item_id`, `kind`, `helpful` and an optional comment to
+`$SCS_FKB_RUN_ROOT/feedback.jsonl`. The weekly report counts the votes and the
+unhelpful items; it never stores an answer or a citation.
+
+The knowledge station is a PWA: `/kb/manifest.webmanifest`, `/kb/sw.js` and
+`/kb/icon.svg` are served by the local service, and `_kb_head.html` registers the
+worker. The worker caches `/kb` and the shell assets with a network-first policy;
+an installed shortcut can reopen the last view offline, while an online visit
+refreshes the content. Nothing is cached from `/v1` responses or private data.
+
+Practical-source candidates are reviewed with `scripts/review_candidate.py`: the
+operator supplies the observed text length, hash, licence and sensitivity, and
+the script writes a provisional review package under
+`$SCS_FKB_RUN_ROOT/candidates/<CAND-ID>/`. It does not fetch, register or promote.
+
+## 4a. Practical-source admission, one document at a time (2026-11-12)
+
+The candidate queue holds homepages, not citable documents. The admission loop
+turns one homepage into a shortlist of document URLs, then one chosen document
+into a review package:
+
+```bash
+export SCS_FKB_DATA_ROOT=/path/to/data
+export SCS_FKB_RUN_ROOT=/path/to/runs
+export PYTHONPATH=src
+
+# 1. Discover same-site document links (read-only; no capture).
+python scripts/discover_candidates.py \
+  --candidate-id CAND-2026-004 --run-root "$SCS_FKB_RUN_ROOT" --limit 20
+# -> $SCS_FKB_RUN_ROOT/discovery/CAND-2026-004.jsonl
+
+# 2. The operator picks a document URL and decides licence/sensitivity/authority.
+#    Then capture + parse + provisional review package in one command:
+python scripts/admit_candidate.py \
+  --candidate-id CAND-2026-004 \
+  --url "https://www.example.gov.cn/notice/2026/xiuyu.html" \
+  --source-id POL-PRAC-201 \
+  --license public --sensitivity public \
+  --tier A --class practical_guide --level national \
+  --practical-domain safety \
+  --document-no "农渔发〔2026〕1号" --published-at 2026-05-01
+# -> snapshot under the data root, admission.json review package, provisional YAML
+
+# 3. Human review: read admission.json and the snapshot. If accepted, add the
+#    printed provisional entry to configs/corpus.yaml with ingest.tier:
+#    provisional, then rebuild and run the gates.
+PYTHONPATH=src python scripts/build_v2.py
+PYTHONPATH=src python scripts/build_index_v2.py
+PYTHONPATH=src python scripts/check_sources.py --today "$(date +%F)"
+PYTHONPATH=src python scripts/eval_index_v2.py
+```
+
+`discover_candidates.py` only lists links; it does not decide that a page is a
+document. News items, reposts and aggregation pages remain ineligible under
+`docs/sources.md`. `admit_candidate.py` never edits the register or the index; it
+prints the provisional entry and the follow-up commands. Canonical promotion is
+a separate human decision (`promotion_draft`). The capture allowlist is loaded
+from `configs/web-sources.yaml`, so an official domain must be on that list
+before it can be captured.

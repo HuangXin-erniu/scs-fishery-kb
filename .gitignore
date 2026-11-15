@@ -36,3 +36,6 @@ htmlcov/
 .coverage.*
 *.orig
 *.rej
+
+# Local LLM cache accidentally written by scripts when run from the repo root
+llm-cache/

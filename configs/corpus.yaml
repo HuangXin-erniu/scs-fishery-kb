@@ -3,8 +3,8 @@
 # Local data root: $SCS_FKB_DATA_ROOT. The public tree contains no payload.
 
 schema_version: 1
-source_record_schema: 4
-updated_at: '2026-11-06'
+source_record_schema: 5
+updated_at: '2026-11-12'
 data_root: null
 data_root_env: SCS_FKB_DATA_ROOT
 policy:
@@ -3751,6 +3751,1908 @@ sources:
     bytes: 310754
     mime: application/pdf
     snapshot_path: raw/POL-PORTFEE-122/guangdong-port-fee-2019.pdf
+- id: POL-NAV-119
+  title: 1972年国际海上避碰规则
+  title_zh: 1972年国际海上避碰规则
+  publisher: 国际海事组织（商务部条约法律司转载）
+  year: 1972
+  type: regulation
+  jurisdiction: international
+  format: html
+  location: raw/POL-NAV-119/colregs-1972.html
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P1
+  volume: 1 HTML file; five parts, 38 rules
+  update_freq: static
+  hash: f924f38dc7a18e4a45a1a9f01ab87bbf588f2d0462a02f2a053a5f3f1b04d9d9
+  acquisition: Fetched 2026-11-12 from the Ministry of Commerce treaty library copy of the 1972 Convention on the International Regulations for Preventing Collisions at Sea, as amended through A.1085(28).
+  notes: Supplies the give-way rules the corpus lacked (rules 13-18 covering overtaking, head-on, crossing, the give-way vessel and the stand-on vessel). The Chinese text is a translation; cite it as the convention, not as a domestic regulation.
+  level: international
+  authority_tier: A
+  retrieval:
+    channel: main
+    parseable: true
+    note: Registered in the main index.
+  lifecycle: active
+  source_class: normative
+  currency:
+    as_of: '2026-11-12'
+    basis: publication
+    review_due: '2026-12-12'
+    cadence: monthly
+    note: Consolidated convention text; amendments are published by IMO and would arrive through a new capture.
+  watch_note: Static treaty text; rechecked at the scheduled review.
+  provenance:
+    url: https://tfs.mofcom.gov.cn/fgsjk/gjjmgyygl/gjysf/art/1972/art_722e352950644f73bf3d6004b996bb44.html
+    retrieved_at: '2026-11-12'
+    sha256: f924f38dc7a18e4a45a1a9f01ab87bbf588f2d0462a02f2a053a5f3f1b04d9d9
+    bytes: 469516
+    mime: text/html
+    snapshot_path: raw/POL-NAV-119/colregs-1972.html
+    transport: https
+    fetched_by: scripts/capture_source.py
+- id: POL-BOAT-120
+  title: 海洋捕捞渔船拆解操作规程
+  title_zh: 海洋捕捞渔船拆解操作规程
+  publisher: 农业农村部办公厅
+  year: 2021
+  type: notice
+  jurisdiction: national
+  format: html
+  location: raw/POL-BOAT-120/vessel-dismantle.html
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P1
+  volume: 1 HTML file; five chapters
+  update_freq: static
+  hash: 8efcb1cfd4f45e5891fe27ec4f1630f9206bb107e8864d789d7ba3d76728dd76
+  acquisition: Fetched 2026-11-12 from the Ministry of Agriculture and Rural Affairs (农办渔〔2021〕13号, issued 2021-08-05).
+  notes: "Covers the dismantling chain for scrapping, replacement and fleet-reduction: where a vessel may be dismantled, what the yard must hold, the on-site supervision and the documents issued. It supplies the procedure the corpus lacked for 拆解/减船 questions, but it is not a write-off (销号) rule by itself."
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: main
+    parseable: true
+    note: Registered in the main index.
+  lifecycle: active
+  source_class: normative
+  currency:
+    as_of: '2026-11-12'
+    basis: publication
+    review_due: '2026-12-12'
+    cadence: monthly
+    note: Current procedure, replacing the 2012 trial version.
+  watch_note: Static notice; rechecked at the scheduled review.
+  provenance:
+    url: https://www.moa.gov.cn/govpublic/YYJ/202108/t20210810_6373806.htm
+    retrieved_at: '2026-11-12'
+    sha256: 8efcb1cfd4f45e5891fe27ec4f1630f9206bb107e8864d789d7ba3d76728dd76
+    bytes: 129064
+    mime: text/html
+    snapshot_path: raw/POL-BOAT-120/vessel-dismantle.html
+    transport: https
+    fetched_by: scripts/capture_source.py
+- id: POL-FIN-121
+  title: 罚没财物管理办法
+  title_zh: 罚没财物管理办法
+  publisher: 财政部
+  year: 2020
+  type: regulation
+  jurisdiction: national
+  format: html
+  location: raw/POL-FIN-121/fine-forfeiture.html
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P1
+  volume: 1 HTML file; six chapters, 42 articles
+  update_freq: static
+  hash: 1621ebc7cf400da2ef570b7df7d7d25331e6d8da9c45c11ce0ab15876247f08d
+  acquisition: Fetched 2026-11-12 from the State Council policy library (财税〔2020〕54号, issued 2020-12-17).
+  notes: Covers custody, handover, disposal, proceeds and supervision of forfeited property, including the disposal of confiscated vessels and gear. It answers the disposal procedure the corpus lacked, while the penalty that produces the forfeiture stays in the fisheries penalty rules.
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: main
+    parseable: true
+    note: Registered in the main index.
+  lifecycle: active
+  source_class: normative
+  currency:
+    as_of: '2026-11-12'
+    basis: publication
+    review_due: '2026-12-12'
+    cadence: monthly
+    note: Ministry of Finance rule; no later revision found.
+  watch_note: Static rule text; rechecked at the scheduled review.
+  provenance:
+    url: https://www.gov.cn/zhengce/zhengceku/2020-12/31/content_5575777.htm
+    retrieved_at: '2026-11-12'
+    sha256: 1621ebc7cf400da2ef570b7df7d7d25331e6d8da9c45c11ce0ab15876247f08d
+    bytes: 68423
+    mime: text/html
+    snapshot_path: raw/POL-FIN-121/fine-forfeiture.html
+    transport: https
+    fetched_by: scripts/capture_source.py
+- id: POL-MAMMAL-123
+  title: 农业农村部办公厅关于加强海洋哺乳动物保护管理工作的通知
+  title_zh: 农业农村部办公厅关于加强海洋哺乳动物保护管理工作的通知
+  publisher: 农业农村部办公厅
+  year: 2021
+  type: notice
+  jurisdiction: national
+  format: html
+  location: raw/POL-MAMMAL-123/marine-mammal-bycatch.html
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P1
+  volume: 1 HTML file; five sections
+  update_freq: static
+  hash: 06c60e9bde7fd8e70079108edc0de6cf892930f52f1b4bef93bc683187c7c0a5
+  acquisition: Fetched 2026-11-12 from the Ministry of Agriculture and Rural Affairs (农办渔〔2021〕12号, issued 2021-07-28).
+  notes: "Requires a vessel that bycatches a marine mammal to report to the local fisheries authority and to record species, quantity, position and condition in detail, and to file the bycatch, injury and death record in the port-entry system. It supplies the bycatch reporting content the corpus lacked, but not a national form template."
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: main
+    parseable: true
+    note: Registered in the main index.
+  lifecycle: active
+  source_class: normative
+  currency:
+    as_of: '2026-11-12'
+    basis: publication
+    review_due: '2026-12-12'
+    cadence: monthly
+    note: Current notice; no later revision found.
+  watch_note: Static notice text; rechecked at the scheduled review.
+  provenance:
+    url: https://www.moa.gov.cn/govpublic/YYJ/202108/t20210802_6373391.htm
+    document_no: 农办渔〔2021〕12号
+    retrieved_at: '2026-11-12'
+    sha256: 06c60e9bde7fd8e70079108edc0de6cf892930f52f1b4bef93bc683187c7c0a5
+    bytes: 66045
+    mime: text/html
+    snapshot_path: raw/POL-MAMMAL-123/marine-mammal-bycatch.html
+    transport: https
+    fetched_by: scripts/capture_source.py
+- id: POL-WILD-124
+  title: 农业农村部关于进一步加强珍贵濒危水生野生动物保护管理工作的通知
+  title_zh: 农业农村部关于进一步加强珍贵濒危水生野生动物保护管理工作的通知
+  publisher: 农业农村部
+  year: 2023
+  type: notice
+  jurisdiction: national
+  format: html
+  location: raw/POL-WILD-124/protected-wildlife-2023.html
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P1
+  volume: 1 HTML file; six sections
+  update_freq: static
+  hash: 20162fd1e76b842fbf86a3958af2047647c25af93948b9b65dd1c24f9bf0742f
+  acquisition: Fetched 2026-11-12 from the Ministry of Agriculture and Rural Affairs (农渔发〔2023〕22号, issued 2023-08-08).
+  notes: Covers treatment of bycaught, injured, stranded and confiscated aquatic wildlife (rescue, temporary holding, release), release of confiscated animals and products, and the referral of criminal cases. It gives the disposal chain the corpus lacked around the wildlife protection law.
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: main
+    parseable: true
+    note: Registered in the main index.
+  lifecycle: active
+  source_class: normative
+  currency:
+    as_of: '2026-11-12'
+    basis: publication
+    review_due: '2026-12-12'
+    cadence: monthly
+    note: Current notice; the 2022 wildlife protection law is its basis.
+  watch_note: Static notice text; rechecked at the scheduled review.
+  provenance:
+    url: https://www.moa.gov.cn/govpublic/YYJ/202308/t20230822_6434835.htm
+    document_no: 农渔发〔2023〕22号
+    retrieved_at: '2026-11-12'
+    sha256: 20162fd1e76b842fbf86a3958af2047647c25af93948b9b65dd1c24f9bf0742f
+    bytes: 55382
+    mime: text/html
+    snapshot_path: raw/POL-WILD-124/protected-wildlife-2023.html
+    transport: https
+    fetched_by: scripts/capture_source.py
+- id: POL-SUPPORT-125
+  title: 农业农村部 财政部关于实施“十五五”时期渔业发展支持政策加快渔业现代化建设的通知
+  title_zh: 农业农村部 财政部关于实施“十五五”时期渔业发展支持政策加快渔业现代化建设的通知
+  publisher: 农业农村部、财政部
+  year: 2026
+  type: notice
+  jurisdiction: national
+  format: html
+  location: raw/POL-SUPPORT-125/fishery-support-2026.html
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P1
+  volume: 1 HTML file; four sections
+  update_freq: static
+  hash: 8ddd1708153b34713287f73e9a6a8ee965352e30322ebbfde7a80c978d4b91dc
+  acquisition: Fetched 2026-11-12 from the Ministry of Agriculture and Rural Affairs (农渔发〔2026〕15号, issued 2026-08-14).
+  notes: The 2026-2030 support policy that succeeds the 14th five-year arrangement. It states the funding channels and the subsidy directions for fuel-price adjustment and resource-conservation subsidies, which is what the 2026 fuel-subsidy question needs.
+  level: national
+  authority_tier: A
+  retrieval:
+    channel: main
+    parseable: true
+    note: Registered in the main index.
+  lifecycle: active
+  source_class: normative
+  currency:
+    as_of: '2026-11-12'
+    basis: publication
+    review_due: '2026-12-12'
+    cadence: monthly
+    note: Current five-year policy, issued 2026-08-14.
+  watch_note: Static policy text; rechecked at the scheduled review.
+  provenance:
+    url: https://www.moa.gov.cn/govpublic/YYJ/202609/t20260928_6488146.htm
+    document_no: 农渔发〔2026〕15号
+    retrieved_at: '2026-11-12'
+    sha256: 8ddd1708153b34713287f73e9a6a8ee965352e30322ebbfde7a80c978d4b91dc
+    bytes: 75951
+    mime: text/html
+    snapshot_path: raw/POL-SUPPORT-125/fishery-support-2026.html
+    transport: https
+    fetched_by: scripts/capture_source.py
+
+- id: POL-PORTREP-201
+  source_record_schema: 5
+  title: 农业农村部关于调整渔船进出渔港报告制度的通告
+  status: acquired
+  level: national
+  authority_tier: A
+  source_class: normative
+  currency:
+    as_of: '2026-11-12'
+    basis: publication
+    review_due: '2027-02-12'
+    cadence: quarterly
+    ttl_days: 90
+    note: canonical practical source after human review
+  retrieval:
+    channel: main
+    parseable: true
+    note: canonical practical source; main index
+  lifecycle: active
+  license: public
+  sensitivity: public
+  hash: 7179c9637e63f04fcf91b9cf89a34a54acc7388592a416e0a517fec0bfa0d252
+  location: raw/POL-PORTREP-201/port-report-notice-2026.html
+  provenance:
+    url: https://www.moa.gov.cn/govpublic/YYJ/202602/t20260205_6481349.htm
+    document_no: 农业农村部通告〔2026〕1号
+    published_at: '2026-02-03'
+    retrieved_at: '2026-11-12'
+    sha256: 7179c9637e63f04fcf91b9cf89a34a54acc7388592a416e0a517fec0bfa0d252
+    bytes: 57045
+    mime: text/html
+    snapshot_path: raw/POL-PORTREP-201/port-report-notice-2026.html
+  effective:
+    from: '2026-02-03'
+    to: null
+  quality:
+    text_layer: true
+    anchors: 0
+    tables: 0
+    ocr: false
+    quarantine_reason: null
+    text_coverage: 1.0
+    anchor_coverage: 0.0
+    table_count: 0
+    ocr_confidence: null
+  authority:
+    score: 5
+    evidence_url: https://www.moa.gov.cn/govpublic/YYJ/202602/t20260205_6481349.htm
+  license_evidence:
+    url: https://www.moa.gov.cn/govpublic/YYJ/202602/t20260205_6481349.htm
+    text: 政府网站公开信息；用于知识库引用与检索。
+    checked_at: '2026-11-12'
+  ingest:
+    tier: canonical
+    reviewed_by: owner
+    reviewed_at: '2026-11-13'
+    review_note: human review confirmed 2026-11-13
+  practical:
+    domain: port_service
+    personas:
+    - captain
+    - owner
+    - crew
+    task_tags:
+    - 进出港报告
+    - 安全自查
+    - 依港管船
+    seasonal: false
+  license_note: 政府网站公开信息；用于知识库引用与检索。
+  supersedes: null
+  superseded_by: null
+  title_zh: 农业农村部关于调整渔船进出渔港报告制度的通告
+  publisher: 农业农村部
+  year: 2026
+  type: notice
+  jurisdiction: national
+  format: html
+  priority: P2
+  volume: 1 html file
+  update_freq: static
+  watch_note: 静态公开文本；季度复查时重新核验发布页与许可状态。
+- id: POL-COLLISION-202
+  source_record_schema: 5
+  title: 中华人民共和国海事局关于加强中国沿海商渔船碰撞事故防范的通告
+  status: acquired
+  level: national
+  authority_tier: A
+  source_class: normative
+  currency:
+    as_of: '2026-11-12'
+    basis: publication
+    review_due: '2027-02-12'
+    cadence: quarterly
+    ttl_days: 90
+    note: canonical practical source after human review
+  retrieval:
+    channel: main
+    parseable: true
+    note: canonical practical source; main index
+  lifecycle: active
+  license: public
+  sensitivity: public
+  hash: 72d6083c29696840fc44d0821d67e996aa4bd4cc451e3121352a2a79633dcbf7
+  location: raw/POL-COLLISION-202/collision-prevention-notice-2025.html
+  provenance:
+    url: https://www.fj.msa.gov.cn/fjmsacms/cms/html/fjhsjwwwz/2025-09-10/1153147404.html
+    document_no: 海事局通告
+    published_at: '2025-09-10'
+    retrieved_at: '2026-11-12'
+    sha256: 72d6083c29696840fc44d0821d67e996aa4bd4cc451e3121352a2a79633dcbf7
+    bytes: 37427
+    mime: text/html
+    snapshot_path: raw/POL-COLLISION-202/collision-prevention-notice-2025.html
+  effective:
+    from: '2025-09-06'
+    to: null
+  quality:
+    text_layer: true
+    anchors: 0
+    tables: 0
+    ocr: false
+    quarantine_reason: null
+    text_coverage: 1.0
+    anchor_coverage: 0.0
+    table_count: 0
+    ocr_confidence: null
+  authority:
+    score: 5
+    evidence_url: https://www.fj.msa.gov.cn/fjmsacms/cms/html/fjhsjwwwz/2025-09-10/1153147404.html
+  license_evidence:
+    url: https://www.fj.msa.gov.cn/fjmsacms/cms/html/fjhsjwwwz/2025-09-10/1153147404.html
+    text: 政府网站公开信息；用于知识库引用与检索。
+    checked_at: '2026-11-12'
+  ingest:
+    tier: canonical
+    reviewed_by: owner
+    reviewed_at: '2026-11-13'
+    review_note: human review confirmed 2026-11-13
+  practical:
+    domain: safety
+    personas:
+    - captain
+    - crew
+    - owner
+    task_tags:
+    - 商渔船避碰
+    - 航行安全
+    - 值班瞭望
+    seasonal: true
+  license_note: 政府网站公开信息；用于知识库引用与检索。
+  supersedes: null
+  superseded_by: null
+  title_zh: 中华人民共和国海事局关于加强中国沿海商渔船碰撞事故防范的通告
+  publisher: 中华人民共和国海事局
+  year: 2025
+  type: notice
+  jurisdiction: national
+  format: html
+  priority: P2
+  volume: 1 html file
+  update_freq: static
+  watch_note: 静态公开文本；季度复查时重新核验发布页与许可状态。
+- id: STAT-DISASTER-203
+  source_record_schema: 5
+  title: 2023年中国海洋灾害公报
+  status: acquired
+  level: national
+  authority_tier: A
+  source_class: official_statistics
+  currency:
+    as_of: '2026-11-12'
+    basis: publication
+    review_due: '2027-12-12'
+    cadence: annual
+    ttl_days: 365
+    note: canonical practical source after human review
+  retrieval:
+    channel: main
+    parseable: true
+    note: canonical practical source; main index
+  lifecycle: active
+  license: public
+  sensitivity: public
+  hash: d280c286c9c048707a92112101e3ab0a295c9cde23815bbe8c90a63a4acfb671
+  location: raw/STAT-DISASTER-203/marine-disaster-bulletin-2023.pdf.pdf
+  provenance:
+    url: https://www.nmhms.org.cn/static/upload/file/20240419/1713497108080103641.pdf
+    document_no: null
+    published_at: '2024-04-22'
+    retrieved_at: '2026-11-12'
+    sha256: d280c286c9c048707a92112101e3ab0a295c9cde23815bbe8c90a63a4acfb671
+    bytes: 31767983
+    mime: application/pdf
+    snapshot_path: raw/STAT-DISASTER-203/marine-disaster-bulletin-2023.pdf.pdf
+  effective:
+    from: '2024-04-22'
+    to: null
+  quality:
+    text_layer: true
+    anchors: 0
+    tables: 0
+    ocr: false
+    quarantine_reason: null
+    text_coverage: 1.0
+    anchor_coverage: 0.0
+    table_count: 0
+    ocr_confidence: null
+  authority:
+    score: 5
+    evidence_url: https://www.nmhms.org.cn/static/upload/file/20240419/1713497108080103641.pdf
+  license_evidence:
+    url: https://www.nmhms.org.cn/static/upload/file/20240419/1713497108080103641.pdf
+    text: 政府网站公开信息；用于知识库引用与检索。
+    checked_at: '2026-11-12'
+  ingest:
+    tier: canonical
+    reviewed_by: owner
+    reviewed_at: '2026-11-13'
+    review_note: human review confirmed 2026-11-13
+  practical:
+    domain: hazard
+    personas:
+    - captain
+    - owner
+    - enforcement
+    - extension
+    task_tags:
+    - 海洋灾害
+    - 风暴潮
+    - 海浪
+    - 灾害统计
+    seasonal: true
+  license_note: 政府网站公开信息；用于知识库引用与检索。
+  supersedes: null
+  superseded_by: null
+  title_zh: 2023年中国海洋灾害公报
+  publisher: 自然资源部
+  year: 2024
+  type: notice
+  jurisdiction: national
+  format: pdf
+  priority: P2
+  volume: 1 pdf file
+  update_freq: static
+  watch_note: 静态公开文本；季度复查时重新核验发布页与许可状态。
+- id: STAT-ECO-205
+  source_record_schema: 5
+  title: 2025年中国海洋生态预警监测公报
+  status: acquired
+  level: national
+  authority_tier: A
+  source_class: official_statistics
+  currency:
+    as_of: '2026-11-12'
+    basis: publication
+    review_due: '2027-12-12'
+    cadence: annual
+    ttl_days: 365
+    note: canonical practical source after human review
+  retrieval:
+    channel: main
+    parseable: true
+    note: canonical practical source; main index
+  lifecycle: active
+  license: public
+  sensitivity: public
+  hash: 131755862e48e1195b84813fbc1870c16b7429f9361f74345422106e10825ce1
+  location: raw/STAT-ECO-205/marine-eco-bulletin-2025.pdf.pdf
+  provenance:
+    url: https://gi.mnr.gov.cn/202606/P020260608378766553953.pdf
+    document_no: null
+    published_at: '2026-06-08'
+    retrieved_at: '2026-11-12'
+    sha256: 131755862e48e1195b84813fbc1870c16b7429f9361f74345422106e10825ce1
+    bytes: 131745206
+    mime: application/pdf
+    snapshot_path: raw/STAT-ECO-205/marine-eco-bulletin-2025.pdf.pdf
+  effective:
+    from: '2026-06-08'
+    to: null
+  quality:
+    text_layer: true
+    anchors: 0
+    tables: 0
+    ocr: false
+    quarantine_reason: null
+    text_coverage: 1.0
+    anchor_coverage: 0.0
+    table_count: 0
+    ocr_confidence: null
+  authority:
+    score: 5
+    evidence_url: https://gi.mnr.gov.cn/202606/P020260608378766553953.pdf
+  license_evidence:
+    url: https://gi.mnr.gov.cn/202606/P020260608378766553953.pdf
+    text: 政府网站公开信息；用于知识库引用与检索。
+    checked_at: '2026-11-12'
+  ingest:
+    tier: canonical
+    reviewed_by: owner
+    reviewed_at: '2026-11-13'
+    review_note: human review confirmed 2026-11-13
+  practical:
+    domain: environment
+    personas:
+    - captain
+    - owner
+    - enforcement
+    - extension
+    task_tags:
+    - 海洋生态
+    - 赤潮
+    - 缺氧
+    - 预警监测
+    seasonal: false
+  license_note: 政府网站公开信息；用于知识库引用与检索。
+  supersedes: null
+  superseded_by: null
+  title_zh: 2025年中国海洋生态预警监测公报
+  publisher: 自然资源部
+  year: 2026
+  type: notice
+  jurisdiction: national
+  format: pdf
+  priority: P2
+  volume: 1 pdf file
+  update_freq: static
+  watch_note: 静态公开文本；季度复查时重新核验发布页与许可状态。
+- id: POL-GD-SUBSIDY-204
+  source_record_schema: 5
+  title: 广东省农业农村厅 广东省财政厅关于印发《广东省渔业资源养护补贴政策实施方案》的通知
+  status: acquired
+  level: provincial
+  authority_tier: A
+  source_class: normative
+  currency:
+    as_of: '2026-11-12'
+    basis: publication
+    review_due: '2027-02-12'
+    cadence: quarterly
+    ttl_days: 90
+    note: canonical practical source after human review
+  retrieval:
+    channel: main
+    parseable: true
+    note: canonical practical source; main index
+  lifecycle: active
+  license: public
+  sensitivity: public
+  hash: 3584b8360242f0e254df81ba9c0e75b68dd28a3b809f1f9b1a7b9bf5531ea19d
+  location: raw/POL-GD-SUBSIDY-204/gd-fishery-subsidy-2025.html.html
+  provenance:
+    url: https://dara.gd.gov.cn/zwgk/zcwj/content/mpost_4829879.html
+    document_no: 粤农农规〔2025〕6号
+    published_at: '2025-12-18'
+    retrieved_at: '2026-11-12'
+    sha256: 3584b8360242f0e254df81ba9c0e75b68dd28a3b809f1f9b1a7b9bf5531ea19d
+    bytes: 38037
+    mime: text/html
+    snapshot_path: raw/POL-GD-SUBSIDY-204/gd-fishery-subsidy-2025.html.html
+  effective:
+    from: '2025-12-18'
+    to: null
+  quality:
+    text_layer: true
+    anchors: 0
+    tables: 0
+    ocr: false
+    quarantine_reason: null
+    text_coverage: 1.0
+    anchor_coverage: 0.0
+    table_count: 0
+    ocr_confidence: null
+  authority:
+    score: 5
+    evidence_url: https://dara.gd.gov.cn/zwgk/zcwj/content/mpost_4829879.html
+  license_evidence:
+    url: https://dara.gd.gov.cn/zwgk/zcwj/content/mpost_4829879.html
+    text: 政府网站公开信息；用于知识库引用与检索。
+    checked_at: '2026-11-12'
+  ingest:
+    tier: canonical
+    reviewed_by: owner
+    reviewed_at: '2026-11-13'
+    review_note: human review confirmed 2026-11-13
+  practical:
+    domain: subsidy
+    personas:
+    - owner
+    - captain
+    task_tags:
+    - 休渔补贴
+    - 资源养护补贴
+    - 负责任捕捞
+    seasonal: false
+  license_note: 政府网站公开信息；用于知识库引用与检索。
+  supersedes: null
+  superseded_by: null
+  title_zh: 广东省农业农村厅 广东省财政厅关于印发《广东省渔业资源养护补贴政策实施方案》的通知
+  publisher: 广东省农业农村厅、广东省财政厅
+  year: 2025
+  type: notice
+  jurisdiction: guangdong
+  format: html
+  priority: P2
+  volume: 1 html file
+  update_freq: static
+  watch_note: 静态公开文本；季度复查时重新核验发布页与许可状态。
+- id: POL-GX-CLOSURE-206
+  source_record_schema: 5
+  title: 自治区农业农村厅办公室关于做好2026年海洋伏季休渔管理工作的通知
+  status: acquired
+  level: provincial
+  authority_tier: A
+  source_class: normative
+  currency:
+    as_of: '2026-11-12'
+    basis: publication
+    review_due: '2027-02-12'
+    cadence: quarterly
+    ttl_days: 90
+    note: canonical practical source after human review
+  retrieval:
+    channel: main
+    parseable: true
+    note: canonical practical source; main index
+  lifecycle: active
+  license: public
+  sensitivity: public
+  hash: b9028450c6f0a587b35a866b759ca503f6f69415c744b32aa5845cbfe31ea516
+  location: raw/POL-GX-CLOSURE-206/gx-closure-notice-2026.html.html
+  provenance:
+    url: http://nynct.gxzf.gov.cn/xxgk/jcxxgk/tzgg/t27624499.shtml
+    document_no: null
+    published_at: '2026-04-22'
+    retrieved_at: '2026-11-12'
+    sha256: b9028450c6f0a587b35a866b759ca503f6f69415c744b32aa5845cbfe31ea516
+    bytes: 27642
+    mime: text/html
+    snapshot_path: raw/POL-GX-CLOSURE-206/gx-closure-notice-2026.html.html
+  effective:
+    from: '2026-05-01'
+    to: null
+  quality:
+    text_layer: true
+    anchors: 0
+    tables: 0
+    ocr: false
+    quarantine_reason: null
+    text_coverage: 1.0
+    anchor_coverage: 0.0
+    table_count: 0
+    ocr_confidence: null
+  authority:
+    score: 5
+    evidence_url: http://nynct.gxzf.gov.cn/xxgk/jcxxgk/tzgg/t27624499.shtml
+  license_evidence:
+    url: http://nynct.gxzf.gov.cn/xxgk/jcxxgk/tzgg/t27624499.shtml
+    text: 政府网站公开信息；用于知识库引用与检索。
+    checked_at: '2026-11-12'
+  ingest:
+    tier: canonical
+    reviewed_by: owner
+    reviewed_at: '2026-11-13'
+    review_note: human review confirmed 2026-11-13
+  practical:
+    domain: policy
+    personas:
+    - captain
+    - owner
+    - crew
+    task_tags:
+    - 伏季休渔
+    - 船籍港休渔
+    - 钓具渔船
+    seasonal: true
+  license_note: 政府网站公开信息；用于知识库引用与检索。
+  supersedes: null
+  superseded_by: null
+  title_zh: 自治区农业农村厅办公室关于做好2026年海洋伏季休渔管理工作的通知
+  publisher: 广西壮族自治区农业农村厅办公室
+  year: 2026
+  type: notice
+  jurisdiction: guangxi
+  format: html
+  priority: P2
+  volume: 1 html file
+  update_freq: static
+  watch_note: 静态公开文本；季度复查时重新核验发布页与许可状态。
+- id: POL-HN-CLOSURE-207
+  source_record_schema: 5
+  title: 海南省2026年伏季休渔告知书
+  status: acquired
+  level: provincial
+  authority_tier: A
+  source_class: normative
+  currency:
+    as_of: '2026-11-12'
+    basis: publication
+    review_due: '2027-02-12'
+    cadence: quarterly
+    ttl_days: 90
+    note: canonical practical source after human review
+  retrieval:
+    channel: main
+    parseable: true
+    note: canonical practical source; main index
+  lifecycle: active
+  license: public
+  sensitivity: public
+  hash: 043df82acba4f52d7955ec8a070033a2f9dc49a3536e55b3a0443d1559defe9f
+  location: raw/POL-HN-CLOSURE-207/hn-closure-notice-2026.html.html
+  provenance:
+    url: https://agri.hainan.gov.cn/hnsnyt/xxgk/tzgg/gggs/202604/t20260424_4064675.html
+    document_no: null
+    published_at: '2026-04-24'
+    retrieved_at: '2026-11-12'
+    sha256: 043df82acba4f52d7955ec8a070033a2f9dc49a3536e55b3a0443d1559defe9f
+    bytes: 47054
+    mime: text/html
+    snapshot_path: raw/POL-HN-CLOSURE-207/hn-closure-notice-2026.html.html
+  effective:
+    from: '2026-05-01'
+    to: null
+  quality:
+    text_layer: true
+    anchors: 0
+    tables: 0
+    ocr: false
+    quarantine_reason: null
+    text_coverage: 0.947
+    anchor_coverage: 0.0
+    table_count: 0
+    ocr_confidence: null
+  authority:
+    score: 5
+    evidence_url: https://agri.hainan.gov.cn/hnsnyt/xxgk/tzgg/gggs/202604/t20260424_4064675.html
+  license_evidence:
+    url: https://agri.hainan.gov.cn/hnsnyt/xxgk/tzgg/gggs/202604/t20260424_4064675.html
+    text: 政府网站公开信息；用于知识库引用与检索。
+    checked_at: '2026-11-12'
+  ingest:
+    tier: canonical
+    reviewed_by: owner
+    reviewed_at: '2026-11-13'
+    review_note: human review confirmed 2026-11-13
+  practical:
+    domain: policy
+    personas:
+    - captain
+    - owner
+    - crew
+    task_tags:
+    - 伏季休渔
+    - 船籍港休渔
+    - 网具封存
+    seasonal: true
+  license_note: 政府网站公开信息；用于知识库引用与检索。
+  supersedes: null
+  superseded_by: null
+  title_zh: 海南省2026年伏季休渔告知书
+  publisher: 海南省农业农村厅
+  year: 2026
+  type: notice
+  jurisdiction: hainan
+  format: html
+  priority: P2
+  volume: 1 html file
+  update_freq: static
+  watch_note: 静态公开文本；季度复查时重新核验发布页与许可状态。
+- id: POL-CN-ENFORCE-208
+  source_record_schema: 5
+  title: 农业农村部、公安部、中国海警局关于开展2026年海洋伏季休渔专项执法行动的通知
+  status: acquired
+  level: national
+  authority_tier: A
+  source_class: normative
+  currency:
+    as_of: '2026-11-12'
+    basis: publication
+    review_due: '2027-02-12'
+    cadence: quarterly
+    ttl_days: 90
+    note: canonical practical source after human review
+  retrieval:
+    channel: main
+    parseable: true
+    note: canonical practical source; main index
+  lifecycle: active
+  license: public
+  sensitivity: public
+  hash: 19aba21bcb2592c1f70e41faaa077826ef61b937f24090574ed44fb8346a6fb4
+  location: raw/POL-CN-ENFORCE-208/closure-enforcement-2026.html.html
+  provenance:
+    url: https://agri.hainan.gov.cn/hnsnyt/xxgk/tzgg/xztz/202605/t20260508_4071552.html
+    document_no: null
+    published_at: '2026-05-08'
+    retrieved_at: '2026-11-12'
+    sha256: 19aba21bcb2592c1f70e41faaa077826ef61b937f24090574ed44fb8346a6fb4
+    bytes: 36938
+    mime: text/html
+    snapshot_path: raw/POL-CN-ENFORCE-208/closure-enforcement-2026.html.html
+  effective:
+    from: '2026-05-01'
+    to: null
+  quality:
+    text_layer: true
+    anchors: 0
+    tables: 0
+    ocr: false
+    quarantine_reason: null
+    text_coverage: 1.0
+    anchor_coverage: 0.0
+    table_count: 0
+    ocr_confidence: null
+  authority:
+    score: 5
+    evidence_url: https://agri.hainan.gov.cn/hnsnyt/xxgk/tzgg/xztz/202605/t20260508_4071552.html
+  license_evidence:
+    url: https://agri.hainan.gov.cn/hnsnyt/xxgk/tzgg/xztz/202605/t20260508_4071552.html
+    text: 政府网站公开信息；用于知识库引用与检索。
+    checked_at: '2026-11-12'
+  ingest:
+    tier: canonical
+    reviewed_by: owner
+    reviewed_at: '2026-11-13'
+    review_note: human review confirmed 2026-11-13
+  practical:
+    domain: policy
+    personas:
+    - captain
+    - owner
+    - enforcement
+    task_tags:
+    - 伏季休渔
+    - 专项执法
+    - 船籍港休渔
+    seasonal: true
+  license_note: 政府网站公开信息；用于知识库引用与检索。
+  supersedes: null
+  superseded_by: null
+  title_zh: 农业农村部、公安部、中国海警局关于开展2026年海洋伏季休渔专项执法行动的通知
+  publisher: 农业农村部、公安部、中国海警局
+  year: 2026
+  type: notice
+  jurisdiction: national
+  format: html
+  priority: P2
+  volume: 1 html file
+  update_freq: static
+  watch_note: 静态公开文本；季度复查时重新核验发布页与许可状态。
+- id: POL-GD-WUCHUAN-209
+  source_record_schema: 5
+  title: 吴川市农业农村局关于2026年海洋伏季休渔的通告
+  status: acquired
+  level: municipal
+  authority_tier: C
+  source_class: normative
+  currency:
+    as_of: '2026-11-12'
+    basis: publication
+    review_due: '2027-02-12'
+    cadence: quarterly
+    ttl_days: 90
+    note: Stage 3 practical-source batch 2; provisional.
+  retrieval:
+    channel: main
+    parseable: true
+    note: provisional candidate; review before canonical promotion
+  lifecycle: active
+  license: public
+  sensitivity: public
+  hash: b3b309d82943ff5f1eb9e732e9c427764482837d27644fd9807a5d36ce42ab8d
+  location: raw/POL-GD-WUCHUAN-209/wuchuan-closure-notice-2026.html.html
+  provenance:
+    url: https://www.gdwc.gov.cn/bmzz/wcsrmzfw/zwgk/wcdt/gsgg/content/post_2173584.html
+    document_no: null
+    published_at: '2026-04-28'
+    retrieved_at: '2026-11-12'
+    sha256: b3b309d82943ff5f1eb9e732e9c427764482837d27644fd9807a5d36ce42ab8d
+    bytes: 51942
+    mime: text/html
+    snapshot_path: raw/POL-GD-WUCHUAN-209/wuchuan-closure-notice-2026.html.html
+  effective:
+    from: '2026-05-01'
+    to: null
+  quality:
+    text_layer: true
+    anchors: 0
+    tables: 0
+    ocr: false
+    quarantine_reason: null
+    text_coverage: 1.0
+    anchor_coverage: 0.0
+    table_count: 0
+    ocr_confidence: null
+  authority:
+    score: 2
+    evidence_url: https://www.gdwc.gov.cn/bmzz/wcsrmzfw/zwgk/wcdt/gsgg/content/post_2173584.html
+  license_evidence:
+    url: https://www.gdwc.gov.cn/bmzz/wcsrmzfw/zwgk/wcdt/gsgg/content/post_2173584.html
+    text: 政府网站公开信息；用于知识库引用与检索。
+    checked_at: '2026-11-12'
+  ingest:
+    tier: provisional
+    reviewed_by: null
+    reviewed_at: null
+    review_note: Stage 3 practical admission batch 2; human review pending
+  practical:
+    domain: policy
+    personas:
+    - captain
+    - owner
+    - crew
+    task_tags:
+    - 伏季休渔
+    - 船籍港休渔
+    - 免休辅助船
+    seasonal: true
+  license_note: 政府网站公开信息；用于知识库引用与检索。
+  supersedes: null
+  superseded_by: null
+  title_zh: 吴川市农业农村局关于2026年海洋伏季休渔的通告
+  publisher: 吴川市农业农村局
+  year: 2026
+  type: notice
+  jurisdiction: guangdong
+  format: html
+  priority: P2
+  volume: 1 html file
+  update_freq: static
+  watch_note: 静态公开文本；季度复查时重新核验发布页与许可状态。
+
+- id: STAT-DISASTER-210
+  source_record_schema: 5
+  title: 2022年中国海洋灾害公报
+  status: acquired
+  level: national
+  authority_tier: A
+  source_class: official_statistics
+  currency:
+    as_of: '2026-11-12'
+    basis: publication
+    review_due: '2027-12-12'
+    cadence: annual
+    ttl_days: 365
+    note: canonical practical source after human review
+  retrieval:
+    channel: main
+    parseable: true
+    note: canonical practical source; main index
+  lifecycle: active
+  license: public
+  sensitivity: public
+  hash: edb1fec55b6ee742638188921b5a0846354fcfd6feef4b966025d2dccbfe679f
+  location: raw/STAT-DISASTER-210/marine-disaster-bulletin-2022.pdf.pdf
+  provenance:
+    url: http://gi.mnr.gov.cn/202304/P020230412572202855422.pdf
+    document_no: null
+    published_at: '2023-04-12'
+    retrieved_at: '2026-11-12'
+    sha256: edb1fec55b6ee742638188921b5a0846354fcfd6feef4b966025d2dccbfe679f
+    bytes: 118428597
+    mime: application/pdf
+    snapshot_path: raw/STAT-DISASTER-210/marine-disaster-bulletin-2022.pdf.pdf
+  effective:
+    from: '2023-04-12'
+    to: null
+  quality:
+    text_layer: true
+    anchors: 0
+    tables: 0
+    ocr: false
+    quarantine_reason: null
+    text_coverage: 1.0
+    anchor_coverage: 0.0
+    table_count: 0
+    ocr_confidence: null
+  authority:
+    score: 5
+    evidence_url: http://gi.mnr.gov.cn/202304/P020230412572202855422.pdf
+  license_evidence:
+    url: http://gi.mnr.gov.cn/202304/P020230412572202855422.pdf
+    text: 政府网站公开信息；用于知识库引用与检索。
+    checked_at: '2026-11-12'
+  ingest:
+    tier: canonical
+    reviewed_by: owner
+    reviewed_at: '2026-11-13'
+    review_note: human review confirmed 2026-11-13
+  practical:
+    domain: hazard
+    personas:
+    - captain
+    - owner
+    - enforcement
+    - extension
+    task_tags:
+    - 海洋灾害
+    - 风暴潮
+    - 海浪
+    - 灾害统计
+    seasonal: false
+  license_note: 政府网站公开信息；用于知识库引用与检索。
+  supersedes: null
+  superseded_by: null
+  title_zh: 2022年中国海洋灾害公报
+  publisher: 自然资源部
+  year: 2023
+  type: notice
+  jurisdiction: national
+  format: pdf
+  priority: P2
+  volume: 1 pdf file
+  update_freq: static
+  watch_note: 静态公开文本；季度复查时重新核验发布页与许可状态。
+- id: STAT-DISASTER-211
+  source_record_schema: 5
+  title: 2021年中国海洋灾害公报
+  status: acquired
+  level: national
+  authority_tier: A
+  source_class: official_statistics
+  currency:
+    as_of: '2026-11-12'
+    basis: publication
+    review_due: '2027-12-12'
+    cadence: annual
+    ttl_days: 365
+    note: canonical practical source after human review
+  retrieval:
+    channel: main
+    parseable: true
+    note: canonical practical source; main index
+  lifecycle: active
+  license: public
+  sensitivity: public
+  hash: 76e32a0ca78d379ccfe5f373c2ec7608907b287942da0eb8626d0810a9493837
+  location: raw/STAT-DISASTER-211/marine-disaster-bulletin-2021.pdf.pdf
+  provenance:
+    url: https://www.nmhms.org.cn/static/upload/file/20230921/1695274764607731266.pdf
+    document_no: null
+    published_at: '2022-04-08'
+    retrieved_at: '2026-11-12'
+    sha256: 76e32a0ca78d379ccfe5f373c2ec7608907b287942da0eb8626d0810a9493837
+    bytes: 15633549
+    mime: application/pdf
+    snapshot_path: raw/STAT-DISASTER-211/marine-disaster-bulletin-2021.pdf.pdf
+  effective:
+    from: '2022-04-08'
+    to: null
+  quality:
+    text_layer: true
+    anchors: 0
+    tables: 0
+    ocr: false
+    quarantine_reason: null
+    text_coverage: 1.0
+    anchor_coverage: 0.0
+    table_count: 0
+    ocr_confidence: null
+  authority:
+    score: 5
+    evidence_url: https://www.nmhms.org.cn/static/upload/file/20230921/1695274764607731266.pdf
+  license_evidence:
+    url: https://www.nmhms.org.cn/static/upload/file/20230921/1695274764607731266.pdf
+    text: 政府网站公开信息；用于知识库引用与检索。
+    checked_at: '2026-11-12'
+  ingest:
+    tier: canonical
+    reviewed_by: owner
+    reviewed_at: '2026-11-13'
+    review_note: human review confirmed 2026-11-13
+  practical:
+    domain: hazard
+    personas:
+    - captain
+    - owner
+    - enforcement
+    - extension
+    task_tags:
+    - 海洋灾害
+    - 风暴潮
+    - 海浪
+    - 灾害统计
+    seasonal: false
+  license_note: 政府网站公开信息；用于知识库引用与检索。
+  supersedes: null
+  superseded_by: null
+  title_zh: 2021年中国海洋灾害公报
+  publisher: 自然资源部
+  year: 2022
+  type: notice
+  jurisdiction: national
+  format: pdf
+  priority: P2
+  volume: 1 pdf file
+  update_freq: static
+  watch_note: 静态公开文本；季度复查时重新核验发布页与许可状态。
+- id: STAT-DISASTER-212
+  source_record_schema: 5
+  title: 2020年中国海洋灾害公报
+  status: acquired
+  level: national
+  authority_tier: A
+  source_class: official_statistics
+  currency:
+    as_of: '2026-11-12'
+    basis: publication
+    review_due: '2027-12-12'
+    cadence: annual
+    ttl_days: 365
+    note: canonical practical source after human review
+  retrieval:
+    channel: main
+    parseable: true
+    note: canonical practical source; main index
+  lifecycle: active
+  license: public
+  sensitivity: public
+  hash: 29b2e6646a85676285c009924daeb9a31262c2a90a0b59ae41d20274809d49f8
+  location: raw/STAT-DISASTER-212/marine-disaster-bulletin-2020.pdf.pdf
+  provenance:
+    url: https://www.nmhms.org.cn/static/upload/file/20230921/1695274943440751084.pdf
+    document_no: null
+    published_at: '2021-04-26'
+    retrieved_at: '2026-11-12'
+    sha256: 29b2e6646a85676285c009924daeb9a31262c2a90a0b59ae41d20274809d49f8
+    bytes: 5733474
+    mime: application/pdf
+    snapshot_path: raw/STAT-DISASTER-212/marine-disaster-bulletin-2020.pdf.pdf
+  effective:
+    from: '2021-04-26'
+    to: null
+  quality:
+    text_layer: true
+    anchors: 0
+    tables: 0
+    ocr: false
+    quarantine_reason: null
+    text_coverage: 1.0
+    anchor_coverage: 0.0
+    table_count: 0
+    ocr_confidence: null
+  authority:
+    score: 5
+    evidence_url: https://www.nmhms.org.cn/static/upload/file/20230921/1695274943440751084.pdf
+  license_evidence:
+    url: https://www.nmhms.org.cn/static/upload/file/20230921/1695274943440751084.pdf
+    text: 政府网站公开信息；用于知识库引用与检索。
+    checked_at: '2026-11-12'
+  ingest:
+    tier: canonical
+    reviewed_by: owner
+    reviewed_at: '2026-11-13'
+    review_note: human review confirmed 2026-11-13
+  practical:
+    domain: hazard
+    personas:
+    - captain
+    - owner
+    - enforcement
+    - extension
+    task_tags:
+    - 海洋灾害
+    - 风暴潮
+    - 海浪
+    - 灾害统计
+    seasonal: false
+  license_note: 政府网站公开信息；用于知识库引用与检索。
+  supersedes: null
+  superseded_by: null
+  title_zh: 2020年中国海洋灾害公报
+  publisher: 自然资源部
+  year: 2021
+  type: notice
+  jurisdiction: national
+  format: pdf
+  priority: P2
+  volume: 1 pdf file
+  update_freq: static
+  watch_note: 静态公开文本；季度复查时重新核验发布页与许可状态。
+- id: STAT-DISASTER-213
+  source_record_schema: 5
+  title: 2019年中国海洋灾害公报
+  status: acquired
+  level: national
+  authority_tier: A
+  source_class: official_statistics
+  currency:
+    as_of: '2026-11-12'
+    basis: publication
+    review_due: '2027-12-12'
+    cadence: annual
+    ttl_days: 365
+    note: canonical practical source after human review
+  retrieval:
+    channel: main
+    parseable: true
+    note: canonical practical source; main index
+  lifecycle: active
+  license: public
+  sensitivity: public
+  hash: 3cf613a1b52379d9ba0aa5ecf96bd6a288d50353374b0bcb745adfb9f7cfcc23
+  location: raw/STAT-DISASTER-213/marine-disaster-bulletin-2019.pdf.pdf
+  provenance:
+    url: https://www.nmhms.org.cn/static/upload/file/20250324/1742785053869188843.pdf
+    document_no: null
+    published_at: '2020-04-30'
+    retrieved_at: '2026-11-12'
+    sha256: 3cf613a1b52379d9ba0aa5ecf96bd6a288d50353374b0bcb745adfb9f7cfcc23
+    bytes: 15455242
+    mime: application/pdf
+    snapshot_path: raw/STAT-DISASTER-213/marine-disaster-bulletin-2019.pdf.pdf
+  effective:
+    from: '2020-04-30'
+    to: null
+  quality:
+    text_layer: true
+    anchors: 0
+    tables: 0
+    ocr: false
+    quarantine_reason: null
+    text_coverage: 1.0
+    anchor_coverage: 0.0
+    table_count: 0
+    ocr_confidence: null
+  authority:
+    score: 5
+    evidence_url: https://www.nmhms.org.cn/static/upload/file/20250324/1742785053869188843.pdf
+  license_evidence:
+    url: https://www.nmhms.org.cn/static/upload/file/20250324/1742785053869188843.pdf
+    text: 政府网站公开信息；用于知识库引用与检索。
+    checked_at: '2026-11-12'
+  ingest:
+    tier: canonical
+    reviewed_by: owner
+    reviewed_at: '2026-11-13'
+    review_note: human review confirmed 2026-11-13
+  practical:
+    domain: hazard
+    personas:
+    - captain
+    - owner
+    - enforcement
+    - extension
+    task_tags:
+    - 海洋灾害
+    - 风暴潮
+    - 海浪
+    - 灾害统计
+    seasonal: false
+  license_note: 政府网站公开信息；用于知识库引用与检索。
+  supersedes: null
+  superseded_by: null
+  title_zh: 2019年中国海洋灾害公报
+  publisher: 自然资源部
+  year: 2020
+  type: notice
+  jurisdiction: national
+  format: pdf
+  priority: P2
+  volume: 1 pdf file
+  update_freq: static
+  watch_note: 静态公开文本；季度复查时重新核验发布页与许可状态。
+- id: STAT-DISASTER-214
+  source_record_schema: 5
+  title: 2018年中国海洋灾害公报
+  status: acquired
+  level: national
+  authority_tier: A
+  source_class: official_statistics
+  currency:
+    as_of: '2026-11-12'
+    basis: publication
+    review_due: '2027-12-12'
+    cadence: annual
+    ttl_days: 365
+    note: canonical practical source after human review
+  retrieval:
+    channel: main
+    parseable: true
+    note: canonical practical source; main index
+  lifecycle: active
+  license: public
+  sensitivity: public
+  hash: daa1ead577134462ab4cb1f92ea08debe78675dbb4007f87d166b5eb11e32586
+  location: raw/STAT-DISASTER-214/marine-disaster-bulletin-2018.pdf.pdf
+  provenance:
+    url: https://www.nmhms.org.cn/static/upload/file/20230921/1695275232183254784.pdf
+    document_no: null
+    published_at: '2019-04-28'
+    retrieved_at: '2026-11-12'
+    sha256: daa1ead577134462ab4cb1f92ea08debe78675dbb4007f87d166b5eb11e32586
+    bytes: 19506309
+    mime: application/pdf
+    snapshot_path: raw/STAT-DISASTER-214/marine-disaster-bulletin-2018.pdf.pdf
+  effective:
+    from: '2019-04-28'
+    to: null
+  quality:
+    text_layer: true
+    anchors: 0
+    tables: 0
+    ocr: false
+    quarantine_reason: null
+    text_coverage: 1.0
+    anchor_coverage: 0.0
+    table_count: 0
+    ocr_confidence: null
+  authority:
+    score: 5
+    evidence_url: https://www.nmhms.org.cn/static/upload/file/20230921/1695275232183254784.pdf
+  license_evidence:
+    url: https://www.nmhms.org.cn/static/upload/file/20230921/1695275232183254784.pdf
+    text: 政府网站公开信息；用于知识库引用与检索。
+    checked_at: '2026-11-12'
+  ingest:
+    tier: canonical
+    reviewed_by: owner
+    reviewed_at: '2026-11-13'
+    review_note: human review confirmed 2026-11-13
+  practical:
+    domain: hazard
+    personas:
+    - captain
+    - owner
+    - enforcement
+    - extension
+    task_tags:
+    - 海洋灾害
+    - 风暴潮
+    - 海浪
+    - 灾害统计
+    seasonal: false
+  license_note: 政府网站公开信息；用于知识库引用与检索。
+  supersedes: null
+  superseded_by: null
+  title_zh: 2018年中国海洋灾害公报
+  publisher: 自然资源部
+  year: 2019
+  type: notice
+  jurisdiction: national
+  format: pdf
+  priority: P2
+  volume: 1 pdf file
+  update_freq: static
+  watch_note: 静态公开文本；季度复查时重新核验发布页与许可状态。
+- id: STAT-ECO-215
+  source_record_schema: 5
+  title: 2024年中国海洋生态预警监测公报
+  status: acquired
+  level: national
+  authority_tier: A
+  source_class: official_statistics
+  currency:
+    as_of: '2026-11-12'
+    basis: publication
+    review_due: '2027-12-12'
+    cadence: annual
+    ttl_days: 365
+    note: canonical practical source after human review
+  retrieval:
+    channel: main
+    parseable: true
+    note: canonical practical source; main index
+  lifecycle: active
+  license: public
+  sensitivity: public
+  hash: 353293e7d8db8febe0b51949323728ce1765ffe3ef31713871d43bb902c62640
+  location: raw/STAT-ECO-215/marine-eco-bulletin-2024.pdf.pdf
+  provenance:
+    url: https://www.nmhms.org.cn/static/upload/file/20250717/1752744483925200333.pdf
+    document_no: null
+    published_at: '2025-06-16'
+    retrieved_at: '2026-11-12'
+    sha256: 353293e7d8db8febe0b51949323728ce1765ffe3ef31713871d43bb902c62640
+    bytes: 31936527
+    mime: application/pdf
+    snapshot_path: raw/STAT-ECO-215/marine-eco-bulletin-2024.pdf.pdf
+  effective:
+    from: '2025-06-16'
+    to: null
+  quality:
+    text_layer: true
+    anchors: 0
+    tables: 0
+    ocr: false
+    quarantine_reason: null
+    text_coverage: 1.0
+    anchor_coverage: 0.0
+    table_count: 0
+    ocr_confidence: null
+  authority:
+    score: 5
+    evidence_url: https://www.nmhms.org.cn/static/upload/file/20250717/1752744483925200333.pdf
+  license_evidence:
+    url: https://www.nmhms.org.cn/static/upload/file/20250717/1752744483925200333.pdf
+    text: 政府网站公开信息；用于知识库引用与检索。
+    checked_at: '2026-11-12'
+  ingest:
+    tier: canonical
+    reviewed_by: owner
+    reviewed_at: '2026-11-13'
+    review_note: human review confirmed 2026-11-13
+  practical:
+    domain: environment
+    personas:
+    - captain
+    - owner
+    - enforcement
+    - extension
+    task_tags:
+    - 海洋生态
+    - 赤潮
+    - 缺氧
+    - 预警监测
+    seasonal: false
+  license_note: 政府网站公开信息；用于知识库引用与检索。
+  supersedes: null
+  superseded_by: null
+  title_zh: 2024年中国海洋生态预警监测公报
+  publisher: 自然资源部
+  year: 2025
+  type: notice
+  jurisdiction: national
+  format: pdf
+  priority: P2
+  volume: 1 pdf file
+  update_freq: static
+  watch_note: 静态公开文本；季度复查时重新核验发布页与许可状态。
+- id: STAT-ECO-216
+  source_record_schema: 5
+  title: 2023年中国海洋生态预警监测公报
+  status: acquired
+  level: national
+  authority_tier: A
+  source_class: official_statistics
+  currency:
+    as_of: '2026-11-12'
+    basis: publication
+    review_due: '2027-12-12'
+    cadence: annual
+    ttl_days: 365
+    note: canonical practical source after human review
+  retrieval:
+    channel: main
+    parseable: true
+    note: canonical practical source; main index
+  lifecycle: active
+  license: public
+  sensitivity: public
+  hash: e9d874e46b3674567a45b2dc6f226a1103758346599c287bc58dd7ee9aaac38e
+  location: raw/STAT-ECO-216/marine-eco-bulletin-2023.pdf.pdf
+  provenance:
+    url: https://www.nmhms.org.cn/static/upload/file/20250604/1749013720722341554.pdf
+    document_no: null
+    published_at: '2024-06-11'
+    retrieved_at: '2026-11-12'
+    sha256: e9d874e46b3674567a45b2dc6f226a1103758346599c287bc58dd7ee9aaac38e
+    bytes: 8517077
+    mime: application/pdf
+    snapshot_path: raw/STAT-ECO-216/marine-eco-bulletin-2023.pdf.pdf
+  effective:
+    from: '2024-06-11'
+    to: null
+  quality:
+    text_layer: true
+    anchors: 0
+    tables: 0
+    ocr: false
+    quarantine_reason: null
+    text_coverage: 1.0
+    anchor_coverage: 0.0
+    table_count: 0
+    ocr_confidence: null
+  authority:
+    score: 5
+    evidence_url: https://www.nmhms.org.cn/static/upload/file/20250604/1749013720722341554.pdf
+  license_evidence:
+    url: https://www.nmhms.org.cn/static/upload/file/20250604/1749013720722341554.pdf
+    text: 政府网站公开信息；用于知识库引用与检索。
+    checked_at: '2026-11-12'
+  ingest:
+    tier: canonical
+    reviewed_by: owner
+    reviewed_at: '2026-11-13'
+    review_note: human review confirmed 2026-11-13
+  practical:
+    domain: environment
+    personas:
+    - captain
+    - owner
+    - enforcement
+    - extension
+    task_tags:
+    - 海洋生态
+    - 赤潮
+    - 缺氧
+    - 预警监测
+    seasonal: false
+  license_note: 政府网站公开信息；用于知识库引用与检索。
+  supersedes: null
+  superseded_by: null
+  title_zh: 2023年中国海洋生态预警监测公报
+  publisher: 自然资源部
+  year: 2024
+  type: notice
+  jurisdiction: national
+  format: pdf
+  priority: P2
+  volume: 1 pdf file
+  update_freq: static
+  watch_note: 静态公开文本；季度复查时重新核验发布页与许可状态。
+- id: STAT-SEALEVEL-217
+  source_record_schema: 5
+  title: 2023年中国海平面公报
+  status: acquired
+  level: national
+  authority_tier: A
+  source_class: official_statistics
+  currency:
+    as_of: '2026-11-12'
+    basis: publication
+    review_due: '2027-12-12'
+    cadence: annual
+    ttl_days: 365
+    note: canonical practical source after human review
+  retrieval:
+    channel: main
+    parseable: true
+    note: canonical practical source; main index
+  lifecycle: active
+  license: public
+  sensitivity: public
+  hash: 6e8c28acf979811134b534af66ff8918c3e6d64e4504b4671de827a86f881529
+  location: raw/STAT-SEALEVEL-217/sea-level-bulletin-2023.pdf.pdf
+  provenance:
+    url: http://gi.mnr.gov.cn/202404/P020240429415207880517.pdf
+    document_no: null
+    published_at: '2024-04-15'
+    retrieved_at: '2026-11-12'
+    sha256: 6e8c28acf979811134b534af66ff8918c3e6d64e4504b4671de827a86f881529
+    bytes: 47529928
+    mime: application/pdf
+    snapshot_path: raw/STAT-SEALEVEL-217/sea-level-bulletin-2023.pdf.pdf
+  effective:
+    from: '2024-04-15'
+    to: null
+  quality:
+    text_layer: true
+    anchors: 0
+    tables: 0
+    ocr: false
+    quarantine_reason: null
+    text_coverage: 1.0
+    anchor_coverage: 0.0
+    table_count: 0
+    ocr_confidence: null
+  authority:
+    score: 5
+    evidence_url: http://gi.mnr.gov.cn/202404/P020240429415207880517.pdf
+  license_evidence:
+    url: http://gi.mnr.gov.cn/202404/P020240429415207880517.pdf
+    text: 政府网站公开信息；用于知识库引用与检索。
+    checked_at: '2026-11-12'
+  ingest:
+    tier: canonical
+    reviewed_by: owner
+    reviewed_at: '2026-11-13'
+    review_note: human review confirmed 2026-11-13
+  practical:
+    domain: hazard
+    personas:
+    - captain
+    - owner
+    - enforcement
+    - extension
+    task_tags:
+    - 海平面
+    - 风暴潮
+    - 海岸侵蚀
+    - 气候变化
+    seasonal: true
+  license_note: 政府网站公开信息；用于知识库引用与检索。
+  supersedes: null
+  superseded_by: null
+  title_zh: 2023年中国海平面公报
+  publisher: 自然资源部
+  year: 2024
+  type: notice
+  jurisdiction: national
+  format: pdf
+  priority: P2
+  volume: 1 pdf file
+  update_freq: static
+  watch_note: 静态公开文本；季度复查时重新核验发布页与许可状态。
+- id: STAT-SEALEVEL-218
+  source_record_schema: 5
+  title: 2022年中国海平面公报
+  status: acquired
+  level: national
+  authority_tier: A
+  source_class: official_statistics
+  currency:
+    as_of: '2026-11-12'
+    basis: publication
+    review_due: '2027-12-12'
+    cadence: annual
+    ttl_days: 365
+    note: canonical practical source after human review
+  retrieval:
+    channel: main
+    parseable: true
+    note: canonical practical source; main index
+  lifecycle: active
+  license: public
+  sensitivity: public
+  hash: 74351d26b6b0ef9d65f922b71a476403d98eb958d012c8db41e39cea05cda0a2
+  location: raw/STAT-SEALEVEL-218/sea-level-bulletin-2022.pdf.pdf
+  provenance:
+    url: http://gi.mnr.gov.cn/202304/P020230412574327887976.pdf
+    document_no: null
+    published_at: '2023-04-05'
+    retrieved_at: '2026-11-12'
+    sha256: 74351d26b6b0ef9d65f922b71a476403d98eb958d012c8db41e39cea05cda0a2
+    bytes: 16639392
+    mime: application/pdf
+    snapshot_path: raw/STAT-SEALEVEL-218/sea-level-bulletin-2022.pdf.pdf
+  effective:
+    from: '2023-04-05'
+    to: null
+  quality:
+    text_layer: true
+    anchors: 0
+    tables: 0
+    ocr: false
+    quarantine_reason: null
+    text_coverage: 1.0
+    anchor_coverage: 0.0
+    table_count: 0
+    ocr_confidence: null
+  authority:
+    score: 5
+    evidence_url: http://gi.mnr.gov.cn/202304/P020230412574327887976.pdf
+  license_evidence:
+    url: http://gi.mnr.gov.cn/202304/P020230412574327887976.pdf
+    text: 政府网站公开信息；用于知识库引用与检索。
+    checked_at: '2026-11-12'
+  ingest:
+    tier: canonical
+    reviewed_by: owner
+    reviewed_at: '2026-11-13'
+    review_note: human review confirmed 2026-11-13
+  practical:
+    domain: hazard
+    personas:
+    - captain
+    - owner
+    - enforcement
+    - extension
+    task_tags:
+    - 海平面
+    - 风暴潮
+    - 海岸侵蚀
+    - 气候变化
+    seasonal: true
+  license_note: 政府网站公开信息；用于知识库引用与检索。
+  supersedes: null
+  superseded_by: null
+  title_zh: 2022年中国海平面公报
+  publisher: 自然资源部
+  year: 2023
+  type: notice
+  jurisdiction: national
+  format: pdf
+  priority: P2
+  volume: 1 pdf file
+  update_freq: static
+  watch_note: 静态公开文本；季度复查时重新核验发布页与许可状态。
+- id: STAT-SEALEVEL-219
+  source_record_schema: 5
+  title: 2021年中国海平面公报
+  status: acquired
+  level: national
+  authority_tier: A
+  source_class: official_statistics
+  currency:
+    as_of: '2026-11-12'
+    basis: publication
+    review_due: '2027-12-12'
+    cadence: annual
+    ttl_days: 365
+    note: canonical practical source after human review
+  retrieval:
+    channel: main
+    parseable: true
+    note: canonical practical source; main index
+  lifecycle: active
+  license: public
+  sensitivity: public
+  hash: 86f95e2d41a0cdedc4a8b3c3c0fd50b2f43d753268b401ce3ce8f80e7319cf38
+  location: raw/STAT-SEALEVEL-219/sea-level-bulletin-2021.pdf.pdf
+  provenance:
+    url: http://gi.mnr.gov.cn/202205/P020220609556998660192.pdf
+    document_no: null
+    published_at: '2022-04-08'
+    retrieved_at: '2026-11-12'
+    sha256: 86f95e2d41a0cdedc4a8b3c3c0fd50b2f43d753268b401ce3ce8f80e7319cf38
+    bytes: 8814759
+    mime: application/pdf
+    snapshot_path: raw/STAT-SEALEVEL-219/sea-level-bulletin-2021.pdf.pdf
+  effective:
+    from: '2022-04-08'
+    to: null
+  quality:
+    text_layer: true
+    anchors: 0
+    tables: 0
+    ocr: false
+    quarantine_reason: null
+    text_coverage: 1.0
+    anchor_coverage: 0.0
+    table_count: 0
+    ocr_confidence: null
+  authority:
+    score: 5
+    evidence_url: http://gi.mnr.gov.cn/202205/P020220609556998660192.pdf
+  license_evidence:
+    url: http://gi.mnr.gov.cn/202205/P020220609556998660192.pdf
+    text: 政府网站公开信息；用于知识库引用与检索。
+    checked_at: '2026-11-12'
+  ingest:
+    tier: canonical
+    reviewed_by: owner
+    reviewed_at: '2026-11-13'
+    review_note: human review confirmed 2026-11-13
+  practical:
+    domain: hazard
+    personas:
+    - captain
+    - owner
+    - enforcement
+    - extension
+    task_tags:
+    - 海平面
+    - 风暴潮
+    - 海岸侵蚀
+    - 气候变化
+    seasonal: true
+  license_note: 政府网站公开信息；用于知识库引用与检索。
+  supersedes: null
+  superseded_by: null
+  title_zh: 2021年中国海平面公报
+  publisher: 自然资源部
+  year: 2022
+  type: notice
+  jurisdiction: national
+  format: pdf
+  priority: P2
+  volume: 1 pdf file
+  update_freq: static
+  watch_note: 静态公开文本；季度复查时重新核验发布页与许可状态。
+- id: STAT-SEALEVEL-220
+  source_record_schema: 5
+  title: 2020年中国海平面公报
+  status: acquired
+  level: national
+  authority_tier: A
+  source_class: official_statistics
+  currency:
+    as_of: '2026-11-12'
+    basis: publication
+    review_due: '2027-12-12'
+    cadence: annual
+    ttl_days: 365
+    note: canonical practical source after human review
+  retrieval:
+    channel: main
+    parseable: true
+    note: canonical practical source; main index
+  lifecycle: active
+  license: public
+  sensitivity: public
+  hash: ddbe938a51dc3194cbd2c8631d4cc7e474e136e05af7109c115c589ae3a63976
+  location: raw/STAT-SEALEVEL-220/sea-level-bulletin-2020.pdf.pdf
+  provenance:
+    url: http://gi.mnr.gov.cn/202104/P020210426570276410847.pdf
+    document_no: null
+    published_at: '2021-04-26'
+    retrieved_at: '2026-11-12'
+    sha256: ddbe938a51dc3194cbd2c8631d4cc7e474e136e05af7109c115c589ae3a63976
+    bytes: 2506303
+    mime: application/pdf
+    snapshot_path: raw/STAT-SEALEVEL-220/sea-level-bulletin-2020.pdf.pdf
+  effective:
+    from: '2021-04-26'
+    to: null
+  quality:
+    text_layer: true
+    anchors: 0
+    tables: 0
+    ocr: false
+    quarantine_reason: null
+    text_coverage: 1.0
+    anchor_coverage: 0.0
+    table_count: 0
+    ocr_confidence: null
+  authority:
+    score: 5
+    evidence_url: http://gi.mnr.gov.cn/202104/P020210426570276410847.pdf
+  license_evidence:
+    url: http://gi.mnr.gov.cn/202104/P020210426570276410847.pdf
+    text: 政府网站公开信息；用于知识库引用与检索。
+    checked_at: '2026-11-12'
+  ingest:
+    tier: canonical
+    reviewed_by: owner
+    reviewed_at: '2026-11-13'
+    review_note: human review confirmed 2026-11-13
+  practical:
+    domain: hazard
+    personas:
+    - captain
+    - owner
+    - enforcement
+    - extension
+    task_tags:
+    - 海平面
+    - 风暴潮
+    - 海岸侵蚀
+    - 气候变化
+    seasonal: true
+  license_note: 政府网站公开信息；用于知识库引用与检索。
+  supersedes: null
+  superseded_by: null
+  title_zh: 2020年中国海平面公报
+  publisher: 自然资源部
+  year: 2021
+  type: notice
+  jurisdiction: national
+  format: pdf
+  priority: P2
+  volume: 1 pdf file
+  update_freq: static
+  watch_note: 静态公开文本；季度复查时重新核验发布页与许可状态。
 gaps:
 - One hundred sources are registered: ninety-eight acquired and no open candidates awaiting disposition.
 - The yearbook coverage matrix has no values in the public repository; all values stay local.

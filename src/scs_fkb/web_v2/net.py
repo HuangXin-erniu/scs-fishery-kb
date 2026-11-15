@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import os
 import ssl
+import urllib.error
 import urllib.request
 from typing import Any
 
@@ -25,12 +26,20 @@ def tls_context(cafile: str | None = None) -> ssl.SSLContext:
     return ssl.create_default_context()
 
 
+def _is_cert_error(exc: BaseException) -> bool:
+    if isinstance(exc, ssl.SSLCertVerificationError):
+        return True
+    return isinstance(getattr(exc, "reason", None), ssl.SSLCertVerificationError)
+
+
 def open_url(request: urllib.request.Request, timeout: float, *, context: Any = None) -> Any:
     """Open ``request`` with certificate verification, with one system-bundle retry."""
     chosen = context or tls_context()
     try:
         return urllib.request.urlopen(request, timeout=timeout, context=chosen)
-    except ssl.SSLCertVerificationError:
+    except (ssl.SSLCertVerificationError, urllib.error.URLError) as exc:
+        if not _is_cert_error(exc):
+            raise
         if os.environ.get(CA_ENV, "").strip():
             raise
         for bundle in SYSTEM_BUNDLES:
@@ -40,7 +49,9 @@ def open_url(request: urllib.request.Request, timeout: float, *, context: Any = 
                 return urllib.request.urlopen(
                     request, timeout=timeout, context=ssl.create_default_context(cafile=bundle)
                 )
-            except ssl.SSLCertVerificationError:
+            except (ssl.SSLCertVerificationError, urllib.error.URLError) as retry:
+                if not _is_cert_error(retry):
+                    raise
                 continue
         raise
 

@@ -25,12 +25,15 @@ endpoints:
   - {method: GET, path: /readyz, purpose: readiness and index version}
   - {method: GET, path: /, purpose: server-rendered Web UI}
 query:
-  request: [question, persona, region, year, web]
+  request: [question, persona, region, year, web, short, rerank, mode, max_chars]
+  answer_modes: [standard, short, full, dump, llm, quotes, facet, extractive]
+  max_chars: {min: 1000, max: 20000, default: 12000}
   web_modes: [off, auto, on]
   web_default: off
   response: [request_id, answer, summary, citations_total, citations, used_web, web_leads,
              abstained, reason, mode, playbook, index_version, answerability, conclusion,
-             conditions, gap, channel, as_of, numbers, latency_ms, disclaimer]
+             conditions, gap, channel, as_of, numbers, answer_mode, evidence, freshness,
+             confidence, cache, judge, provisional, clarify_slots, latency_ms, disclaimer]
   modes: [kb_only, kb_plus_web, clarify, abstain]
 citations:
   corpus: "[doc_id p.N §section]"

@@ -1,6 +1,6 @@
 # Data Model
 
-> **中文摘要**：本文件定义语料登记 schema v4。每条来源必须声明层级（国家/省/市/国际/非官方）、权威等级（A/B/C/D）、来源类别（规范/官方统计/标准/参考）、来源证据（URL、文号、发布日期、抓取日期、哈希、快照）、生效期、时效（核验日期、依据、复查日期、复查节奏）、许可与敏感级别、可检索性（通道、可解析）和生命周期（在用/退役）。A/B 可作主证据，C 仅地方补充，D 仅背景/定义；付费文本用 `licensed` 并记录授权说明。v3 条目由加载器派生 v4 默认值，不丢失 id/hash。复查日期受节奏上限约束，超期由 `sources check` 在 CI 中拦截；候选登记独立于正式来源，未准入前不得入库、索引或引用。退役保留哈希与文件，删除只用于无许可或非官方来源。
+> **中文摘要**：本文件定义语料登记 schema v5。每条来源必须声明层级（国家/省/市/国际/非官方）、权威等级（A/B/C/D）、来源类别（规范/官方统计/标准/参考）、来源证据（URL、文号、发布日期、抓取日期、哈希、快照）、生效期、时效（核验日期、依据、复查日期、复查节奏）、许可与敏感级别、可检索性（通道、可解析）和生命周期（在用/退役）。A/B 可作主证据，C 仅地方补充，D 仅背景/定义；付费文本用 `licensed` 并记录授权说明。v3/v4 条目由加载器派生 v5 默认值，不丢失 id/hash。复查日期受节奏上限约束，超期由 `sources check` 在 CI 中拦截；候选登记独立于正式来源，未准入前不得入库、索引或引用。退役保留哈希与文件，删除只用于无许可或非官方来源。
 
 ## 1. Fields
 
@@ -16,13 +16,13 @@
 | `location`, `hash` | string | yes | Local path and sha256 of the registered bytes |
 | `license`, `sensitivity` | string | yes | Licence and sensitivity marker |
 | `status` | string | yes | Acquisition status: acquired, candidate, deferred |
-| `source_record_schema` | integer | no | `4` for explicit v4 records; legacy records are derived to 4 by the loader |
+| `source_record_schema` | integer | no | `5` declares the current contract; v3/v4 records are upgraded in memory by the loader |
 | `level` | enum | yes | `national` / `provincial` / `municipal` / `international` / `non_official` |
 | `authority_tier` | enum | yes | `A` publisher's own page, `B` gazette or official attachment or compilation, `C` municipal page (supplement only), `D` non-official expert source |
-| `source_class` | enum | yes | `normative` / `official_statistics` / `standard` / `reference` |
+| `source_class` | enum | yes | `normative` / `official_statistics` / `standard` / `reference` / `practical_guide` / `forecast_bulletin` / `market_data` / `training_material` / `port_service` |
 | `provenance` | mapping | no (derived) | `url`, `document_no`, `published_at`, `retrieved_at`, `sha256`, `bytes`, `mime`, `snapshot_path`; `sha256`/`snapshot_path` derive from `hash`/`location` |
 | `effective` | mapping | no (derived) | `from`, `to`; both null when open-ended |
-| `quality` | mapping | no (derived) | `text_layer`, `anchors`, `tables`, `ocr`, `quarantine_reason` |
+| `quality` | mapping | no (derived) | `text_layer`, `anchors`, `tables`, `ocr`, `quarantine_reason`, `text_coverage`, `anchor_coverage`, `table_count`, `ocr_confidence` |
 | `supersedes`, `superseded_by` | string / null | no | version lineage; never self-referential |
 | `license_note` | string / null | required for `licensed` | authorisation reference; the text is not published |
 | `currency` | mapping | yes | See section 2 |
@@ -30,10 +30,30 @@
 | `lifecycle` | enum | yes | `active` / `retired` |
 | `retirement` | mapping | when retired | `date`, `reason`, `decision_key` |
 
-The file-level `schema_version` stays `1`; `source_record_schema: 4` names the
-record contract. This keeps the existing loaders and fixtures valid while the
-record semantics move to v4. The loader derives missing v4 fields from `hash`
-and `location` and never overwrites an explicit value.
+The file-level `schema_version` stays `1`; `source_record_schema: 5` names the
+record contract. The loader upgrades v3/v4 records in memory, derives the v5
+fields from the existing values and never overwrites an explicit value. The
+register file itself only changes when an entry is next edited; the migration
+audit (`scripts/migrate_v5.py`) records the derivation.
+
+### 1a. v5 additions
+
+| Field | Type | Meaning |
+|---|---|---|
+| `authority.score` | integer 0–5 | Derived from the tier (A 5, B 4, C 2, D 1); used for ranking and display, not as a substitute for tier |
+| `authority.evidence_url` | URL / null | The publisher page that supports the tier |
+| `currency.ttl_days` | integer | How long this source's claims stay usable in an answer; derived from cadence |
+| `license_evidence` | mapping | `url`, `text`, `checked_at`; required for a canonical practical source |
+| `ingest.tier` | `canonical` / `provisional` | A provisional source may answer with a visible label but cannot alone support a rule, status, quantity or warning |
+| `ingest.reviewed_by`, `reviewed_at`, `review_note` | string / date / string | Human promotion record; a provisional entry needs a review note |
+| `practical` | mapping | `domain` (policy, gear, species, weather, hazard, market, subsidy, port_service, safety, training, statistics, environment, other), `personas`, `task_tags`, `seasonal` |
+| `quality.text_coverage`, `anchor_coverage`, `ocr_confidence` | 0–1 / null | Parse-quality scores |
+| `quality.table_count` | integer | Number of extracted tables |
+
+The provisional tier is not a second canonical corpus. It is a review queue with
+a citation label: `check_sources` still enforces currency, licence and sensitivity,
+and the answer path marks provisional evidence. Promotion to canonical requires
+`ingest.reviewed_by` and a licence-evidence check; see `scripts/update_cycle.py`.
 
 ## 2. Source class and currency
 
@@ -47,7 +67,7 @@ currency:
   note: optional evidence sentence or review remark
 ```
 
-- `source_class` says what kind of source it is, not whether it is current. `normative` covers laws, regulations and notices; `official_statistics` covers yearbook editions and statistical series; `standard` covers technical standards and operational norms; `reference` covers definitions, product documentation and other reference material.
+- `source_class` says what kind of source it is, not whether it is current. `normative` covers laws, regulations and notices; `official_statistics` covers yearbook editions and statistical series; `standard` covers technical standards and operational norms; `reference` covers definitions, product documentation and other reference material. The practical classes (`practical_guide`, `forecast_bulletin`, `market_data`, `training_material`, `port_service`) carry crew-facing material; a canonical practical source needs licence evidence and a human review.
 - `authority_tier` and `level` are a pair. A/B may be national, provincial or international. C must be municipal and is a supplement, never a substitute for a missing higher-level document. D must be `non_official` and is background or definition only; it is never primary for a rule, current status, quantity or warning.
 - `license: licensed` is for paid or otherwise authorised text. It requires `license_note` (authorisation reference) and the text stays local; the register publishes metadata only.
 - `provenance.sha256` must equal `hash` when both are present; `snapshot_path` must stay under the data root. `effective.from/to` are ISO dates and `to` must not precede `from`.
@@ -96,8 +116,8 @@ quality: {text_layer: true, anchors: 42, tables: 3, ocr: false, quarantine_reaso
   other is the next check.
 - `quality` records what the parser actually achieved. A quarantine reason is
   mandatory when the text layer is absent or the anchor count is zero.
-- The v4 loader fills these blocks with nulls for legacy entries. A later
-  review makes them explicit; the migration audit records the derivation.
+- The v5 loader fills these blocks with nulls/derived values for legacy entries.
+  A later review makes them explicit; the migration audit records the derivation.
 
 ## 3. Retrieval
 

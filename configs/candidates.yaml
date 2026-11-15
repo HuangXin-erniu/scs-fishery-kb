@@ -3,5 +3,383 @@
 # and acceptance is followed by the normal capture, register, rebuild and
 # regression steps in docs/operations.md. The watch run never writes this file.
 schema_version: 1
-updated_at: '2026-11-10'
-candidates: []
+updated_at: '2026-11-12'
+candidates:
+- id: CAND-2026-001
+  title: 国家海洋环境预报中心
+  url: https://www.nmefc.cn/
+  publisher: 国家海洋预报台
+  proposed_tier: A
+  proposed_class: reference
+  reason: gap
+  first_seen: '2026-11-12'
+  expires_at: '2027-05-11'
+  status: open
+  note: 'survey 2026-11-12: http=200; text_chars=10; license_hint=unknown; freshness=[];
+    intended v5 class=forecast_bulletin; authority/licence review pending'
+- id: CAND-2026-002
+  title: 中国海洋信息网
+  url: https://www.nmdis.org.cn/
+  publisher: 国家海洋信息中心
+  proposed_tier: A
+  proposed_class: reference
+  reason: gap
+  first_seen: '2026-11-12'
+  expires_at: '2027-05-11'
+  status: open
+  note: 'survey 2026-11-12: http=200; text_chars=3572; license_hint=ICP备; freshness=[''2026/04'',
+    ''2026/1'', ''2026年1'']; intended v5 class=forecast_bulletin; authority/licence
+    review pending'
+- id: CAND-2026-003
+  title: 关注阴晴冷暖，守望四时安康
+  url: https://www.nmc.cn/
+  publisher: 中央气象台
+  proposed_tier: A
+  proposed_class: reference
+  reason: gap
+  first_seen: '2026-11-12'
+  expires_at: '2027-05-11'
+  status: open
+  note: 'survey 2026-11-12: http=200; text_chars=2868; license_hint=ICP备; freshness=[''2026-1'',
+    ''2026/1'', ''2026年1'']; intended v5 class=forecast_bulletin; authority/licence
+    review pending'
+- id: CAND-2026-004
+  title: 中国气象网-中国气象局政府门户网站
+  url: https://www.cma.gov.cn/
+  publisher: 中国气象局
+  proposed_tier: A
+  proposed_class: reference
+  reason: gap
+  first_seen: '2026-11-12'
+  expires_at: '2027-05-11'
+  status: open
+  note: 'survey 2026-11-12: http=200; text_chars=5964; license_hint=ICP备; freshness=[''2026年1'',
+    ''2026年9'']; intended v5 class=forecast_bulletin; authority/licence review pending'
+- id: CAND-2026-005
+  title: 自然资源部门户网站
+  url: https://www.mnr.gov.cn/
+  publisher: 自然资源部
+  proposed_tier: A
+  proposed_class: normative
+  reason: gap
+  first_seen: '2026-11-12'
+  expires_at: '2027-05-11'
+  status: open
+  note: 'survey 2026-11-12: http=200; text_chars=4898; license_hint=ICP备; freshness=[''2026-09'',
+    ''2026-1'', ''2026/1'']; intended v5 class=normative; authority/licence review
+    pending'
+- id: CAND-2026-006
+  title: 中华人民共和国应急管理部
+  url: https://www.mem.gov.cn/
+  publisher: 应急管理部
+  proposed_tier: A
+  proposed_class: normative
+  reason: gap
+  first_seen: '2026-11-12'
+  expires_at: '2027-05-11'
+  status: open
+  note: 'survey 2026-11-12: http=200; text_chars=5441; license_hint=ICP备; freshness=[''2026年7'',
+    ''2026年8'', ''2026年9'']; intended v5 class=normative; authority/licence review
+    pending'
+- id: CAND-2026-007
+  title: 中华人民共和国农业农村部
+  url: https://www.moa.gov.cn/
+  publisher: 农业农村部
+  proposed_tier: A
+  proposed_class: normative
+  reason: gap
+  first_seen: '2026-11-12'
+  expires_at: '2027-05-11'
+  status: open
+  note: 'survey 2026-11-12: http=200; text_chars=6143; license_hint=ICP备; freshness=[''2026年09''];
+    intended v5 class=normative; authority/licence review pending'
+- id: CAND-2026-008
+  title: 中华人民共和国海事局
+  url: https://www.msa.gov.cn/
+  publisher: 交通运输部海事局
+  proposed_tier: A
+  proposed_class: normative
+  reason: gap
+  first_seen: '2026-11-12'
+  expires_at: '2027-05-11'
+  status: open
+  note: 'survey 2026-11-12: http=200; text_chars=3096; license_hint=unknown; freshness=[''2026年7'',
+    ''2026年8'', ''2026年9'']; intended v5 class=normative; authority/licence review
+    pending'
+- id: CAND-2026-009
+  title: 首页 - 全国标准信息公共服务平台
+  url: https://std.samr.gov.cn/
+  publisher: 全国标准信息公共服务平台
+  proposed_tier: A
+  proposed_class: standard
+  reason: gap
+  first_seen: '2026-11-12'
+  expires_at: '2027-05-11'
+  status: open
+  note: 'survey 2026-11-12: http=200; text_chars=2849; license_hint=ICP备; freshness=[''2022年1''];
+    intended v5 class=standard; authority/licence review pending'
+- id: CAND-2026-010
+  title: 国家标准全文公开系统
+  url: https://openstd.samr.gov.cn/
+  publisher: 国家标准全文公开系统
+  proposed_tier: A
+  proposed_class: standard
+  reason: gap
+  first_seen: '2026-11-12'
+  expires_at: '2027-05-11'
+  status: open
+  note: 'survey 2026-11-12: http=200; text_chars=0; license_hint=unknown; freshness=[];
+    intended v5 class=standard; authority/licence review pending'
+- id: CAND-2026-011
+  title: 中国水产科学研究院
+  url: https://www.cafs.ac.cn/
+  publisher: 中国水产科学研究院
+  proposed_tier: A
+  proposed_class: reference
+  reason: gap
+  first_seen: '2026-11-12'
+  expires_at: '2027-05-11'
+  status: open
+  note: 'survey 2026-11-12: http=200; text_chars=5052; license_hint=ICP备; freshness=[''2026-02'',
+    ''2026-09'', ''2026-1'']; intended v5 class=practical_guide; authority/licence
+    review pending'
+- id: CAND-2026-012
+  title: 福建省农业农村厅
+  url: https://nynct.fujian.gov.cn/
+  publisher: 福建省农业农村厅
+  proposed_tier: A
+  proposed_class: reference
+  reason: gap
+  first_seen: '2026-11-12'
+  expires_at: '2027-05-11'
+  status: open
+  note: 'survey 2026-11-12: http=200; text_chars=4140; license_hint=ICP备; freshness=[''2022.08'',
+    ''2026年1'']; intended v5 class=practical_guide; authority/licence review pending'
+- id: CAND-2026-013
+  title: 广东省农业农村厅
+  url: https://nynct.gd.gov.cn/
+  publisher: 广东省农业农村厅
+  proposed_tier: A
+  proposed_class: reference
+  reason: gap
+  first_seen: '2026-11-12'
+  expires_at: '2027-05-11'
+  status: open
+  note: 'survey 2026-11-12: http=0; text_chars=; license_hint=unknown; freshness=[];
+    intended v5 class=practical_guide; authority/licence review pending; unreachable
+    from this network (curl exit)'
+- id: CAND-2026-014
+  title: 广西农业农村厅
+  url: https://nynct.gxzf.gov.cn/
+  publisher: 广西农业农村厅
+  proposed_tier: A
+  proposed_class: reference
+  reason: gap
+  first_seen: '2026-11-12'
+  expires_at: '2027-05-11'
+  status: open
+  note: 'survey 2026-11-12: http=0; text_chars=; license_hint=unknown; freshness=[];
+    intended v5 class=practical_guide; authority/licence review pending; unreachable
+    from this network (curl exit)'
+- id: CAND-2026-015
+  title: 海南省农业农村厅
+  url: https://hnny.hainan.gov.cn/
+  publisher: 海南省农业农村厅
+  proposed_tier: A
+  proposed_class: reference
+  reason: gap
+  first_seen: '2026-11-12'
+  expires_at: '2027-05-11'
+  status: open
+  note: 'survey 2026-11-12: http=0; text_chars=; license_hint=unknown; freshness=[];
+    intended v5 class=practical_guide; authority/licence review pending; unreachable
+    from this network (curl exit)'
+- id: CAND-2026-016
+  title: 全国农产品批发市场价格信息系统
+  url: https://pfsc.agri.cn/
+  publisher: 农业农村部批发市场价格
+  proposed_tier: A
+  proposed_class: reference
+  reason: gap
+  first_seen: '2026-11-12'
+  expires_at: '2027-05-11'
+  status: open
+  note: 'survey 2026-11-12: http=200; text_chars=119; license_hint=unknown; freshness=[];
+    intended v5 class=market_data; authority/licence review pending'
+- id: CAND-2026-017
+  title: 全国水产技术推广总站
+  url: https://www.nftec.org.cn/
+  publisher: 全国水产技术推广总站
+  proposed_tier: A
+  proposed_class: reference
+  reason: gap
+  first_seen: '2026-11-12'
+  expires_at: '2027-05-11'
+  status: open
+  note: 'survey 2026-11-12: http=0; text_chars=; license_hint=unknown; freshness=[];
+    intended v5 class=training_material; authority/licence review pending; unreachable
+    from this network (curl exit)'
+- id: CAND-2026-018
+  title: 中国渔业互保协会
+  url: https://www.cfmi.org.cn/
+  publisher: 中国渔业互保协会
+  proposed_tier: B
+  proposed_class: reference
+  reason: gap
+  first_seen: '2026-11-12'
+  expires_at: '2027-05-11'
+  status: open
+  note: 'survey 2026-11-12: http=0; text_chars=; license_hint=unknown; freshness=[];
+    intended v5 class=training_material; authority/licence review pending; unreachable
+    from this network (curl exit)'
+- id: CAND-2026-019
+  title: WoRMS - World Register of Marine Species
+  url: https://www.marinespecies.org/
+  publisher: WoRMS
+  proposed_tier: B
+  proposed_class: reference
+  reason: gap
+  first_seen: '2026-11-12'
+  expires_at: '2027-05-11'
+  status: open
+  note: 'survey 2026-11-12: http=200; text_chars=4304; license_hint=unknown; freshness=[''2026-06'',
+    ''2026-07'', ''2026-1'']; intended v5 class=reference; authority/licence review
+    pending'
+- id: CAND-2026-020
+  title: FishBase
+  url: https://www.fishbase.se/
+  publisher: FishBase
+  proposed_tier: B
+  proposed_class: reference
+  reason: gap
+  first_seen: '2026-11-12'
+  expires_at: '2027-05-11'
+  status: open
+  note: 'survey 2026-11-12: http=200; text_chars=164; license_hint=unknown; freshness=[];
+    intended v5 class=reference; authority/licence review pending'
+- id: CAND-2026-021
+  title: 中国政府网_中央人民政府门户网站
+  url: https://www.gov.cn/
+  publisher: 中国政府网
+  proposed_tier: A
+  proposed_class: normative
+  reason: gap
+  first_seen: '2026-11-12'
+  expires_at: '2027-05-11'
+  status: open
+  note: 'survey 2026-11-12: http=200; text_chars=2452; license_hint=ICP备; freshness=[''2023-03'',
+    ''2026-1'']; intended v5 class=normative; authority/licence review pending'
+- id: CAND-2026-022
+  title: 国家法律法规数据库
+  url: https://flk.npc.gov.cn/
+  publisher: 国家法律法规数据库
+  proposed_tier: A
+  proposed_class: normative
+  reason: gap
+  first_seen: '2026-11-12'
+  expires_at: '2027-05-11'
+  status: open
+  note: 'survey 2026-11-12: http=200; text_chars=9; license_hint=unknown; freshness=[];
+    intended v5 class=normative; authority/licence review pending'
+- id: CAND-2026-023
+  title: 中国海警局
+  url: https://www.ccg.gov.cn/
+  publisher: 中国海警局
+  proposed_tier: A
+  proposed_class: normative
+  reason: gap
+  first_seen: '2026-11-12'
+  expires_at: '2027-05-11'
+  status: open
+  note: 'survey 2026-11-12: http=200; text_chars=2500; license_hint=ICP备; freshness=[''2024年4''];
+    intended v5 class=normative; authority/licence review pending'
+- id: CAND-2026-024
+  title: 国家统计局
+  url: https://www.stats.gov.cn/
+  publisher: 国家统计局
+  proposed_tier: A
+  proposed_class: official_statistics
+  reason: gap
+  first_seen: '2026-11-12'
+  expires_at: '2027-05-11'
+  status: open
+  note: 'survey 2026-11-12: http=200; text_chars=7016; license_hint=ICP备; freshness=[''2026-09'',
+    ''2026-1'', ''2026年1'']; intended v5 class=official_statistics; authority/licence
+    review pending'
+- id: CAND-2026-025
+  title: 中国水产学会
+  url: https://www.csfish.org.cn/
+  publisher: 中国水产学会
+  proposed_tier: D
+  proposed_class: reference
+  reason: gap
+  first_seen: '2026-11-12'
+  expires_at: '2027-05-11'
+  status: open
+  note: 'survey 2026-11-12: http=200; text_chars=2834; license_hint=ICP备; freshness=[''2026-08'',
+    ''2026-09'', ''2026-1'']; intended v5 class=training_material; authority/licence
+    review pending'
+- id: CAND-2026-026
+  title: 全国水产标准化技术委员会
+  url: https://www.tc156.org.cn/
+  publisher: 全国水产标准化技术委员会
+  proposed_tier: A
+  proposed_class: standard
+  reason: gap
+  first_seen: '2026-11-12'
+  expires_at: '2027-05-11'
+  status: open
+  note: 'survey 2026-11-12: http=0; text_chars=; license_hint=unknown; freshness=[];
+    intended v5 class=standard; authority/licence review pending; unreachable from
+    this network (curl exit)'
+- id: CAND-2026-027
+  title: 广东省人民政府门户网站
+  url: https://www.gd.gov.cn/
+  publisher: 广东省人民政府
+  proposed_tier: A
+  proposed_class: normative
+  reason: gap
+  first_seen: '2026-11-12'
+  expires_at: '2027-05-11'
+  status: open
+  note: 'survey 2026-11-12: http=200; text_chars=2943; license_hint=ICP备; freshness=[''2026年7'',
+    ''2026年8'', ''2026年9'']; intended v5 class=normative; authority/licence review
+    pending'
+- id: CAND-2026-028
+  title: 广西壮族自治区人民政府
+  url: https://www.gxzf.gov.cn/
+  publisher: 广西壮族自治区人民政府
+  proposed_tier: A
+  proposed_class: normative
+  reason: gap
+  first_seen: '2026-11-12'
+  expires_at: '2027-05-11'
+  status: open
+  note: 'survey 2026-11-12: http=0; text_chars=; license_hint=unknown; freshness=[];
+    intended v5 class=normative; authority/licence review pending; unreachable from
+    this network (curl exit)'
+- id: CAND-2026-029
+  title: 海南省人民政府网
+  url: https://www.hainan.gov.cn/
+  publisher: 海南省人民政府
+  proposed_tier: A
+  proposed_class: normative
+  reason: gap
+  first_seen: '2026-11-12'
+  expires_at: '2027-05-11'
+  status: open
+  note: 'survey 2026-11-12: http=200; text_chars=8; license_hint=unknown; freshness=[];
+    intended v5 class=normative; authority/licence review pending'
+- id: CAND-2026-030
+  title: 福建省人民政府门户网站
+  url: https://www.fujian.gov.cn/
+  publisher: 福建省人民政府
+  proposed_tier: A
+  proposed_class: normative
+  reason: gap
+  first_seen: '2026-11-12'
+  expires_at: '2027-05-11'
+  status: open
+  note: 'survey 2026-11-12: http=200; text_chars=8849; license_hint=ICP备; freshness=[''2024年09'',
+    ''2025-03'', ''2025年4'']; intended v5 class=normative; authority/licence review
+    pending'

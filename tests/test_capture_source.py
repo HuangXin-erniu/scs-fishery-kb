@@ -45,6 +45,14 @@ def test_check_url_enforces_https_and_allowlist() -> None:
         module.check_url("https://evilgov.cn/a")
 
 
+def test_configured_official_domains_are_allowed() -> None:
+    module = load_module()
+    assert module.check_url("https://www.nmefc.cn/a") == "www.nmefc.cn"
+    assert module.check_url("https://nynct.gd.gov.cn/a") == "nynct.gd.gov.cn"
+    with pytest.raises(module.CaptureError):
+        module.check_url("https://evilnmefc.cn/a")
+
+
 def test_allow_http_only_for_gov_cn() -> None:
     module = load_module()
     assert module.check_url("http://www.gov.cn/a", allow_http=True) == "www.gov.cn"

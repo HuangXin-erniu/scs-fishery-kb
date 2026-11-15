@@ -35,10 +35,22 @@ class Reranker:
             self._model = TextCrossEncoder(model_name=self.model_name, cache_dir=self.cache_dir)
         return [float(value) for value in self._model.rerank(query, texts)]
 
-    def rerank(self, query: str, hits: list, top_k: int = 5) -> list:
+    def score_pairs(self, query: str, texts: Sequence[str]) -> list[float]:
+        """Score query/text pairs directly, for callers that rank their own units."""
+        return self._score(query, [text[: self.max_chars] for text in texts])
+
+    def rerank(
+        self,
+        query: str,
+        hits: list,
+        top_k: int = 5,
+        *,
+        max_candidates: int | None = None,
+    ) -> list:
         if not hits:
             return []
-        candidates = hits[: self.max_candidates]
+        limit = max_candidates if max_candidates is not None else self.max_candidates
+        candidates = hits[: max(1, int(limit))]
         texts = [hit.chunk.text[: self.max_chars] for hit in candidates]
         try:
             scores = self._score(query, texts)

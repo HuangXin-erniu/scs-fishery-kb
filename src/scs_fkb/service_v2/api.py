@@ -10,10 +10,12 @@ from pathlib import Path
 
 from fastapi import Depends, FastAPI, Form, Header, HTTPException, Request
 from fastapi.middleware.gzip import GZipMiddleware
-from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse
+from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse, Response
 from fastapi.templating import Jinja2Templates
 
 from ..kb_v2 import build_numbers, build_updates, load_faq, load_terms_plain, search_faq
+from ..knowledge_v2.answers import load_answers, search_answers
+from ..knowledge_v2.task_cards import load_task_cards
 from .answer import AnswerService, build_service
 from .schemas import (
     FeedbackRequest,
@@ -159,6 +161,8 @@ def create_app(
             web=payload.web,
             short=payload.short,
             rerank=payload.rerank,
+            mode=payload.mode,
+            max_chars=payload.max_chars,
         )
         log_query(result, payload.question)
         return result
@@ -261,6 +265,15 @@ def create_app(
         )
         if selected != "general":
             playbooks = [item for item in playbooks if item.get("persona") == selected]
+        task_cards = [
+            item
+            for item in load_task_cards()
+            if item.get("status") in {"approved", "draft"}
+            and (selected == "general" or item.get("persona") == selected)
+        ]
+        answer_bank = [item for item in load_answers() if item.get("status") == "approved"]
+        if q.strip():
+            answer_bank = [item for item in answer_bank if search_answers([item], q) is not None]
         terms = load_terms_plain()
         needle = q.strip().lower()
         if needle:
@@ -280,6 +293,8 @@ def create_app(
                 "persona": selected,
                 "query": q,
                 "playbooks": playbooks,
+                "task_cards": task_cards,
+                "answers": answer_bank,
                 "faq": search_faq(load_faq(), q),
                 "terms": terms,
                 "numbers": build_numbers(facts),
@@ -304,6 +319,98 @@ def create_app(
             context={"playbook": playbook, "persona": playbook.get("persona") or "general"},
         )
 
+    @app.get("/kb/tasks/{task_id}", response_class=HTMLResponse)
+    def kb_task(request: Request, task_id: str) -> HTMLResponse:
+        service = app.state.service
+        task = next((item for item in load_task_cards() if item.get("id") == task_id), None)
+        if task is None:
+            raise HTTPException(status_code=404, detail="task card not found")
+        facts = {str(item.get("id")): item for item in getattr(service, "facts", []) or []}
+        playbook = next(
+            (
+                item
+                for item in getattr(service, "playbooks", []) or []
+                if item.get("id") == (task.get("source") or {}).get("id")
+            ),
+            None,
+        )
+        return templates.TemplateResponse(
+            request=request,
+            name="kb_task.html",
+            context={
+                "task": task,
+                "facts": facts,
+                "playbook": playbook,
+                "persona": task.get("persona") or "general",
+            },
+        )
+
+    @app.get("/kb/manifest.webmanifest")
+    def kb_manifest() -> Response:
+        return JSONResponse(
+            {
+                "name": "南海近岸渔业知识站",
+                "short_name": "渔业知识站",
+                "start_url": "/kb",
+                "scope": "/kb",
+                "display": "standalone",
+                "background_color": "#f4f7f4",
+                "theme_color": "#0f6b73",
+                "lang": "zh-CN",
+                "icons": [
+                    {
+                        "src": "/kb/icon.svg",
+                        "sizes": "any",
+                        "type": "image/svg+xml",
+                        "purpose": "any",
+                    }
+                ],
+            },
+            media_type="application/manifest+json",
+        )
+
+    @app.get("/kb/icon.svg")
+    def kb_icon() -> Response:
+        svg = (
+            '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">'
+            '<rect width="64" height="64" rx="12" fill="#0f6b73"/>'
+            '<path d="M12 40c8-10 16-14 24-12 6 1 10 5 16 10-8 8-18 12-30 8-4-1-7-3-10-6z" '
+            'fill="#e8f0ef"/>'
+            '<circle cx="40" cy="30" r="3" fill="#0f6b73"/>'
+            "</svg>"
+        )
+        return Response(content=svg, media_type="image/svg+xml")
+
+    @app.get("/kb/sw.js")
+    def kb_service_worker() -> Response:
+        script = """
+const CACHE = 'scs-kb-v1';
+const SHELL = ['/kb', '/kb/icon.svg', '/kb/manifest.webmanifest'];
+self.addEventListener('install', (event) => {
+  event.waitUntil(caches.open(CACHE).then((cache) => cache.addAll(SHELL)));
+  self.skipWaiting();
+});
+self.addEventListener('activate', (event) => {
+  event.waitUntil(caches.keys().then((keys) =>
+    Promise.all(keys.filter((key) => key !== CACHE).map((key) => caches.delete(key)))
+  ));
+  self.clients.claim();
+});
+self.addEventListener('fetch', (event) => {
+  if (event.request.method !== 'GET') return;
+  event.respondWith(
+    fetch(event.request)
+      .then((response) => {
+        const copy = response.clone();
+        caches.open(CACHE).then((cache) => cache.put(event.request, copy));
+        return response;
+      })
+      .catch(() => caches.match(event.request).then((hit) => hit || caches.match('/kb')))
+  );
+});
+"""
+        return Response(content=script.strip() + "\n", media_type="application/javascript")
+
     @app.post("/kb/feedback")
     def kb_feedback(
         item_id: str = Form(...),
@@ -312,7 +419,12 @@ def create_app(
         comment: str = Form(""),
         next_path: str = Form("/kb"),
     ) -> RedirectResponse:
-        if not re.fullmatch(r"[A-Za-z0-9-]{3,40}", item_id) or kind not in {"playbook", "faq"}:
+        if not re.fullmatch(r"[A-Za-z0-9-]{3,40}", item_id) or kind not in {
+            "playbook",
+            "faq",
+            "task",
+            "answer",
+        }:
             raise HTTPException(status_code=400, detail="invalid feedback item")
         target = next_path if next_path.startswith("/kb") else "/kb"
         flag = helpful.strip().lower() in {"1", "true", "yes", "on"}

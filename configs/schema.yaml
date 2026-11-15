@@ -1,23 +1,38 @@
 schema_version: 1
-source_record_schema: 4
+source_record_schema: 5
 
 source:
   levels: [national, provincial, municipal, international, non_official]
   authority_tiers: [A, B, C, D]
-  source_classes: [normative, official_statistics, standard, reference]
+  source_classes:
+    [normative, official_statistics, standard, reference, practical_guide,
+     forecast_bulletin, market_data, training_material, port_service]
+  ingest_tiers: [canonical, provisional]
+  practical_domains:
+    [policy, gear, species, weather, hazard, market, subsidy, port_service,
+     safety, training, statistics, environment, other]
+  practical_personas: [captain, crew, owner, enforcement, extension, general]
+  authority_score: {min: 0, max: 5}
+  ttl_by_cadence:
+    {daily: 7, weekly: 14, monthly: 30, quarterly: 90, semiannual: 180,
+     annual: 365, edition: 365, irregular: 90, static: 365}
   channels: [main, collection, statistics, watch, web, local, none]
   licenses: [public, internal, licensed, cc-by-nc-sa-3.0-igo]
   sensitivities: [public, internal, restricted]
   cadences: [daily, weekly, monthly, quarterly, semiannual, annual, edition, irregular, static]
   provenance_fields: [url, document_no, published_at, retrieved_at, sha256, bytes, mime, snapshot_path]
   effective_fields: [from, to]
-  quality_fields: [text_layer, anchors, tables, ocr, quarantine_reason]
+  quality_fields:
+    [text_layer, anchors, tables, ocr, quarantine_reason, text_coverage,
+     anchor_coverage, table_count, ocr_confidence]
   rules:
     A: "Publisher's own central or provincial page, or the national law database."
     B: "Official gazette, government-information attachment or compilation."
     C: "Municipal or county official page; supplement only, never a substitute for a higher level."
     D: "Non-official expert source (association, university, extension station); never primary for rule, status, quantity or warning."
     licensed: "Paid or otherwise licensed text; requires license_note and must not be published."
+    provisional: "May answer with a visible label but cannot alone support a rule, status, quantity or warning."
+    practical: "Practical guidance for crew; canonical entries need licence evidence."
   cadence_caps_days:
     daily: 3
     weekly: 21

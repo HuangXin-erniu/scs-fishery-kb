@@ -13,7 +13,7 @@ DEFAULT_CANDIDATES = REPO_ROOT / "configs" / "candidates.yaml"
 CANDIDATE_ID = re.compile(r"CAND-\d{4}-\d{3}")
 STATUSES = frozenset({"open", "accepted", "rejected", "expired"})
 REASONS = frozenset({"changed", "gap", "new", "supersede"})
-TIERS = frozenset({"A", "B", "C"})
+TIERS = frozenset({"A", "B", "C", "D"})
 CLASSES = frozenset({"normative", "official_statistics", "standard", "reference"})
 REQUIRED = (
     "id",

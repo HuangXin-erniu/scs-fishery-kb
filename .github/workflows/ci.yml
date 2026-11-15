@@ -43,3 +43,7 @@ jobs:
         run: PYTHONPATH=src python scripts/check_sources.py --today "$(date -u +%F)"
       - name: Validate public tree
         run: python scripts/check_public_tree.py
+      - name: Validate knowledge configs
+        run: |
+          PYTHONPATH=src python scripts/check_task_cards.py
+          PYTHONPATH=src python scripts/check_answers.py

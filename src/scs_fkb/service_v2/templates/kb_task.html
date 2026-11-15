@@ -1,0 +1,57 @@
+{% set persona_label = {'captain':'船长/船员','owner':'船东/经营人','enforcement':'执法/管理','extension':'推广/技术','general':'通用'} %}
+{% set page_title = task.title %}
+{% include "_kb_head.html" %}
+<p><a href="/kb#taskcards">← 返回任务卡</a></p>
+<h1>{{ task.title }}</h1>
+<div>
+<span class="badge">{{ persona_label.get(task.persona, task.persona) }}</span>
+{% if task.status == 'draft' %}<span class="badge warn">待复核</span>{% endif %}
+{% if task.when %}<span class="badge">{{ task.when }}</span>{% endif %}
+<span class="badge">{{ task.steps|length }} 步</span>
+</div>
+{% if task.note %}<p class="lead">{{ task.note }}</p>{% endif %}
+
+<h2>步骤</h2>
+<ol class="steps">
+{% for step in task.steps %}
+<li>
+<strong>{{ step.text }}</strong>
+<div class="src">事实：{% for fact_id in step.facts %}{% set fact = facts.get(fact_id) %}{% if fact %}{{ fact_id }}（{{ fact.subject }}·{{ fact.predicate }}）{% else %}{{ fact_id }}{% endif %}{% if not loop.last %}；{% endif %}{% endfor %}</div>
+</li>
+{% endfor %}
+</ol>
+
+<div class="grid">
+<div class="card"><h3>要带的材料</h3><ul class="plain">{% for item in task.documents %}<li>{{ item }}</li>{% else %}<li class="muted">—</li>{% endfor %}</ul></div>
+<div class="card"><h3>时间节点</h3><ul class="plain">{% if task.deadline %}<li>{{ task.deadline }}</li>{% else %}<li class="muted">—</li>{% endif %}</ul></div>
+<div class="card"><h3>依据来源</h3><ul class="plain">
+{% if playbook %}<li><a href="/kb/playbooks/{{ playbook.id }}">{{ playbook.title }}</a></li>{% else %}<li>{{ (task.source or {}).get('id', '—') }}</li>{% endif %}
+</ul></div>
+</div>
+
+<h2>事实依据</h2>
+<table>
+<thead><tr><th>事实 ID</th><th>事项</th><th>内容</th><th>出处</th></tr></thead>
+<tbody>
+{% for fact_id in task.facts %}
+{% set fact = facts.get(fact_id) %}
+<tr>
+<td>{{ fact_id }}</td>
+<td>{% if fact %}{{ fact.subject }} · {{ fact.predicate }}{% else %}—{% endif %}</td>
+<td>{% if fact %}{{ fact.value }}{% else %}未找到已批准事实{% endif %}</td>
+<td class="src">{% if fact and fact.source %}[{{ fact.source.doc }}{% if fact.source.section %} §{{ fact.source.section }}{% endif %}]{% else %}—{% endif %}</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+
+<form class="fb" method="post" action="/kb/feedback">
+<input type="hidden" name="item_id" value="{{ task.id }}">
+<input type="hidden" name="kind" value="task">
+<input type="hidden" name="next_path" value="/kb/tasks/{{ task.id }}">
+<button name="helpful" value="1">有用</button>
+<button name="helpful" value="0">没用</button>
+<input name="comment" maxlength="200" placeholder="可选：一句话">
+</form>
+
+{% include "_kb_foot.html" %}

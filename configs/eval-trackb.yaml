@@ -1,0 +1,19 @@
+# Track B retrieval evaluation profiles.
+# The dataset itself is private; this file only names the profiles and targets.
+schema_version: 1
+updated_at: '2026-11-12'
+dataset:
+  dir: eval/industry
+  file: retrieval.jsonl
+  target_recall_at_10: 0.92
+profiles:
+  default:
+    depth: 20
+    bm25_weight: 1.0
+    dense_weight: 1.5
+    note: Shipped product default (matches configs/pipeline.yaml fusion).
+  deep:
+    depth: 50
+    bm25_weight: 1.0
+    dense_weight: 1.0
+    note: Evaluation-only profile; raises Track B recall@10 but lowers the public gate.

@@ -462,3 +462,13 @@ def test_short_failure_diagnostic_is_opt_in(tmp_path, monkeypatch) -> None:
     assert len(lines) == 1
     assert "uncited" in lines[0]
     assert "question" not in lines[0]
+
+
+def test_dump_mode_never_requests_a_model_summary() -> None:
+    service = AnswerService(
+        retriever=FakeRetriever([_hit()], gate=True),
+        playbooks=[],
+        facts=[],
+        answer_mode="dump",
+    )
+    assert service._summary_mode() == "off"

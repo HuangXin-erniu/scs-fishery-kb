@@ -71,13 +71,58 @@ def _app(tmp_path):
     return create_app(service, run_root=tmp_path)
 
 
-def test_kb_page_has_all_five_sections(tmp_path) -> None:
+def test_kb_page_has_all_sections(tmp_path) -> None:
     client = TestClient(_app(tmp_path))
     response = client.get("/kb")
     assert response.status_code == 200
-    for heading in ("办事任务卡", "常见问答", "术语白话", "数值速查", "更新提醒"):
+    for heading in (
+        "任务卡（速查）",
+        "标准问答",
+        "办事流程（详解）",
+        "常见问答",
+        "术语白话",
+        "数值速查",
+        "更新提醒",
+    ):
         assert heading in response.text
     assert "休渔自查" in response.text
+    assert "/kb/manifest.webmanifest" in response.text
+
+
+def test_kb_task_detail_and_feedback(tmp_path) -> None:
+    client = TestClient(_app(tmp_path))
+    detail = client.get("/kb/tasks/TASK-CAPTAIN-001")
+    assert detail.status_code == 200
+    assert "步骤" in detail.text
+    assert client.get("/kb/tasks/TASK-NONE-000").status_code == 404
+    posted = client.post(
+        "/kb/feedback",
+        data={
+            "item_id": "TASK-CAPTAIN-001",
+            "kind": "task",
+            "helpful": "1",
+            "comment": "clear",
+            "next_path": "/kb#taskcards",
+        },
+        follow_redirects=False,
+    )
+    assert posted.status_code == 303
+    feedback = (tmp_path / "feedback.jsonl").read_text(encoding="utf-8")
+    assert '"kind": "task"' in feedback
+
+
+def test_kb_pwa_routes(tmp_path) -> None:
+    client = TestClient(_app(tmp_path))
+    manifest = client.get("/kb/manifest.webmanifest")
+    assert manifest.status_code == 200
+    assert manifest.headers["content-type"].startswith("application/manifest+json")
+    assert manifest.json()["start_url"] == "/kb"
+    sw = client.get("/kb/sw.js")
+    assert sw.status_code == 200
+    assert "serviceWorker" not in sw.text  # the worker itself, registered by the page
+    icon = client.get("/kb/icon.svg")
+    assert icon.status_code == 200
+    assert icon.headers["content-type"].startswith("image/svg+xml")
 
 
 def test_kb_persona_filter_and_playbook_detail(tmp_path) -> None:

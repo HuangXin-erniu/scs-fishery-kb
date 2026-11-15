@@ -410,6 +410,9 @@ def main(argv: list[str] | None = None) -> int:
 
     from scs_fkb.service_v2 import build_service
 
+    # Track A keeps the deterministic path and the dump LLM arm; the product
+    # default is the standard arm and must not leak into the frozen instrument.
+    os.environ["SCS_FKB_ANSWER_MODE"] = "extractive"
     data_root = Path(args.data_root).expanduser()
     service = build_service(data_root=data_root, run_root=args.run_root)
     arm = "extractive"

@@ -1,0 +1,16 @@
+# Isolated evaluation environment for RAGAS 0.4.x (Track B industry metrics).
+# Do NOT install this into the main .venv: ragas pins an older langchain/openai
+# stack and would downgrade the runtime that the service depends on.
+#
+#   python3.13 -m venv "$SCS_FKB_LOCAL/venv-ragas"
+#   "$SCS_FKB_LOCAL/venv-ragas/bin/pip" install -r requirements-ragas.txt
+#   "$SCS_FKB_LOCAL/venv-ragas/bin/python" scripts/ragas_runner.py --input ... --output ...
+#
+# CI installs requirements-dev.txt only; this file is optional and local.
+ragas==0.4.3
+langchain-core<1
+langchain<1
+langchain-community>=0.3,<0.4
+langchain-openai<1
+langchain-text-splitters<1
+fastembed>=0.9,<1

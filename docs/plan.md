@@ -8,6 +8,7 @@
 - Status: active plan; WP1 is closed with 77 registered sources and no open candidates; WP2 indexes 67 public documents (2,797 chunks, index `ce3eeaf4c9b2`); WP3 and WP4 are implemented with hybrid retrieval and a dump answer arm; WP5 evaluation runs the frozen 512-question acceptance instrument, the 48-question reviewed set and the 60-item public regression set; WP6 is implemented with the `/v1` contract, the `/kb` layer and the feedback loop. P21 is the acceptance programme: indicators are published in [acceptance.md](acceptance.md). The P10 refactor is tracked in section 3a.
 - No versioned releases are published. Milestones describe work stages, not release numbers.
 - Architecture: [architecture.md](architecture.md); evaluation: [evaluation.md](evaluation.md); scope: [../PROJECT.md](../PROJECT.md).
+- P26 (2026-11-12) starts the second-stage refactor: a standard RAG answer pipeline, a dual-track industry-standard evaluation, a semi-automatic update loop and crew-facing practical sources; see section 3b and ADR 0009–0013.
 
 ## 1. Purpose
 
@@ -153,6 +154,51 @@ The architecture decisions are [0005](adr/0005-two-plane-evidence.md),
 [rag-standard.md](rag-standard.md). Sources, data, indexes and run artifacts stay
 outside the public tree; no tag or release is created.
 
+### SCS-FKB second-stage refactor programme (2026-11-12)
+
+The owner approved a second-stage refactor after the fourth holdout showed the
+binding constraint is corpus coverage and the default clause-dump arm is not a
+standard RAG pipeline. The 512 instrument, its labels, the source register and
+the public/private boundary are kept; the answer path, the update loop, the
+evaluation and the content mix change. The decisions are ADR
+[0009](adr/0009-standard-rag-answer-pipeline.md),
+[0010](adr/0010-dual-track-evaluation.md),
+[0011](adr/0011-semi-automatic-update-loop.md),
+[0012](adr/0012-practical-sources-and-freshness.md) and
+[0013](adr/0013-source-schema-v5.md).
+
+| Phase | Scope | Exit condition |
+|---|---|---|
+| Phase 0 | Baseline freeze, RAGAS isolation, Track B dataset skeleton, practical-source survey, ADRs | Baseline numbers/commands/commits recorded; RAGAS run works; dataset skeleton frozen; candidate survey written |
+| Phase 1 | Standard RAG answer pipeline, reranker calibration, citation validator, semantic cache, API additions | Track B generation/citation targets met; Track A does not regress; tests green |
+| Phase 2 | Source schema v5, semi-automatic update cycle, provisional tier, light structured internalisation | One real cycle completes; provisional to canonical review works; facts/cards/answers enter the draft queue |
+| Phase 3 | Crew-facing practical sources, `/kb` task cards, PWA/offline, feedback-to-gap loop | At least 20 practical sources are retrievable; 20 crew scenarios work; feedback closes the loop |
+| Phase 4 | Full Track B run, human spot check, docs and release gates | Dual-track report published; public tree and private gate clean; no tag or release |
+
+The evaluation design keeps two tracks: Track A is the frozen 512 instrument
+and the dump arm (internal regression and materials-review evidence); Track B is
+the RAGAS, retrieval, citation, abstention and human spot-check suite (product
+gate). The two numbers are never averaged. Track B targets and pass lines are
+published only after the Phase 0 baseline.
+
+**Phase 1 status (2026-11-12).** The standard RAG answer arm is the product
+default: bounded evidence pack, structured JSON, citation/number/support
+validation, optional self-check, semantic cache and a jurisdiction caveat when a
+province is not named. The public retrieval gate is unchanged (recall@5 0.8864,
+MRR 0.7848, nDCG@10 0.8107); the cross-encoder lowered all three on a 12-row
+subset while raising p95 to 2.2 s, so it stays off by default. A one-row Track B
+RAGAS smoke failed the targets (context recall 0.0000, answer correctness 0.1999)
+because the question depended on a Guangdong rule that the retrieved pack did not
+contain; the practical-coverage and province-slot work is carried forward.
+
+**Phase 2 status (2026-11-12).** Source schema v5 is an additive upgrade with
+provisional/canonical ingestion, licence evidence, TTL and practical tags; v3/v4
+registers still load. The semi-automatic cycle (`scripts/update_cycle.py`) turns
+a changed watch row into a provisional plan and never writes the canonical
+register or index; promotion remains human-gated. Task cards (15 drafts) and
+canonical answers (16 approved) are validated in CI. The Track B gate is not
+armed; the next work is practical-source coverage and the full Track B run.
+
 ### Source gate and candidate queue (2026-11-04)
 
 - Schema v3 adds `currency.cadence` with a per-cadence cap on `review_due - as_of` (monthly 60 days, quarterly 150, annual 400, semiannual 240, static 550). The 63 sources were migrated by class: normative `monthly`, standard `quarterly`, `official_statistics` `annual`, reference `semiannual`; hashes, dates, locations and statuses are unchanged.
@@ -261,3 +307,49 @@ Dates are not commitments. Milestone exit conditions and quality gates take prec
 - [Data policy](data-policy.md)
 - [Corpus register](../configs/corpus.yaml)
 - [Data schema](../configs/schema.yaml)
+
+**Phase 3 status (2026-11-12).** The crew knowledge station now exposes task
+cards and canonical answers, a PWA/offline shell and task/answer feedback; the
+candidate review tool writes provisional review packages without network or
+register writes. Practical-source admission itself remains human-gated: the 30
+surveyed candidates are still open, and the triage report finds that all 30 need
+a document-level hash, an explicit licence/sensitivity decision and a parseable
+document URL before a provisional review package can be built. No candidate was
+auto-ingested. The
+province-slot fix is a national-first evidence preference when no province is
+named; it reduces, but does not remove, the coverage gap exposed by the Track B
+smoke.
+
+**Phase 3 practical admission (2026-11-12).** Five official documents were
+admitted as `provisional`: 农业农村部 2026 渔船进出渔港报告通告, 海事局商渔船
+碰撞防范通告, 2023 中国海洋灾害公报, 2025 中国海洋生态预警监测公报, 广东省
+渔业资源养护补贴政策实施方案. v2 now has 79 documents / 3,197 child chunks;
+index `4857fede68a0`. After adding an `ingest_tier` provisional penalty and
+retuning fusion to `depth=20, bm25=1.0, dense=1.5`, the public retrieval gate is
+recall@5 0.9318 / MRR 0.7962 / nDCG@10 0.8381, above the P25 baseline. The five
+entries remain provisional pending human licence/authority sign-off; canonical
+promotion is not automatic.
+
+**Phase 3 admission complete (2026-11-12).** The practical-source target of 20
+provisional documents is met: 5 national/provincial safety, subsidy and bulletin
+documents from the first batch plus 15 closure, disaster, ecosystem and
+sea-level bulletins from batches 2/3. v2 has 94 documents / 3,861 child chunks;
+index `e1c31e8fed19`. The public retrieval gate remains recall@5 0.9318 /
+MRR 0.7962 / nDCG@10 0.8373 and public-regression citation resolution is 1.0000.
+All 20 remain `provisional` pending human licence/authority review; Phase 4
+(Track A 512 full run, Track B RAGAS and human spot check) is next.
+
+**Phase 4 status (2026-11-12, start).** The deterministic extractive arm was run
+over the full 512 rows as a diagnostic (point coverage 0.2482, citation 0.6825,
+misanswer 0.5143); it is not the acceptance arm, which is the dump/LLM arm. The
+full dump-arm run, Track B RAGAS suite and human spot check remain. All 20
+practical sources stay provisional until human licence/authority review.
+
+**Phase 4 status (2026-11-12, Track A pass).** The full 512-row dump-arm run
+passes all six acceptance gates on index `e1c31e8fed19`: point coverage 0.8249,
+citation accuracy 0.9436, misanswer rate 0.0571, refusal-channel rate 0.9429,
+as-of declaration 1.0000, basis accuracy 0.9412. Track B is **not** passing:
+retrieval recall@10 0.7650 vs 0.92 target, and the 5-row generation sample had
+4/5 abstentions with incomplete RAGAS scores. The 20 provisional sources have
+review packages (19 approve-candidate, 1 hold-review) but await human
+licence/authority sign-off; no canonical promotion was made.
