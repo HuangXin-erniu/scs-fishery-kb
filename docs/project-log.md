@@ -1755,3 +1755,8 @@ This log records material project changes by date. It does not use release versi
   IG-076 §28 special-permit prerequisites. Exported
   human-review-round10-2fixes.csv (0 bad citations). Release gate pending 2-row
   confirmation.
+- Final release gate: public tree/private gate OK, 464 tests pass, public
+  retrieval 0.9545/0.8163/0.8512, Track A dump point 0.8181/citation 0.945/
+  misanswer 0.0857 pass, Track B retrieval 0.8039/0.9047, blind review 30/30,
+  strict citations 0 missing. Five corpus gaps remain registered. No merge/tag/
+  Release; PR #14 stays draft.

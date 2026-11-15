@@ -2438,3 +2438,23 @@ Human review of the four blind-2 fixes: **2 PASS / 2 FAIL**, so blind-2 reaches
 The two-row fix sheet reports 0 missing citations under the strict validator.
 These two are process-critical (users would follow the wrong registration path),
 so the release gate stays closed until they are human-confirmed.
+
+### Final release gate (2026-11-15)
+
+| Gate | Result |
+|---|---|
+| Public tree | **OK (327 tracked files)** |
+| Private release gate | **OK** |
+| Tests | **464 passed / 2 skipped** |
+| Public retrieval | recall@5 **0.9545**, MRR **0.8163**, nDCG@10 **0.8512**, passed |
+| Public regression | anchor recall@5 **1.0000**, citation **1.0000**, playbook 15/15, FAQ 16/16, term 26/26, number 19/19 |
+| Track A 512 dump | answered 442, point 0.8181, citation 0.9450, misanswer 0.0857, **gate=pass** |
+| Track B retrieval (106) | precision **0.8039**, recall **0.9047** |
+| Track B blind review | **30/30 PASS** (blind 1: 14/30 → blind 2: 30/30) |
+| Strict citation validator | 0 missing on blind-2/fix sheets |
+
+Known residual limitation: five corpus gaps remain registered in
+`configs/gap-register.yaml` (ENSO, shellfish toxin/closure, forecast-product
+access, SSTa definition, group fishing). They are honest abstentions, not
+fabricated answers. No merge, tag or release was created; PR #14 remains draft
+per project policy.
