@@ -5969,6 +5969,166 @@ sources:
   update_freq: static
   watch_note: 渔船编组生产要求
 
+- id: STD-CMA-SSTA-226
+  source_record_schema: 5
+  title: GB/T 44955-2024 气候预测检验 厄尔尼诺/拉尼娜
+  status: acquired
+  level: national
+  authority_tier: A
+  source_class: standard
+  currency:
+    as_of: '2026-11-15'
+    basis: retrieval
+    review_due: '2026-12-15'
+    cadence: monthly
+    ttl_days: 30
+    note: provisional watch diff
+  retrieval:
+    channel: main
+    parseable: true
+    note: provisional candidate; review before canonical promotion
+  lifecycle: active
+  license: public
+  sensitivity: public
+  hash: 88da5d1c134cc338e76d8bac8d3d7d89a377e39cfd963312151622490620b50e
+  location: raw/STD-CMA-SSTA-226/p020250306121560897467.pdf
+  provenance:
+    url: http://gx.cma.gov.cn/zfxxgk/zwgk/flfgbz/dfbz/202503/P020250306121560897467.pdf
+    document_no: null
+    published_at: null
+    retrieved_at: '2026-11-15'
+    sha256: 88da5d1c134cc338e76d8bac8d3d7d89a377e39cfd963312151622490620b50e
+    bytes: 704498
+    mime: application/pdf
+    snapshot_path: raw/STD-CMA-SSTA-226/p020250306121560897467.pdf
+  effective:
+    from: null
+    to: null
+  quality:
+    text_layer: true
+    anchors: 0
+    tables: 0
+    ocr: false
+    quarantine_reason: null
+    text_coverage: 1.0
+    anchor_coverage: 0.0
+    table_count: 0
+    ocr_confidence: null
+  authority:
+    score: 5
+    evidence_url: http://gx.cma.gov.cn/zfxxgk/zwgk/flfgbz/dfbz/202503/P020250306121560897467.pdf
+  license_evidence:
+    url: http://gx.cma.gov.cn/zfxxgk/zwgk/flfgbz/dfbz/202503/P020250306121560897467.pdf
+    text: null
+    checked_at: '2026-11-15'
+  ingest:
+    tier: provisional
+    reviewed_by: null
+    reviewed_at: null
+    review_note: watch diff; provisional until human review
+  practical:
+    domain: environment
+    personas:
+    - captain
+    - owner
+    - extension
+    - general
+    task_tags:
+    - SSTa
+    - 海表温度距平
+    seasonal: false
+  license_note: null
+  supersedes: null
+  superseded_by: null
+  publisher: 国家市场监督管理总局/国家标准化管理委员会
+  year: 2024
+  type: standard
+  jurisdiction: national
+  format: pdf
+  priority: P1
+  update_freq: static
+  watch_note: GB/T 44955-2024 定义 SST/SSTA
+- id: POL-MOA-FORECAST-227
+  source_record_schema: 5
+  title: 农业农村部 中国气象局 关于加强海洋渔业气象防灾减灾的通知
+  status: acquired
+  level: national
+  authority_tier: A
+  source_class: normative
+  currency:
+    as_of: '2026-11-15'
+    basis: retrieval
+    review_due: '2026-12-15'
+    cadence: monthly
+    ttl_days: 30
+    note: provisional watch diff
+  retrieval:
+    channel: main
+    parseable: true
+    note: provisional candidate; review before canonical promotion
+  lifecycle: active
+  license: public
+  sensitivity: public
+  hash: 52a7a680e71f681df2381bb354ddc78bc8eefd113c1c0d1d1043f38b6c7fd5b5
+  location: raw/POL-MOA-FORECAST-227/article.txt
+  provenance:
+    url: https://www.moa.gov.cn/nybgb/2024/202409/202409/t20240924_6463160.htm
+    document_no: null
+    published_at: null
+    retrieved_at: '2026-11-15'
+    sha256: 52a7a680e71f681df2381bb354ddc78bc8eefd113c1c0d1d1043f38b6c7fd5b5
+    bytes: 6683
+    mime: text/plain
+    snapshot_path: raw/POL-MOA-FORECAST-227/article.txt
+  effective:
+    from: null
+    to: null
+  quality:
+    text_layer: true
+    anchors: 0
+    tables: 0
+    ocr: false
+    quarantine_reason: null
+    text_coverage: 1.0
+    anchor_coverage: 0.0
+    table_count: 0
+    ocr_confidence: null
+  authority:
+    score: 5
+    evidence_url: https://www.moa.gov.cn/nybgb/2024/202409/202409/t20240924_6463160.htm
+  license_evidence:
+    url: https://www.moa.gov.cn/nybgb/2024/202409/202409/t20240924_6463160.htm
+    text: null
+    checked_at: '2026-11-15'
+  ingest:
+    tier: provisional
+    reviewed_by: null
+    reviewed_at: null
+    review_note: watch diff; provisional until human review
+  practical:
+    domain: weather
+    personas:
+    - captain
+    - owner
+    - extension
+    - general
+    task_tags:
+    - 渔情产品
+    - 气象预报
+    - 分发
+    seasonal: false
+  license_note: null
+  supersedes: null
+  superseded_by: null
+  publisher: 农业农村部/中国气象局
+  year: 2024
+  type: notice
+  jurisdiction: national
+  format: txt
+  priority: P1
+  update_freq: static
+  watch_note: 海洋渔业气象产品研发与发布
+
 gaps:
 - One hundred sources are registered: ninety-eight acquired and no open candidates awaiting disposition.
 - The yearbook coverage matrix has no values in the public repository; all values stay local.

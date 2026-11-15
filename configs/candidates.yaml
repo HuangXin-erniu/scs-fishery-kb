@@ -438,3 +438,25 @@ candidates:
   expires_at: '2027-05-14'
   status: open
   note: 'gap-register group fishing; official MOA article requiring group production and no single-vessel operation'
+- id: CAND-2026-106
+  title: GB/T 44955-2024 气候预测检验 厄尔尼诺/拉尼娜
+  url: http://gx.cma.gov.cn/zfxxgk/zwgk/flfgbz/dfbz/202503/P020250306121560897467.pdf
+  publisher: 国家市场监督管理总局/国家标准化管理委员会
+  proposed_tier: A
+  proposed_class: standard
+  reason: gap
+  first_seen: '2026-11-15'
+  expires_at: '2027-05-14'
+  status: open
+  note: 'gap-register SSTA_DEFINITION; official GB/T standard defines SST and SSTA'
+- id: CAND-2026-107
+  title: 农业农村部 中国气象局 关于加强海洋渔业气象防灾减灾的通知
+  url: https://www.moa.gov.cn/nybgb/2024/202409/202409/t20240924_6463160.htm
+  publisher: 农业农村部/中国气象局
+  proposed_tier: A
+  proposed_class: normative
+  reason: gap
+  first_seen: '2026-11-15'
+  expires_at: '2027-05-14'
+  status: open
+  note: 'gap-register FORECAST_PRODUCT_ACCESS; official notice on fishery meteorological products and dissemination'

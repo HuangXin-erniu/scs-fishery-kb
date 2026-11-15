@@ -155,7 +155,7 @@ class HybridRetriever:
         # crowded out by dense neighbours in RRF.
         seen = {hit.chunk.chunk_id for hit in fused}
         reserved = []
-        for rank, hit in enumerate(lexical[:5], start=1):
+        for rank, hit in enumerate(lexical[:20], start=1):
             source_id = hit.chunk.source_id or hit.chunk.doc_id
             if self.priorities.get(source_id) != "P1" or hit.chunk.chunk_id in seen:
                 continue

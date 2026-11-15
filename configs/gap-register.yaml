@@ -45,8 +45,9 @@ gaps:
   - 中国水产科学研究院南海水产研究所
   - 国家海洋环境预报中心
   acceptance: 官方产品说明/分发管理办法，说明发布主体、权限与使用边界
-  status: open
-  source_ids: []
+  status: partial
+  source_ids:
+  - POL-MOA-FORECAST-227
 - id: SSTA_DEFINITION
   question_terms:
   - SSTa
@@ -57,8 +58,9 @@ gaps:
   - 自然资源部
   - 国家气候中心
   acceptance: 官方术语定义/产品文档，给出基线期与计算方法
-  status: open
-  source_ids: []
+  status: complete
+  source_ids:
+  - STD-CMA-SSTA-226
 - id: GROUP_FISHING
   question_terms:
   - 编组生产

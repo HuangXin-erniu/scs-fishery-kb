@@ -1770,3 +1770,7 @@ This log records material project changes by date. It does not use release versi
   rebuilt the index; P1 provisional sources exempt from the retrieval penalty and
   given a lexical reserve slot. Public gates unchanged, 464 tests pass. Forecast
   product access and SSTa definition remain open gaps.
+- P1 second batch: added GB/T 44955-2024 (SST/SSTA definition, gap complete) and
+  the 2024 MOA/CMA fishery-meteorological notice (forecast products, gap partial);
+  added SSTa/渔情产品 lexicon groups and widened P1 lexical reserve. Seven
+  provisional sources exported for human canonical review. Public gates unchanged.

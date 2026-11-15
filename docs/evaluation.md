@@ -2502,3 +2502,25 @@ P1 hits so dense neighbours cannot crowd them out. Public gates are unchanged:
 public retrieval 0.9545/0.8163/0.8512 and public regression all pass; 464 tests
 pass. The two open gaps stay in `configs/gap-register.yaml`; no fabricated answer
 was added.
+
+### P1 second batch: SSTa definition and forecast products (2026-11-15)
+
+- Added `STD-CMA-SSTA-226`: **GB/T 44955-2024 气候预测检验 厄尔尼诺/拉尼娜**,
+  official PDF; definitions: SST = ocean surface temperature; SSTA = SST minus
+  climate normal. The SSTA gap is now **complete** (IG-060 answers from §p.7).
+- Added `POL-MOA-FORECAST-227`: 农业农村部/中国气象局 2024 joint notice on marine
+  fishery meteorological products. It covers product development and public vs
+  customised dissemination, but **not** who may apply for forecast-product
+  access; the forecast-access gap remains **partial**.
+- Added lexicon groups `SSTa → 海表温度距平/SSTA/海温距平` and
+  `渔情产品 → 渔情预报/渔场预报/预警报产品`; P1 lexical reserve widened to
+  BM25 top20 so gap sources are not crowded out by dense neighbours.
+
+**Provisional sources needing human review before canonical promotion (7):**
+POL-GD-WUCHAN-209, POL-CMA-ENSO-221, POL-GD-SHELLFISH-222,
+POL-MOA-SHELLFISH-223, POL-MOA-GROUP-225, STD-CMA-SSTA-226,
+POL-MOA-FORECAST-227. Review sheet:
+`runs/P26-P1/human-review-provisional-canonical.csv` (private data root).
+
+Public gates remain unchanged (retrieval 0.9545/0.8163/0.8512; public regression
+all pass); 464 tests pass.
