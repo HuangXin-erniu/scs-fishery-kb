@@ -208,6 +208,44 @@ def _contract_fields(
     }
 
 
+def answer_with_plain(
+    question: str,
+    pack: EvidencePack,
+    client: LLMClient,
+) -> StandardResult | None:
+    """Last-resort plain answer for a case where structured calls abstain."""
+    if not pack.items:
+        return None
+    messages = [
+        {
+            "role": "user",
+            "content": (
+                f"问题：{question}\n证据：\n{pack.text}\n"
+                "只根据证据用一段中文回答，每个事实句末加 [DOC_ID §章节] 引用；不要解释。"
+            ),
+        }
+    ]
+    try:
+        text = client.chat(messages, max_tokens=900).strip()
+    except LLMError:
+        return None
+    if not text:
+        return None
+    valid, _ = _resolve_citations(text, pack.hits, tolerant=True)
+    if not valid:
+        return None
+    citations = _citations_from_text(text, pack.hits, tolerant=True)
+    if not citations:
+        return None
+    return StandardResult(
+        answer=Answer(text=text, citations=citations, abstained=False, reason="standard_plain"),
+        pack=pack,
+        confidence=0.3,
+        answerability="partial",
+        contract_fields={"answerability": "partial", "conclusion": text, "gap": []},
+    )
+
+
 def answer_with_conditional(
     question: str,
     pack: EvidencePack,

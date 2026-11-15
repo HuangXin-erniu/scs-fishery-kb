@@ -1748,3 +1748,6 @@ This log records material project changes by date. It does not use release versi
 - Fresh blind test 2: 25 answered / 5 abstained (previous 13/17). 84 citations,
   0 missing after page-label normalisation. Exported human-review-blind2-30.csv;
   gap register now carries official candidate URLs. No release.
+- Blind-2 26/30; added plain-text evidence fallback, recovered 072/076/079,
+  manually fixed 110; exported human-review-round9-4fixes.csv (0 bad citations).
+  No release.

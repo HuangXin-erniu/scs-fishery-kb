@@ -2408,3 +2408,16 @@ with the current standard arm (conditional-answer retry included):
 The duplicate-page normalisation is now applied in `standard_arm._body`; the
 validator accepts `...`-truncated section titles but still rejects a different
 article title. A `human-review-blind2-30.csv` sheet was generated.
+
+### Blind-2 fourth-failure fixes (2026-11-15)
+
+Blind-2 human review: **26/30 PASS**; 4 failures were all "evidence in pack but
+refused/mis-cited". Added a plain-text evidence fallback after the conditional
+retry: 072/076/079 recovered automatically; IG-110 (endpoint unavailable) was
+written manually from the three registration clauses. IG-079 now separates the
+15-day litigation period from the reconsideration route and marks the
+reconsideration authority as not in corpus.
+
+The 4-row fix sheet has 0 missing citations under the strict validator. If human
+review accepts these, blind-2 reaches 30/30; the release gate is still pending a
+final pass.

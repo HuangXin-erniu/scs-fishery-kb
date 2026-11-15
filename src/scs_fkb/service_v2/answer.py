@@ -30,6 +30,7 @@ from ..answer_v3.standard_arm import PROMPT_VERSION as STANDARD_PROMPT_VERSION
 from ..answer_v3.standard_arm import (
     StandardResult,
     answer_with_conditional,
+    answer_with_plain,
     answer_with_standard,
 )
 from ..config import REPO_ROOT
@@ -714,6 +715,10 @@ class AnswerService:
             conditional = answer_with_conditional(question, pack, client, llm_cache)
             if conditional is not None:
                 result = conditional
+        if result.answer.abstained and result.answerability == "refuse":
+            plain = answer_with_plain(question, pack, client)
+            if plain is not None:
+                result = plain
         if not result.answer.abstained and not region_named:
             # Only warn about local applicability when a *cited* document is
             # actually local. The previous check looked at the whole pack, which
