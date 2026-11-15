@@ -2292,3 +2292,19 @@ IG-001's 2026-05-01 effective date is annotated as public knowledge not present 
 the corpus. IG-030 reference was corrected in the private dataset. A round-6
 30-row sheet was generated; all citations were machine-checked against that row's
 evidence. Human review remains required.
+
+### Repetition overfit check: blind 30 (2026-11-15)
+
+The sixth human review on the repeatedly repaired 30 rows reached **30/30**, but
+those ids had been edited for six rounds. A blind sample of 30 answered ids that
+never appeared in any review sheet was generated with the current standard arm:
+
+- **17/30 abstained, 13/30 answered**;
+- answered rows had 27 citations; the new
+  `scripts/validate_trackb_answers.py` found **0 citations missing from evidence**;
+- this is strong evidence that the 30/30 was set-specific overfit, not general
+  quality.
+
+An `IG-030` single-row review sheet was also generated to confirm the updated
+reference (3万–15万). The release gate stays closed until a blind human review
+is done; no release.

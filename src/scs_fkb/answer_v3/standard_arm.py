@@ -50,6 +50,7 @@ STANDARD_SYSTEM = (
     "涉及罚则时必须写明证据中的罚款数额或幅度，原文有则摘出，不得省略。"
     "证据只覆盖部分子问题时必须用 answerability=partial，并在 soft_gap 说明未覆盖部分；"
     "只有证据清单与问题完全无关时才用 refuse，不要因为缺少细节直接拒绝回答。"
+    "引用证据之外的通识时必须明确标注“语料未收录”，并说明不能作为唯一依据。"
 )
 PROMPT_VERSION = "standard-" + hashlib.sha256(STANDARD_SYSTEM.encode()).hexdigest()[:8] + "-5"
 

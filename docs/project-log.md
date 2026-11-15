@@ -1728,3 +1728,6 @@ This log records material project changes by date. It does not use release versi
 - Round-6 targeted fixes: rewrote 4 remaining rows, corrected 3 citation errors,
   annotated IG-001 date, verified all citations against evidence, exported
   human-review-round6-30.csv. No release.
+- Added citation validator and blind test. Blind 30 unused ids: 17 abstained /
+  13 answered, 0 bad citations. The 30/30 on the repeatedly repaired set is
+  overfit; release gate stays closed. Exported blind-30 review + IG-030 row.
