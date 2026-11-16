@@ -460,3 +460,25 @@ candidates:
   expires_at: '2027-05-14'
   status: open
   note: 'gap-register FORECAST_PRODUCT_ACCESS; official notice on fishery meteorological products and dissemination'
+- id: CAND-2026-108
+  title: 山东省渔业船舶管理办法行政处罚事项（未按规定编队生产）
+  url: https://www.penglai.gov.cn/attach/0/72b762f16d3c43898cbcb74ae3381e13.pdf
+  publisher: 山东省/蓬莱市海洋发展局
+  proposed_tier: B
+  proposed_class: normative
+  reason: gap
+  first_seen: '2026-11-16'
+  expires_at: '2027-05-15'
+  status: open
+  note: 'gap-register GROUP_FISHING penalty; official penalty list cites 山东省渔业船舶管理办法 第三十四条第（八）项, 500-5000 yuan'
+- id: CAND-2026-109
+  title: 莆田秀屿一海域织纹螺发现毒素，市海洋与渔业局发布预警 禁捕勿食“麦螺”
+  url: https://www.ptxy.gov.cn/zwgk/yjgl/yjbncs/201904/t20190424_1318430.htm
+  publisher: 莆田市秀屿区人民政府/莆田市海洋与渔业局
+  proposed_tier: B
+  proposed_class: normative
+  reason: gap
+  first_seen: '2026-11-16'
+  expires_at: '2027-05-15'
+  status: open
+  note: 'gap-register SHELLFISH_TOXIN formal harvest ban; local fisheries bureau ban after PSP detection in 织纹螺'

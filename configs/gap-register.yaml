@@ -35,6 +35,8 @@ gaps:
   status: partial
   source_ids:
   - POL-GD-SHELLFISH-222
+  - POL-MOA-SHELLFISH-223
+  - POL-PT-SHELLFISH-229
   note: '2026-11-16 human review: promote only reviewed sources; held sources are
     references, not gap closures.'
 - id: FORECAST_PRODUCT_ACCESS
@@ -80,8 +82,9 @@ gaps:
   acceptance: 官方编组生产管理规定或执法依据，明确强制性与罚则
   candidate_urls:
   - https://www.haimen.gov.cn/hmsrmzf/nlst/content/35c21029-1564-4e6a-9069-abf46d2bd7d7.html
-  status: open
+  status: partial
   source_ids:
   - POL-MOA-GROUP-225
+  - POL-SD-GROUP-228
   note: '2026-11-16 human review: promote only reviewed sources; held sources are
     references, not gap closures.'

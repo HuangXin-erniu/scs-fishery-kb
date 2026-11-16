@@ -50,11 +50,11 @@ def _write(tmp_path: Path, entries: list[dict]) -> Path:
 
 def test_live_register_loads_all_sources_as_v5() -> None:
     registry = load_registry(ROOT / "configs" / "corpus.yaml")
-    assert len(registry) == 132
+    assert len(registry) == 134
     provisional = [
         source for source in registry.values() if source["ingest"]["tier"] == "provisional"
     ]
-    assert len(provisional) == 4
+    assert len(provisional) == 6
     for source in registry.values():
         assert source["source_record_schema"] == 5
         assert source["provenance"]["sha256"] == source["hash"]

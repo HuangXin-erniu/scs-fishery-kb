@@ -1777,3 +1777,7 @@ This log records material project changes by date. It does not use release versi
 - Human canonical review: 3 PASS promoted (209/222/226), 4 HOLD (ENSO, 223, 225,
   forecast). Corrected 222 national/reference; 223/225 provincial/reference/news.
   Registry 128 canonical/4 provisional; SSTA closed, other gaps open/partial.
+- P1 third batch: added Shandong group-fishing penalty (500-5000, provincial) and
+  Putian PSP harvesting ban (municipal); IG-067/IG-051 now cite them with level
+  caveats. Two new provisional sources exported for review; forecast access and
+  ENSO remain open.

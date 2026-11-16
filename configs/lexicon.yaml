@@ -26,6 +26,24 @@ groups:
   - 渔场预报
   - 预警报产品
   note: 'P1 gap: forecast-product access; official notices use 渔情预报/预警报产品.'
+- term: 贝毒
+  variants:
+  - 织纹螺
+  - 麻痹性贝类毒素
+  - 贝类毒素
+  note: 'P1 shellfish gap: formal local bans name 织纹螺 and PSP.'
+- term: 编组生产
+  variants:
+  - 编队生产
+  - 编队
+  - 单船作业
+  note: Gap query uses 编组; Shandong regulation says 编队生产.
+- term: 赤潮
+  variants:
+  - 贝毒
+  - 麻痹性贝类毒素
+  - 织纹螺
+  note: Gap query asks 赤潮+吃贝; formal ban uses 织纹螺/PSP.
 rejected:
 - term: 休渔
   variants:

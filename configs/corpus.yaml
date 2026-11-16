@@ -6127,6 +6127,166 @@ sources:
   update_freq: static
   watch_note: 海洋渔业气象产品研发与发布
 
+- id: POL-SD-GROUP-228
+  source_record_schema: 5
+  title: 山东省渔业船舶管理办法行政处罚事项（未按规定编队生产）
+  status: acquired
+  level: provincial
+  authority_tier: B
+  source_class: normative
+  currency:
+    as_of: '2026-11-16'
+    basis: retrieval
+    review_due: '2026-12-16'
+    cadence: monthly
+    ttl_days: 30
+    note: provisional watch diff
+  retrieval:
+    channel: main
+    parseable: true
+    note: provisional candidate; review before canonical promotion
+  lifecycle: active
+  license: public
+  sensitivity: public
+  hash: 914c2d7c35b449f5404ca7f4887874936b673077c20272c2de5b6105a56f2a94
+  location: raw/POL-SD-GROUP-228/excerpt.txt
+  provenance:
+    url: https://www.penglai.gov.cn/attach/0/72b762f16d3c43898cbcb74ae3381e13.pdf
+    document_no: null
+    published_at: null
+    retrieved_at: '2026-11-16'
+    sha256: 914c2d7c35b449f5404ca7f4887874936b673077c20272c2de5b6105a56f2a94
+    bytes: 491
+    mime: text/plain
+    snapshot_path: raw/POL-SD-GROUP-228/excerpt.txt
+  effective:
+    from: null
+    to: null
+  quality:
+    text_layer: true
+    anchors: 0
+    tables: 0
+    ocr: false
+    quarantine_reason: null
+    text_coverage: 1.0
+    anchor_coverage: 0.0
+    table_count: 0
+    ocr_confidence: null
+  authority:
+    score: 4
+    evidence_url: https://www.penglai.gov.cn/attach/0/72b762f16d3c43898cbcb74ae3381e13.pdf
+  license_evidence:
+    url: https://www.penglai.gov.cn/attach/0/72b762f16d3c43898cbcb74ae3381e13.pdf
+    text: null
+    checked_at: '2026-11-16'
+  ingest:
+    tier: provisional
+    reviewed_by: null
+    reviewed_at: null
+    review_note: watch diff; provisional until human review
+  practical:
+    domain: safety
+    personas:
+    - captain
+    - owner
+    - enforcement
+    - extension
+    task_tags:
+    - 编组生产
+    - 罚则
+    seasonal: false
+  license_note: null
+  supersedes: null
+  superseded_by: null
+  publisher: 山东省农业农村厅/蓬莱市海洋发展局
+  year: 2025
+  type: regulation
+  jurisdiction: provincial
+  format: txt
+  priority: P1
+  update_freq: static
+  watch_note: 第三十四条节录；原始 PDF 权责清单见 provenance.url，仅摘取未编队罚则原文。
+
+- id: POL-PT-SHELLFISH-229
+  source_record_schema: 5
+  title: 莆田秀屿一海域织纹螺发现毒素，市海洋与渔业局发布预警 禁捕勿食“麦螺”
+  status: acquired
+  level: municipal
+  authority_tier: C
+  source_class: normative
+  currency:
+    as_of: '2026-11-16'
+    basis: retrieval
+    review_due: '2026-12-16'
+    cadence: monthly
+    ttl_days: 30
+    note: provisional watch diff
+  retrieval:
+    channel: main
+    parseable: true
+    note: provisional candidate; review before canonical promotion
+  lifecycle: active
+  license: public
+  sensitivity: public
+  hash: 8dcb420538dee6237161106c33a890ce558bd1bf38a37c9e2d294859f3f4a609
+  location: raw/POL-PT-SHELLFISH-229/t20190424-1318430.html
+  provenance:
+    url: https://www.ptxy.gov.cn/zwgk/yjgl/yjbncs/201904/t20190424_1318430.htm
+    document_no: null
+    published_at: null
+    retrieved_at: '2026-11-16'
+    sha256: 8dcb420538dee6237161106c33a890ce558bd1bf38a37c9e2d294859f3f4a609
+    bytes: 76108
+    mime: text/html
+    snapshot_path: raw/POL-PT-SHELLFISH-229/t20190424-1318430.html
+  effective:
+    from: null
+    to: null
+  quality:
+    text_layer: true
+    anchors: 0
+    tables: 0
+    ocr: false
+    quarantine_reason: null
+    text_coverage: 1.0
+    anchor_coverage: 0.0
+    table_count: 0
+    ocr_confidence: null
+  authority:
+    score: 2
+    evidence_url: https://www.ptxy.gov.cn/zwgk/yjgl/yjbncs/201904/t20190424_1318430.htm
+  license_evidence:
+    url: https://www.ptxy.gov.cn/zwgk/yjgl/yjbncs/201904/t20190424_1318430.htm
+    text: null
+    checked_at: '2026-11-16'
+  ingest:
+    tier: provisional
+    reviewed_by: null
+    reviewed_at: null
+    review_note: watch diff; provisional until human review
+  practical:
+    domain: hazard
+    personas:
+    - captain
+    - owner
+    - enforcement
+    - extension
+    task_tags:
+    - 贝毒
+    - 采捕禁令
+    seasonal: false
+  license_note: null
+  supersedes: null
+  superseded_by: null
+  publisher: 莆田市海洋与渔业局
+  year: 2019
+  type: notice
+  jurisdiction: municipal
+  format: html
+  priority: P1
+  update_freq: static
+  watch_note: 织纹螺检出麻痹性贝毒，官方禁止采捕
+
 gaps:
 - One hundred sources are registered: ninety-eight acquired and no open candidates awaiting disposition.
 - The yearbook coverage matrix has no values in the public repository; all values stay local.

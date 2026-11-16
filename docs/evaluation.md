@@ -2543,3 +2543,19 @@ Registry is now **128 canonical / 4 provisional**. Gap status: SSTA complete;
 shellfish partial; ENSO, group fishing and forecast access remain open.
 Review sheet updated with verdicts:
 `runs/P26-P1/human-review-provisional-canonical.csv`.
+
+### P1 third batch: group penalty and shellfish ban (2026-11-16)
+
+- `POL-SD-GROUP-228`: 山东省渔业船舶管理办法第三十四条第（八）项，未按规定
+  编队生产，责令限期改正，逾期不改正处 **500–5000 元**。官方 PDF 的表格抽取
+  过于碎片化，入库使用该条原文摘录（provenance 仍指向原始权责清单 PDF）。
+  IG-067 now answers the Shandong penalty and explicitly marks it as provincial.
+- `POL-PT-SHELLFISH-229`: 莆田市秀屿区海洋与渔业局对检出麻痹性贝毒的织纹螺
+  发布禁止采捕通知。IG-051 now cites the formal local ban (plus GD risk notice
+  and Fujian closure practice). The ban is species/local-specific, so the
+  shellfish gap remains **partial**.
+- Lexicon bridges: `编组生产 → 编队生产/单船作业`, `赤潮 → 贝毒/麻痹性贝类毒素/织纹螺`.
+
+Two new provisional sources need human review (`POL-SD-GROUP-228`,
+`POL-PT-SHELLFISH-229`); the other four held sources remain provisional.
+Review sheet: `runs/P26-P1/human-review-provisional-canonical-round2.csv`.
