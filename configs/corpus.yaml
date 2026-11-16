@@ -5822,11 +5822,11 @@ sources:
     review_due: '2026-12-15'
     cadence: monthly
     ttl_days: 30
-    note: provisional watch diff
+    note: canonical practical source after human review
   retrieval:
     channel: main
     parseable: true
-    note: provisional candidate; review before canonical promotion
+    note: canonical practical source; main index
   lifecycle: active
   license: public
   sensitivity: public
@@ -5862,10 +5862,10 @@ sources:
     text: null
     checked_at: '2026-11-15'
   ingest:
-    tier: provisional
-    reviewed_by: null
-    reviewed_at: null
-    review_note: watch diff; provisional until human review
+    tier: canonical
+    reviewed_by: human-review-2026-11-16
+    reviewed_at: '2026-11-16'
+    review_note: human review confirmed 2026-11-16
   practical:
     domain: hazard
     personas:
@@ -5887,7 +5887,6 @@ sources:
   priority: P1
   update_freq: static
   watch_note: 福建省工作动态，农业农村部网站转载；按地方做法参考，不能当作国家规定。
-
 - id: POL-MOA-GROUP-225
   source_record_schema: 5
   title: 浙江省农业农村厅印制手册指导渔民规范海上捕捞行为
@@ -5901,11 +5900,11 @@ sources:
     review_due: '2026-12-15'
     cadence: monthly
     ttl_days: 30
-    note: provisional watch diff
+    note: canonical practical source after human review
   retrieval:
     channel: main
     parseable: true
-    note: provisional candidate; review before canonical promotion
+    note: canonical practical source; main index
   lifecycle: active
   license: public
   sensitivity: public
@@ -5941,10 +5940,10 @@ sources:
     text: null
     checked_at: '2026-11-15'
   ingest:
-    tier: provisional
-    reviewed_by: null
-    reviewed_at: null
-    review_note: watch diff; provisional until human review
+    tier: canonical
+    reviewed_by: human-review-2026-11-16
+    reviewed_at: '2026-11-16'
+    review_note: human review confirmed 2026-11-16
   practical:
     domain: other
     personas:
@@ -5966,7 +5965,6 @@ sources:
   priority: P1
   update_freq: static
   watch_note: 浙江宣传手册做法；无罚则，不能作为全国强制编组依据。
-
 - id: STD-CMA-SSTA-226
   source_record_schema: 5
   title: GB/T 44955-2024 气候预测检验 厄尔尼诺/拉尼娜
@@ -6129,7 +6127,7 @@ sources:
 
 - id: POL-SD-GROUP-228
   source_record_schema: 5
-  title: 山东省渔业船舶管理办法行政处罚事项（未按规定编队生产）
+  title: 山东省渔业船舶管理办法（2024年修正）
   status: acquired
   level: provincial
   authority_tier: B
@@ -6148,17 +6146,17 @@ sources:
   lifecycle: active
   license: public
   sensitivity: public
-  hash: 914c2d7c35b449f5404ca7f4887874936b673077c20272c2de5b6105a56f2a94
-  location: raw/POL-SD-GROUP-228/excerpt.txt
+  hash: 32c68b98e207009ee4479bb2be1944509d4741427ccc0b5b52c3d72ef43de481
+  location: raw/POL-SD-GROUP-228/excerpt-2024-single.html
   provenance:
     url: https://www.penglai.gov.cn/attach/0/72b762f16d3c43898cbcb74ae3381e13.pdf
-    document_no: null
+    document_no: 山东省人民政府令第357号
     published_at: null
     retrieved_at: '2026-11-16'
-    sha256: 914c2d7c35b449f5404ca7f4887874936b673077c20272c2de5b6105a56f2a94
-    bytes: 491
-    mime: text/plain
-    snapshot_path: raw/POL-SD-GROUP-228/excerpt.txt
+    sha256: 32c68b98e207009ee4479bb2be1944509d4741427ccc0b5b52c3d72ef43de481
+    bytes: 834
+    mime: text/html
+    snapshot_path: raw/POL-SD-GROUP-228/excerpt-2024-single.html
   effective:
     from: null
     to: null
@@ -6198,14 +6196,15 @@ sources:
   license_note: null
   supersedes: null
   superseded_by: null
-  publisher: 山东省农业农村厅/蓬莱市海洋发展局
-  year: 2025
+  publisher: 山东省人民政府
+  year: 2024
   type: regulation
   jurisdiction: provincial
-  format: txt
+  format: html
   priority: P1
   update_freq: static
-  watch_note: 第三十四条节录；原始 PDF 权责清单见 provenance.url，仅摘取未编队罚则原文。
+  watch_note: 2024年修正版第十四条（44.1kW以下必须编队）与第三十二条第八项（未编队罚500-5000）连续节录；2026年5月省厅拟废止并并入条例，出台后替换。
+  title_zh: 山东省渔业船舶管理办法（2024年修正）
 
 - id: POL-PT-SHELLFISH-229
   source_record_schema: 5
@@ -6213,18 +6212,18 @@ sources:
   status: acquired
   level: municipal
   authority_tier: C
-  source_class: normative
+  source_class: reference
   currency:
     as_of: '2026-11-16'
     basis: retrieval
     review_due: '2026-12-16'
     cadence: monthly
     ttl_days: 30
-    note: provisional watch diff
+    note: canonical practical source after human review
   retrieval:
     channel: main
     parseable: true
-    note: provisional candidate; review before canonical promotion
+    note: canonical practical source; main index
   lifecycle: active
   license: public
   sensitivity: public
@@ -6260,10 +6259,10 @@ sources:
     text: null
     checked_at: '2026-11-16'
   ingest:
-    tier: provisional
-    reviewed_by: null
-    reviewed_at: null
-    review_note: watch diff; provisional until human review
+    tier: canonical
+    reviewed_by: human-review-2026-11-16
+    reviewed_at: '2026-11-16'
+    review_note: human review confirmed 2026-11-16
   practical:
     domain: hazard
     personas:
@@ -6280,13 +6279,12 @@ sources:
   superseded_by: null
   publisher: 莆田市海洋与渔业局
   year: 2019
-  type: notice
+  type: news
   jurisdiction: municipal
   format: html
   priority: P1
   update_freq: static
-  watch_note: 织纹螺检出麻痹性贝毒，官方禁止采捕
-
+  watch_note: 2019-04-24 莆田市秀屿区月塘镇织纹螺（麦螺）检出麻痹性贝毒，市海洋与渔业局发布预警并禁止采捕；政府网站新闻报道，非预警原文。答案须带2019年/莆田/织纹螺限定。
 gaps:
 - One hundred sources are registered: ninety-eight acquired and no open candidates awaiting disposition.
 - The yearbook coverage matrix has no values in the public repository; all values stay local.

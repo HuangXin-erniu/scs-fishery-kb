@@ -482,3 +482,14 @@ candidates:
   expires_at: '2027-05-15'
   status: open
   note: 'gap-register SHELLFISH_TOXIN formal harvest ban; local fisheries bureau ban after PSP detection in 织纹螺'
+- id: CAND-2026-110
+  title: 山东省渔业船舶管理办法（2024年修正）
+  url: https://m.shandong.gov.cn/art/2024/2/27/art_100623_44102.html
+  publisher: 山东省人民政府
+  proposed_tier: B
+  proposed_class: normative
+  reason: gap
+  first_seen: '2026-11-16'
+  expires_at: '2027-05-15'
+  status: open
+  note: 'gap-register GROUP_FISHING current penalty; 2024 revision, Art.14 44.1kW limit and Art.32(8) direct 500-5000 fine'

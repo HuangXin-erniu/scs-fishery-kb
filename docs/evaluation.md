@@ -2559,3 +2559,20 @@ Review sheet updated with verdicts:
 Two new provisional sources need human review (`POL-SD-GROUP-228`,
 `POL-PT-SHELLFISH-229`); the other four held sources remain provisional.
 Review sheet: `runs/P26-P1/human-review-provisional-canonical-round2.csv`.
+
+### Review round 3 and 2024 group-penalty revision (2026-11-16)
+
+Human review: 223/225/229 PASS and promoted to canonical; 221/227 remain HOLD.
+`POL-SD-GROUP-228` was HOLD for using the pre-2024 text. Replaced with the
+**2024 revision** (省政府令第357号):
+
+- Art. 14: only **44.1 kW and below** capture vessels must fish in formation;
+- Art. 32(8): failure to fish in formation is directly fined **500–5000 yuan**
+  (no "fail to correct" precondition);
+- watch note: the provincial department announced in May 2026 a proposal to
+  repeal this regulation and merge it into the fishery port/vessel regulation.
+
+228 is still provisional pending human re-review. Registry: **131 canonical /
+3 provisional** (221, 227, 228). A single-paragraph excerpt is used because the
+HTML parser kept only the first heading; the excerpt contains both Art. 14 and
+Art. 32(8) and points to the official 2024 page.

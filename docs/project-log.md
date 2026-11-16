@@ -1781,3 +1781,7 @@ This log records material project changes by date. It does not use release versi
   Putian PSP harvesting ban (municipal); IG-067/IG-051 now cite them with level
   caveats. Two new provisional sources exported for review; forecast access and
   ENSO remain open.
+- Review round 3: 223/225/229 promoted; 228 replaced with 2024 revision (Art.14
+  44.1kW + Art.32(8) 500-5000) and kept provisional for re-review. 131
+  canonical/3 provisional. Forensics: answer layer still omits the 228 amount;
+  flagged for prompt polish before promotion.
