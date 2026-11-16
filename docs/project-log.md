@@ -1789,3 +1789,6 @@ This log records material project changes by date. It does not use release versi
   old excerpt archived). Added scope_note injection; IG-067 now states 500-5000
   and 44.1kW/Shandong limits, IG-051 states 2019/Putian/织纹螺 limits. Registry
   132 canonical/2 provisional.
+- ENSO: added two official CAFS/SCSFRI research articles; IG-048 now conditional
+  with Beibu Gulf evidence, gap partial. FORECAST: no public permission rule;
+  logged search and closed as no-public-source. 132 canonical/4 provisional.

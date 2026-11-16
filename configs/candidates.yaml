@@ -493,3 +493,25 @@ candidates:
   expires_at: '2027-05-15'
   status: open
   note: 'gap-register GROUP_FISHING current penalty; 2024 revision, Art.14 44.1kW limit and Art.32(8) direct 500-5000 fine'
+- id: CAND-2026-111
+  title: 南海所在捕捞和气候异常对北部湾海洋渔业资源群落的协同影响机制研究方面取得新进展
+  url: https://scsfri.ac.cn/info/1003/29137.htm
+  publisher: 中国水产科学研究院南海水产研究所
+  proposed_tier: A
+  proposed_class: reference
+  reason: gap
+  first_seen: '2026-11-16'
+  expires_at: '2027-05-15'
+  status: open
+  note: 'gap-register ENSO; official research news linking ENSO and Beibu Gulf fishery resource community (2006-2020)'
+- id: CAND-2026-112
+  title: 南海所对捕捞和气候变化在北部湾鱼类种类演替和种群动态中的作用研究取得新进展
+  url: https://www.cafs.ac.cn/info/1024/34061.htm
+  publisher: 中国水产科学研究院
+  proposed_tier: A
+  proposed_class: reference
+  reason: gap
+  first_seen: '2026-11-16'
+  expires_at: '2027-05-15'
+  status: open
+  note: 'gap-register ENSO; official research news: 1993/1998 biomass drops linked to El Nino in Beibu Gulf'

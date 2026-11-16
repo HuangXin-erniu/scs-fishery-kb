@@ -13,11 +13,12 @@ gaps:
   acceptance: 官方 ENSO 监测/预测或南海渔业资源影响评估，带发布时间与发布机构
   candidate_urls:
   - https://www.cma.gov.cn/2011xwzx/2011xqxxw/2011xqxyw/202606/t20260623_7877746.html
-  status: open
+  status: partial
   source_ids:
-  - POL-CMA-ENSO-221
-  note: '2026-11-16 human review: promote only reviewed sources; held sources are
-    references, not gap closures.'
+  - POL-SCSFRI-ENSO-230
+  - POL-CAFS-ENSO-231
+  note: Official CAFS/SCSFRI research directly links ENSO to Beibu Gulf fishery community/biomass;
+    still not a deterministic "always less" forecast.
 - id: SHELLFISH_TOXIN
   question_terms:
   - 贝毒
@@ -50,11 +51,24 @@ gaps:
   - 中国水产科学研究院南海水产研究所
   - 国家海洋环境预报中心
   acceptance: 官方产品说明/分发管理办法，说明发布主体、权限与使用边界
-  status: open
+  status: closed-no-public-source
   source_ids:
   - POL-MOA-FORECAST-227
-  note: '2026-11-16 human review: promote only reviewed sources; held sources are
-    references, not gap closures.'
+  note: No public official document on forecast-product access/permission; answer
+    must say unavailable and refer to the publisher.
+  search_log:
+  - date: '2026-11-16'
+    domains:
+    - moa.gov.cn
+    - cafs.ac.cn
+    - scsfri.ac.cn
+    - gov.cn
+    queries:
+    - 渔情预报 发布 管理
+    - 渔情产品 权限 分发
+    - 渔情信息 服务 账号
+    result: only product descriptions/news; no public permission/account/distribution
+      rule
 - id: SSTA_DEFINITION
   question_terms:
   - SSTa

@@ -2593,3 +2593,22 @@ A deterministic `scope_note` is appended when a cited source has one:
   Shandong local regulation;
 - 229: 2019 Putian/ Xiuyu PSP ban, 织纹螺 only, not a national ban.
 IG-067 and IG-051 now carry these limits in the answer.
+
+### ENSO research sources and forecast no-public-source (2026-11-16)
+
+Two official CAFS/SCSFRI research articles were admitted:
+`POL-SCSFRI-ENSO-230` (ENSO × Beibu Gulf fishery community, 2006–2020) and
+`POL-CAFS-ENSO-231` (1993/1998 biomass drops linked to El Niño, fishing pressure
+dominant). IG-048 now gives a conditional answer instead of a generic refusal:
+El Niño is associated with the observed Beibu Gulf decline, but the evidence
+does not prove "every El Niño year means fewer fish in the whole South China
+Sea". ENSO remains **partial**, not complete.
+
+FORECAST_PRODUCT_ACCESS: official searches on moa.gov.cn, cafs.ac.cn,
+scsfri.ac.cn and gov.cn found product descriptions/news but no public
+permission/account/distribution rule. Status changed to
+**closed-no-public-source** with a search log; `POL-MOA-FORECAST-227` stays
+provisional and the answer says the permission path is not in the public corpus.
+
+Registry: **132 canonical / 4 provisional** (221, 227, 230, 231). Review sheet:
+`runs/P26-P1/human-review-provisional-canonical-round4.csv`.

@@ -6288,6 +6288,169 @@ sources:
   watch_note: 2019-04-24 莆田市秀屿区月塘镇织纹螺（麦螺）检出麻痹性贝毒，市海洋与渔业局发布预警并禁止采捕；政府网站新闻报道，非预警原文。答案须带2019年/莆田/织纹螺限定。
   scope_note: 本条为2019年莆田市秀屿区海洋与渔业局针对织纹螺（麦螺）检出麻痹性贝类毒素发布的禁捕预警，限2019年、莆田（福建）、织纹螺，不构成全国普遍禁令。
 
+- id: POL-SCSFRI-ENSO-230
+  source_record_schema: 5
+  title: 南海所在捕捞和气候异常对北部湾海洋渔业资源群落的协同影响机制研究方面取得新进展
+  status: acquired
+  level: national
+  authority_tier: A
+  source_class: reference
+  currency:
+    as_of: '2026-11-16'
+    basis: retrieval
+    review_due: '2026-12-16'
+    cadence: monthly
+    ttl_days: 30
+    note: provisional watch diff
+  retrieval:
+    channel: main
+    parseable: true
+    note: provisional candidate; review before canonical promotion
+  lifecycle: active
+  license: public
+  sensitivity: public
+  hash: 932d25da527a9b03758d2c2ccee6575f6c57bb44ae6877af4212dfbc119be665
+  location: raw/POL-SCSFRI-ENSO-230/29137.html
+  provenance:
+    url: https://scsfri.ac.cn/info/1003/29137.htm
+    document_no: null
+    published_at: null
+    retrieved_at: '2026-11-16'
+    sha256: 932d25da527a9b03758d2c2ccee6575f6c57bb44ae6877af4212dfbc119be665
+    bytes: 22726
+    mime: text/html
+    snapshot_path: raw/POL-SCSFRI-ENSO-230/29137.html
+  effective:
+    from: null
+    to: null
+  quality:
+    text_layer: true
+    anchors: 0
+    tables: 0
+    ocr: false
+    quarantine_reason: null
+    text_coverage: 1.0
+    anchor_coverage: 0.0
+    table_count: 0
+    ocr_confidence: null
+  authority:
+    score: 5
+    evidence_url: https://scsfri.ac.cn/info/1003/29137.htm
+  license_evidence:
+    url: https://scsfri.ac.cn/info/1003/29137.htm
+    text: null
+    checked_at: '2026-11-16'
+  ingest:
+    tier: provisional
+    reviewed_by: null
+    reviewed_at: null
+    review_note: watch diff; provisional until human review
+  practical:
+    domain: environment
+    personas:
+    - captain
+    - owner
+    - extension
+    - general
+    task_tags:
+    - ENSO
+    - 南海
+    - 北部湾
+    - 渔业资源
+    seasonal: false
+  license_note: null
+  supersedes: null
+  superseded_by: null
+  publisher: 中国水产科学研究院南海水产研究所
+  year: 2025
+  type: news
+  jurisdiction: national
+  format: html
+  priority: P1
+  update_freq: static
+  watch_note: ENSO 与北部湾渔业资源群落协同影响（2006-2020）
+- id: POL-CAFS-ENSO-231
+  source_record_schema: 5
+  title: 南海所对捕捞和气候变化在北部湾鱼类种类演替和种群动态中的作用研究取得新进展
+  status: acquired
+  level: national
+  authority_tier: A
+  source_class: reference
+  currency:
+    as_of: '2026-11-16'
+    basis: retrieval
+    review_due: '2026-12-16'
+    cadence: monthly
+    ttl_days: 30
+    note: provisional watch diff
+  retrieval:
+    channel: main
+    parseable: true
+    note: provisional candidate; review before canonical promotion
+  lifecycle: active
+  license: public
+  sensitivity: public
+  hash: 21cb1158e8048fd1d75b04e769df56e87152dde4d3d2e1c42bc75e7f717e89f1
+  location: raw/POL-CAFS-ENSO-231/34061.html
+  provenance:
+    url: https://www.cafs.ac.cn/info/1024/34061.htm
+    document_no: null
+    published_at: null
+    retrieved_at: '2026-11-16'
+    sha256: 21cb1158e8048fd1d75b04e769df56e87152dde4d3d2e1c42bc75e7f717e89f1
+    bytes: 31870
+    mime: text/html
+    snapshot_path: raw/POL-CAFS-ENSO-231/34061.html
+  effective:
+    from: null
+    to: null
+  quality:
+    text_layer: true
+    anchors: 0
+    tables: 0
+    ocr: false
+    quarantine_reason: null
+    text_coverage: 1.0
+    anchor_coverage: 0.0
+    table_count: 0
+    ocr_confidence: null
+  authority:
+    score: 5
+    evidence_url: https://www.cafs.ac.cn/info/1024/34061.htm
+  license_evidence:
+    url: https://www.cafs.ac.cn/info/1024/34061.htm
+    text: null
+    checked_at: '2026-11-16'
+  ingest:
+    tier: provisional
+    reviewed_by: null
+    reviewed_at: null
+    review_note: watch diff; provisional until human review
+  practical:
+    domain: environment
+    personas:
+    - captain
+    - owner
+    - extension
+    - general
+    task_tags:
+    - ENSO
+    - 南海
+    - 北部湾
+    - 鱼类生物量
+    seasonal: false
+  license_note: null
+  supersedes: null
+  superseded_by: null
+  publisher: 中国水产科学研究院
+  year: 2019
+  type: news
+  jurisdiction: national
+  format: html
+  priority: P1
+  update_freq: static
+  watch_note: 厄尔尼诺与北部湾鱼类生物量下降（1993/1998）
+
 gaps:
 - One hundred sources are registered: ninety-eight acquired and no open candidates awaiting disposition.
 - The yearbook coverage matrix has no values in the public repository; all values stay local.

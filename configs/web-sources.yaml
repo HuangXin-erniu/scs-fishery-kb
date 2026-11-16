@@ -80,6 +80,9 @@ allowlist:
 - domain: cafs.ac.cn
   publisher: 中国水产科学研究院
   tier: A
+- domain: scsfri.ac.cn
+  publisher: 中国水产科学研究院南海水产研究所
+  tier: A
 - domain: ccg.gov.cn
   publisher: 中国海警局
   tier: A
