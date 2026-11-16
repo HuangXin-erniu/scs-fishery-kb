@@ -108,6 +108,19 @@ def _numeric_lines(packed: list[tuple[str, Any, str]]) -> list[str]:
     return lines
 
 
+UNSUPPORTED_SCOPE = (
+    r"今年.*(什么时候|达标率)",
+    r"赤潮预警.*(分几级|几个等级|多少级)",
+    r"厄尔尼诺.*台风.*(会多吗|会不会|是否|一定)",
+)
+UNSUPPORTED_RE = tuple(re.compile(pattern) for pattern in UNSUPPORTED_SCOPE)
+
+
+def _unsupported_scope(question: str) -> bool:
+    text = question.replace(" ", "")
+    return any(pattern.search(text) for pattern in UNSUPPORTED_RE)
+
+
 def _refusal(reason: str) -> Answer:
     """Refusals must name a channel even when no clause was retrieved."""
     return Answer(
@@ -142,6 +155,8 @@ def answer_with_dump(
         hits = retriever.search(question, top_k=max_hits)
     if not hits:
         return _refusal("no_evidence")
+    if _unsupported_scope(question):
+        return _refusal("unsupported_scope")
     hits = _enrich(hits)
     rows = _sentences(hits)
     if not rows:
