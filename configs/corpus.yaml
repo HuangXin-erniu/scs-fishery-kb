@@ -4671,11 +4671,11 @@ sources:
     review_due: '2027-02-12'
     cadence: quarterly
     ttl_days: 90
-    note: Stage 3 practical-source batch 2; provisional.
+    note: canonical practical source after human review
   retrieval:
     channel: main
     parseable: true
-    note: provisional candidate; review before canonical promotion
+    note: canonical practical source; main index
   lifecycle: active
   license: public
   sensitivity: public
@@ -4711,10 +4711,10 @@ sources:
     text: 政府网站公开信息；用于知识库引用与检索。
     checked_at: '2026-11-12'
   ingest:
-    tier: provisional
-    reviewed_by: null
-    reviewed_at: null
-    review_note: Stage 3 practical admission batch 2; human review pending
+    tier: canonical
+    reviewed_by: human-review-2026-11-16
+    reviewed_at: '2026-11-16'
+    review_note: human review confirmed 2026-11-16
   practical:
     domain: policy
     personas:
@@ -4739,7 +4739,6 @@ sources:
   volume: 1 html file
   update_freq: static
   watch_note: 静态公开文本；季度复查时重新核验发布页与许可状态。
-
 - id: STAT-DISASTER-210
   source_record_schema: 5
   title: 2022年中国海洋灾害公报
@@ -5659,7 +5658,7 @@ sources:
   status: acquired
   level: national
   authority_tier: A
-  source_class: normative
+  source_class: reference
   currency:
     as_of: '2026-11-15'
     basis: retrieval
@@ -5730,26 +5729,26 @@ sources:
   format: txt
   priority: P1
   update_freq: monthly
-  watch_note: ENSO 监测/预测与风险解读
+  watch_note: ENSO 监测/预测参考；未覆盖南海鱼类资源影响，不能据此关闭 ENSO 缺口。
 
 - id: POL-GD-SHELLFISH-222
   source_record_schema: 5
   title: 预防麻痹性贝类毒素中毒的风险提示
   status: acquired
-  level: provincial
+  level: national
   authority_tier: A
-  source_class: normative
+  source_class: reference
   currency:
     as_of: '2026-11-15'
     basis: retrieval
     review_due: '2026-12-15'
     cadence: monthly
     ttl_days: 30
-    note: provisional watch diff
+    note: canonical practical source after human review
   retrieval:
     channel: main
     parseable: true
-    note: provisional candidate; review before canonical promotion
+    note: canonical practical source; main index
   lifecycle: active
   license: public
   sensitivity: public
@@ -5785,10 +5784,10 @@ sources:
     text: null
     checked_at: '2026-11-15'
   ingest:
-    tier: provisional
-    reviewed_by: null
-    reviewed_at: null
-    review_note: watch diff; provisional until human review
+    tier: canonical
+    reviewed_by: human-review-2026-11-16
+    reviewed_at: '2026-11-16'
+    review_note: human review confirmed 2026-11-16
   practical:
     domain: hazard
     personas:
@@ -5802,22 +5801,21 @@ sources:
   license_note: null
   supersedes: null
   superseded_by: null
-  publisher: 广东省疾病预防控制中心
+  publisher: 国家食品安全风险评估中心（广东省疾控中心网站转载）
   year: 2026
   type: notice
-  jurisdiction: provincial
+  jurisdiction: national
   format: txt
   priority: P1
   update_freq: monthly
-  watch_note: 贝毒风险提示与采捕/食用建议
-
+  watch_note: 国家食品安全风险评估中心风险提示；广东疾控网站转载，按国家级参考使用。
 - id: POL-MOA-SHELLFISH-223
   source_record_schema: 5
   title: 福建省海洋与渔业厅加强贝类质量安全监管工作
   status: acquired
-  level: national
+  level: provincial
   authority_tier: A
-  source_class: normative
+  source_class: reference
   currency:
     as_of: '2026-11-15'
     basis: retrieval
@@ -5881,22 +5879,22 @@ sources:
   license_note: null
   supersedes: null
   superseded_by: null
-  publisher: 农业农村部渔业渔政管理局
+  publisher: 福建省海洋与渔业厅（农业农村部网站转载）
   year: 2015
-  type: notice
-  jurisdiction: national
+  type: news
+  jurisdiction: provincial
   format: txt
   priority: P1
   update_freq: static
-  watch_note: 贝类毒素监测与海区关闭/解除
+  watch_note: 福建省工作动态，农业农村部网站转载；按地方做法参考，不能当作国家规定。
 
 - id: POL-MOA-GROUP-225
   source_record_schema: 5
   title: 浙江省农业农村厅印制手册指导渔民规范海上捕捞行为
   status: acquired
-  level: national
+  level: provincial
   authority_tier: A
-  source_class: normative
+  source_class: reference
   currency:
     as_of: '2026-11-15'
     basis: retrieval
@@ -5960,14 +5958,14 @@ sources:
   license_note: null
   supersedes: null
   superseded_by: null
-  publisher: 农业农村部
+  publisher: 浙江省农业农村厅（农业农村部网站转载）
   year: 2021
-  type: notice
-  jurisdiction: national
+  type: news
+  jurisdiction: provincial
   format: txt
   priority: P1
   update_freq: static
-  watch_note: 渔船编组生产要求
+  watch_note: 浙江宣传手册做法；无罚则，不能作为全国强制编组依据。
 
 - id: STD-CMA-SSTA-226
   source_record_schema: 5
@@ -5982,11 +5980,11 @@ sources:
     review_due: '2026-12-15'
     cadence: monthly
     ttl_days: 30
-    note: provisional watch diff
+    note: canonical practical source after human review
   retrieval:
     channel: main
     parseable: true
-    note: provisional candidate; review before canonical promotion
+    note: canonical practical source; main index
   lifecycle: active
   license: public
   sensitivity: public
@@ -6016,16 +6014,16 @@ sources:
     ocr_confidence: null
   authority:
     score: 5
-    evidence_url: http://gx.cma.gov.cn/zfxxgk/zwgk/flfgbz/dfbz/202503/P020250306121560897467.pdf
+    evidence_url: https://openstd.samr.gov.cn/bzgk/std/newGbInfo?hcno=FA14DA566A11D9BA445ED95DBFE4E1CC
   license_evidence:
     url: http://gx.cma.gov.cn/zfxxgk/zwgk/flfgbz/dfbz/202503/P020250306121560897467.pdf
     text: null
     checked_at: '2026-11-15'
   ingest:
-    tier: provisional
-    reviewed_by: null
-    reviewed_at: null
-    review_note: watch diff; provisional until human review
+    tier: canonical
+    reviewed_by: human-review-2026-11-16
+    reviewed_at: '2026-11-16'
+    review_note: human review confirmed 2026-11-16
   practical:
     domain: environment
     personas:
@@ -6047,7 +6045,7 @@ sources:
   format: pdf
   priority: P1
   update_freq: static
-  watch_note: GB/T 44955-2024 定义 SST/SSTA
+  watch_note: GB/T 44955-2024；当前快照为广西气象局公开镜像，官方题录见 openstd.samr.gov.cn。
 - id: POL-MOA-FORECAST-227
   source_record_schema: 5
   title: 农业农村部 中国气象局 关于加强海洋渔业气象防灾减灾的通知

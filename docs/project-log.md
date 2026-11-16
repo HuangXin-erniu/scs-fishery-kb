@@ -1774,3 +1774,6 @@ This log records material project changes by date. It does not use release versi
   the 2024 MOA/CMA fishery-meteorological notice (forecast products, gap partial);
   added SSTa/渔情产品 lexicon groups and widened P1 lexical reserve. Seven
   provisional sources exported for human canonical review. Public gates unchanged.
+- Human canonical review: 3 PASS promoted (209/222/226), 4 HOLD (ENSO, 223, 225,
+  forecast). Corrected 222 national/reference; 223/225 provincial/reference/news.
+  Registry 128 canonical/4 provisional; SSTA closed, other gaps open/partial.

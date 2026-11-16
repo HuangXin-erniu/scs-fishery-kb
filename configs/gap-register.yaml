@@ -13,9 +13,11 @@ gaps:
   acceptance: 官方 ENSO 监测/预测或南海渔业资源影响评估，带发布时间与发布机构
   candidate_urls:
   - https://www.cma.gov.cn/2011xwzx/2011xqxxw/2011xqxyw/202606/t20260623_7877746.html
-  status: partial
+  status: open
   source_ids:
   - POL-CMA-ENSO-221
+  note: '2026-11-16 human review: promote only reviewed sources; held sources are
+    references, not gap closures.'
 - id: SHELLFISH_TOXIN
   question_terms:
   - 贝毒
@@ -33,7 +35,8 @@ gaps:
   status: partial
   source_ids:
   - POL-GD-SHELLFISH-222
-  - POL-MOA-SHELLFISH-223
+  note: '2026-11-16 human review: promote only reviewed sources; held sources are
+    references, not gap closures.'
 - id: FORECAST_PRODUCT_ACCESS
   question_terms:
   - 渔情产品
@@ -45,9 +48,11 @@ gaps:
   - 中国水产科学研究院南海水产研究所
   - 国家海洋环境预报中心
   acceptance: 官方产品说明/分发管理办法，说明发布主体、权限与使用边界
-  status: partial
+  status: open
   source_ids:
   - POL-MOA-FORECAST-227
+  note: '2026-11-16 human review: promote only reviewed sources; held sources are
+    references, not gap closures.'
 - id: SSTA_DEFINITION
   question_terms:
   - SSTa
@@ -61,6 +66,8 @@ gaps:
   status: complete
   source_ids:
   - STD-CMA-SSTA-226
+  note: '2026-11-16 human review: promote only reviewed sources; held sources are
+    references, not gap closures.'
 - id: GROUP_FISHING
   question_terms:
   - 编组生产
@@ -73,6 +80,8 @@ gaps:
   acceptance: 官方编组生产管理规定或执法依据，明确强制性与罚则
   candidate_urls:
   - https://www.haimen.gov.cn/hmsrmzf/nlst/content/35c21029-1564-4e6a-9069-abf46d2bd7d7.html
-  status: partial
+  status: open
   source_ids:
   - POL-MOA-GROUP-225
+  note: '2026-11-16 human review: promote only reviewed sources; held sources are
+    references, not gap closures.'

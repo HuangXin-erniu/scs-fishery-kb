@@ -2524,3 +2524,22 @@ POL-MOA-FORECAST-227. Review sheet:
 
 Public gates remain unchanged (retrieval 0.9545/0.8163/0.8512; public regression
 all pass); 464 tests pass.
+
+### Human canonical review and promotion (2026-11-16)
+
+Review result: **3 PASS / 4 HOLD**. Promoted to canonical:
+`POL-GD-WUCHUAN-209`, `POL-GD-SHELLFISH-222`, `STD-CMA-SSTA-226`.
+Metadata corrections before promotion: 222 → national/reference (source is the
+National Food Safety Risk Assessment Center, republished by Guangdong CDC); 226
+keeps the Guangxi CMA mirror as snapshot but records the official openstd record.
+
+Held as provisional references (not gap closures):
+`POL-CMA-ENSO-221` (no fish/South China Sea content),
+`POL-MOA-SHELLFISH-223` (Fujian work update; now provincial/reference/news),
+`POL-MOA-GROUP-225` (Zhejiang handbook; provincial/reference/news, no penalty),
+`POL-MOA-FORECAST-227` (no access/permission content).
+
+Registry is now **128 canonical / 4 provisional**. Gap status: SSTA complete;
+shellfish partial; ENSO, group fishing and forecast access remain open.
+Review sheet updated with verdicts:
+`runs/P26-P1/human-review-provisional-canonical.csv`.
