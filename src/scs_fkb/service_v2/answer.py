@@ -327,6 +327,87 @@ def _record_short_failure(reason: str) -> None:
         return
 
 
+def _incomplete_answer(text: str) -> bool:
+    stripped = text.rstrip()
+    if not stripped:
+        return True
+    if stripped.count("[") != stripped.count("]"):
+        return True
+    return not stripped.endswith(("。", "！", "？", "；", "]"))
+
+
+def _clean_citation_text(text: str) -> str:
+    import re as _re
+
+    # Remove malformed long/embedded citation tokens that swallow following text.
+    return _re.sub(r"\[[A-Za-z0-9-]+ §[^\]]{60,}(?=\[[A-Za-z0-9-]+ §)", "", text)
+
+
+def _subquestion_guard(question: str, text: str) -> str:
+    additions = []
+    if "限额捕捞" in question and "限额捕捞" not in text:
+        additions.append(
+            "缺口：现有证据只覆盖一般捕捞许可，未收录限额捕捞试点的申报条件、配额分配与监管方式。"
+        )
+    if "捕捞努力量" in question and "捕捞努力量" not in text:
+        additions.append(
+            "缺口：现有语料未给出“捕捞努力量”的统计定义；通常按网次、作业天数或功率×时间衡量，引用前需核对统计口径。"
+        )
+    return text + ("\n" + "\n".join(additions) if additions else "")
+
+
+def _evidence_fallback(pack: EvidencePack, question: str) -> StandardResult | None:
+    """Last-resort verbatim evidence answer for table/numeric questions."""
+    import re as _re
+
+    runs = _re.findall(r"[\u4e00-\u9fff]{2,}", question)
+    grams = {run[i : i + 2] for run in runs for i in range(len(run) - 1)}
+    scored = []
+    for item in pack.items:
+        text = item.quote or ""
+        score = sum(1 for gram in grams if gram in text)
+        if score >= 3 and any(ch.isdigit() for ch in text):
+            scored.append((score, item))
+    if not scored:
+        return None
+    scored.sort(key=lambda pair: -pair[0])
+    lines = []
+    citations = []
+    seen = set()
+    for _score, item in scored[:3]:
+        quote = " ".join(item.quote.split())
+        if len(quote) > 500:
+            quote = quote[:500] + "…"
+        lines.append(f"证据原文：{quote} [{item.chunk.doc_id} §{item.chunk.section}]")
+        key = (item.chunk.doc_id, item.chunk.section)
+        if key not in seen:
+            seen.add(key)
+            citations.append(
+                Citation(
+                    doc_id=item.chunk.doc_id,
+                    title=item.title or item.chunk.doc_id,
+                    page=item.chunk.page,
+                    section=item.chunk.section,
+                    snippet=quote[:200],
+                    score=item.score,
+                )
+            )
+    if not citations:
+        return None
+    return StandardResult(
+        answer=Answer(
+            text="\n".join(lines),
+            citations=tuple(citations),
+            abstained=False,
+            reason="evidence_fallback",
+        ),
+        pack=pack,
+        confidence=0.2,
+        answerability="partial",
+        contract_fields={"answerability": "partial", "conclusion": "", "gap": ["未做综合结论"]},
+    )
+
+
 class AnswerService:
     """Compose v2 retrieval, playbooks and the answer contract."""
 
@@ -719,6 +800,32 @@ class AnswerService:
             plain = answer_with_plain(question, pack, client)
             if plain is not None:
                 result = plain
+        if result.answer.abstained:
+            fallback = _evidence_fallback(pack, question)
+            if fallback is not None:
+                result = fallback
+        if not result.answer.abstained:
+            cleaned = _clean_citation_text(result.answer.text)
+            cleaned = _subquestion_guard(question, cleaned)
+            if _incomplete_answer(cleaned):
+                fallback = _evidence_fallback(pack, question)
+                if fallback is not None:
+                    result = fallback
+                    cleaned = result.answer.text
+                else:
+                    cleaned = (
+                        cleaned.rstrip() + "\n缺口：输出完整性校验未通过，请缩小问题范围后重试。"
+                    )
+            if cleaned != result.answer.text:
+                result = replace(
+                    result,
+                    answer=Answer(
+                        text=cleaned,
+                        citations=result.answer.citations,
+                        abstained=False,
+                        reason=result.answer.reason,
+                    ),
+                )
         if not result.answer.abstained and not region_named:
             # Only warn about local applicability when a *cited* document is
             # actually local. The previous check looked at the whole pack, which
@@ -741,9 +848,27 @@ class AnswerService:
             elif local_levels:
                 caveat = "注意：问题未说明省份；其中涉及属地执行的部分，以当地规定为准。"
             scope_notes = []
+            corrected = result.answer.text
             for doc_id in cited_docs:
-                note = str(self._registry.get(doc_id, {}).get("scope_note") or "").strip()
-                if note and note not in result.answer.text:
+                entry = self._registry.get(doc_id, {})
+                for old, new in (entry.get("fact_correction") or {}).items():
+                    corrected = corrected.replace(old, new)
+            if corrected != result.answer.text:
+                result = replace(
+                    result,
+                    answer=Answer(
+                        text=corrected,
+                        citations=result.answer.citations,
+                        abstained=False,
+                        reason=result.answer.reason,
+                    ),
+                )
+            for doc_id in cited_docs:
+                entry = self._registry.get(doc_id, {})
+                note = str(entry.get("scope_note") or "").strip()
+                terms = entry.get("scope_note_terms") or []
+                applies = not terms or any(str(term) in question for term in terms)
+                if applies and note and note not in result.answer.text:
                     scope_notes.append(note)
             if scope_notes:
                 fields = dict(result.contract_fields)

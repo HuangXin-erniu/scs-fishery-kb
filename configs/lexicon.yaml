@@ -77,6 +77,16 @@ groups:
   variants:
   - 监测公报
   note: 'A1 citation repair: marine ecological bulletin.'
+- term: 最小可捕规格
+  variants:
+  - 幼鱼比例
+  - 可捕规格
+  note: 'B/C repair: minimum catch size table.'
+- term: 玳瑁
+  variants:
+  - 国家一级
+  - 海龟科
+  note: 'D repair: 2021 list upgrade.'
 rejected:
 - term: 休渔
   variants:

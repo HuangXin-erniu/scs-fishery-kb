@@ -803,12 +803,15 @@ sources:
   license: public
   sensitivity: public
   status: acquired
-  priority: P2
+  priority: P1
   volume: 1 HTML (OCR of the official 38-page PDF)
   update_freq: static
   hash: 1b99646293da83e0c4ccba9eeec4937c7bdf0add0ca46950620347a53f6112d2
-  acquisition: Downloaded the official image-only PDF on 2026-11-02; OCR text produced on 2026-11-09 with macOS Vision (zh-Hans) page by page, original PDF retained.
-  notes: Announced 2021-02-05; lists 980 species and 8 groups. The HTML is an OCR derivative of the official image PDF, not a second official publication; species names may contain OCR errors and should be checked against the PDF before enforcement use.
+  acquisition: Downloaded the official image-only PDF on 2026-11-02; OCR text produced
+    on 2026-11-09 with macOS Vision (zh-Hans) page by page, original PDF retained.
+  notes: Announced 2021-02-05; lists 980 species and 8 groups. The HTML is an OCR derivative
+    of the official image PDF, not a second official publication; species names may
+    contain OCR errors and should be checked against the PDF before enforcement use.
   level: national
   authority_tier: A
   retrieval:
@@ -828,8 +831,14 @@ sources:
     basis: publication
     review_due: '2026-12-03'
     cadence: monthly
-    note: "Announced 2021-02-05 and effective on publication; no replacement list found."
+    note: Announced 2021-02-05 and effective on publication; no replacement list found.
   watch_note: Static official file; no change feed. Rechecked at the quarterly review.
+  scope_note: 本名录为2021年国家重点保护野生动物名录；海龟科所有种（含玳瑁）为国家一级。
+  scope_note_terms:
+  - 玳瑁
+  - 海龟
+  - 海龟科
+
 - id: POL-PORT-077
   type: regulation
   title: Regulations on traffic safety in fishing port waters
@@ -2484,12 +2493,13 @@ sources:
   license: public
   sensitivity: public
   status: acquired
-  priority: P2
+  priority: P1
   volume: 1 HTML page; 15 species and juvenile-ratio rules
   update_freq: static
   hash: af9068fe40c765752bc515d7f5438f4a4a2cd6737df3bbe38e492bb9418c75cb
   acquisition: Captured 2026-11-06 from https://www.moa.gov.cn/govpublic/YYJ/201802/t20180213_6136943.htm
-  notes: 'Term evidence: the heading and table use 最小可捕规格 for 15 economic fish species; fish below the minimum are 幼鱼.'
+  notes: 'Term evidence: the heading and table use 最小可捕规格 for 15 economic fish species;
+    fish below the minimum are 幼鱼.'
   level: national
   authority_tier: A
   retrieval:
@@ -3418,7 +3428,8 @@ sources:
   update_freq: static
   hash: 97114db705502a31b8f99abfb71cbdaeb8163275ff5d54dc6f3f5a65ea384a5b
   acquisition: Captured 2026-11-07 from https://www.moa.gov.cn/nybgb/2019/201901/201905/t20190503_6288226.htm
-  notes: 'National sea-turtle action plan: rescue, reporting and release duties, habitat protection.'
+  notes: 'National sea-turtle action plan: rescue, reporting and release duties, habitat
+    protection.'
   level: national
   authority_tier: A
   retrieval:
@@ -3438,13 +3449,21 @@ sources:
     from: '2019-01-20'
   provenance:
     url: https://www.moa.gov.cn/nybgb/2019/201901/201905/t20190503_6288226.htm
-    document_no: 
+    document_no: null
     published_at: '2019-01-20'
     retrieved_at: '2026-11-07'
     sha256: 97114db705502a31b8f99abfb71cbdaeb8163275ff5d54dc6f3f5a65ea384a5b
     bytes: 126793
     mime: text/html
     snapshot_path: raw/POL-TURTLE-113/turtle-action-plan.html
+  scope_note: 2019年海龟保护行动计划中的“国家二级”表述已过时；2021年名录已将海龟科所有种（含玳瑁）列为国家一级，引用时以2021年名录为准。
+  scope_note_terms:
+  - 玳瑁
+  - 海龟
+  - 海龟科
+  fact_correction:
+    国家二级重点保护野生动物: 国家一级重点保护野生动物
+    国家二级: 国家一级
 
 - id: STD-SMALL-114
   title: 国内海洋小型渔船法定检验技术规则（2019）
@@ -5740,6 +5759,13 @@ sources:
   priority: P1
   update_freq: monthly
   watch_note: ENSO 监测/预测参考；未覆盖南海鱼类资源影响，不能据此关闭 ENSO 缺口。
+  scope_note_terms:
+  - 厄尔尼诺
+  - ENSO
+  - 拉尼娜
+  - 鱼群
+  - 丰度
+  - 南海鱼
 
 - id: POL-GD-SHELLFISH-222
   source_record_schema: 5
@@ -5819,6 +5845,14 @@ sources:
   priority: P1
   update_freq: monthly
   watch_note: 国家食品安全风险评估中心风险提示；广东疾控网站转载，按国家级参考使用。
+  scope_note_terms:
+  - 赤潮
+  - 贝毒
+  - 织纹螺
+  - 贝类
+  - 采捕
+  - 麻痹性
+
 - id: POL-MOA-SHELLFISH-223
   source_record_schema: 5
   title: 福建省海洋与渔业厅加强贝类质量安全监管工作
@@ -5897,6 +5931,14 @@ sources:
   priority: P1
   update_freq: static
   watch_note: 福建省工作动态，农业农村部网站转载；按地方做法参考，不能当作国家规定。
+  scope_note_terms:
+  - 赤潮
+  - 贝毒
+  - 织纹螺
+  - 贝类
+  - 采捕
+  - 麻痹性
+
 - id: POL-MOA-GROUP-225
   source_record_schema: 5
   title: 浙江省农业农村厅印制手册指导渔民规范海上捕捞行为
@@ -5975,6 +6017,13 @@ sources:
   priority: P1
   update_freq: static
   watch_note: 浙江宣传手册做法；无罚则，不能作为全国强制编组依据。
+  scope_note_terms:
+  - 编组
+  - 编队
+  - 跟帮
+  - 脱帮
+  - 单船
+
 - id: STD-CMA-SSTA-226
   source_record_schema: 5
   title: GB/T 44955-2024 气候预测检验 厄尔尼诺/拉尼娜
@@ -6216,6 +6265,12 @@ sources:
   watch_note: 2024年修正版第十四条（44.1kW以下必须编队）与第三十二条第八项（未编队直接罚500-5000）节录；2026年5月省厅拟废止并并入条例，出台后替换。
   title_zh: 山东省渔业船舶管理办法（2024年修正）
   scope_note: 《山东省渔业船舶管理办法》（2024年修正）第三十二条第八项：未按规定编队生产，对船舶所有人或者经营人直接处500元以上5000元以下罚款；仅适用于44.1千瓦以下捕捞渔业船舶，属山东地方规章。海南234罚船长/直接责任人员500-1000元，对象与幅度不同。
+  scope_note_terms:
+  - 编组
+  - 编队
+  - 跟帮
+  - 脱帮
+  - 单船
 
 - id: POL-PT-SHELLFISH-229
   source_record_schema: 5
@@ -6297,6 +6352,13 @@ sources:
   update_freq: static
   watch_note: 2019-04-24 莆田市秀屿区月塘镇织纹螺（麦螺）检出麻痹性贝毒，市海洋与渔业局发布预警并禁止采捕；政府网站新闻报道，非预警原文。答案须带2019年/莆田/织纹螺限定。
   scope_note: 本条为2019年莆田市秀屿区海洋与渔业局针对织纹螺（麦螺）检出麻痹性贝类毒素发布的禁捕预警，限2019年、莆田（福建）、织纹螺，不构成全国普遍禁令。
+  scope_note_terms:
+  - 赤潮
+  - 贝毒
+  - 织纹螺
+  - 贝类
+  - 采捕
+  - 麻痹性
 
 - id: POL-SCSFRI-ENSO-230
   source_record_schema: 5
@@ -6380,6 +6442,14 @@ sources:
   update_freq: static
   watch_note: ENSO 与北部湾渔业资源群落协同影响（2006-2020）
   scope_note: 本注记依据2025年南海所研究新闻稿：北部湾2006–2020年多物种质量谱分析显示群落衰退、营养级和大型鱼类指数年均下降、小体型物种占比升高；捕捞是主因，气候异常进一步放大胁迫；该文对ENSO方向性表述较弱，不能单独证明厄尔尼诺导致减少，仅覆盖北部湾。
+  scope_note_terms:
+  - 厄尔尼诺
+  - ENSO
+  - 拉尼娜
+  - 鱼群
+  - 丰度
+  - 南海鱼
+
 - id: POL-CAFS-ENSO-231
   source_record_schema: 5
   title: 南海所对捕捞和气候变化在北部湾鱼类种类演替和种群动态中的作用研究取得新进展
@@ -6462,6 +6532,14 @@ sources:
   update_freq: static
   watch_note: 厄尔尼诺与北部湾鱼类生物量下降（1993/1998）
   scope_note: 本注记依据2019年南海所研究新闻稿：北部湾湾口1959–2010年数据；1993、1998年鱼类生物量突然减少与厄尔尼诺事件有关，捕捞压力是底层鱼类资源下降主因，气候可能是中上层鱼类比例上升的驱动；仅覆盖北部湾，不能外推南海全域或所有年份，属研究结论而非预报。
+  scope_note_terms:
+  - 厄尔尼诺
+  - ENSO
+  - 拉尼娜
+  - 鱼群
+  - 丰度
+  - 南海鱼
+
 - id: POL-SCSFRI-ENSO-232
   source_record_schema: 5
   title: 南海所在ENSO影响热带亚热带海域鱼类群落格局研究方面取得新进展
@@ -6544,6 +6622,14 @@ sources:
   watch_note: 2026年新闻稿：ENSO不同状态与南海近海鱼类群落格局；La Niña与竹筴鱼/蓝圆鲹资源波动相关；研究结论非预报。
   scope_note: 据2026年南海所研究新闻稿（成果发表于 Water Biology and Security 与《中国水产科学》）：研究区为北部湾/南海近海；La
     Niña年与竹筴鱼、蓝圆鲹波动及群落结构变化相关，La Niña年残差关联网络更稠密、El Niño年更简单；证明ENSO状态与群落格局相关，不证明厄尔尼诺年鱼一定少，属研究结论非预报，不能外推南海全域。
+  scope_note_terms:
+  - 厄尔尼诺
+  - ENSO
+  - 拉尼娜
+  - 鱼群
+  - 丰度
+  - 南海鱼
+
 - id: POL-MOA-SHELLFISH-233
   source_record_schema: 5
   title: 2019年海水贝类产品卫生监测和生产区域划型计划
@@ -6626,6 +6712,14 @@ sources:
   update_freq: static
   watch_note: 2019年度计划；赤潮/多批次毒素超标时省级（或授权市县）发临时公告、暂时关闭、关闭期间禁止采捕海水贝类，连续两次监测合格后开放；后续年度可能更新，引用前核对最新版。
   scope_note: 本规范规定贝毒超标时由省级主管部门发布临时公告，关闭区域并禁止采捕；连续两次监测合格后开放；属国家层面规范性依据，具体关闭范围以地方公告为准。
+  scope_note_terms:
+  - 赤潮
+  - 贝毒
+  - 织纹螺
+  - 贝类
+  - 采捕
+  - 麻痹性
+
 - id: POL-HAINAN-GROUP-234
   source_record_schema: 5
   title: 海南省海洋渔船安全生产管理规定（2017修正）
@@ -6707,6 +6801,13 @@ sources:
   update_freq: static
   watch_note: 2017修正版第二十三条：未按规定跟帮（组）生产或擅自脱帮（组），对船长/直接责任人员处500-1000元。
   scope_note: 海南省地方规定第二十三条：未按规定跟帮（组）生产或擅自脱帮（组），对船长或者直接责任人员处500元以上1000元以下罚款；仅海南辖区。山东228则对船舶所有人或经营人罚500-5000元，且限44.1千瓦以下捕捞船；两地在处罚对象、幅度、适用范围上不同，回答必须带属地+处罚对象+适用范围。
+  scope_note_terms:
+  - 编组
+  - 编队
+  - 跟帮
+  - 脱帮
+  - 单船
+
 gaps:
 - One hundred sources are registered: ninety-eight acquired and no open candidates awaiting disposition.
 - The yearbook coverage matrix has no values in the public repository; all values stay local.
