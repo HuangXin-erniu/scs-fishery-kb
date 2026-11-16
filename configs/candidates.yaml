@@ -515,3 +515,36 @@ candidates:
   expires_at: '2027-05-15'
   status: open
   note: 'gap-register ENSO; official research news: 1993/1998 biomass drops linked to El Nino in Beibu Gulf'
+- id: CAND-2026-113
+  title: 南海所在ENSO影响热带亚热带海域鱼类群落格局研究方面取得新进展
+  url: https://www.scsfri.ac.cn/info/1003/41897.htm
+  publisher: 中国水产科学研究院南海水产研究所
+  proposed_tier: A
+  proposed_class: reference
+  reason: gap
+  first_seen: '2026-11-16'
+  expires_at: '2027-05-15'
+  status: open
+  note: 'gap-register ENSO; 2026 research news explicitly covers South China Sea coastal fish communities and ENSO states'
+- id: CAND-2026-114
+  title: 海水贝类产品卫生监测和生产区域划型技术规范（临时关闭与解禁规则）
+  url: http://www.yyj.moa.gov.cn/scyz/201903/P020190516614684910186.docx
+  publisher: 农业农村部渔业渔政管理局
+  proposed_tier: A
+  proposed_class: normative
+  reason: gap
+  first_seen: '2026-11-16'
+  expires_at: '2027-05-15'
+  status: open
+  note: 'gap-register SHELLFISH; official rule: toxin exceed -> provincial temporary closure, harvest ban; reopen after two consecutive qualified tests'
+- id: CAND-2026-115
+  title: 海南省海洋渔船安全生产管理规定（2017修正）
+  url: https://www.hainan.gov.cn/hainan/xxyxzfgz/202111/e5c3f157cb9d4594920fdeaceb966716/files/04ad59ec2a354a51916ed09f572da83f.docx
+  publisher: 海南省人民政府
+  proposed_tier: B
+  proposed_class: normative
+  reason: gap
+  first_seen: '2026-11-16'
+  expires_at: '2027-05-15'
+  status: open
+  note: 'gap-register GROUP_FISHING; Art.23 fines 500-1000 for not following group or leaving group'

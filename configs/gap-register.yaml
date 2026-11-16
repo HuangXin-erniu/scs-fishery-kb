@@ -17,8 +17,9 @@ gaps:
   source_ids:
   - POL-SCSFRI-ENSO-230
   - POL-CAFS-ENSO-231
-  note: Official CAFS/SCSFRI research directly links ENSO to Beibu Gulf fishery community/biomass;
-    still not a deterministic "always less" forecast.
+  - POL-SCSFRI-ENSO-232
+  note: Official research covers Beibu Gulf and 2026 South China Sea coastal community;
+    pending human review; answer remains conditional, not a forecast.
 - id: SHELLFISH_TOXIN
   question_terms:
   - 贝毒
@@ -38,8 +39,9 @@ gaps:
   - POL-GD-SHELLFISH-222
   - POL-MOA-SHELLFISH-223
   - POL-PT-SHELLFISH-229
-  note: '2026-11-16 human review: promote only reviewed sources; held sources are
-    references, not gap closures.'
+  - POL-MOA-SHELLFISH-233
+  note: National technical rule on temporary closure/harvest ban and reopening; pending
+    human review.
 - id: FORECAST_PRODUCT_ACCESS
   question_terms:
   - 渔情产品
@@ -100,5 +102,6 @@ gaps:
   source_ids:
   - POL-MOA-GROUP-225
   - POL-SD-GROUP-228
-  note: '2026-11-16 human review: promote only reviewed sources; held sources are
-    references, not gap closures.'
+  - POL-HAINAN-GROUP-234
+  note: Shandong and Hainan provincial rules with penalties; no national unified penalty
+    found; pending human review.
