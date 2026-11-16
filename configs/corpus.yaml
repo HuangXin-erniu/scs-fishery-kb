@@ -700,12 +700,15 @@ sources:
   license: public
   sensitivity: public
   status: acquired
-  priority: P2
+  priority: P1
   volume: 1 PDF; 76 pages; about 80300 characters
   update_freq: annual
   hash: a263e432d33b19dfbb012600789aef84e84bfaef4a9bdd931714cd04f2ca621f
-  acquisition: Downloaded 2026-11-02 from the marine disaster reduction centre bulletin list, published 2026-06-08.
-  notes: The current annual bulletin on marine ecological status and early warning, issued under the Marine Environment Protection Law. The PDF header marks it 报批稿; the file is registered as published, with the marker recorded.
+  acquisition: Downloaded 2026-11-02 from the marine disaster reduction centre bulletin
+    list, published 2026-06-08.
+  notes: The current annual bulletin on marine ecological status and early warning,
+    issued under the Marine Environment Protection Law. The PDF header marks it 报批稿;
+    the file is registered as published, with the marker recorded.
   level: national
   authority_tier: A
   retrieval:
@@ -719,8 +722,9 @@ sources:
     basis: publication
     review_due: '2026-12-03'
     cadence: monthly
-    note: "Published 2026-06-08 and the latest edition on the official bulletin list."
+    note: Published 2026-06-08 and the latest edition on the official bulletin list.
   watch_note: Static official file; no change feed. Rechecked at the quarterly review.
+
 - id: STAT-DIS-074
   type: notice
   title: 2023 China marine disaster bulletin
@@ -2394,12 +2398,13 @@ sources:
   license: public
   sensitivity: public
   status: acquired
-  priority: P2
+  priority: P1
   volume: 1 HTML page; notice page
   update_freq: static
   hash: f7a9349656313a8e263a4a7ca637945f679f0f213f577ccb91d19e7a4ed637b5
   acquisition: Captured 2026-11-06 from https://www.gov.cn/zhengce/zhengceku/2021-08/07/content_5630005.htm
-  notes: 'Term evidence: 赤潮 appears in the plan title and the notice body; this is an official usage source, not the full plan text.'
+  notes: 'Term evidence: 赤潮 appears in the plan title and the notice body; this is an
+    official usage source, not the full plan text.'
   level: national
   authority_tier: A
   retrieval:
@@ -3133,12 +3138,15 @@ sources:
   license: public
   sensitivity: public
   status: acquired
-  priority: P2
+  priority: P1
   volume: 1 HTML page
   update_freq: static
   hash: 86f02a3fe32061087fa0a983efbf1ba36e4bd7f1c397444c26238b86078e18a9
-  acquisition: Captured 2026-11-07 from https://pmc.ncbi.nlm.nih.gov/articles/PMC12190060/ (10.3390/biology14060684)
-  notes: 'Peer-reviewed paper: HSI model for purpleback flying squid in the Nansha offshore area; 0.5-degree and seasonal resolution gives the highest accuracy (84%). Captured from PubMed Central because the publisher blocks the local client.'
+  acquisition: Captured 2026-11-07 from https://pmc.ncbi.nlm.nih.gov/articles/PMC12190060/
+    (10.3390/biology14060684)
+  notes: 'Peer-reviewed paper: HSI model for purpleback flying squid in the Nansha offshore
+    area; 0.5-degree and seasonal resolution gives the highest accuracy (84%). Captured
+    from PubMed Central because the publisher blocks the local client.'
   level: international
   authority_tier: B
   retrieval:
@@ -3178,12 +3186,14 @@ sources:
   license: public
   sensitivity: public
   status: acquired
-  priority: P2
+  priority: P1
   volume: 1 PDF
   update_freq: static
   hash: 5a61fadcf53a30f6f2b3d781edfbe9b40bf289a4937ae37018caabee21f62b92
-  acquisition: Captured 2026-11-07 from https://meetings.pices.int/publications/Presentations/PICES-2025/S02-D1-1020-Po-Yuan-Hsiao.pdf (PICES-2025-S02-D1-1020)
-  notes: 'Conference presentation: species-specific ENSO responses; warming and cooling effects differ by species and cannot be generalised.'
+  acquisition: Captured 2026-11-07 from https://meetings.pices.int/publications/Presentations/PICES-2025/S02-D1-1020-Po-Yuan-Hsiao.pdf
+    (PICES-2025-S02-D1-1020)
+  notes: 'Conference presentation: species-specific ENSO responses; warming and cooling
+    effects differ by species and cannot be generalised.'
   level: international
   authority_tier: B
   retrieval:

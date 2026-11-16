@@ -64,5 +64,12 @@ def test_repository_lexicon_loads() -> None:
         "贝毒",
         "编组生产",
         "赤潮",
+        "缺氧",
+        "热浪",
+        "海龟",
+        "白海豚",
+        "鱼类丰度",
+        "厄尔尼诺",
+        "公报",
     ]
     assert expand_query("休渔期管理中的例外审批", groups).endswith("专项 特许")

@@ -112,6 +112,7 @@ UNSUPPORTED_SCOPE = (
     r"今年.*(什么时候|达标率)",
     r"赤潮预警.*(分几级|几个等级|多少级)",
     r"厄尔尼诺.*台风.*(会多吗|会不会|是否|一定)",
+    r"未来.*(十年|几十年|几度|多少度).*(海温|水温|气温|海平面|气候|鱼|资源)",
 )
 UNSUPPORTED_RE = tuple(re.compile(pattern) for pattern in UNSUPPORTED_SCOPE)
 

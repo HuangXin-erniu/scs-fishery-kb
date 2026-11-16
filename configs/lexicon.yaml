@@ -44,6 +44,39 @@ groups:
   - 麻痹性贝类毒素
   - 织纹螺
   note: Gap query asks 赤潮+吃贝; formal ban uses 织纹螺/PSP.
+- term: 缺氧
+  variants:
+  - 低氧
+  - 溶解氧
+  note: 'A1 citation repair: hypoxia questions use 缺氧 while bulletins say 低氧.'
+- term: 热浪
+  variants:
+  - 海洋热浪
+  note: 'A1 citation repair: marine heatwave terminology.'
+- term: 海龟
+  variants:
+  - 水生野生动物
+  - 珍贵濒危水生野生动物
+  note: 'A1 citation repair: turtle questions map to wildlife law.'
+- term: 白海豚
+  variants:
+  - 珍贵濒危水生野生动物
+  - 水生野生动物
+  note: 'A1 citation repair: dolphin questions map to wildlife law.'
+- term: 鱼类丰度
+  variants:
+  - 种类特异性
+  - ENSO响应
+  note: 'A1 citation repair: ENSO fish-abundance paper.'
+- term: 厄尔尼诺
+  variants:
+  - ENSO响应
+  - 种类特异性
+  note: 'A1 citation repair: ENSO fish-abundance paper.'
+- term: 公报
+  variants:
+  - 监测公报
+  note: 'A1 citation repair: marine ecological bulletin.'
 rejected:
 - term: 休渔
   variants:
