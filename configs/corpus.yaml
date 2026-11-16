@@ -6301,11 +6301,11 @@ sources:
     review_due: '2026-12-16'
     cadence: monthly
     ttl_days: 30
-    note: provisional watch diff
+    note: canonical practical source after human review
   retrieval:
     channel: main
     parseable: true
-    note: provisional candidate; review before canonical promotion
+    note: canonical practical source; main index
   lifecycle: active
   license: public
   sensitivity: public
@@ -6341,10 +6341,10 @@ sources:
     text: null
     checked_at: '2026-11-16'
   ingest:
-    tier: provisional
-    reviewed_by: null
-    reviewed_at: null
-    review_note: watch diff; provisional until human review
+    tier: canonical
+    reviewed_by: human-review-2026-11-16
+    reviewed_at: '2026-11-16'
+    review_note: human review confirmed 2026-11-16
   practical:
     domain: environment
     personas:
@@ -6369,6 +6369,7 @@ sources:
   priority: P1
   update_freq: static
   watch_note: ENSO 与北部湾渔业资源群落协同影响（2006-2020）
+  scope_note: 本注记依据2025年南海所研究新闻稿：北部湾2006–2020年多物种质量谱分析显示群落衰退、营养级和大型鱼类指数年均下降、小体型物种占比升高；捕捞是主因，气候异常进一步放大胁迫；该文对ENSO方向性表述较弱，不能单独证明厄尔尼诺导致减少，仅覆盖北部湾。
 - id: POL-CAFS-ENSO-231
   source_record_schema: 5
   title: 南海所对捕捞和气候变化在北部湾鱼类种类演替和种群动态中的作用研究取得新进展
@@ -6382,11 +6383,11 @@ sources:
     review_due: '2026-12-16'
     cadence: monthly
     ttl_days: 30
-    note: provisional watch diff
+    note: canonical practical source after human review
   retrieval:
     channel: main
     parseable: true
-    note: provisional candidate; review before canonical promotion
+    note: canonical practical source; main index
   lifecycle: active
   license: public
   sensitivity: public
@@ -6422,10 +6423,10 @@ sources:
     text: null
     checked_at: '2026-11-16'
   ingest:
-    tier: provisional
-    reviewed_by: null
-    reviewed_at: null
-    review_note: watch diff; provisional until human review
+    tier: canonical
+    reviewed_by: human-review-2026-11-16
+    reviewed_at: '2026-11-16'
+    review_note: human review confirmed 2026-11-16
   practical:
     domain: environment
     personas:
@@ -6450,7 +6451,7 @@ sources:
   priority: P1
   update_freq: static
   watch_note: 厄尔尼诺与北部湾鱼类生物量下降（1993/1998）
-
+  scope_note: 本注记依据2019年南海所研究新闻稿：北部湾湾口1959–2010年数据；1993、1998年鱼类生物量突然减少与厄尔尼诺事件有关，捕捞压力是底层鱼类资源下降主因，气候可能是中上层鱼类比例上升的驱动；仅覆盖北部湾，不能外推南海全域或所有年份，属研究结论而非预报。
 gaps:
 - One hundred sources are registered: ninety-eight acquired and no open candidates awaiting disposition.
 - The yearbook coverage matrix has no values in the public repository; all values stay local.

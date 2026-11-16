@@ -2612,3 +2612,23 @@ provisional and the answer says the permission path is not in the public corpus.
 
 Registry: **132 canonical / 4 provisional** (221, 227, 230, 231). Review sheet:
 `runs/P26-P1/human-review-provisional-canonical-round4.csv`.
+
+### ENSO sources promoted and answer role split (2026-11-16)
+
+`POL-CAFS-ENSO-231` and `POL-SCSFRI-ENSO-230` were promoted to canonical as
+**references**. Their roles are kept distinct in `scope_note`:
+
+- **231** is the direct El Niño↔biomass evidence (Beibu Gulf mouth, 1959–2010;
+  1993/1998 biomass drops associated with El Niño; fishing pressure dominant);
+- **230** supports "fishing dominant, climate amplifies" and the 2006–2020
+  community decline; it does not by itself prove ENSO causes a decline.
+
+Both are research news releases, not observation bulletins or forecasts, and
+cover only the Beibu Gulf. IG-048 now follows the required skeleton: Beibu Gulf
+1993/1998 association → fishing pressure primary → cannot infer "every El Niño
+year means fewer fish in the whole South China Sea" → research result, not a
+forecast. ENSO remains **partial**.
+
+Registry: **134 canonical / 2 provisional** (`POL-CMA-ENSO-221`,
+`POL-MOA-FORECAST-227`). Forecast gap stays `closed-no-public-source`, with the
+three search queries and date recorded in `configs/gap-register.yaml`.

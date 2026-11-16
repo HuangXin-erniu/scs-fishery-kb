@@ -1792,3 +1792,6 @@ This log records material project changes by date. It does not use release versi
 - ENSO: added two official CAFS/SCSFRI research articles; IG-048 now conditional
   with Beibu Gulf evidence, gap partial. FORECAST: no public permission rule;
   logged search and closed as no-public-source. 132 canonical/4 provisional.
+- ENSO 231/230 promoted canonical with distinct scope notes; IG-048 regenerated
+  to the Beibu Gulf/1993-1998/fishing-primary/non-forecast skeleton. Registry 134
+  canonical/2 provisional. Forecast log (3 queries + date) retained.
