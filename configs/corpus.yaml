@@ -6138,18 +6138,18 @@ sources:
     review_due: '2026-12-16'
     cadence: monthly
     ttl_days: 30
-    note: provisional watch diff
+    note: canonical practical source after human review
   retrieval:
     channel: main
     parseable: true
-    note: provisional candidate; review before canonical promotion
+    note: canonical practical source; main index
   lifecycle: active
   license: public
   sensitivity: public
   hash: 32c68b98e207009ee4479bb2be1944509d4741427ccc0b5b52c3d72ef43de481
   location: raw/POL-SD-GROUP-228/excerpt-2024-single.html
   provenance:
-    url: https://www.penglai.gov.cn/attach/0/72b762f16d3c43898cbcb74ae3381e13.pdf
+    url: http://www.shandong.gov.cn/art/2024/2/27/art_100623_44102.html
     document_no: 山东省人民政府令第357号
     published_at: null
     retrieved_at: '2026-11-16'
@@ -6158,7 +6158,7 @@ sources:
     mime: text/html
     snapshot_path: raw/POL-SD-GROUP-228/excerpt-2024-single.html
   effective:
-    from: null
+    from: '2024-01-04'
     to: null
   quality:
     text_layer: true
@@ -6172,16 +6172,16 @@ sources:
     ocr_confidence: null
   authority:
     score: 4
-    evidence_url: https://www.penglai.gov.cn/attach/0/72b762f16d3c43898cbcb74ae3381e13.pdf
+    evidence_url: http://www.shandong.gov.cn/art/2024/2/27/art_100623_44102.html
   license_evidence:
-    url: https://www.penglai.gov.cn/attach/0/72b762f16d3c43898cbcb74ae3381e13.pdf
+    url: http://www.shandong.gov.cn/art/2024/2/27/art_100623_44102.html
     text: null
     checked_at: '2026-11-16'
   ingest:
-    tier: provisional
-    reviewed_by: null
-    reviewed_at: null
-    review_note: watch diff; provisional until human review
+    tier: canonical
+    reviewed_by: human-review-2026-11-16
+    reviewed_at: '2026-11-16'
+    review_note: human review confirmed 2026-11-16
   practical:
     domain: safety
     personas:
@@ -6203,8 +6203,9 @@ sources:
   format: html
   priority: P1
   update_freq: static
-  watch_note: 2024年修正版第十四条（44.1kW以下必须编队）与第三十二条第八项（未编队罚500-5000）连续节录；2026年5月省厅拟废止并并入条例，出台后替换。
+  watch_note: 2024年修正版第十四条（44.1kW以下必须编队）与第三十二条第八项（未编队直接罚500-5000）节录；2026年5月省厅拟废止并并入条例，出台后替换。
   title_zh: 山东省渔业船舶管理办法（2024年修正）
+  scope_note: 本罚则出自《山东省渔业船舶管理办法》（2024年修正）第三十二条第八项：未按规定编队生产，直接处500元以上5000元以下罚款；仅适用于44.1千瓦以下捕捞渔业船舶，属山东地方规章。
 
 - id: POL-PT-SHELLFISH-229
   source_record_schema: 5
@@ -6285,6 +6286,8 @@ sources:
   priority: P1
   update_freq: static
   watch_note: 2019-04-24 莆田市秀屿区月塘镇织纹螺（麦螺）检出麻痹性贝毒，市海洋与渔业局发布预警并禁止采捕；政府网站新闻报道，非预警原文。答案须带2019年/莆田/织纹螺限定。
+  scope_note: 本条为2019年莆田市秀屿区海洋与渔业局针对织纹螺（麦螺）检出麻痹性贝类毒素发布的禁捕预警，限2019年、莆田（福建）、织纹螺，不构成全国普遍禁令。
+
 gaps:
 - One hundred sources are registered: ninety-eight acquired and no open candidates awaiting disposition.
 - The yearbook coverage matrix has no values in the public repository; all values stay local.

@@ -740,6 +740,28 @@ class AnswerService:
                 caveat = "注意：问题未说明省份；以上为属地规定，其他省份以属地规定为准。"
             elif local_levels:
                 caveat = "注意：问题未说明省份；其中涉及属地执行的部分，以当地规定为准。"
+            scope_notes = []
+            for doc_id in cited_docs:
+                note = str(self._registry.get(doc_id, {}).get("scope_note") or "").strip()
+                if note and note not in result.answer.text:
+                    scope_notes.append(note)
+            if scope_notes:
+                fields = dict(result.contract_fields)
+                gap = list(fields.get("gap") or [])
+                gap.append("口径注记")
+                fields["gap"] = gap
+                result = replace(
+                    result,
+                    answer=Answer(
+                        text=result.answer.text
+                        + "\n口径："
+                        + "；".join(dict.fromkeys(scope_notes)),
+                        citations=result.answer.citations,
+                        abstained=False,
+                        reason=result.answer.reason,
+                    ),
+                    contract_fields=fields,
+                )
             if caveat:
                 fields = dict(result.contract_fields)
                 gap = list(fields.get("gap") or [])

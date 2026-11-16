@@ -2576,3 +2576,20 @@ Human review: 223/225/229 PASS and promoted to canonical; 221/227 remain HOLD.
 3 provisional** (221, 227, 228). A single-paragraph excerpt is used because the
 HTML parser kept only the first heading; the excerpt contains both Art. 14 and
 Art. 32(8) and points to the official 2024 page.
+
+### 228 final promotion and scope notes (2026-11-16)
+
+After human PASS, three metadata fixes were applied before promotion:
+`provenance.url`, `authority.evidence_url` and `license_evidence.url` now point
+to the 2024 Shandong government page (not the 2019 Penglai penalty list);
+`effective.from=2024-01-04`; the old 2019 `excerpt.txt` was moved to
+`raw/POL-SD-GROUP-228/archive/excerpt-2019-old.txt`.
+
+`POL-SD-GROUP-228` is canonical. Registry: **132 canonical / 2 provisional**
+(`POL-CMA-ENSO-221`, `POL-MOA-FORECAST-227`).
+
+A deterministic `scope_note` is appended when a cited source has one:
+- 228: 2024 Art.32(8), direct 500–5000 yuan, only ≤44.1 kW capture vessels,
+  Shandong local regulation;
+- 229: 2019 Putian/ Xiuyu PSP ban, 织纹螺 only, not a national ban.
+IG-067 and IG-051 now carry these limits in the answer.

@@ -1785,3 +1785,7 @@ This log records material project changes by date. It does not use release versi
   44.1kW + Art.32(8) 500-5000) and kept provisional for re-review. 131
   canonical/3 provisional. Forensics: answer layer still omits the 228 amount;
   flagged for prompt polish before promotion.
+- 228 promoted after metadata fixes (official 357号 URL, effective 2024-01-04,
+  old excerpt archived). Added scope_note injection; IG-067 now states 500-5000
+  and 44.1kW/Shandong limits, IG-051 states 2019/Putian/织纹螺 limits. Registry
+  132 canonical/2 provisional.
