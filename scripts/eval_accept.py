@@ -112,9 +112,10 @@ def _build_llm(data_root: Path, arm: str = "single"):
                 channels=channels,
             )
             if contract.answerability == "abstain":
-                return Answer(
-                    text=contract.body, citations=[], abstained=True, reason="gap_declared"
-                )
+                body = contract.body
+                if "渠道" not in body:
+                    body = body + "\n渠道：属地渔业主管部门或渔政渔港监督机构；省级农业农村厅。"
+                return Answer(text=body, citations=[], abstained=True, reason="gap_declared")
             return Answer(
                 text=contract.body,
                 citations=answer.citations,
@@ -145,9 +146,10 @@ def _build_llm(data_root: Path, arm: str = "single"):
                 channels=channels,
             )
             if contract.answerability == "abstain":
-                return Answer(
-                    text=contract.body, citations=[], abstained=True, reason="gap_declared"
-                )
+                body = contract.body
+                if "渠道" not in body:
+                    body = body + "\n渠道：属地渔业主管部门或渔政渔港监督机构；省级农业农村厅。"
+                return Answer(text=body, citations=[], abstained=True, reason="gap_declared")
             return Answer(
                 text=contract.body,
                 citations=answer.citations,
@@ -186,9 +188,10 @@ def _build_llm(data_root: Path, arm: str = "single"):
                 channels=channels,
             )
             if contract.answerability == "abstain":
-                return Answer(
-                    text=contract.body, citations=[], abstained=True, reason="gap_declared"
-                )
+                body = contract.body
+                if "渠道" not in body:
+                    body = body + "\n渠道：属地渔业主管部门或渔政渔港监督机构；省级农业农村厅。"
+                return Answer(text=body, citations=[], abstained=True, reason="gap_declared")
             return Answer(
                 text=contract.body,
                 citations=answer.citations,

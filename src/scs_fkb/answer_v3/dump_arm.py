@@ -108,6 +108,19 @@ def _numeric_lines(packed: list[tuple[str, Any, str]]) -> list[str]:
     return lines
 
 
+def _refusal(reason: str) -> Answer:
+    """Refusals must name a channel even when no clause was retrieved."""
+    return Answer(
+        text=(
+            "证据不足，无法从已收录语料给出结论。\n"
+            "渠道：属地渔业主管部门或渔政渔港监督机构；省级农业农村厅。"
+        ),
+        citations=(),
+        abstained=True,
+        reason=reason,
+    )
+
+
 def answer_with_dump(
     question: str,
     retriever: Any,
@@ -128,7 +141,7 @@ def answer_with_dump(
     else:
         hits = retriever.search(question, top_k=max_hits)
     if not hits:
-        return Answer(text="", citations=(), abstained=True, reason="no_evidence")
+        return _refusal("no_evidence")
     hits = _enrich(hits)
     rows = _sentences(hits)
     if not rows:
@@ -150,14 +163,14 @@ def answer_with_dump(
     if chosen == "block":
         packed = _pack(rows, max_chars, stop=True)
         if not packed:
-            return Answer(text="", citations=(), abstained=True, reason="no_sentences")
+            return _refusal("no_sentences")
         conclusion = max(packed, key=lambda item: _overlap(item[0], question))
         body = [item for item in packed if item is not conclusion]
     else:
         ranked = sorted(rows, key=lambda item: (-_overlap(item[0], question), item[0]))
         packed = _pack(ranked, max_chars, stop=False)
         if not packed:
-            return Answer(text="", citations=(), abstained=True, reason="no_sentences")
+            return _refusal("no_sentences")
         conclusion = packed[0]
         body = packed[1:]
 

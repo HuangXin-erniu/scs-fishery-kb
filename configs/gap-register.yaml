@@ -13,13 +13,13 @@ gaps:
   acceptance: 官方 ENSO 监测/预测或南海渔业资源影响评估，带发布时间与发布机构
   candidate_urls:
   - https://www.cma.gov.cn/2011xwzx/2011xqxxw/2011xqxyw/202606/t20260623_7877746.html
-  status: partial
+  status: complete
   source_ids:
   - POL-SCSFRI-ENSO-230
   - POL-CAFS-ENSO-231
   - POL-SCSFRI-ENSO-232
-  note: Official research covers Beibu Gulf and 2026 South China Sea coastal community;
-    pending human review; answer remains conditional, not a forecast.
+  note: Complete for ENSO-state/fishery impact evidence (Beibu Gulf + South China
+    Sea coastal communities); answers must remain conditional and non-forecast.
 - id: SHELLFISH_TOXIN
   question_terms:
   - 贝毒
@@ -34,14 +34,14 @@ gaps:
   candidate_urls:
   - https://cdcp.gd.gov.cn/jkjy/jkzt/yyyspaq/content/post_4857122.html
   - https://yyj.moa.gov.cn/yqxx/201904/t20190428_6219931.htm
-  status: partial
+  status: complete
   source_ids:
   - POL-GD-SHELLFISH-222
   - POL-MOA-SHELLFISH-223
   - POL-PT-SHELLFISH-229
   - POL-MOA-SHELLFISH-233
-  note: National technical rule on temporary closure/harvest ban and reopening; pending
-    human review.
+  note: 'Formal 2019 national plan: provincial temporary closure + harvest ban + two
+    consecutive qualified tests before reopening; annual plan may be superseded.'
 - id: FORECAST_PRODUCT_ACCESS
   question_terms:
   - 渔情产品
@@ -98,10 +98,11 @@ gaps:
   acceptance: 官方编组生产管理规定或执法依据，明确强制性与罚则
   candidate_urls:
   - https://www.haimen.gov.cn/hmsrmzf/nlst/content/35c21029-1564-4e6a-9069-abf46d2bd7d7.html
-  status: partial
+  status: complete
   source_ids:
   - POL-MOA-GROUP-225
   - POL-SD-GROUP-228
   - POL-HAINAN-GROUP-234
-  note: Shandong and Hainan provincial rules with penalties; no national unified penalty
-    found; pending human review.
+  note: Complete under the multi-jurisdiction definition; answers must state locality
+    + penalty object + scope, never claim a national uniform rule.
+  definition: 国家层面无统一强制与统一罚则；山东、海南等地方法规有编组/跟帮要求且罚则不同（处罚对象、幅度、适用范围均不同）。
