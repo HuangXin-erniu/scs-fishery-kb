@@ -4,6 +4,10 @@
 > 评测以人工复核为准；报告必须记录 commit、索引版本、模型与问题集版本，保证可复现。
 > 目标值是最低门槛，不是对外承诺；未达标指标要通过误差分析解释，不得改指标掩盖。
 
+- Current shipped index: `251dbf67e804` — 107 documents, 3,940 chunks. Sections below
+  retain the index version they measured; they are historical comparisons, not the
+  current manifest. The 512 aggregate values on the current index are in
+  [metrics-report.md](metrics-report.md).
 - Status: protocol defined; the current question set was reviewed by the project owner in three batches (2026-11-04).
 - Reviewed instrument (2026-11-04, 33 questions: 19 anchors, 8 abstention, 2 reference, 2 statistics, 2 deferred): hybrid **19/19** with MRR 0.68, abstention 7/8, one false refusal, answer rate 18/19, citation resolution 1.00, citation coverage 0.99, extractive faithfulness 1.00 and P95 20 ms; BM25 17/19 (MRR 0.64), BM25 plus lexicon 19/19 (0.69) and dense 15/19 (0.55). Reference 2/2, statistics 2/2, jurisdiction 3/3 and national 2/2. Q-E07 remains the one answered abstention test under the deterministic gate.
 - LLM-assisted run (2026-11-04, `deepseek-v4.1-flash`, low reasoning effort, prompt `rag-v3`): hybrid **19/19** anchors, **8/8** abstention, **0 false refusals**, answer rate 19/19, citation resolution 1.00; model judge correctness **0.76**, completeness **0.66**, faithfulness **0.94**. Q-E07 now abstains because the evidence only lists other fishing grounds; Q-E12 answers from `POL-LAW-009` §第七十八条. These scores are model-assisted, not human review. Prompt-only completeness attempts (v4/v5) and top-document evidence expansion were measured and rejected: completeness fell to 0.61, 0.56 and 0.37, so the v3 baseline is retained. The remaining gap is evidence coverage, not prompt wording.
