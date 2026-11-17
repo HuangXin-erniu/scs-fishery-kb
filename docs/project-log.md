@@ -1851,3 +1851,15 @@ This log records material project changes by date. It does not use release versi
   **open/conditional** because the 150-row human blind review, the 30-row
   double annotation and the independent expert signature are not returned. No
   published line was lowered and no model judgment is reported as human review.
+- 2026-11-17 human blind review returned: **81/150 = 54.0%**, Wilson 95%
+  [46.0%, 61.8%] — gate closed. Failure classes: C1 over-refusal 21, C2
+  sub-question/no conclusion 20, C3 wrong-chunk/raw dump 19, C6 template
+  contamination 4, C4 factual/basis 4, C5 mis-anchored citation 1. The 69 rows
+  are the new regression seed (`regression-150-failures.jsonl`).
+- 2026-11-17 remediation batch 1: C6 fallback relevance gate (question-specific
+  terms; no generic §一(三) paragraph); C4 deterministic answers for electric
+  fishing (2025 Fisheries Law §77), Chinese horseshoe crab, fisheries-crew
+  recruitment (《渔业船员管理办法》§47) and Nansha permits; targeted C1 answers
+  for marine heatwave, 2026 closure dates and the 2022 judicial interpretation.
+  All reruns are in `regress-c*.jsonl`. C1/C2/C3 remain; a fresh 150-row sample
+  is required for acceptance, not this set.
