@@ -118,8 +118,17 @@ class LLMClient:
             http_client=http_client,
         )
 
-    def _trace(self, *, stage: str, prompt_chars: int, max_tokens: int, attempt: int,
-               elapsed_ms: int, outcome: str, error: str = "") -> None:
+    def _trace(
+        self,
+        *,
+        stage: str,
+        prompt_chars: int,
+        max_tokens: int,
+        attempt: int,
+        elapsed_ms: int,
+        outcome: str,
+        error: str = "",
+    ) -> None:
         """Append one metadata-only call record; never write prompt text or keys."""
         if not self.trace_path:
             return
@@ -209,9 +218,7 @@ class LLMClient:
                 outcome="empty",
             )
             budget = max(budget, 1500)
-        raise LLMError(
-            f"model returned an empty completion after 2 attempts ({stage or 'call'})"
-        )
+        raise LLMError(f"model returned an empty completion after 2 attempts ({stage or 'call'})")
 
     def chat_json(
         self,

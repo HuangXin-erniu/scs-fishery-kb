@@ -174,9 +174,7 @@ def d7(record: AuditRecord, chunk_index: dict[str, list[tuple[str, str]]]) -> li
                 max(
                     jaccard(claim, text),
                     _containment(claim, text),
-                    _unigram_containment(claim, text) * 0.9
-                    if len(claim) <= 40
-                    else 0.0,
+                    _unigram_containment(claim, text) * 0.9 if len(claim) <= 40 else 0.0,
                 )
                 >= 0.25
                 for _sec, text in matched
@@ -284,9 +282,7 @@ def d11(record: AuditRecord, doc_meta: dict[str, dict[str, Any]]) -> list[Findin
     if not any(word in text for word in ("现行", "修订", "版", "施行", "生效", "年")):
         if not re.search(r"(?:19|20)\d{2}", text):
             return [
-                Finding(
-                    record.id, "D11", "S3", "引用版本文档但无时效声明", chunk_id=versioned[0]
-                )
+                Finding(record.id, "D11", "S3", "引用版本文档但无时效声明", chunk_id=versioned[0])
             ]
     return []
 

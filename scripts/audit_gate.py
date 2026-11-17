@@ -44,11 +44,7 @@ def main(argv: list[str] | None = None) -> int:
         for row in csv.DictReader(handle):
             counts[row.get("detector", "")] += 1
             severities[row.get("severity", "")] += 1
-    cited = sum(
-        1
-        for record in records
-        if record.get("citations") and not record.get("abstained")
-    )
+    cited = sum(1 for record in records if record.get("citations") and not record.get("abstained"))
     versioned = sum(
         1 for record in records if record.get("citations") and not record.get("abstained")
     )

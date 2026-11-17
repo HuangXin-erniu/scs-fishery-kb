@@ -26,8 +26,10 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--signature", default="")
     args = parser.parse_args(argv)
     rows = list(csv.DictReader(Path(args.worksheet).open(encoding="utf-8-sig")))
-    signature_path = Path(args.signature) if args.signature else Path(args.worksheet).with_name(
-        "expert-30-signature.json"
+    signature_path = (
+        Path(args.signature)
+        if args.signature
+        else Path(args.worksheet).with_name("expert-30-signature.json")
     )
     signature = {}
     if signature_path.is_file():

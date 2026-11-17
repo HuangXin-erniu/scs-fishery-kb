@@ -36,12 +36,11 @@ def test_trace_records_stage_without_prompt_text(monkeypatch, tmp_path) -> None:
     def handler(request: httpx.Request) -> httpx.Response:
         return _reply("正常")
 
-    client = LLMClient(
-        _config(), http_client=httpx.Client(transport=httpx.MockTransport(handler))
+    client = LLMClient(_config(), http_client=httpx.Client(transport=httpx.MockTransport(handler)))
+    assert (
+        client.chat([{"role": "user", "content": "私有问题正文"}], max_tokens=32, stage="standard")
+        == "正常"
     )
-    assert client.chat(
-        [{"role": "user", "content": "私有问题正文"}], max_tokens=32, stage="standard"
-    ) == "正常"
     rows = [json.loads(line) for line in trace.read_text(encoding="utf-8").splitlines()]
     assert len(rows) == 1
     assert rows[0]["stage"] == "standard"
@@ -57,9 +56,7 @@ def test_timeout_raises_dedicated_error(monkeypatch, tmp_path) -> None:
     def handler(request: httpx.Request) -> httpx.Response:
         raise APITimeoutError(request=request)
 
-    client = LLMClient(
-        _config(), http_client=httpx.Client(transport=httpx.MockTransport(handler))
-    )
+    client = LLMClient(_config(), http_client=httpx.Client(transport=httpx.MockTransport(handler)))
     with pytest.raises(LLMTimeoutError):
         client.chat([{"role": "user", "content": "hi"}], stage="probe_long")
     rows = [

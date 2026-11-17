@@ -65,7 +65,10 @@ def test_scope_note_requires_a_term_and_question_overlap() -> None:
 
 
 def test_support_score_rejects_a_level_switch() -> None:
-    assert support_score(
-        "我国分布的所有海龟均被列为国家一级重点保护野生动物",
-        "我国分布的所有海龟均被列为国家二级重点保护野生动物。",
-    ) == 0.0
+    assert (
+        support_score(
+            "我国分布的所有海龟均被列为国家一级重点保护野生动物",
+            "我国分布的所有海龟均被列为国家二级重点保护野生动物。",
+        )
+        == 0.0
+    )

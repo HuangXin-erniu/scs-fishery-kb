@@ -118,9 +118,7 @@ def main(argv: list[str] | None = None) -> int:
                 "visible_answer": row.get("visible_answer", ""),
                 "citations": json.dumps(row.get("citations") or [], ensure_ascii=False),
                 "detectors": ";".join(flags),
-                "ai_label": "fail" if flags else (
-                    "review" if row.get("abstained") else "pass"
-                ),
+                "ai_label": "fail" if flags else ("review" if row.get("abstained") else "pass"),
                 "double_annotation": "yes" if index <= args.double else "no",
                 "human_verdict": "",
                 "citation_ok": "",
@@ -136,8 +134,7 @@ def main(argv: list[str] | None = None) -> int:
         writer.writerows(rows)
     print(f"records={len(records)} s1={len(s1)} selected={len(rows)}")
     print(
-        f"wilson_143={wilson(143, 150)} wilson_137={wilson(137, 150)} "
-        f"kappa_placeholder={kappa([])}"
+        f"wilson_143={wilson(143, 150)} wilson_137={wilson(137, 150)} kappa_placeholder={kappa([])}"
     )
     print(args.out)
     return 0

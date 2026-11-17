@@ -471,8 +471,7 @@ def _evidence_fallback(pack: EvidencePack, question: str) -> StandardResult | No
             (
                 item
                 for item in pack.items
-                if item.chunk.doc_id == "POL-MIN-091"
-                and "最小可捕规格" in str(item.chunk.section)
+                if item.chunk.doc_id == "POL-MIN-091" and "最小可捕规格" in str(item.chunk.section)
             ),
             None,
         )
@@ -487,8 +486,7 @@ def _evidence_fallback(pack: EvidencePack, question: str) -> StandardResult | No
                 if item.chunk.doc_id == "POL-MIN-091" and "幼鱼比例" in item.chunk.section:
                     lines.append(
                         "幼鱼比例：单航次渔获物中，上述品种幼鱼重量2018、2019、2020年"
-                        "分别不得超过50%、30%、20%；2020年之后按20%执行。 "
-                        + _cite(item)
+                        "分别不得超过50%、30%、20%；2020年之后按20%执行。 " + _cite(item)
                     )
                     citations.append(_citation(item))
                 if item.chunk.doc_id == "POL-MIN-091" and "处罚" in item.chunk.section:
@@ -571,7 +569,8 @@ def _evidence_fallback(pack: EvidencePack, question: str) -> StandardResult | No
                     text=(
                         "赤潮或贝毒超标时，由省级主管部门发布（或授权市、县主管部门发布）"
                         "临时公告，对该区域暂时关闭并加强监管；关闭期间禁止采捕海水贝类；"
-                        "风险因素消失、连续两次监测合格后开放。 " + _cite(item)
+                        "风险因素消失、连续两次监测合格后开放。 "
+                        + _cite(item)
                         + f"\n时效：本答复依据《{item.title or item.chunk.doc_id}》"
                         f"（{str(item.chunk.effective_from or '')[:4] or '2019'}年）；"
                         "以最新公布为准。"
@@ -608,7 +607,8 @@ def _evidence_fallback(pack: EvidencePack, question: str) -> StandardResult | No
                         "对船舶所有人、经营人或者管理人：一万元以上十万元以下罚款；"
                         "对责任船员：三千元以上三万元以下罚款。情节严重的，对船舶所有人、"
                         "经营人或者管理人处三万元以上三十万元以下罚款，责任船员证书暂扣六个月"
-                        "至十二个月，直至吊销。 " + _cite(item)
+                        "至十二个月，直至吊销。 "
+                        + _cite(item)
                         + f"\n时效：本答复依据《{item.title or item.chunk.doc_id}》"
                         f"（{str(item.chunk.effective_from or '')[:4] or '2021'}年）；"
                         "以最新公布为准。"
@@ -632,8 +632,7 @@ def _evidence_fallback(pack: EvidencePack, question: str) -> StandardResult | No
             (
                 item
                 for item in pack.items
-                if item.chunk.doc_id == "POL-MIN-091"
-                and "幼鱼比例" in str(item.chunk.section)
+                if item.chunk.doc_id == "POL-MIN-091" and "幼鱼比例" in str(item.chunk.section)
             ),
             None,
         )
@@ -641,8 +640,7 @@ def _evidence_fallback(pack: EvidencePack, question: str) -> StandardResult | No
             (
                 item
                 for item in pack.items
-                if item.chunk.doc_id == "POL-MIN-091"
-                and "处罚" in str(item.chunk.section)
+                if item.chunk.doc_id == "POL-MIN-091" and "处罚" in str(item.chunk.section)
             ),
             None,
         )
@@ -1195,9 +1193,8 @@ class AnswerService:
         if neighbors or clause_rank:
             chunks = list(getattr(self.retriever, "chunks", []) or [])
             hits = expand_neighbors(hits, chunks, neighbors=neighbors, clause_rank=clause_rank)
-        crew_penalty = (
-            any(term in question for term in ("没证", "未持证", "无证", "船员"))
-            and any(term in question for term in ("罚", "多少", "船东", "船长"))
+        crew_penalty = any(term in question for term in ("没证", "未持证", "无证", "船员")) and any(
+            term in question for term in ("罚", "多少", "船东", "船长")
         )
         gear_voluntary = "钓具" in question and "休渔" in question
         redtide = "赤潮" in question and ("采捕" in question or "谁管" in question)
@@ -1401,9 +1398,7 @@ class AnswerService:
                 for doc_id in sorted(cited_docs):
                     entry = self._registry.get(doc_id, {})
                     stamp = str(
-                        (entry.get("effective") or {}).get("from")
-                        or entry.get("year")
-                        or ""
+                        (entry.get("effective") or {}).get("from") or entry.get("year") or ""
                     )[:10]
                     if not stamp:
                         continue
@@ -1474,9 +1469,7 @@ class AnswerService:
                         result,
                         answer=Answer(
                             text=pruned,
-                            citations=_citations_from_text(
-                                pruned, pack.hits, tolerant=True
-                            ),
+                            citations=_citations_from_text(pruned, pack.hits, tolerant=True),
                             abstained=False,
                             reason=result.answer.reason,
                         ),
@@ -1485,11 +1478,9 @@ class AnswerService:
             versions = []
             for doc_id in sorted({citation.doc_id for citation in result.answer.citations}):
                 entry = self._registry.get(doc_id, {})
-                stamp = str(
-                    (entry.get("effective") or {}).get("from")
-                    or entry.get("year")
-                    or ""
-                )[:10]
+                stamp = str((entry.get("effective") or {}).get("from") or entry.get("year") or "")[
+                    :10
+                ]
                 if not stamp:
                     continue
                 if len(stamp) == 4 and stamp.isdigit():

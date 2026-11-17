@@ -21,9 +21,7 @@ QUOTAS = {"休渔": 6, "证照": 6, "执法": 6, "生态": 5, "预报": 4, "补�
 
 def _rows(path: Path) -> list[dict]:
     return [
-        json.loads(line)
-        for line in path.read_text(encoding="utf-8").splitlines()
-        if line.strip()
+        json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line.strip()
     ]
 
 

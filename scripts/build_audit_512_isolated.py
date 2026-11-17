@@ -236,9 +236,7 @@ def main(argv: list[str] | None = None) -> int:
                             "answer_mode": args.answer_mode,
                         },
                     )
-                handle.write(
-                    json.dumps(record.to_dict(), ensure_ascii=False) + "\n"
-                )
+                handle.write(json.dumps(record.to_dict(), ensure_ascii=False) + "\n")
                 handle.flush()
                 written += 1
                 if written % 10 == 0:

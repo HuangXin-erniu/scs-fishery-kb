@@ -81,9 +81,7 @@ def _cached_json(
         cached = cache.get(key)
         if cached is not None:
             return cached
-    value = parse_json_object(
-        client.chat(messages, max_tokens=max_tokens, stage=stage)
-    )
+    value = parse_json_object(client.chat(messages, max_tokens=max_tokens, stage=stage))
     if cache is not None:
         cache.put(key, value)
     return value

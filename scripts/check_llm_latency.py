@@ -59,9 +59,7 @@ def main(argv: list[str] | None = None) -> int:
         for _ in range(max(1, args.repeat)):
             started = time.perf_counter()
             try:
-                reply = client.chat(
-                    _prompt(chars), max_tokens=16, stage=f"probe_{name}"
-                )
+                reply = client.chat(_prompt(chars), max_tokens=16, stage=f"probe_{name}")
                 if not reply.strip():
                     errors.append("empty")
             except LLMError as exc:
@@ -75,9 +73,7 @@ def main(argv: list[str] | None = None) -> int:
             "max_ms": max(latencies),
             "errors": errors,
         }
-        if name == "long" and (
-            errors or report[name]["p95_ms"] > args.threshold * 1000
-        ):
+        if name == "long" and (errors or report[name]["p95_ms"] > args.threshold * 1000):
             failed = True
     if args.json:
         print(json.dumps(report, ensure_ascii=False, indent=2))
