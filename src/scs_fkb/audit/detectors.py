@@ -5,6 +5,7 @@ from difflib import SequenceMatcher
 from typing import Any
 
 from scs_fkb.audit.normalize import (
+    CITATION_RE,
     citations,
     entities,
     jaccard,
@@ -140,6 +141,9 @@ def d7(record: AuditRecord, chunk_index: dict[str, list[tuple[str, str]]]) -> li
             marker in sentence
             for marker in ("证据未", "未覆盖", "未规定", "无法", "不能据此", "缺口", "未收录")
         ):
+            continue
+        claim = re.sub(r"[。；，, \[\]（）()\s]", "", CITATION_RE.sub("", sentence))
+        if len(claim) < 12:
             continue
         cites = citations(sentence)
         if not cites:

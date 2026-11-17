@@ -166,6 +166,10 @@ def _service_512(
             print(f"timeout {row['id']}", flush=True)
             signal.alarm(0)
             continue
+        except Exception as exc:  # noqa: BLE001 - audit must keep going
+            print(f"error {row['id']}: {type(exc).__name__}", flush=True)
+            signal.alarm(0)
+            continue
         finally:
             signal.alarm(0)
         cites = [

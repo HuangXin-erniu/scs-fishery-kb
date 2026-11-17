@@ -55,9 +55,16 @@ def main(argv: list[str] | None = None) -> int:
         title = str(entry.get("title", ""))
         body = chunks.get(doc_id, "")
         first = re.sub(r"\s+", "", body[:3000])
+        if not re.search(r"[\u4e00-\u9fff]", title):
+            continue
+        chinese = len(re.findall(r"[\u4e00-\u9fff]", first))
+        if chinese / max(1, len(first)) < 0.20:
+            continue
         title_grams = ngrams(title, 2)
         coverage = len(title_grams & ngrams(first, 2)) / max(1, len(title_grams))
-        if coverage < 0.60:
+        ctype = str(entry.get("type", ""))
+        threshold = 0.20 if ctype in {"law", "regulation", "rule"} else 0.60
+        if coverage < threshold:
             title_rows.append(
                 {
                     "doc_id": doc_id,
