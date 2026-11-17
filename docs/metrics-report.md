@@ -134,8 +134,8 @@ The full 512 product-path artifact is also complete: 512 records, 0 timeouts,
 81 refusals, 424 cited records and **0 unresolved citation labels**. Its
 deterministic scan has **no S1 finding**: D1/D3/D4=0, D7 support 1.00, as-of
 0.9905; the remaining findings are D11 (4, S3), D2 (1, S2) and D6 (1, S2).
-`512-gate.json` records a deterministic pass; the human blind and expert layers
-are still pending.
+`512-gate.json` records `deterministic_pass: true` and `acceptance_pass: false`;
+the human blind and expert layers are still pending.
 
 A fresh 30-question expert pack was drawn across seven themes and its answers
 also scan clean; the pack and worksheet are sealed under the private run root

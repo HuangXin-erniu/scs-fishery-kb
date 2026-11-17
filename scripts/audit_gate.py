@@ -80,7 +80,9 @@ def main(argv: list[str] | None = None) -> int:
         "asof_rate": asof_rate,
         "wilson_low": wilson_low,
         "blocking": blocking,
-        "pass": not blocking,
+        "deterministic_pass": not blocking,
+        "acceptance_pass": False,
+        "note": "deterministic layer only; human blind review and expert signature are separate",
     }
     Path(args.out).write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
     print(json.dumps(result, ensure_ascii=False, indent=2))
