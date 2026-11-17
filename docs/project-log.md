@@ -1863,3 +1863,9 @@ This log records material project changes by date. It does not use release versi
   for marine heatwave, 2026 closure dates and the 2022 judicial interpretation.
   All reruns are in `regress-c*.jsonl`. C1/C2/C3 remain; a fresh 150-row sample
   is required for acceptance, not this set.
+- 2026-11-17 remediation batch 2: added a second-chance evidence review before
+  refusal (LLM rescue with mandatory citations, verified against the pack) and
+  a conservative deterministic rescue for definitions/statutes; skipped paper
+  chunks and OCR noise. Fixed Y-057, Y-163, Y-187, Y-351, Y-425, Y-506, Y-038
+  partially; Y-164's bad paper dump is suppressed. C1/C2/C3 remain; no
+  acceptance result is claimed.

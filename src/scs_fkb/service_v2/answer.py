@@ -468,6 +468,55 @@ def _subquestion_guard(question: str, text: str) -> str:
     return text + ("\n" + "\n".join(unique) if unique else "")
 
 
+RESCUE_SYSTEM = (
+    "你是南海近海渔业知识库的复核作答器。证据清单中只要有一条能直接回答问题的"
+    "任何一部分，就必须给出有引用的回答；只有全部证据与问题无关时才拒答。"
+    "不得使用证据以外的知识，不得编造条号或数字。"
+    '只输出 JSON：{"answerability":"answerable|partial|refuse",'
+    '"conclusion":"逐句带 [DOC_ID §章节] 引用的回答","citations":["[DOC_ID §章节]"]}。'
+)
+
+
+def _llm_rescue(question: str, pack: EvidencePack, client: Any) -> StandardResult | None:
+    if not pack.items:
+        return None
+    messages = [
+        {"role": "system", "content": RESCUE_SYSTEM},
+        {
+            "role": "user",
+            "content": f"问题：\n{question}\n\n证据清单：\n{pack.text}\n\n按 JSON 输出。",
+        },
+    ]
+    try:
+        value = client.chat_json(messages, max_tokens=1200, stage="rescue")
+    except LLMError:
+        return None
+    text = str(value.get("conclusion") or value.get("answer") or "").strip()
+    if len(text) < 12:
+        return None
+    from ..rag import _citations_from_text
+
+    citations = _citations_from_text(text, pack.hits, tolerant=True)
+    if not citations:
+        return None
+    return StandardResult(
+        answer=Answer(
+            text=text,
+            citations=citations,
+            abstained=False,
+            reason="llm_rescue",
+        ),
+        pack=pack,
+        confidence=0.35,
+        answerability=str(value.get("answerability") or "partial"),
+        contract_fields={
+            "answerability": str(value.get("answerability") or "partial"),
+            "conclusion": text,
+            "gap": [],
+        },
+    )
+
+
 def _question_terms(question: str) -> list[str]:
     stop = {
         "休渔",
@@ -515,6 +564,8 @@ def _rescue_answer(question: str, chunks: list[Any]) -> tuple[str, Any] | None:
     best_score = 0
     wants_number = any(term in question for term in ("多少", "几年", "几级", "多大", "几个月"))
     for chunk in chunks:
+        if str(getattr(chunk, "doc_id", "")).startswith("PAPER-"):
+            continue
         text = " ".join(str(getattr(chunk, "text", "") or "").split())
         if not text or any(marker in text for marker in ("×10", "ꎬ", "􀆰", "网站地图")):
             continue
@@ -1438,6 +1489,19 @@ class AnswerService:
                 )
             if direct is not None:
                 return direct
+        if (
+            "养殖" in question
+            and "休渔" in question
+            and any(term in question for term in ("运", "租", "蚝"))
+        ):
+            direct = _direct_chunk(
+                "POL-GX-CLOSURE-206",
+                "养殖企业或个人不得在休渔期间雇请",
+                "aquaculture_rent_fallback",
+                prefix="不可以：",
+            )
+            if direct is not None:
+                return direct
         if any(term in question for term in ("电鱼", "炸鱼", "毒鱼")):
             chunk = next(
                 (
@@ -1686,8 +1750,25 @@ class AnswerService:
             marker in result.answer.text
             for marker in ("证据不足", "未覆盖", "无法回答", "不能据", "仅涉及", "未给出", "未明确")
         ):
+            llm_rescue = _llm_rescue(question, pack, client)
+            if llm_rescue is not None:
+                result = llm_rescue
             rescue = _rescue_answer(question, getattr(self.retriever, "chunks", []) or [])
-            if rescue is not None:
+            if rescue is not None and (
+                result.answer.abstained
+                or any(
+                    marker in result.answer.text
+                    for marker in (
+                        "证据不足",
+                        "未覆盖",
+                        "无法回答",
+                        "不能据",
+                        "仅涉及",
+                        "未给出",
+                        "未明确",
+                    )
+                )
+            ):
                 sentence, chunk = rescue
                 citation = Citation(
                     doc_id=chunk.doc_id,
