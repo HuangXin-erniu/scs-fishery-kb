@@ -1913,3 +1913,12 @@ This log records material project changes by date. It does not use release versi
   (crew penalty, juvenile ratio, heatwave definition) and turtle/crew answers
   now carry intent-specific leads. A fresh 150 was drawn from the remaining 212
   questions not used by any human review or blind run (`blind-150-v2`).
+- 2026-11-17 blind v2 (150 from the remaining 212) also failed the consistency
+  gate: Y-070/Y-350 shared the juvenile-ratio body. After narrowing that branch
+  and blocking low-confidence rescue for 情节严重, `answers-fixed.jsonl` has
+  **0 DUP_ANSWER** (7 topic-mismatch warnings are refusals). The v2 batch is
+  nevertheless **withdrawn as acceptance evidence** because it was inspected
+  while fixing the duplicate. The unused pool is now only 62 questions
+  (52 dev + 10 holdout), insufficient for another 150. Acceptance is blocked
+  pending a new unused question pool; no line is lowered and no human review is
+  claimed for v2.

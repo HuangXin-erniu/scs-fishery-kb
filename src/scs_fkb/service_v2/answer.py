@@ -914,7 +914,7 @@ def _evidence_fallback(pack: EvidencePack, question: str) -> StandardResult | No
         "幼鱼" in question
         and "比例" in question
         and any(term in question for term in ("多少", "怎么定", "20%", "百分之二十"))
-        and not any(term in question for term in ("移送", "同时", "网目"))
+        and not any(term in question for term in ("移送", "同时", "网目", "情节严重"))
     ):
         ratio = next(
             (
