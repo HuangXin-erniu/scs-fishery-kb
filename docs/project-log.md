@@ -1907,3 +1907,9 @@ This log records material project changes by date. It does not use release versi
   (Y-096), seahorse (Y-416), port fire (Y-468) and foreign-detention gap
   (Y-022). D9 now skips abstained records. A 14-row merged regression batch has
   0 DUP_ANSWER and 0 D1–D11 findings.
+- 2026-11-17 blind v1 run produced 150 answers; consistency gate found
+  DUP_ANSWER on crew/juvenile/heatwave fallbacks. The batch is **withdrawn as
+  acceptance evidence** and kept as regression. Broad fallbacks were narrowed
+  (crew penalty, juvenile ratio, heatwave definition) and turtle/crew answers
+  now carry intent-specific leads. A fresh 150 was drawn from the remaining 212
+  questions not used by any human review or blind run (`blind-150-v2`).

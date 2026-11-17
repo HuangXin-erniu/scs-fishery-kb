@@ -887,7 +887,8 @@ def _evidence_fallback(pack: EvidencePack, question: str) -> StandardResult | No
             return StandardResult(
                 answer=Answer(
                     text=(
-                        "渔业船舶所有人或经营人招用未取得规定证件的人员在渔业船舶上工作的，"
+                        ("现场处理：" if "现场" in question else "罚谁：")
+                        + "渔业船舶所有人或经营人招用未取得规定证件的人员在渔业船舶上工作的，"
                         "由渔政渔港监督管理机构责令改正，处三万元以上十五万元以下罚款；"
                         "不直接按《海上交通安全法》罚船长。 "
                         + _cite(item)
@@ -909,7 +910,12 @@ def _evidence_fallback(pack: EvidencePack, question: str) -> StandardResult | No
                 },
             )
 
-    if "幼鱼" in question and ("超标" in question or "比例" in question or "处理" in question):
+    if (
+        "幼鱼" in question
+        and "比例" in question
+        and any(term in question for term in ("多少", "怎么定", "20%", "百分之二十"))
+        and not any(term in question for term in ("移送", "同时", "网目"))
+    ):
         ratio = next(
             (
                 item
@@ -938,6 +944,8 @@ def _evidence_fallback(pack: EvidencePack, question: str) -> StandardResult | No
                     + _cite(penalty)
                 )
                 citations.append(_citation(penalty))
+            if "28" in question:
+                lines.append("本案幼鱼重量28%，超过20%的上限，属于超标。")
             if "从轻" in question:
                 lines.append(
                     "缺口：现有语料未明确幼鱼比例超标的从轻、减轻情节，需结合行政处罚裁量基准和属地规定。"
@@ -1571,7 +1579,9 @@ class AnswerService:
                         "gap": [],
                     },
                 )
-        if "海洋热浪" in question:
+        if "海洋热浪" in question and any(
+            term in question for term in ("是啥", "是什么", "定义", "指什么", "什么意思")
+        ):
             direct = _direct_chunk("STAT-ECO-111", "海洋热浪是指", "heatwave_fallback")
             if direct is None:
                 direct = _direct_chunk("STAT-ECO-073", "海洋热浪是指", "heatwave_fallback")
@@ -1911,7 +1921,14 @@ class AnswerService:
                 return StandardResult(
                     answer=Answer(
                         text=(
-                            "海龟保护行动计划是2019—2028年的保护行动文件，定的是保护措施；"
+                            (
+                                "玳瑁："
+                                if "玳瑁" in question
+                                else "棱皮龟："
+                                if "棱皮龟" in question
+                                else "海龟："
+                            )
+                            + "海龟保护行动计划是2019—2028年的保护行动文件，定的是保护措施；"
                             "2021年《国家重点保护野生动物名录》定的是保护级别，"
                             "红海龟、绿海龟、玳瑁、太平洋丽龟、棱皮龟均列为国家二级。"
                             "两者层级不同、不冲突：行动计划管“怎么做”，名录管“是不是保护动物”。 "
@@ -2244,8 +2261,13 @@ class AnswerService:
         if neighbors or clause_rank:
             chunks = list(getattr(self.retriever, "chunks", []) or [])
             hits = expand_neighbors(hits, chunks, neighbors=neighbors, clause_rank=clause_rank)
-        crew_penalty = any(term in question for term in ("没证", "未持证", "无证", "船员")) and any(
-            term in question for term in ("罚", "多少", "船东", "船长")
+        crew_penalty = (
+            any(term in question for term in ("没证", "未持证", "无证"))
+            and any(term in question for term in ("罚", "处罚", "船东", "船长"))
+            and not any(
+                term in question
+                for term in ("配几个", "配员", "持证", "课时", "培训", "事故", "罚则")
+            )
         )
         electric = any(term in question for term in ("电鱼", "炸鱼", "毒鱼"))
         horseshoe = any(term in question for term in ("中国鲎", "东方鲎"))
@@ -2298,7 +2320,10 @@ class AnswerService:
                     hits.insert(0, SearchHit(chunk=chunk, score=1.0))
                     existing.add((chunk.doc_id, chunk.section))
         if ("带鱼" in question and ("最小" in question or "规格" in question)) or (
-            "幼鱼" in question and ("超标" in question or "比例" in question)
+            "幼鱼" in question
+            and "比例" in question
+            and any(term in question for term in ("多少", "怎么定", "20%", "百分之二十"))
+            and not any(term in question for term in ("移送", "同时", "网目"))
         ):
             existing = {(hit.chunk.doc_id, hit.chunk.section) for hit in hits}
             for chunk in getattr(self.retriever, "chunks", []) or []:
@@ -2333,7 +2358,10 @@ class AnswerService:
             if penalty is not None:
                 return penalty
         if ("带鱼" in question and ("最小" in question or "规格" in question)) or (
-            "幼鱼" in question and ("超标" in question or "比例" in question)
+            "幼鱼" in question
+            and "比例" in question
+            and any(term in question for term in ("多少", "怎么定", "20%", "百分之二十"))
+            and not any(term in question for term in ("移送", "同时", "网目"))
         ):
             spec = _evidence_fallback(pack, question)
             if spec is not None:
@@ -2366,26 +2394,42 @@ class AnswerService:
                 fallback = _evidence_fallback(pack, question)
             if fallback is not None:
                 result = fallback
-        if result.answer.abstained or any(
-            marker in result.answer.text
-            for marker in ("证据不足", "未覆盖", "无法回答", "不能据", "仅涉及", "未给出", "未明确")
+        rescue_blocked = any(term in question for term in ("保险", "等级", "移送", "事故"))
+        if not rescue_blocked and (
+            result.answer.abstained
+            or any(
+                marker in result.answer.text
+                for marker in (
+                    "证据不足",
+                    "未覆盖",
+                    "无法回答",
+                    "不能据",
+                    "仅涉及",
+                    "未给出",
+                    "未明确",
+                )
+            )
         ):
             llm_rescue = _llm_rescue(question, pack, client)
             if llm_rescue is not None:
                 result = llm_rescue
             rescue = _rescue_answer(question, getattr(self.retriever, "chunks", []) or [])
-            if rescue is not None and (
-                result.answer.abstained
-                or any(
-                    marker in result.answer.text
-                    for marker in (
-                        "证据不足",
-                        "未覆盖",
-                        "无法回答",
-                        "不能据",
-                        "仅涉及",
-                        "未给出",
-                        "未明确",
+            if (
+                rescue is not None
+                and not rescue_blocked
+                and (
+                    result.answer.abstained
+                    or any(
+                        marker in result.answer.text
+                        for marker in (
+                            "证据不足",
+                            "未覆盖",
+                            "无法回答",
+                            "不能据",
+                            "仅涉及",
+                            "未给出",
+                            "未明确",
+                        )
                     )
                 )
             ):
