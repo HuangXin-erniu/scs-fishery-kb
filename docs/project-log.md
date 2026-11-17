@@ -1869,3 +1869,10 @@ This log records material project changes by date. It does not use release versi
   chunks and OCR noise. Fixed Y-057, Y-163, Y-187, Y-351, Y-425, Y-506, Y-038
   partially; Y-164's bad paper dump is suppressed. C1/C2/C3 remain; no
   acceptance result is claimed.
+- 2026-11-17 remediation batch 3: added an LLM second-chance review before
+  refusal (mandatory citations, verified against the pack) and a conservative
+  definition/statute rescue; skipped paper chunks and expanded OCR-noise
+  filtering. Y-057/Y-163/Y-187/Y-351/Y-425/Y-038 improved; Y-164 no longer
+  dumps a paper. Corrected Y-511's reference: the “船进港/网入库/人上岸/证集中”
+  and cross-region filing rules are Guangxi (`POL-GX-CLOSURE-206`), not
+  Guangdong; dataset hash updated in the private manifest. C1/C2/C3 remain.

@@ -341,7 +341,19 @@ def _has_internal_error(text: str) -> bool:
     return any(marker in (text or "") for marker in INTERNAL_ERROR_MARKERS)
 
 
-OCR_MARKERS = ("原文：", "×10", "网站地图", "第X卷第X期", "打印本页", "ꎬ", "􀆰")
+OCR_MARKERS = (
+    "原文：",
+    "×10",
+    "网站地图",
+    "第X卷第X期",
+    "打印本页",
+    "ꎬ",
+    "􀆰",
+    "公报 年第 期",
+    "年第 期",
+    "卡券",
+    "标对应的补贴",
+)
 
 
 def _strip_ocr_sentences(text: str) -> tuple[str, int]:
@@ -999,6 +1011,10 @@ def _evidence_fallback(pack: EvidencePack, question: str) -> StandardResult | No
             "°",
             "网站地图",
             "打印本页",
+            "公报 年第 期",
+            "年第 期",
+            "卡券",
+            "标对应的补贴",
         )
         return not any(marker in text for marker in noise)
 
