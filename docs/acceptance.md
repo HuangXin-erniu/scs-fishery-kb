@@ -58,6 +58,16 @@ that cap and the report states the cap.
 | Demo script | [demo-script.md](demo-script.md) | complete, five scenarios |
 | 30-item expert spot check | local worksheet under the run root | holdout sample frozen; simulated reviews complete (`P24-ACC-227` regression, `P25-ACC-231` holdout, both below the lines); human signature pending |
 
+## 2c. Internal answer audit (not a substitute for the spot check)
+
+The delivered answer is audited separately from the acceptance aggregates: D1–D11
+check verbatim dumps, scope notes, truncation, internal error text, sub-question
+coverage, citation support, stale facts, numbers, entity mismatch and as-of
+declarations. A 150-row stratified sample with a 30-row double annotation is the
+internal quality gate; its questions, answers and row-level findings stay in the
+private run root. Only the method, thresholds and aggregate counts are reported.
+A model-judged audit is never presented as the signed expert review.
+
 ## 3. Evidence map
 
 | Claim | Evidence |

@@ -33,7 +33,7 @@ Phase updates are announced in [GitHub Discussions](https://github.com/HuangXin-
 | Legal and technical documents | 53 — 1 law, 20 regulations, 12 notices, 17 standards, 2 data dictionaries, 1 operations reference |
 | Local core CSV | 3,126 rows, not published |
 | Documented gaps | port classes 2018–2019; vessel length 2024; 2025 sampled |
-| Indexed documents | 67 documents, 2,797 chunks |
+| Indexed documents | 107 documents, 3,940 chunks (index `251dbf67e804`) |
 | Evaluation instrument | Private 512-question acceptance set; six-line protocol |
 
 This project has no versioned releases: no tags, no GitHub Releases and no semantic versions. `main` is the latest state; cite a commit SHA. Changes are recorded in the [project log](docs/project-log.md).

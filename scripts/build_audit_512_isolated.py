@@ -12,6 +12,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
 import select
 import subprocess
 import sys
@@ -200,7 +201,18 @@ def main(argv: list[str] | None = None) -> int:
                     )
                     print(f"{row['id']} {response.get('error')} ({wall_ms}ms)", flush=True)
                 else:
-                    cites = response.get("citations", [])
+                    cites = list(response.get("citations") or [])
+                    seen_cites = {
+                        (str(item.get("doc_id", "")), str(item.get("section", "")))
+                        for item in cites
+                    }
+                    for doc_id, section in re.findall(
+                        r"\[([A-Za-z0-9-]+)\s*§([^\]]+)\]", response.get("answer", "")
+                    ):
+                        key = (doc_id, section.strip())
+                        if key not in seen_cites:
+                            seen_cites.add(key)
+                            cites.append({"doc_id": doc_id, "section": section.strip()})
                     record = AuditRecord(
                         id=row["id"],
                         source=str(row.get("source") or args.source),

@@ -4,9 +4,9 @@
 > 标注为“实测”的项，是把验收值定在已测得的数值上；目标值另列，不得混用。所有数字都是聚合值，
 > 不含题面与私有标识。
 
-- Commit: `ccf597a` (acceptance materials task base)
-- Index version: `6e9dc9b9d8b9` — 70 documents, 2,929 chunks
-- Corpus register: 103 sources
+- Commit: `4127831` (acceptance push; code fixes)
+- Index version: `251dbf67e804` — 107 documents, 3,940 chunks
+- Corpus register: 139 sources (137 canonical / 2 provisional)
 - Instrument: 512 questions, protocol v2, frozen doc map and thresholds
 
 ## 1. Indicators
@@ -16,19 +16,19 @@
 | 1 | Public recall@5 (reachable rows) | 0.8864 | ≥0.92 | ≥0.88 | `scripts/eval_index_v2.py` | live index |
 | 2 | Public MRR (reachable rows) | 0.7848 | ≥0.82 | ≥0.78 | same | live index |
 | 3 | Public recall@5 (all rows) | 0.8298 | — | — | same | live index |
-| 4 | 512 point coverage | 0.8129 | ≥0.83 | ≥0.8129 measured | `scripts/eval_accept.py` | `P25-EVL-235` |
-| 5 | 512 citation accuracy | 0.9544 | ≥0.97 | ≥0.9544 measured | same | `P25-EVL-235` |
-| 6 | 512 as-of declaration | 0.9123 | ≥0.96 | ≥0.9123 measured | same | `P25-EVL-235` |
-| 7 | 512 misanswer rate | 0.0000 | 0.0000 | ≤0.01 | same | `P24-EVL-223` |
-| 8 | 512 refusal-with-channel | 1.0000 | 1.0000 | ≥0.99 | same | `P24-EVL-223` |
-| 9 | 512 basis accuracy | 0.9412 | ≥0.95 | ≥0.85 | same | `P24-EVL-223` |
+| 4 | 512 point coverage | 0.8277 | ≥0.83 | ≥0.8129 | `scripts/eval_accept.py` | `FINAL-ACCEPT/02-gates` |
+| 5 | 512 citation accuracy | 0.9571 | ≥0.97 | ≥0.9544 | same | `FINAL-ACCEPT/02-gates` |
+| 6 | 512 as-of declaration | 0.9649 | ≥0.96 | ≥0.9123 | same | `FINAL-ACCEPT/02-gates` |
+| 7 | 512 misanswer rate | 0.0000 | 0.0000 | ≤0.01 | same | `FINAL-ACCEPT/02-gates` |
+| 8 | 512 refusal-with-channel | 1.0000 | 1.0000 | ≥0.99 | same | `FINAL-ACCEPT/02-gates` |
+| 9 | 512 basis accuracy | 0.9412 | ≥0.95 | ≥0.85 | same | `FINAL-ACCEPT/02-gates` |
 | 10 | Short-answer valid share | 16/60 | ≥40/60 | ≥16/60 measured | `scripts/eval_short_public.py` | `P20-ANS-216-f5f3` |
 | 11 | Approved facts | 146/200 | ≥150 | ≥140 | `check_facts` | `P22-KB-220` |
 | 12 | Approved terms | 136/150 | hold | ≥136 | `terms check` | `P22` |
-| 13 | Registered sources | 103 | hold | ≥103 | `scripts/check_sources.py` | CI |
-| 14 | Indexed documents / chunks | 70 / 2,929 | hold | ≥70 / ≥2,929 | index manifest | `P25-CORP-233` |
+| 13 | Registered sources | 139 | hold | ≥139 | `scripts/check_sources.py` | CI |
+| 14 | Indexed documents / chunks | 107 / 3,940 | hold | ≥107 / ≥3,940 | index manifest | `251dbf67e804` |
 | 15 | Expert spot check (holdout, simulated) | citation 7/14, conclusion 9/20, refusal 2/10, as-of 2/2 | 30 items | citation ≥95%, conclusion ≥85%, refusal ≥90% | worksheet | `P25-ACC-231` |
-| 16 | Test suite | 368 passed / 2 skipped | — | no regression | `pytest -q` | CI |
+| 16 | Test suite | 588 passed / 2 skipped | — | no regression | `pytest -q` | CI |
 
 ## 2. Runs behind the numbers
 

@@ -6,7 +6,7 @@
 |---|---|
 | Project | South China Sea Nearshore Fishery Knowledge Base (SCS-FKB) |
 | Full title | South China Sea Nearshore Fishery Knowledge Base (SCS-FKB): Construction and Retrieval-Augmented Generation Methods |
-| Status | Active development; 77 registered sources, 67 indexed documents (2,797 chunks), a 512-question acceptance instrument, an optional short-answer arm, and a published acceptance sheet ([docs/acceptance.md](docs/acceptance.md)) |
+| Status | Active development; 139 registered sources, 107 indexed documents (3,940 chunks, index `251dbf67e804`), a 512-question acceptance instrument, an optional short-answer arm, and a published acceptance sheet ([docs/acceptance.md](docs/acceptance.md)) |
 | Domain | Nearshore fisheries in the South China Sea: fishing vessel operations and fishery conditions |
 | Method | Retrieval-augmented generation with citations, abstention and evaluation |
 

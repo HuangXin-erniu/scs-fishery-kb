@@ -1278,6 +1278,30 @@ class AnswerService:
                             reason=result.answer.reason,
                         ),
                     )
+        if not result.answer.abstained and "时效：" not in result.answer.text:
+            versions = []
+            for doc_id in sorted({citation.doc_id for citation in result.answer.citations}):
+                entry = self._registry.get(doc_id, {})
+                stamp = str((entry.get("effective") or {}).get("from") or entry.get("year") or "")[:10]
+                if not stamp:
+                    continue
+                if len(stamp) == 4 and stamp.isdigit():
+                    stamp += "年"
+                title = str(entry.get("title_zh") or entry.get("title") or doc_id)
+                versions.append(f"《{title}》（{stamp}）")
+            if versions:
+                result = replace(
+                    result,
+                    answer=Answer(
+                        text=result.answer.text
+                        + "\n时效：本答复依据"
+                        + "、".join(dict.fromkeys(versions))
+                        + "；以最新公布为准。",
+                        citations=result.answer.citations,
+                        abstained=False,
+                        reason=result.answer.reason,
+                    ),
+                )
         if cache_obj is not None and not result.answer.abstained and result.answer.citations:
             payload = {
                 "answer": result.answer.text,
