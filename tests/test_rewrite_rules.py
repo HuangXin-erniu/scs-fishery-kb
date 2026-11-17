@@ -13,3 +13,9 @@ def test_rewrite_adds_domain_terms_and_keeps_original() -> None:
 def test_rewrite_returns_original_without_rule_match() -> None:
     question = "今天天气怎么样？"
     assert rewrite_question(question) == question
+
+
+def test_night_navigation_rewrite() -> None:
+    rewritten = rewrite_question("珠江口船多，晚上过伶仃洋要注意什么？")
+    assert "瞭望" in rewritten
+    assert "避碰" in rewritten

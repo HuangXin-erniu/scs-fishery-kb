@@ -21,7 +21,14 @@ INFERENCE_PREFIXES = ("因此", "所以", "可见", "说明", "应核查", "不�
 
 
 def sentences(text: str) -> list[str]:
-    return [part.strip() for part in SENTENCE_RE.findall(text or "") if part.strip()]
+    parts = [part.strip() for part in SENTENCE_RE.findall(text or "") if part.strip()]
+    merged: list[str] = []
+    for part in parts:
+        if merged and re.fullmatch(r"(\[[^\]]+\]\s*)+", part):
+            merged[-1] = merged[-1] + part
+        else:
+            merged.append(part)
+    return merged
 
 
 def _clean(text: str) -> str:
@@ -112,10 +119,19 @@ def prune_unsupported(
     for sentence in sentences(text):
         if not sentence:
             continue
-        if sentence.startswith(SKIP_PREFIXES) or CITATION_RE.search(sentence) is None:
+        if sentence.startswith(SKIP_PREFIXES):
+            kept.append(sentence)
+            continue
+        if CITATION_RE.search(sentence) is None:
+            if _numbers(sentence):
+                dropped += 1
+                continue
             kept.append(sentence)
             continue
         claim = CITATION_RE.sub("", sentence).strip()
+        if len(_clean(claim)) < 6:
+            dropped += 1
+            continue
         if len(_clean(claim)) < 12:
             kept.append(sentence)
             continue

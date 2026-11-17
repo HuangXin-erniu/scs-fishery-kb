@@ -1795,3 +1795,23 @@ This log records material project changes by date. It does not use release versi
 - ENSO 231/230 promoted canonical with distinct scope notes; IG-048 regenerated
   to the Beibu Gulf/1993-1998/fishing-primary/non-forecast skeleton. Registry 134
   canonical/2 provisional. Forecast log (3 queries + date) retained.
+
+- 2026-11-17 acceptance push (P27). Root cause of the product-path timeouts:
+  multi-stage calls multiplied by the OpenAI SDK's 120 s x 2 retries, not DNS.
+  `LLM_TIMEOUT` now defaults to 30 s, `LLM_MAX_RETRIES` to 1, and every call
+  writes a metadata-only trace. The 512 worker uses a 240 s per-question budget
+  with `--resume`. Answer fixes: scope-note term gating, internal-error
+  sanitising, bracket/completeness checks, D7 claim support with re-citation or
+  pruning, D9 numbers on cited chunks, D8 sentence scoping, D11 as-of lines, and
+  deterministic fallbacks for the 带鱼 minimum-size and 幼鱼比例 questions.
+  50-question regression is running; no acceptance decision yet.
+- 2026-11-17 P3 finding: the 2021 national key-protected wildlife list is
+  already registered as `STD-SPEC-076` (OCR of the official 38-page PDF). Its
+  page-22 OCR carries the Chinese names and levels but the chunker separates
+  names from the level column, so no verbatim single chunk supports a new fact.
+  No duplicate source was added; the registry scope note remains the interim
+  level statement and the OCR limitation is recorded. `facts check` is clean.
+- 2026-11-17 tooling: added `audit_gate.py`, `check_llm_latency.py`,
+  `draw_expert_sample.py` and `score_expert_sample.py`; the sampler now excludes
+  previously reviewed ids and marks a 30-row double-annotation subset. Public
+  and private release gates remain 0-hit.

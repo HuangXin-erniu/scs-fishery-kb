@@ -34,13 +34,13 @@
 | Short-answer valid share | 16/60 (measured 2026-11-11) | ≥40/60 | **≥16/60 (measured)** | `scripts/eval_short_public.py` with `SCS_FKB_VERIFY_ANSWERS=on` | §35, §36 |
 | Approved facts | 146/200 | ≥150 | **≥140** | `scs-fkb facts check` (0 errors, 0 conflicts) | [knowledge](knowledge.md) |
 | Approved terms | 136/150 | hold | **≥136** | `scs-fkb terms check` | knowledge |
-| Registered sources | 103 | hold | **≥103** | `scripts/check_sources.py` | [corpus](corpus.md) |
-| Indexed documents and chunks | 70 / 2,929 | hold | **≥70 / ≥2,929** | index manifest (`6e9dc9b9d8b9`) | `v2/index/versions/<id>/manifest.json` |
+| Registered sources | 139 (137 canonical / 2 provisional) | hold | **≥139** | `scripts/check_sources.py` | [corpus](corpus.md) |
+| Indexed documents and chunks | 107 / 3,940 | hold | **≥107 / ≥3,940** | index manifest (`251dbf67e804`) | `v2/index/versions/<id>/manifest.json` |
 | Expert spot check | simulated 2026-11-11 (AI role-play, not human): holdout citation 50.0%, conclusion 45.0%, refusal 20.0% — **below all three lines** | 30 items | **citation ≥95%, conclusion ≥85%, refusal ≥90%** | review worksheet | `P25-ACC-231`, [metrics report](metrics-report.md) §2 |
 | Reproducibility | available | one command | **one command + commit + index hash** | `docs/plan.md` §8 | run artifacts |
 
 Three public rows (CWP definitions, yearbook tables) expect documents that are not in the
-67-document corpus index; they are served by the reference and statistics channels and are
+107-document corpus index; they are served by the reference and statistics channels and are
 reported as channel rows, not counted in the corpus recall denominator. Both numbers are
 published.
 

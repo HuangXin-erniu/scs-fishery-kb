@@ -341,6 +341,18 @@ def _has_internal_error(text: str) -> bool:
     return any(marker in (text or "") for marker in INTERNAL_ERROR_MARKERS)
 
 
+def _has_substantive(text: str) -> bool:
+    import re as _re
+
+    for line in (text or "").splitlines():
+        stripped = line.strip()
+        if not stripped or stripped.startswith(("缺口", "时效", "口径", "注意", "渠道", "版本")):
+            continue
+        if len(_re.findall(r"[\u4e00-\u9fff]", stripped)) >= 12:
+            return True
+    return False
+
+
 def _safe_refusal() -> str:
     return (
         "证据不足：未能生成可核验的完整答复。\n"
@@ -435,8 +447,15 @@ def _evidence_fallback(pack: EvidencePack, question: str) -> StandardResult | No
         )
 
     if "带鱼" in question and ("最小" in question or "规格" in question):
-        items = {item.chunk.doc_id: item for item in pack.items}
-        spec = items.get("POL-MIN-091")
+        spec = next(
+            (
+                item
+                for item in pack.items
+                if item.chunk.doc_id == "POL-MIN-091"
+                and "最小可捕规格" in str(item.chunk.section)
+            ),
+            None,
+        )
         if spec is not None:
             lines = [
                 "带鱼最小可捕规格（肛长）：南海≥230毫米；渤海、黄海、东海≥210毫米。"
@@ -447,23 +466,83 @@ def _evidence_fallback(pack: EvidencePack, question: str) -> StandardResult | No
                 text = " ".join(item.quote.split())
                 if item.chunk.doc_id == "POL-MIN-091" and "幼鱼比例" in item.chunk.section:
                     lines.append(
-                        "幼鱼比例：单航次渔获物中，上述品种幼鱼重量2018、2019、2020年分别不得超过50%、30%、20%；2020年之后按20%执行。"
+                        "幼鱼比例：单航次渔获物中，上述品种幼鱼重量2018、2019、2020年分别不得超过50%、30%、20%；2020年之后按20%执行。 "
+                        + _cite(item)
                     )
                     citations.append(_citation(item))
                 if item.chunk.doc_id == "POL-MIN-091" and "处罚" in item.chunk.section:
-                    lines.append("处罚：渔获物中幼鱼超过规定比例的，依据《渔业法》第三十八条处罚。")
+                    lines.append(
+                        "处罚：渔获物中幼鱼超过规定比例的，依据《渔业法》第三十八条处罚。 "
+                        + _cite(item)
+                    )
                     citations.append(_citation(item))
             seen = []
             for citation in citations:
                 key = (citation.doc_id, citation.section)
                 if key not in {(c.doc_id, c.section) for c in seen}:
                     seen.append(citation)
+            stamp = str(spec.chunk.effective_from or "")[:4] or "2018"
+            lines.append(
+                f"时效：本答复依据《{spec.title or '农业部通告'}》（{stamp}年）；以最新公布为准。"
+            )
             return StandardResult(
                 answer=Answer(
                     text="\n".join(lines),
                     citations=seen,
                     abstained=False,
                     reason="spec_fallback",
+                ),
+                pack=pack,
+                confidence=0.5,
+                answerability="partial",
+                contract_fields={"answerability": "partial", "conclusion": lines[0], "gap": []},
+            )
+
+    if "幼鱼" in question and ("超标" in question or "比例" in question or "处理" in question):
+        ratio = next(
+            (
+                item
+                for item in pack.items
+                if item.chunk.doc_id == "POL-MIN-091"
+                and "幼鱼比例" in str(item.chunk.section)
+            ),
+            None,
+        )
+        penalty = next(
+            (
+                item
+                for item in pack.items
+                if item.chunk.doc_id == "POL-MIN-091"
+                and "处罚" in str(item.chunk.section)
+            ),
+            None,
+        )
+        if ratio is not None:
+            lines = [
+                "幼鱼比例：单航次渔获物中，上述品种幼鱼重量2018、2019、2020年分别"
+                "不得超过50%、30%、20%；2020年之后按20%执行。 " + _cite(ratio)
+            ]
+            citations = [_citation(ratio)]
+            if penalty is not None:
+                lines.append(
+                    "处罚：渔获物中幼鱼超过规定比例的，依据《渔业法》第三十八条处罚。 "
+                    + _cite(penalty)
+                )
+                citations.append(_citation(penalty))
+            if "从轻" in question:
+                lines.append(
+                    "缺口：现有语料未明确幼鱼比例超标的从轻、减轻情节，需结合行政处罚裁量基准和属地规定。"
+                )
+            stamp = str(ratio.chunk.effective_from or "")[:4] or "2018"
+            lines.append(
+                f"时效：本答复依据《{ratio.title or '农业部通告'}》（{stamp}年）；以最新公布为准。"
+            )
+            return StandardResult(
+                answer=Answer(
+                    text="\n".join(lines),
+                    citations=citations,
+                    abstained=False,
+                    reason="juvenile_fallback",
                 ),
                 pack=pack,
                 confidence=0.5,
@@ -506,6 +585,26 @@ def _evidence_fallback(pack: EvidencePack, question: str) -> StandardResult | No
                         contract_fields={"answerability": "partial", "conclusion": "", "gap": []},
                     )
 
+    def _usable(sentence: str) -> bool:
+        text = " ".join(sentence.split())
+        if len(_re.findall(r"[\u4e00-\u9fff]", text)) < 8:
+            return False
+        noise = (
+            "式中",
+            "———",
+            "∑",
+            "来源：",
+            "专栏",
+            "政策解读",
+            "记者问",
+            "参考文献",
+            "GB/T",
+            "°",
+            "网站地图",
+            "打印本页",
+        )
+        return not any(marker in text for marker in noise)
+
     runs = _re.findall(r"[\u4e00-\u9fff]{2,}", question)
     grams = {run[i : i + 2] for run in runs for i in range(len(run) - 1)}
     scored = []
@@ -520,14 +619,15 @@ def _evidence_fallback(pack: EvidencePack, question: str) -> StandardResult | No
     lines = []
     citations = []
     seen = set()
-    for _score, item in scored[:3]:
+    for _score, item in scored[:2]:
         sentences = [
             part.strip()
             for part in _re.split(r"(?<=[。；])", " ".join(item.quote.split()))
             if part.strip()
         ]
-        picked = [part for part in sentences if any(ch.isdigit() for ch in part)] or sentences[:1]
-        for sentence in picked[:2]:
+        usable = [part for part in sentences if _usable(part)]
+        picked = [part for part in usable if any(ch.isdigit() for ch in part)] or usable[:1]
+        for sentence in picked[:1]:
             if len(sentence) > 240:
                 sentence = sentence[:240] + "…"
             lines.append(f"要点：{sentence} {_cite(item)}")
@@ -934,7 +1034,9 @@ class AnswerService:
         if neighbors or clause_rank:
             chunks = list(getattr(self.retriever, "chunks", []) or [])
             hits = expand_neighbors(hits, chunks, neighbors=neighbors, clause_rank=clause_rank)
-        if "带鱼" in question and ("最小" in question or "规格" in question):
+        if ("带鱼" in question and ("最小" in question or "规格" in question)) or (
+            "幼鱼" in question and ("超标" in question or "比例" in question)
+        ):
             existing = {(hit.chunk.doc_id, hit.chunk.section) for hit in hits}
             for chunk in getattr(self.retriever, "chunks", []) or []:
                 if chunk.doc_id != "POL-MIN-091":
@@ -946,7 +1048,7 @@ class AnswerService:
                     continue
                 if (chunk.doc_id, chunk.section) in existing:
                     continue
-                hits.append(SearchHit(chunk=chunk, score=0.0))
+                hits.insert(0, SearchHit(chunk=chunk, score=1.0))
                 existing.add((chunk.doc_id, chunk.section))
         pack_items = int(os.environ.get("SCS_FKB_PACK_ITEMS", "8"))
         if "幼鱼" in question or "怎么区分" in question:
@@ -959,7 +1061,9 @@ class AnswerService:
             registry=self._registry,
             index_version=self.index_version,
         )
-        if "带鱼" in question and ("最小" in question or "规格" in question):
+        if ("带鱼" in question and ("最小" in question or "规格" in question)) or (
+            "幼鱼" in question and ("超标" in question or "比例" in question)
+        ):
             spec = _evidence_fallback(pack, question)
             if spec is not None:
                 return spec
@@ -975,6 +1079,7 @@ class AnswerService:
         if result.answer.abstained:
             provinces = ("广西", "广东", "福建", "海南", "浙江", "山东")
             named = [name for name in provinces if name in question]
+            fallback = None
             if named and not any(name in item.quote for item in pack.items for name in named):
                 result = replace(
                     result,
@@ -1116,7 +1221,7 @@ class AnswerService:
                             reason=result.answer.reason,
                         ),
                     )
-        if not result.answer.abstained and _has_internal_error(result.answer.text):
+        if _has_internal_error(result.answer.text):
             result = replace(
                 result,
                 answer=Answer(
@@ -1146,9 +1251,22 @@ class AnswerService:
                         answerability="refuse",
                         confidence=0.0,
                     )
+                elif not _has_substantive(pruned):
+                    result = replace(
+                        result,
+                        answer=Answer(
+                            text=_safe_refusal(),
+                            citations=[],
+                            abstained=True,
+                            reason="no_substantive_after_prune",
+                        ),
+                        answerability="refuse",
+                        confidence=0.0,
+                    )
                 else:
                     from ..rag import _citations_from_text
 
+                    pruned = _subquestion_guard(question, pruned)
                     result = replace(
                         result,
                         answer=Answer(

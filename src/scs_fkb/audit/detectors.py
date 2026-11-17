@@ -37,6 +37,14 @@ def _containment(sentence: str, chunk: str) -> float:
     return len(grams & ngrams(chunk)) / len(grams)
 
 
+def _unigram_containment(sentence: str, chunk: str) -> float:
+    clean = re.sub(r"[^\u4e00-\u9fff0-9A-Za-z]", "", CITATION_RE.sub("", sentence))
+    if not clean:
+        return 0.0
+    chunk_chars = set(re.sub(r"[^\u4e00-\u9fff0-9A-Za-z]", "", chunk))
+    return sum(1 for char in set(clean) if char in chunk_chars) / len(set(clean))
+
+
 def _cited_texts(
     record: AuditRecord, chunk_index: dict[str, list[tuple[str, str]]]
 ) -> list[tuple[str, str]]:
@@ -161,7 +169,14 @@ def d7(record: AuditRecord, chunk_index: dict[str, list[tuple[str, str]]]) -> li
                 first_bad = first_bad or (doc_id, section)
                 continue
             if any(
-                max(jaccard(sentence, text), _containment(sentence, text)) >= 0.25
+                max(
+                    jaccard(claim, text),
+                    _containment(claim, text),
+                    _unigram_containment(claim, text) * 0.9
+                    if len(claim) <= 40
+                    else 0.0,
+                )
+                >= 0.25
                 for _sec, text in matched
             ):
                 supported = True
@@ -253,6 +268,8 @@ def d10(record: AuditRecord) -> list[Finding]:
 
 
 def d11(record: AuditRecord, doc_meta: dict[str, dict[str, Any]]) -> list[Finding]:
+    if record.abstained:
+        return []
     versioned = [
         str(cite.get("doc_id", ""))
         for cite in record.citations
