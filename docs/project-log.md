@@ -1887,3 +1887,8 @@ This log records material project changes by date. It does not use release versi
   confiscation procedure; trim OCR chapter headings from direct answers.
   Y-038/Y-312 now answer the question; Y-294/Y-310 remain partial (procedure/
   trawling specifics). C1/C2/C3 still open; no fresh sample.
+- 2026-11-17 remediation batch 6: added direct answers for turtle action-
+  plan/list relationship (Y-321), annual inspection sequencing (Y-478) and
+  Chinese horseshoe-crab bycatch (Y-196, now救护+报告+禁止买卖). Remaining C1:
+  Y-091 (2026 enforcement tasks), Y-294 (full confiscation procedure),
+  Y-310 (seagrass trawling specifics). C3/C2 and fresh sample remain open.
