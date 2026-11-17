@@ -1846,3 +1846,8 @@ This log records material project changes by date. It does not use release versi
   findings are D11=4 (S3), D2=1 (S2), D6=1 (S2). `512-gate.json` passes the
   deterministic gate; the 150-row human blind review and the 30-row expert
   signature remain the only open acceptance layers.
+- 2026-11-17 conditional acceptance summary written under the private run root:
+  512 and 150 deterministic layers pass; 30-question pack scans clean. Gate is
+  **open/conditional** because the 150-row human blind review, the 30-row
+  double annotation and the independent expert signature are not returned. No
+  published line was lowered and no model judgment is reported as human review.
