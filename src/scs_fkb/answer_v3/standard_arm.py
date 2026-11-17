@@ -398,7 +398,7 @@ def answer_with_standard(
         )
     if answerability == "clarify":
         text = "请补充关键信息后再回答："
-        text += "；".join(missing) if missing else "地区、年份、船型或作业类型"
+        text += ("；".join(missing) if missing else "地区、年份、船型或作业类型") + "。"
         return StandardResult(
             answer=Answer(text=text, abstained=True, reason="clarify"),
             pack=pack,

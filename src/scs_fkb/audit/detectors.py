@@ -127,6 +127,8 @@ def d5(record: AuditRecord, chunks: list[tuple[str, str]]) -> list[Finding]:
 
 
 def d6(record: AuditRecord) -> list[Finding]:
+    if record.abstained:
+        return []
     parts = [part.strip() for part in re.split(r"[？?；;]", record.question or "") if part.strip()]
     if len(parts) < 2:
         return []

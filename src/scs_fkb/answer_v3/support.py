@@ -74,6 +74,9 @@ def support_score(claim: str, evidence: str) -> float:
     """
     if _contradicts(claim or "", evidence or ""):
         return 0.0
+    for term in ("倾倒", "海龟", "玳瑁", "鲎"):
+        if term in (claim or "") and term not in (evidence or ""):
+            return 0.0
     claim_numbers = _numbers(CITATION_RE.sub("", claim or ""))
     if claim_numbers and not claim_numbers.issubset(_numbers(evidence)):
         return 0.0

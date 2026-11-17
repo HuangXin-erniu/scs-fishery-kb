@@ -1,0 +1,28 @@
+schema_version: 1
+updated_at: '2026-11-17'
+topic: species
+facts:
+- id: FACT-SPECIES-001
+  kind: atomic
+  topic: species
+  question_class: status
+  subject: 中国鲎
+  predicate: 保护级别
+  value: 国家二级保护野生动物
+  unit: null
+  qualifiers:
+    source_note: 2025年中国海洋生态预警监测公报专栏
+  jurisdiction: national
+  effective:
+    from: null
+    to: null
+  evidence: 中国鲎 剑尾目 鲎科 国家二级保护野生动物
+  source:
+    doc: STAT-ECO-205
+    sha256: 131755862e48e1195b84813fbc1870c16b7429f9361f74345422106e10825ce1
+    section: p.20
+  status: approved
+  confidence: high
+  as_of: '2026-11-17'
+  review_due: '2026-12-17'
+  supersedes: null

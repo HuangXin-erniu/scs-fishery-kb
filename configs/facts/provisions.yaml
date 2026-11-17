@@ -282,32 +282,6 @@ facts:
     reviewer: agent-review
     reviewed_at: '2026-11-11'
     note: 逐字证据、完整句、与已批准事实不重复
-- id: FACT-PROV-012
-  kind: provision
-  topic: policy
-  question_class: status
-  subject: Notice on the 2026 marine seasonal-closure enforcement action 三、有关要求
-  predicate: 条文要点
-  value: 三、有关要求 （一）细化工作举措。各地要结合各自工作职责、辖区监管实际和以往执法经验，进一步细化实化工作措施，明确分工、责任到人，有序推动各项执法工作落地落细、见行见效。要强化工作指导和统筹，及时梳理解决执法过程中出现的新情况、新问题，确保海洋伏季休渔制度不打折扣、执行到位。
-    （二）落实法律要求。各地要严格落实新修订渔业法有关规定，确保执行到位、落实有效。对于“三无”船舶非法捕捞，违反伏季休渔规定捕捞、航行、停泊，为违反伏季休渔规定船舶提供辅助服务，非法越线越界捕捞，跨区域作
-  evidence: 三、有关要求 （一）细化工作举措。各地要结合各自工作职责、辖区监管实际和以往执法经验，进一步细化实化工作措施，明确分工、责任到人，有序推动各项执法工作落地落细、见行见效。要强化工作指导和统筹，及时梳理解决执法过程中出现的新情况、新问题，确保海洋伏季休渔制度不打折扣、执行到位。
-    （二）落实法律要求。各地要严格落实新修订渔业法有关规定，确保执行到位、落实有效。对于“三无”船舶非法捕捞，违反伏季休渔规定捕捞、航行、停泊，为违反伏季休渔规定船舶提供辅助服务，非法越线越界捕捞，跨区域作
-  source:
-    doc: POL-ENF-068
-    section: 三、有关要求
-    sha256: 174ab3e343df18e09d8340272e329d956b062ce909216eea8282e206a6bca8af
-  status: draft
-  confidence: medium
-  as_of: '2026-11-06'
-  review_due: '2027-02-04'
-  jurisdiction: national
-  reviewer: auto:provision-v1
-  extraction: section-provision-v1
-  review:
-    decision: keep_draft
-    reviewer: agent-review
-    reviewed_at: '2026-11-11'
-    note: 一般性工作要求，不是可引用的具体规则
 - id: FACT-PROV-013
   kind: provision
   topic: policy

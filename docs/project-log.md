@@ -1815,3 +1815,8 @@ This log records material project changes by date. It does not use release versi
   `draw_expert_sample.py` and `score_expert_sample.py`; the sampler now excludes
   previously reviewed ids and marks a 30-row double-annotation subset. Public
   and private release gates remain 0-hit.
+- 2026-11-17 50-row product-path regression (fixed code, answer cache off,
+  `LLM_MAX_RETRIES=0`): 50 records, 0 timeouts, 1 D11 after inline-citation
+  enrichment; D1/D2/D3/D4/D5/D6/D7/D8/D9 = 0. This is the pre-150 regression,
+  not the gate. The 150-row stratified sample is running; the 512 full scan is
+  paused and will be resumed after the 150 gate.

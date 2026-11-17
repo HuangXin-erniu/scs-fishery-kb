@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 import re
 from dataclasses import replace
 from datetime import date
@@ -186,6 +187,25 @@ def _registry_meta(registry_path: Path | str) -> dict[str, dict[str, Any]]:
     return load_registry(registry_path)
 
 
+def _corpus_chunks(data_root: Path) -> list[Chunk]:
+    """Prefer the current v2 chunk store; fall back to the legacy processed dir.
+
+    ``load_chunks`` reads ``<data_root>/processed``, which can lag the shipped
+    v2 index.  Fact evidence must be checked against the chunks the service
+    actually retrieves.
+    """
+    v2 = data_root / "v2" / "processed" / "chunks.jsonl"
+    if v2.is_file():
+        fields = Chunk.__dataclass_fields__
+        return [
+            Chunk(**{key: value for key, value in json.loads(line).items() if key in fields})
+            for line in v2.read_text(encoding="utf-8").splitlines()
+            if line.strip()
+        ]
+    chunks, _manifest = load_chunks(data_root)
+    return chunks
+
+
 def check_facts(
     directory: Path | str = DEFAULT_FACTS_DIR,
     *,
@@ -196,7 +216,7 @@ def check_facts(
     current = today or date.today()
     facts = load_all(directory)
     registry = _registry_meta(registry_path)
-    chunks, _manifest = load_chunks(Path(data_root))
+    chunks = _corpus_chunks(Path(data_root))
     errors: list[str] = []
     conflicts: list[str] = []
     expired: list[dict[str, str]] = []
