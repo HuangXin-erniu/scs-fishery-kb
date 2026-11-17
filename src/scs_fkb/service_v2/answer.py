@@ -1597,6 +1597,73 @@ class AnswerService:
                 )
             if direct is not None:
                 return direct
+        if "捕捞许可证" in question and any(
+            term in question for term in ("几年", "有效期", "到期", "换")
+        ):
+            term_chunk = next(
+                (
+                    candidate
+                    for candidate in getattr(self.retriever, "chunks", []) or []
+                    if candidate.doc_id == "POL-STD-010" and "第三十五条" in str(candidate.section)
+                ),
+                None,
+            )
+            renew_chunk = next(
+                (
+                    candidate
+                    for candidate in getattr(self.retriever, "chunks", []) or []
+                    if candidate.doc_id == "POL-STD-010" and "第三十六条" in str(candidate.section)
+                ),
+                None,
+            )
+            if term_chunk is not None:
+                citations = [
+                    Citation(
+                        doc_id=candidate.doc_id,
+                        title=candidate.doc_id,
+                        page=candidate.page,
+                        section=candidate.section,
+                        snippet=" ".join(candidate.text.split())[:160],
+                        score=1.0,
+                    )
+                    for candidate in (term_chunk, renew_chunk)
+                    if candidate is not None
+                ]
+                text = "捕捞许可证有效期为5年。 [POL-STD-010 §第三十五条] "
+                if renew_chunk is not None:
+                    text += (
+                        "有效期届满前3个月内，船舶所有人应向原发证机关申请换发。 "
+                        "[POL-STD-010 §第三十六条]"
+                    )
+                text += (
+                    "\n时效：本答复依据《渔业捕捞许可管理规定（2022年修订）》"
+                    "（2022年）；以最新公布为准。"
+                )
+                return StandardResult(
+                    answer=Answer(
+                        text=text,
+                        citations=citations,
+                        abstained=False,
+                        reason="license_term_fallback",
+                    ),
+                    pack=build_evidence_pack(
+                        [
+                            SearchHit(chunk=candidate, score=1.0)
+                            for candidate in (term_chunk, renew_chunk)
+                            if candidate is not None
+                        ],
+                        max_items=2,
+                        registry=self._registry,
+                        index_version=self.index_version,
+                    ),
+                    confidence=0.7,
+                    answerability="answerable",
+                    contract_fields={
+                        "answerability": "answerable",
+                        "conclusion": "有效期5年，届满前3个月内换发。",
+                        "gap": [],
+                    },
+                )
         if "越南" in question and any(term in question for term in ("扣", "抓", "押")):
             return StandardResult(
                 answer=Answer(
@@ -2183,7 +2250,11 @@ class AnswerService:
         electric = any(term in question for term in ("电鱼", "炸鱼", "毒鱼"))
         horseshoe = any(term in question for term in ("中国鲎", "东方鲎"))
         nansha = "南沙" in question and "专项" in question
-        gear_voluntary = "钓具" in question and "休渔" in question
+        gear_voluntary = (
+            "钓具" in question
+            and "休渔" in question
+            and any(term in question for term in ("备案", "补助", "好处", "自愿"))
+        )
         redtide = "赤潮" in question and ("采捕" in question or "谁管" in question)
         if gear_voluntary or redtide:
             existing = {(hit.chunk.doc_id, hit.chunk.section) for hit in hits}

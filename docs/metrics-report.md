@@ -28,7 +28,7 @@
 | 13 | Registered sources | 139 | hold | ≥139 | `scripts/check_sources.py` | CI |
 | 14 | Indexed documents / chunks | 107 / 3,940 | hold | ≥107 / ≥3,940 | index manifest | `251dbf67e804` |
 | 15 | Expert spot check (holdout, simulated) | citation 7/14, conclusion 9/20, refusal 2/10, as-of 2/2 | 30 items | citation ≥95%, conclusion ≥85%, refusal ≥90% | worksheet | `P25-ACC-231` |
-| 16 | Test suite | 590 passed / 2 skipped | — | no regression | `pytest -q` | CI |
+| 16 | Test suite | 595 passed / 2 skipped | — | no regression | `pytest -q` | CI |
 
 ## 2. Runs behind the numbers
 
