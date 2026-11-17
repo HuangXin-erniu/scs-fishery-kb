@@ -353,20 +353,62 @@ def _subquestion_guard(question: str, text: str) -> str:
         additions.append(
             "缺口：现有语料未给出“捕捞努力量”的统计定义；通常按网次、作业天数或功率×时间衡量，引用前需核对统计口径。"
         )
+    if "放流" in question and "环境评估" in question and "专项环境评估" not in text:
+        additions.append(
+            "缺口：现有语料未明确增殖放流是否必须单独做环境评估；工程建设项目环评条款不适用于放流活动，需向属地渔业主管部门确认。"
+        )
     return text + ("\n" + "\n".join(additions) if additions else "")
 
 
 def _evidence_fallback(pack: EvidencePack, question: str) -> StandardResult | None:
-    """Last-resort verbatim evidence answer for table/numeric questions."""
+    """Structured extractive fallback: select key sentences/list items, never dump a chunk."""
     import re as _re
+
+    def _cite(item) -> str:
+        return f"[{item.chunk.doc_id} §{item.chunk.section}]"
+
+    # Named-list questions: return the list itself when the pack has it.
+    if any(term in question for term in ("禁用渔具", "十三种", "渔具目录")):
+        for item in pack.items:
+            text = " ".join(item.quote.split())
+            if "禁止使用" in text and "十三种" in text and "、" in text:
+                start = text.find("禁止使用") + len("禁止使用")
+                tail = text[start:]
+                tail = tail.split("等十三种")[0]
+                names = [part.strip() for part in tail.split("、") if part.strip()]
+                if len(names) >= 5:
+                    return StandardResult(
+                        answer=Answer(
+                            text="禁用渔具目录（共十三种）："
+                            + "、".join(names)
+                            + " "
+                            + _cite(item),
+                            citations=(
+                                Citation(
+                                    doc_id=item.chunk.doc_id,
+                                    title=item.title or item.chunk.doc_id,
+                                    page=item.chunk.page,
+                                    section=item.chunk.section,
+                                    snippet=text[:200],
+                                    score=item.score,
+                                ),
+                            ),
+                            abstained=False,
+                            reason="evidence_list",
+                        ),
+                        pack=pack,
+                        confidence=0.25,
+                        answerability="partial",
+                        contract_fields={"answerability": "partial", "conclusion": "", "gap": []},
+                    )
 
     runs = _re.findall(r"[\u4e00-\u9fff]{2,}", question)
     grams = {run[i : i + 2] for run in runs for i in range(len(run) - 1)}
     scored = []
     for item in pack.items:
-        text = item.quote or ""
+        text = " ".join(item.quote.split())
         score = sum(1 for gram in grams if gram in text)
-        if score >= 3 and any(ch.isdigit() for ch in text):
+        if score >= 3:
             scored.append((score, item))
     if not scored:
         return None
@@ -375,31 +417,36 @@ def _evidence_fallback(pack: EvidencePack, question: str) -> StandardResult | No
     citations = []
     seen = set()
     for _score, item in scored[:3]:
-        quote = " ".join(item.quote.split())
-        if len(quote) > 500:
-            quote = quote[:500] + "…"
-        lines.append(f"证据原文：{quote} [{item.chunk.doc_id} §{item.chunk.section}]")
-        key = (item.chunk.doc_id, item.chunk.section)
-        if key not in seen:
-            seen.add(key)
-            citations.append(
-                Citation(
-                    doc_id=item.chunk.doc_id,
-                    title=item.title or item.chunk.doc_id,
-                    page=item.chunk.page,
-                    section=item.chunk.section,
-                    snippet=quote[:200],
-                    score=item.score,
+        sentences = [
+            part.strip()
+            for part in _re.split(r"(?<=[。；])", " ".join(item.quote.split()))
+            if part.strip()
+        ]
+        picked = [part for part in sentences if any(ch.isdigit() for ch in part)] or sentences[:1]
+        for sentence in picked[:2]:
+            if len(sentence) > 240:
+                sentence = sentence[:240] + "…"
+            lines.append(f"要点：{sentence} {_cite(item)}")
+            key = (item.chunk.doc_id, item.chunk.section)
+            if key not in seen:
+                seen.add(key)
+                citations.append(
+                    Citation(
+                        doc_id=item.chunk.doc_id,
+                        title=item.title or item.chunk.doc_id,
+                        page=item.chunk.page,
+                        section=item.chunk.section,
+                        snippet=sentence[:200],
+                        score=item.score,
+                    )
                 )
-            )
-    if not citations:
+    text = "\n".join(lines)
+    bad_markers = ("原文：", "×10", "网站导航", "主办：", "技术支持", "微信")
+    if not citations or any(marker in text for marker in bad_markers):
         return None
     return StandardResult(
         answer=Answer(
-            text="\n".join(lines),
-            citations=tuple(citations),
-            abstained=False,
-            reason="evidence_fallback",
+            text=text, citations=tuple(citations), abstained=False, reason="evidence_fallback"
         ),
         pack=pack,
         confidence=0.2,
@@ -801,7 +848,21 @@ class AnswerService:
             if plain is not None:
                 result = plain
         if result.answer.abstained:
-            fallback = _evidence_fallback(pack, question)
+            provinces = ("广西", "广东", "福建", "海南", "浙江", "山东")
+            named = [name for name in provinces if name in question]
+            if named and not any(name in item.quote for item in pack.items for name in named):
+                result = replace(
+                    result,
+                    answer=Answer(
+                        text=f"公开语料未收录{named[0]}的对应规定，无法回答该属地问题。\n渠道：{named[0]}省级渔业主管部门或属地渔政机构。",
+                        citations=[],
+                        abstained=True,
+                        reason="jurisdiction_gap",
+                    ),
+                    answerability="refuse",
+                )
+            else:
+                fallback = _evidence_fallback(pack, question)
             if fallback is not None:
                 result = fallback
         if not result.answer.abstained:
@@ -814,7 +875,8 @@ class AnswerService:
                     cleaned = result.answer.text
                 else:
                     cleaned = (
-                        cleaned.rstrip() + "\n缺口：输出完整性校验未通过，请缩小问题范围后重试。"
+                        "证据不足以形成完整答案，已停止输出不完整结论。\n"
+                        "渠道：属地渔业主管部门或渔政渔港监督机构；省级农业农村厅。"
                     )
             if cleaned != result.answer.text:
                 result = replace(
