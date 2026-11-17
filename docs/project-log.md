@@ -1876,3 +1876,9 @@ This log records material project changes by date. It does not use release versi
   dumps a paper. Corrected Y-511's reference: the “船进港/网入库/人上岸/证集中”
   and cross-region filing rules are Guangxi (`POL-GX-CLOSURE-206`), not
   Guangdong; dataset hash updated in the private manifest. C1/C2/C3 remain.
+- 2026-11-17 remediation batch 4: standard answers now prepend the contract
+  conclusion when it is missing from the body; added question-type rewrite
+  rules for 期限/罚则/程序. Y-481 gains a conclusion and audits clean; Y-497
+  fills both inland/marine thresholds. C3 (wrong chunk/raw dump) and the
+  remaining C1 rows still need retrieval routing/answer composition; no fresh
+  150 sample yet.

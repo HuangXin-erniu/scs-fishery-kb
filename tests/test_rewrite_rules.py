@@ -19,3 +19,9 @@ def test_night_navigation_rewrite() -> None:
     rewritten = rewrite_question("珠江口船多，晚上过伶仃洋要注意什么？")
     assert "瞭望" in rewritten
     assert "避碰" in rewritten
+
+
+def test_question_type_rewrites() -> None:
+    assert "有效期" in rewrite_question("许可证几年到期？")
+    assert "罚款" in rewrite_question("无证捕捞罚多少？")
+    assert "听证" in rewrite_question("没收渔船的程序是什么？")

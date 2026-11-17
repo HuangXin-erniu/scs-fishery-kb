@@ -1954,6 +1954,21 @@ class AnswerService:
                 answerability="refuse",
                 confidence=0.0,
             )
+        if (
+            not result.answer.abstained
+            and result.conclusion
+            and len(result.conclusion) >= 12
+            and result.conclusion not in result.answer.text
+        ):
+            result = replace(
+                result,
+                answer=Answer(
+                    text=f"结论：{result.conclusion}\n{result.answer.text}",
+                    citations=result.answer.citations,
+                    abstained=False,
+                    reason=result.answer.reason,
+                ),
+            )
         if not result.answer.abstained and result.answer.reason != "rescue_evidence":
             pruned, dropped = prune_unsupported(result.answer.text, pack)
             if dropped:
