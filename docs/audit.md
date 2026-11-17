@@ -89,6 +89,10 @@ theme quotas, excluding ids already used in earlier reviews. `wilson(143, 150)
 is revised before the 150-row review proceeds. The AI pre-label is advisory and
 never fills the human columns.
 
+`scripts/validate_human_review.py` checks that every row is filled, rejects
+unknown verdicts and computes the blind-pass rate with its Wilson lower bound;
+it exits non-zero until the sheet is complete and above both lines.
+
 The acceptance spot check is separate: `scripts/draw_expert_sample.py` draws a
 fresh 30-question blind pack (excluding the 150-row sample and earlier review
 sets), and `scripts/score_expert_sample.py` scores the signed worksheet against
