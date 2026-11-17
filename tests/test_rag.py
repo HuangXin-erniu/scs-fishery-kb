@@ -47,7 +47,7 @@ class _FakeClient:
             session="test",
         )
 
-    def chat_json(self, messages, *, temperature=0.0, max_tokens=1200):
+    def chat_json(self, messages, *, temperature=0.0, max_tokens=1200, **kwargs):
         self.calls += 1
         return self.replies.pop(0)
 

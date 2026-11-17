@@ -397,7 +397,7 @@ def llm_picker(client: Any, cache: Any) -> Any:
             {"role": "user", "content": f"问题：{question}\n\n段落：\n{payload}\n\n按 JSON 输出。"},
         ]
         try:
-            value = parse_json_object(client.chat(messages, max_tokens=200))
+            value = parse_json_object(client.chat(messages, max_tokens=200, stage="select"))
         except LLMError:
             return 0
         choice = _choice(value.get("choice"), len(options))

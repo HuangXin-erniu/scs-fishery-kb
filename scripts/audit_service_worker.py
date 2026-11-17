@@ -5,7 +5,9 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import sys
+import time
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -24,6 +26,8 @@ def main() -> int:
         if not line.strip():
             continue
         request = json.loads(line)
+        os.environ["SCS_FKB_TRACE_ID"] = str(request.get("id", ""))
+        started = time.perf_counter()
         try:
             response = svc.query(request["question"], web="off", mode=args.answer_mode)
             payload = {
@@ -37,6 +41,7 @@ def main() -> int:
                 "abstained": bool(response.abstained),
                 "reason": str(response.reason),
                 "answerability": str(getattr(response, "answerability", "")),
+                "elapsed_ms": int((time.perf_counter() - started) * 1000),
             }
         except Exception as exc:  # noqa: BLE001
             payload = {"ok": False, "id": request["id"], "error": type(exc).__name__}

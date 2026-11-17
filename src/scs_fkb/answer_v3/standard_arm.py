@@ -172,6 +172,7 @@ def _repair(
         client,
         messages,
         max_tokens=1600,
+        stage="repair",
     )
     return str(value.get("conclusion") or value.get("answer") or "").strip()
 
@@ -226,7 +227,7 @@ def answer_with_plain(
         }
     ]
     try:
-        text = client.chat(messages, max_tokens=900).strip()
+        text = client.chat(messages, max_tokens=900, stage="plain").strip()
     except LLMError:
         return None
     if not text:
@@ -272,6 +273,7 @@ def answer_with_conditional(
             client,
             messages,
             max_tokens=1400,
+            stage="conditional",
         )
     except LLMError:
         return None
@@ -330,6 +332,7 @@ def answer_with_standard(
             client,
             messages,
             max_tokens=2400,
+            stage="standard",
         )
     except LLMError:
         # One compact retry: the remote model occasionally returns an empty
@@ -355,6 +358,7 @@ def answer_with_standard(
                 client,
                 retry_messages,
                 max_tokens=800,
+                stage="standard_retry",
             )
         except LLMError:
             return StandardResult(
@@ -451,6 +455,7 @@ def answer_with_standard(
                 client,
                 retry_messages,
                 max_tokens=900,
+                stage="standard_ungrounded",
             )
             compact_text = _prune(_body(compact), by_label)
             if compact_text and "[" in compact_text.splitlines()[0]:

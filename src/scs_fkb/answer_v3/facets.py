@@ -68,7 +68,7 @@ def answer_facet(
             },
         ]
         try:
-            value = parse_json_object(client.chat(messages, max_tokens=1200))
+            value = parse_json_object(client.chat(messages, max_tokens=1200, stage="facets"))
         except LLMError:
             return FacetAnswer(facet, "", (), (), True, "model_error")
         if cache is not None:

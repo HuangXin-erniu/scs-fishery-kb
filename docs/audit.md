@@ -27,6 +27,12 @@ python scripts/build_audit_artifact.py --mode service --out "$RUN/AUDIT/audit-an
 `--mode dump-trimmed` exists only for historical comparison and is marked
 `answer_kind=dump_trimmed`; its `原文：` findings are not product findings.
 
+The product run is one question per worker request. `--timeout 240` is the
+per-question wall clock; a blocked worker is killed and restarted, and
+`--resume` keeps completed ids. Each LLM call writes a metadata-only trace
+(`<out>.llm-trace.jsonl`: stage, prompt size, elapsed, outcome) when
+`SCS_FKB_LLM_TRACE` is set. No prompt text or key is written.
+
 ## Detectors
 
 Thresholds live in `configs/audit.yaml`; implementation is
@@ -66,6 +72,10 @@ Outputs:
 - `defect-distribution.csv`;
 - `stage-attribution.csv`.
 
+`scripts/audit_corpus.py` writes the five corpus checks. `scripts/audit_gate.py`
+reads an artifact and its ledger and writes `gate.json`; it deliberately does
+not decide acceptance.
+
 ## Human sample
 
 ```bash
@@ -73,9 +83,16 @@ python scripts/sample_audit.py --answers ... --ledger ... --out ... --limit 150
 ```
 
 The sampler always includes all S1 IDs and all gap/refusal IDs, then fills fixed
-theme quotas. `wilson(143, 150) = 0.9068` is the lower bound used by the gate.
-A 30-row double annotation computes Cohen's kappa; below 0.6 the rubric is
-revised before the 150-row review proceeds.
+theme quotas, excluding ids already used in earlier reviews. `wilson(143, 150)
+= 0.9068` is the lower bound used by the gate; a 137/150 pass reaches about
+0.858. A 30-row double annotation computes Cohen's kappa; below 0.6 the rubric
+is revised before the 150-row review proceeds. The AI pre-label is advisory and
+never fills the human columns.
+
+The acceptance spot check is separate: `scripts/draw_expert_sample.py` draws a
+fresh 30-question blind pack (excluding the 150-row sample and earlier review
+sets), and `scripts/score_expert_sample.py` scores the signed worksheet against
+citation >=0.95, conclusion >=0.85 and refusal >=0.90.
 
 ## Gate
 
@@ -89,7 +106,9 @@ Acceptance requires all of:
 - D5 = 0;
 - as-of declaration ≥ 0.95.
 
-The older aggregate metrics remain diagnostic/regression only.
+The older aggregate metrics remain diagnostic/regression only. A signed expert
+worksheet is the only human-judged layer; a model score is never reported as
+human review.
 
 ## Corpus checks
 

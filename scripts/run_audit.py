@@ -29,9 +29,11 @@ def _chunk_index(path: Path) -> dict[str, list[tuple[str, str]]]:
             if not line.strip():
                 continue
             row = json.loads(line)
-            index[str(row["doc_id"])].append(
-                (str(row.get("section", "")), str(row.get("text", "")))
-            )
+            section = str(row.get("section", ""))
+            page = row.get("page")
+            if not section and page:
+                section = f"p.{page}"
+            index[str(row["doc_id"])].append((section, str(row.get("text", ""))))
     return dict(index)
 
 

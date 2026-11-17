@@ -19,7 +19,7 @@ class FakeClient:
         self.replies = list(replies)
         self.calls = 0
 
-    def chat(self, messages, *, temperature=0.0, max_tokens=1200):  # noqa: ANN001
+    def chat(self, messages, *, temperature=0.0, max_tokens=1200, **kwargs):  # noqa: ANN001
         self.calls += 1
         return json.dumps(self.replies.pop(0), ensure_ascii=False)
 

@@ -40,7 +40,7 @@ def rewrite(
                 {"role": "user", "content": f"问题：{question}\n\n按 JSON 输出。"},
             ]
             try:
-                cached = parse_json_object(client.chat(messages, max_tokens=600))
+                cached = parse_json_object(client.chat(messages, max_tokens=600, stage="rewrite"))
             except LLMError:
                 cached = None
             if cached is not None and cache is not None:

@@ -86,7 +86,7 @@ def _ask(
     max_tokens: int = 1600,
 ) -> dict[str, Any]:
     try:
-        return _cached_json(cache, key, client, messages, max_tokens=max_tokens)
+        return _cached_json(cache, key, client, messages, max_tokens=max_tokens, stage="short")
     except LLMError as exc:
         if "empty completion" not in str(exc) and "JSON" not in str(exc):
             raise
@@ -94,7 +94,7 @@ def _ask(
             *messages,
             {"role": "user", "content": "只输出一个 JSON 对象，不要解释或代码块标记。"},
         ]
-        return _cached_json(cache, key + ":retry", client, retry, max_tokens=3000)
+        return _cached_json(cache, key + ":retry", client, retry, max_tokens=3000, stage="short_retry")
 
 
 def _problems(text: str, by_label: dict[str, Any]) -> list[str]:

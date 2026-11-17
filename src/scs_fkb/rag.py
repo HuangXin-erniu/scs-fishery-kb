@@ -80,7 +80,7 @@ def _cached_call(
         cached = cache.get(key)
         if cached is not None:
             return cached
-    raw = client.chat_json(messages, max_tokens=max_tokens)
+    raw = client.chat_json(messages, max_tokens=max_tokens, stage="rag")
     if cache is not None:
         cache.put(key, raw)
     return raw

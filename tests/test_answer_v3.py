@@ -184,7 +184,7 @@ class FakeClient:
         self.replies = list(replies)
         self.calls: list[str] = []
 
-    def chat(self, messages, *, temperature=0.0, max_tokens=1200):  # noqa: ANN001
+    def chat(self, messages, *, temperature=0.0, max_tokens=1200, **kwargs):  # noqa: ANN001
         system = messages[0]["content"]
         if "修复" in system:
             kind = "repair"
@@ -284,7 +284,7 @@ class FacetClient:
         self.verified = verified
         self.config = FakeConfig()
 
-    def chat(self, messages, *, temperature=0.0, max_tokens=1200):  # noqa: ANN001
+    def chat(self, messages, *, temperature=0.0, max_tokens=1200, **kwargs):  # noqa: ANN001
         system = messages[0]["content"]
         if "拆解" in system:
             return json.dumps(
@@ -370,7 +370,7 @@ class QuotesClient:
         self.verified = verified
         self.config = FakeConfig()
 
-    def chat(self, messages, *, temperature=0.0, max_tokens=1200):  # noqa: ANN001
+    def chat(self, messages, *, temperature=0.0, max_tokens=1200, **kwargs):  # noqa: ANN001
         system = messages[0]["content"]
         if "摘录器" in system:
             return json.dumps({"entries": self.entries}, ensure_ascii=False)

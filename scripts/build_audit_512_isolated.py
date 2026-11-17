@@ -4,7 +4,7 @@
 A persistent worker loads the service once.  Each request is guarded by a
 readline timeout; if the worker is blocked in an LLM/SSL call it is killed and
 restarted.  Timed-out questions are recorded as ``service_timeout`` and never
-count as passes.
+count as passes.  ``--resume`` keeps completed ids and appends new records.
 """
 
 from __future__ import annotations
@@ -15,11 +15,12 @@ import os
 import select
 import subprocess
 import sys
+import time
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
-from scs_fkb.audit.schema import AuditRecord, write_jsonl  # noqa: E402
+from scs_fkb.audit.schema import AuditRecord  # noqa: E402
 
 THEMES = {
     "休渔": ("休渔", "禁渔", "伏季"),
@@ -55,6 +56,8 @@ class Worker:
         self.proc: subprocess.Popen[str] | None = None
 
     def start(self) -> None:
+        env = dict(os.environ)
+        env.setdefault("SCS_FKB_WEB", "off")
         self.proc = subprocess.Popen(
             [
                 sys.executable,
@@ -69,6 +72,7 @@ class Worker:
             stderr=subprocess.DEVNULL,
             text=True,
             bufsize=1,
+            env=env,
         )
 
     def stop(self) -> None:
@@ -103,38 +107,82 @@ class Worker:
             return {"ok": False, "id": record_id, "error": "bad_json"}
 
 
+def _done_ids(path: Path) -> set[str]:
+    if not path.is_file():
+        return set()
+    done: set[str] = set()
+    for line in path.read_text(encoding="utf-8").splitlines():
+        if not line.strip():
+            continue
+        try:
+            done.add(str(json.loads(line).get("id", "")))
+        except json.JSONDecodeError:
+            continue
+    return done
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--out", required=True)
     parser.add_argument("--data-root", default=os.environ.get("SCS_FKB_DATA_ROOT", "data"))
     parser.add_argument("--answer-mode", default="standard")
-    parser.add_argument("--timeout", type=float, default=45.0)
-    parser.add_argument("--start-timeout", type=float, default=120.0)
+    parser.add_argument("--timeout", type=float, default=240.0)
+    parser.add_argument("--start-timeout", type=float, default=180.0)
     parser.add_argument("--offset", type=int, default=0)
     parser.add_argument("--limit", type=int)
+    parser.add_argument("--resume", action="store_true")
+    parser.add_argument("--questions", default="", help="JSONL with id/question fields")
+    parser.add_argument("--ids", default="", help="comma-separated ids to run")
+    parser.add_argument("--source", default="acceptance")
+    parser.add_argument(
+        "--trace",
+        default="",
+        help="LLM call trace JSONL; defaults to <out>.llm-trace.jsonl",
+    )
     args = parser.parse_args(argv)
+    out_path = Path(args.out)
+    trace_path = Path(args.trace) if args.trace else out_path.with_suffix(".llm-trace.jsonl")
+    trace_path.parent.mkdir(parents=True, exist_ok=True)
+    os.environ["SCS_FKB_LLM_TRACE"] = str(trace_path)
     data_root = Path(args.data_root)
+    questions_path = (
+        Path(args.questions)
+        if args.questions
+        else data_root / "eval" / "acceptance" / "dataset.jsonl"
+    )
     rows = [
         json.loads(line)
-        for line in (data_root / "eval" / "acceptance" / "dataset.jsonl")
-        .read_text(encoding="utf-8")
-        .splitlines()
+        for line in questions_path.read_text(encoding="utf-8").splitlines()
         if line.strip()
     ]
+    if args.ids:
+        wanted = {part.strip() for part in args.ids.split(",") if part.strip()}
+        rows = [row for row in rows if str(row["id"]) in wanted]
     stop = None if args.limit is None else args.offset + args.limit
     rows = rows[args.offset : stop]
+    done = _done_ids(out_path) if args.resume else set()
+    if args.resume and done:
+        rows = [row for row in rows if str(row["id"]) not in done]
+        print(f"resume: {len(done)} records already done; {len(rows)} remaining", flush=True)
     worker = Worker(data_root, args.answer_mode)
-    records: list[AuditRecord] = []
-    try:
-        for index, row in enumerate(rows):
-            response = worker.ask(
-                row["id"], row["question"], args.start_timeout if index == 0 else args.timeout
-            )
-            if not response.get("ok"):
-                records.append(
-                    AuditRecord(
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    written = 0
+    timeouts = 0
+    with out_path.open("a", encoding="utf-8") as handle:
+        try:
+            for index, row in enumerate(rows):
+                started = time.perf_counter()
+                response = worker.ask(
+                    row["id"],
+                    row["question"],
+                    args.start_timeout if index == 0 and not done else args.timeout,
+                )
+                wall_ms = int((time.perf_counter() - started) * 1000)
+                if not response.get("ok"):
+                    timeouts += 1
+                    record = AuditRecord(
                         id=row["id"],
-                        source="acceptance",
+                        source=str(row.get("source") or args.source),
                         question=row["question"],
                         visible_answer="审计超时或服务错误，未生成交付答案。",
                         abstained=True,
@@ -143,39 +191,50 @@ def main(argv: list[str] | None = None) -> int:
                         reference=row.get("reference_answer", ""),
                         theme=theme(row["question"]),
                         answer_kind="service_timeout",
-                        trace_ref="service-worker",
+                        trace_ref=trace_path.name,
+                        metadata={
+                            "wall_ms": wall_ms,
+                            "answer_mode": args.answer_mode,
+                            "timeout_seconds": args.timeout,
+                        },
                     )
+                    print(f"{row['id']} {response.get('error')} ({wall_ms}ms)", flush=True)
+                else:
+                    cites = response.get("citations", [])
+                    record = AuditRecord(
+                        id=row["id"],
+                        source=str(row.get("source") or args.source),
+                        question=row["question"],
+                        visible_answer=response.get("answer", ""),
+                        citations=cites,
+                        evidence_ids=sorted({str(c.get("doc_id", "")) for c in cites}),
+                        abstained=bool(response.get("abstained")),
+                        reason=str(response.get("reason", "")),
+                        pipeline_stage=stage(
+                            str(response.get("reason", "")), bool(response.get("abstained"))
+                        ),
+                        reference=row.get("reference_answer", ""),
+                        theme=theme(row["question"]),
+                        gap_status=str(response.get("answerability", "")),
+                        trace_ref=trace_path.name,
+                        answer_kind="delivery",
+                        metadata={
+                            "wall_ms": wall_ms,
+                            "worker_elapsed_ms": int(response.get("elapsed_ms") or 0),
+                            "answer_mode": args.answer_mode,
+                        },
+                    )
+                handle.write(
+                    json.dumps(record.to_dict(), ensure_ascii=False) + "\n"
                 )
-                print(f"{row['id']} {response.get('error')}", flush=True)
-                continue
-            cites = response.get("citations", [])
-            records.append(
-                AuditRecord(
-                    id=row["id"],
-                    source="acceptance",
-                    question=row["question"],
-                    visible_answer=response.get("answer", ""),
-                    citations=cites,
-                    evidence_ids=sorted({str(c.get("doc_id", "")) for c in cites}),
-                    abstained=bool(response.get("abstained")),
-                    reason=str(response.get("reason", "")),
-                    pipeline_stage=stage(
-                        str(response.get("reason", "")), bool(response.get("abstained"))
-                    ),
-                    reference=row.get("reference_answer", ""),
-                    theme=theme(row["question"]),
-                    gap_status=str(response.get("answerability", "")),
-                    trace_ref="service-worker",
-                    answer_kind="delivery",
-                )
-            )
-            if len(records) % 10 == 0:
-                print(f"done {len(records)}", flush=True)
-    finally:
-        worker.stop()
-    write_jsonl(Path(args.out), records)
-    timeouts = sum(1 for record in records if record.answer_kind == "service_timeout")
-    print(f"wrote {len(records)} records; timeouts={timeouts} -> {args.out}")
+                handle.flush()
+                written += 1
+                if written % 10 == 0:
+                    print(f"done {written} (timeouts={timeouts})", flush=True)
+        finally:
+            worker.stop()
+    total = len(_done_ids(out_path))
+    print(f"appended {written} records; total={total}; timeouts={timeouts} -> {out_path}")
     return 0
 
 

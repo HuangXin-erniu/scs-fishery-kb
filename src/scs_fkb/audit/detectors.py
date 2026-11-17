@@ -176,42 +176,60 @@ def d7(record: AuditRecord, chunk_index: dict[str, list[tuple[str, str]]]) -> li
 
 
 def d8(record: AuditRecord, doc_meta: dict[str, dict[str, Any]]) -> list[Finding]:
-    text = record.visible_answer or ""
-    if not any(word in text for word in ("全国", "以上为", "适用于全国")):
-        return []
+    """A national-scope assertion must cite a national document.
+
+    The check is sentence-scoped: a gap line such as "全国层面统一规定未覆盖"
+    is not an assertion and must not flag every provincial citation in the
+    answer.
+    """
     findings: list[Finding] = []
-    for cite in record.citations:
-        meta = doc_meta.get(str(cite.get("doc_id", "")), {})
-        level = str(meta.get("level", ""))
-        if level and level not in {"national", "国家"} and ("全国" in text or "以上为" in text):
-            findings.append(
-                Finding(
-                    record.id,
-                    "D8",
-                    "S1",
-                    "全国性断言引用非国家级文档",
-                    str(cite.get("doc_id", "")),
-                    str(cite.get("doc_id", "")),
+    for sentence in sentences(record.visible_answer or ""):
+        if any(
+            marker in sentence
+            for marker in ("缺口", "未覆盖", "未收录", "未明确", "注意：", "渠道：", "时效：")
+        ):
+            continue
+        national_claim = "全国" in sentence or "适用于全国" in sentence
+        current_claim = "现行" in sentence
+        if not national_claim and not current_claim:
+            continue
+        for doc_id, _section in citations(sentence):
+            meta = doc_meta.get(doc_id, {})
+            level = str(meta.get("level", ""))
+            if national_claim and level and level not in {"national", "国家"}:
+                findings.append(
+                    Finding(
+                        record.id,
+                        "D8",
+                        "S1",
+                        "全国性断言引用非国家级文档",
+                        doc_id,
+                        doc_id,
+                    )
                 )
-            )
-        effective_to = str(meta.get("effective_to", "") or "")
-        if effective_to and effective_to < "2026-01-01" and "现行" in text:
-            findings.append(
-                Finding(
-                    record.id,
-                    "D8",
-                    "S1",
-                    "过期文档仍称现行",
-                    str(cite.get("doc_id", "")),
-                    str(cite.get("doc_id", "")),
+            effective_to = str(meta.get("effective_to", "") or "")
+            if current_claim and effective_to and effective_to < "2026-01-01":
+                findings.append(
+                    Finding(
+                        record.id,
+                        "D8",
+                        "S1",
+                        "过期文档仍称现行",
+                        doc_id,
+                        doc_id,
+                    )
                 )
-            )
     return findings
 
 
 def d9(record: AuditRecord, cited_chunks: list[tuple[str, str]]) -> list[Finding]:
     cited = "\n".join(text for _section, text in cited_chunks)
-    clean = re.sub(r"\[[^\]]+\]", "", record.visible_answer or "")
+    lines = [
+        line
+        for line in (record.visible_answer or "").splitlines()
+        if not line.strip().startswith(("时效：", "口径：", "注意：", "缺口", "渠道：", "版本："))
+    ]
+    clean = re.sub(r"\[[^\]]+\]", "", "\n".join(lines))
     missing = [value for value in numbers(clean) if value not in cited]
     if missing:
         return [Finding(record.id, "D9", "S1", f"未落地数值={missing[:5]}", chunk_id="")]
@@ -245,7 +263,8 @@ def d11(record: AuditRecord, doc_meta: dict[str, dict[str, Any]]) -> list[Findin
         return []
     text = record.visible_answer or ""
     if not any(word in text for word in ("现行", "修订", "版", "施行", "生效", "年")):
-        return [Finding(record.id, "D11", "S3", "引用版本文档但无时效声明", chunk_id=versioned[0])]
+        if not re.search(r"(?:19|20)\d{2}", text):
+            return [Finding(record.id, "D11", "S3", "引用版本文档但无时效声明", chunk_id=versioned[0])]
     return []
 
 

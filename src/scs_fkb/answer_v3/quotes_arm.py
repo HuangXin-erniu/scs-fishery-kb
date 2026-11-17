@@ -93,7 +93,7 @@ def answer_with_quotes(
             },
         ]
         try:
-            value = parse_json_object(client.chat(messages, max_tokens=1800))
+            value = parse_json_object(client.chat(messages, max_tokens=1800, stage="quotes"))
         except LLMError:
             return fallback() if fallback is not None else Answer("", (), True, "model_error")
         if cache is not None:

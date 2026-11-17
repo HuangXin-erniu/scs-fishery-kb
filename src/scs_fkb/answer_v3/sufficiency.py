@@ -65,7 +65,7 @@ def judge(
             },
         ]
         try:
-            value = parse_json_object(client.chat(messages, max_tokens=500))
+            value = parse_json_object(client.chat(messages, max_tokens=500, stage="sufficiency"))
         except LLMError:
             return "full"
         if cache is not None:

@@ -230,6 +230,7 @@ def _request(client: LLMClient, cache: LLMCache | None, question: str, context: 
         client,
         messages,
         max_tokens=2500,
+        stage="summary",
     )
 
 
@@ -249,6 +250,7 @@ def _repair(
             client,
             messages,
             max_tokens=2000,
+            stage="summary_repair",
         )
     except LLMError:
         return ""

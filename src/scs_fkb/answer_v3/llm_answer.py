@@ -75,12 +75,15 @@ def _cached_json(
     messages: list[dict[str, str]],
     *,
     max_tokens: int,
+    stage: str = "",
 ) -> dict:
     if cache is not None:
         cached = cache.get(key)
         if cached is not None:
             return cached
-    value = parse_json_object(client.chat(messages, max_tokens=max_tokens))
+    value = parse_json_object(
+        client.chat(messages, max_tokens=max_tokens, stage=stage)
+    )
     if cache is not None:
         cache.put(key, value)
     return value
@@ -344,6 +347,7 @@ def _verify(
             client,
             messages,
             max_tokens=600,
+            stage="verify",
         )
     except LLMError:
         return True, "verifier_unavailable"
@@ -374,6 +378,7 @@ def answer_with_llm(
             client,
             messages,
             max_tokens=2400,
+            stage="llm",
         )
     except LLMError as exc:
         if "empty completion" not in str(exc) and "JSON" not in str(exc):
@@ -388,6 +393,7 @@ def answer_with_llm(
             client,
             retry_messages,
             max_tokens=4000,
+            stage="llm_retry",
         )
     if value.get("abstained") is True:
         return _abstain(f"llm_abstain:{str(value.get('reason') or '')}".rstrip(":"), question)
@@ -403,6 +409,7 @@ def answer_with_llm(
             client,
             _repair_messages(question, context, text, problems),
             max_tokens=2400,
+            stage="llm_repair",
         )
         if repaired.get("abstained") is True:
             return _abstain("llm_repair_abstain", question)

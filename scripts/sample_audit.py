@@ -44,12 +44,30 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--out", required=True)
     parser.add_argument("--limit", type=int, default=150)
     parser.add_argument("--seed", type=int, default=20261117)
+    parser.add_argument("--exclude", default="", help="file of ids already reviewed")
+    parser.add_argument("--answers-extra", default="", help="extra JSONL answers (e.g. industry rows)")
+    parser.add_argument("--double", type=int, default=30, help="rows for double annotation")
     args = parser.parse_args(argv)
-    records = [
-        json.loads(line)
-        for line in Path(args.answers).read_text(encoding="utf-8").splitlines()
-        if line.strip()
-    ]
+    paths = [Path(args.answers)]
+    if args.answers_extra:
+        paths.append(Path(args.answers_extra))
+    records = []
+    for path in paths:
+        records += [
+            json.loads(line)
+            for line in path.read_text(encoding="utf-8").splitlines()
+            if line.strip()
+        ]
+    excluded: set[str] = set()
+    if args.exclude:
+        for line in Path(args.exclude).read_text(encoding="utf-8").splitlines():
+            if not line.strip():
+                continue
+            try:
+                excluded.add(str(json.loads(line).get("id", "")))
+            except json.JSONDecodeError:
+                excluded.add(line.strip())
+    records = [row for row in records if str(row.get("id")) not in excluded]
     by_id = {row["id"]: row for row in records}
     s1 = defaultdict(set)
     with Path(args.ledger).open(encoding="utf-8-sig") as handle:
@@ -85,17 +103,23 @@ def main(argv: list[str] | None = None) -> int:
     rng.shuffle(remaining)
     add(remaining[: max(0, args.limit - len(selected))])
     rows = []
-    for qid in selected:
+    for index, qid in enumerate(selected, start=1):
         row = by_id[qid]
+        flags = sorted(s1.get(qid, set()))
         rows.append(
             {
+                "sample_no": index,
                 "id": qid,
                 "source": row.get("source", ""),
                 "theme": row.get("theme", ""),
                 "question": row.get("question", ""),
                 "visible_answer": row.get("visible_answer", ""),
-                "trace_ref": row.get("trace_ref", ""),
-                "s1_flags": ";".join(sorted(s1.get(qid, set()))),
+                "citations": json.dumps(row.get("citations") or [], ensure_ascii=False),
+                "detectors": ";".join(flags),
+                "ai_label": "fail" if flags else (
+                    "review" if row.get("abstained") else "pass"
+                ),
+                "double_annotation": "yes" if index <= args.double else "no",
                 "human_verdict": "",
                 "citation_ok": "",
                 "conclusion_ok": "",
@@ -109,7 +133,7 @@ def main(argv: list[str] | None = None) -> int:
         writer.writeheader()
         writer.writerows(rows)
     print(f"records={len(records)} s1={len(s1)} selected={len(rows)}")
-    print(f"wilson_150_pass7={wilson(143, 150)} kappa_placeholder={kappa([])}")
+    print(f"wilson_143={wilson(143, 150)} wilson_137={wilson(137, 150)} kappa_placeholder={kappa([])}")
     print(args.out)
     return 0
 
