@@ -1481,8 +1481,7 @@ class AnswerService:
                     contract_fields={
                         "answerability": "answerable",
                         "conclusion": (
-                            "没收工具、渔获物和违法所得，20万元以下；"
-                            "情节严重20-200万元。"
+                            "没收工具、渔获物和违法所得，20万元以下；情节严重20-200万元。"
                         ),
                         "gap": [],
                     },
