@@ -101,6 +101,56 @@ def _best_item(claim: str, items: tuple[Any, ...]) -> tuple[Any | None, float]:
     return best, best_score
 
 
+def repair_citations(text: str, chunks: list[Any], *, keep: float = 0.55) -> tuple[str, int]:
+    """Re-cite a sentence to another chunk of the same document when possible."""
+    if not text or not chunks:
+        return text, 0
+    by_doc: dict[str, list[Any]] = {}
+    for chunk in chunks:
+        by_doc.setdefault(str(getattr(chunk, "doc_id", "")), []).append(chunk)
+    repaired = 0
+    out: list[str] = []
+    for sentence in sentences(text):
+        cites = _labels(sentence)
+        if not cites:
+            out.append(sentence)
+            continue
+        claim = CITATION_RE.sub("", sentence).strip()
+        cited_docs = {label.split(" §", 1)[0] for label in cites}
+        if any(
+            support_score(claim, chunk.text) >= keep
+            for doc_id in cited_docs
+            for chunk in by_doc.get(doc_id, [])
+            if any(
+                str(getattr(chunk, "section", "")).startswith(label.split(" §", 1)[1])
+                or label.split(" §", 1)[1].startswith(str(getattr(chunk, "section", "")))
+                for label in cites
+                if label.startswith(str(getattr(chunk, "doc_id", "")) + " §")
+            )
+        ):
+            out.append(sentence)
+            continue
+        best = None
+        best_score = 0.0
+        for doc_id in cited_docs:
+            for chunk in by_doc.get(doc_id, []):
+                score = support_score(claim, chunk.text)
+                if score > best_score:
+                    best, best_score = chunk, score
+        if best_score < keep:
+            for chunk in chunks:
+                score = support_score(claim, chunk.text)
+                if score > best_score:
+                    best, best_score = chunk, score
+        if best is not None and best_score >= keep:
+            label = f"[{best.doc_id} §{best.section}]" if best.section else f"[{best.doc_id}]"
+            out.append(CITATION_RE.sub(label, sentence))
+            repaired += 1
+        else:
+            out.append(sentence)
+    return "\n".join(out).strip(), repaired
+
+
 def prune_unsupported(
     text: str,
     pack: Any,

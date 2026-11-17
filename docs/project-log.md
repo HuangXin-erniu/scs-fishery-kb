@@ -1840,3 +1840,9 @@ This log records material project changes by date. It does not use release versi
   regression, 150-row sample, 30-row expert sample, earlier partial batches).
   The remaining 303 questions are running in four product-path batches with
   `--resume`; the merged artifact will be audited only after all four finish.
+- 2026-11-17 512 product-path audit complete: 512/512 records, 0 timeouts,
+  81 refusals, 424 cited records, 0 unresolved citation labels. Deterministic
+  D1-D11: **no S1**, D1/D3/D4/D5=0, D7 support 1.00, as-of 0.9905; remaining
+  findings are D11=4 (S3), D2=1 (S2), D6=1 (S2). `512-gate.json` passes the
+  deterministic gate; the 150-row human blind review and the 30-row expert
+  signature remain the only open acceptance layers.

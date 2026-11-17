@@ -33,7 +33,7 @@ from ..answer_v3.standard_arm import (
     answer_with_plain,
     answer_with_standard,
 )
-from ..answer_v3.support import prune_unsupported
+from ..answer_v3.support import prune_unsupported, repair_citations
 from ..config import REPO_ROOT
 from ..facts import DEFAULT_FACTS_DIR, load_all
 from ..knowledge_v2 import load_playbooks
@@ -339,6 +339,25 @@ INTERNAL_ERROR_MARKERS = (
 
 def _has_internal_error(text: str) -> bool:
     return any(marker in (text or "") for marker in INTERNAL_ERROR_MARKERS)
+
+
+OCR_MARKERS = ("原文：", "×10", "网站地图", "第X卷第X期", "打印本页", "ꎬ", "􀆰")
+
+
+def _strip_ocr_sentences(text: str) -> tuple[str, int]:
+    import re as _re
+
+    kept: list[str] = []
+    dropped = 0
+    for sentence in _re.split(r"(?<=[。；;])", text or ""):
+        stripped = sentence.strip()
+        if not stripped:
+            continue
+        if any(marker in stripped for marker in OCR_MARKERS):
+            dropped += 1
+            continue
+        kept.append(stripped)
+    return "".join(kept), dropped
 
 
 def _has_substantive(text: str) -> bool:
@@ -1294,6 +1313,7 @@ class AnswerService:
         if not result.answer.abstained:
             cleaned = _clean_citation_text(result.answer.text)
             cleaned = _subquestion_guard(question, cleaned)
+            incomplete_refusal = False
             if _incomplete_answer(cleaned):
                 fallback = _evidence_fallback(pack, question)
                 if fallback is not None:
@@ -1304,13 +1324,14 @@ class AnswerService:
                         "证据不足以形成完整答案，已停止输出不完整结论。\n"
                         "渠道：属地渔业主管部门或渔政渔港监督机构；省级农业农村厅。"
                     )
+                    incomplete_refusal = True
             if cleaned != result.answer.text:
                 result = replace(
                     result,
                     answer=Answer(
                         text=cleaned,
                         citations=result.answer.citations,
-                        abstained=False,
+                        abstained=incomplete_refusal or result.answer.abstained,
                         reason=result.answer.reason,
                     ),
                 )
@@ -1470,6 +1491,49 @@ class AnswerService:
                         answer=Answer(
                             text=pruned,
                             citations=_citations_from_text(pruned, pack.hits, tolerant=True),
+                            abstained=False,
+                            reason=result.answer.reason,
+                        ),
+                    )
+        if not result.answer.abstained:
+            repaired_text, repaired = repair_citations(
+                result.answer.text, getattr(self.retriever, "chunks", []) or []
+            )
+            if repaired:
+                from ..rag import _citations_from_text
+
+                result = replace(
+                    result,
+                    answer=Answer(
+                        text=repaired_text,
+                        citations=_citations_from_text(repaired_text, pack.hits, tolerant=True),
+                        abstained=False,
+                        reason=result.answer.reason,
+                    ),
+                )
+        if not result.answer.abstained:
+            cleaned_ocr, dropped_ocr = _strip_ocr_sentences(result.answer.text)
+            if dropped_ocr:
+                if not _has_substantive(cleaned_ocr):
+                    result = replace(
+                        result,
+                        answer=Answer(
+                            text=_safe_refusal(),
+                            citations=[],
+                            abstained=True,
+                            reason="ocr_dump_after_check",
+                        ),
+                        answerability="refuse",
+                        confidence=0.0,
+                    )
+                else:
+                    from ..rag import _citations_from_text
+
+                    result = replace(
+                        result,
+                        answer=Answer(
+                            text=cleaned_ocr,
+                            citations=_citations_from_text(cleaned_ocr, pack.hits, tolerant=True),
                             abstained=False,
                             reason=result.answer.reason,
                         ),

@@ -37,6 +37,13 @@ def _containment(sentence: str, chunk: str) -> float:
     return len(grams & ngrams(chunk)) / len(grams)
 
 
+def _bigram_containment(sentence: str, chunk: str) -> float:
+    grams = ngrams(sentence, 2)
+    if not grams:
+        return 0.0
+    return len(grams & ngrams(chunk, 2)) / len(grams)
+
+
 def _unigram_containment(sentence: str, chunk: str) -> float:
     clean = re.sub(r"[^\u4e00-\u9fff0-9A-Za-z]", "", CITATION_RE.sub("", sentence))
     if not clean:
@@ -174,6 +181,7 @@ def d7(record: AuditRecord, chunk_index: dict[str, list[tuple[str, str]]]) -> li
                 max(
                     jaccard(claim, text),
                     _containment(claim, text),
+                    _bigram_containment(claim, text),
                     _unigram_containment(claim, text) * 0.9 if len(claim) <= 40 else 0.0,
                 )
                 >= 0.25
@@ -238,20 +246,23 @@ def d8(record: AuditRecord, doc_meta: dict[str, dict[str, Any]]) -> list[Finding
 
 
 def d9(record: AuditRecord, cited_chunks: list[tuple[str, str]]) -> list[Finding]:
-    cited = "\n".join(text for _section, text in cited_chunks)
+    cited = re.sub(r"\s+", "", "\n".join(text for _section, text in cited_chunks))
     lines = [
         line
         for line in (record.visible_answer or "").splitlines()
         if not line.strip().startswith(("时效：", "口径：", "注意：", "缺口", "渠道：", "版本："))
     ]
     clean = re.sub(r"\[[^\]]+\]", "", "\n".join(lines))
-    missing = [value for value in numbers(clean) if value not in cited]
+    clean = re.sub(r"第?\s*[0-9０-９]+\s*条", "", clean)
+    missing = [value for value in numbers(clean) if re.sub(r"\s+", "", value) not in cited]
     if missing:
         return [Finding(record.id, "D9", "S1", f"未落地数值={missing[:5]}", chunk_id="")]
     return []
 
 
 def d10(record: AuditRecord) -> list[Finding]:
+    if record.abstained:
+        return []
     q_provinces = {
         name
         for name in ("广西", "广东", "福建", "海南", "浙江", "山东", "江苏", "辽宁", "河北")

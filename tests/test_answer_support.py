@@ -72,3 +72,14 @@ def test_support_score_rejects_a_level_switch() -> None:
         )
         == 0.0
     )
+
+
+def test_repair_citations_uses_another_chunk_of_the_same_document() -> None:
+    from scs_fkb.answer_v3.support import repair_citations
+
+    wrong = _item("POL-A-001", "第二条", "渔港经营者不得拒绝船舶进港避风。")
+    right = _item("POL-A-001", "第五条", "渔业船舶必须经检验合格并取得检验证书。")
+    text = "渔业船舶必须经检验合格并取得检验证书 [POL-A-001 §第二条]。"
+    cleaned, repaired = repair_citations(text, [wrong.chunk, right.chunk])
+    assert repaired == 1
+    assert "[POL-A-001 §第五条]" in cleaned

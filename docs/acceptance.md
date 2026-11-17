@@ -127,8 +127,9 @@ PYTHONPATH=src python -m scs_fkb terms check --data-root "$SCS_FKB_DATA_ROOT"
 - The 512-question aggregate arm on index `251dbf67e804` still meets the
   published lines; the 50-row and 150-row product-path audit scans are clean
   (S1=0, D1/D3/D4=0, D7 support 1.00, as-of 1.00).
-- The 512 product-path scan is being completed in four batches; a full ledger is
-  not yet available.
+- The 512 product-path scan is complete: 512 records, 0 S1, 0 timeouts, 0
+  unresolved citation labels, D7 support 1.00 and as-of 0.9905; the four D11
+  findings are S3.
 - The 150-row human blind review and the 30-row double annotation are **pending**.
 - A fresh 30-question expert pack is sealed; the independent signature is
   **pending**.
