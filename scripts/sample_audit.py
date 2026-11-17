@@ -45,7 +45,9 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--limit", type=int, default=150)
     parser.add_argument("--seed", type=int, default=20261117)
     parser.add_argument("--exclude", default="", help="file of ids already reviewed")
-    parser.add_argument("--answers-extra", default="", help="extra JSONL answers (e.g. industry rows)")
+    parser.add_argument(
+        "--answers-extra", default="", help="extra JSONL answers (e.g. industry rows)"
+    )
     parser.add_argument("--double", type=int, default=30, help="rows for double annotation")
     args = parser.parse_args(argv)
     paths = [Path(args.answers)]
@@ -133,7 +135,10 @@ def main(argv: list[str] | None = None) -> int:
         writer.writeheader()
         writer.writerows(rows)
     print(f"records={len(records)} s1={len(s1)} selected={len(rows)}")
-    print(f"wilson_143={wilson(143, 150)} wilson_137={wilson(137, 150)} kappa_placeholder={kappa([])}")
+    print(
+        f"wilson_143={wilson(143, 150)} wilson_137={wilson(137, 150)} "
+        f"kappa_placeholder={kappa([])}"
+    )
     print(args.out)
     return 0
 

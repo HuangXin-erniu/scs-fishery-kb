@@ -45,7 +45,10 @@ def test_d9_ignores_asof_metadata_year() -> None:
         id="D9-ASOF",
         source="canary",
         question="休渔时间？",
-        visible_answer="休渔时间为5月1日12时 [POL-A-001 §一]。\n时效：本答复依据《某规定》（2025年）；以最新公布为准。",
+        visible_answer=(
+            "休渔时间为5月1日12时 [POL-A-001 §一]。\n"
+            "时效：本答复依据《某规定》（2025年）；以最新公布为准。"
+        ),
         citations=[{"doc_id": "POL-A-001", "section": "一"}],
         evidence_ids=["POL-A-001"],
     )

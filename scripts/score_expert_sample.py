@@ -65,7 +65,9 @@ def main(argv: list[str] | None = None) -> int:
         "",
         f"- 样本数：{len(rows)}",
         f"- 签字：{'已签' if signed else '未签（不得作为验收签字）'}",
-        f"- 签字人：{signature.get('name', '')} / {signature.get('affiliation', '')} / {signature.get('date', '')}",
+        "- 签字人："
+        f"{signature.get('name', '')} / {signature.get('affiliation', '')} / "
+        f"{signature.get('date', '')}",
         "",
         "| 维度 | 通过/可判 | 通过率 | 线 | 结果 |",
         "|---|---:|---:|---:|---|",

@@ -25,7 +25,6 @@ from ..answer_v3.evidence import (
 from ..answer_v3.facet_arm import answer_with_facets
 from ..answer_v3.llm_answer import answer_with_llm
 from ..answer_v3.quotes_arm import answer_with_quotes
-from ..answer_v3.support import prune_unsupported
 from ..answer_v3.short_arm import answer_with_short
 from ..answer_v3.standard_arm import PROMPT_VERSION as STANDARD_PROMPT_VERSION
 from ..answer_v3.standard_arm import (
@@ -34,6 +33,7 @@ from ..answer_v3.standard_arm import (
     answer_with_plain,
     answer_with_standard,
 )
+from ..answer_v3.support import prune_unsupported
 from ..config import REPO_ROOT
 from ..facts import DEFAULT_FACTS_DIR, load_all
 from ..knowledge_v2 import load_playbooks
@@ -486,7 +486,8 @@ def _evidence_fallback(pack: EvidencePack, question: str) -> StandardResult | No
                 text = " ".join(item.quote.split())
                 if item.chunk.doc_id == "POL-MIN-091" and "幼鱼比例" in item.chunk.section:
                     lines.append(
-                        "幼鱼比例：单航次渔获物中，上述品种幼鱼重量2018、2019、2020年分别不得超过50%、30%、20%；2020年之后按20%执行。 "
+                        "幼鱼比例：单航次渔获物中，上述品种幼鱼重量2018、2019、2020年"
+                        "分别不得超过50%、30%、20%；2020年之后按20%执行。 "
                         + _cite(item)
                     )
                     citations.append(_citation(item))
@@ -536,7 +537,8 @@ def _evidence_fallback(pack: EvidencePack, question: str) -> StandardResult | No
                         "不得携带钓具以外的其他网具出海作业，不得使用灯光诱捕。 "
                         + _cite(item)
                         + f"\n时效：本答复依据《{item.title or item.chunk.doc_id}》"
-                        f"（{str(item.chunk.effective_from or '')[:4] or '2026'}年）；以最新公布为准。"
+                        f"（{str(item.chunk.effective_from or '')[:4] or '2026'}年）；"
+                        "以最新公布为准。"
                     ),
                     citations=[_citation(item)],
                     abstained=False,
@@ -571,7 +573,8 @@ def _evidence_fallback(pack: EvidencePack, question: str) -> StandardResult | No
                         "临时公告，对该区域暂时关闭并加强监管；关闭期间禁止采捕海水贝类；"
                         "风险因素消失、连续两次监测合格后开放。 " + _cite(item)
                         + f"\n时效：本答复依据《{item.title or item.chunk.doc_id}》"
-                        f"（{str(item.chunk.effective_from or '')[:4] or '2019'}年）；以最新公布为准。"
+                        f"（{str(item.chunk.effective_from or '')[:4] or '2019'}年）；"
+                        "以最新公布为准。"
                     ),
                     citations=[_citation(item)],
                     abstained=False,
@@ -607,7 +610,8 @@ def _evidence_fallback(pack: EvidencePack, question: str) -> StandardResult | No
                         "经营人或者管理人处三万元以上三十万元以下罚款，责任船员证书暂扣六个月"
                         "至十二个月，直至吊销。 " + _cite(item)
                         + f"\n时效：本答复依据《{item.title or item.chunk.doc_id}》"
-                        f"（{str(item.chunk.effective_from or '')[:4] or '2021'}年）；以最新公布为准。"
+                        f"（{str(item.chunk.effective_from or '')[:4] or '2021'}年）；"
+                        "以最新公布为准。"
                     ),
                     citations=[_citation(item)],
                     abstained=False,
@@ -1123,7 +1127,11 @@ class AnswerService:
                     registry=self._registry,
                     index_version=self.index_version,
                 )
-                stamp = str(lead_hit.chunk.effective_from or "")[:4] or str(lead_hit.chunk.retrieved_at or "")[:4] or "2026"
+                stamp = (
+                    str(lead_hit.chunk.effective_from or "")[:4]
+                    or str(lead_hit.chunk.retrieved_at or "")[:4]
+                    or "2026"
+                )
                 return StandardResult(
                     answer=Answer(
                         text=f"{lead_text} [{lead_citation.doc_id} §{lead_citation.section}]\n"
@@ -1201,7 +1209,12 @@ class AnswerService:
                     if (chunk.doc_id, chunk.section) not in existing:
                         hits.insert(0, SearchHit(chunk=chunk, score=1.0))
                         existing.add((chunk.doc_id, chunk.section))
-                if redtide and chunk.doc_id == "POL-MOA-SHELLFISH-233" and "发生赤潮" in text and "禁止采捕" in text:
+                if (
+                    redtide
+                    and chunk.doc_id == "POL-MOA-SHELLFISH-233"
+                    and "发生赤潮" in text
+                    and "禁止采捕" in text
+                ):
                     if (chunk.doc_id, chunk.section) not in existing:
                         hits.insert(0, SearchHit(chunk=chunk, score=1.0))
                         existing.add((chunk.doc_id, chunk.section))
@@ -1387,7 +1400,11 @@ class AnswerService:
                 versions = []
                 for doc_id in sorted(cited_docs):
                     entry = self._registry.get(doc_id, {})
-                    stamp = str((entry.get("effective") or {}).get("from") or entry.get("year") or "")[:10]
+                    stamp = str(
+                        (entry.get("effective") or {}).get("from")
+                        or entry.get("year")
+                        or ""
+                    )[:10]
                     if not stamp:
                         continue
                     if len(stamp) == 4 and stamp.isdigit():
@@ -1468,7 +1485,11 @@ class AnswerService:
             versions = []
             for doc_id in sorted({citation.doc_id for citation in result.answer.citations}):
                 entry = self._registry.get(doc_id, {})
-                stamp = str((entry.get("effective") or {}).get("from") or entry.get("year") or "")[:10]
+                stamp = str(
+                    (entry.get("effective") or {}).get("from")
+                    or entry.get("year")
+                    or ""
+                )[:10]
                 if not stamp:
                     continue
                 if len(stamp) == 4 and stamp.isdigit():
@@ -1734,7 +1755,9 @@ class AnswerService:
         ):
             _gap, clarify_channels = self._channel_book().resolve(question)
             clarify_line = (
-                "\n渠道：" + "；".join(f"{item.name}，{item.hint}" for item in clarify_channels) + "。"
+                "\n渠道："
+                + "；".join(f"{item.name}，{item.hint}" for item in clarify_channels)
+                + "。"
                 if clarify_channels
                 else ""
             )

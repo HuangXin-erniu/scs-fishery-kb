@@ -5,7 +5,7 @@ import os
 import time
 import uuid
 from dataclasses import dataclass
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 from openai import APITimeoutError, OpenAI, OpenAIError
 
@@ -124,7 +124,7 @@ class LLMClient:
         if not self.trace_path:
             return
         record = {
-            "ts": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+            "ts": datetime.now(UTC).isoformat(timespec="seconds"),
             "question_id": os.environ.get("SCS_FKB_TRACE_ID", ""),
             "stage": stage or "unspecified",
             "model": self.config.model,
@@ -139,7 +139,8 @@ class LLMClient:
         try:
             fd = os.open(self.trace_path, os.O_APPEND | os.O_CREAT | os.O_WRONLY, 0o644)
             try:
-                os.write(fd, (json.dumps(record, ensure_ascii=False, sort_keys=True) + "\n").encode("utf-8"))
+                line = json.dumps(record, ensure_ascii=False, sort_keys=True) + "\n"
+                os.write(fd, line.encode("utf-8"))
             finally:
                 os.close(fd)
         except OSError:

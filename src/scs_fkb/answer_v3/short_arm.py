@@ -94,7 +94,9 @@ def _ask(
             *messages,
             {"role": "user", "content": "只输出一个 JSON 对象，不要解释或代码块标记。"},
         ]
-        return _cached_json(cache, key + ":retry", client, retry, max_tokens=3000, stage="short_retry")
+        return _cached_json(
+            cache, key + ":retry", client, retry, max_tokens=3000, stage="short_retry"
+        )
 
 
 def _problems(text: str, by_label: dict[str, Any]) -> list[str]:

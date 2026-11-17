@@ -283,7 +283,11 @@ def d11(record: AuditRecord, doc_meta: dict[str, dict[str, Any]]) -> list[Findin
     text = record.visible_answer or ""
     if not any(word in text for word in ("现行", "修订", "版", "施行", "生效", "年")):
         if not re.search(r"(?:19|20)\d{2}", text):
-            return [Finding(record.id, "D11", "S3", "引用版本文档但无时效声明", chunk_id=versioned[0])]
+            return [
+                Finding(
+                    record.id, "D11", "S3", "引用版本文档但无时效声明", chunk_id=versioned[0]
+                )
+            ]
     return []
 
 
