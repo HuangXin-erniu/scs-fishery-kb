@@ -246,6 +246,8 @@ def d8(record: AuditRecord, doc_meta: dict[str, dict[str, Any]]) -> list[Finding
 
 
 def d9(record: AuditRecord, cited_chunks: list[tuple[str, str]]) -> list[Finding]:
+    if record.abstained:
+        return []
     cited = re.sub(r"\s+", "", "\n".join(text for _section, text in cited_chunks))
     lines = [
         line

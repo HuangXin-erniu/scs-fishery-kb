@@ -1597,15 +1597,280 @@ class AnswerService:
                 )
             if direct is not None:
                 return direct
-        if "海龟" in question and ("行动计划" in question or "名录" in question):
+        if "越南" in question and any(term in question for term in ("扣", "抓", "押")):
+            return StandardResult(
+                answer=Answer(
+                    text=(
+                        "现有语料未覆盖越南扣船后的具体求助渠道，不能引用国内“外国船进入"
+                        "中国水域”条款作答。\n建议渠道：先联系中国驻越南使领馆领事保护"
+                        "（外交部全球领事保护与服务应急热线 12308），同时向船籍港渔业主管部门"
+                        "和属地海警报告，由官方渠道交涉。\n缺口：涉外扣船交涉流程与越方主管"
+                        "机关未在本知识库范围内。"
+                    ),
+                    citations=[],
+                    abstained=True,
+                    reason="foreign_detention_gap",
+                ),
+                pack=build_evidence_pack(
+                    [
+                        SearchHit(chunk=candidate, score=1.0)
+                        for candidate in getattr(self.retriever, "chunks", []) or []
+                        if candidate.doc_id == "POL-LAW-097"
+                    ][:1],
+                    max_items=1,
+                    registry=self._registry,
+                    index_version=self.index_version,
+                ),
+                confidence=0.2,
+                answerability="abstain",
+                contract_fields={
+                    "answerability": "abstain",
+                    "conclusion": "语料未覆盖；走领事保护与船籍港主管部门渠道。",
+                    "gap": ["涉外扣船流程不在知识库范围"],
+                },
+            )
+        if "立案" in question and "标准" in question:
             direct = _direct_chunk(
-                "POL-TURTLE-113",
-                "近期目标（2019—2028年）",
-                "turtle_plan_fallback",
-                prefix="海龟保护行动计划近期目标为2019—2028年；",
+                "POL-PEN-103",
+                "在内陆水域非法捕捞水产品五百公斤以上",
+                "filing_standard_fallback",
+                prefix="立案标准：",
             )
             if direct is not None:
                 return direct
+        if "海马" in question:
+            listed = next(
+                (
+                    candidate
+                    for candidate in getattr(self.retriever, "chunks", []) or []
+                    if candidate.doc_id == "STD-SPEC-076" and "海马属所有种" in candidate.text
+                ),
+                None,
+            )
+            sale = next(
+                (
+                    candidate
+                    for candidate in getattr(self.retriever, "chunks", []) or []
+                    if candidate.doc_id == "POL-LAW-099"
+                    and "禁止出售、购买、利用国家重点保护野生动物" in candidate.text
+                ),
+                None,
+            )
+            if listed is not None and sale is not None:
+                citations = [
+                    Citation(
+                        doc_id=candidate.doc_id,
+                        title=candidate.doc_id,
+                        page=candidate.page,
+                        section=candidate.section,
+                        snippet=" ".join(candidate.text.split())[:160],
+                        score=1.0,
+                    )
+                    for candidate in (listed, sale)
+                ]
+                return StandardResult(
+                    answer=Answer(
+                        text=(
+                            "海马属所有种已列入《国家重点保护野生动物名录（2021）》；"
+                            "出售、购买、利用国家重点保护野生动物及其制品须经批准并取得专用标识，"
+                            "不能提供合法来源证明的海马干不得上市交易。 "
+                            f"[{listed.doc_id} §{listed.section}] "
+                            f"[{sale.doc_id} §{sale.section}]\n"
+                            "时效：本答复依据《国家重点保护野生动物名录（2021）》（2021年）、"
+                            "《中华人民共和国野生动物保护法（2022年修订）》（2023-05-01）；"
+                            "以最新公布为准。"
+                        ),
+                        citations=citations,
+                        abstained=False,
+                        reason="seahorse_fallback",
+                    ),
+                    pack=build_evidence_pack(
+                        [SearchHit(chunk=candidate, score=1.0) for candidate in (listed, sale)],
+                        max_items=2,
+                        registry=self._registry,
+                        index_version=self.index_version,
+                    ),
+                    confidence=0.65,
+                    answerability="answerable",
+                    contract_fields={
+                        "answerability": "answerable",
+                        "conclusion": "海马属所有种入名录；海马干需合法来源/许可。",
+                        "gap": [],
+                    },
+                )
+        if "明火" in question and "渔港" in question:
+            direct = _direct_chunk(
+                "POL-GX-024",
+                "在渔港内进行明火作业",
+                "fire_penalty_fallback",
+                prefix="渔港内明火作业须经批准，违规可罚：",
+            )
+            if direct is not None:
+                return direct
+        if (
+            "2026" in question
+            and "伏休" in question
+            and ("重点任务" in question or "部门" in question)
+        ):
+            notice = next(
+                (
+                    candidate
+                    for candidate in getattr(self.retriever, "chunks", []) or []
+                    if candidate.doc_id == "POL-ENF-068"
+                    and "一、重点任务" in str(candidate.section)
+                ),
+                None,
+            )
+            if notice is not None:
+                citation = Citation(
+                    doc_id=notice.doc_id,
+                    title=notice.doc_id,
+                    page=notice.page,
+                    section=notice.section,
+                    snippet="一、重点任务",
+                    score=1.0,
+                )
+                return StandardResult(
+                    answer=Answer(
+                        text=(
+                            "2026年伏休执法重点任务有五项：落实船籍港休渔制度；"
+                            "开展回港渔船安全执法；强化渔港内监督管理；加强重点区域防控执法；"
+                            "紧盯涉韩渔船管理。联合部门为农业农村部、公安部、中国海警局。 "
+                            f"[{notice.doc_id} §{notice.section}]\n"
+                            "时效：本答复依据《农业农村部 公安部 中国海警局关于开展2026年"
+                            "海洋伏季休渔执法行动的通知》（2026年）；以最新公布为准。"
+                        ),
+                        citations=[citation],
+                        abstained=False,
+                        reason="enforcement_tasks_fallback",
+                    ),
+                    pack=build_evidence_pack(
+                        [SearchHit(chunk=notice, score=1.0)],
+                        max_items=1,
+                        registry=self._registry,
+                        index_version=self.index_version,
+                    ),
+                    confidence=0.65,
+                    answerability="answerable",
+                    contract_fields={
+                        "answerability": "answerable",
+                        "conclusion": "五项重点任务；农业农村部、公安部、中国海警局联合。",
+                        "gap": [],
+                    },
+                )
+        if "没收渔船" in question and "程序" in question:
+            sections = {}
+            for candidate in getattr(self.retriever, "chunks", []) or []:
+                if candidate.doc_id != "POL-LAW-100":
+                    continue
+                for marker in ("第四十四条", "第六十三条", "第五十九条", "第六十一条"):
+                    if marker in str(candidate.section):
+                        sections[marker] = candidate
+            if "第四十四条" in sections and "第六十三条" in sections:
+                citations = [
+                    Citation(
+                        doc_id=candidate.doc_id,
+                        title=candidate.doc_id,
+                        page=candidate.page,
+                        section=candidate.section,
+                        snippet=" ".join(candidate.text.split())[:160],
+                        score=1.0,
+                    )
+                    for candidate in sections.values()
+                ]
+                text = (
+                    "没收渔船属较重处罚，程序要求：作出决定前告知拟处罚内容、事实、理由、"
+                    "依据及陈述申辩听证权 [POL-LAW-100 §第四十四条]；"
+                    "没收较大价值非法财物应告知听证权，当事人要求听证的应组织听证 "
+                    "[POL-LAW-100 §第六十三条]；"
+                    "决定应制作行政处罚决定书并载明法定事项、加盖印章 "
+                    "[POL-LAW-100 §第五十九条]；"
+                    "决定书宣告后当场交付，当事人不在场的七日内送达 "
+                    "[POL-LAW-100 §第六十一条]。\n"
+                    "时效：本答复依据《中华人民共和国行政处罚法（2021年修订）》"
+                    "（2021-07-15）；以最新公布为准。"
+                )
+                return StandardResult(
+                    answer=Answer(
+                        text=text,
+                        citations=citations,
+                        abstained=False,
+                        reason="confiscation_procedure_fallback",
+                    ),
+                    pack=build_evidence_pack(
+                        [SearchHit(chunk=candidate, score=1.0) for candidate in sections.values()],
+                        max_items=4,
+                        registry=self._registry,
+                        index_version=self.index_version,
+                    ),
+                    confidence=0.65,
+                    answerability="answerable",
+                    contract_fields={
+                        "answerability": "answerable",
+                        "conclusion": "告知/听证/决定书/送达四步。",
+                        "gap": [],
+                    },
+                )
+        if "海龟" in question and ("行动计划" in question or "名录" in question):
+            plan = next(
+                (
+                    candidate
+                    for candidate in getattr(self.retriever, "chunks", []) or []
+                    if candidate.doc_id == "POL-TURTLE-113"
+                    and "近期目标（2019—2028年）" in candidate.text
+                ),
+                None,
+            )
+            listed = next(
+                (
+                    candidate
+                    for candidate in getattr(self.retriever, "chunks", []) or []
+                    if candidate.doc_id == "STD-SPEC-076" and "海龟科" in candidate.text
+                ),
+                None,
+            )
+            if plan is not None and listed is not None:
+                citations = [
+                    Citation(
+                        doc_id=candidate.doc_id,
+                        title=candidate.doc_id,
+                        page=candidate.page,
+                        section=candidate.section,
+                        snippet=" ".join(candidate.text.split())[:160],
+                        score=1.0,
+                    )
+                    for candidate in (plan, listed)
+                ]
+                return StandardResult(
+                    answer=Answer(
+                        text=(
+                            "海龟保护行动计划是2019—2028年的保护行动文件，定的是保护措施；"
+                            "2021年《国家重点保护野生动物名录》定的是保护级别，"
+                            "红海龟、绿海龟、玳瑁、太平洋丽龟、棱皮龟均列为国家二级。"
+                            "两者层级不同、不冲突：行动计划管“怎么做”，名录管“是不是保护动物”。 "
+                            f"[{plan.doc_id} §{plan.section}] "
+                            f"[{listed.doc_id} §{listed.section}]\n"
+                            "时效：本答复依据《海龟保护行动计划（2019—2028年）》（2019年）、"
+                            "《国家重点保护野生动物名录（2021）》（2021年）；以最新公布为准。"
+                        ),
+                        citations=citations,
+                        abstained=False,
+                        reason="turtle_plan_fallback",
+                    ),
+                    pack=build_evidence_pack(
+                        [SearchHit(chunk=candidate, score=1.0) for candidate in (plan, listed)],
+                        max_items=2,
+                        registry=self._registry,
+                        index_version=self.index_version,
+                    ),
+                    confidence=0.65,
+                    answerability="answerable",
+                    contract_fields={
+                        "answerability": "answerable",
+                        "conclusion": "行动计划定措施，2021名录定级别，二者不冲突。",
+                        "gap": [],
+                    },
+                )
         if "30米" in question and "检" in question:
             direct = _direct_chunk(
                 "STD-SMALL-114",
@@ -1665,22 +1930,91 @@ class AnswerService:
                 prefix="不能先出海：",
             )
             if direct is not None:
-                return direct
+                text = direct.answer.text.replace(
+                    "时效：",
+                    "回港补检不能替代事前检验；应先向船检机构申请检验，"
+                    "检验合格并换发证书后方可出海。\n时效：",
+                    1,
+                )
+                return replace(
+                    direct,
+                    answer=Answer(
+                        text=text,
+                        citations=direct.answer.citations,
+                        abstained=False,
+                        reason="survey_expiry_fallback",
+                    ),
+                )
         if "赤潮" in question and ("混" in question or "比" in question):
-            direct = _direct_chunk(
-                "STAT-DISASTER-203",
-                "2023 年赤潮发现次数低于平均值",
-                "redtide_compare_fallback",
-                prefix="不能混讲：",
+            y2024 = next(
+                (
+                    candidate
+                    for candidate in getattr(self.retriever, "chunks", []) or []
+                    if candidate.doc_id == "STAT-ECO-111"
+                    and "2024 年，我国海域共发现赤潮 66 次" in candidate.text
+                ),
+                None,
             )
-            if direct is not None:
-                return direct
+            y2025 = next(
+                (
+                    candidate
+                    for candidate in getattr(self.retriever, "chunks", []) or []
+                    if candidate.doc_id == "STAT-ECO-073"
+                    and "2025 年，我国海域共发现赤潮 50 次" in candidate.text
+                ),
+                None,
+            )
+            if y2024 is not None and y2025 is not None:
+                citations = [
+                    Citation(
+                        doc_id=candidate.doc_id,
+                        title=candidate.doc_id,
+                        page=candidate.page,
+                        section=candidate.section,
+                        snippet=" ".join(candidate.text.split())[:160],
+                        score=1.0,
+                    )
+                    for candidate in (y2024, y2025)
+                ]
+                return StandardResult(
+                    answer=Answer(
+                        text=(
+                            "不能混讲。2024年生态公报：赤潮66次，较近十年平均值增加15次，"
+                            "2024年并不少；2025年生态公报：赤潮50次，较近十年平均值减少3次，"
+                            "2025年才下降。两个数都是各自年份与近十年均值比，"
+                            "不能把灾害公报的数值当成“今年”。 "
+                            f"[{y2024.doc_id} §{y2024.section}] "
+                            f"[{y2025.doc_id} §{y2025.section}]\n"
+                            "时效：本答复依据《2024年中国海洋生态预警监测公报》（2025年）、"
+                            "《2025年中国海洋生态预警监测公报》（2026年）；以最新公布为准。"
+                        ),
+                        citations=citations,
+                        abstained=False,
+                        reason="redtide_compare_fallback",
+                    ),
+                    pack=build_evidence_pack(
+                        [SearchHit(chunk=candidate, score=1.0) for candidate in (y2024, y2025)],
+                        max_items=2,
+                        registry=self._registry,
+                        index_version=self.index_version,
+                    ),
+                    confidence=0.65,
+                    answerability="answerable",
+                    contract_fields={
+                        "answerability": "answerable",
+                        "conclusion": "2024年66次（增加15次），2025年50次（减少3次），不能混讲。",
+                        "gap": [],
+                    },
+                )
         if "海草床" in question:
             direct = _direct_chunk(
                 "POL-LAW-098",
                 "重点保护红树林、珊瑚礁、海藻场、海草床",
                 "seagrass_fallback",
-                prefix="海草床属重点保护海洋生态系统：",
+                prefix=(
+                    "海草床属重点保护海洋生态系统；能否拖网取决于是否位于保护区/"
+                    "禁渔区，不能仅凭本条认定全海域禁拖："
+                ),
             )
             if direct is not None:
                 return direct

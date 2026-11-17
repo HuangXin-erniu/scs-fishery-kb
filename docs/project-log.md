@@ -1899,3 +1899,11 @@ This log records material project changes by date. It does not use release versi
   (Y-499 one-act rule; Y-510 sale prohibition). A public
   `scripts/check_answer_consistency.py` gate now treats `DUP_ANSWER` as a hard
   failure.
+- 2026-11-17 remediation batch 7: split electric intent (Y-499 one-act rule
+  vs Y-090 penalty), split horseshoe sale (Y-510) from retroactivity (Y-365),
+  and added direct answers for enforcement tasks (Y-091), full confiscation
+  procedure (Y-294), vessel-survey expiry (Y-038), seagrass limits (Y-310),
+  red-tide year comparison (Y-312), turtle plan/list (Y-321), filing standards
+  (Y-096), seahorse (Y-416), port fire (Y-468) and foreign-detention gap
+  (Y-022). D9 now skips abstained records. A 14-row merged regression batch has
+  0 DUP_ANSWER and 0 D1–D11 findings.
