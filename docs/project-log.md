@@ -1820,3 +1820,19 @@ This log records material project changes by date. It does not use release versi
   enrichment; D1/D2/D3/D4/D5/D6/D7/D8/D9 = 0. This is the pre-150 regression,
   not the gate. The 150-row stratified sample is running; the 512 full scan is
   paused and will be resumed after the 150 gate.
+- 2026-11-17 150-row stratified audit sample (512 pool, themes 休渔/证照/执法/生态/
+  预报/补贴/其他, seed 20261117): 150 records, 0 timeouts, 27 refusals; after the
+  D3/D6/D7/D9 fixes the deterministic D1-D11 scan returns **0 findings**:
+  S1=0, D1/D3/D4=0, D5=0, D7 support 1.00, as-of 1.00. `150-gate.json` records
+  pass with `wilson_low=null`; the 150-row human blind review is still pending,
+  so this is not an acceptance decision. The 150 review CSV is
+  `human-review-150.csv` under the private run root.
+- 2026-11-17 fresh 30-question expert sample: drawn across seven themes,
+  excluding the earlier blind/recheck/50-row sets; answers are being generated
+  through the product path. The expert pack/worksheet will be sealed before the
+  expert opens it; no signature yet.
+- 2026-11-17 expert pack: 30 fresh questions across seven themes (seed 20261118,
+  excluding the earlier blind/recheck/50-row sets); answers generated on the
+  product path, deterministic D1-D11 scan **0 findings**, pack/worksheet/key
+  sealed under `expert-30-final/` with `expert-30-signature.template.json`.
+  Awaiting the independent expert's signature; no result is claimed.
