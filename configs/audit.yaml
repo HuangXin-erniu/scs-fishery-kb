@@ -1,0 +1,35 @@
+schema_version: 1
+# Defect fingerprint thresholds. Keep thresholds here, not in code.
+detectors:
+  d1_containment: 0.80
+  d1_markers: ["原文：", "×10", "网站地图", "第X卷第X期", "打印本页"]
+  d2_scope_markers: ["口径：", "口径:"]
+  d3_terminal: ["。", "！", "？", "；", "）", "】", "]"]
+  d4_phrases: ["完整性校验未通过", "作答器不可用", "结论没有可解析的引用"]
+  d5_evidence_coverage: 0.60
+  d6_subquestion_coverage: 0.50
+  d7_jaccard: 0.25
+  d8_assertions: ["全国", "以上为", "适用于全国"]
+  d9_number_required: true
+  d10_entity_required: true
+  d11_version_words: ["现行", "修订", "版", "自", "施行", "生效", "年"]
+themes:
+  休渔: [伏季休渔, 休渔, 禁渔]
+  证照: [捕捞许可证, 船网工具, 登记, 过户, 证书]
+  执法: [处罚, 罚款, 执法, 没收, 立案]
+  生态: [保护区, 珊瑚, 海草, 红树林, 生态, 玳瑁, 海龟, 鲎]
+  预报: [预报, 渔情, 台风, 厄尔尼诺, 海温, 赤潮]
+  补贴: [补贴, 补助, 减船, 油价]
+  其他: []
+severity:
+  D1: S2
+  D2: S2
+  D3: S2
+  D4: S2
+  D5: S1
+  D6: S2
+  D7: S1
+  D8: S1
+  D9: S1
+  D10: S1
+  D11: S3

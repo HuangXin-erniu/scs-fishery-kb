@@ -1,0 +1,70 @@
+{"detector": "D5", "should_flag": true, "id": "D5-1", "question": "带鱼最小可捕规格是多少？", "answer": "证据不足，无法回答。", "chunks": ["带鱼最小可捕规格 南海 肛长≥230"], "doc_meta": {}, "abstained": true}
+{"detector": "D5", "should_flag": false, "id": "D5-2", "question": "带鱼最小可捕规格是多少？", "answer": "南海带鱼肛长≥230。[POL-X §一]", "chunks": ["无关"], "doc_meta": {}, "abstained": false}
+{"detector": "D5", "should_flag": true, "id": "D5-3", "question": "带鱼最小可捕规格是多少？", "answer": "证据不足，无法回答。", "chunks": ["带鱼最小可捕规格 南海 肛长≥230"], "doc_meta": {}, "abstained": true}
+{"detector": "D5", "should_flag": false, "id": "D5-4", "question": "带鱼最小可捕规格是多少？", "answer": "南海带鱼肛长≥230。[POL-X §一]", "chunks": ["无关"], "doc_meta": {}, "abstained": false}
+{"detector": "D5", "should_flag": true, "id": "D5-5", "question": "带鱼最小可捕规格是多少？", "answer": "证据不足，无法回答。", "chunks": ["带鱼最小可捕规格 南海 肛长≥230"], "doc_meta": {}, "abstained": true}
+{"detector": "D5", "should_flag": false, "id": "D5-6", "question": "带鱼最小可捕规格是多少？", "answer": "南海带鱼肛长≥230。[POL-X §一]", "chunks": ["无关"], "doc_meta": {}, "abstained": false}
+{"detector": "D5", "should_flag": true, "id": "D5-7", "question": "带鱼最小可捕规格是多少？", "answer": "证据不足，无法回答。", "chunks": ["带鱼最小可捕规格 南海 肛长≥230"], "doc_meta": {}, "abstained": true}
+{"detector": "D5", "should_flag": false, "id": "D5-8", "question": "带鱼最小可捕规格是多少？", "answer": "南海带鱼肛长≥230。[POL-X §一]", "chunks": ["无关"], "doc_meta": {}, "abstained": false}
+{"detector": "D5", "should_flag": true, "id": "D5-9", "question": "带鱼最小可捕规格是多少？", "answer": "证据不足，无法回答。", "chunks": ["带鱼最小可捕规格 南海 肛长≥230"], "doc_meta": {}, "abstained": true}
+{"detector": "D5", "should_flag": false, "id": "D5-10", "question": "带鱼最小可捕规格是多少？", "answer": "南海带鱼肛长≥230。[POL-X §一]", "chunks": ["无关"], "doc_meta": {}, "abstained": false}
+{"detector": "D6", "should_flag": true, "id": "D6-1", "question": "广西名录收多少种；广东名录收多少种？", "answer": "收12种。", "chunks": [], "doc_meta": {}, "abstained": false}
+{"detector": "D6", "should_flag": false, "id": "D6-2", "question": "广西名录收多少种；广东名录收多少种？", "answer": "广西收12种，广东收20种。", "chunks": [], "doc_meta": {}, "abstained": false}
+{"detector": "D6", "should_flag": true, "id": "D6-3", "question": "广西名录收多少种；广东名录收多少种？", "answer": "收12种。", "chunks": [], "doc_meta": {}, "abstained": false}
+{"detector": "D6", "should_flag": false, "id": "D6-4", "question": "广西名录收多少种；广东名录收多少种？", "answer": "广西收12种，广东收20种。", "chunks": [], "doc_meta": {}, "abstained": false}
+{"detector": "D6", "should_flag": true, "id": "D6-5", "question": "广西名录收多少种；广东名录收多少种？", "answer": "收12种。", "chunks": [], "doc_meta": {}, "abstained": false}
+{"detector": "D6", "should_flag": false, "id": "D6-6", "question": "广西名录收多少种；广东名录收多少种？", "answer": "广西收12种，广东收20种。", "chunks": [], "doc_meta": {}, "abstained": false}
+{"detector": "D6", "should_flag": true, "id": "D6-7", "question": "广西名录收多少种；广东名录收多少种？", "answer": "收12种。", "chunks": [], "doc_meta": {}, "abstained": false}
+{"detector": "D6", "should_flag": false, "id": "D6-8", "question": "广西名录收多少种；广东名录收多少种？", "answer": "广西收12种，广东收20种。", "chunks": [], "doc_meta": {}, "abstained": false}
+{"detector": "D6", "should_flag": true, "id": "D6-9", "question": "广西名录收多少种；广东名录收多少种？", "answer": "收12种。", "chunks": [], "doc_meta": {}, "abstained": false}
+{"detector": "D6", "should_flag": false, "id": "D6-10", "question": "广西名录收多少种；广东名录收多少种？", "answer": "广西收12种，广东收20种。", "chunks": [], "doc_meta": {}, "abstained": false}
+{"detector": "D7", "should_flag": true, "id": "D7-1", "question": "问休渔", "answer": "休渔时间为5月1日至8月16日 [POL-X §一]。", "chunks": [], "doc_meta": {"POL-X": {"level": "national"}}, "abstained": false}
+{"detector": "D7", "should_flag": false, "id": "D7-2", "question": "问休渔", "answer": "休渔时间为5月1日至8月16日 [POL-X §一]。", "chunks": ["休渔时间为5月1日至8月16日。"], "doc_meta": {"POL-X": {"level": "national"}}, "abstained": false}
+{"detector": "D7", "should_flag": true, "id": "D7-3", "question": "问休渔", "answer": "休渔时间为5月1日至8月16日 [POL-X §一]。", "chunks": [], "doc_meta": {"POL-X": {"level": "national"}}, "abstained": false}
+{"detector": "D7", "should_flag": false, "id": "D7-4", "question": "问休渔", "answer": "休渔时间为5月1日至8月16日 [POL-X §一]。", "chunks": ["休渔时间为5月1日至8月16日。"], "doc_meta": {"POL-X": {"level": "national"}}, "abstained": false}
+{"detector": "D7", "should_flag": true, "id": "D7-5", "question": "问休渔", "answer": "休渔时间为5月1日至8月16日 [POL-X §一]。", "chunks": [], "doc_meta": {"POL-X": {"level": "national"}}, "abstained": false}
+{"detector": "D7", "should_flag": false, "id": "D7-6", "question": "问休渔", "answer": "休渔时间为5月1日至8月16日 [POL-X §一]。", "chunks": ["休渔时间为5月1日至8月16日。"], "doc_meta": {"POL-X": {"level": "national"}}, "abstained": false}
+{"detector": "D7", "should_flag": true, "id": "D7-7", "question": "问休渔", "answer": "休渔时间为5月1日至8月16日 [POL-X §一]。", "chunks": [], "doc_meta": {"POL-X": {"level": "national"}}, "abstained": false}
+{"detector": "D7", "should_flag": false, "id": "D7-8", "question": "问休渔", "answer": "休渔时间为5月1日至8月16日 [POL-X §一]。", "chunks": ["休渔时间为5月1日至8月16日。"], "doc_meta": {"POL-X": {"level": "national"}}, "abstained": false}
+{"detector": "D7", "should_flag": true, "id": "D7-9", "question": "问休渔", "answer": "休渔时间为5月1日至8月16日 [POL-X §一]。", "chunks": [], "doc_meta": {"POL-X": {"level": "national"}}, "abstained": false}
+{"detector": "D7", "should_flag": false, "id": "D7-10", "question": "问休渔", "answer": "休渔时间为5月1日至8月16日 [POL-X §一]。", "chunks": ["休渔时间为5月1日至8月16日。"], "doc_meta": {"POL-X": {"level": "national"}}, "abstained": false}
+{"detector": "D8", "should_flag": true, "id": "D8-1", "question": "问全国规定", "answer": "全国统一按500元处罚 [POL-X §一]。", "chunks": [], "doc_meta": {"POL-X": {"level": "province"}}, "abstained": false}
+{"detector": "D8", "should_flag": false, "id": "D8-2", "question": "问全国规定", "answer": "全国统一按500元处罚 [POL-Y §一]。", "chunks": [], "doc_meta": {"POL-Y": {"level": "national"}}, "abstained": false}
+{"detector": "D8", "should_flag": true, "id": "D8-3", "question": "问全国规定", "answer": "全国统一按500元处罚 [POL-X §一]。", "chunks": [], "doc_meta": {"POL-X": {"level": "province"}}, "abstained": false}
+{"detector": "D8", "should_flag": false, "id": "D8-4", "question": "问全国规定", "answer": "全国统一按500元处罚 [POL-Y §一]。", "chunks": [], "doc_meta": {"POL-Y": {"level": "national"}}, "abstained": false}
+{"detector": "D8", "should_flag": true, "id": "D8-5", "question": "问全国规定", "answer": "全国统一按500元处罚 [POL-X §一]。", "chunks": [], "doc_meta": {"POL-X": {"level": "province"}}, "abstained": false}
+{"detector": "D8", "should_flag": false, "id": "D8-6", "question": "问全国规定", "answer": "全国统一按500元处罚 [POL-Y §一]。", "chunks": [], "doc_meta": {"POL-Y": {"level": "national"}}, "abstained": false}
+{"detector": "D8", "should_flag": true, "id": "D8-7", "question": "问全国规定", "answer": "全国统一按500元处罚 [POL-X §一]。", "chunks": [], "doc_meta": {"POL-X": {"level": "province"}}, "abstained": false}
+{"detector": "D8", "should_flag": false, "id": "D8-8", "question": "问全国规定", "answer": "全国统一按500元处罚 [POL-Y §一]。", "chunks": [], "doc_meta": {"POL-Y": {"level": "national"}}, "abstained": false}
+{"detector": "D8", "should_flag": true, "id": "D8-9", "question": "问全国规定", "answer": "全国统一按500元处罚 [POL-X §一]。", "chunks": [], "doc_meta": {"POL-X": {"level": "province"}}, "abstained": false}
+{"detector": "D8", "should_flag": false, "id": "D8-10", "question": "问全国规定", "answer": "全国统一按500元处罚 [POL-Y §一]。", "chunks": [], "doc_meta": {"POL-Y": {"level": "national"}}, "abstained": false}
+{"detector": "D9", "should_flag": true, "id": "D9-1", "question": "罚款多少？", "answer": "罚款5000元 [POL-X §一]。", "chunks": [], "doc_meta": {"POL-X": {"level": "national"}}, "abstained": false}
+{"detector": "D9", "should_flag": false, "id": "D9-2", "question": "罚款多少？", "answer": "罚款5000元 [POL-X §一]。", "chunks": ["罚款5000元。"], "doc_meta": {"POL-X": {"level": "national"}}, "abstained": false}
+{"detector": "D9", "should_flag": true, "id": "D9-3", "question": "罚款多少？", "answer": "罚款5000元 [POL-X §一]。", "chunks": [], "doc_meta": {"POL-X": {"level": "national"}}, "abstained": false}
+{"detector": "D9", "should_flag": false, "id": "D9-4", "question": "罚款多少？", "answer": "罚款5000元 [POL-X §一]。", "chunks": ["罚款5000元。"], "doc_meta": {"POL-X": {"level": "national"}}, "abstained": false}
+{"detector": "D9", "should_flag": true, "id": "D9-5", "question": "罚款多少？", "answer": "罚款5000元 [POL-X §一]。", "chunks": [], "doc_meta": {"POL-X": {"level": "national"}}, "abstained": false}
+{"detector": "D9", "should_flag": false, "id": "D9-6", "question": "罚款多少？", "answer": "罚款5000元 [POL-X §一]。", "chunks": ["罚款5000元。"], "doc_meta": {"POL-X": {"level": "national"}}, "abstained": false}
+{"detector": "D9", "should_flag": true, "id": "D9-7", "question": "罚款多少？", "answer": "罚款5000元 [POL-X §一]。", "chunks": [], "doc_meta": {"POL-X": {"level": "national"}}, "abstained": false}
+{"detector": "D9", "should_flag": false, "id": "D9-8", "question": "罚款多少？", "answer": "罚款5000元 [POL-X §一]。", "chunks": ["罚款5000元。"], "doc_meta": {"POL-X": {"level": "national"}}, "abstained": false}
+{"detector": "D9", "should_flag": true, "id": "D9-9", "question": "罚款多少？", "answer": "罚款5000元 [POL-X §一]。", "chunks": [], "doc_meta": {"POL-X": {"level": "national"}}, "abstained": false}
+{"detector": "D9", "should_flag": false, "id": "D9-10", "question": "罚款多少？", "answer": "罚款5000元 [POL-X §一]。", "chunks": ["罚款5000元。"], "doc_meta": {"POL-X": {"level": "national"}}, "abstained": false}
+{"detector": "D10", "should_flag": true, "id": "D10-1", "question": "广西地方名录是哪个文件？", "answer": "广东省名录，粤农农〔2022〕141号。", "chunks": [], "doc_meta": {}, "abstained": false}
+{"detector": "D10", "should_flag": false, "id": "D10-2", "question": "广西地方名录是哪个文件？", "answer": "广西名录，桂政发〔1993〕107号。", "chunks": [], "doc_meta": {}, "abstained": false}
+{"detector": "D10", "should_flag": true, "id": "D10-3", "question": "广西地方名录是哪个文件？", "answer": "广东省名录，粤农农〔2022〕141号。", "chunks": [], "doc_meta": {}, "abstained": false}
+{"detector": "D10", "should_flag": false, "id": "D10-4", "question": "广西地方名录是哪个文件？", "answer": "广西名录，桂政发〔1993〕107号。", "chunks": [], "doc_meta": {}, "abstained": false}
+{"detector": "D10", "should_flag": true, "id": "D10-5", "question": "广西地方名录是哪个文件？", "answer": "广东省名录，粤农农〔2022〕141号。", "chunks": [], "doc_meta": {}, "abstained": false}
+{"detector": "D10", "should_flag": false, "id": "D10-6", "question": "广西地方名录是哪个文件？", "answer": "广西名录，桂政发〔1993〕107号。", "chunks": [], "doc_meta": {}, "abstained": false}
+{"detector": "D10", "should_flag": true, "id": "D10-7", "question": "广西地方名录是哪个文件？", "answer": "广东省名录，粤农农〔2022〕141号。", "chunks": [], "doc_meta": {}, "abstained": false}
+{"detector": "D10", "should_flag": false, "id": "D10-8", "question": "广西地方名录是哪个文件？", "answer": "广西名录，桂政发〔1993〕107号。", "chunks": [], "doc_meta": {}, "abstained": false}
+{"detector": "D10", "should_flag": true, "id": "D10-9", "question": "广西地方名录是哪个文件？", "answer": "广东省名录，粤农农〔2022〕141号。", "chunks": [], "doc_meta": {}, "abstained": false}
+{"detector": "D10", "should_flag": false, "id": "D10-10", "question": "广西地方名录是哪个文件？", "answer": "广西名录，桂政发〔1993〕107号。", "chunks": [], "doc_meta": {}, "abstained": false}
+{"detector": "D11", "should_flag": true, "id": "D11-1", "question": "玳瑁保护级别？", "answer": "玳瑁是国家一级保护动物 [POL-X §一]。", "chunks": [], "doc_meta": {"POL-X": {"level": "national", "year": 2021}}, "abstained": false}
+{"detector": "D11", "should_flag": false, "id": "D11-2", "question": "玳瑁保护级别？", "answer": "按2021年名录，玳瑁是国家一级保护动物 [POL-X §一]。", "chunks": [], "doc_meta": {"POL-X": {"level": "national", "year": 2021}}, "abstained": false}
+{"detector": "D11", "should_flag": true, "id": "D11-3", "question": "玳瑁保护级别？", "answer": "玳瑁是国家一级保护动物 [POL-X §一]。", "chunks": [], "doc_meta": {"POL-X": {"level": "national", "year": 2021}}, "abstained": false}
+{"detector": "D11", "should_flag": false, "id": "D11-4", "question": "玳瑁保护级别？", "answer": "按2021年名录，玳瑁是国家一级保护动物 [POL-X §一]。", "chunks": [], "doc_meta": {"POL-X": {"level": "national", "year": 2021}}, "abstained": false}
+{"detector": "D11", "should_flag": true, "id": "D11-5", "question": "玳瑁保护级别？", "answer": "玳瑁是国家一级保护动物 [POL-X §一]。", "chunks": [], "doc_meta": {"POL-X": {"level": "national", "year": 2021}}, "abstained": false}
+{"detector": "D11", "should_flag": false, "id": "D11-6", "question": "玳瑁保护级别？", "answer": "按2021年名录，玳瑁是国家一级保护动物 [POL-X §一]。", "chunks": [], "doc_meta": {"POL-X": {"level": "national", "year": 2021}}, "abstained": false}
+{"detector": "D11", "should_flag": true, "id": "D11-7", "question": "玳瑁保护级别？", "answer": "玳瑁是国家一级保护动物 [POL-X §一]。", "chunks": [], "doc_meta": {"POL-X": {"level": "national", "year": 2021}}, "abstained": false}
+{"detector": "D11", "should_flag": false, "id": "D11-8", "question": "玳瑁保护级别？", "answer": "按2021年名录，玳瑁是国家一级保护动物 [POL-X §一]。", "chunks": [], "doc_meta": {"POL-X": {"level": "national", "year": 2021}}, "abstained": false}
+{"detector": "D11", "should_flag": true, "id": "D11-9", "question": "玳瑁保护级别？", "answer": "玳瑁是国家一级保护动物 [POL-X §一]。", "chunks": [], "doc_meta": {"POL-X": {"level": "national", "year": 2021}}, "abstained": false}
+{"detector": "D11", "should_flag": false, "id": "D11-10", "question": "玳瑁保护级别？", "answer": "按2021年名录，玳瑁是国家一级保护动物 [POL-X §一]。", "chunks": [], "doc_meta": {"POL-X": {"level": "national", "year": 2021}}, "abstained": false}

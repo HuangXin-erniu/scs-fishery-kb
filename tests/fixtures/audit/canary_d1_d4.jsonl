@@ -1,0 +1,40 @@
+{"detector": "D1", "should_flag": true, "id": "D1-1", "question": "问产量", "answer": "原文：第0段 OCR 原文 ×10 网站地图", "chunks": ["无关"]}
+{"detector": "D1", "should_flag": true, "id": "D1-2", "question": "问产量", "answer": "原文：第1段 OCR 原文 ×10 网站地图", "chunks": ["无关"]}
+{"detector": "D1", "should_flag": true, "id": "D1-3", "question": "问产量", "answer": "原文：第2段 OCR 原文 ×10 网站地图", "chunks": ["无关"]}
+{"detector": "D1", "should_flag": true, "id": "D1-4", "question": "问产量", "answer": "原文：第3段 OCR 原文 ×10 网站地图", "chunks": ["无关"]}
+{"detector": "D1", "should_flag": true, "id": "D1-5", "question": "问产量", "answer": "原文：第4段 OCR 原文 ×10 网站地图", "chunks": ["无关"]}
+{"detector": "D1", "should_flag": false, "id": "D1-6", "question": "问休渔", "answer": "结论：休渔时间为5月1日至8月16日，共三个半月。[POL-X §一]", "chunks": ["休渔时间 2026年5月1日12时至8月16日12时。"]}
+{"detector": "D1", "should_flag": false, "id": "D1-7", "question": "问休渔", "answer": "结论：休渔时间为5月1日至8月16日，共三个半月。[POL-X §一]", "chunks": ["休渔时间 2026年5月1日12时至8月16日12时。"]}
+{"detector": "D1", "should_flag": false, "id": "D1-8", "question": "问休渔", "answer": "结论：休渔时间为5月1日至8月16日，共三个半月。[POL-X §一]", "chunks": ["休渔时间 2026年5月1日12时至8月16日12时。"]}
+{"detector": "D1", "should_flag": false, "id": "D1-9", "question": "问休渔", "answer": "结论：休渔时间为5月1日至8月16日，共三个半月。[POL-X §一]", "chunks": ["休渔时间 2026年5月1日12时至8月16日12时。"]}
+{"detector": "D1", "should_flag": false, "id": "D1-10", "question": "问休渔", "answer": "结论：休渔时间为5月1日至8月16日，共三个半月。[POL-X §一]", "chunks": ["休渔时间 2026年5月1日12时至8月16日12时。"]}
+{"detector": "D2", "should_flag": true, "id": "D2-1", "question": "船长证分几级？", "answer": "结论：按大型渔船处理。\n口径：海南省地方规定第二十三条，跟帮（组）生产，山东228。", "chunks": []}
+{"detector": "D2", "should_flag": true, "id": "D2-2", "question": "船长证分几级？", "answer": "结论：按大型渔船处理。\n口径：海南省地方规定第二十三条，跟帮（组）生产，山东228。", "chunks": []}
+{"detector": "D2", "should_flag": true, "id": "D2-3", "question": "船长证分几级？", "answer": "结论：按大型渔船处理。\n口径：海南省地方规定第二十三条，跟帮（组）生产，山东228。", "chunks": []}
+{"detector": "D2", "should_flag": true, "id": "D2-4", "question": "船长证分几级？", "answer": "结论：按大型渔船处理。\n口径：海南省地方规定第二十三条，跟帮（组）生产，山东228。", "chunks": []}
+{"detector": "D2", "should_flag": true, "id": "D2-5", "question": "船长证分几级？", "answer": "结论：按大型渔船处理。\n口径：海南省地方规定第二十三条，跟帮（组）生产，山东228。", "chunks": []}
+{"detector": "D2", "should_flag": false, "id": "D2-6", "question": "编组生产怎么报备？", "answer": "结论：按编组生产报备。\n口径：海南省地方规定第二十三条，跟帮（组）生产。", "chunks": []}
+{"detector": "D2", "should_flag": false, "id": "D2-7", "question": "编组生产怎么报备？", "answer": "结论：按编组生产报备。\n口径：海南省地方规定第二十三条，跟帮（组）生产。", "chunks": []}
+{"detector": "D2", "should_flag": false, "id": "D2-8", "question": "编组生产怎么报备？", "answer": "结论：按编组生产报备。\n口径：海南省地方规定第二十三条，跟帮（组）生产。", "chunks": []}
+{"detector": "D2", "should_flag": false, "id": "D2-9", "question": "编组生产怎么报备？", "answer": "结论：按编组生产报备。\n口径：海南省地方规定第二十三条，跟帮（组）生产。", "chunks": []}
+{"detector": "D2", "should_flag": false, "id": "D2-10", "question": "编组生产怎么报备？", "answer": "结论：按编组生产报备。\n口径：海南省地方规定第二十三条，跟帮（组）生产。", "chunks": []}
+{"detector": "D3", "should_flag": true, "id": "D3-1", "question": "问A", "answer": "结论：这是一段没有句末标点的答案0", "chunks": []}
+{"detector": "D3", "should_flag": true, "id": "D3-2", "question": "问A", "answer": "结论：这是一段没有句末标点的答案1", "chunks": []}
+{"detector": "D3", "should_flag": true, "id": "D3-3", "question": "问A", "answer": "结论：这是一段没有句末标点的答案2", "chunks": []}
+{"detector": "D3", "should_flag": true, "id": "D3-4", "question": "问A", "answer": "结论：这是一段没有句末标点的答案3", "chunks": []}
+{"detector": "D3", "should_flag": true, "id": "D3-5", "question": "问A", "answer": "结论：这是一段没有句末标点的答案4", "chunks": []}
+{"detector": "D3", "should_flag": false, "id": "D3-6", "question": "问A", "answer": "结论：这是一段完整答案0。[POL-X §一]", "chunks": []}
+{"detector": "D3", "should_flag": false, "id": "D3-7", "question": "问A", "answer": "结论：这是一段完整答案1。[POL-X §一]", "chunks": []}
+{"detector": "D3", "should_flag": false, "id": "D3-8", "question": "问A", "answer": "结论：这是一段完整答案2。[POL-X §一]", "chunks": []}
+{"detector": "D3", "should_flag": false, "id": "D3-9", "question": "问A", "answer": "结论：这是一段完整答案3。[POL-X §一]", "chunks": []}
+{"detector": "D3", "should_flag": false, "id": "D3-10", "question": "问A", "answer": "结论：这是一段完整答案4。[POL-X §一]", "chunks": []}
+{"detector": "D4", "should_flag": true, "id": "D4-1", "question": "问A", "answer": "证据不足：作答器不可用0", "chunks": []}
+{"detector": "D4", "should_flag": true, "id": "D4-2", "question": "问A", "answer": "证据不足：作答器不可用1", "chunks": []}
+{"detector": "D4", "should_flag": true, "id": "D4-3", "question": "问A", "answer": "证据不足：作答器不可用2", "chunks": []}
+{"detector": "D4", "should_flag": true, "id": "D4-4", "question": "问A", "answer": "证据不足：作答器不可用3", "chunks": []}
+{"detector": "D4", "should_flag": true, "id": "D4-5", "question": "问A", "answer": "证据不足：作答器不可用4", "chunks": []}
+{"detector": "D4", "should_flag": false, "id": "D4-6", "question": "问A", "answer": "结论：证据不足，无法回答0。[POL-X §一]", "chunks": []}
+{"detector": "D4", "should_flag": false, "id": "D4-7", "question": "问A", "answer": "结论：证据不足，无法回答1。[POL-X §一]", "chunks": []}
+{"detector": "D4", "should_flag": false, "id": "D4-8", "question": "问A", "answer": "结论：证据不足，无法回答2。[POL-X §一]", "chunks": []}
+{"detector": "D4", "should_flag": false, "id": "D4-9", "question": "问A", "answer": "结论：证据不足，无法回答3。[POL-X §一]", "chunks": []}
+{"detector": "D4", "should_flag": false, "id": "D4-10", "question": "问A", "answer": "结论：证据不足，无法回答4。[POL-X §一]", "chunks": []}
