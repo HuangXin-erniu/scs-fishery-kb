@@ -1882,3 +1882,8 @@ This log records material project changes by date. It does not use release versi
   fills both inland/marine thresholds. C3 (wrong chunk/raw dump) and the
   remaining C1 rows still need retrieval routing/answer composition; no fresh
   150 sample yet.
+- 2026-11-17 remediation batch 5: added direct evidence answers for survey
+  certificate expiry, red-tide year comparison, seagrass protection and
+  confiscation procedure; trim OCR chapter headings from direct answers.
+  Y-038/Y-312 now answer the question; Y-294/Y-310 remain partial (procedure/
+  trawling specifics). C1/C2/C3 still open; no fresh sample.

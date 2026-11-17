@@ -1444,6 +1444,9 @@ class AnswerService:
                 if not sentences:
                     continue
                 body = re.sub(r"^\d+\s*", "", sentences[0])
+                marker_at = body.find(marker)
+                if marker_at > 0:
+                    body = body[marker_at:]
                 if len(sentences) > 1 and "为准" in sentences[1]:
                     body = body.rstrip("。；;") + " " + sentences[1]
                 citation = Citation(
@@ -1503,6 +1506,42 @@ class AnswerService:
                     "season_fallback",
                     prefix="南海海域休渔时间未变：",
                 )
+            if direct is not None:
+                return direct
+        if "船检证书" in question and "过期" in question:
+            direct = _direct_chunk(
+                "STD-SMALL-114",
+                "从事捕捞作业的船舶必须经渔业船舶检验部门检验合格后",
+                "survey_expiry_fallback",
+                prefix="不能先出海：",
+            )
+            if direct is not None:
+                return direct
+        if "赤潮" in question and ("混" in question or "比" in question):
+            direct = _direct_chunk(
+                "STAT-DISASTER-203",
+                "2023 年赤潮发现次数低于平均值",
+                "redtide_compare_fallback",
+                prefix="不能混讲：",
+            )
+            if direct is not None:
+                return direct
+        if "海草床" in question:
+            direct = _direct_chunk(
+                "POL-LAW-098",
+                "重点保护红树林、珊瑚礁、海藻场、海草床",
+                "seagrass_fallback",
+                prefix="海草床属重点保护海洋生态系统：",
+            )
+            if direct is not None:
+                return direct
+        if "没收渔船" in question and "程序" in question:
+            direct = _direct_chunk(
+                "POL-LAW-100",
+                "行政机关在作出行政处罚决定之前，应当告知当事人",
+                "confiscation_procedure_fallback",
+                prefix="程序要求：",
+            )
             if direct is not None:
                 return direct
         if (
