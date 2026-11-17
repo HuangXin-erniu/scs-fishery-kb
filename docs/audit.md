@@ -89,6 +89,9 @@ theme quotas, excluding ids already used in earlier reviews. `wilson(143, 150)
 is revised before the 150-row review proceeds. The AI pre-label is advisory and
 never fills the human columns.
 
+Before any batch is used for a pass rate, run
+`scripts/check_answer_consistency.py --answers <file> --out <json>`; a non-empty
+`dup_answer` means two ids received the same body and the whole batch is invalid.
 `scripts/validate_human_review.py` checks that every row is filled, rejects
 unknown verdicts and computes the blind-pass rate with its Wilson lower bound;
 it exits non-zero until the sheet is complete and above both lines.

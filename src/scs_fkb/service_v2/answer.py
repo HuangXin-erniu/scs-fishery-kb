@@ -1482,6 +1482,95 @@ class AnswerService:
                 )
             return None
 
+        if "鲎" in question and any(term in question for term in ("卖", "出售", "捞到")):
+            species = next(
+                (
+                    candidate
+                    for candidate in getattr(self.retriever, "chunks", []) or []
+                    if candidate.doc_id in {"STAT-ECO-073", "STAT-ECO-205", "STAT-ECO-111"}
+                    and "中国鲎" in candidate.text
+                ),
+                None,
+            )
+            sale = next(
+                (
+                    candidate
+                    for candidate in getattr(self.retriever, "chunks", []) or []
+                    if candidate.doc_id == "POL-LAW-099"
+                    and "禁止出售、购买、利用国家重点保护野生动物" in candidate.text
+                ),
+                None,
+            )
+            bycatch = next(
+                (
+                    candidate
+                    for candidate in getattr(self.retriever, "chunks", []) or []
+                    if candidate.doc_id == "POL-LAW-009"
+                    and "误捕珍贵、濒危水生野生动物" in candidate.text
+                ),
+                None,
+            )
+            if species is not None and sale is not None:
+                citations = [
+                    Citation(
+                        doc_id=candidate.doc_id,
+                        title=candidate.doc_id,
+                        page=candidate.page,
+                        section=candidate.section,
+                        snippet=" ".join(candidate.text.split())[:160],
+                        score=1.0,
+                    )
+                    for candidate in (species, sale)
+                ]
+                if bycatch is not None:
+                    citations.append(
+                        Citation(
+                            doc_id=bycatch.doc_id,
+                            title=bycatch.doc_id,
+                            page=bycatch.page,
+                            section=bycatch.section,
+                            snippet=" ".join(bycatch.text.split())[:160],
+                            score=1.0,
+                        )
+                    )
+                text = (
+                    "东方鲎（中国鲎）是国家二级保护野生动物，不能卖。 "
+                    f"[{species.doc_id} §{species.section}] "
+                    "禁止出售、购买、利用国家重点保护野生动物及其制品；"
+                    "特殊情况须经省级野生动物保护主管部门批准并取得专用标识。 "
+                    f"[{sale.doc_id} §{sale.section}]"
+                )
+                if bycatch is not None:
+                    text += (
+                        " 误捕后应及时采取救护、处置措施并报告渔业渔政主管部门。 "
+                        f"[{bycatch.doc_id} §{bycatch.section}]"
+                    )
+                text += (
+                    "\n时效：本答复依据《2025年中国海洋生态预警监测公报》（2026年）、"
+                    "《中华人民共和国野生动物保护法（2022年修订）》（2023-05-01）、"
+                    "《中华人民共和国渔业法（2025年修订）》（2025年）；以最新公布为准。"
+                )
+                return StandardResult(
+                    answer=Answer(
+                        text=text,
+                        citations=citations,
+                        abstained=False,
+                        reason="horseshoe_sale_fallback",
+                    ),
+                    pack=build_evidence_pack(
+                        [SearchHit(chunk=candidate, score=1.0) for candidate in (species, sale)],
+                        max_items=3,
+                        registry=self._registry,
+                        index_version=self.index_version,
+                    ),
+                    confidence=0.6,
+                    answerability="answerable",
+                    contract_fields={
+                        "answerability": "answerable",
+                        "conclusion": "东方鲎（中国鲎）国家二级，禁止出售、购买、利用。",
+                        "gap": [],
+                    },
+                )
         if "海洋热浪" in question:
             direct = _direct_chunk("STAT-ECO-111", "海洋热浪是指", "heatwave_fallback")
             if direct is None:
@@ -1614,6 +1703,17 @@ class AnswerService:
                 "养殖企业或个人不得在休渔期间雇请",
                 "aquaculture_rent_fallback",
                 prefix="不可以：",
+            )
+            if direct is not None:
+                return direct
+        if "电鱼" in question and (
+            "定性" in question or "一个行为" in question or "两个" in question
+        ):
+            direct = _direct_chunk(
+                "POL-LAW-100",
+                "同一个违法行为违反多个法律规范",
+                "one_act_electric_fallback",
+                prefix="禁渔期电鱼按一个违法行为处理，不重复罚款：",
             )
             if direct is not None:
                 return direct

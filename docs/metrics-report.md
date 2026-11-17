@@ -16,12 +16,12 @@
 | 1 | Public recall@5 (reachable rows) | 0.8864 | ≥0.92 | ≥0.88 | `scripts/eval_index_v2.py` | live index |
 | 2 | Public MRR (reachable rows) | 0.7848 | ≥0.82 | ≥0.78 | same | live index |
 | 3 | Public recall@5 (all rows) | 0.8298 | — | — | same | live index |
-| 4 | 512 point coverage | 0.8277 | ≥0.83 | ≥0.8129 | `scripts/eval_accept.py` | `FINAL-ACCEPT/02-gates` |
-| 5 | 512 citation accuracy | 0.9571 | ≥0.97 | ≥0.9544 | same | `FINAL-ACCEPT/02-gates` |
-| 6 | 512 as-of declaration | 0.9649 | ≥0.96 | ≥0.9123 | same | `FINAL-ACCEPT/02-gates` |
-| 7 | 512 misanswer rate | 0.0000 | 0.0000 | ≤0.01 | same | `FINAL-ACCEPT/02-gates` |
-| 8 | 512 refusal-with-channel | 1.0000 | 1.0000 | ≥0.99 | same | `FINAL-ACCEPT/02-gates` |
-| 9 | 512 basis accuracy | 0.9412 | ≥0.95 | ≥0.85 | same | `FINAL-ACCEPT/02-gates` |
+| 4 | 512 point coverage | 0.8129 | ≥0.83 | ≥0.8129 | `scripts/eval_accept.py` | `P25-EVL-235` (dump arm) |
+| 5 | 512 citation accuracy | 0.9544 | ≥0.97 | ≥0.9544 | same | `P25-EVL-235` (dump arm) |
+| 6 | 512 as-of declaration | 0.9123 | ≥0.96 | ≥0.9123 | same | `P25-EVL-235` (dump arm) |
+| 7 | 512 misanswer rate | 0.0000 | 0.0000 | ≤0.01 | same | `P25-EVL-235` (dump arm) |
+| 8 | 512 refusal-with-channel | 1.0000 | 1.0000 | ≥0.99 | same | `P25-EVL-235` (dump arm) |
+| 9 | 512 basis accuracy | 0.9412 | ≥0.95 | ≥0.85 | same | `P25-EVL-235` (dump arm) |
 | 10 | Short-answer valid share | 16/60 | ≥40/60 | ≥16/60 measured | `scripts/eval_short_public.py` | `P20-ANS-216-f5f3` |
 | 11 | Approved facts | 146/200 | ≥150 | ≥140 | `check_facts` | `P22-KB-220` |
 | 12 | Approved terms | 136/150 | hold | ≥136 | `terms check` | `P22` |
@@ -124,18 +124,20 @@ The audit is a separate layer from the aggregate rows above. The 50 reviewed
 answers were regenerated through the product path on the fixed code: no S1
 finding remains and every cited sentence carries a citation.
 
-The 150-row stratified sample (seed 20261117, seven themes) was generated on the
-same code: 150 records, 0 timeouts, 27 refusals, and the deterministic D1–D11
-scan returns **0 findings** (S1=0, D1/D3/D4=0, D5=0, D7 support 1.00, as-of
-1.00). The 150-row human blind review and the 30-row double annotation are still
-pending, so this is not an acceptance decision and no human pass rate is claimed.
+The 150-row stratified sample (seed 20261117, seven themes) generated 150
+records, 0 timeouts and 27 refusals; its deterministic D1–D11 scan returns
+**0 findings**, but the human blind review of the same rows returned
+**81/150 = 54.0%** (Wilson 95% [46.0%, 61.8%]) — the deterministic layer is not
+a quality proxy. The 30-row double annotation is still pending, so kappa is
+`null` and no acceptance decision is made.
 
-The full 512 product-path artifact is also complete: 512 records, 0 timeouts,
-81 refusals, 424 cited records and **0 unresolved citation labels**. Its
-deterministic scan has **no S1 finding**: D1/D3/D4=0, D7 support 1.00, as-of
-0.9905; the remaining findings are D11 (4, S3), D2 (1, S2) and D6 (1, S2).
-`512-gate.json` records `deterministic_pass: true` and `acceptance_pass: false`;
-the human blind and expert layers are still pending.
+**The 512 product-path artifact is withdrawn.** A consistency check found
+same-body answers on different ids (notably Y-090/Y-499 and Y-365/Y-510), so
+per-id pass rates computed from it are invalid. The deterministic `512-gate.json`
+is not evidence of answer quality and must not be cited. The 150-row human blind
+review is authoritative for the previous sample: **81/150 = 54.0%**, Wilson
+95% [46.0%, 61.8%] — below the acceptance line. A fresh 150-row set has been
+drawn for the next acceptance run; it may be used only once.
 
 A fresh 30-question expert pack was drawn across seven themes and its answers
 also scan clean; the pack and worksheet are sealed under the private run root

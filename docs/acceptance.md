@@ -26,9 +26,9 @@
 |---|---:|---:|---:|---|---|
 | Public-set recall@5 | 0.8864 (all rows 0.8298) | ≥0.92 | **≥0.88** | `scripts/eval_index_v2.py` (44 reachable of 47 rows) | [evaluation](evaluation.md) §37 |
 | Public-set MRR | 0.7848 (all rows 0.7348) | ≥0.82 | **≥0.78** | same run | §37 |
-| 512 point coverage | 0.8277 (index `251dbf67e804`) | ≥0.83 | **≥0.8129 (published)** | `scripts/eval_accept.py` (protocol v2, `FINAL-ACCEPT/02-gates`) | §29, §34 |
-| 512 citation accuracy | 0.9571 (index `251dbf67e804`) | ≥0.97 | **≥0.9544 (published)** | same run | §29 |
-| 512 as-of declaration | 0.9649 (index `251dbf67e804`) | ≥0.96 | **≥0.9123 (published)** | same run | §29 |
+| 512 point coverage | 0.8129 (published dump arm) | ≥0.83 | **≥0.8129 (published)** | `scripts/eval_accept.py` (protocol v2, `P25-EVL-235`) | §29, §34 |
+| 512 citation accuracy | 0.9544 (published dump arm) | ≥0.97 | **≥0.9544 (published)** | same run | §29 |
+| 512 as-of declaration | 0.9123 (published dump arm) | ≥0.96 | **≥0.9123 (published)** | same run | §29 |
 | 512 misanswer rate | 0.0000 | 0.0000 | **≤0.01** | same run | §29 |
 | 512 refusal-with-channel | 1.0000 | 1.0000 | **≥0.99** | same run | §29 |
 | Short-answer valid share | 16/60 (measured 2026-11-11) | ≥40/60 | **≥16/60 (measured)** | `scripts/eval_short_public.py` with `SCS_FKB_VERIFY_ANSWERS=on` | §35, §36 |
@@ -124,13 +124,14 @@ PYTHONPATH=src python -m scs_fkb terms check --data-root "$SCS_FKB_DATA_ROOT"
 
 ## 7. Current status (2026-11-17)
 
-- The 512-question aggregate arm on index `251dbf67e804` still meets the
-  published lines; the 50-row and 150-row product-path audit scans are clean
-  (S1=0, D1/D3/D4=0, D7 support 1.00, as-of 1.00).
-- The 512 product-path scan is complete: 512 records, 0 S1, 0 timeouts, 0
-  unresolved citation labels, D7 support 1.00 and as-of 0.9905; the four D11
-  findings are S3.
-- The 150-row human blind review and the 30-row double annotation are **pending**.
+- The 512-question aggregate dump arm on index `251dbf67e804` meets the
+  published lines, but it is diagnostic, not the product-path acceptance result.
+- **The 512 product-path artifact is withdrawn**: a consistency check found
+  same-body answers on different ids, so per-id rates from it are invalid. The
+  deterministic gates are annotated `acceptance_pass: false`.
+- The 150-row human blind review returned **81/150 = 54.0%**, Wilson 95%
+  [46.0%, 61.8%] — below the gate. The 30-row double annotation remains
+  **pending**; kappa is `null`.
 - A fresh 30-question expert pack is sealed; the independent signature is
   **pending**.
 - Therefore the acceptance sheet is not signed and the gate stays open. No

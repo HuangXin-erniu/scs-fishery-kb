@@ -1892,3 +1892,10 @@ This log records material project changes by date. It does not use release versi
   Chinese horseshoe-crab bycatch (Y-196, now救护+报告+禁止买卖). Remaining C1:
   Y-091 (2026 enforcement tasks), Y-294 (full confiscation procedure),
   Y-310 (seagrass trawling specifics). C3/C2 and fresh sample remain open.
+- 2026-11-17 answer-consistency audit found same-body answers on different ids
+  (Y-090/Y-499, Y-365/Y-510). The 512 product-path artifact is **withdrawn**;
+  its per-id rates and deterministic "no S1" claim are not evidence. Root causes
+  were over-broad electric and horseshoe fallbacks, now split by question intent
+  (Y-499 one-act rule; Y-510 sale prohibition). A public
+  `scripts/check_answer_consistency.py` gate now treats `DUP_ANSWER` as a hard
+  failure.
