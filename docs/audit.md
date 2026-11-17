@@ -115,3 +115,20 @@ human review.
 `scripts/audit_corpus.py` writes `corpus-title.csv`, `corpus-level.csv`,
 `corpus-currency.csv`, `corpus-version.csv`, and `corpus-quality.csv`. It reads
 the current manifest-derived registry, not the stale 131-document count.
+
+## Open-source route
+
+The deterministic D1–D11 layer stays in-repo because the gate must be fast,
+auditable and free of judge variance. The model-judged layer uses
+[RAGAS](https://github.com/explodinggradients/ragas) 0.4.3 (faithfulness,
+answer correctness, context precision/recall) in the isolated `venv-ragas`; its
+scores are reported as model-judged, never as human review. D7 borrows the
+claim-level orientation of
+[RAGChecker](https://github.com/amazon-science/RAGChecker) but not its
+dependency stack. [DeepEval](https://github.com/confident-ai/deepeval) and
+[promptfoo](https://www.promptfoo.dev/docs/intro/) were evaluated and not added:
+they would duplicate the judge or the existing pytest canaries.
+[TruLens](https://github.com/truera/trulens) and
+[Arize Phoenix](https://github.com/Arize-ai/phoenix) contributed the span model
+only; the client writes a lightweight stage trace instead of running a tracing
+backend.
