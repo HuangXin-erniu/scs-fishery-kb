@@ -118,6 +118,16 @@ print(check_facts(data_root="…"))   # 200 facts, 146 approved, 0 errors, 0 con
 PY
 ```
 
+### Answer-defect audit (in progress)
+
+The audit is a separate layer from the aggregate rows above. The 50 reviewed
+answers were regenerated through the product path on the fixed code: D1/D2/D3/
+D4/D5/D6/D7/D8/D9 are zero, one D11 (missing as-of on a refusal-adjacent answer)
+remains, and every cited sentence carries a citation. That is a 50-row
+regression, not the 150-row gate. The full 512 product-path artifact is still
+running; its D1–D11 ledger, the 150-row stratified sample and the 30-row double
+annotation are not complete, so no audit gate result is claimed here.
+
 ## 3. What is measured vs what is targeted
 
 - **Measured pass lines:** coverage 0.8129, citation 0.9544, as-of 0.9123, short 16/60. These
