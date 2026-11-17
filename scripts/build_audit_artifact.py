@@ -144,6 +144,7 @@ def _service_512(
     limit: int | None,
     answer_mode: str,
     timeout: int = 90,
+    offset: int = 0,
 ) -> list[AuditRecord]:
     from scs_fkb.service_v2.answer import build_service
 
@@ -153,7 +154,8 @@ def _service_512(
     rows = [
         json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line.strip()
     ]
-    for row in rows[:limit]:
+    stop = None if limit is None else offset + limit
+    for row in rows[offset:stop]:
 
         def _alarm(*_args: object) -> None:
             raise TimeoutError
@@ -210,6 +212,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--limit", type=int)
     parser.add_argument("--answer-mode", default="standard")
     parser.add_argument("--timeout", type=int, default=90)
+    parser.add_argument("--offset", type=int, default=0)
     parser.add_argument(
         "--reviewed", nargs="*", default=["final-blind-30.jsonl", "final-recheck2-20.jsonl"]
     )
