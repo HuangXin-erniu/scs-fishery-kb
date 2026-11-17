@@ -12,6 +12,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import signal
 import sys
 from pathlib import Path
 from typing import Any
@@ -44,7 +45,7 @@ def _stage(reason: str, abstained: bool) -> str:
         return "abstain"
     if "fallback" in reason or "plain" in reason:
         return "fallback"
-    if reason in {"ok", "dump_compose", "standard"}:
+    if reason in {"ok", "dump_compose", "standard", "delivery"}:
         return "compose"
     return "postprocess"
 
@@ -142,6 +143,7 @@ def _service_512(
     dataset: dict[str, dict[str, Any]],
     limit: int | None,
     answer_mode: str,
+    timeout: int = 90,
 ) -> list[AuditRecord]:
     from scs_fkb.service_v2.answer import build_service
 
@@ -152,7 +154,20 @@ def _service_512(
         json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line.strip()
     ]
     for row in rows[:limit]:
-        response = svc.query(row["question"], web="off", mode=answer_mode)
+
+        def _alarm(*_args: object) -> None:
+            raise TimeoutError
+
+        signal.signal(signal.SIGALRM, _alarm)
+        signal.alarm(timeout)
+        try:
+            response = svc.query(row["question"], web="off", mode=answer_mode)
+        except TimeoutError:
+            print(f"timeout {row['id']}", flush=True)
+            signal.alarm(0)
+            continue
+        finally:
+            signal.alarm(0)
         cites = [
             {"doc_id": str(c.doc_id), "section": str(getattr(c, "section", ""))}
             for c in (response.citations or [])
@@ -190,6 +205,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--out", required=True)
     parser.add_argument("--limit", type=int)
     parser.add_argument("--answer-mode", default="standard")
+    parser.add_argument("--timeout", type=int, default=90)
     parser.add_argument(
         "--reviewed", nargs="*", default=["final-blind-30.jsonl", "final-recheck2-20.jsonl"]
     )
