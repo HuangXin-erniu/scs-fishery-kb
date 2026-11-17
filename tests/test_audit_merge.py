@@ -3,7 +3,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from scripts.merge_audit_artifacts import main
+from scs_fkb.audit.merge import merge_artifacts
 
 
 def test_merge_dedupes_and_adds_inline_citations(tmp_path: Path) -> None:
@@ -18,11 +18,7 @@ def test_merge_dedupes_and_adds_inline_citations(tmp_path: Path) -> None:
     first = tmp_path / "a.jsonl"
     first.write_text(
         json.dumps(
-            {
-                "id": "Q1",
-                "visible_answer": "答案一 [POL-A-001 §第一条]。",
-                "citations": [],
-            },
+            {"id": "Q1", "visible_answer": "答案一 [POL-A-001 §第一条]。", "citations": []},
             ensure_ascii=False,
         )
         + "\n",
@@ -43,14 +39,7 @@ def test_merge_dedupes_and_adds_inline_citations(tmp_path: Path) -> None:
         + "\n",
         encoding="utf-8",
     )
-    out = tmp_path / "out.jsonl"
-    assert (
-        main(
-            ["--questions", str(questions), "--answers", str(first), str(second), "--out", str(out)]
-        )
-        == 0
-    )
-    rows = [json.loads(line) for line in out.read_text(encoding="utf-8").splitlines()]
+    rows = merge_artifacts(questions, [first, second])
     assert [row["id"] for row in rows] == ["Q1", "Q2"]
     assert rows[0]["visible_answer"].startswith("答案二")
     assert {(c["doc_id"], c["section"]) for c in rows[0]["citations"]} == {
