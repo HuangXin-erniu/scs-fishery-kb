@@ -1836,3 +1836,7 @@ This log records material project changes by date. It does not use release versi
   product path, deterministic D1-D11 scan **0 findings**, pack/worksheet/key
   sealed under `expert-30-final/` with `expert-30-signature.template.json`.
   Awaiting the independent expert's signature; no result is claimed.
+- 2026-11-17 512 completion: 217 unique answers already exist (50-row
+  regression, 150-row sample, 30-row expert sample, earlier partial batches).
+  The remaining 303 questions are running in four product-path batches with
+  `--resume`; the merged artifact will be audited only after all four finish.

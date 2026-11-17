@@ -121,3 +121,16 @@ SCS_FKB_DATA_ROOT=... SCS_FKB_RUN_ROOT=... SCS_FKB_VERIFY_ANSWERS=on SCS_FKB_WEB
 PYTHONPATH=src python -m scs_fkb facts check --data-root "$SCS_FKB_DATA_ROOT"
 PYTHONPATH=src python -m scs_fkb terms check --data-root "$SCS_FKB_DATA_ROOT"
 ```
+
+## 7. Current status (2026-11-17)
+
+- The 512-question aggregate arm on index `251dbf67e804` still meets the
+  published lines; the 50-row and 150-row product-path audit scans are clean
+  (S1=0, D1/D3/D4=0, D7 support 1.00, as-of 1.00).
+- The 512 product-path scan is being completed in four batches; a full ledger is
+  not yet available.
+- The 150-row human blind review and the 30-row double annotation are **pending**.
+- A fresh 30-question expert pack is sealed; the independent signature is
+  **pending**.
+- Therefore the acceptance sheet is not signed and the gate stays open. No
+  measured value above is lowered or replaced by a model judgment.
