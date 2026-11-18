@@ -8,6 +8,8 @@ import csv
 import json
 from pathlib import Path
 
+from review_provenance import check_human, reviewer_kind
+
 THRESHOLDS = {"citation": 0.95, "conclusion": 0.85, "refusal": 0.90}
 TRUTHY = {"1", "yes", "y", "true", "ok", "pass", "对", "通过"}
 
@@ -33,9 +35,29 @@ def main(argv: list[str] | None = None) -> int:
     )
     signature = {}
     if signature_path.is_file():
-        signature = json.loads(signature_path.read_text(encoding="utf-8"))
-    signed = bool(signature.get("name") and signature.get("date") and signature.get("affiliation"))
-    result = {"n": len(rows), "signed": signed, "signature": signature, "dimensions": {}}
+        loaded = json.loads(signature_path.read_text(encoding="utf-8"))
+        signature = loaded if isinstance(loaded, dict) else {}
+    identity = bool(
+        signature.get("name") and signature.get("date") and signature.get("affiliation")
+    )
+    human, human_reason = check_human(signature, require_attestation=True)
+    worksheet_kinds = {
+        str(row.get("reviewer_type") or "").strip().lower()
+        for row in rows
+        if str(row.get("reviewer_type") or "").strip()
+    }
+    worksheet_human = all(kind == "human" for kind in worksheet_kinds) if worksheet_kinds else None
+    signed = identity and human and worksheet_human is not False
+    result = {
+        "n": len(rows),
+        "signed": signed,
+        "worksheet_reviewer_types": sorted(worksheet_kinds),
+        "worksheet_human": worksheet_human,
+        "signature_kind": reviewer_kind(signature),
+        "signature_reason": human_reason,
+        "signature": signature,
+        "dimensions": {},
+    }
     failed: list[str] = []
     for name, column in (
         ("citation", "citation_ok"),
@@ -56,7 +78,7 @@ def main(argv: list[str] | None = None) -> int:
         }
         if threshold is not None and not ok:
             failed.append(name)
-    result["pass"] = signed and not failed
+    result["pass"] = signed and not failed and worksheet_human is not False
     out = Path(args.out_dir)
     out.mkdir(parents=True, exist_ok=True)
     (out / "expert-30-result.json").write_text(
@@ -66,7 +88,10 @@ def main(argv: list[str] | None = None) -> int:
         "# 30 题专家盲评结果",
         "",
         f"- 样本数：{len(rows)}",
-        f"- 签字：{'已签' if signed else '未签（不得作为验收签字）'}",
+        f"- 签字：{'已签（human）' if signed else '未签/非人类签字（不得作为验收签字）'}",
+        f"- 签字类型：{reviewer_kind(signature)}（{human_reason}）",
+        f"- 工作表来源：{result['worksheet_reviewer_types'] or '未标注'}"
+        f"（worksheet_human={worksheet_human}）",
         "- 签字人："
         f"{signature.get('name', '')} / {signature.get('affiliation', '')} / "
         f"{signature.get('date', '')}",

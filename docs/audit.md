@@ -96,6 +96,15 @@ Before any batch is used for a pass rate, run
 unknown verdicts and computes the blind-pass rate with its Wilson lower bound;
 it exits non-zero until the sheet is complete and above both lines.
 
+Both review gates also check provenance: a signature only counts as human
+evidence when `reviewer_type=human` (and `attestation` is non-empty), and a
+worksheet that declares a `reviewer_type` must declare `human`. A worksheet with
+no provenance column is treated as legacy only when the caller passes
+`--allow-unverified`; the gate records it but does not count it as verified.
+`review_provenance.py` holds the shared rule. This keeps an AI-filled file from
+being scored as a human sign-off by accident; it is a self-declared check, not a
+cryptographic proof of authorship.
+
 The acceptance spot check is separate: `scripts/draw_expert_sample.py` draws a
 fresh 30-question blind pack (excluding the 150-row sample and earlier review
 sets), and `scripts/score_expert_sample.py` scores the signed worksheet against
