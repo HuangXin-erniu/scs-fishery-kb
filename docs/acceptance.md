@@ -133,9 +133,15 @@ PYTHONPATH=src python -m scs_fkb terms check --data-root "$SCS_FKB_DATA_ROOT"
   [46.0%, 61.8%] — below the gate. The 30-row double annotation remains
   **pending**; kappa is `null`.
 - Both later 150-row blind sets (`blind-150-next`, `blind-150-v2`) were
-  **withdrawn** after `DUP_ANSWER`; the unused 512-pool is 62 questions. A new
-  ≥150-question pool is required before another acceptance run.
-- A fresh 30-question expert pack is sealed; the independent signature is
-  **pending**.
+  **withdrawn** after `DUP_ANSWER`; the unused part of the 512 pool is 62
+  questions.
+- A new pool (`pool-v3`, 183 rows, 17 domains, all `holdout`) passed the intake
+  validator: unique ids, no overlap with the 512 pool or either 150-row set, and
+  every number and article reference in its reference answers traced back to the
+  corpus. The n=183 gate is **≥166 passes (90.7%) with a Wilson 95% lower bound
+  ≥85%**; the pool has not been answered or reviewed yet.
+- The 30-question expert pack was re-generated with a verbatim source-excerpt
+  block after review found the earlier pack did not let a reviewer check
+  `citation_ok` inside the pack. The independent signature is **pending**.
 - Therefore the acceptance sheet is not signed and the gate stays open. No
   measured value above is lowered or replaced by a model judgment.

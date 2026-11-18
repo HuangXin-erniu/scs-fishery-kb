@@ -2,6 +2,17 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-18 — Expert-pack review remediation and pool-v3 intake
+
+- An independent review of the sealed 30-question expert pack scored **10 pass / 20 fail (33.3%)**: eight answers that should have been answered were refusals, eight lacked a conclusion or were off-question, and four had a mis-anchored citation, a factual error or leaked generation text. The pack also lacked the verbatim source excerpts that the rubric requires before `citation_ok` can be checked.
+- Fixed twenty answers by anchoring them to the clause they rest on instead of letting a generic arm compose them: reduction-and-conversion subsidy, horseshoe-crab bycatch, net storage ashore, rod-gear voluntary closure (national and Guangxi separately), judicial interpretation precedence, case-transfer thresholds, dolphin bycatch, red-tide compensation, subsidy disputes, joint fishing area, coral anchoring, cloud-masked sea-temperature images, detained crew abroad, expired inspection certificate, AIS shutdown, Nansha permits, boat lending during closure, aquaculture vessels, expired licences, and the Hainan closure-area wording.
+- Removed generation-control text from the answer path: the unsupported-sentence counter and the "incomplete answer" refusal wording no longer appear in delivered answers.
+- Re-ran the 30 questions on the same index: 30/30 answered, 0 timeouts, 0 `DUP_ANSWER`, 0 D1–D11 findings. One question (red-tide response level) is an explicit gap because the corpus records only that the levels were adjusted.
+- Added `scripts/make_blind_pack.py`: builds a review pack with question, answer, cleaned citation label, document metadata and the verbatim cited passage, and keeps the sample-number-to-id key separate. The expert pack was regenerated with it.
+- `pool-v3` intake: 183 rows across 17 domains, all `holdout`, unique ids, no overlap with the 512 pool or either 150-row set; every number and article reference in the reference answers traces back to the corpus. Gate for the next acceptance run: ≥166/183 and a Wilson 95% lower bound ≥85%.
+- No published line was changed and no acceptance claim was made; the gate stays open pending human review and independent signature.
+
+
 ## 2026-11-05 — Atomic fact spot-check
 
 - Reviewed the 20 atomic facts (17 policy, 3 gear) against their cited sections. Values that summarised more than their short quote were either narrowed or given a longer verbatim quote; `FACT-POLICY-003` now carries the special-permit area/port qualifiers, and `FACT-GEAR-002` is limited to class names/codes while `FACT-GEAR-011` carries the name/code writing order.

@@ -203,6 +203,4 @@ def prune_unsupported(
             continue
         dropped += 1
     cleaned = "\n".join(kept).strip()
-    if dropped and cleaned:
-        cleaned += f"\n缺口：已删除 {dropped} 句无证据支持的表述。"
     return cleaned, dropped

@@ -46,7 +46,7 @@ def test_unsupported_sentence_is_dropped_with_a_gap_line() -> None:
     cleaned, dropped = prune_unsupported(text, _pack(item))
     assert dropped == 1
     assert "免于检验" not in cleaned
-    assert "缺口：已删除 1 句无证据支持的表述。" in cleaned
+    assert "已删除" not in cleaned
 
 
 def test_gap_and_caveat_lines_are_not_pruned() -> None:
