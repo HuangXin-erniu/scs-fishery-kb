@@ -139,7 +139,10 @@ PYTHONPATH=src python -m scs_fkb terms check --data-root "$SCS_FKB_DATA_ROOT"
   validator: unique ids, no overlap with the 512 pool or either 150-row set, and
   every number and article reference in its reference answers traced back to the
   corpus. The n=183 gate is **≥166 passes (90.7%) with a Wilson 95% lower bound
-  ≥85%**; the pool has not been answered or reviewed yet.
+  ≥85%**. The pool has now been answered on the frozen index: 183/183 answers,
+  0 timeouts, 0 `DUP_ANSWER`, 0 D1–D11 findings, and every non-refusal carries a
+  citation. The blind pack (question + answer + verbatim cited passage, no id)
+  is ready and awaits two independent human reviewers.
 - The 30-question expert pack was re-generated with a verbatim source-excerpt
   block after review found the earlier pack did not let a reviewer check
   `citation_ok` inside the pack. The independent signature is **pending**.
