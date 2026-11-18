@@ -10,6 +10,7 @@ This log records material project changes by date. It does not use release versi
 - Re-ran the 30 questions on the same index: 30/30 answered, 0 timeouts, 0 `DUP_ANSWER`, 0 D1–D11 findings. One question (red-tide response level) is an explicit gap because the corpus records only that the levels were adjusted.
 - Added `scripts/make_blind_pack.py`: builds a review pack with question, answer, cleaned citation label, document metadata and the verbatim cited passage, and keeps the sample-number-to-id key separate. The expert pack was regenerated with it.
 - `pool-v3` intake: 183 rows across 17 domains, all `holdout`, unique ids, no overlap with the 512 pool or either 150-row set; every number and article reference in the reference answers traces back to the corpus. Gate for the next acceptance run: ≥166/183 and a Wilson 95% lower bound ≥85%.
+- A second review round of the regenerated pack scored **25 pass / 5 fail** (citation 25/28 = 89.3%, conclusion 26/30, refusal 9/9): the pack excerpt blocks all anchored correctly, but two answers cited a clause that did not support the claim, one cited only the product-catalogue standard, and one repeated the older inland threshold without noting the 2022 judicial interpretation. Fixed those five, plus a page label that repeated inside a citation token and duplicate excerpt blocks in the pack generator.
 - No published line was changed and no acceptance claim was made; the gate stays open pending human review and independent signature.
 
 

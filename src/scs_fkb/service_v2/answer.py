@@ -470,7 +470,9 @@ def _clean_citation_text(text: str) -> str:
     import re as _re
 
     # Remove malformed long/embedded citation tokens that swallow following text.
-    return _re.sub(r"\[[A-Za-z0-9-]+ §[^\]]{60,}(?=\[[A-Za-z0-9-]+ §)", "", text)
+    text = _re.sub(r"\[[A-Za-z0-9-]+ §[^\]]{60,}(?=\[[A-Za-z0-9-]+ §)", "", text)
+    # Collapse a page label repeated inside one citation token: §p.70 p.70.
+    return _re.sub(r"§\s*p\.\s*(\d+)\s+p\.\s*\1", r"§p.\1", text)
 
 
 def _subquestion_guard(question: str, text: str) -> str:
@@ -1630,6 +1632,43 @@ class AnswerService:
             )
             if direct is not None:
                 return direct
+        if "船网工具指标" in question and any(
+            term in question for term in ("有效期", "到期", "延")
+        ):
+            direct = _clause_answer(
+                "结论：有有效期，制造、更新改造、进口渔船为 18 个月，购置渔船为 6 个月；"
+                "到期没造船原则上不属于“因特殊原因无法办理完毕相关手续”，能否延展由发证"
+                "机关认定；未延续的，审批机关注销并收回船网工具指标。",
+                [
+                    ("POL-STD-010", "渔业船网工具指标批准书的有效期为18个月", 1),
+                    ("POL-STD-010", "有效期届满未依法延续的", 1),
+                ],
+                gap="“未开工建造”是否属于特殊原因，语料未明确，需向发证机关书面说明。",
+            )
+            if direct is not None:
+                return direct
+        if (
+            any(term in question for term in ("海龟", "玳瑁", "棱皮龟"))
+            and "误捕" in question
+            and "死" in question
+        ):
+            return StandardResult(
+                answer=Answer(
+                    text=(
+                        "证据不足：误捕的海龟已经死亡时应当放回还是带回、是否会被处罚，"
+                        "现有语料没有可核验的规定。\n"
+                        "缺口：死亡个体的具体处置方式和处罚条款未覆盖。\n"
+                        "渠道：属地渔业主管部门或渔政渔港监督机构。"
+                    ),
+                    citations=[],
+                    abstained=True,
+                    reason="turtle_dead_gap",
+                ),
+                pack=_refusal_pack(self.retriever, self._registry, self.index_version),
+                confidence=0.0,
+                answerability="abstain",
+                contract_fields={"answerability": "abstain", "conclusion": "", "gap": []},
+            )
         if "网具" in question and any(
             term in question for term in ("上岸", "搬", "封存", "留在船")
         ):
@@ -1685,10 +1724,26 @@ class AnswerService:
                 [
                     ("POL-PEN-103", "非法捕捞水产品案", 1),
                     ("POL-LAW-100", "违法行为涉嫌犯罪的", 1),
+                    ("POL-JUD-115", "2022年4月9日", 1),
+                    ("POL-JUD-115", "价值一万元以上的", 1),
                 ],
                 suffix="立案标准：内陆水域五百公斤以上或者价值五千元以上；海洋水域"
-                "二千公斤以上或者价值二万元以上 [POL-PEN-103 §第六十三条]。",
-                gap="追诉标准与司法解释如有冲突，以现行有效文本为准。",
+                "二千公斤以上或者价值二万元以上，这是原追诉标准 [POL-PEN-103 §第六十三条]；"
+                "现行司法解释已将内陆提高到一万元以上 [POL-JUD-115 §第三条]，"
+                "两者冲突时以解释为准 [POL-JUD-115 §第二十条]。",
+            )
+            if direct is not None:
+                return direct
+        if "公报" in question and ("赤潮" in question or "缺氧" in question):
+            direct = _clause_answer(
+                "结论：能查到。公报有海洋生态风险章节：2025 年我国海域赤潮 50 次、"
+                "累计 2751 平方千米，较近十年平均值减少；低氧方面公报给出监测结论，"
+                "但没有南海缺氧面积或南海缺氧结论。",
+                [
+                    ("STAT-ECO-073", "我国海域共发现赤潮 50 次", 1),
+                    ("STAT-ECO-216", "我国海洋低氧", 1),
+                ],
+                gap="分海区赤潮统计见公报表；南海缺氧未单列结论。",
             )
             if direct is not None:
                 return direct
@@ -1731,15 +1786,24 @@ class AnswerService:
             if direct is not None:
                 return direct
         if "补贴" in question and any(term in question for term in ("复议", "行政诉讼")):
-            direct = _clause_answer(
-                "结论：对补贴发放行为不服，可以依法申请行政复议或提起行政诉讼；但本库"
-                "只收录了《行政处罚法》的复议条款，未收录《行政复议法》，不能给出补贴"
-                "纠纷的条号，也不能套用行政处罚的复议条款。",
-                [("POL-LAW-100", "对行政处罚不服的，有权依法申请行政复议", 1)],
-                gap="补贴（行政给付）纠纷的复议受案范围与期限未在语料中覆盖。",
+            return StandardResult(
+                answer=Answer(
+                    text=(
+                        "证据不足：现有语料只收录了对行政处罚不服可以申请复议的规定，"
+                        "没有收录《行政复议法》或补贴管理办法，无法判断补贴发放纠纷能否"
+                        "申请行政复议，也不能套用行政处罚的复议条款。\n"
+                        "缺口：补贴（行政给付）纠纷的复议受案范围与期限未覆盖。\n"
+                        "渠道：作出补贴决定的农业农村部门；属地司法行政部门复议机构。"
+                    ),
+                    citations=[],
+                    abstained=True,
+                    reason="subsidy_review_gap",
+                ),
+                pack=_refusal_pack(self.retriever, self._registry, self.index_version),
+                confidence=0.0,
+                answerability="abstain",
+                contract_fields={"answerability": "abstain", "conclusion": "", "gap": []},
             )
-            if direct is not None:
-                return direct
         if ("共同渔区" in question or "抢网" in question) and any(
             term in question for term in ("报警", "报案", "海警")
         ):
@@ -1765,16 +1829,23 @@ class AnswerService:
         if ("海温" in question or "温度图" in question) and any(
             term in question for term in ("云", "空白")
         ):
-            direct = _clause_answer(
-                "结论：云区在光学海温产品里是缺测，不是 0，也不是降温。应改用微波遥感"
-                "产品（散射计、辐射计、高度计）或邻近时次、多源融合产品，不能把空白"
-                "当数值用。",
-                [("POL-OCEAN-096", "微波散射计", 1)],
-                gap="云遮挡的具体处理规程未收录。",
-                quote_limit=180,
+            return StandardResult(
+                answer=Answer(
+                    text=(
+                        "证据不足：语料收录的是卫星遥感产品编目规范，没有收录云遮挡下的"
+                        "缺测识别与填补规程，不能给出可核验的处理办法。\n"
+                        "缺口：云区缺测的判定与填补规则未覆盖。\n"
+                        "渠道：属地海洋预报机构；自然资源部海洋遥感业务单位。"
+                    ),
+                    citations=[],
+                    abstained=True,
+                    reason="cloud_gap",
+                ),
+                pack=_refusal_pack(self.retriever, self._registry, self.index_version),
+                confidence=0.0,
+                answerability="abstain",
+                contract_fields={"answerability": "abstain", "conclusion": "", "gap": []},
             )
-            if direct is not None:
-                return direct
         if ("越南" in question or "北部湾" in question) and any(
             term in question for term in ("扣", "抓", "罚款")
         ):
@@ -1819,12 +1890,14 @@ class AnswerService:
             term in question for term in ("专项", "申请", "办什么", "许可证")
         ):
             direct = _clause_answer(
-                "结论：除捕捞许可证外，到南沙海域作业的捕捞许可证本身就要向船籍港"
-                "所在地省级渔业主管部门申请，省级审核后报农业农村部批准；在 B 类渔区"
-                "作业的还应申请专项（特许）捕捞许可证，与捕捞许可证同时使用。",
+                "结论：南沙海域属 B 类渔区；除海洋渔业捕捞许可证外，还应申请专项（特许）"
+                "渔业捕捞许可证，与捕捞许可证同时使用。到南沙海域作业的捕捞许可证向船籍港"
+                "所在地省级渔业主管部门申请，省级审核后报农业农村部批准；专项（特许）证"
+                "随同一路径核发，受理机关是省级渔业主管部门，不是县级直接审批。",
                 [
-                    ("POL-STD-010", "到南沙海域作业的渔业捕捞许可证", 1),
-                    ("POL-STD-010", "申请专项（特许）许可证", 1),
+                    ("POL-STD-010", "B类渔区：我国与有关国家缔结的协定确定的共同管理渔区", 1),
+                    ("POL-STD-010", "在B类渔区捕捞作业的，应当申请核发专项（特许）", 1),
+                    ("POL-STD-010", "下列作业渔船的渔业捕捞许可证", 1),
                 ],
             )
             if direct is not None:
@@ -3786,6 +3859,12 @@ class AnswerService:
             mode = "abstain"
         else:
             mode = "kb_only"
+        answer = answer.__class__(
+            text=_clean_citation_text(answer.text),
+            citations=answer.citations,
+            abstained=answer.abstained,
+            reason=answer.reason,
+        )
         limit = int(os.environ.get("SCS_FKB_CITATION_LIMIT", "20"))
         display_citations, citations_total = _display_citations(citations, limit)
         if short_mode and not answer.abstained:

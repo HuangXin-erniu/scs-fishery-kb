@@ -124,9 +124,20 @@ def main(argv: list[str] | None = None) -> int:
         lines.append("")
         lines.append(f"**答：** {_squash(str(row.get('visible_answer', '')))}")
         lines.append("")
-        citations = row.get("citations") or []
+        citations = []
+        seen_citations: set[tuple[str, str]] = set()
+        for citation in row.get("citations") or []:
+            cite_key = (
+                str(citation.get("doc_id", "")),
+                clean_section(str(citation.get("section", ""))),
+            )
+            if cite_key in seen_citations:
+                continue
+            seen_citations.add(cite_key)
+            citations.append(citation)
         if not citations:
             lines.append("**依据摘录：** 无（答复未引用任何依据）")
+        seen_quotes: set[str] = set()
         for citation in citations[:4]:
             doc_id = str(citation.get("doc_id", ""))
             section = str(citation.get("section", ""))
@@ -140,8 +151,13 @@ def main(argv: list[str] | None = None) -> int:
             )
             quoted = 0
             for chunk in pick_chunks(chunks, doc_id, section):
+                body = excerpt(str(chunk.get("text", "")))
+                dedupe = body[:80]
+                if dedupe in seen_quotes:
+                    continue
+                seen_quotes.add(dedupe)
                 lines.append("")
-                lines.append(f"> {excerpt(str(chunk.get('text', '')))}")
+                lines.append(f"> {body}")
                 quoted += 1
             if not quoted:
                 lines.append("")

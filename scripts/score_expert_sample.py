@@ -68,7 +68,7 @@ def main(argv: list[str] | None = None) -> int:
         passed, judged = _rate(rows, column)
         rate = round(passed / judged, 4) if judged else None
         threshold = THRESHOLDS.get(name)
-        ok = rate is not None and threshold is not None and rate >= threshold
+        ok = None if threshold is None else (rate is not None and rate >= threshold)
         result["dimensions"][name] = {
             "passed": passed,
             "judged": judged,
