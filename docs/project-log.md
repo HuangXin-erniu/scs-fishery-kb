@@ -1928,3 +1928,7 @@ This log records material project changes by date. It does not use release versi
   DUP_ANSWER** and **0 D1–D11 findings** (5 topic-mismatch warnings are
   refusals). This is a regression check, not a human pass. The new ≥150 pool
   has not arrived yet; `pool-v3/questions.csv` is still absent.
+- 2026-11-18 regression follow-up: added answers for closure-period research
+  permits (Y-164) and Chinese horseshoe-crab aquaculture (Y-413). The 69-row
+  regression now has **0 DUP_ANSWER**, **0 D1–D11**, with only three refusal
+  topic warnings (Y-286, Y-382, Y-450). Still not a human pass; new pool absent.

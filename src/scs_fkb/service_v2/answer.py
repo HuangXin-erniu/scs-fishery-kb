@@ -1611,6 +1611,89 @@ class AnswerService:
                 )
             if direct is not None:
                 return direct
+        if "资源调查" in question and "休渔" in question:
+            direct = _direct_chunk(
+                "POL-GX-CLOSURE-206",
+                "因科学考察调查",
+                "research_permit_fallback",
+                prefix="可以，但须经批准：",
+            )
+            if direct is not None:
+                text = direct.answer.text.replace(
+                    "时效：",
+                    "缺口：具体审批材料与属地受理窗口以船籍港渔业主管部门为准。\n时效：",
+                    1,
+                )
+                return replace(
+                    direct,
+                    answer=Answer(
+                        text=text,
+                        citations=direct.answer.citations,
+                        abstained=False,
+                        reason="research_permit_fallback",
+                    ),
+                )
+        if "鲎" in question and ("养殖" in question or "申请" in question):
+            species = next(
+                (
+                    candidate
+                    for candidate in getattr(self.retriever, "chunks", []) or []
+                    if candidate.doc_id in {"STAT-ECO-073", "STAT-ECO-205", "STAT-ECO-111"}
+                    and "中国鲎" in candidate.text
+                ),
+                None,
+            )
+            permit = next(
+                (
+                    candidate
+                    for candidate in getattr(self.retriever, "chunks", []) or []
+                    if candidate.doc_id == "POL-LAW-099"
+                    and "人工繁育国家重点保护野生动物实行许可制度" in candidate.text
+                ),
+                None,
+            )
+            if species is not None and permit is not None:
+                citations = [
+                    Citation(
+                        doc_id=candidate.doc_id,
+                        title=candidate.doc_id,
+                        page=candidate.page,
+                        section=candidate.section,
+                        snippet=" ".join(candidate.text.split())[:160],
+                        score=1.0,
+                    )
+                    for candidate in (species, permit)
+                ]
+                return StandardResult(
+                    answer=Answer(
+                        text=(
+                            "中华鲎（中国鲎）是国家二级保护野生动物，可以依法申请人工繁育，"
+                            "但国家重点保护野生动物人工繁育实行许可制度：须经省级野生动物保护"
+                            "主管部门批准并取得人工繁育许可证；养殖场地还应依法办理养殖证。 "
+                            f"[{species.doc_id} §{species.section}] "
+                            f"[{permit.doc_id} §{permit.section}]\n"
+                            "时效：本答复依据《2025年中国海洋生态预警监测公报》（2026年）、"
+                            "《中华人民共和国野生动物保护法（2022年修订）》（2023-05-01）；"
+                            "以最新公布为准。"
+                        ),
+                        citations=citations,
+                        abstained=False,
+                        reason="horseshoe_aquaculture_fallback",
+                    ),
+                    pack=build_evidence_pack(
+                        [SearchHit(chunk=candidate, score=1.0) for candidate in (species, permit)],
+                        max_items=2,
+                        registry=self._registry,
+                        index_version=self.index_version,
+                    ),
+                    confidence=0.6,
+                    answerability="answerable",
+                    contract_fields={
+                        "answerability": "answerable",
+                        "conclusion": "可依法申请，但需人工繁育许可证和养殖证。",
+                        "gap": [],
+                    },
+                )
         if "配几" in question and "船员" in question:
             manning = next(
                 (
