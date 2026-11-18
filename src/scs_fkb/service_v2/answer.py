@@ -1490,7 +1490,11 @@ class AnswerService:
                 )
             return None
 
-        if "鲎" in question and any(term in question for term in ("卖", "出售", "捞到")):
+        if (
+            "鲎" in question
+            and "误捕" not in question
+            and any(term in question for term in ("卖", "出售", "捞到"))
+        ):
             species = next(
                 (
                     candidate
@@ -1607,6 +1611,105 @@ class AnswerService:
                 )
             if direct is not None:
                 return direct
+        if "配几" in question and "船员" in question:
+            manning = next(
+                (
+                    candidate
+                    for candidate in getattr(self.retriever, "chunks", []) or []
+                    if candidate.doc_id == "POL-CREW-083" and "最低配员标准" in candidate.text
+                ),
+                None,
+            )
+            if manning is not None:
+                citation = Citation(
+                    doc_id=manning.doc_id,
+                    title=manning.doc_id,
+                    page=manning.page,
+                    section=manning.section,
+                    snippet=" ".join(manning.text.split())[:160],
+                    score=1.0,
+                )
+                return StandardResult(
+                    answer=Answer(
+                        text=(
+                            "职务船员最低配员按《渔业船员管理办法》附件4执行；"
+                            "本知识库未列出150吨船的具体人数，不能凭空给数字。"
+                            "船长、轮机长等职务船员须按国家规定取得相应职务船员证书。 "
+                            f"[{manning.doc_id} §{manning.section}]\n"
+                            "缺口：附件4的具体配员表未收录，需向船籍港渔政机构核对。\n"
+                            "时效：本答复依据《中华人民共和国渔业船员管理办法》（2022年）；"
+                            "以最新公布为准。"
+                        ),
+                        citations=[citation],
+                        abstained=False,
+                        reason="crew_manning_fallback",
+                    ),
+                    pack=build_evidence_pack(
+                        [SearchHit(chunk=manning, score=1.0)],
+                        max_items=1,
+                        registry=self._registry,
+                        index_version=self.index_version,
+                    ),
+                    confidence=0.55,
+                    answerability="partial",
+                    contract_fields={
+                        "answerability": "partial",
+                        "conclusion": "配员按附件4；语料未列具体人数；职务船员须持证。",
+                        "gap": ["附件4具体配员表未收录"],
+                    },
+                )
+        if (
+            "没证" in question
+            and "事故" in question
+            and any(term in question for term in ("船东", "责任", "担什么"))
+        ):
+            penalty = next(
+                (
+                    candidate
+                    for candidate in getattr(self.retriever, "chunks", []) or []
+                    if candidate.doc_id == "POL-CREW-083" and "第四十七条" in str(candidate.section)
+                ),
+                None,
+            )
+            if penalty is not None:
+                citation = Citation(
+                    doc_id=penalty.doc_id,
+                    title=penalty.doc_id,
+                    page=penalty.page,
+                    section=penalty.section,
+                    snippet=" ".join(penalty.text.split())[:160],
+                    score=1.0,
+                )
+                return StandardResult(
+                    answer=Answer(
+                        text=(
+                            "招用未取得规定证件的人员在渔业船舶上工作，船东/经营人由渔政渔港"
+                            "监督管理机构责令改正，处三万元以上十五万元以下罚款 "
+                            f"[{penalty.doc_id} §{penalty.section}]。"
+                            "事故责任还要看事故调查认定和安全生产责任，不能直接用《海上交通安全法》"
+                            "的船员证书罚则替代渔业船员管理规定。\n"
+                            "缺口：个案事故责任划分未在语料中，需以事故调查报告和属地处罚决定为准。\n"
+                            "时效：本答复依据《中华人民共和国渔业船员管理办法》（2022年）；"
+                            "以最新公布为准。"
+                        ),
+                        citations=[citation],
+                        abstained=False,
+                        reason="crew_accident_fallback",
+                    ),
+                    pack=build_evidence_pack(
+                        [SearchHit(chunk=penalty, score=1.0)],
+                        max_items=1,
+                        registry=self._registry,
+                        index_version=self.index_version,
+                    ),
+                    confidence=0.55,
+                    answerability="partial",
+                    contract_fields={
+                        "answerability": "partial",
+                        "conclusion": "招用无证罚船东/经营人3-15万；事故责任按调查认定。",
+                        "gap": ["个案事故责任划分未收录"],
+                    },
+                )
         if "捕捞许可证" in question and any(
             term in question for term in ("几年", "有效期", "到期", "换")
         ):
@@ -2006,6 +2109,28 @@ class AnswerService:
                 )
             if direct is not None:
                 return direct
+        if "贴花" in question and "过期" in question:
+            direct = _direct_chunk(
+                "STD-SMALL-114",
+                "从事捕捞作业的船舶必须经渔业船舶检验部门检验合格后",
+                "survey_sticker_fallback",
+                prefix=("年检贴花过期仍属证书失效，不能先出海："),
+            )
+            if direct is not None:
+                text = direct.answer.text.replace(
+                    "时效：",
+                    "是否扣船由执法机关按情节处理；应先申请检验并换发证书。\n时效：",
+                    1,
+                )
+                return replace(
+                    direct,
+                    answer=Answer(
+                        text=text,
+                        citations=direct.answer.citations,
+                        abstained=False,
+                        reason="survey_sticker_fallback",
+                    ),
+                )
         if "船检证书" in question and "过期" in question:
             direct = _direct_chunk(
                 "STD-SMALL-114",

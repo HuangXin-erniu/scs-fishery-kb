@@ -1922,3 +1922,9 @@ This log records material project changes by date. It does not use release versi
   (52 dev + 10 holdout), insufficient for another 150. Acceptance is blocked
   pending a new unused question pool; no line is lowered and no human review is
   claimed for v2.
+- 2026-11-18 regression lock: all 69 prior human failures were re-answered on
+  the frozen code. After splitting crew manning/accident, survey-sticker and
+  horseshoe bycatch/sale intents, `reg69-answers-fixed.jsonl` has **0
+  DUP_ANSWER** and **0 D1–D11 findings** (5 topic-mismatch warnings are
+  refusals). This is a regression check, not a human pass. The new ≥150 pool
+  has not arrived yet; `pool-v3/questions.csv` is still absent.
