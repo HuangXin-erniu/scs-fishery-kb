@@ -122,7 +122,7 @@ PYTHONPATH=src python -m scs_fkb facts check --data-root "$SCS_FKB_DATA_ROOT"
 PYTHONPATH=src python -m scs_fkb terms check --data-root "$SCS_FKB_DATA_ROOT"
 ```
 
-## 7. Current status (2026-11-17)
+## 7. Current status (2026-11-18)
 
 - The 512-question aggregate dump arm on index `251dbf67e804` meets the
   published lines, but it is diagnostic, not the product-path acceptance result.
@@ -132,6 +132,9 @@ PYTHONPATH=src python -m scs_fkb terms check --data-root "$SCS_FKB_DATA_ROOT"
 - The 150-row human blind review returned **81/150 = 54.0%**, Wilson 95%
   [46.0%, 61.8%] — below the gate. The 30-row double annotation remains
   **pending**; kappa is `null`.
+- Both later 150-row blind sets (`blind-150-next`, `blind-150-v2`) were
+  **withdrawn** after `DUP_ANSWER`; the unused 512-pool is 62 questions. A new
+  ≥150-question pool is required before another acceptance run.
 - A fresh 30-question expert pack is sealed; the independent signature is
   **pending**.
 - Therefore the acceptance sheet is not signed and the gate stays open. No

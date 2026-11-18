@@ -136,8 +136,9 @@ same-body answers on different ids (notably Y-090/Y-499 and Y-365/Y-510), so
 per-id pass rates computed from it are invalid. The deterministic `512-gate.json`
 is not evidence of answer quality and must not be cited. The 150-row human blind
 review is authoritative for the previous sample: **81/150 = 54.0%**, Wilson
-95% [46.0%, 61.8%] — below the acceptance line. A fresh 150-row set has been
-drawn for the next acceptance run; it may be used only once.
+95% [46.0%, 61.8%] — below the acceptance line. Two later 150-row sets were
+drawn and both were **withdrawn** after `DUP_ANSWER` was found; the unused pool
+is now 62 questions, so no valid fresh 150 can be drawn from the 512 instrument.
 
 A fresh 30-question expert pack was drawn across seven themes and its answers
 also scan clean; the pack and worksheet are sealed under the private run root
