@@ -76,7 +76,7 @@ def pick_chunks(chunks: dict[str, list[dict]], doc_id: str, section: str) -> lis
     return rows[:1]
 
 
-def excerpt(text: str, limit: int = 520) -> str:
+def excerpt(text: str, limit: int = 1200) -> str:
     body = _squash(text)
     if len(body) > limit:
         body = body[:limit].rstrip("，,；;。 ") + "…"

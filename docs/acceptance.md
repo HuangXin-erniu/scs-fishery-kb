@@ -147,8 +147,16 @@ PYTHONPATH=src python -m scs_fkb terms check --data-root "$SCS_FKB_DATA_ROOT"
   gate. That round is recorded as defect input only.
 - After the corpus fix (two official sources added, index `bfe11941886a`), the
   pool was answered again: 183/183, 0 timeouts, 0 `DUP_ANSWER`, 0 D1–D11
-  findings, every non-refusal cited. A fresh blind pack and two reviewer zips are
-  frozen and awaiting two human reviewers. The gate stays closed until then.
+  findings, every non-refusal cited, and a fresh blind pack was frozen.
+- The second review round returned **A 170/183 (92.90%, Wilson 88.23%)** and
+  **B 150/183 (81.97%, Wilson 75.76%)**; `both_pass` is false, agreement 85.79%,
+  Cohen's kappa 0.371. Both provenance files are drafts (`reviewer_type` empty):
+  the round is recorded as a formal outcome per the owner's decision, but it is
+  **not** human-signed evidence and `acceptance_ready` stays false.
+- The 23 A-pass/B-fail disputes are almost all the same defect: a conclusion
+  sentence whose quoted excerpt does not contain it. Under the stricter reading
+  now written into the rubric, A's 170 would fall to about 150/183, so the round
+  fails either way. The gate stays closed; remediation plus a new pool is next.
 - The 30-question expert pack was re-generated with a verbatim source-excerpt
   block after review found the earlier pack did not let a reviewer check
   `citation_ok` inside the pack. The independent signature is **pending**.

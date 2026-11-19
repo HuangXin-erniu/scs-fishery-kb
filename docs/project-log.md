@@ -2,6 +2,19 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-19 — pool-v3 second review round (gate closed)
+
+- Second review round on index `bfe11941886a`: A 170/183 (92.90%, Wilson 88.23%),
+  B 150/183 (81.97%, Wilson 75.76%); `both_pass` false, agreement 85.79%, kappa
+  0.371. Both provenance files are drafts with empty `reviewer_type`; the round is
+  recorded as a formal outcome by owner decision, not as human-signed evidence.
+- 23 of the 26 disputes share one defect: a conclusion sentence whose cited
+  excerpt does not contain it (truncated excerpt, prohibition clause without its
+  penalty, or wrong article). Under the stricter citation rule the round fails
+  even if A's 170 is recomputed.
+- Recorded the stricter rule in the rubric: `citation_ok=1` only when every fact
+  and number in the conclusion can be found literally in the excerpt block.
+
 ## 2026-11-19 — Two official sources added; index rebuilt
 
 - Added `POL-SPP-TURTLE-235` (Supreme People's Procuratorate page recording that the
