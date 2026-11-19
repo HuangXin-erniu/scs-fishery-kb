@@ -44,6 +44,7 @@ def clean_section(section: str) -> str:
     text = _squash(section)
     text = re.sub(r"\s+p\.\s*\d+\s*$", "", text)
     text = re.sub(r"^p\.\s*\d+\s+(?=第)", "", text)
+    text = re.sub(r"^p\.\s*\d+\s+", "", text)
     text = re.sub(r"\s*§\s*p\.\s*\d+", "", text)
     if len(text) > 64:
         text = text[:64].rstrip("，,；; ") + "…"

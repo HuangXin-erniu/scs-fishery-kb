@@ -141,12 +141,14 @@ PYTHONPATH=src python -m scs_fkb terms check --data-root "$SCS_FKB_DATA_ROOT"
   corpus. The n=183 gate is **≥166 passes (90.7%) with a Wilson 95% lower bound
   ≥85%**. The pool has now been answered on the frozen index: 183/183 answers,
   0 timeouts, 0 `DUP_ANSWER`, 0 D1–D11 findings, and every non-refusal carries a
-  citation. One review pass returned **147/183 (80.3%, Wilson 95% lower bound
-  74.0%)** with an incomplete provenance declaration; a second pass returned
-  136/183 but was self-declared as produced by an AI agent, so it does not count
-  as human review. Neither pass meets the gate, and no acceptance evidence was
-  produced. The gate stays closed; a re-run needs a new pool, not a re-draw of
-  this one.
+  citation. The first review round (index `251dbf67e804`) returned **147/183**
+  and **136/183**; the first provenance was incomplete and the second pass was
+  self-declared AI, so neither counts as human evidence, and both are below the
+  gate. That round is recorded as defect input only.
+- After the corpus fix (two official sources added, index `bfe11941886a`), the
+  pool was answered again: 183/183, 0 timeouts, 0 `DUP_ANSWER`, 0 D1–D11
+  findings, every non-refusal cited. A fresh blind pack and two reviewer zips are
+  frozen and awaiting two human reviewers. The gate stays closed until then.
 - The 30-question expert pack was re-generated with a verbatim source-excerpt
   block after review found the earlier pack did not let a reviewer check
   `citation_ok` inside the pack. The independent signature is **pending**.

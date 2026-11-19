@@ -50,7 +50,7 @@ def _write(tmp_path: Path, entries: list[dict]) -> Path:
 
 def test_live_register_loads_all_sources_as_v5() -> None:
     registry = load_registry(ROOT / "configs" / "corpus.yaml")
-    assert len(registry) == 139
+    assert len(registry) == 141
     provisional = [
         source for source in registry.values() if source["ingest"]["tier"] == "provisional"
     ]

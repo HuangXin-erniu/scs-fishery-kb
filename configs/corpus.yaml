@@ -6829,6 +6829,7 @@ sources:
   notes: Official procuratorate page; states that the 2021 revised list upgraded the
     five sea-turtle species from class II to class I. Used only for the level change,
     not as the list itself.
+  watch_note: Static page; recheck only if the 2021 list itself is revised.
   level: national
   authority_tier: B
   retrieval:
@@ -6863,6 +6864,7 @@ sources:
     the host certificate); page archived verbatim.
   notes: Full Chinese text of COLREGS 1972; supplies section definitions and the
     five-short-blast signal rule.
+  watch_note: Consolidated treaty text; recheck only when a new amendment is published.
   level: international
   authority_tier: A
   retrieval:
