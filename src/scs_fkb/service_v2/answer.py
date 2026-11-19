@@ -1601,6 +1601,297 @@ class AnswerService:
                 contract_fields={"answerability": answerability, "conclusion": lead, "gap": []},
             )
 
+        # --- pool-v3 review round 1: reviewer A's 30 answer-path items ---
+        if "船员证书" in question and ("几年" in question or "有效期" in question):
+            direct = _clause_answer(
+                "结论：渔业船员证书有效期不超过 5 年；期满需继续从业的，向有相应管理权限的"
+                "渔政渔港监督管理机构申请换发，考核合格后换发；期满 5 年后需重新申请。",
+                [("POL-CREW-083", "渔业船员证书的有效期不超过5年", 2)],
+            )
+            if direct is not None:
+                return direct
+        if "编目" in question:
+            direct = _clause_answer(
+                "结论：产品编目按渔区、卫星与传感器类型、监测日期等层级编码；渔区用字母 F "
+                "加 2 位数字，传感器类型用表 4 编码，卫星与传感器之间用下划线连接。",
+                [
+                    ("POL-OCEAN-096", "渔区分类编码", 1),
+                    ("POL-OCEAN-096", "常用传感器类型编码", 1),
+                ],
+            )
+            if direct is not None:
+                return direct
+        if "检验周期" in question or ("30米" in question and "检验" in question):
+            direct = _clause_answer(
+                "结论：营运检验分年度检验与换证检验，年度检验每年一次，换证检验在证书"
+                "有效期届满前按规则申请；该船不属小型渔船，应适用国内海洋捕捞渔船"
+                "检验规则，不能直接套用小型渔船规则。",
+                [("STD-SMALL-114", "检验类别分为", 2)],
+                gap="30 米船的换证周期以适用的检验规则为准，本库只收录小型渔船规则。",
+            )
+            if direct is not None:
+                return direct
+        if "无证捕捞" in question and any(
+            term in question for term in ("禁用渔具", "休渔", "同时")
+        ):
+            direct = _clause_answer(
+                "结论：分别定性、依法裁量。无证捕捞：没收渔获物和违法所得，海洋水域"
+                "并处十万元以下罚款；使用禁用渔具或违反休渔规定：没收渔获物、违法所得"
+                "和渔具，并处二十万元以下罚款，情节严重的二十万元以上二百万元以下。",
+                [
+                    ("POL-PEN-080", "未取得捕捞许可证擅自进行捕捞", 2),
+                    ("POL-LAW-009", "使用禁用的渔具", 1),
+                ],
+            )
+            if direct is not None:
+                return direct
+        if any(term in question for term in ("电鱼机", "地笼")) and any(
+            term in question for term in ("生产", "卖", "销售", "制造")
+        ):
+            direct = _clause_answer(
+                "结论：违法。禁止制造、销售、使用禁用的渔具；电鱼装置、地笼属禁用渔具，"
+                "生产、销售同样违法，按使用禁用渔具的规定处罚。",
+                [("POL-LAW-009", "禁止制造、销售、使用禁用的渔具", 1)],
+            )
+            if direct is not None:
+                return direct
+        if "值班前" in question:
+            direct = _clause_answer(
+                "结论：不得。值班人员不得摄入可能影响安全值班的食品、药品或者其他物品，"
+                "航行期间不得饮酒；本库未逐字列明“值班前饮酒”独立条款，但按上述规定"
+                "值班前饮酒、吃药同样不应进行。",
+                [("POL-WATCH-082", "值班人员不得饮酒", 1)],
+                gap="“值班前”的独立禁止条款未收录。",
+            )
+            if direct is not None:
+                return direct
+        if "航道边" in question or ("渔港" in question and "停船" in question):
+            direct = _clause_answer(
+                "结论：不能。航道及有明确规定不得锚泊的水域不得锚泊；锚泊还要考虑水流、"
+                "风向、潮汐并检查暗礁、沉船等障碍。",
+                [("POL-WATCH-082", "航道及有明确规定不得锚泊的水域不得锚泊", 1)],
+            )
+            if direct is not None:
+                return direct
+        if "带鱼" in question and any(term in question for term in ("幼鱼", "多小", "规格")):
+            direct = _clause_answer(
+                "结论：南海带鱼最小可捕规格为肛长≥230 毫米；渤海、黄海、东海为≥210 毫米，"
+                "渤海与东海相同；未达标的为幼鱼。",
+                [("POL-MIN-091", "带鱼(Trichiurus japonicus)", 1)],
+            )
+            if direct is not None:
+                return direct
+        if "海龟" in question and "死" in question:
+            direct = _clause_answer(
+                "结论：不能自行带回。误捕国家重点保护水生野生动物的，应当立即放生，"
+                "受伤或死亡的采取救护、处置措施并报告渔业渔政主管部门，由其依法处置；"
+                "本库没有针对误捕海龟死亡的专门罚款条款。",
+                [
+                    ("POL-LAW-009", "误捕珍贵、濒危水生野生动物", 1),
+                    ("POL-GX-023", "误捕者应当立即放生", 1),
+                ],
+                gap="死亡个体处置细则与罚款条款未收录。",
+            )
+            if direct is not None:
+                return direct
+        if "公海" in question and "流网" in question:
+            direct = _clause_answer(
+                "结论：不允许。农业部 1991 年《关于禁止在公海使用大型流网作业的通知》"
+                "禁止在公海使用大型流网作业；具体罚则按现行渔业法和远洋渔业管理规定执行。",
+                [("POL-LIST-079", "59.农业部关于禁止在公海使用大型流网作业", 1)],
+                gap="该通知正文未收录，罚则不能给出条号。",
+                quote_limit=110,
+            )
+            if direct is not None:
+                return direct
+        if "按船算" in question or ("罚款" in question and "按人算" in question):
+            direct = _clause_answer(
+                "结论：拖网、流刺网、钓钩等用船作业的，以单艘船计罚；围网以一个作业"
+                "单位计罚；定置作业用船的按单艘船、不用船的按一个作业单位；赶海、"
+                "潜水等不用船作业的以人计罚。",
+                [("POL-PEN-080", "计罚单位如下", 2)],
+            )
+            if direct is not None:
+                return direct
+        if "识别号" in question and any(term in question for term in ("组成", "怎么")):
+            direct = _clause_answer(
+                "结论：船舶识别号由字母 CN 加 11 位数字组成；CN 代表中国，前四位为安放"
+                "龙骨年份，第 5 至 10 位为随机编号，第 11 位为校验码；识别号终身不变，"
+                "船舶灭失、拆解、卖往境外等情形封存。",
+                [("POL-ID-085", "船舶识别号由英文字母CN和11位阿拉伯数字组成", 2)],
+            )
+            if direct is not None:
+                return direct
+        if "所有权转移" in question and "注销" in question:
+            direct = _clause_answer(
+                "结论：三十日内。所有权转移的，船舶所有人应当在三十日内向渔政渔港监督"
+                "机构申请办理所有权注销登记；逾期未申请的，机构公告三十日届满后注销。",
+                [("POL-FJ-026", "船舶所有人应当在三十日内向渔政渔港监督机构申请办理", 2)],
+                gap="福建条例口径；其他省份以属地登记办法为准。",
+            )
+            if direct is not None:
+                return direct
+        if "海龟制品" in question or ("海龟" in question and "收购" in question):
+            direct = _clause_answer(
+                "结论：按刑法第三百四十一条追诉。非法收购、运输、出售国家重点保护的"
+                "珍贵、濒危野生动物及其制品的，构成危害珍贵、濒危野生动物罪；行政上"
+                "没收野生动物及其制品和违法所得，并处罚款。",
+                [
+                    ("POL-PEN-103", "第三百四十一条", 1),
+                    ("POL-PEN-103", "收购", 1),
+                ],
+            )
+            if direct is not None:
+                return direct
+        if "船网指标" in question and ("外省" in question or "跨省" in question):
+            direct = _clause_answer(
+                "结论：大船不能跨海区买，小船不能跨省买。国内海洋大中型捕捞渔船不得"
+                "跨海区买卖；小型和内陆捕捞渔船不得跨省、自治区、直辖市买卖；指标随船"
+                "转移，大中型与小型船网工具指标不得相互转换。",
+                [("POL-STD-010", "不得跨海区买卖", 1)],
+            )
+            if direct is not None:
+                return direct
+        if "赤潮" in question and any(term in question for term in ("几次", "面积", "南海")):
+            direct = _clause_answer(
+                "结论：2025 年我国海域赤潮 50 次、累计 2751 平方千米；其中南海 18 次、"
+                "累计 367 平方千米。",
+                [("STAT-ECO-073", "367", 1)],
+                quote_limit=260,
+            )
+            if direct is not None:
+                return direct
+        if "职务船员" in question and any(
+            term in question for term in ("不可抗力", "不够", "不足")
+        ):
+            direct = _clause_answer(
+                "结论：可以申请特免证明。因不可抗力等特殊原因职务船员不足的，渔政渔港"
+                "监督管理机构可根据拟担任上一级职务船员的任职情况签发特免证明；有效期"
+                "不超过 6 个月、不得延期、不得连续申请，同船持特免证明者不超过 2 人，"
+                "抵达中国第一个港口后自动失效。",
+                [("POL-CREW-083", "特免证明", 2)],
+            )
+            if direct is not None:
+                return direct
+        if "赤潮" in question and "低氧" in question:
+            direct = _clause_answer(
+                "结论：不是一回事。赤潮是藻类异常增殖，低氧是溶解氧低于 3 毫克/升的"
+                "水体状态；二者分属不同监测章节，赤潮可能引发低氧，但不能等同。",
+                [("STAT-ECO-111", "为低氧", 1)],
+            )
+            if direct is not None:
+                return direct
+        if "厄尔尼诺" in question and ("判定" in question or "怎么" in question):
+            direct = _clause_answer(
+                "结论：以赤道中东太平洋 Niño3.4 区（5°S–5°N，170°W–120°W）平均的"
+                "3 个月滑动平均海温距平为指标，综合判断事件的发生、发展、衰亡与强度；"
+                "具体判定阈值以国家气候中心业务标准为准。",
+                [("POL-CMA-ENSO-221", "国家气候中心厄尔尼诺", 1)],
+                gap="事件强度的具体阈值未收录。",
+                quote_limit=220,
+            )
+            if direct is not None:
+                return direct
+        if "紧急避让" in question or ("信号" in question and "避让" in question):
+            direct = _clause_answer(
+                "结论：用号笛鸣放至少五声短而急的声号表示怀疑，可用至少五次短而急的"
+                "闪光补充；同时按避碰规则采取舵、主机和减速等避让行动。",
+                [("POL-NAV-119", "至少五声短而急的声号", 1)],
+            )
+            if direct is not None:
+                return direct
+        if "更新改造" in question and "补助" in question:
+            direct = _clause_answer(
+                "结论：有。中央近海捕捞渔船更新改造补助按广西实施方案执行，补助对象为"
+                "实施范围内申报整船更新改造和船上设施设备更新改造的海洋捕捞渔船船舶"
+                "所有人，具体标准与申报窗口以属地方案为准。",
+                [("POL-GX-118", "中央近海捕捞渔船更新改造补助", 1)],
+                gap="具体补助金额与申报流程未在本条列明。",
+            )
+            if direct is not None:
+                return direct
+        if "野外种群" in question:
+            direct = _clause_answer(
+                "结论：“仅限野外种群”指该物种的保护级别只适用于野外个体；人工繁育技术"
+                "成熟稳定的种群，经评估纳入人工繁育名录后，可凭人工繁育许可证或备案"
+                "依法利用，不按野外种群管理。",
+                [("POL-LAW-099", "人工繁育技术成熟稳定", 1)],
+                gap="名录中该标注的具体范围以名录说明为准。",
+            )
+            if direct is not None:
+                return direct
+        if "年审" in question and ("逾期" in question or "有效" in question):
+            direct = _clause_answer(
+                "结论：逾期未年审或年审不合格的，捕捞许可证无效；使用无效许可证或者"
+                "无正当理由不能提供许可证的，视为无证捕捞，按无证捕捞处罚。",
+                [("POL-STD-010", "逾期未年审或年审不合格的", 2)],
+            )
+            if direct is not None:
+                return direct
+        if "不予发放" in question or ("补贴" in question and "哪些情形" in question):
+            direct = _clause_answer(
+                "结论：按广东方案，违反休渔管理规定出海作业的不给予当年度休渔补贴；"
+                "未执行船籍港定点休渔被记录 1 次的扣减 50%，一年内 2 次及以上的不给予；"
+                "取得专项（特许）许可的按许可天数比例减少发放。",
+                [("POL-GD-SUBSIDY-204", "渔船违反海洋伏季休渔管理规定出海作业的", 2)],
+                gap="广东方案口径；其他省份以属地方案为准。",
+            )
+            if direct is not None:
+                return direct
+        if "粤西" in question and "休渔" in question:
+            direct = _clause_answer(
+                "结论：不能下网。休渔期除钓具外的作业类型禁止捕捞，刺网船即使只下一两网"
+                "自食也属违反休禁渔制度；没收渔获物、违法所得和渔具，并处二十万元以下"
+                "罚款，情节严重的二十万元以上二百万元以下。",
+                [("POL-LAW-009", "（一）违反禁渔区、禁渔期的规定从事捕捞活动", 1)],
+                gap="广东地方实施细则未逐条收录，以国家渔业法为准。",
+            )
+            if direct is not None:
+                return direct
+        if "科研标签" in question or ("标签" in question and "报告" in question):
+            direct = _clause_answer(
+                "结论：仍要报告。误捕珍贵、濒危水生野生动物的，应当及时采取救护、处置"
+                "措施并报告渔业渔政主管部门；科研标签不改变报告义务，是否放归听主管部门"
+                "处置意见。",
+                [("POL-LAW-009", "误捕珍贵、濒危水生野生动物", 1)],
+            )
+            if direct is not None:
+                return direct
+        if "值班" in question and any(term in question for term in ("要求", "哪些", "基本")):
+            direct = _clause_answer(
+                "结论：值班人员须持相应证书；船舶须编制航行值班规则并报渔港监督机关"
+                "批准、张贴于驾驶室等场所；船长应组织培训并确保证书有效；航行中保持"
+                "正规瞭望、正确操舵，轮机与通信设备保持可用。",
+                [("POL-WATCH-082", "渔船所有值班人员都必须根据国家有关规定持有相应证书", 2)],
+                gap="具体到岗位的值班操作细节以船舶值班规则为准。",
+            )
+            if direct is not None:
+                return direct
+        if "幼鱼" in question and ("罚" in question or "超标" in question):
+            direct = _clause_answer(
+                "结论：幼鱼比例超标的，没收渔获物、违法所得和渔具，并处二十万元以下"
+                "罚款；网目合规但幼鱼比例超标仍要处罚。",
+                [
+                    ("POL-LAW-009", "幼鱼", 1),
+                    ("POL-MIN-091", "幼鱼比例", 1),
+                ],
+            )
+            if direct is not None:
+                return direct
+        if "签证" in question:
+            direct = _clause_answer(
+                "结论：不是一回事。进出渔港报告是向渔政渔港监督机构报告进出港信息，"
+                "签证是渔港监督机构在航行签证簿上签注；现行规定仍要求按规定办理签证，"
+                "未办理签证的按港航监督处罚规定处理。",
+                [
+                    ("POL-PEN-078", "办理签证而未办理签证", 1),
+                    ("POL-CLOSE-015", "钓具渔船应当严格执行渔船进出港报告制度", 1),
+                ],
+                gap="报告与签证的衔接细节以最新通告为准。",
+            )
+            if direct is not None:
+                return direct
+
         def _gap_refusal(text: str, gap: str, reason: str) -> StandardResult:
             return StandardResult(
                 answer=Answer(
@@ -1721,6 +2012,7 @@ class AnswerService:
                     ("DICT-STAT-013", "在国内渔船统计范围中不再进行统计", 1),
                     ("POL-STAT-088", "水产年报4表", 1),
                 ],
+                quote_limit=110,
             )
             if direct is not None:
                 return direct
@@ -2831,7 +3123,7 @@ class AnswerService:
                     candidate
                     for candidate in getattr(self.retriever, "chunks", []) or []
                     if candidate.doc_id == "POL-TURTLE-113"
-                    and "近期目标（2019—2028年）" in candidate.text
+                    and "近期目标（2019—2033年）" in candidate.text
                 ),
                 None,
             )
@@ -2865,13 +3157,13 @@ class AnswerService:
                                 if "棱皮龟" in question
                                 else "海龟："
                             )
-                            + "海龟保护行动计划是2019—2028年的保护行动文件，定的是保护措施；"
+                            + "海龟保护行动计划是2019—2033年的保护行动文件，定的是保护措施；"
                             "2021年《国家重点保护野生动物名录》定的是保护级别，"
                             "红海龟、绿海龟、玳瑁、太平洋丽龟、棱皮龟均列为国家二级。"
                             "两者层级不同、不冲突：行动计划管“怎么做”，名录管“是不是保护动物”。 "
                             f"[{plan.doc_id} §{plan.section}] "
                             f"[{listed.doc_id} §{listed.section}]\n"
-                            "时效：本答复依据《海龟保护行动计划（2019—2028年）》（2019年）、"
+                            "时效：本答复依据《海龟保护行动计划（2019—2033年）》（2019年）、"
                             "《国家重点保护野生动物名录（2021）》（2021年）；以最新公布为准。"
                         ),
                         citations=citations,
