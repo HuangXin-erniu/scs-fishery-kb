@@ -4,7 +4,7 @@
 
 schema_version: 1
 source_record_schema: 5
-updated_at: '2026-11-12'
+updated_at: '2026-11-19'
 data_root: null
 data_root_env: SCS_FKB_DATA_ROOT
 policy:
@@ -6807,6 +6807,76 @@ sources:
   - 跟帮
   - 脱帮
   - 单船
+
+- id: POL-SPP-TURTLE-235
+  title: 最高人民检察院：涉案海龟回归大海（含2021年名录海龟升级为一级的说明）
+  title_zh: 最高人民检察院：涉案海龟回归大海
+  publisher: 最高人民检察院
+  year: 2021
+  type: notice
+  jurisdiction: national
+  format: html
+  location: raw/POL-SPP-TURTLE-235/spp-turtle-level.html
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P2
+  volume: 1 HTML page
+  update_freq: static
+  hash: 745d8416620e91dea85697032ee269349f0c725c447b2a0f1ad3b88bcb700ead
+  acquisition: Fetched with curl on 2026-11-19 (the Python TLS chain could not verify
+    the host certificate); page archived verbatim.
+  notes: Official procuratorate page; states that the 2021 revised list upgraded the
+    five sea-turtle species from class II to class I. Used only for the level change,
+    not as the list itself.
+  level: national
+  authority_tier: B
+  retrieval:
+    channel: main
+    parseable: true
+    note: News page; cited for the 2021 upgrade statement.
+  lifecycle: active
+  source_class: reference
+  currency:
+    as_of: '2026-11-19'
+    basis: publication
+    review_due: '2027-05-19'
+    cadence: static
+    note: Page dated 2021-03-25; the underlying list took effect 2021-02-05.
+- id: POL-MOFCOM-COLREGS-236
+  title: 1972年国际海上避碰规则（商务部条约法律司全文）
+  title_zh: 一九七二年国际海上避碰规则
+  publisher: 商务部条约法律司
+  year: 1972
+  type: regulation
+  jurisdiction: international
+  format: html
+  location: raw/POL-MOFCOM-COLREGS-236/colregs-1972.html
+  license: public
+  sensitivity: public
+  status: acquired
+  priority: P1
+  volume: 1 HTML page (full text)
+  update_freq: static
+  hash: f924f38dc7a18e4a45a1a9f01ab87bbf588f2d0462a02f2a053a5f3f1b04d9d9
+  acquisition: Fetched with curl on 2026-11-19 (the Python TLS chain could not verify
+    the host certificate); page archived verbatim.
+  notes: Full Chinese text of COLREGS 1972; supplies section definitions and the
+    five-short-blast signal rule.
+  level: international
+  authority_tier: A
+  retrieval:
+    channel: main
+    parseable: true
+    note: Treaty text; used for rule definitions and signals.
+  lifecycle: active
+  source_class: normative
+  currency:
+    as_of: '2026-11-19'
+    basis: publication
+    review_due: '2027-05-19'
+    cadence: static
+    note: Consolidated treaty text as published by MOFCOM.
 
 gaps:
 - One hundred sources are registered: ninety-eight acquired and no open candidates awaiting disposition.

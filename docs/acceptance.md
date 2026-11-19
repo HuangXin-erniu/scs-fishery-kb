@@ -34,8 +34,8 @@
 | Short-answer valid share | 16/60 (measured 2026-11-11) | ≥40/60 | **≥16/60 (measured)** | `scripts/eval_short_public.py` with `SCS_FKB_VERIFY_ANSWERS=on` | §35, §36 |
 | Approved facts | 147/200 | ≥150 | **≥140** | `scs-fkb facts check` (0 errors, 0 conflicts) | [knowledge](knowledge.md) |
 | Approved terms | 136/150 | hold | **≥136** | `scs-fkb terms check` | knowledge |
-| Registered sources | 139 (137 canonical / 2 provisional) | hold | **≥139** | `scripts/check_sources.py` | [corpus](corpus.md) |
-| Indexed documents and chunks | 107 / 3,940 | hold | **≥107 / ≥3,940** | index manifest (`251dbf67e804`) | `v2/index/versions/<id>/manifest.json` |
+| Registered sources | 141 (139 canonical / 2 provisional) | hold | **≥139** | `scripts/check_sources.py` | [corpus](corpus.md) |
+| Indexed documents and chunks | 109 / 3,980 | hold | **≥107 / ≥3,940** | index manifest (`bfe11941886a`) | `v2/index/versions/<id>/manifest.json` |
 | Expert spot check | fresh 30-question pack sealed; **independent signature pending**; historical simulated holdout was below all three lines | 30 items | **citation ≥95%, conclusion ≥85%, refusal ≥90%** | signed worksheet | `expert-30-final/`, [metrics report](metrics-report.md) §2 |
 | Reproducibility | available | one command | **one command + commit + index hash** | `docs/plan.md` §8 | run artifacts |
 

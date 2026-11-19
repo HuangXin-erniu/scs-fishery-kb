@@ -2,6 +2,23 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-19 — Two official sources added; index rebuilt
+
+- Added `POL-SPP-TURTLE-235` (Supreme People's Procuratorate page recording that the
+  2021 list upgraded the five sea-turtle species from class II to class I) and
+  `POL-MOFCOM-COLREGS-236` (full Chinese text of COLREGS 1972, including rule 3
+  definitions and the five-short-blast signal).
+- Rebuilt the v2 store and index: **141 sources (139 canonical / 2 provisional),
+  109 documents, 3,980 chunks, index `bfe11941886a`**. The previous index
+  `251dbf67e804` is retained as a rollback version; all earlier measurements are
+  labelled with that index.
+- Reason: reviewer findings showed the 2021 list's OCR lost the level column and
+  the collision regulations' section definitions were not retrievable, so answers
+  either cited an outdated class or declared a false gap.
+- Both sources were fetched with curl because the Python TLS chain could not verify
+  the host certificates; the archived HTML and its sha256 are recorded in the
+  register. No published line was changed.
+
 ## 2026-11-18 — Expert-pack review remediation and pool-v3 intake
 
 - An independent review of the sealed 30-question expert pack scored **10 pass / 20 fail (33.3%)**: eight answers that should have been answered were refusals, eight lacked a conclusion or were off-question, and four had a mis-anchored citation, a factual error or leaked generation text. The pack also lacked the verbatim source excerpts that the rubric requires before `citation_ok` can be checked.

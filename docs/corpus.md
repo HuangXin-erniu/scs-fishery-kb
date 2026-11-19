@@ -1,6 +1,6 @@
 # Corpus Inventory
 
-- Status: 139 registered sources (137 canonical / 2 provisional; all acquired; 45 open candidates), schema v5 currency, 107 indexed documents (3,940 chunks, index `251dbf67e804`). The 2021 national key-protected wildlife list is registered as `STD-SPEC-076`; its OCR is a page-level derivative and retains the official PDF provenance. The local core CSV stays outside the public tree.
+- Status: 141 registered sources (139 canonical / 2 provisional; all acquired; 45 open candidates), schema v5 currency, 109 indexed documents (3,980 chunks, index `bfe11941886a`). The 2021 national key-protected wildlife list is registered as `STD-SPEC-076`; its OCR is a page-level derivative and retains the official PDF provenance. The local core CSV stays outside the public tree.
 - Register: [configs/corpus.yaml](../configs/corpus.yaml)
 - Candidate register: [configs/candidates.yaml](../configs/candidates.yaml)
 - Watch list: [configs/source-watch.yaml](../configs/source-watch.yaml)
