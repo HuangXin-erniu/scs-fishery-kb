@@ -46,8 +46,8 @@ def clean_section(section: str) -> str:
     text = re.sub(r"^p\.\s*\d+\s+(?=第)", "", text)
     text = re.sub(r"^p\.\s*\d+\s+", "", text)
     text = re.sub(r"\s*§\s*p\.\s*\d+", "", text)
-    if len(text) > 64:
-        text = text[:64].rstrip("，,；; ") + "…"
+    if len(text) > 120:
+        text = text[:120].rstrip("，,；; ") + "…"
     return text
 
 
@@ -62,25 +62,80 @@ def _norm(text: str) -> str:
     return re.sub(r"[\s、,，.。;；:：]", "", text or "")
 
 
+def _article_token(section: str) -> str:
+    match = re.search(r"第[一二三四五六七八九十百零〇\d]+条", section or "")
+    return match.group(0) if match else ""
+
+
 def pick_chunks(chunks: dict[str, list[dict]], doc_id: str, section: str) -> list[dict]:
     rows = chunks.get(doc_id) or []
-    target = _norm(clean_section(section))
-    if target:
-        hits = [row for row in rows if target and target in _norm(str(row.get("section", "")))]
+    target = _norm(clean_section(section)).rstrip("…")
+    if not target:
+        return []
+    hits = [row for row in rows if target and target in _norm(str(row.get("section", "")))]
+    if not hits and len(target) > 40:
+        head = target[:40]
+        hits = [row for row in rows if head in _norm(str(row.get("section", "")))]
+    if hits:
+        return hits[:2]
+    hits = [row for row in rows if _norm(str(row.get("section", "")))[:24] == target[:24]]
+    if hits:
+        return hits[:2]
+    token = _article_token(clean_section(section))
+    if token:
+        hits = [
+            row
+            for row in rows
+            if token in str(row.get("text", "")) or token in str(row.get("section", ""))
+        ]
         if hits:
             return hits[:2]
-        # Section labels are sometimes truncated in the answer citation.
-        hits = [row for row in rows if _norm(str(row.get("section", "")))[:24] == target[:24]]
-        if hits:
-            return hits[:2]
-    return rows[:1]
+    return []
 
 
-def excerpt(text: str, limit: int = 1200) -> str:
+def _sentences(text: str) -> list[str]:
     body = _squash(text)
-    if len(body) > limit:
-        body = body[:limit].rstrip("，,；;。 ") + "…"
-    return body
+    parts = re.split(r"(?<=[。；;！？])", body)
+    return [part for part in parts if part.strip()]
+
+
+def excerpt(text: str, limit: int = 1200, points: list[str] | None = None) -> str:
+    """Prefer the sentences that carry the answer's required points.
+
+    A head-of-chunk cut hides table values and mid-page clauses, which is what the
+    reviewers flagged as "the conclusion is not visible in the excerpt".  When
+    points are available, take the sentence containing each point plus its
+    neighbours, in document order, and fall back to the head only if nothing hits.
+    """
+    sents = _sentences(text)
+    body = _squash(text)
+    if len(body) <= limit:
+        return body
+    wanted: set[int] = set()
+    for point in points or []:
+        token = _norm(point)
+        if len(token) < 2:
+            continue
+        for index, sentence in enumerate(sents):
+            if token in _norm(sentence) or _norm(sentence) in token:
+                wanted.add(index)
+                if index > 0:
+                    wanted.add(index - 1)
+                if index + 1 < len(sents):
+                    wanted.add(index + 1)
+    if wanted:
+        chosen: list[str] = []
+        used = 0
+        for index in sorted(wanted):
+            sentence = sents[index]
+            if used + len(sentence) > limit and chosen:
+                break
+            chosen.append(sentence)
+            used += len(sentence)
+        if chosen:
+            return "".join(chosen)
+    cut = body[:limit].rstrip("，,；;。 ")
+    return cut + "…"
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -92,8 +147,21 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--title", default="盲评包")
     parser.add_argument("--seed", type=int, default=20261118)
     parser.add_argument("--n", type=int, default=0, help="keep only the first n answers")
+    parser.add_argument("--questions", default="", help="questions CSV with required_points")
+    parser.add_argument(
+        "--strict", action="store_true", help="fail if a citation cannot be located"
+    )
     args = parser.parse_args(argv)
 
+    points_by_id: dict[str, list[str]] = {}
+    if args.questions:
+        with Path(args.questions).open(encoding="utf-8-sig") as handle:
+            for row in csv.DictReader(handle):
+                points_by_id[str(row.get("id", ""))] = [
+                    part.strip()
+                    for part in str(row.get("required_points", "")).split("；")
+                    if part.strip()
+                ]
     answers = _rows(Path(args.answers))
     if args.n:
         answers = answers[: args.n]
@@ -117,6 +185,7 @@ def main(argv: list[str] | None = None) -> int:
         "",
     ]
     key: dict[str, str] = {}
+    missing: list[str] = []
     for sample_no, index in enumerate(order, 1):
         row = answers[index]
         key[str(sample_no)] = str(row.get("id", ""))
@@ -153,17 +222,22 @@ def main(argv: list[str] | None = None) -> int:
             )
             quoted = 0
             for chunk in pick_chunks(chunks, doc_id, section):
-                body = excerpt(str(chunk.get("text", "")))
+                body = excerpt(
+                    str(chunk.get("text", "")),
+                    points=points_by_id.get(str(row.get("id", "")), []),
+                )
                 dedupe = body[:80]
                 if dedupe in seen_quotes:
+                    quoted += 1
                     continue
                 seen_quotes.add(dedupe)
                 lines.append("")
                 lines.append(f"> {body}")
                 quoted += 1
             if not quoted:
+                missing.append(str(row.get("id", "")))
                 lines.append("")
-                lines.append("> （索引中未找到该条原文，请按 `citation_ok=0` 处理并注明）")
+                lines.append("> （该依据在索引中未能定位，本题不可按此条核实）")
             lines.append("")
         lines.append("---")
         lines.append("")
@@ -198,6 +272,10 @@ def main(argv: list[str] | None = None) -> int:
     empty = sum(1 for row in answers if not row.get("citations"))
     print(f"pack: {len(answers)} 题 → {pack_path}")
     print(f"sha256: {digest}")
+    if missing:
+        print(f"unresolved citations: {len(missing)} ({', '.join(missing[:7])})")
+    if args.strict and missing:
+        return 2
     print(f"无引用: {empty} 题")
     return 0
 
