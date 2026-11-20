@@ -2,6 +2,21 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-20 — pool-v5 review failed; gate and pack QA corrected
+
+- pool-v5 review: A 136/160 (85.00%, Wilson 78.65%), B 134/160 (83.75%,
+  77.25%); `both_pass=false`. Agreement 98.75%, kappa 0.953.
+- The joint gate was mis-stated: 144/160 gives a Wilson lower bound of 84.37%, so
+  the smallest passing count is **145**. The scorer now derives the threshold by
+  searching for the smallest k that satisfies both ≥90% and Wilson ≥85%.
+- Pack QA found that the two reviewer zips were byte-identical (no independent
+  shuffle), the instructions/provenance template still said 183 rows, and a few
+  citations had no matching excerpt. These are fixed for the next pool: per-
+  reviewer seeds, generated instructions with the real row count, and a strict
+  build that refuses citations without an excerpt.
+- Added `scripts/check_pool_binding.py`: checks section binding, penalty-clause
+  citation and multi-part conclusions before a pool can be packaged.
+
 ## 2026-11-20 — pool-v5 built and frozen
 
 - pool-v4 review failed (A 125/158, B 118/158). Main cause: conclusions whose
