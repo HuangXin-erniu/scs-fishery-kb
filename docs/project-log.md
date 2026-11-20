@@ -2,6 +2,20 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-20 — pool-v6 built and frozen
+
+- Built **166 questions** with strict build gates: section-level binding (numbers
+  must be in the cited section's chunk), penalty-clause enforcement, multi-part
+  conclusion check, PDF-garbage rejection; build fails on any violation.
+- Question set reuses previously cited sections but asks different facts, plus
+  new clauses; overlap with v1–v5 stays below 0.90.
+- Answered on index `bfe11941886a`: 166/166, 0 timeouts, 0 duplicate bodies,
+  0 precheck problems, 0 unresolved citations, `strict.py check` 0 violations.
+- A/B packs use different seeds and differ byte-for-byte; instructions and the
+  provenance template are generated with the real row count.
+- Gate corrected: n=166 requires **151/166** (90.96%, Wilson 85.63%); 150 gives
+  84.92% and fails the Wilson bound.
+
 ## 2026-11-20 — pool-v5 review failed; gate and pack QA corrected
 
 - pool-v5 review: A 136/160 (85.00%, Wilson 78.65%), B 134/160 (83.75%,

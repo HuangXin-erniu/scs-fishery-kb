@@ -275,6 +275,33 @@ def main(argv: list[str] | None = None) -> int:
         ),
         encoding="utf-8",
     )
+    (out / "REVIEWER-INSTRUCTIONS.md").write_text(
+        f"""# 复核说明
+
+- 本包含 **{len(answers)}** 题，每题给出问题、当前答复、答复所引依据的原文摘录。
+- 只依据这三样判断，不参考检测器标记、旧记录或我方预判。
+- 规则见 `rubric.md`；`citation_ok=1` 要求结论中的每个事实/数值都能在本题摘录块内字面找到。
+- 交卷只交 `worksheet.csv` 与 `review-provenance.json`；不要改题号、不要合并行。
+- 逐题填写 `human_verdict=pass/fail`；fail 必须在 `note` 写清错在哪。
+""",
+        encoding="utf-8",
+    )
+    (out / "review-provenance.template.json").write_text(
+        json.dumps(
+            {
+                "reviewer_type": "",
+                "reviewed_by": "",
+                "role": "",
+                "reviewed_at": "",
+                "conflict_of_interest": "无",
+                "attestation": "",
+                "_status": "由复核人填写；未签在 attestation 说明。",
+            },
+            ensure_ascii=False,
+            indent=1,
+        ),
+        encoding="utf-8",
+    )
     empty = sum(1 for row in answers if not row.get("citations"))
     print(f"pack: {len(answers)} 题 → {pack_path}")
     print(f"sha256: {digest}")

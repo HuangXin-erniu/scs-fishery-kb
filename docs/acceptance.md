@@ -171,7 +171,10 @@ PYTHONPATH=src python -m scs_fkb terms check --data-root "$SCS_FKB_DATA_ROOT"
 - **pool-v5** is frozen: 160 questions drawn from clauses never used by the earlier
   pools, every required point verified against its chunk, no overlap ≥0.90 with the
   older pools, and a strict pack preflight with 0 unresolved citations. Gate:
-  ≥144/160 and Wilson lower bound ≥85%, under rubric v2.
+  ≥144/160 and Wilson lower bound ≥85%, under rubric v2. It failed (A 136,
+  B 134); the joint gate for n=160 is actually 145.
+- **pool-v6** is frozen: 166 questions, strict section binding and penalty checks,
+  A/B packs with independent shuffles. Gate: **151/166** (90.96%, Wilson 85.63%).
 - The 30-question expert pack was re-generated with a verbatim source-excerpt
   block after review found the earlier pack did not let a reviewer check
   `citation_ok` inside the pack. The independent signature is **pending**.
