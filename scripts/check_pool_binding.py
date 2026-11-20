@@ -28,7 +28,7 @@ def main(qpath, apath, cpath) -> int:
         if line.strip():
             row = json.loads(line)
             chunks[row["doc_id"]].append(row)
-    answers = [json.loads(l) for l in open(apath, encoding="utf-8") if l.strip()]
+    answers = [json.loads(line) for line in open(apath, encoding="utf-8") if line.strip()]
     binding, penalty, subq = [], [], []
     for row in answers:
         qid = row.get("id", "")
