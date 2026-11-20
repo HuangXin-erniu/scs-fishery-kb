@@ -7,10 +7,10 @@
 #   "$SCS_FKB_LOCAL/venv-ragas/bin/python" scripts/ragas_runner.py --input ... --output ...
 #
 # CI installs requirements-dev.txt only; this file is optional and local.
-ragas==0.4.3
-langchain-core<1
-langchain<1
-langchain-community>=0.3,<0.4
-langchain-openai<1
-langchain-text-splitters<1
+ragas==0.4.4
+langchain-core<2
+langchain<2
+langchain-community>=0.4.2,<0.5
+langchain-openai<2
+langchain-text-splitters<2
 fastembed>=0.9,<1
