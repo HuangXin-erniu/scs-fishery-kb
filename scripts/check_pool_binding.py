@@ -61,7 +61,8 @@ def main(qpath, apath, cpath) -> int:
         if parts >= 2 and not CONCLUSION.search(text):
             subq.append(qid)
     print(
-        f"answers={len(answers)} section_binding={len(binding)} penalty={len(penalty)} subquestion={len(subq)}"
+        f"answers={len(answers)} section_binding={len(binding)} "
+        f"penalty={len(penalty)} subquestion={len(subq)}"
     )
     for qid, miss in binding:
         print("BIND", qid, miss)
