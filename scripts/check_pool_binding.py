@@ -11,7 +11,10 @@ Checks, per answered row:
 Usage: check_pool_binding.py questions.csv answers.jsonl chunks.jsonl
 """
 
-import csv, json, re, sys
+import csv
+import json
+import re
+import sys
 from collections import defaultdict
 
 PENALTY = re.compile(r"罚款|没收|吊销|拘留")
