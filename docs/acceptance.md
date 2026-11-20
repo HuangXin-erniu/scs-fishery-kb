@@ -157,6 +157,13 @@ PYTHONPATH=src python -m scs_fkb terms check --data-root "$SCS_FKB_DATA_ROOT"
   sentence whose quoted excerpt does not contain it. Under the stricter reading
   now written into the rubric, A's 170 would fall to about 150/183, so the round
   fails either way. The gate stays closed; remediation plus a new pool is next.
+- Remediation done: 26 disputed answers were re-anchored so each conclusion has a
+  clause whose excerpt contains it, and a strict rubric v2 was written.
+- **pool-v4** was built from the corpus: **158 questions, 17 domains**, every
+  reference answer bound to a document and section, with mechanical checks (marker
+  hit 158/158, every number literal in its chunk, no question overlap ≥0.90 with
+  the 512/150/previous pools). Its blind pack and two reviewer zips are frozen;
+  the same gate applies (≥143/158 and Wilson lower bound ≥85%).
 - The 30-question expert pack was re-generated with a verbatim source-excerpt
   block after review found the earlier pack did not let a reviewer check
   `citation_ok` inside the pack. The independent signature is **pending**.

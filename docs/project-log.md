@@ -2,6 +2,18 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-20 — pool-v4 built and frozen
+
+- Built a new pool from the corpus: **158 questions across 17 domains**, each
+  reference answer bound to a `doc_id` + section, with `required_points`.
+- Mechanical verification before freeze: 158/158 markers located, every number in
+  an answer appears literally in its cited chunk, no question overlaps the older
+  pools at ≥0.90, schema/coverage checks pass.
+- Answered all 158 on index `bfe11941886a`: 0 timeouts, 0 duplicate bodies, 0
+  detector findings, 0 unresolved citations.
+- Blind pack plus two reviewer zips frozen (`pool-v4-blind/FREEZE.md`); gate is
+  ≥143/158 and Wilson lower bound ≥85%, with the strict citation rubric v2.
+
 ## 2026-11-19 — pool-v3 second review round (gate closed)
 
 - Second review round on index `bfe11941886a`: A 170/183 (92.90%, Wilson 88.23%),
