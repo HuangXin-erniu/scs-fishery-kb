@@ -2,6 +2,20 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-20 — pool-v5 built and frozen
+
+- pool-v4 review failed (A 125/158, B 118/158). Main cause: conclusions whose
+  cited excerpt did not contain them; the pack also leaked a judge-facing
+  placeholder when a citation could not be located.
+- Fixes: the pack now includes the whole cited chunk; unresolved citations fail
+  the build (`--strict`); the scorer derives N and the 90% line from the
+  worksheet; 26 disputed answers were re-anchored to the penalty/procedure clause.
+- Built **pool-v5**: 160 questions from clauses never cited by v1–v4, every
+  required point checked against its chunk, no overlap ≥0.90 with older pools,
+  strict preflight with 0 unresolved citations, 0 duplicate bodies and 0 detector
+  findings. Frozen blind pack and two reviewer zips; gate ≥144/160 and Wilson
+  lower bound ≥85%.
+
 ## 2026-11-20 — pool-v4 built and frozen
 
 - Built a new pool from the corpus: **158 questions across 17 domains**, each

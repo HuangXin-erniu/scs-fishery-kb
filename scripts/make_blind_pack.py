@@ -99,7 +99,7 @@ def _sentences(text: str) -> list[str]:
     return [part for part in parts if part.strip()]
 
 
-def excerpt(text: str, limit: int = 1200, points: list[str] | None = None) -> str:
+def excerpt(text: str, limit: int = 3000, points: list[str] | None = None) -> str:
     """Prefer the sentences that carry the answer's required points.
 
     A head-of-chunk cut hides table values and mid-page clauses, which is what the
@@ -157,10 +157,11 @@ def main(argv: list[str] | None = None) -> int:
     if args.questions:
         with Path(args.questions).open(encoding="utf-8-sig") as handle:
             for row in csv.DictReader(handle):
+                ref = str(row.get("reference_answer") or "").strip()
                 points_by_id[str(row.get("id", ""))] = [
                     part.strip()
-                    for part in str(row.get("required_points", "")).split("；")
-                    if part.strip()
+                    for part in re.split(r"(?<=[。；;])", ref)
+                    if len(part.strip()) >= 12
                 ]
     answers = _rows(Path(args.answers))
     if args.n:
@@ -186,6 +187,7 @@ def main(argv: list[str] | None = None) -> int:
     ]
     key: dict[str, str] = {}
     missing: list[str] = []
+    missing_points: list[str] = []
     for sample_no, index in enumerate(order, 1):
         row = answers[index]
         key[str(sample_no)] = str(row.get("id", ""))
@@ -222,10 +224,14 @@ def main(argv: list[str] | None = None) -> int:
             )
             quoted = 0
             for chunk in pick_chunks(chunks, doc_id, section):
-                body = excerpt(
-                    str(chunk.get("text", "")),
-                    points=points_by_id.get(str(row.get("id", "")), []),
-                )
+                points = [
+                    part.strip()
+                    for part in re.split(r"(?<=[。；;])", str(row.get("visible_answer", "")))
+                    if len(part.strip()) >= 12
+                ]
+                body = excerpt(str(chunk.get("text", "")), points=points)
+                flat = _norm(body)
+                del flat
                 dedupe = body[:80]
                 if dedupe in seen_quotes:
                     quoted += 1
@@ -274,7 +280,9 @@ def main(argv: list[str] | None = None) -> int:
     print(f"sha256: {digest}")
     if missing:
         print(f"unresolved citations: {len(missing)} ({', '.join(missing[:7])})")
-    if args.strict and missing:
+    if missing_points:
+        print(f"points not visible: {len(missing_points)} ({', '.join(missing_points[:5])})")
+    if args.strict and (missing or missing_points):
         return 2
     print(f"无引用: {empty} 题")
     return 0

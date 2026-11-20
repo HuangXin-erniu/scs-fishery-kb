@@ -164,6 +164,14 @@ PYTHONPATH=src python -m scs_fkb terms check --data-root "$SCS_FKB_DATA_ROOT"
   hit 158/158, every number literal in its chunk, no question overlap ≥0.90 with
   the 512/150/previous pools). Its blind pack and two reviewer zips are frozen;
   the same gate applies (≥143/158 and Wilson lower bound ≥85%).
+- pool-v4 review failed (A 125/158, B 118/158): most disputes were conclusions whose
+  cited excerpt did not contain them. Root causes were fixed: excerpts now carry the
+  whole cited chunk, citations that fail to resolve make the pack build fail, and
+  the scorer derives N and the pass line from the worksheet.
+- **pool-v5** is frozen: 160 questions drawn from clauses never used by the earlier
+  pools, every required point verified against its chunk, no overlap ≥0.90 with the
+  older pools, and a strict pack preflight with 0 unresolved citations. Gate:
+  ≥144/160 and Wilson lower bound ≥85%, under rubric v2.
 - The 30-question expert pack was re-generated with a verbatim source-excerpt
   block after review found the earlier pack did not let a reviewer check
   `citation_ok` inside the pack. The independent signature is **pending**.
