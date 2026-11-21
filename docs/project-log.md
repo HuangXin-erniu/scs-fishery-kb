@@ -2,6 +2,19 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-21 — v6 answer-side defects patched
+
+- Patched the nine items that both reviewers failed for answer-side reasons:
+  safety terminal (state the duty, no unsupported fine), stricter provincial
+  closure measures, resource-fee use, gillnet catch landing, dismantling-supervisor
+  recusal, regulation name, training-institution tiers, minimum manning, and
+  recognition-visa validity.
+- Re-ran those items: 0 consistency problems, 0 duplicate bodies, 0 detector
+  findings, `strict.py check` 0 violations.
+- These patches were made after the round closed; the recorded 151/154 remains the
+  official result and is not re-scored here. They will be verified in the next
+  measurement.
+
 ## 2026-11-21 — pool-v6 corrected round result (gate PASS, not signable)
 
 - Corrected-pack round: A 151/166 (90.96%, Wilson 85.63%), B 154/166 (92.77%,

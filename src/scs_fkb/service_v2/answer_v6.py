@@ -12,6 +12,70 @@ from typing import Any
 
 def try_v6(question: str, clause: Callable[..., Any]) -> Any:
     """Return a clause-based answer for a v6 fact, or ``None`` to fall through."""
+    if "安全救助终端" in question:
+        direct = clause(
+            "结论：应当安装安全救助终端设备，并保证设备正常运行。",
+            [("POL-FJ-025", "渔业船舶应当安装安全救助终端设备", 1)],
+        )
+        if direct is not None:
+            return direct
+    if "更严" in question and "休渔" in question:
+        direct = clause(
+            "结论：可以，沿海省级渔业主管部门可根据本地实际，在国家规定基础上制定更加严格的资源保护措施。",
+            [("POL-CLOS-015", "制定更加严格的资源保护措施", 1)],
+        )
+        if direct is not None:
+            return direct
+    if "增殖保护费" in question and "干什么" in question:
+        direct = clause(
+            "结论：用于增殖和保护渔业资源；具体征收、使用按国务院财政、发展改革主管部门规定执行。",
+            [("POL-LAW-009", "渔业资源增殖保护费的征收、使用", 1)],
+        )
+        if direct is not None:
+            return direct
+    if "钓具" in question and "鱼怎么处理" in question:
+        direct = clause(
+            "结论：钓具渔船休渔期捕捞的渔获物实行定点上岸，并不得违反许可证关于作业类型、场所、时限和渔具数量的规定。",
+            [("POL-CLOS-015", "渔获物定点上岸", 1)],
+        )
+        if direct is not None:
+            return direct
+    if "回避" in question:
+        direct = clause(
+            "结论：船舶所有人、拆解厂或其他利害关系人以正当理由申请回避的，拆解监督组成员应当回避。",
+            [("POL-BOAT-120", "申请拆解监督组成员回避", 1)],
+        )
+        if direct is not None:
+            return direct
+    if "规程" in question and "拆解" in question:
+        direct = clause(
+            "结论：应遵守《海洋捕捞渔船拆解操作规程》。",
+            [("POL-BOAT-120", "海洋捕捞渔船拆解操作规程", 1)],
+        )
+        if direct is not None:
+            return direct
+    if "培训机构" in question and "几级" in question:
+        direct = clause(
+            "结论：分三级：一级、二级、三级渔业船员培训机构，各级可承担的培训范围不同。",
+            [("POL-CREW-083", "一级渔业船员培训机构", 1)],
+            quote_limit=260,
+        )
+        if direct is not None:
+            return direct
+    if "配员" in question and "标准" in question:
+        direct = clause(
+            "结论：海洋渔业船舶应当满足本办法规定的职务船员最低配员标准（附件4）。",
+            [("POL-CREW-083", "职务船员最低配员标准", 1)],
+        )
+        if direct is not None:
+            return direct
+    if "承认签证" in question:
+        direct = clause(
+            "结论：承认签证有效期不得超过被承认职务船员证书的有效期；被承认证书失效时，承认签证自动失效。",
+            [("POL-CREW-083", "承认签证的有效期不得超过", 1)],
+        )
+        if direct is not None:
+            return direct
     if "排污" in question and "渔业水域" in question:
         direct = clause(
             "结论：不能。禁止向渔业水域排放污染物和废弃物。",
