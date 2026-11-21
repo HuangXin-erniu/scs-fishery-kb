@@ -2,6 +2,13 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-21 — development host moved
+
+- The working copy now lives on a private development host; this public
+  repository remains the publication artifact for source, configuration and
+  tests. No file other than this log entry changed in the move, and the corpus
+  and run artifacts stay outside version control as before.
+
 ## 2026-11-21 — v6 answer-side defects patched
 
 - Patched the nine items that both reviewers failed for answer-side reasons:
