@@ -175,6 +175,10 @@ PYTHONPATH=src python -m scs_fkb terms check --data-root "$SCS_FKB_DATA_ROOT"
   B 134); the joint gate for n=160 is actually 145.
 - **pool-v6** is frozen: 166 questions, strict section binding and penalty checks,
   A/B packs with independent shuffles. Gate: **151/166** (90.96%, Wilson 85.63%).
+- v6 corrected round: A 151, B 154, `both_pass=true`; A has zero margin and nine
+  disputes remain, so the result is recorded as a pass under the registered rule
+  but is not recommended for signature until adjudicated. Provenance is
+  `ai-assisted`, hence `acceptance_ready=false`.
 - The 30-question expert pack was re-generated with a verbatim source-excerpt
   block after review found the earlier pack did not let a reviewer check
   `citation_ok` inside the pack. The independent signature is **pending**.

@@ -2,6 +2,19 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-21 — pool-v6 corrected round result (gate PASS, not signable)
+
+- Corrected-pack round: A 151/166 (90.96%, Wilson 85.63%), B 154/166 (92.77%,
+  87.79%); `both_pass=true` under the registered gate of 151.
+- A has zero margin. Nine disputes remain; after per-item adjudication the net is
+  roughly A 152 / B 150, so the pass sits inside the dispute band rather than being
+  robust. Both provenance files remain `ai-assisted`, so `acceptance_ready=false`.
+- The aligned agreement (matching ids across the two different shuffles) is
+  94.58% with kappa 0.638; the earlier 0.869 was computed on unaligned sample
+  numbers and is not valid for differently shuffled packs.
+- Prepared a nine-row adjudication sheet for a human/third-party ruling before any
+  signature.
+
 ## 2026-11-21 — pool-v6 corrected pack re-measurement
 
 - The first v6 review round (A 148, B 150) is void: the pack builder took one
