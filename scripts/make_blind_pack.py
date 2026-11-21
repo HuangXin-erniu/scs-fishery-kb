@@ -68,29 +68,27 @@ def _article_token(section: str) -> str:
 
 
 def pick_chunks(chunks: dict[str, list[dict]], doc_id: str, section: str) -> list[dict]:
+    """Return every chunk that carries the cited section.
+
+    A document-level fallback is deliberately gone: if the cited section cannot
+    be located, the pack must fail rather than silently ship another chunk.
+    """
     rows = chunks.get(doc_id) or []
     target = _norm(clean_section(section)).rstrip("…")
     if not target:
         return []
-    hits = [row for row in rows if target and target in _norm(str(row.get("section", "")))]
-    if not hits and len(target) > 40:
-        head = target[:40]
-        hits = [row for row in rows if head in _norm(str(row.get("section", "")))]
-    if hits:
-        return hits[:2]
-    hits = [row for row in rows if _norm(str(row.get("section", "")))[:24] == target[:24]]
-    if hits:
-        return hits[:2]
-    token = _article_token(clean_section(section))
-    if token:
-        hits = [
-            row
-            for row in rows
-            if token in str(row.get("text", "")) or token in str(row.get("section", ""))
-        ]
-        if hits:
-            return hits[:2]
-    return []
+    hits = [row for row in rows if target in _norm(str(row.get("section", "")))]
+    if not hits:
+        hits = [row for row in rows if _norm(str(row.get("section", ""))) in target]
+    if not hits:
+        token = _article_token(clean_section(section))
+        if token:
+            hits = [
+                row
+                for row in rows
+                if token in str(row.get("section", "")) or token in str(row.get("text", ""))[:40]
+            ]
+    return hits[:3]
 
 
 def _sentences(text: str) -> list[str]:
@@ -211,7 +209,7 @@ def main(argv: list[str] | None = None) -> int:
         if not citations:
             lines.append("**依据摘录：** 无（答复未引用任何依据）")
         seen_quotes: set[str] = set()
-        for citation in citations[:4]:
+        for citation in citations[:8]:
             doc_id = str(citation.get("doc_id", ""))
             section = str(citation.get("section", ""))
             meta = docs.get(doc_id, {})
@@ -223,7 +221,19 @@ def main(argv: list[str] | None = None) -> int:
                 f"{str(meta.get('effective_from', ''))[:10] or '时效未标注'}）"
             )
             quoted = 0
-            for chunk in pick_chunks(chunks, doc_id, section):
+            picked = pick_chunks(chunks, doc_id, section)
+            target_section = _norm(clean_section(section)).rstrip("…")
+            exact = any(
+                target_section
+                and (
+                    target_section in _norm(str(c.get("section", "")))
+                    or _norm(str(c.get("section", ""))) in target_section
+                )
+                for c in picked
+            )
+            if not exact:
+                missing.append(str(row.get("id", "")))
+            for chunk in picked:
                 points = [
                     part.strip()
                     for part in re.split(r"(?<=[。；;])", str(row.get("visible_answer", "")))
@@ -251,7 +261,7 @@ def main(argv: list[str] | None = None) -> int:
     pack_path.write_text("\n".join(lines), encoding="utf-8")
     digest = hashlib.sha256(pack_path.read_bytes()).hexdigest()
 
-    with (out / "worksheet.csv").open("w", encoding="utf-8-sig", newline="") as handle:
+    with (out / "worksheet.csv").open("w", encoding="utf-8", newline="") as handle:
         writer = csv.writer(handle)
         writer.writerow(
             [
@@ -267,7 +277,7 @@ def main(argv: list[str] | None = None) -> int:
         for sample_no in range(1, len(order) + 1):
             writer.writerow([sample_no, "", "", "", "", "", ""])
 
-    (out / "key.json").write_text(
+    (out.parent / f"{out.name}-key.json").write_text(
         json.dumps(
             {"seed": args.seed, "pack_sha256": digest, "key": key},
             ensure_ascii=False,

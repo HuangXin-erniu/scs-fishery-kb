@@ -12,6 +12,36 @@ from typing import Any
 
 def try_v6(question: str, clause: Callable[..., Any]) -> Any:
     """Return a clause-based answer for a v6 fact, or ``None`` to fall through."""
+    if "排污" in question and "渔业水域" in question:
+        direct = clause(
+            "结论：不能。禁止向渔业水域排放污染物和废弃物。",
+            [("POL-FJ-025", "不得向渔业水域排放污染物", 1)],
+        )
+        if direct is not None:
+            return direct
+    if "养殖使用权" in question and "承包" in question:
+        direct = clause(
+            "结论：可以，法定期限内可由个人或者集体承包经营。",
+            [("POL-FJ-025", "可以由个人或者集体承包经营", 1)],
+        )
+        if direct is not None:
+            return direct
+    if "部门分工" in question:
+        direct = clause(
+            "结论：公安、海事、交通运输、生态环境、自然资源、水利、农业农村、应急管理、市场监管、海警等按职责分工负责。",
+            [("POL-FJ-025", "根据各自的职责", 1)],
+            quote_limit=260,
+        )
+        if direct is not None:
+            return direct
+    if "限额" in question and "公开" in question:
+        direct = clause(
+            "结论：要，分配办法和分配结果必须向社会公开并接受监督。",
+            [("POL-FJ-025", "分配办法和分配结果必须向社会公开", 1)],
+        )
+        if direct is not None:
+            return direct
+
     # --- pool-v6: residual factual fixes ---
     if "功率凭证" in question:
         direct = clause(

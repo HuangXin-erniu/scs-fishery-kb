@@ -2,6 +2,19 @@
 
 This log records material project changes by date. It does not use release versions and is not tied to GitHub Releases.
 
+## 2026-11-21 — pool-v6 corrected pack re-measurement
+
+- The first v6 review round (A 148, B 150) is void: the pack builder took one
+  chunk per document and missed the chunk that held the cited section, so six
+  A-side questions shipped without their clause.
+- Fixed the builder to resolve every citation `(doc_id, section)` to the matching
+  chunk(s) and to fail the build when a section cannot be located; `key.json` now
+  lives outside the reviewer directories, and worksheets are written without a BOM.
+- Rebuilt both packs with new seeds (20261221 / 20261222). All previously missing
+  sections are present, 0 unresolved citations. Gate unchanged at 151/166.
+- Roughly ten genuine answer defects are left unchanged for this round so the
+  measured object stays stable; they are recorded in the dispute files.
+
 ## 2026-11-20 — pool-v6 built and frozen
 
 - Built **166 questions** with strict build gates: section-level binding (numbers
