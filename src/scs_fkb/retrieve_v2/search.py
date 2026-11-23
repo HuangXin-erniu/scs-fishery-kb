@@ -267,13 +267,9 @@ def build_retriever(
     if model == "BAAI/bge-large-zh-v1.5":
         from ..embed_st import SentenceTransformerEncoder
 
-        encoder = SentenceTransformerEncoder(
-            model, cache_dir=str(root / "embeddings" / "models")
-        )
+        encoder = SentenceTransformerEncoder(model, cache_dir=str(root / "embeddings" / "models"))
     else:
-        encoder = FastEmbedEncoder(
-            model_name=model, cache_dir=str(root / "embeddings" / "models")
-        )
+        encoder = FastEmbedEncoder(model_name=model, cache_dir=str(root / "embeddings" / "models"))
     dense_index = open_index(root, encoder)
     bm25 = BM25Index(
         chunks,
