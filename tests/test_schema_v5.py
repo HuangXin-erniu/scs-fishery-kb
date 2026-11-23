@@ -157,6 +157,6 @@ def test_live_register_loads_as_v5() -> None:
     assert registry
     assert all(source["source_record_schema"] == 5 for source in registry.values())
     tiers = [source["ingest"]["tier"] for source in registry.values()]
-    assert tiers.count("canonical") == 139
-    assert tiers.count("provisional") == 2
+    assert tiers.count("canonical") == 141
+    assert tiers.count("provisional") == 0
     assert all(isinstance(source["currency"]["ttl_days"], int) for source in registry.values())

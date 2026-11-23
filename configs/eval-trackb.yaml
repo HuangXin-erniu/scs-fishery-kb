@@ -17,3 +17,11 @@ profiles:
     bm25_weight: 1.0
     dense_weight: 1.0
     note: Evaluation-only profile; raises Track B recall@10 but lowers the public gate.
+
+  deep_rerank:
+    depth: 50
+    bm25_weight: 1.0
+    dense_weight: 1.0
+    doc_rerank: true
+    doc_weights: [0.6, 0.0, 0.2, 0.2]
+    note: Document-level fused/section/number rerank; target first-gold nDCG 0.71.

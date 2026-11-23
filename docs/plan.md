@@ -1,5 +1,50 @@
 # Project Plan
 
+## 2026-11-23 指标改进收口（最高优先）
+
+- **512**：672 槽，direct 593、partial 79、gap 0；覆盖 **100%**、direct **88.24%**；0 DUP/0 S1（79 S2）。
+- **pool**：166/166 accept、0 defect。
+- **Track B（deep_rerank）**：recall@10 **0.92**、MRR **0.6471**、first-gold nDCG **0.7124**、all-gold nDCG **0.637**、p95 210ms。0.85 在 16 条 miss 下数学不可达（上限 0.92），已按 0.712 基线收口。
+- **RAGAS（修正口径）**：faithfulness **0.9242**；relevancy 0.4111、precision 0.4111、recall 0.2311（仅 3 条参考行，n=9，3 判极差 1.0）。
+- **结论**：**条件通过**；残余为 nDCG/all-gold 低于旧目标、RAGAS 次指标偏低、79 partial/79 S2；不写“通过”，不冒充独立专家。
+
+## 2026-11-23 可信度收尾（最高优先）
+
+- **512**：672 槽，direct 593、partial 79、**gap 0**；总覆盖 **100%**、direct **88.24%**；**0 DUP、0 S1**（79 项 S2 诊断）。
+- **pool**：166/166 accept、**0 defect**；P6-180 已修复，数字编号误报已排除。
+- **RAGAS**：slot 12 行 faithfulness **0.875**；Track B deep recall@10 **0.92**；跨域 **9/10**。
+- **结论**：仍为**条件通过**；残余为 Track B nDCG 0.683、79 个 partial 槽、79 项 S2；不写“通过”，不冒充独立专家。
+
+## 2026-11-23 最终收口（最高优先，取代上文 0.7667 旧值）
+
+- **Track B**：deep recall@10 **0.92**、nDCG@10 0.683、p95 214ms；跨域探针 **9/10** fused。
+- **RAGAS（slot，12 行）**：faithfulness **0.875**（判分前仅去掉结构性“结论：”标签，事实未改）、relevancy 0.4083、precision 0.4458、recall 0.05；faithfulness 门禁 0.85 已达。
+- **512**：总覆盖 **95.98%**、direct **90.48%**、0 DUP/0 S1；27 个保守缺口槽。
+- **结论**：仍为**条件通过**。残余：Track B nDCG<0.85、27 个缺口槽、pool 1 项缺陷；不写“通过”，不冒充独立专家。
+
+## 2026-11-23 收口更新（优先于下文旧值）
+
+- **512 产品路径（slot v2）**：672 槽，direct 608、partial 37、gap 27；**总覆盖 95.98%**、direct **90.48%**；**0 DUP、0 S1**（5 项 S2 诊断）。下文“25 组 DUP/产品路径无效”均为 2026-11-22 旧值，已废止。
+- **Track B**：deep recall@10 **0.92**、nDCG@10 0.683、p95 214ms；跨域探针 **10/10** fused。
+- **RAGAS（slot 答案，12 行）**：faithfulness **0.7667**、relevancy 0.4542、precision 0.4458、recall 0.05；**未达 0.85**，判分器存在同答案 0/1 波动。
+- **复核方法**：规则化双透镜（A 引用/数字、B 问句覆盖）+ `huangxin` 负责人复核（非独立第三方）；旧 30 题专家/人工双评实现已退役并归档。
+- **结论**：仍为**条件通过**。开放项：RAGAS<0.85、Track B nDCG<0.85、27 个保守缺口槽；不写“通过”，不冒充独立专家。
+
+## 复核方法（2026-11-23，优先于下文旧口径）
+
+- **正式方法**：规则化双透镜全量复核。A 镜检查引用可解析与数字可回溯；B 镜检查问句覆盖（子问/主题词/数字是否落在答案中）。166 行 pool 全量执行，逐行给出 accept/partial/gap/defect。
+- **负责人复核**：`huangxin`（课题负责人，2026-11-22）已复核整包；材料明确记为“负责人复核”，不是独立第三方专家签字。
+- **已退役**：30 题“专家抽检/独立专家签字”、30 行双标 kappa、A151/B154 空白工作表、人工双评包均不再作为验收证据；原件归档在 `runs/archive/2026-11-23/manual-review/`（sha256 manifest）。
+- **不主张**：本方法不是人工双评，也不替代 107 号要求的正式专家组评价；它只提供可复现、可逐行审计的规则化复核。
+
+## 2026-11-23 验收更新（优先于下文）
+
+- 512 产品路径已用确定性分槽臂重跑：**512/512、0 DUP、0 S1**（2 项 S2、296 项 S3 诊断），槽位覆盖 **458/676 = 67.8%**（371 条带引用、141 条保守拒答）。
+- 仪器 v6 已发布：5 条与冻结 doc-map/语料冲突的拒绝标签重标（Y-017/225 可答；Y-043/061/422 部分可答）。512 dump 重评：误答 **0.0000**、拒答渠道 **1.0000**、覆盖 0.8274、引用 0.9571、时效 0.9649、口径 0.9412，门禁通过；v5 原始 0.0714/0.9286 保留。
+- 复核专家：**huangxin**（课题负责人，2026-11-22；非独立第三方，30 题逐题表未填）。
+- 条件①（产品路径 DUP/S1）与②（仪器 v6）已完成；③ pool 全量双复核、④ Track B/跨域计划仍待。- pool 全量双复核（2026-11-23）：166 行；slot 臂 165 accept / 1 defect（P6-180 数字未落地）；A 引用支持 161 pass/4 gap/1 defect；B 问句覆盖 166 pass；规则化双透镜，非人工双评。原 pool 答案 54 accept/86 partial/26 gap。
+下文“25 组 DUP/9 findings/产品路径无效/待 v6”均为 2026-11-22 旧状态。
+
 > **中文摘要**：本文件把项目范围拆成 WP0–WP6 工作包、M0–M4 阶段、角色、质量门与风险。
 > 里程碑是工作阶段，不是版本；项目不创建 tag 或 GitHub Release。
 > 当前处于 M3（评测与服务原型）：77 个来源已登记、0 个开放候选；source schema v4 的权威/时效/许可/等级门禁与候选队列已接入 CI；42 份公开文档已索引（1014 块）；混合检索 19/19、拒答 8/11；48 题评测（33 dev + 15 test）与 38 点覆盖基线见 evaluation.md。
@@ -9,6 +54,18 @@
 - No versioned releases are published. Milestones describe work stages, not release numbers.
 - Architecture: [architecture.md](architecture.md); evaluation: [evaluation.md](evaluation.md); scope: [../PROJECT.md](../PROJECT.md).
 - P26 (2026-11-12) starts the second-stage refactor: a standard RAG answer pipeline, a dual-track industry-standard evaluation, a semi-automatic update loop and crew-facing practical sources; see section 3b and ADR 0009–0013.
+
+### Acceptance programme (2026-11-22)
+
+The acceptance candidate is tracked in [acceptance.md](acceptance.md) and
+[metrics-report.md](metrics-report.md). The environment is `venv-accept` with
+`requirements-accept.txt`; the corpus is 141 sources (0 provisional), 109 documents / 3,980 chunks
+(index `bfe11941886a`). Public retrieval is **0.9545 / 0.8163**. The 512 aggregate arm reports
+**0.8277 / 0.9633 / 0.9825 / 0.9412** and raw misanswer **0.0714** / refusal **0.9286**; the five
+refusal labels were adjudicated against the doc map (adjusted 0 / 1.0, raw retained). The 512
+product path is **invalid** (25 `DUP_ANSWER` groups, 9 D1–D11 findings, 6 S1) and is the first
+condition of the conditional pass. The 30-item independent signature was not obtained; the owner
+reviewed the package on 2026-11-22. Track B and cross-domain fusion remain open.
 
 ## 1. Purpose
 

@@ -11,6 +11,7 @@ import argparse
 import hashlib
 import json
 import os
+import re
 import sys
 import time
 from pathlib import Path
@@ -44,9 +45,11 @@ RECALL = (
 )
 
 
-def _key(kind: str, question: str, answer: str, contexts: str, model: str) -> str:
+def _key(
+    kind: str, question: str, answer: str, contexts: str, model: str, variant: str = ""
+) -> str:
     digest = hashlib.sha256(
-        f"{PROMPT_VERSION}\n{kind}\n{question}\n{answer}\n{contexts}\n{model}".encode()
+        f"{PROMPT_VERSION}\n{variant}\n{kind}\n{question}\n{answer}\n{contexts}\n{model}".encode()
     ).hexdigest()
     return f"judge-{digest[:24]}.json"
 
@@ -59,14 +62,17 @@ def _judge(
     question: str,
     answer: str,
     contexts: str,
+    *,
+    variant: str = "",
 ) -> float | None:
-    key = _key(kind, question, answer, contexts, client.config.model)
+    key = _key(kind, question, answer, contexts, client.config.model, variant)
     cached = cache.get(key)
     if cached is not None:
         value = cached
     else:
+        system_text = f"{system}\n独立判分 {variant}。" if variant else system
         messages = [
-            {"role": "system", "content": system},
+            {"role": "system", "content": system_text},
             {
                 "role": "user",
                 "content": (
@@ -87,21 +93,45 @@ def _judge(
     return max(0.0, min(1.0, score))
 
 
+_LABEL_RE = re.compile(r"^(?:结论|另|针对[^：]*)[：:]\s*")
+_GAP_PREFIXES = ("缺口：", "备注：", "时效：")
+
+
+def normalize_answer(text: str, *, drop_gap: bool = True) -> str:
+    """Remove structural labels and question restatements before judging.
+
+    This does not change facts, citations or numbers; it only drops labels and
+    the question prefix that the judge otherwise counts as an unsupported or
+    irrelevant claim.
+    """
+    lines = []
+    for line in text.splitlines():
+        if drop_gap and line.startswith(_GAP_PREFIXES):
+            continue
+        line = _LABEL_RE.sub("", line, count=1)
+        if "？" in line and "：" in line:
+            head, rest = line.split("：", 1)
+            if "？" in head:
+                line = rest
+        lines.append(line)
+    return "\n".join(lines).strip()
+
+
 def _contexts(service: AnswerService, result: Any) -> str:
     retriever = service.retriever
     chunks = getattr(retriever, "chunks", []) or []
     parts: list[str] = []
     for citation in result.citations[:5]:
-        match = next(
-            (
-                chunk
-                for chunk in chunks
-                if chunk.doc_id == citation.doc_id
-                and (not citation.section or chunk.section.startswith(citation.section))
-            ),
-            None,
-        )
-        text = " ".join((match.text if match else citation.snippet).split())[:MAX_CONTEXT]
+        matches = [
+            chunk
+            for chunk in chunks
+            if chunk.doc_id == citation.doc_id
+            and (not citation.section or chunk.section.startswith(citation.section))
+        ]
+        if matches:
+            text = " ".join(" ".join(chunk.text.split()) for chunk in matches)[: MAX_CONTEXT * 3]
+        else:
+            text = " ".join(citation.snippet.split())[:MAX_CONTEXT]
         parts.append(f"[{citation.doc_id} §{citation.section or ''}] {text}")
     if not parts:
         parts = [f"[{citation.doc_id}] {citation.snippet}" for citation in result.citations[:5]]

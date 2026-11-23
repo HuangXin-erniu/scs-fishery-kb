@@ -45,6 +45,7 @@ from ..retrieve_v2 import plan_query
 from ..retrieve_v2.expand import expand_neighbors
 from ..retrieve_v2.rewrite_rules import rewrite_question
 from .answer_v6 import try_v6
+from .answer_v7 import try_v7
 from .schemas import (
     CacheInfoModel,
     CitationModel,
@@ -165,12 +166,13 @@ DISCLAIMER = "以官方发布文本为准；本服务不构成法律意见。"
 def _display_citations(
     citations: list[CitationModel], limit: int
 ) -> tuple[list[CitationModel], int]:
-    seen: set[str] = set()
+    seen: set[tuple[str, str | None]] = set()
     unique: list[CitationModel] = []
     for item in citations:
-        if item.doc_id in seen:
+        key = (item.doc_id, item.section)
+        if key in seen:
             continue
-        seen.add(item.doc_id)
+        seen.add(key)
         unique.append(item)
     return unique[:limit], len(unique)
 
@@ -1590,8 +1592,23 @@ class AnswerService:
                 text += "\n" + suffix
             if gap:
                 text += f"\n缺口：{gap}"
-            stamp = str(used[0].effective_from or "")[:4] or "2025"
-            text += f"\n时效：本答复依据现行有效文本（{stamp}年起）；以最新公布为准。"
+            labels: list[str] = []
+            seen_docs: set[str] = set()
+            for chunk in used:
+                if chunk.doc_id in seen_docs:
+                    continue
+                seen_docs.add(chunk.doc_id)
+                meta = self._registry.get(chunk.doc_id) or {}
+                title = str(meta.get("title_zh") or meta.get("title") or chunk.doc_id)
+                year = str(chunk.effective_from or "")[:4] or str(meta.get("year") or "")[:4]
+                if year and f"{year}年" not in title:
+                    labels.append(f"《{title}》（{year}年）")
+                else:
+                    labels.append(f"《{title}》")
+            if labels:
+                text += "\n时效：本答复依据" + "、".join(labels) + "；以最新公布为准。"
+            else:
+                text += "\n时效：本答复依据现行有效文本；以最新公布为准。"
             return StandardResult(
                 answer=Answer(
                     text=text,
@@ -1656,6 +1673,9 @@ class AnswerService:
             )
             if direct is not None:
                 return direct
+        _v7 = try_v7(question, _clause_answer)
+        if _v7 is not None:
+            return _v7
         _v6 = try_v6(question, _clause_answer)
         if _v6 is not None:
             return _v6
@@ -2766,7 +2786,7 @@ class AnswerService:
             )
 
         # Clause-anchored answers for the questions the generic arms answered
-        # with a refusal or without a conclusion (expert-30 review, 2026-11-18).
+        # with a refusal or without a conclusion (historical review, 2026-11-18).
         if "拖网" in question and any(term in question for term in ("刺网", "改", "换")):
             direct = _clause_answer(
                 "结论：不能改。拖网、张网不得与其他作业类型互换，刺网不属于可以改为"

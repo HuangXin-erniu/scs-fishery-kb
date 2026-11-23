@@ -43,7 +43,8 @@ def test_ttl_invalidates(tmp_path) -> None:
     assert cache.get(key, question="休渔时间", now=later) is None
 
 
-def test_semantic_lookup_uses_embedding(tmp_path) -> None:
+def test_semantic_lookup_uses_embedding(tmp_path, monkeypatch) -> None:
+    monkeypatch.setenv("SCS_FKB_SEMANTIC_CACHE", "on")
     encoder = FakeEncoder(
         {
             "休渔时间": [1.0, 0.0, 0.0],
@@ -67,3 +68,10 @@ def test_question_key_is_stable_and_sensitive() -> None:
     assert base != question_key("休渔时间", persona="owner", index_version="idx-1")
     assert base != question_key("休渔时间", persona="captain", index_version="idx-2")
     assert base != question_key(" 休渔时间\n", persona="captain")
+
+
+def test_semantic_lookup_is_opt_in(tmp_path) -> None:
+    encoder = FakeEncoder([1.0, 0.0])
+    cache = AnswerCache(tmp_path, encoder=encoder, threshold=0.95)
+    cache.put("key-a", {"answer": "a"}, question="question a", embedding=[1.0, 0.0])
+    assert cache.get("key-b", question="question a", index_version="") is None

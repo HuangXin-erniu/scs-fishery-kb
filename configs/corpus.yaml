@@ -5734,10 +5734,10 @@ sources:
     text: null
     checked_at: '2026-11-15'
   ingest:
-    tier: provisional
-    reviewed_by: null
-    reviewed_at: null
-    review_note: watch diff; provisional until human review
+    tier: canonical
+    reviewed_by: 课题负责人（用户确认 2026-11-22）
+    reviewed_at: 2026-11-22
+    review_note: owner confirmed licence/authority; index rebuild pending (post-acceptance)
   practical:
     domain: hazard
     personas:
@@ -6156,10 +6156,10 @@ sources:
     text: null
     checked_at: '2026-11-15'
   ingest:
-    tier: provisional
-    reviewed_by: null
-    reviewed_at: null
-    review_note: watch diff; provisional until human review
+    tier: canonical
+    reviewed_by: 课题负责人（用户确认 2026-11-22）
+    reviewed_at: 2026-11-22
+    review_note: owner confirmed licence/authority; index rebuild pending (post-acceptance)
   practical:
     domain: weather
     personas:

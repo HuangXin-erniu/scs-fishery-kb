@@ -197,6 +197,37 @@ class HybridRetriever:
             return lists[0][:top_k]
         return reciprocal_rank_fusion(lists, [1.0] * len(lists), top_k=top_k)
 
+    def search_fused(
+        self,
+        question: str,
+        top_k: int = 10,
+        *,
+        variants: list[str] | None = None,
+        rerank: bool = True,
+    ) -> list[SearchHit]:
+        """Multi-query retrieval with RRF and an optional cross-encoder rerank."""
+        queries = [question]
+        from .rewrite_rules import rewrite_question
+
+        rewritten = rewrite_question(question)
+        if rewritten != question:
+            queries.append(rewritten)
+        if self.lexicon:
+            expanded = expand_query(question, self.lexicon)
+            if expanded != question:
+                queries.append(expanded)
+        if variants:
+            queries.extend(variants)
+        unique = [item.strip() for item in dict.fromkeys(queries) if item and item.strip()]
+        lists = [self.search(query, top_k=max(top_k, 20), rerank=False) for query in unique]
+        if len(lists) == 1:
+            fused = lists[0]
+        else:
+            fused = reciprocal_rank_fusion(lists, [1.0] * len(lists), top_k=max(top_k, 20))
+        if rerank and self.reranker is not None:
+            return self.reranker.rerank(question, fused, top_k=top_k)
+        return fused[:top_k]
+
     def gate_ok(self, question: str, min_score: float, min_matched: int) -> bool:
         expanded = expand_query(question, self.lexicon) if self.lexicon else question
         top = self.bm25.search(expanded, top_k=1)
@@ -214,7 +245,7 @@ def _rows(path: Path) -> list[dict[str, Any]]:
 def build_retriever(
     data_root: Path | str,
     *,
-    model_name: str = "BAAI/bge-small-zh-v1.5",
+    model_name: str | None = None,
     reranker: bool = False,
     reranker_model: str = DEFAULT_RERANKER,
 ) -> HybridRetriever:
@@ -223,9 +254,26 @@ def build_retriever(
     from ..registry import load_registry
 
     root = Path(data_root).expanduser().resolve()
+    index_dir = root / "v2" / "index"
+    current_path = index_dir / "current.json"
+    current = json.loads(current_path.read_text(encoding="utf-8")) if current_path.is_file() else {}
+    manifest_path = index_dir / str(current.get("manifest") or "manifest.json")
+    manifest = (
+        json.loads(manifest_path.read_text(encoding="utf-8")) if manifest_path.is_file() else {}
+    )
+    model = model_name or str(manifest.get("model") or "BAAI/bge-small-zh-v1.5")
     chunks = load_chunks_v2(root)
     documents = _rows(root / "v2" / "processed" / "documents.jsonl")
-    encoder = FastEmbedEncoder(model_name=model_name, cache_dir=str(root / "embeddings" / "models"))
+    if model == "BAAI/bge-large-zh-v1.5":
+        from ..embed_st import SentenceTransformerEncoder
+
+        encoder = SentenceTransformerEncoder(
+            model, cache_dir=str(root / "embeddings" / "models")
+        )
+    else:
+        encoder = FastEmbedEncoder(
+            model_name=model, cache_dir=str(root / "embeddings" / "models")
+        )
     dense_index = open_index(root, encoder)
     bm25 = BM25Index(
         chunks,

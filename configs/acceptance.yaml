@@ -1,0 +1,32 @@
+schema_version: 1
+# Canonical strings that the acceptance documents must quote, and stale strings
+# they must no longer carry. Update this file together with a new acceptance run.
+required:
+  docs/acceptance.md:
+    - "bfe11941886a"
+    - "0.9545"
+    - "0.0714"
+    - "Y-017"
+    - "2026-11-22"
+  docs/metrics-report.md:
+    - "bfe11941886a"
+    - "0.9545"
+    - "0.0714"
+    - "141"
+  docs/technical-report.md:
+    - "0.9545"
+    - "0.8277"
+  docs/plan.md:
+    - "2026-11-22"
+forbidden:
+  docs/acceptance.md:
+    - "251dbf67e804"
+    - "595 passed"
+    - "139 canonical"
+  docs/metrics-report.md:
+    - "251dbf67e804"
+    - "146/200"
+  docs/technical-report.md:
+    - "251dbf67e804"
+  docs/plan.md:
+    - "P03 is not covered"

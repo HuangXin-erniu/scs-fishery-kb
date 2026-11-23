@@ -229,7 +229,13 @@ def main(argv: list[str] | None = None) -> int:
         records = _reviewed(run_root, dataset, args.reviewed)
     elif args.mode == "service":
         records = _service_512(
-            run_root, Path(args.data_root), dataset, args.limit, args.answer_mode
+            run_root,
+            Path(args.data_root),
+            dataset,
+            args.limit,
+            args.answer_mode,
+            timeout=args.timeout,
+            offset=args.offset,
         )
     else:
         records = _dump(run_root, dataset, args.limit)

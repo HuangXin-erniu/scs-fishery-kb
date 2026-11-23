@@ -12,6 +12,7 @@ from __future__ import annotations
 import hashlib
 import json
 import math
+import os
 import threading
 from datetime import UTC, datetime, timedelta
 from pathlib import Path
@@ -19,6 +20,7 @@ from typing import Any
 
 DEFAULT_TTL_DAYS = 30
 DEFAULT_THRESHOLD = 0.95
+SEMANTIC_ENV = "SCS_FKB_SEMANTIC_CACHE"
 CACHE_DIR = "answer-cache"
 
 
@@ -65,6 +67,10 @@ def _cosine(left: list[float], right: list[float]) -> float:
     return dot / (left_norm * right_norm)
 
 
+def _semantic_enabled() -> bool:
+    return os.environ.get(SEMANTIC_ENV, "").strip().lower() in {"on", "1", "true", "yes"}
+
+
 class AnswerCache:
     """JSONL-backed answer cache with optional semantic lookup."""
 
@@ -79,7 +85,10 @@ class AnswerCache:
         self.root = Path(root).expanduser().resolve() / CACHE_DIR
         self.root.mkdir(parents=True, exist_ok=True)
         self.path = self.root / "entries.jsonl"
-        self.encoder = encoder
+        # Semantic lookup is opt-in: different questions can embed close enough
+        # to collide at 0.95 and share an answer body (the 512 DUP_ANSWER
+        # incident). Exact-key hits stay on by default.
+        self.encoder = encoder if _semantic_enabled() else None
         self.threshold = float(threshold)
         self.ttl_days = int(ttl_days)
         self._lock = threading.Lock()
@@ -201,6 +210,7 @@ __all__ = [
     "CACHE_DIR",
     "DEFAULT_TTL_DAYS",
     "DEFAULT_THRESHOLD",
+    "SEMANTIC_ENV",
     "config_hash",
     "question_key",
 ]
