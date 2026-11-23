@@ -1,6 +1,12 @@
+import sys
+from pathlib import Path
 from types import SimpleNamespace
 
-from scripts.eval_ragas import _contexts, normalize_answer
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from scripts.eval_ragas import _contexts, normalize_answer  # noqa: E402
 
 
 def _chunk(doc_id, section, text):
